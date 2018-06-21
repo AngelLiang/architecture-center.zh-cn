@@ -8,6 +8,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24540003"
 ---
 # <a name="gateway-offloading-pattern"></a><span data-ttu-id="e8fc9-103">网关卸载模式</span><span class="sxs-lookup"><span data-stu-id="e8fc9-103">Gateway Offloading pattern</span></span>
 

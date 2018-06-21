@@ -12,6 +12,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29478249"
 ---
 # <a name="retry-pattern"></a><span data-ttu-id="aee14-104">重试模式</span><span class="sxs-lookup"><span data-stu-id="aee14-104">Retry pattern</span></span>
 

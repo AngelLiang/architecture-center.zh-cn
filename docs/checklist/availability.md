@@ -9,6 +9,7 @@ ms.sourcegitcommit: 441185360db49cfb3cf39527b68f318d17d4cb3d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 01/19/2018
+ms.locfileid: "27973104"
 ---
 # <a name="availability-checklist"></a><span data-ttu-id="3381c-103">可用性核对清单</span><span class="sxs-lookup"><span data-stu-id="3381c-103">Availability checklist</span></span>
 

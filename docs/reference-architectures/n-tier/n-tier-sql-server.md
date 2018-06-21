@@ -11,6 +11,7 @@ ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 05/06/2018
+ms.locfileid: "33673589"
 ---
 # <a name="n-tier-application-with-sql-server"></a><span data-ttu-id="2737c-103">使用 SQL Server 的 N 层应用程序</span><span class="sxs-lookup"><span data-stu-id="2737c-103">N-tier application with SQL Server</span></span>
 

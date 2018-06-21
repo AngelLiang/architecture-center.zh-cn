@@ -8,6 +8,7 @@ ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 03/30/2018
+ms.locfileid: "30270013"
 ---
 # <a name="backends-for-frontends-pattern"></a><span data-ttu-id="9b7f3-103">用于前端的后端模式</span><span class="sxs-lookup"><span data-stu-id="9b7f3-103">Backends for Frontends pattern</span></span>
 

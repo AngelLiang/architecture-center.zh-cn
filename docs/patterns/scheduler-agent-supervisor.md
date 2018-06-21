@@ -13,6 +13,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24542419"
 ---
 # <a name="scheduler-agent-supervisor-pattern"></a><span data-ttu-id="dca5d-104">计划程序代理监督程序模式</span><span class="sxs-lookup"><span data-stu-id="dca5d-104">Scheduler Agent Supervisor pattern</span></span>
 

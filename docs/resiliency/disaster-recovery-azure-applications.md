@@ -8,6 +8,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29477768"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a><span data-ttu-id="aa95b-103">Azure 应用程序灾难恢复</span><span class="sxs-lookup"><span data-stu-id="aa95b-103">Disaster recovery for Azure applications</span></span>
 

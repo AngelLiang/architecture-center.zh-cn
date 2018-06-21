@@ -11,6 +11,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24540275"
 ---
 # <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a><span data-ttu-id="bc080-103">使用客户端断言从 Azure AD 获取访问令牌</span><span class="sxs-lookup"><span data-stu-id="bc080-103">Use client assertion to get access tokens from Azure AD</span></span>
 

@@ -8,6 +8,7 @@ ms.sourcegitcommit: c7f46b14ad7d55cf553b2d0b01045c9c25aefcdb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 12/09/2017
+ms.locfileid: "26587750"
 ---
 # <a name="designing-microservices-data-considerations"></a><span data-ttu-id="c6f6b-103">设计微服务：数据注意事项</span><span class="sxs-lookup"><span data-stu-id="c6f6b-103">Designing microservices: Data considerations</span></span>
 

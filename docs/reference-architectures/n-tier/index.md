@@ -4,8 +4,10 @@ description: 介绍部署 VM 用于在 Azure 中托管企业级应用程序时�
 layout: LandingPage
 ms.openlocfilehash: 288acc36e7c310e70240caa3ed9f2095bbb8bc58
 ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 05/10/2018
+ms.locfileid: "34007619"
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->

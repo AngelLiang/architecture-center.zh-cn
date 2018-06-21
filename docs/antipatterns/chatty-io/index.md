@@ -7,6 +7,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29477734"
 ---
 # <a name="chatty-io-antipattern"></a><span data-ttu-id="db644-103">琐碎 I/O 对立模式</span><span class="sxs-lookup"><span data-stu-id="db644-103">Chatty I/O antipattern</span></span>
 

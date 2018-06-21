@@ -8,6 +8,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24541043"
 ---
 # <a name="choose-a-solution-for-connecting-an-on-premises-network-to-azure"></a><span data-ttu-id="9e81b-103">选择用于将本地网络连接到 Azure 的解决方案</span><span class="sxs-lookup"><span data-stu-id="9e81b-103">Choose a solution for connecting an on-premises network to Azure</span></span>
 

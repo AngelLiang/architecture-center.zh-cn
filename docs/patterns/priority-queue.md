@@ -13,6 +13,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24543139"
 ---
 # <a name="priority-queue-pattern"></a><span data-ttu-id="199ec-104">优先级队列模式</span><span class="sxs-lookup"><span data-stu-id="199ec-104">Priority Queue pattern</span></span>
 

@@ -15,6 +15,7 @@ ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 05/03/2018
+ms.locfileid: "32323901"
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a><span data-ttu-id="5cc70-104">在 Azure 中创建 Active Directory 域服务 (AD DS) 资源林</span><span class="sxs-lookup"><span data-stu-id="5cc70-104">Create an Active Directory Domain Services (AD DS) resource forest in Azure</span></span>
 

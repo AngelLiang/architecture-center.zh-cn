@@ -8,6 +8,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24538387"
 ---
 # <a name="conditionally-deploy-a-resource-in-an-azure-resource-manager-template"></a><span data-ttu-id="47143-103">在 Azure 资源管理器模板中有条件地部署资源</span><span class="sxs-lookup"><span data-stu-id="47143-103">Conditionally deploy a resource in an Azure Resource Manager template</span></span>
 

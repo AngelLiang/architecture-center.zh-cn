@@ -10,6 +10,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847084"
 ---
 # <a name="data-management-patterns"></a><span data-ttu-id="7ad6c-106">数据管理模式</span><span class="sxs-lookup"><span data-stu-id="7ad6c-106">Data Management patterns</span></span>
 

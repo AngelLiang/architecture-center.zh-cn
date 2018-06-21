@@ -8,6 +8,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30848642"
 ---
 # <a name="choosing-a-stream-processing-technology-in-azure"></a><span data-ttu-id="408e9-102">在 Azure 中选择流处理技术</span><span class="sxs-lookup"><span data-stu-id="408e9-102">Choosing a stream processing technology in Azure</span></span>
 

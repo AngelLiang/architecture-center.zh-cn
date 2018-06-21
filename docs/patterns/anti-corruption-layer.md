@@ -8,6 +8,7 @@ ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 04/16/2018
+ms.locfileid: "31012362"
 ---
 # <a name="anti-corruption-layer-pattern"></a><span data-ttu-id="e5187-103">防损层模式</span><span class="sxs-lookup"><span data-stu-id="e5187-103">Anti-Corruption Layer pattern</span></span>
 

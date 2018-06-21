@@ -13,6 +13,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24542275"
 ---
 # <a name="external-configuration-store-pattern"></a><span data-ttu-id="d60da-104">外部配置存储模式</span><span class="sxs-lookup"><span data-stu-id="d60da-104">External Configuration Store pattern</span></span>
 

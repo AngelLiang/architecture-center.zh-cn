@@ -11,6 +11,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24540051"
 ---
 # <a name="the-tailspin-scenario"></a><span data-ttu-id="32783-103">Tailspin 方案</span><span class="sxs-lookup"><span data-stu-id="32783-103">The Tailspin scenario</span></span>
 

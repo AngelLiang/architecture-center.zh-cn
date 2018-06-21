@@ -13,6 +13,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24540227"
 ---
 # <a name="materialized-view-pattern"></a><span data-ttu-id="ff5c8-104">具体化视图模式</span><span class="sxs-lookup"><span data-stu-id="ff5c8-104">Materialized View pattern</span></span>
 

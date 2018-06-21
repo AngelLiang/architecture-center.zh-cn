@@ -8,6 +8,7 @@ ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 02/14/2018
+ms.locfileid: "29288919"
 ---
 # <a name="securing-data-solutions"></a><span data-ttu-id="bacfd-102">保护数据解决方案</span><span class="sxs-lookup"><span data-stu-id="bacfd-102">Securing data solutions</span></span>
 

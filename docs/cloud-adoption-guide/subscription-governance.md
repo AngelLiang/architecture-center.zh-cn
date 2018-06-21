@@ -19,6 +19,7 @@ ms.sourcegitcommit: 4ec010846b9b5545c843a32e08293f906e512302
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 05/17/2018
+ms.locfileid: "34299886"
 ---
 # <a name="azure-enterprise-scaffold---prescriptive-subscription-governance"></a><span data-ttu-id="031fd-103">Azure 企业基架 - 出于合规目的监管订阅</span><span class="sxs-lookup"><span data-stu-id="031fd-103">Azure enterprise scaffold - prescriptive subscription governance</span></span>
 <span data-ttu-id="031fd-104">为了敏捷性和灵活性，企业越来越多地采用公有云。</span><span class="sxs-lookup"><span data-stu-id="031fd-104">Enterprises are increasingly adopting the public cloud for its agility and flexibility.</span></span> <span data-ttu-id="031fd-105">它们利用云的优势来产生营收或优化企业资源。</span><span class="sxs-lookup"><span data-stu-id="031fd-105">They are utilizing the cloud's strengths to generate revenue or optimize resources for the business.</span></span> <span data-ttu-id="031fd-106">Microsoft Azure 提供多种不同的服务，企业可以像构建块一样将它们组合，解决广泛的工作负荷与应用程序需求。</span><span class="sxs-lookup"><span data-stu-id="031fd-106">Microsoft Azure provides a multitude of services that enterprises can assemble like building blocks to address a wide array of workloads and applications.</span></span> 

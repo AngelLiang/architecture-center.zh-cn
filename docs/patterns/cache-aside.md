@@ -13,6 +13,7 @@ ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 04/16/2018
+ms.locfileid: "31012454"
 ---
 # <a name="cache-aside-pattern"></a><span data-ttu-id="3b3eb-104">缓存端模式</span><span class="sxs-lookup"><span data-stu-id="3b3eb-104">Cache-Aside pattern</span></span>
 

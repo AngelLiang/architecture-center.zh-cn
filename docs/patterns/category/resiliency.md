@@ -10,6 +10,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847186"
 ---
 # <a name="resiliency-patterns"></a><span data-ttu-id="94c1e-106">复原模式</span><span class="sxs-lookup"><span data-stu-id="94c1e-106">Resiliency patterns</span></span>
 

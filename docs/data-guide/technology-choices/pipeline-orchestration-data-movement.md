@@ -8,6 +8,7 @@ ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 02/14/2018
+ms.locfileid: "29288799"
 ---
 # <a name="choosing-a-data-pipeline-orchestration-technology-in-azure"></a><span data-ttu-id="3f209-102">在 Azure 中选择数据管道业务流程技术</span><span class="sxs-lookup"><span data-stu-id="3f209-102">Choosing a data pipeline orchestration technology in Azure</span></span>
 
