@@ -1,126 +1,87 @@
 ---
-title: 将本地网络连接到 Azure
-description: 本地网络与 Azure 之间的安全可靠网络连接的建议体系结构。
-layout: LandingPage
-ms.openlocfilehash: 372efb8ecf69245a5895c51e3da156a348bd665e
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+title: 选择用于将本地网络连接到 Azure 的解决方案
+description: 比较用于将本地网络连接到 Azure 的参考体系结构。
+author: telmosampaio
+ms.date: 07/02/2018
+ms.openlocfilehash: 0cc07d3b7d45accf9f99ce32914b0ef065d62f32
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29782320"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987472"
 ---
-<!-- This file is generated! -->
-<!-- See the templates in ./build/reference-architectures  -->
-<!-- See data in index.json -->
+# <a name="connect-an-on-premises-network-to-azure"></a><span data-ttu-id="a3f59-103">将本地网络连接到 Azure</span><span class="sxs-lookup"><span data-stu-id="a3f59-103">Connect an on-premises network to Azure</span></span>
 
-# <a name="connect-an-on-premises-network-to-azure"></a>将本地网络连接到 Azure
+<span data-ttu-id="a3f59-104">本文比较了用于将本地网络连接到 Azure 虚拟网络 (VNet) 的选项。</span><span class="sxs-lookup"><span data-stu-id="a3f59-104">This article compares options for connecting an on-premises network to an Azure Virtual Network (VNet).</span></span> <span data-ttu-id="a3f59-105">每个选项都有可用的更详细的参考体系结构。</span><span class="sxs-lookup"><span data-stu-id="a3f59-105">For each option, a more detailed reference architecture is available.</span></span>
 
-这些参考体系结构介绍了有关在本地网络与 Azure 之间创建可靠网络连接的成熟做法。 [应该选择什么？](./considerations.md)
+## <a name="vpn-connection"></a><span data-ttu-id="a3f59-106">VPN 连接</span><span class="sxs-lookup"><span data-stu-id="a3f59-106">VPN connection</span></span>
 
-<section class="series">
-    <ul class="panelContent">
-    <!-- VPN -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./vpn.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/vpn.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>VPN</h3>
-                        <p>使用站点到站点虚拟专用网络 (VPN) 将本地网络扩展到 Azure。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- ExpressRoute -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./expressroute.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/expressroute.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>ExpressRoute</h3>
-                        <p>使用 Azure ExpressRoute 将本地网络扩展到 Azure。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- ExpressRoute with VPN failover -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./expressroute-vpn-failover.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/expressroute-vpn-failover.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>使用 ExpressRoute 和 VPN 实现故障转移</h3>
-                        <p>使用 Azure ExpressRoute 和 VPN 作为故障转移连接，将本地网络扩展到 Azure。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- Hub-spoke topology -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./hub-spoke.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/hub-spoke.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>中心辐射型拓扑</h3>
-                        <p>中心是本地网络的中心连接点。 分支是与中心对等互连的 VNet，可用于隔离工作负荷。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- Hub-spoke topology with shared services -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./shared-services.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/shared-services.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>带共享服务的中心辐射型拓扑</h3>
-                        <p>部署带共享服务（包括 Active Directory 服务和网络虚拟设备 (NVA)）的中心辐射型拓扑。 共享服务可供所有辐射 VNet 使用。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    </ul>
-</section>
+<span data-ttu-id="a3f59-107">[VPN 网关](/azure/vpn-gateway/vpn-gateway-about-vpngateways)是一种虚拟网关，可在 Azure 虚拟网络和本地位置之间发送加密的流量。</span><span class="sxs-lookup"><span data-stu-id="a3f59-107">A [VPN gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) is a type of virtual network gateway that sends encrypted traffic between an Azure virtual network and an on-premises location.</span></span> <span data-ttu-id="a3f59-108">加密的流量流经公共 Internet。</span><span class="sxs-lookup"><span data-stu-id="a3f59-108">The encrypted traffic goes over the public Internet.</span></span>
 
-<ul class="panelContent cardsI">
-</ul>
+<span data-ttu-id="a3f59-109">此体系结构适合满足以下条件的混合应用程序：本地硬件与云之间的流量可能较小，或者用户愿意用略微延长的延迟换得云的灵活性和处理能力。</span><span class="sxs-lookup"><span data-stu-id="a3f59-109">This architecture is suitable for hybrid applications where the traffic between on-premises hardware and the cloud is likely to be light, or you are willing to trade slightly extended latency for the flexibility and processing power of the cloud.</span></span>
+
+<span data-ttu-id="a3f59-110">**优点**</span><span class="sxs-lookup"><span data-stu-id="a3f59-110">**Benefits**</span></span>
+
+- <span data-ttu-id="a3f59-111">易于配置。</span><span class="sxs-lookup"><span data-stu-id="a3f59-111">Simple to configure.</span></span>
+
+<span data-ttu-id="a3f59-112">**挑战**</span><span class="sxs-lookup"><span data-stu-id="a3f59-112">**Challenges**</span></span>
+
+- <span data-ttu-id="a3f59-113">需要本地 VPN 设备。</span><span class="sxs-lookup"><span data-stu-id="a3f59-113">Requires an on-premises VPN device.</span></span>
+- <span data-ttu-id="a3f59-114">尽管 Microsoft 保证每个 VPN 网关 99.9% 的可用性，但此 [SLA](https://azure.microsoft.com/support/legal/sla/vpn-gateway/) 仅涵盖 VPN 网关，并不涉及与网关之间的网络连接。</span><span class="sxs-lookup"><span data-stu-id="a3f59-114">Although Microsoft guarantees 99.9% availability for each VPN Gateway, this [SLA](https://azure.microsoft.com/support/legal/sla/vpn-gateway/) only covers the VPN gateway, and not your network connection to the gateway.</span></span>
+- <span data-ttu-id="a3f59-115">通过 Azure VPN 网关的 VPN 连接当前最多支持 200 Mbps 的带宽。</span><span class="sxs-lookup"><span data-stu-id="a3f59-115">A VPN connection over Azure VPN Gateway currently supports a maximum of 200 Mbps bandwidth.</span></span> <span data-ttu-id="a3f59-116">如果预期会超过此吞吐量，可能需要跨多个 VPN 连接对 Azure 虚拟网络进行分区。</span><span class="sxs-lookup"><span data-stu-id="a3f59-116">You may need to partition your Azure virtual network across multiple VPN connections if you expect to exceed this throughput.</span></span>
+
+<span data-ttu-id="a3f59-117">**参考体系结构**</span><span class="sxs-lookup"><span data-stu-id="a3f59-117">**Reference architecture**</span></span>
+
+- [<span data-ttu-id="a3f59-118">使用 VPN 网关的混合网络</span><span class="sxs-lookup"><span data-stu-id="a3f59-118">Hybrid network with VPN gateway</span></span>](./vpn.md)
+
+## <a name="azure-expressroute-connection"></a><span data-ttu-id="a3f59-119">Azure ExpressRoute 连接</span><span class="sxs-lookup"><span data-stu-id="a3f59-119">Azure ExpressRoute connection</span></span>
+
+<span data-ttu-id="a3f59-120">[ExpressRoute](/azure/expressroute/) 连接通过第三方连接提供商使用专用连接。</span><span class="sxs-lookup"><span data-stu-id="a3f59-120">[ExpressRoute](/azure/expressroute/) connections use a private, dedicated connection through a third-party connectivity provider.</span></span> <span data-ttu-id="a3f59-121">该专用连接将本地网络扩展到 Azure 中。</span><span class="sxs-lookup"><span data-stu-id="a3f59-121">The private connection extends your on-premises network into Azure.</span></span> 
+
+<span data-ttu-id="a3f59-122">此体系结构适合满足以下条件的混合应用程序：运行需要较高程度可伸缩性的大规模、任务关键型工作负荷。</span><span class="sxs-lookup"><span data-stu-id="a3f59-122">This architecture is suitable for hybrid applications running large-scale, mission-critical workloads that require a high degree of scalability.</span></span> 
+
+<span data-ttu-id="a3f59-123">**优点**</span><span class="sxs-lookup"><span data-stu-id="a3f59-123">**Benefits**</span></span>
+
+- <span data-ttu-id="a3f59-124">有很高的带宽可用；最高可达 10 Gbps，具体取决于连接提供商。</span><span class="sxs-lookup"><span data-stu-id="a3f59-124">Much higher bandwidth available; up to 10 Gbps depending on the connectivity provider.</span></span>
+- <span data-ttu-id="a3f59-125">支持动态缩放带宽以帮助在需求较低的时段降低成本。</span><span class="sxs-lookup"><span data-stu-id="a3f59-125">Supports dynamic scaling of bandwidth to help reduce costs during periods of lower demand.</span></span> <span data-ttu-id="a3f59-126">但是，并非所有连接提供商都提供此选项。</span><span class="sxs-lookup"><span data-stu-id="a3f59-126">However, not all connectivity providers have this option.</span></span>
+- <span data-ttu-id="a3f59-127">可能会允许组织直接访问国家/地区云，具体取决于连接提供商。</span><span class="sxs-lookup"><span data-stu-id="a3f59-127">May allow your organization direct access to national clouds, depending on the connectivity provider.</span></span>
+- <span data-ttu-id="a3f59-128">跨整个连接的 99.9% 可用性 SLA。</span><span class="sxs-lookup"><span data-stu-id="a3f59-128">99.9% availability SLA across the entire connection.</span></span>
+
+<span data-ttu-id="a3f59-129">**挑战**</span><span class="sxs-lookup"><span data-stu-id="a3f59-129">**Challenges**</span></span>
+
+- <span data-ttu-id="a3f59-130">设置可能复杂。</span><span class="sxs-lookup"><span data-stu-id="a3f59-130">Can be complex to set up.</span></span> <span data-ttu-id="a3f59-131">创建 ExpressRoute 连接需要使用第三方连接提供商。</span><span class="sxs-lookup"><span data-stu-id="a3f59-131">Creating an ExpressRoute connection requires working with a third-party connectivity provider.</span></span> <span data-ttu-id="a3f59-132">该提供商负责预配网络连接。</span><span class="sxs-lookup"><span data-stu-id="a3f59-132">The provider is responsible for provisioning the network connection.</span></span>
+- <span data-ttu-id="a3f59-133">需要本地高带宽路由器。</span><span class="sxs-lookup"><span data-stu-id="a3f59-133">Requires high-bandwidth routers on-premises.</span></span>
+
+<span data-ttu-id="a3f59-134">**参考体系结构**</span><span class="sxs-lookup"><span data-stu-id="a3f59-134">**Reference architecture**</span></span>
+
+- [<span data-ttu-id="a3f59-135">使用 ExpressRoute 的混合网络</span><span class="sxs-lookup"><span data-stu-id="a3f59-135">Hybrid network with ExpressRoute</span></span>](./expressroute.md)
+
+## <a name="expressroute-with-vpn-failover"></a><span data-ttu-id="a3f59-136">使用 ExpressRoute 和 VPN 实现故障转移</span><span class="sxs-lookup"><span data-stu-id="a3f59-136">ExpressRoute with VPN failover</span></span>
+
+<span data-ttu-id="a3f59-137">此选项合并了前面两个选项，在正常情况下使用 ExpressRoute，但在 ExpressRoute 线路中发生连接丢失时故障转移到 VPN 连接。</span><span class="sxs-lookup"><span data-stu-id="a3f59-137">This options combines the previous two, using ExpressRoute in normal conditions, but failing over to a VPN connection if there is a loss of connectivity in the ExpressRoute circuit.</span></span>
+
+<span data-ttu-id="a3f59-138">此体系结构适合需要 ExpressRoute 的较高带宽并且还需要高度可用的网络连接的混合应用程序。</span><span class="sxs-lookup"><span data-stu-id="a3f59-138">This architecture is suitable for hybrid applications that need the higher bandwidth of ExpressRoute, and also require highly available network connectivity.</span></span> 
+
+<span data-ttu-id="a3f59-139">**优点**</span><span class="sxs-lookup"><span data-stu-id="a3f59-139">**Benefits**</span></span>
+
+- <span data-ttu-id="a3f59-140">在 ExpressRoute 线路出现故障时具有高可用性，虽然回退连接位于带宽较低的网络上。</span><span class="sxs-lookup"><span data-stu-id="a3f59-140">High availability if the ExpressRoute circuit fails, although the fallback connection is on a lower bandwidth network.</span></span>
+
+<span data-ttu-id="a3f59-141">**挑战**</span><span class="sxs-lookup"><span data-stu-id="a3f59-141">**Challenges**</span></span>
+
+- <span data-ttu-id="a3f59-142">配置复杂。</span><span class="sxs-lookup"><span data-stu-id="a3f59-142">Complex to configure.</span></span> <span data-ttu-id="a3f59-143">需要设置 VPN 连接和 ExpressRoute 线路。</span><span class="sxs-lookup"><span data-stu-id="a3f59-143">You need to set up both a VPN connection and an ExpressRoute circuit.</span></span>
+- <span data-ttu-id="a3f59-144">需要冗余硬件（VPN 设备），以及你需要为其付费的冗余 Azure VPN 网关连接。</span><span class="sxs-lookup"><span data-stu-id="a3f59-144">Requires redundant hardware (VPN appliances), and a redundant Azure VPN Gateway connection for which you pay charges.</span></span>
+
+<span data-ttu-id="a3f59-145">**参考体系结构**</span><span class="sxs-lookup"><span data-stu-id="a3f59-145">**Reference architecture**</span></span>
+
+- [<span data-ttu-id="a3f59-146">使用 ExpressRoute 和 VPN 故障转移的混合网络</span><span class="sxs-lookup"><span data-stu-id="a3f59-146">Hybrid network with ExpressRoute and VPN failover</span></span>](./expressroute-vpn-failover.md)
+
+
+## <a name="hub-spoke-network-topology"></a><span data-ttu-id="a3f59-147">中心辐射型网络拓扑</span><span class="sxs-lookup"><span data-stu-id="a3f59-147">Hub-spoke network topology</span></span>
+
+<span data-ttu-id="a3f59-148">可以使用中心辐射型网络拓扑，在隔离工作负荷的同时共享标识和安全性之类的服务。</span><span class="sxs-lookup"><span data-stu-id="a3f59-148">A hub-spoke network topology is a way to isolate workloads while sharing services such as identity and security.</span></span> <span data-ttu-id="a3f59-149">中心是 Azure 中的一个虚拟网络 (VNet)，充当到本地网络的连接的中心点。</span><span class="sxs-lookup"><span data-stu-id="a3f59-149">The hub is a virtual network (VNet) in Azure that acts as a central point of connectivity to your on-premises network.</span></span> <span data-ttu-id="a3f59-150">辐射是与中心对等互连的 VNet。</span><span class="sxs-lookup"><span data-stu-id="a3f59-150">The spokes are VNets that peer with the hub.</span></span> <span data-ttu-id="a3f59-151">共享服务部署在中心，而各个工作负荷则以辐射的形式部署。</span><span class="sxs-lookup"><span data-stu-id="a3f59-151">Shared services are deployed in the hub, while individual workloads are deployed as spokes.</span></span>
+
+
+<span data-ttu-id="a3f59-152">**参考体系结构**</span><span class="sxs-lookup"><span data-stu-id="a3f59-152">**Reference architectures**</span></span>
+
+- [<span data-ttu-id="a3f59-153">中心辐射型拓扑</span><span class="sxs-lookup"><span data-stu-id="a3f59-153">Hub-spoke topology</span></span>](./hub-spoke.md)
+- [<span data-ttu-id="a3f59-154">带共享服务的中心辐射</span><span class="sxs-lookup"><span data-stu-id="a3f59-154">Hub-spoke with shared services</span></span>](./shared-services.md)
