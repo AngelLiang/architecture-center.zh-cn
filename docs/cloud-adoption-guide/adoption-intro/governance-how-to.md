@@ -2,12 +2,12 @@
 title: Azure 调控设计指南
 description: 有关配置 Azure 调控措施，使用户能够部署简单工作负荷的指南
 author: petertay
-ms.openlocfilehash: 78545400fc0b09262dce3d0e577442443468b2ed
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: 88cd24a46a6bdaca4e0dd18706af1f7e3fe3bce2
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229456"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016057"
 ---
 # <a name="azure-governance-design-guide"></a>Azure 调控设计指南
 
@@ -24,7 +24,7 @@ ms.locfileid: "39229456"
 在开始设计调控模型之前，必须了解 Azure 的许可方式。 这是因为，与 Azure 许可证关联的管理帐户对所有 Azure 资源拥有最高级别的访问权限。 这些管理帐户构成了调控模型的基础。  
 
 > [!NOTE]
-> 如果组织的某个现有 [Microsoft 企业协议](https://www.microsoft.com/licensing/licensing-programs/enterprise.aspx)不包括 Azure，可以通过做出前期货币承诺来添加 Azure。 有关详细信息，请参阅[为企业获得 Azure 许可](https://azure.microsoft.com/pricing/enterprise-agreement/)。 
+> 如果组织的某个现有 [Microsoft 企业协议](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise.aspx)不包括 Azure，可以通过做出前期货币承诺来添加 Azure。 有关详细信息，请参阅[为企业获得 Azure 许可](https://azure.microsoft.com/pricing/enterprise-agreement/)。 
 
 将 Azure 添加到组织的企业协议时，系统已提示组织创建 **Azure 帐户**。 在帐户创建过程中，已创建 **Azure 帐户所有者**，以及具有**全局管理员**帐户的 Azure Active Directory (Azure AD) 租户。 Azure AD 租户是一个逻辑构造，它代表 Azure AD 的安全专用实例。
 

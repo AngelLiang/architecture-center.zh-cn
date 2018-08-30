@@ -2,12 +2,12 @@
 title: 事件驱动的架构样式
 description: 介绍 Azure 上事件驱动和 IoT 架构的优点、挑战和最佳做法
 author: MikeWasson
-ms.openlocfilehash: 3289bf784b02d62e3d0c1a29b4839c9be3501134
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: dbf6be5ed386d06f96c876993ad03e7cb0e3dded
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29478317"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43016078"
 ---
 # <a name="event-driven-architecture-style"></a>事件驱动的架构样式
 
@@ -55,42 +55,9 @@ ms.locfileid: "29478317"
 - 有保证的传递。 在某些系统中，尤其是在 IoT 方案中，保证数据传递至关重要。
 - 按顺序或者“恰一次”处理事件。 每种使用者类型通常都在多个实例中运行，以提供复原能力和可伸缩性。 如果必须按顺序（在使用者类型中）处理事件，或处理逻辑不是幂等的，就会带来挑战。
 
-## <a name="iot-architecture"></a>IoT 架构
-
-事件驱动的架构是 IoT 解决方案的中心环节。 下列图表显示 IoT 可能出现的逻辑架构。 此图表强调架构的事件流式传输组件。
-
-![](./images/iot.png)
-
-云网关使用可靠、低延迟的消息传递系统在云边界引入设备事件。
-
-设备可能会直接将事件发送到云网关，或通过现场网关发送。 现场网关是一种专用设备或软件，通常与接收事件并将事件转接到云网关的设备位于同一位置。 现场网关也可预处理原始设备事件，执行过滤、聚合或协议转换等功能。
-
-引入后，事件将通过一个或多个流处理器，此处理器可将数据路由到存储等位置，也可执行分析和其他处理。
-
-下面是一些常见的处理类型。 （此列表并未囊括所有类型。）
-
-- 将事件数据写入冷存储，用于存档或批处理分析。
-
-- 热路径分析，实时（或近乎实时）分析事件流，以检测异常，识别滚动时间范围内的模式，或者在流中出现特殊情况时触发警报。 
-
-- 处理设备中特殊类型的非遥测消息，例如通知和警报。 
-
-- 机器学习。
-
-具有灰色阴影的框表示 IoT 系统的组件，虽然这些组件与事件流式传输没有直接关系，但为了完整起见，仍在此处提出。
-
-- 设备注册表是预配设备的数据库，包括设备 ID 和常见的设备元数据，如位置信息。
-
-- 预配 API 是一种常见的外部接口，用于预配和注册新设备。
-
-- 某些 IoT 解决方案可使命令和控制消息发送到设备。
-
-> 本部分介绍了 IoT 的极高级别视图，需要考虑许多细微问题和挑战。 要获取更为详细的参考架构和讨论，请参阅 [Microsoft Azure IoT 参考架构][iot-ref-arch]（PDF 下载）。
-
  <!-- links -->
 
 [competing-consumers]: ../../patterns/competing-consumers.md
-[iot-ref-arch]: https://azure.microsoft.com/updates/microsoft-azure-iot-reference-architecture-available/
 [minimize-coordination]: ../design-principles/minimize-coordination.md
 
 
