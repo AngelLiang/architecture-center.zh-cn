@@ -4,12 +4,12 @@ description: 设置重试机制的服务指南。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 72dfb59c3357c5f14806a33ef5f6cdd3e7937915
-ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
+ms.openlocfilehash: 790c933458717f2cb4cde0741b1d22f6ae89cc39
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/29/2018
-ms.locfileid: "39334158"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43016106"
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服务的重试指南
 
@@ -23,7 +23,9 @@ ms.locfileid: "39334158"
 | --- | --- | --- | --- | --- |
 | **[Azure Active Directory](#azure-active-directory)** |ADAL 库原生 |嵌入到 ADAL 库 |内部 |无 |
 | **[Cosmos DB](#cosmos-db)** |服务原生 |不可配置 |全局 |TraceSource |
+| **Data Lake Store** |客户端原生 |不可配置 |各项操作 |无 |
 | **[事件中心](#event-hubs)** |客户端原生 |编程 |Client |无 |
+| **[IoT 中心](#iot-hub)** |客户端 SDK 原生 |编程 |Client |无 |
 | **[Redis 缓存](#azure-redis-cache)** |客户端原生 |编程 |Client |TextWriter |
 | **[搜索](#azure-search)** |客户端原生 |编程 |Client |ETW 或自定义 |
 | **[服务总线](#service-bus)** |客户端原生 |编程 |命名空间管理器、消息工厂和客户端 |ETW |
@@ -124,6 +126,25 @@ client.RetryPolicy = RetryPolicy.Default;
 
 ### <a name="more-information"></a>详细信息
 [Azure 事件中心的 .NET 标准客户端库](https://github.com/Azure/azure-event-hubs-dotnet)
+
+## <a name="iot-hub"></a>IoT 中心
+
+Azure IoT 中心是一项服务，用于连接、监视和管理那些开发物联网 (IoT) 应用程序的设备。
+
+### <a name="retry-mechanism"></a>重试机制
+
+Azure IoT 设备 SDK 可以检测网络、协议或应用程序中的错误。 此 SDK 根据错误类型来检查是否需执行重试。 如果错误是可恢复的，SDK 就会开始使用配置的重试策略进行重试。
+
+默认的重试策略为“带随机抖动的指数回退”，但这是可以配置的。
+
+### <a name="policy-configuration"></a>策略配置
+
+策略配置因语言而异。 如需更多详细信息，请参阅 [IoT 中心重试策略配置](/azure/iot-hub/iot-hub-reliability-features-in-sdks#retry-policy-apis)。
+
+### <a name="more-information"></a>详细信息
+
+* [IoT 中心重试策略](/azure/iot-hub/iot-hub-reliability-features-in-sdks)
+* [排查 IoT 中心设备断开连接的问题](/azure/iot-hub/iot-hub-troubleshoot-connectivity)
 
 ## <a name="azure-redis-cache"></a>Azure Redis 缓存
 Azure Redis 高速缓存是一项快速数据访问和低延迟高速缓存服务，基于常用的开放源代码 Redis 高速缓存。 它是由 Microsoft 管理的安全服务，可通过 Azure 中的任意应用程序进行访问。

@@ -4,12 +4,12 @@ description: 有关如何创建合理设计的 Web API 的指南。
 author: dragon119
 ms.date: 01/12/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: db9784f454e0b52b335d6dff3a054c2c59124c9f
-ms.sourcegitcommit: f7418f8bdabc8f5ec33ae3551e3fbb466782caa5
+ms.openlocfilehash: 68ed3f59e1fd63ae754ceabf27a182daa0de0e5d
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36209604"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016098"
 ---
 # <a name="api-design"></a>API 设计
 
@@ -25,7 +25,7 @@ ms.locfileid: "36209604"
 
 在 2000 年，Roy Fielding 提议使用表述性状态转移 (REST) 作为设计 Web 服务的体系性方法。 REST 是一种基于超媒体构建分布式系统的架构风格。 REST 独立于任何基础协议，并且不一定绑定到 HTTP。 但是，最常见的 REST 实现使用 HTTP 作为应用程序协议，本指南重点介绍如何设计适用于 HTTP 的 REST API。
 
-基于 HTTP 的 REST 的主要优势在于它使用开放标准，且不会绑定到 API 的具体实现，也不会绑定到客户端应用程序的任何特定实现。 例如，可以使用 ASP.NET 编写 REST Web 服务，而客户端应用程序能够使用任何语言或工具来发起 HTTP 请求和分析 HTTP 响应。
+基于 HTTP 的 REST 的主要优势在于它使用开放标准，不会绑定 API 的实现，也不会将客户端应用程序绑定到任何具体实现。 例如，可以使用 ASP.NET 编写 REST Web 服务，而客户端应用程序能够使用任何语言或工具来发起 HTTP 请求和分析 HTTP 响应。
 
 下面是使用 HTTP 设计 RESTful API 时的一些主要原则：
 
@@ -435,7 +435,7 @@ Content-Type: application/json; charset=utf-8
 此版本控制机制非常简单，但依赖于将请求路由到相应终结点的服务器。 但是，随着 Web API 经过多次迭代而变得成熟，服务器必须支持多个不同版本，它可能变得难以处理。 此外，从单纯的角度来看，在所有情况下客户端应用程序都要提取相同数据（客户 3），因此 URI 实在不应该因版本而有所不同。 此方案也增加了 HATEOAS 实现的复杂性，因为所有链接都需要在其 URI 中包括版本号。
 
 ### <a name="query-string-versioning"></a>查询字符串版本控制
-不是提供多个 URI，而是可以通过在追加到 HTTP 请求后面的查询字符串中使用参数来指定资源的版本，例如 *http://adventure-works.com/customers/3?version=2* 。 如果 version 参数被较旧的客户端应用程序省略，则应默认为有意义的值（例如 1）。
+不是提供多个 URI，而是可以通过在追加到 HTTP 请求后面的查询字符串中使用参数来指定资源的版本，例如 *http://adventure-works.com/customers/3?version=2*。 如果 version 参数被较旧的客户端应用程序省略，则应默认为有意义的值（例如 1）。
 
 此方法具有语义优势（即，同一资源始终从同一 URI 进行检索），但它依赖于代码处理请求以分析查询字符串并发送回相应的 HTTP 响应。 此方法也与 URI 版本控制机制一样，增加了实现 HATEOAS 的复杂性。
 

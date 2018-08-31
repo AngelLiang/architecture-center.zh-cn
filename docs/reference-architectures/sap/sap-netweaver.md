@@ -3,12 +3,12 @@ title: 在 Azure 虚拟机上部署适用于 AnyDB 的 SAP NetWeaver (Windows)
 description: 有关在 Azure 上的高可用性 Linux 环境中运行 SAP S/4HANA 的成熟做法。
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: 90334e4872bdd15d59aa16286a031d07f3d1bb2f
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: f4a33e7a3f30bdd6d8bdd41599a5e3b47501b874
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864532"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016101"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>在 Azure 虚拟机上部署适用于 AnyDB 的 SAP NetWeaver (Windows)
 
@@ -35,7 +35,7 @@ ms.locfileid: "37864532"
 - **Jumpbox**。 也称为守护主机。 这是网络中的一个安全虚拟机，管理员使用它来连接其他虚拟机。
 - **Windows Server Active Directory 域控制器。** 对域中的所有 VM 和用户使用域控制器。
 
-**负载均衡器**。 使用内置的 SAP 负载均衡器和 [Azure 负载均衡器](/azure/load-balancer/load-balancer-overview)来实现高可用性。 Azure 负载均衡器实例用于将流量分配到应用层子网中的虚拟机。
+**负载均衡器**。 [Azure 负载均衡器](/azure/load-balancer/load-balancer-overview)实例用于将流量分配到应用层子网中的虚拟机。 在数据层，可以通过内置 SAP 负载均衡器、Azure 负载均衡器或其他机制来实现高可用性，具体取决于 DBMS。 有关详细信息，请参阅[适用于 SAP NetWeaver 的 Azure 虚拟机 DBMS 部署](/azure/virtual-machines/workloads/sap/dbms-guide)。 
 
 **可用性集**。 用于 SAP Web 调度程序、SAP 应用程序服务器和 (A)SCS 角色的虚拟机已分组到单独的[可用性集](/azure/virtual-machines/windows/tutorial-availability-sets)，为每个角色至少预配两个虚拟机。 这样，虚拟机便可以满足更高的[服务级别协议 (SLA)](https://azure.microsoft.com/support/legal/sla/virtual-machines)。
 
@@ -174,6 +174,6 @@ SAP 具有自身的用户管理引擎 (UME)，可在 SAP 应用程序中控制�
 - [在 Microsoft 平台上运行 SAP 应用程序（博客）](https://blogs.msdn.microsoft.com/saponsqlserver/2017/05/04/sap-on-azure-general-update-for-customers-partners-april-2017/)
 - [Azure 社区支持](https://azure.microsoft.com/support/community/)
 - [SAP 社区](https://www.sap.com/community.html)
-- [堆栈溢出](https://stackoverflow.com/tags/sap/)
+- [Stack Overflow](https://stackoverflow.com/tags/sap/)
 
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

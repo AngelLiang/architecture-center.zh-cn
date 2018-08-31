@@ -3,12 +3,12 @@ title: Azure 上的可缩放订单处理
 description: 通过示例方案介绍如何使用 Azure Cosmos DB 生成高度可缩放的订单处理管道。
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: 541b5e9f523c64bc55526e4e2dffc57a5212e67f
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 9fa0dc7c564270ee811b56169e05f7e743664838
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060978"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016086"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Azure 上的可缩放订单处理
 
@@ -41,7 +41,7 @@ ms.locfileid: "39060978"
 
 ### <a name="components"></a>组件
 
-* [Cosmos DB][docs-cosmos-db] 是 Microsoft 推出的全局分布式多模型数据库，可以让解决方案跨任意数量的地理区域灵活且独立地缩放吞吐量与存储。 它通过综合服务级别协议 (SLA) 提供吞吐量、延迟、可用性和一致性保证。 本方案使用 Cosmos DB 进行事件流存储和快照存储，并利用 Cosmos DB 的更改源功能来确保数据一致性和故障恢复。 
+* [Cosmos DB][docs-cosmos-db] 是 Microsoft 推出的全局分布式多模型数据库，可以让解决方案跨任意数量的地理区域灵活且独立地缩放吞吐量与存储。 它通过综合服务级别协议 (SLA) 提供吞吐量、延迟、可用性和一致性保证。 本方案使用 Cosmos DB 进行事件流存储和快照存储，并利用 [Cosmos DB 的更改源][docs-cosmos-db-change-feed]功能来确保数据一致性和故障恢复。 
 * [Apache Kafka on HDInsight][docs-kafka] 是以托管服务方式实现的 Apache Kafka，是一种开源分布式流式处理平台，用于生成实时流数据管道和应用程序。 Kafka 还提供了类似于消息队列的消息中转站功能，用于发布和订阅命名数据流。 本方案使用 Kafka 在订单处理管道中处理出入事件和下游事件。 
 
 ## <a name="considerations"></a>注意事项
@@ -65,7 +65,7 @@ Kafka on HDInsight 可用于为 Kafka 群集[配置存储和可伸缩性](/azure
 
 若要了解其他可伸缩性注意事项，请参阅 Azure 体系结构中心提供的[可伸缩性核对清单][scalability]。
 
-### <a name="security"></a>“安全”
+### <a name="security"></a>安全
 
 [Cosmos DB 安全模型](/azure/cosmos-db/secure-access-to-data)可以用来验证用户身份并访问其数据和资源。 有关详细信息，请参阅 [Cosmos DB 数据库安全性](/en-us/azure/cosmos-db/database-security)。
 
@@ -107,6 +107,7 @@ Azure Cosmos DB 的货币是请求单位 (RU)。 借助请求单位，无需保�
 [architecture-diagram]: ./images/architecture-diagram-cosmos-db.png
 [docs-cosmos-db]: /azure/cosmos-db
 [docs-cosmos-db-change-feed]: /azure/cosmos-db/change-feed
+[docs-cosmos-db-online-backup-and-restore]: /azure/cosmos-db/online-backup-and-restore
 [docs-cosmos-db-regional-failover]: /azure/cosmos-db/regional-failover
 [docs-cosmos-db-guarantees]: /azure/cosmos-db/distribute-data-globally#AvailabilityGuarantees
 [docs-cosmos-db-use-cases]: /azure/cosmos-db/use-cases
