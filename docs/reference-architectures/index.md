@@ -3,12 +3,13 @@ title: Azure 参考体系结构
 description: 适用于 Azure 上的常见工作负荷的参考体系结构、蓝图和规范性实施指南。
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 374ca51d70e4999fbb1bacf47547040db6f0071f
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.date: 08/30/2018
+ms.openlocfilehash: e9b3a65c48c759f9fc07da9f2c4195fc2db4c782
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987618"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325565"
 ---
 # <a name="azure-reference-architectures"></a>Azure 参考体系结构
 
@@ -52,6 +53,26 @@ ms.locfileid: "38987618"
                     <div class="cardText">
                         <h3>将自动化企业 BI 与 Azure 数据工厂配合使用</h3>
                         <p>自动通过 ELT 管道从本地数据库进行增量加载。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Stream Analytics -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./data/stream-processing-stream-analytics.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/azure-analysis-service.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>使用 Azure 流分析进行流处理</h3>
+                        <p>将两个数据流中的记录相关联来计算移动平均值的端到端流处理管道。</p>
                     </div>
                 </div>
             </div>
@@ -102,7 +123,7 @@ ms.locfileid: "38987618"
     </a>
 </li>
 <li style="display: flex; flex-direction: column;">
-    <a href="./app-service-web-app/scalable-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./app-service-web-app/multi-region.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
