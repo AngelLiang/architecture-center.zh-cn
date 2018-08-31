@@ -2,12 +2,13 @@
 title: 架构样式
 description: 云应用程序的常见架构样式
 layout: LandingPage
-ms.openlocfilehash: e647d1a0f3305e7754859e5ab8a9a3b46c3d4fb6
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.date: 08/30/2018
+ms.openlocfilehash: b192cfc4168cc6f73e191a4ec8a5a83f1986aee7
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "33810425"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326266"
 ---
 # <a name="architecture-styles"></a>架构样式
 
