@@ -2,12 +2,13 @@
 title: Web 队列辅助角色体系结构样式
 description: 介绍 Azure 上的 Web 队列辅助角色的体系结构的优点、难题和最佳做法
 author: MikeWasson
-ms.openlocfilehash: 545472e71ffcd43717ad24af0dc9218a221ca910
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.date: 08/30/2018
+ms.openlocfilehash: 0ebcf49c08c74cec3f1820da2d6f30ba95256e81
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37958783"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325345"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Web 队列辅助角色体系结构样式
 
@@ -35,7 +36,7 @@ Web 和辅助角色都无状态。 会话状态可以存储在分布式缓存中
 
 - 具有相对简单的域的应用程序。
 - 具有某些长时间的工作流或批处理操作的应用程序。
-- 想要使用托管的服务而不是服务架构 (IaaS) 时。
+- 想要使用托管的服务而不是基础结构即服务 (IaaS) 时。
 
 ## <a name="benefits"></a>优点
 

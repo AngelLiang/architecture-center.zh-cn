@@ -2,12 +2,13 @@
 title: 使用工作的最佳数据存储
 description: 选择最适合数据的存储技术，并了解如何使用该技术
 author: MikeWasson
-ms.openlocfilehash: c3619012e8c199d154e4ac432ce03b2a9295c26f
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: 25839f5a749881f415c923db5497984d32b8ac91
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206526"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326085"
 ---
 # <a name="use-the-best-data-store-for-the-job"></a>使用工作的最佳数据存储
 

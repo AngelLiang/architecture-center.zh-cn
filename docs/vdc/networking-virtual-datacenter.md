@@ -7,12 +7,12 @@ tags: azure-resource-manager
 ms.service: virtual-network
 ms.date: 04/3/2018
 ms.author: jonor
-ms.openlocfilehash: 8df02bbb6d926f0ab5402fab4eb2b25fdc2057cd
-ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
+ms.openlocfilehash: 34fab47cef6d5a9c0130f0864e9fdef33357ba25
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/18/2018
-ms.locfileid: "40211545"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325472"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Azure 虚拟数据中心：网络透视图
 
@@ -227,15 +227,11 @@ NAT 在本地边缘路由器或 Azure 环境中时可避免 IP 地址冲突，�
 
 大多数大型企业都管理多个域。 Azure DNS 可以用来托管某个特定域的 DNS 记录。 例如，可以在 Azure DNS 记录的 A 记录中登记 Azure 外部负载均衡器（或 WAF）的虚拟 IP 地址 (VIP)。
 
-
-  [
-  **Azure 负载均衡器**][ALB] Azure 负载均衡器提供高度可用的第 4 层（TCP 和 UDP）服务，该服务可以在负载均衡集定义的服务实例间分配传入流量。 可以将由前端终结点（公共 IP 终结点或专用 IP 终结点）发送到负载均衡器的流量重新分配（通过/不通过地址转换）到一组后端 IP 地址池（如网络虚拟设备或 VM）。
+[**Azure 负载均衡器**][ALB] Azure 负载均衡器提供高度可用的第 4 层（TCP 和 UDP）服务，该服务可以在负载均衡集定义的服务实例间分配传入流量。 可以将由前端终结点（公共 IP 终结点或专用 IP 终结点）发送到负载均衡器的流量重新分配（通过/不通过地址转换）到一组后端 IP 地址池（如网络虚拟设备或 VM）。
 
 Azure 负载均衡器也可以探测各种服务器实例的运行状态，当探测无法响应时，负载均衡器会停止向不正常的实例发送流量。 在 VDC 中，中心的外部负载均衡器可以均衡发送到 NVA 的流量，分支中的外部负载均衡器可以执行均衡多层应用程序的不同 VM 之间的流量等任务。
 
-
-  [
-  **应用程序网关**][AppGW] Microsoft Azure 应用程序网关是一个专用的虚拟设备，以服务形式提供应用程序传送控制器 (ADC)，并为应用程序提供各种第 7 层负载均衡功能。 可以用它将 CPU 密集型 SSL 终点卸载到应用程序网关，优化 Web 场工作效率。 它还提供其他第 7 层路由功能，包括传入流量的轮循机制分配、基于 Cookie 的会话相关性、基于 URL 路径的路由，以及在单个应用程序网关后面托管多个网站的能力。 Web 应用程序防火墙 (WAF) 也作为 WAF SKU 应用程序网关的一部分提供。 此 SKU 可保护 Web 应用程序免受 Web 常见漏洞和攻击的影响。 可以将应用程序网关配置为面向 Internet 的网关、仅内部网关或这两者的组合。 
+[**应用程序网关**][AppGW] Microsoft Azure 应用程序网关是一个专用的虚拟设备，以服务形式提供应用程序传送控制器 (ADC)，并为应用程序提供各种第 7 层负载均衡功能。 可以用它将 CPU 密集型 SSL 终点卸载到应用程序网关，优化 Web 场工作效率。 它还提供其他第 7 层路由功能，包括传入流量的轮循机制分配、基于 Cookie 的会话相关性、基于 URL 路径的路由，以及在单个应用程序网关后面托管多个网站的能力。 Web 应用程序防火墙 (WAF) 也作为 WAF SKU 应用程序网关的一部分提供。 此 SKU 可保护 Web 应用程序免受 Web 常见漏洞和攻击的影响。 可以将应用程序网关配置为面向 Internet 的网关、仅内部网关或这两者的组合。 
 
 [**公共 IP**][PIP] 可以通过一些 Azure 功能将服务终结点关联到允许从 Internet 访问资源的公共 IP 地址。 该终结点使用网络地址转换 (NAT) 将流量路由到 Azure 虚拟网络上的内部地址和端口。 此路径是外部流量进入虚拟网络的主要方式。 可以对公共 IP 地址进行配置，确定可以传入哪种流量、如何在虚拟网络上转换该流量以及要将它路由到何处。
 
@@ -373,7 +369,7 @@ Azure 数据中心遍布世界各地。 选择多个 Azure 数据中心时，客
 [VPN]: /azure/vpn-gateway/vpn-gateway-about-vpngateways 
 [ExR]: /azure/expressroute/expressroute-introduction 
 [NVA]: /azure/architecture/reference-architectures/dmz/nva-ha
-[SubMgmt]: /azure/azure-resource-manager/resource-manager-subscription-governance 
+[SubMgmt]: /azure/azure-resource-manager/resource-manager-azure-scaffold 
 [RGMgmt]: /azure/azure-resource-manager/resource-group-overview
 [DMZ]: /azure/best-practices-network-security
 [ALB]: /azure/load-balancer/load-balancer-overview

@@ -4,12 +4,12 @@ description: Azure 资源的命名约定。 如何命名虚拟机、存储帐户
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 6ad71a5ee39b8f1863c51dae0120dbdc7baf1f76
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: 8aa0b46d9f43107cfa4ae4be3160900249365702
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229144"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326314"
 ---
 # <a name="naming-conventions"></a>命名约定
 
@@ -111,10 +111,10 @@ Azure 中的每个资源或服务类型强制实施一组命名限制和范围�
 | --- | --- | --- | --- | --- | --- | --- |
 |虚拟网络 (VNet) |资源组 |2-64 |不区分大小写 |字母数字、连字符、下划线和句点 |`<service short name>-vnet` |`profx-vnet` |
 |子网 |父级 VNet |2-80 |不区分大小写 |字母数字、连字符、下划线和句点 |`<descriptive context>` |`web` |
-|网络接口 |资源组 |1-80 |不区分大小写 |字母数字、连字符、下划线和句点 |`<vmname>-nic<num>` |`profx-sql1-nic1` |
+|网络接口 |资源组 |1-80 |不区分大小写 |字母数字、连字符、下划线和句点 |`<vmname>-nic<num>` |`profx-sql1-vm1-nic1` |
 |网络安全组 |资源组 |1-80 |不区分大小写 |字母数字、连字符、下划线和句点 |`<service short name>-<context>-nsg` |`profx-app-nsg` |
 |网络安全组规则 |资源组 |1-80 |不区分大小写 |字母数字、连字符、下划线和句点 |`<descriptive context>` |`sql-allow` |
-|公共 IP 地址 |资源组 |1-80 |不区分大小写 |字母数字、连字符、下划线和句点 |`<vm or service name>-pip` |`profx-sql1-pip` |
+|公共 IP 地址 |资源组 |1-80 |不区分大小写 |字母数字、连字符、下划线和句点 |`<vm or service name>-pip` |`profx-sql1-vm1-pip` |
 |负载均衡器 |资源组 |1-80 |不区分大小写 |字母数字、连字符、下划线和句点 |`<service or role>-lb` |`profx-lb` |
 |负载均衡规则配置 |负载均衡器 |1-80 |不区分大小写 |字母数字、连字符、下划线和句点 |`<descriptive context>` |`http` |
 |Azure 应用程序网关 |资源组 |1-80 |不区分大小写 |字母数字、连字符、下划线和句点 |`<service or role>-agw` |`profx-agw` |
@@ -195,4 +195,4 @@ Blob 名称可以包含任何字符组合，但必须正确转义保留的 URL �
 
 <!-- links -->
 
-[scaffold]: /azure/azure-resource-manager/resource-manager-subscription-governance
+[scaffold]: /azure/azure-resource-manager/resource-manager-azure-scaffold

@@ -2,12 +2,13 @@
 title: 微服务体系结构样式
 description: 介绍 Azure 上微服务体系结构的好处、挑战和最佳做法
 author: MikeWasson
-ms.openlocfilehash: 08fd39b6cf0b3c88af654b27e21b2d7dd9fb19b1
-ms.sourcegitcommit: 7764a804f000180c37a4f8dbab946b525f784f58
+ms.date: 08/30/2018
+ms.openlocfilehash: fb23ac3e408f3a202d925a1bf684bc30d423f218
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/09/2018
-ms.locfileid: "27717634"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325437"
 ---
 # <a name="microservices-architecture-style"></a>微服务体系结构样式
 
@@ -45,7 +46,7 @@ ms.locfileid: "27717634"
 
 - API 网关可执行身份验证、日志记录、SSL 终止和负载均衡等其他跨领域功能。
 
-## <a name="when-to-use-this-architecture"></a>何时使用此体系结构
+## <a name="when-to-use-this-architecture"></a>何时使用此架构
 
 请对以下情况考虑使用此体系结构样式：
 

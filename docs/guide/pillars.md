@@ -2,24 +2,25 @@
 title: 软件质量的要素
 description: 介绍软件质量的五大构成要素：可伸缩性、可用性、复原能力、管理和安全性。
 author: MikeWasson
-ms.openlocfilehash: 117706046ca1a9b7f3203a99737347809d0c323f
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.date: 08/30/2018
+ms.openlocfilehash: dce87aba849c61750416f277bcc5558c400c1f25
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252781"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326150"
 ---
 # <a name="pillars-of-software-quality"></a>软件质量的构成要素 
 
 一个成功的云应用程序应注重软件质量的五大构成要素：可伸缩性、可用性、复原能力、管理和安全性。
 
-| 构成要素 | 说明 |
+| 构成要素 | Description |
 |--------|-------------|
 | 可伸缩性 | 系统处理增加的负载的能力。 |
 | 可用性 | 系统正常工作时间所占的比例。 |
 | 复原 | 系统从故障中恢复并继续正常运行的能力。 |
 | 管理 | 让系统在生产环境中持续运行的操作过程。 |
-| “安全” | 保护应用程序和数据免受威胁。 |
+| 安全 | 保护应用程序和数据免受威胁。 |
 
 ## <a name="scalability"></a>可伸缩性
 
@@ -128,7 +129,7 @@ ms.locfileid: "35252781"
 - [管理和监视的设计模式][management-patterns]
 - 最佳做法：[监视和诊断][monitoring]
 
-## <a name="security"></a>“安全”
+## <a name="security"></a>安全
 
 你必须考虑从设计和实现到部署和操作的整个应用程序生命周期的安全性。 Azure 平台会提供保护以应对各种威胁，如网络入侵和 DDoS 攻击。 但你仍需在应用程序和 DevOps 过程中构建安全性。
 
