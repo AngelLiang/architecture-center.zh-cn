@@ -6,12 +6,12 @@ ms.date: 12/06/2016
 pnp.series.title: Network DMZ
 pnp.series.prev: secure-vnet-dmz
 cardTitle: Deploy highly available network virtual appliances
-ms.openlocfilehash: fe279eea3f9cb024d6c6c14943013b9b9a87bc9c
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 556ec1e78960d64cce3bf803fc46c9146ce2584d
+ms.sourcegitcommit: f4069cf68456b5c74acb1b890dc4e45e11f12b59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847741"
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43675825"
 ---
 # <a name="deploy-highly-available-network-virtual-appliances"></a>部署具有高可用性的网络虚拟设备。
 
@@ -92,6 +92,7 @@ NVA 可以采用许多不同的体系结构部署到外围网络中。 例如，
 ## <a name="next-steps"></a>后续步骤
 * 了解如何使用第 7 层 NVA [在 Azure 与本地数据中心之间实现外围网络][dmz-on-prem]。
 * 了解如何使用第 7 层 NVA [在 Azure 与 Internet 之间实现外围网络][dmz-internet]。
+* [排查 Azure 中的网络虚拟设备问题](/azure/virtual-network/virtual-network-troubleshoot-nva)
 
 <!-- links -->
 [cloud-security]: /azure/best-practices-network-security

@@ -5,12 +5,12 @@ keywords: 云服务比较, 比较云服务, 多云, 比较 azure aws, 比较 azu
 author: lbrader
 ms.date: 11/30/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 7a650eee1a42860c6c41db2572cf2feb71844999
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: 4c78f45c654a40142ff25736b83a5b6b10591fc6
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016009"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325006"
 ---
 # <a name="aws-to-azure-services-comparison"></a>AWS 和 Azure 服务比较
 
@@ -172,6 +172,7 @@ Azure 和 AWS 作为领先的公有云平台，各自都在全球范围内为企
 |             防火墙             |                    Web 应用程序防火墙                    |                                 [应用程序网关 Web 应用程序防火墙（预览版）](https://azure.microsoft.com/updates/application-gateway-web-application-firewall-in-public-preview/)                                 |                                                                                     一个防火墙，可保护 Web 应用程序免受常见的 Web 攻击。 用户可规定自定义 Web 安全规则。                                                                                      |
 |             安全             |                           Inspector                            |                                                                           [安全中心](https://azure.microsoft.com/services/security-center/)                                                                            |                                                  一项自动安全评估服务，可以提高应用程序的安全性和符合性。 自动评估应用程序的漏洞或与最佳做法的偏差。                                                  |
 |     <strong>&nbsp;</strong>      |                      证书管理器                       |                                                  [门户中提供的应用服务证书](https://azure.microsoft.com/blog/internals-of-app-service-certificate/)                                                   |                                                                                               允许客户在云中无缝创建、管理和使用证书的服务。                                                                                                |
+| &nbsp; | GuardDuty | Azure AD、Operations Management Suite (OMS)、安全中心 | Azure 提供内置的高级威胁检测功能，该功能可以按要求进行配置和自定义。 有关详细信息，请参阅 [Azure 高级威胁检测](/azure/security/azure-threat-detection)。 |
 |        目录服务        | AWS 上的 AWS Directory Service + Windows Server Active Directory |                                       [Azure IaaS 上的 Azure Active Directory 域服务 + Windows Server Active Directory](https://azure.microsoft.com/services/active-directory/)                                        | 一种综合的标识和访问管理云解决方案，可提供一组可靠的功能用于管理用户和组。 它可帮助保护对本地和云应用程序（包括 Office 365 等 Microsoft Online Services 和很多非 Microsoft SaaS 应用程序）的访问。 |
 |     <strong>&nbsp;</strong>      |                            Cognito                             |                                                                   [Azure Active Directory B2C](https://azure.microsoft.com/services/active-directory-b2c/)                                                                    |                                                                          一项高度可用的全局性标识管理服务，适用于面向用户且可通过缩放来处理数亿标识的应用程序。                                                                           |
 |     <strong>&nbsp;</strong>      |                     AWS Directory Service                      |                                                                 [Windows Server Active Directory](https://azure.microsoft.com/services/active-directory-ds/)                                                                  |                                                                                                                在云中支持 Microsoft Active Directory 的服务。                                                                                                                |

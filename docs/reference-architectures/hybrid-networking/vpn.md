@@ -7,12 +7,12 @@ pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute
 pnp.series.prev: ./index
 cardTitle: VPN
-ms.openlocfilehash: dafcee6607d9cc7c56c332f9ed5d9568ff70f0e7
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: ef89cdd3e2a175f82929b613159a99557560cc7a
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270687"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325382"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>使用 VPN 网关将本地网络连接到 Azure
 
@@ -80,13 +80,7 @@ ms.locfileid: "30270687"
 > 
 > 
 
-选择最符合你吞吐量要求的 Azure VPN 网关 SKU。 Azure VPN 网关提供三个 SKU，如下表所示。 
-
-| SKU | VPN 吞吐量 | 最大 IPSec 隧道数 |
-| --- | --- | --- |
-| 基本 |100 Mbps |10 |
-| 标准 |100 Mbps |10 |
-| 高性能 |200 Mbps |30 |
+选择最符合你吞吐量要求的 Azure VPN 网关 SKU。 有关详细信息，请参阅[网关 SKU][azure-gateway-skus]
 
 > [!NOTE]
 > 基本 SKU 不与 Azure ExpressRoute 兼容。 可以在创建网关之后[更改 SKU][changing-SKUs]。
@@ -467,6 +461,7 @@ ms.locfileid: "30270687"
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
 [azure-vpn-gateway]: https://azure.microsoft.com/services/vpn-gateway/
 [azure-gateway-charges]: https://azure.microsoft.com/pricing/details/vpn-gateway/
+[azure-gateway-skus]: /azure/vpn-gateway/vpn-gateway-about-vpngateways#gwsku
 [connect-to-an-Azure-vnet]: https://technet.microsoft.com/library/dn786406.aspx
 [vpn-gateway-multi-site]: /azure/vpn-gateway/vpn-gateway-multi-site
 [policy-based-routing]: https://en.wikipedia.org/wiki/Policy-based_routing
@@ -494,9 +489,4 @@ ms.locfileid: "30270687"
 <!--[solution-script]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/Deploy-ReferenceArchitecture.ps1-->
 <!--[solution-script-bash]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/deploy-reference-architecture.sh-->
 <!--[virtualNetworkGateway-parameters]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/parameters/virtualNetworkGateway.parameters.json-->
-[azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/
-[CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
-[0]: ./images/vpn.png "跨本地和 Azure 基础结构的混合网络"
-[2]: ../_images/guidance-hybrid-network-vpn/audit-logs.png "Azure 门户中的审核日志"
-[3]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-counters.png "用于监视 VPN 网络流量的性能计数器"
-[4]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-graph.png "示例 VPN 网络性能图"
+[azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/ [CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing [0]: ./images/vpn.png "横跨本地基础结构和 Azure 基础结构的混合网络" [2]: ../_images/guidance-hybrid-network-vpn/audit-logs.png "Azure 门户中的审核日志" [3]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-counters.png "用于监视 VPN 网络流量的性能计数器" [4]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-graph.png "VPN 网络性能图示例""

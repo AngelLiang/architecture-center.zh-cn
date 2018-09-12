@@ -7,12 +7,12 @@ pnp.series.title: Network DMZ
 pnp.series.prev: ./index
 pnp.series.next: secure-vnet-dmz
 cardTitle: DMZ between Azure and on-premises
-ms.openlocfilehash: 45583473ef297b2c7a5b0c4baff52485286dd051
-ms.sourcegitcommit: 9b459f75254d97617e16eddd0d411d1f80b7fe90
+ms.openlocfilehash: e397a8691a1b7b37cc0129d914dc85d92c876139
+ms.sourcegitcommit: f4069cf68456b5c74acb1b890dc4e45e11f12b59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37403158"
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43675801"
 ---
 # <a name="dmz-between-azure-and-your-on-premises-datacenter"></a>Azure 与本地数据中心之间的 DMZ
 
@@ -78,8 +78,7 @@ DevOps 和 IT 管理员角色不应具有 NVA 资源的访问权限。 这应限
 
 ### <a name="nva-recommendations"></a>有关 NVA 的建议
 
-NVA 可提供不同服务来管理和监视网络流量。 
-  [Azure 市场][azure-marketplace-nva]提供多个可以使用的第三方供应商 NVA。 如果这些第三方 NVA 都不满足你的要求，则可以使用 VM 创建自定义 NVA。 
+NVA 可提供不同服务来管理和监视网络流量。 [Azure 市场][azure-marketplace-nva]提供多个可以使用的第三方供应商 NVA。 如果这些第三方 NVA 都不满足你的要求，则可以使用 VM 创建自定义 NVA。 
 
 例如，此参考体系结构的解决方案部署在 VM 上实现具有以下功能的 NVA：
 
@@ -227,6 +226,7 @@ NVA 前面的负载均衡器还通过忽略在负载均衡规则中未打开的�
 * 有关使用 Azure 管理网络安全的详细信息，请参阅 [Microsoft 云服务和网络安全][cloud-services-network-security]。
 * 有关在 Azure 中保护资源的详细信息，请参阅 [Microsoft Azure 安全入门][getting-started-with-azure-security]。 
 * 有关解决 Azure 网关连接上的安全问题的其他详细信息，请参阅[使用 Azure 和本地 VPN 实现混合网络体系结构][guidance-vpn-gateway-security]和[使用 Azure ExpressRoute 实现混合网络体系结构][guidance-expressroute-security]。
+* [排查 Azure 中的网络虚拟设备问题](/azure/virtual-network/virtual-network-troubleshoot-nva)
   > 
 
 <!-- links -->

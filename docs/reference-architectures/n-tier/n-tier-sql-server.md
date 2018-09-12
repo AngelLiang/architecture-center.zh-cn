@@ -3,12 +3,12 @@ title: 使用 SQL Server 的 N 层应用程序
 description: 如何在 Azure 上实现多层体系结构，以确保可用性、安全性、可伸缩性和可管理性。
 author: MikeWasson
 ms.date: 07/19/2018
-ms.openlocfilehash: 42ba18e9ffef32c6990fbb888cc41e980fb4abea
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: fc761e940a25c4667146db9598d944bac2c32496
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229127"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326050"
 ---
 # <a name="n-tier-application-with-sql-server"></a>使用 SQL Server 的 N 层应用程序
 
@@ -220,7 +220,7 @@ Jumpbox 的性能要求非常低，因此请选择一个较小的 VM 大小。 �
     "witnessStorageAccountKey": "[replace-with-storagekey]"
     ```
 
-8. 在 `n-tier-windows.json` 文件中，搜索 `testPassw0rd!23`、`test$!Passw0rd111`、`AweS0me@SQLServicePW` 的所有实例。 将其替换为你自己的密码，然后保存文件。
+8. 在 `n-tier-windows.json` 文件中搜索 `[replace-with-password]` 的所有实例，并将其替换为强密码。 保存文件。
 
     > [!NOTE]
     > 如果更改管理员用户名，则还必须更新 JSON 文件中的 `extensions` 块。 

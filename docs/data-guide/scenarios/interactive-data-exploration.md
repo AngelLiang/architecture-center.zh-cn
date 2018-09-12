@@ -3,12 +3,12 @@ title: 交互式数据探索
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 20740a8fe912a63526c847416b832941f4ac33ec
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: 2e3d61fa5e1903c7fee6ebc84db3fa7c28d515cb
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30297948"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325111"
 ---
 # <a name="interactive-data-exploration"></a>交互式数据探索
 
@@ -82,6 +82,7 @@ ms.locfileid: "30297948"
 ### <a name="analytics-and-reporting"></a>分析和报告
 
 - **Jupyter**。 Jupyter Notebook 提供基于浏览器的界面，用于通过 R、Python 或 Scala 等语言运行代码。 使用 R Server 或 Spark 批处理数据，或者使用 Spark SQL 定义查询表的架构时，Jupyter 可能非常适合用于查询数据。 使用 Spark 时，可以使用标准 Spark 数据帧 API 或 Spark SQL API 以及嵌入式 SQL 语句来查询数据和生成可视化效果。
+- **Drill**。 如果需要进行临时数据浏览，则可使用 [Apache Drill](https://drill.apache.org/)，它是一种无架构的 SQL 查询引擎。 由于它不需要架构，因此你可以查询各种数据源的数据，引擎会自动理解数据的结构。
 - **交互式 Hive 客户端**。 如果使用交互式 Hive 群集查询数据，则可以使用 Ambari 群集仪表板中的 Hive 视图、Beeline 命令行工具或任何基于 ODBC 的工具（使用 Hive ODBC 驱动程序），例如 Microsoft Excel 或 Power BI。
 
 有关详细信息，请参阅[数据分析和报告技术](../technology-choices/analysis-visualizations-reporting.md)。
