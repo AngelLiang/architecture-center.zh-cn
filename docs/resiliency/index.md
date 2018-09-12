@@ -4,12 +4,12 @@ description: 如何在 Azure 中生成可复原应用程序，以实现高可用
 author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency
-ms.openlocfilehash: c32f093da4c47ef655dfca89b0410f063e9fe212
-ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
+ms.openlocfilehash: b92a26323b4329f3dbe4f941b98da0080e730d65
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352580"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389428"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>设计适用于 Azure 的可复原应用程序
 
@@ -259,7 +259,7 @@ Azure 提供许多功能用于实现每个故障级别的应用程序冗余，�
 
 这是为何有必要在设计阶段分析潜在故障点的另一个原因。 该分析的结果应该成为测试计划的输入。
 
-**负载测试**。 使用 [Visual Studio Team Services][vsts] 或 [Apache JMeter][jmeter] 等工具对应用程序进行负载测试。 要识别只有在承受负载的情况下才会发生的故障（例如，后端数据库瘫痪，或者服务受限制），执行负载测试至关重要。 使用生产数据或尽量与生产数据接近的合成数据测试峰值负载。 目标是检查应用程序在实际条件下的行为方式。   
+**负载测试**。 要识别只有在承受负载的情况下才会发生的故障（例如，后端数据库瘫痪，或者服务受限制），执行负载测试至关重要。 使用生产数据或尽量与生产数据接近的合成数据测试峰值负载。 目标是检查应用程序在实际条件下的行为方式。   
 
 ## <a name="deploy-using-reliable-processes"></a>使用可靠的过程进行部署
 将应用程序部署到生产环境后，更新操作就成了一个可能的出错来源。 在最坏的情况下，不当的更新可能导致停机。 为了避免此问题，部署过程必须可预测且可重复。 部署包括预配 Azure 资源、部署应用程序代码和应用配置设置。 更新可能包括上述所有三个步骤，或其中的一部分。 
@@ -355,4 +355,3 @@ Azure 提供许多功能用于实现每个故障级别的应用程序冗余，�
 [tm]: https://azure.microsoft.com/services/traffic-manager/
 [tm-failover]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
-[vsts]: https://www.visualstudio.com/features/vso-cloud-load-testing-vs.aspx
