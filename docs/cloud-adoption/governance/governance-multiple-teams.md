@@ -2,19 +2,17 @@
 title: 企业云的采用：Azure 中针对多个团队的治理设计
 description: 有关为多个团队、多个工作负荷和多个环境配置 Azure 调控措施的指南
 author: petertaylor9999
-ms.openlocfilehash: 2ad9fac6604d2766fed1df828f63e65c8a570888
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 09/10/2018
+ms.openlocfilehash: ac2a63ad6ced1039290dc0bf5132b0d87a2c79cf
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43327649"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389411"
 ---
 # <a name="enterprise-cloud-adoption-governance-design-for-multiple-teams"></a>企业云的采用：针对多个团队的治理设计
 
 本指南旨在介绍在 Azure 中设计资源治理模型，以便为多个团队、多个工作负荷和多个环境提供支持这一过程。  其中探讨了一系列假设性的调控要求，然后详细讲解满足这些要求的几个示例实现。
-
-> [!NOTE]
-> 有关**环境**的更详细讨论，请参阅 
 
 要求如下：
 * 企业计划将新的云角色和职责转移给一组用户，因此需要对在 Azure 中具有不同资源访问需求的多个团队进行标识管理。 此标识管理系统是存储以下用户的标识所需的：

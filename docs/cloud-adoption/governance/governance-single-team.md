@@ -2,12 +2,13 @@
 title: 企业云的采用：针对简单工作负荷的治理设计
 description: 有关配置 Azure 调控措施，使用户能够部署简单工作负荷的指南
 author: petertaylor9999
-ms.openlocfilehash: 57ae4a972f79e683ec8266c30a6271df4bde1dd7
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 09/10/2018
+ms.openlocfilehash: 13c7c4b41df14151d28b9c685f01019af3ec63f2
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43327028"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389241"
 ---
 # <a name="enterprise-cloud-adoption-governance-design-for-a-simple-workload"></a>企业云的采用：针对简单工作负荷的治理设计
 
