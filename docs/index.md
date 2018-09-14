@@ -3,12 +3,12 @@ title: Azure 体系结构中心
 description: Azure 体系结构中心是提供有关在 Microsoft Azure 中生成解决方案的指南、蓝图、模式和最佳做法的官方中心。 它由 Microsoft 模式和实践团队维护。
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 544196faa7156c5636b03d3f402bc48dcc63975f
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: ea3784a23c73c7f0eb103a0cb19e2c6b70ea9d7c
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987584"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584640"
 ---
 # <a name="azure-architecture-center"></a>Azure 体系结构中心
 
@@ -39,23 +39,23 @@ ms.locfileid: "38987584"
                         <img src="_images/reference-architectures.svg" alt="" />
                         <div class="cardText">
                             <h3>参考体系结构</h3>
-                            <p>适用于 Azure 的一系列建议体系结构。 每种体系结构包括最佳做法、说明性的步骤和可部署的解决方案。</p>
+                            <p>适用于 Azure 的一系列建议体系结构。 每种体系结构包括最佳实践、说明性的步骤和可部署的解决方案。</p>
                         </div>
                     </div>
                 </div>
             </div>
         </a>
     </li>
-    <!-- Cloud design patterns -->
+    <!-- Cloud Adoption -->
     <li>
-        <a href="/azure/architecture/patterns/">
+        <a href="/azure/architecture/cloud-adoption/">
             <div class="cardSize">
                 <div class="cardPadding">
                     <div class="card">
-                        <img src="_images/cloud-design-patterns.svg" alt="" />
+                        <img src="_images/cloud-adoption.svg" alt="" />
                         <div class="cardText">
-                            <h3>云设计模式</h3>
-                            <p>面向开发人员和解决方案架构师的设计模式。 每种模式描述了一个问题、用于解决该问题的模式，以及基于 Azure 的示例。</p>
+                            <h3>企业云的采用</h3>
+                            <p>本指南概述了创建组织范围内云采用策略的过程。 它侧重于组织就绪性、调控和基础结构。</p>
                         </div>
                     </div>
                 </div>
@@ -166,6 +166,26 @@ ms.locfileid: "38987584"
             </div>
         </a>
     </li>
+    <!-- design patterns -->
+    <li>
+        <a href="/azure/architecture/microservices">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/cloud-design-patterns.svg" alt="" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>云设计模式</h3>
+                            <p>面向开发人员和解决方案架构师的设计模式。 每种模式描述了一个问题、用于解决该问题的模式，以及基于 Azure 的示例。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
     <!-- Checklists -->
     <li>
         <a href="/azure/architecture/checklist/">
@@ -240,26 +260,6 @@ ms.locfileid: "38987584"
                         <div class="cardText">
                             <h3>性能对立模式</h3>
                             <p>如何检测和解决云应用程序中性能和可伸缩性问题的原因。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- Multitenant identity -->
-    <li>
-        <a href="/azure/architecture/multitenant-identity">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/multitenant-identity.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>多租户应用程序的标识管理</h3>
-                            <p>关于基于 Azure AD 进行标识管理实现多租户的最佳实践。</p>
                         </div>
                     </div>
                 </div>
