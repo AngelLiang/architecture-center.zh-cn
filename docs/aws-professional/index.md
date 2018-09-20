@@ -5,12 +5,12 @@ keywords: AWS 专家, Azure 比较, AWS 比较, azure 与 aws 之间的差别, a
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 0af0890d383d22db0ed9d3b445cdd5b561b498ae
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: f90186ba36f035871ec918c65b05eebe44190ffa
+ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012614"
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46329889"
 ---
 # <a name="azure-for-aws-professionals"></a>面向 AWS 专业人员的 Azure
 
@@ -156,7 +156,7 @@ Azure [异地冗余存储](https://azure.microsoft.com/documentation/articles/st
 
 ## <a name="services"></a>服务
 
-请参阅 [AWS 和 Azure 服务的完整比较对照表](https://aka.ms/azure4aws-services)，了解平台之间所有服务映射方式的完整列表。
+有关平台之间的服务映射方式的列表，请参阅[比较 AWS 与 Azure 服务](./services.md)。
 
 并非所有 Azure 产品和服务在所有区域中都可用。 有关详细信息，请参阅[各区域中推出的产品](https://azure.microsoft.com/regions/services/)页。 可在[服务级别协议](https://azure.microsoft.com/support/legal/sla/)页上找到每个 Azure 产品或服务的运行时间保证以及停机时间信用政策。
 
@@ -175,8 +175,6 @@ Azure [异地冗余存储](https://azure.microsoft.com/documentation/articles/st
 -   [Azure 中虚拟机的大小 (Linux)](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/)
 
 与 AWS 的按秒计费不同，Azure 按需 VM 是按分钟计费的。
-
-Azure 不提供与 EC2 Spot 实例或专用主机相同的功能。
 
 #### <a name="ebs-and-azure-storage-for-vm-disks"></a>EBS 与用作 VM 磁盘的 Azure 存储
 
@@ -260,7 +258,7 @@ Azure 提供多个计算服务，在 AWS 中没有直接与此类似的服务：
 
 -   [Azure 存储安全指南](https://azure.microsoft.com/documentation/articles/storage-security-guide/)
 
--   [模式和做法：内容交付网络 (CDN) 指南](https://azure.microsoft.com/documentation/articles/best-practices-cdn/)
+-   [模式和做法：内容分发网络 (CDN) 指南](https://azure.microsoft.com/documentation/articles/best-practices-cdn/)
 
 ### <a name="networking"></a>网络
 
@@ -428,8 +426,6 @@ AWS 设备场提供跨设备测试服务。 在 Azure 中，[Xamarin Test Cloud]
 
 ## <a name="next-steps"></a>后续步骤
 
--   [AWS 和 Azure 服务的完整比较对照表](https://aka.ms/azure4aws-services)
-
 -   [交互式 Azure 平台概观](http://azureplatform.azurewebsites.net/)
 
 -   [Azure 入门](https://azure.microsoft.com/get-started/)
@@ -437,8 +433,6 @@ AWS 设备场提供跨设备测试服务。 在 Azure 中，[Xamarin Test Cloud]
 -   [Azure 解决方案体系结构](https://azure.microsoft.com/solutions/architecture/)
 
 -   [Azure 参考体系结构](https://azure.microsoft.com/documentation/articles/guidance-architecture/)
-
--   [模式和做法：Azure 指南](https://azure.microsoft.com/documentation/articles/guidance/)
 
 -   [免费在线课程：面向 AWS 专家的 Microsoft Azure](http://aka.ms/azureforaws)
 

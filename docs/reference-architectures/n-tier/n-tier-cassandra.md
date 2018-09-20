@@ -3,12 +3,12 @@ title: 使用 Apache Cassandra 的 N 层应用程序
 description: 如何在 Microsoft Azure 中运行用于 N 层体系结构的 Linux VM。
 author: MikeWasson
 ms.date: 05/03/2018
-ms.openlocfilehash: 7ee14088a2fae3cfc5c1119daf717236c75ecc6a
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: fa5faeda4ef1dcae46181c0a3be8f4e139dc27d0
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142227"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584708"
 ---
 # <a name="n-tier-application-with-apache-cassandra"></a>使用 Apache Cassandra 的 N 层应用程序
 
@@ -137,6 +137,8 @@ Jumpbox 的性能要求非常低，因此请选择一个较小的 VM 大小。 �
 请考虑添加一个网络虚拟设备 (NVA) 以在 Internet 与 Azure 虚拟网络之间创建一个外围网络。 NVA 是虚拟设备的一个通用术语，可以执行与网络相关的任务，例如防火墙、包检查、审核和自定义路由。 有关详细信息，请参阅[在 Azure 与 Internet 之间实现外围网络][dmz]。
 
 加密静态的敏感数据并使用 [Azure Key Vault][azure-key-vault] 管理数据库加密密钥。 Key Vault 可以将加密密钥存储在硬件安全模块 (HSM) 中。 另外，建议将应用程序机密（例如数据库连接字符串）也存储在 Key Vault 中。
+
+我们建议启用 [DDoS 防护标准版](/azure/virtual-network/ddos-protection-overview)，其中提供了针对 VNet 中的资源的更多 DDoS 缓解功能。 虽然基本 DDoS 已作为 Azure 平台的一部分自动启用，但 DDoS 防护标准版提供了专门针对 Azure 虚拟网络资源优化的缓解功能。  
 
 ## <a name="deploy-the-solution"></a>部署解决方案
 

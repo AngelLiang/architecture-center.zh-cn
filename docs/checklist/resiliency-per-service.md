@@ -4,12 +4,12 @@ description: 一个检查表，提供各种 Azure 服务的复原能力指南。
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 25d961d6bb753b1f515fc073e51bbb912cc59db7
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 735d4466f53ff03b67063b49b86f4184bbf1af41
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29783506"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584759"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>特定 Azure 服务的复原能力检查表
 
@@ -99,6 +99,10 @@ ms.locfileid: "29783506"
 **发生人为错误后使用时间点还原进行恢复。**  时间点还原可将数据库还原到以前的某个时间点。 有关详细信息，请参阅[使用自动数据库备份恢复 Azure SQL 数据库][sql-restore]。
 
 **发生服务中断后使用异地还原进行恢复。** 异地还原可从异地冗余的备份还原数据库。  有关详细信息，请参阅[使用自动数据库备份恢复 Azure SQL 数据库][sql-restore]。
+
+## <a name="sql-data-warehouse"></a>SQL 数据仓库
+
+**不要禁用异地备份。** 默认情况下，SQL 数据仓库每 24 小时就创建数据的完整备份以用于灾难恢复。 建议不要关闭此功能。 有关详细信息，请参阅[异地备份](/azure/sql-data-warehouse/backup-and-restore#geo-backups)。
 
 ## <a name="sql-server-running-in-a-vm"></a>VM 中运行的 SQL Server
 

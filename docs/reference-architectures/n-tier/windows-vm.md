@@ -3,12 +3,12 @@ title: 在 Azure 上运行 Windows VM
 description: 如何在 Azure 上运行 Windows VM，并注意可伸缩性、弹性、可管理性和安全性。
 author: telmosampaio
 ms.date: 04/03/2018
-ms.openlocfilehash: d790c9a6693dca751e0ba05f1fd3c23756cf53bb
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: a20359f90e7b20486defce3110b2db6f7e0027ba
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142210"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584691"
 ---
 # <a name="run-a-windows-vm-on-azure"></a>在 Azure 上运行 Windows VM
 
@@ -115,6 +115,8 @@ VM 可能会受到[计划内维护][planned-maintenance]或[计划外维护][man
 使用[审核日志][audit-logs]可查看预配操作和其他 VM 事件。
 
 **数据加密。** 如果需要加密 OS 磁盘和数据磁盘，请考虑使用 [Azure 磁盘加密][disk-encryption]。 
+
+**DDOS 防护**。 我们建议启用 [DDoS 防护标准版](/azure/virtual-network/ddos-protection-overview)，其中提供了针对 VNet 中的资源的更多 DDoS 缓解功能。 虽然基本 DDoS 已作为 Azure 平台的一部分自动启用，但 DDoS 防护标准版提供了专门针对 Azure 虚拟网络资源优化的缓解功能。  
 
 ## <a name="deploy-the-solution"></a>部署解决方案
 

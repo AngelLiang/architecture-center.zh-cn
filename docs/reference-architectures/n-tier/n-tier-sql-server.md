@@ -3,12 +3,12 @@ title: 使用 SQL Server 的 N 层应用程序
 description: 如何在 Azure 上实现多层体系结构，以确保可用性、安全性、可伸缩性和可管理性。
 author: MikeWasson
 ms.date: 07/19/2018
-ms.openlocfilehash: fc761e940a25c4667146db9598d944bac2c32496
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 3a291b9492c94450a42de96bea2135190c163fe7
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326050"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584742"
 ---
 # <a name="n-tier-application-with-sql-server"></a>使用 SQL Server 的 N 层应用程序
 
@@ -154,6 +154,8 @@ Jumpbox 的性能要求非常低，因此请选择一个较小的 VM 大小。 �
 
 加密静态的敏感数据并使用 [Azure Key Vault][azure-key-vault] 管理数据库加密密钥。 Key Vault 可以将加密密钥存储在硬件安全模块 (HSM) 中。 有关详细信息，请参阅[为 Azure VM 上的 SQL Server 配置 Azure Key Vault 集成][sql-keyvault]。 另外，建议将应用程序机密（例如数据库连接字符串）也存储在 Key Vault 中。
 
+我们建议启用 [DDoS 防护标准版](/azure/virtual-network/ddos-protection-overview)，其中提供了针对 VNet 中的资源的更多 DDoS 缓解功能。 虽然基本 DDoS 已作为 Azure 平台的一部分自动启用，但 DDoS 防护标准版提供了专门针对 Azure 虚拟网络资源优化的缓解功能。  
+
 ## <a name="deploy-the-solution"></a>部署解决方案
 
 [GitHub][github-folder] 中提供了此参考体系结构的部署。 请注意，整个部署最长可能需要两小时的时间，包括运行相关脚本来配置 AD DS、Windows Server 故障转移群集以及 SQL Server 可用性组。
@@ -220,7 +222,7 @@ Jumpbox 的性能要求非常低，因此请选择一个较小的 VM 大小。 �
     "witnessStorageAccountKey": "[replace-with-storagekey]"
     ```
 
-8. 在 `n-tier-windows.json` 文件中搜索 `[replace-with-password]` 的所有实例，并将其替换为强密码。 保存文件。
+8. 在 `n-tier-windows.json` 文件中搜索 `[replace-with-password]` 和 `[replace-with-sql-password]` 的所有实例，并将其替换为强密码。 保存文件。
 
     > [!NOTE]
     > 如果更改管理员用户名，则还必须更新 JSON 文件中的 `extensions` 块。 

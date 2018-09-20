@@ -4,12 +4,12 @@ description: Azure 资源的命名约定。 如何命名虚拟机、存储帐户
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 8aa0b46d9f43107cfa4ae4be3160900249365702
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 625f672c80b0256e93932b72367768f37c1e72f4
+ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326314"
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46329872"
 ---
 # <a name="naming-conventions"></a>命名约定
 
@@ -45,7 +45,7 @@ Microsoft Azure 中任何资源的名称选择都很重要，因为：
 | Contoso |IT |InternalApps |生产 |Contoso IT InternalApps Production |
 | Contoso |IT |InternalApps |Dev |Contoso IT InternalApps Dev |
 
-有关如何为较大型企业组织订阅的详细信息，请参阅[订阅管理说明性指南][scaffold]。
+有关如何为较大型企业组织订阅的详细信息，请参阅 [Azure 企业基架 - 出于合规目的监管订阅][scaffold]。
 
 ## <a name="use-affixes-to-avoid-ambiguity"></a>使用词缀以避免多义性
 
@@ -195,4 +195,4 @@ Blob 名称可以包含任何字符组合，但必须正确转义保留的 URL �
 
 <!-- links -->
 
-[scaffold]: /azure/azure-resource-manager/resource-manager-azure-scaffold
+[scaffold]: /azure/architecture/cloud-adoption/appendix/azure-scaffold
