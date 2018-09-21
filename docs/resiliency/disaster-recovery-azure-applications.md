@@ -2,13 +2,13 @@
 title: Azure 应用程序灾难恢复
 description: 有关在Microsoft Azure 上设计应用程序以实现灾难恢复的技术概述和深入信息。
 author: adamglick
-ms.date: 05/26/2017
-ms.openlocfilehash: faae658d91ec0cb2dd5dc436e67aa9b494fd4b49
-ms.sourcegitcommit: 46ed67297e6247f9a80027cfe891a5e51ee024b4
+ms.date: 09/12/2018
+ms.openlocfilehash: 4f879445154e37502bbeeeb90939737b6072e6ec
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45556676"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584793"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Azure 应用程序灾难恢复
 
@@ -118,6 +118,9 @@ Azure 提供的许多服务可能会定期停机。 例如，[Azure Redis 缓存
 
 Azure 存储内置的冗余性在同一区域中创建备份文件的两个副本。 但是，由运行备份过程的频率决定 RPO，即可能在灾难情况下丢失的数据量。 例如，假设每个整点执行一次备份，而灾难发生在整点前的两分钟。 那么，会丢失在执行上次备份之后记录的 58 分钟的数据。 此外，为了应对区域范围的服务中断，应将 BACPAC 文件复制到备用区域。 之后可以在备用区域还原这些备份。 有关更多详细信息，请参阅[概述：云业务连续性与使用 SQL 数据库进行数据库灾难恢复](/azure/sql-database/sql-database-business-continuity/)。
 
+#### <a name="sql-data-warehouse"></a>SQL 数据仓库
+对于 SQL 数据仓库，请使用[异地备份](/azure/sql-data-warehouse/backup-and-restore#geo-backups)还原到灾难恢复的配对区域。 这些备份会每 24 小时创建一次，并且可以在20 分钟内还原到配对区域中。 此功能在默认情况下对所有 SQL 数据仓库处于启用状态。 有关如何还原数据仓库的详细信息，请参阅[使用 PowerShell 从 Azure 地理区域还原](/azure/sql-data-warehouse/sql-data-warehouse-restore#restore-from-an-azure-geographical-region-using-powershell)。
+
 #### <a name="azure-storage"></a>Azure 存储
 对于 Azure 存储，可制定一个自定义备份过程，也可使用许多第三方备份工具中的某一个。 请注意，在大多数应用程序设计中，还有许多其他的复杂情况，其中存储资源互相引用对方。 例如，设想一个 SQL 数据库，其中一列链接到 Azure 存储中的 Blob。 如果未能同时进行备份，则数据库可能会提供一个指针，指向在发生故障之前未备份的 Blob。 应用程序或灾难恢复计划必须实现在恢复后处理这种不一致性的过程。
 
@@ -127,7 +130,7 @@ Azure 存储内置的冗余性在同一区域中创建备份文件的两个副�
 ### <a name="reference-data-pattern-for-disaster-recovery"></a>灾难恢复的引用数据模式
 引用数据是支持应用程序功能的只读数据。 这些数据通常不经常更改。 尽管备份和还原是处理区域范围的服务中断的一种方法，但 RTO 耗时相对较长。 将应用程序部署到次要区域后，有一些策略可改进引用数据的 RTO。
 
-由于引用数据不经常更改，因此可通过在次要区域内保留引用数据的永久副本，缩短 RTO。 这样可消除发生灾难时还原备份所需的时间。 要满足多区域灾难恢复要求，必须将应用程序和引用数据一起部署到多个区域。 如[高可用性的引用数据模式](high-availability-azure-applications.md#reference-data-pattern-for-high-availability)中所述，可以将引用数据部署到角色本身、外部存储或这两者的组合。
+由于引用数据不经常更改，因此可通过在次要区域内保留引用数据的永久副本，缩短 RTO。 这样可消除发生灾难时还原备份所需的时间。 要满足多区域灾难恢复要求，必须将应用程序和引用数据一起部署到多个区域。 可以将引用数据部署到角色本身、外部存储或这两者的组合。
 
 计算节点内引用数据部署模型还隐式满足了灾难恢复要求。 将引用数据部署到 SQL 数据库需要将引用数据的副本部署到每个区域。 同样的策略也适用于 Azure 存储。 必须将存储在 Azure 存储中的任何引用数据副本部署到主要区域和次要区域。
 
@@ -153,7 +156,7 @@ Azure 存储内置的冗余性在同一区域中创建备份文件的两个副�
 
 > [!NOTE]
 > 本文侧重于平台即服务 (PaaS)。 但是，使用 Azure 虚拟机的混合应用程序仍具有其他复制和可用性选项。 这些混合应用程序使用基础结构即服务 (IaaS) 在 Azure 中的虚拟机上托管 SQL Server。 因此，可在 SQL Server 中使用传统的可用性方法，如 AlwaysOn 可用性组或日志传送。 某些方法（如 AlwaysOn）只能在本地 SQL Server 与 Azure 虚拟机之间发挥作用。 有关详细信息，请参阅 [Azure 虚拟机中 SQL Server 的高可用性和灾难恢复](/azure/virtual-machines/windows/sql/virtual-machines-windows-sql-high-availability-dr/)。
-> 
+>
 > 
 
 #### <a name="reduced-application-functionality-for-transaction-capture"></a>使用减弱的应用程序功能捕获事务
@@ -308,5 +311,4 @@ IaaS 解决方案还为本地应用程序使用 Azure 作为故障转移选项�
 | SQL 数据库 | [还原 Azure SQL 数据库或故障转移到辅助数据库](/azure/sql-database/sql-database-disaster-recovery) |
 | 虚拟机 | [发生影响 Azure 虚拟机的 Azure 服务中断事件时该怎么办](/azure/virtual-machines/virtual-machines-disaster-recovery-guidance) |
 | 虚拟网络 | [虚拟网络 - 业务连续性](/azure/virtual-network/virtual-network-disaster-recovery-guidance) |
-
 
