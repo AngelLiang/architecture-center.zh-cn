@@ -3,12 +3,12 @@ title: Azure 上提供的用于酒店预订的对话式聊天机器人
 description: 经验证的方案，所生成的对话式聊天机器人适合使用 Azure 机器人服务、认知服务和 LUIS，Azure SQL 数据库以及 Application Insights 的商业应用程序。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: b664faf20d806824c2581346aaa592b0d74207da
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 95a0fd77a99a348704a1d916de534a98d0b03448
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060857"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389326"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Azure 上提供的用于酒店预订的对话式聊天机器人
 
@@ -64,11 +64,11 @@ ms.locfileid: "39060857"
 
 ### <a name="scalability"></a>可伸缩性
 
-本方案使用 Azure 应用服务。 可以通过应用服务自动调整运行机器人的实例数。 可以通过此功能时刻了解客户对 Web 应用程序和聊天机器人的需求情况。 有关自动缩放的详细信息，请参阅体系结构中心的[自动缩放最佳做法][autoscaling]。
+本方案使用 Azure 应用服务。 可以通过应用服务自动调整运行机器人的实例数。 可以通过此功能时刻了解客户对 Web 应用程序和聊天机器人的需求情况。 有关自动缩放的详细信息，请参阅 Azure 体系结构中心的[自动缩放最佳做法][autoscaling]。
 
 若要了解其他可伸缩性主题，请参阅 Azure 体系结构中心的[可伸缩性核对清单][scalability]。
 
-### <a name="security"></a>“安全”
+### <a name="security"></a>安全
 
 本方案使用 Azure Active Directory B2C（企业对客户）进行用户身份验证。 使用 AAD B2C 时，聊天机器人不存储任何敏感的客户帐户信息或凭据。 有关详细信息，请参阅 [Azure Active Directory B2C 概述][aadb2c-docs]。
 
@@ -143,9 +143,9 @@ GitHub 上提供了一个示例 C# 应用程序：
 
 我们已根据你预期的聊天机器人需要处理的消息数提供了三个示例性的成本配置文件：
 
-* [小][small-pricing]：对应于每月处理的消息数 < 10,000 的情况。
-* [中][medium-pricing]：对应于每月处理的消息数 < 500,000 的情况。
-* [大][large-pricing]：对应于每月处理的消息数 < 1 千万的情况。
+* [小][small-pricing]：此定价示例对应于每月处理的消息数 < 10,000 的情况。
+* [中][medium-pricing]：此定价示例对应于每月处理的消息数 < 500,000 的情况。
+* [大][large-pricing]：此定价示例对应于每月处理的消息数 < 1 千万的情况。
 
 ## <a name="related-resources"></a>相关资源
 

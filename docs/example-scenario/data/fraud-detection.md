@@ -3,12 +3,12 @@ title: 在 Azure 上实时欺诈检测
 description: 经验证的方案，可以使用 Azure 事件中心和流分析实时检测欺诈性活动。
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: e22322133adf40d033ac5af98069cb00765d14ca
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: d80fab460938cceeb84f3ed2ecd97e9e149f8e2d
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060806"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389122"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>在 Azure 上实时欺诈检测
 
@@ -65,7 +65,7 @@ Azure Monitor 提供了统一的用户界面，可用于监视各种 Azure 服�
 
 有关如何设计可缩放方案的通用指南，请参阅 Azure 体系结构中心的[可伸缩性核对清单][scalability]。
 
-### <a name="security"></a>“安全”
+### <a name="security"></a>安全
 
 Azure 事件中心通过[身份验证和安全模型][docs-event-hubs-security-model]来确保数据安全，该模型基于共享访问签名 (SAS) 令牌与事件发布者的组合。 事件发布者定义事件中心的虚拟终结点。 发布者只能用于将消息发送到事件中心。 无法从发布者接收消息。
 
@@ -99,7 +99,7 @@ Azure 事件中心通过[身份验证和安全模型][docs-event-hubs-security-m
 [small-pricing]: https://azure.com/e/74149ec312c049ccba79bfb3cfa67606
 [medium-pricing]: https://azure.com/e/4fc94f7376de484d8ae67a6958cae60a
 [large-pricing]: https://azure.com/e/7da8804396f9428a984578700003ba42
-[architecture-diagram]: ./images/architecture-diagram-fraud-detection.png
+[architecture-diagram]: ./media/architecture-diagram-fraud-detection.png
 [docs-event-hubs]: /azure/event-hubs/event-hubs-what-is-event-hubs
 [docs-event-hubs-security-model]: /azure/event-hubs/event-hubs-authentication-and-security-model-overview
 [docs-stream-analytics]: /azure/stream-analytics/stream-analytics-introduction

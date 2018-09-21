@@ -3,12 +3,12 @@ title: Azure 上的保险索赔图像分类
 description: 经验证的方案，用于将图像处理内置到 Azure 应用程序中。
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 361a88234fd9ed918ab7664893f86666b4328b8c
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 0ca0b46e83219afc5e22c2ac6467bf4be945c97a
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060823"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389156"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Azure 上的保险索赔图像分类
 
@@ -16,7 +16,7 @@ ms.locfileid: "39060823"
 
 可能的应用包括：对时尚网站的图像分类、分析保险索赔的文本和图像，或者理解游戏屏幕截图中的遥测数据。 传统上，公司需开发机器学习模型方面的专业技术，训练模型，最后再通过自定义过程运行图像，以便从这些图像中获取数据。
 
-使用 Azure 服务（例如计算机视觉 API 和 Azure Functions），公司不需管理各个服务器，既减少了成本，又可充分利用 Microsoft 围绕认知服务图像处理开发的专业技术。 本方案专门解决图像处理方案问题。 如果有各种不同的的 AI 需求，可以考虑全套[认知服务][cognitive-docs]。
+使用 Azure 服务（例如计算机视觉 API 和 Azure Functions），公司不需管理各个服务器，既减少了成本，又可充分利用 Microsoft 围绕认知服务图像处理开发的专业技术。 本示例方案专门解决图像处理用例问题。 如果有各种不同的的 AI 需求，可以考虑全套[认知服务][cognitive-docs]。
 
 ## <a name="related-use-cases"></a>相关的用例
 
@@ -63,15 +63,15 @@ ms.locfileid: "39060823"
 
 ### <a name="scalability"></a>可伸缩性
 
-大多数情况下，本方案的所有组件是托管服务，可以自动进行缩放。 一些需注意的例外：Azure Functions 存在限制，最多可以使用 200 个实例。 如果所需规模超出限制，可以考虑使用多个区域或应用计划。
+在本示例方案中使用的大多数组件是托管服务，可以自动进行缩放。 一些需注意的例外：Azure Functions 存在限制，最多可以使用 200 个实例。 如果所需规模超出此限制，可以考虑使用多个区域或应用计划。
 
-Cosmos DB 不会按照预配的请求单位 (RU) 自动缩放。  有关如何估算需求的指南，请参阅文档中的[请求单位][request-units]。 若要充分利用 Cosmos DB 中的缩放功能，还应参阅[分区键][partition-key]的内容。
+Cosmos DB 不会按照预配的请求单位 (RU) 自动缩放。  有关如何估算需求的指南，请参阅文档中的[请求单位][request-units]。 若要充分利用 Cosmos DB 中的缩放功能，请浏览[分区键][partition-key]一文。
 
-很多情况下，为了确保可用性、可伸缩性和分区，NoSQL 数据库会牺牲一致性（这就是所谓的 CAP 法则）。  但就键-值数据模型（在本方案中使用）来说，很少需要事务一致性，因为大多数操作就其定义来说属于原子操作。 有关如何[选择正确的数据存储](../../guide/technology-choices/data-store-overview.md)的其他指南，请访问体系结构中心。
+很多情况下，为了确保可用性、可伸缩性和分区，NoSQL 数据库会牺牲一致性（这就是所谓的 CAP 法则）。  本示例方案使用键-值数据模型，很少需要事务一致性，因为大多数操作就其定义来说属于原子操作。 有关如何[选择正确的数据存储](../../guide/technology-choices/data-store-overview.md)的其他指南，请访问 Azure 体系结构中心。
 
 有关如何设计可缩放解决方案的通用指南，请参阅 Azure 体系结构中心的[可伸缩性核对清单][scalability]。
 
-### <a name="security"></a>“安全”
+### <a name="security"></a>安全
 
 [托管服务标识][msi] (MSI) 用于访问帐户的其他内部资源，然后会被系统分配给你的 Azure Functions。 只允许通过这些标识访问必要的资源，这样可确保不将额外的内容公开给函数（可能还包括客户）。  
 
@@ -87,17 +87,17 @@ Cosmos DB 不会按照预配的请求单位 (RU) 自动缩放。  有关如何�
 
 为了方便用户了解运行本方案的成本，我们已在成本计算器中预配置了所有服务。 若要了解自己的特定用例的定价变化情况，请按预期的流量更改相应的变量。
 
-我们已根据流量（假定所有图像的大小均为 100kb）提供了三个示例性的成本配置文件：
+我们已根据流量（假定所有图像的大小均为 100 kb）提供了三个示例性的成本配置文件：
 
-* [小][pricing]：对应于每月处理的图像数 &lt; 5000 的情况。
-* [中][medium-pricing]：对应于每月处理的图像数为 500,000 的情况。
-* [大][large-pricing]：对应于每月处理的图像数为 5 千万的情况。
+* [小][pricing]：此定价示例对应于每月处理的图像数 &lt; 5000 的情况。
+* [中][medium-pricing]：此定价示例对应于每月处理的图像数为 500,000 的情况。
+* [大][large-pricing]：此定价示例对应于每月处理的图像数为 5 千万的情况。
 
 ## <a name="related-resources"></a>相关资源
 
 如需此方案的引导式学习路径，请参阅[在 Azure 中生成无服务器 Web 应用][serverless]。  
 
-将此解决方案放到生产环境中之前，请参阅 Azure Functions [最佳做法][functions-best-practices]。
+将此示例方案部署到生产环境中之前，请参阅 Azure Functions [最佳做法][functions-best-practices]。
 
 <!-- links -->
 [pricing]: https://azure.com/e/f9b59d238b43423683db73f4a31dc380

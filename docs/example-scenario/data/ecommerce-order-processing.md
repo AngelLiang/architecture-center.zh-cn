@@ -3,12 +3,12 @@ title: Azure 上的可缩放订单处理
 description: 通过示例方案介绍如何使用 Azure Cosmos DB 生成高度可缩放的订单处理管道。
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: 9fa0dc7c564270ee811b56169e05f7e743664838
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: aa7281263db7cc72781b740941f3b86dad025baa
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016086"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389105"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Azure 上的可缩放订单处理
 
@@ -41,7 +41,7 @@ ms.locfileid: "43016086"
 
 ### <a name="components"></a>组件
 
-* [Cosmos DB][docs-cosmos-db] 是 Microsoft 推出的全局分布式多模型数据库，可以让解决方案跨任意数量的地理区域灵活且独立地缩放吞吐量与存储。 它通过综合服务级别协议 (SLA) 提供吞吐量、延迟、可用性和一致性保证。 本方案使用 Cosmos DB 进行事件流存储和快照存储，并利用 [Cosmos DB 的更改源][docs-cosmos-db-change-feed]功能来确保数据一致性和故障恢复。 
+* [Cosmos DB][docs-cosmos-db] 是 Microsoft 推出的全局分布式多模型数据库，可以让解决方案跨任意数量的地理区域灵活且独立地缩放吞吐量与存储。 它通过综合服务级别协议 (SLA) 提供吞吐量、延迟、可用性和一致性保证。 本方案使用 Cosmos DB 进行事件流存储和快照存储，并利用 [Cosmos DB 的更改源][docs-cosmos-db-change-feed]功能来确保数据一致性和故障恢复。
 * [Apache Kafka on HDInsight][docs-kafka] 是以托管服务方式实现的 Apache Kafka，是一种开源分布式流式处理平台，用于生成实时流数据管道和应用程序。 Kafka 还提供了类似于消息队列的消息中转站功能，用于发布和订阅命名数据流。 本方案使用 Kafka 在订单处理管道中处理出入事件和下游事件。 
 
 ## <a name="considerations"></a>注意事项
@@ -83,13 +83,13 @@ Azure Cosmos DB 的货币是请求单位 (RU)。 借助请求单位，无需保�
 
 我们已根据你预期的活动量提供了三个示例性的成本配置文件：
 
-* [小][small-pricing]：对应于 5 个保留的 RU 和 Cosmos DB 中的 1TB 数据存储，以及一个小型 (D3 v2) Kafka 群集。
-* [中][medium-pricing]：对应于 50 个保留的 RU 和 Cosmos DB 中的 10TB 数据存储，以及一个中型 (D4 v2) Kafka 群集。
-* [大][large-pricing]：对应于 500 个保留的 RU 和 Cosmos DB 中的 30TB 数据存储，以及一个大型 (D5 v2) Kafka 群集。
+* [小][small-pricing]：此定价示例对应于 5 个保留的 RU 和 Cosmos DB 中的 1 TB 数据存储，以及一个小型 (D3 v2) Kafka 群集。
+* [中][medium-pricing]：此定价示例对应于 50 个保留的 RU 和 Cosmos DB 中的 10 TB 数据存储，以及一个中型 (D4 v2) Kafka 群集。
+* [大][large-pricing]：此定价示例对应于 500 个保留的 RU 和 Cosmos DB 中的 30 TB 数据存储，以及一个大型 (D5 v2) Kafka 群集。
 
 ## <a name="related-resources"></a>相关资源
 
-本示例方案基于此体系结构的一个更广泛的版本，该版本由 [Jet.com](https://jet.com) 针对其端到端订单处理管道而构建。 有关详细信息，请参阅 [jet.com 技术方面的客户配置文件][source-document]和 [jet.com 在 Build 2018 的演示文稿][source-presentation]。 
+本示例方案基于此体系结构的一个更广泛的版本，该版本由 [Jet.com](https://jet.com) 针对其端到端订单处理管道而构建。 有关详细信息，请参阅 [jet.com 技术方面的客户配置文件][source-document]和 [jet.com 在 Build 2018 的演示文稿][source-presentation]。
 
 其他相关资源包括：
 * _[Designing Data-Intensive Applications](https://dataintensive.net/)_（设计数据密集型应用程序），作者：Martin Kleppmann（O'Reilly Media，2017）。
@@ -104,10 +104,9 @@ Azure Cosmos DB 的货币是请求单位 (RU)。 借助请求单位，无需保�
 [small-pricing]: https://azure.com/e/3d43949ffbb945a88cc0a126dc3a0e6e
 [medium-pricing]: https://azure.com/e/1f1e7bf2a6ad4f7799581211f4369b9b
 [large-pricing]: https://azure.com/e/75207172ece94cf6b5fb354a2252b333
-[architecture-diagram]: ./images/architecture-diagram-cosmos-db.png
+[architecture-diagram]: ./media/architecture-diagram-cosmos-db.png
 [docs-cosmos-db]: /azure/cosmos-db
 [docs-cosmos-db-change-feed]: /azure/cosmos-db/change-feed
-[docs-cosmos-db-online-backup-and-restore]: /azure/cosmos-db/online-backup-and-restore
 [docs-cosmos-db-regional-failover]: /azure/cosmos-db/regional-failover
 [docs-cosmos-db-guarantees]: /azure/cosmos-db/distribute-data-globally#AvailabilityGuarantees
 [docs-cosmos-db-use-cases]: /azure/cosmos-db/use-cases

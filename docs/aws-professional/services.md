@@ -5,12 +5,12 @@ keywords: 云服务比较, 比较云服务, 多云, 比较 azure aws, 比较 azu
 author: lbrader
 ms.date: 11/30/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 4c78f45c654a40142ff25736b83a5b6b10591fc6
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: e0064e7c8959086da360eedc4ae274af797dbbad
+ms.sourcegitcommit: 46ed67297e6247f9a80027cfe891a5e51ee024b4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325006"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45556693"
 ---
 # <a name="aws-to-azure-services-comparison"></a>AWS 和 Azure 服务比较
 
@@ -44,6 +44,7 @@ Azure 和 AWS 作为领先的公有云平台，各自都在全球范围内为企
 |         <strong>&nbsp;</strong>         |             EC2 Container Registry             |                                                                                                                [Azure 容器注册表](https://azure.microsoft.com/services/container-registry/)                                                                                                                 |                                            客户能存储 Docker 格式化的映像。 用于在 Azure 上创建所有类型的容器部署。                                             |
 | 微服务/容器业务流程协调程序 | 适用于 Kubernetes 的弹性容器服务 (EKS) |                                                                                                              [Azure Kubernetes 服务 (AKS)](https://azure.microsoft.com/services/kubernetes-service/)                                                                                                               |                  使用 Kubernetes 部署经过协调的容器化应用程序。 通过自动升级和内置操作控制台简化群集监视和管理。                  |
 |                 &nbsp;                  |                                                |                                                                                                                       [Service Fabric](https://azure.microsoft.com/services/service-fabric/)                                                                                                                        |              一种计算服务，安排和管理复杂且相互关联代码组件（有无状态均可）的执行、生存期和恢复能力。              |
+| &nbsp; | &nbsp; | [Service Fabric 网格](/azure/service-fabric-mesh/service-fabric-mesh-overview) | 完全托管的服务，开发者可以用它来部署微服务应用程序，无需管理虚拟机、存储或网络。
 |                 &nbsp;                  |                                                |                                                                                                                             [Azure 容器服务 (ACS)](/azure/container-service/)                                                                                                                              |                                                             快速部署随时可投入生产的 Kubernetes、DC/OS 或 Docker Swarm 群集。                                                              |
 |               无服务器                |                     Lambda                     |                                                                                  [Azure Functions](https://azure.microsoft.com/services/functions/) <br/><br/>[Azure 事件网格](https://azure.microsoft.com/services/event-grid/)                                                                                  |                                       集成系统和运行后端进程以响应事件或计划，而无需预配或管理服务器。                                        |
 |         <strong>&nbsp;</strong>         |                 Lambda @ Edge                  |                                                                                                                       [Azure IoT Edge 上的 Functions](/azure/iot-edge/tutorial-deploy-function)                                                                                                                       |                                                    即使云连接断断续续，也能在边缘节点上（直接在 IoT 设备上）运行函数。                                                    |

@@ -3,12 +3,12 @@ title: Azure 应用程序灾难恢复
 description: 有关在Microsoft Azure 上设计应用程序以实现灾难恢复的技术概述和深入信息。
 author: adamglick
 ms.date: 05/26/2017
-ms.openlocfilehash: 2d890e479e008e03dcfce9b7240f8bcbaf270372
-ms.sourcegitcommit: e8f4786b187697b1bea374e5f35f217c65d2dfe0
+ms.openlocfilehash: faae658d91ec0cb2dd5dc436e67aa9b494fd4b49
+ms.sourcegitcommit: 46ed67297e6247f9a80027cfe891a5e51ee024b4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37343373"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45556676"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Azure 应用程序灾难恢复
 
@@ -299,7 +299,10 @@ IaaS 解决方案还为本地应用程序使用 Azure 作为故障转移选项�
 
 | 服务 | 主题 |
 |---------|-------|
+| Azure Database for MySQL | [有关使用 Azure Database for MySQL 确保业务连续性的概述](/azure/mysql/concepts-business-continuity) |
+| Azure Database for PostgreSQL | [有关使用 Azure Database for PostgreSQL 确保业务连续性的概述](/azure/postgresql/concepts-business-continuity)
 | 云服务 | [发生影响 Azure 云服务的 Azure 服务中断时该怎么办](/azure/cloud-services/cloud-services-disaster-recovery-guidance) |
+| Cosmos DB | [可在 Azure Cosmos DB 中实现业务连续性的自动区域故障转移](/azure/cosmos-db/regional-failover)
 | Key Vault | [Azure Key Vault 可用性和冗余](/azure/key-vault/key-vault-disaster-recovery-guidance) |
 |存储 | [在 Azure 存储中断时该怎么办](/azure/storage/storage-disaster-recovery-guidance) |
 | SQL 数据库 | [还原 Azure SQL 数据库或故障转移到辅助数据库](/azure/sql-database/sql-database-disaster-recovery) |

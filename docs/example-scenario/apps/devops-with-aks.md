@@ -3,12 +3,12 @@ title: 适用于基于容器的工作负荷的 CI/CD 管道
 description: 经验证的方案，所生成的 DevOps 管道适合使用 Jenkins、Azure 容器注册表、Azure Kubernetes 服务、Cosmos DB 和 Grafana 的 Node.js Web 应用。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: dceb4ad3c34ec43a54d802772f5817cacdd3929c
-ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
+ms.openlocfilehash: d659916e3af0caa2128db25faab441a2af8f3f6a
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/29/2018
-ms.locfileid: "39334209"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389377"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>适用于基于容器的工作负荷的 CI/CD 管道
 
@@ -44,7 +44,7 @@ ms.locfileid: "39334209"
 ### <a name="components"></a>组件
 
 * [Jenkins][jenkins] 是一种开源的自动化服务器，与 Azure 服务集成后即可进行持续集成 (CI) 和持续部署 (CD)。 在本方案中，Jenkins 会根据提交到源代码管理中的内容协调新容器映像的创建过程，接着将这些映像推送到 Azure 容器注册表，然后更新 Azure Kubernetes 服务中的应用程序实例。
-* [Azure Linux 虚拟机][azurevm-docs]用于运行 Jenkins 和 Grafana 实例。
+* [Azure Linux 虚拟机][azurevm-docs]是用于运行 Jenkins 和 Grafana 实例的 IaaS 平台。
 * [Azure 容器注册表][azureacr-docs]存储和管理 Azure Kubernetes 服务群集使用的容器映像。 映像会以安全的方式进行存储，并可通过 Azure 平台复制到其他区域以加快部署速度。
 * [Azure Kubernetes 服务][azureaks-docs]是一种托管的 Kubernetes 平台，可以让用户在没有容器业务流程专业知识的情况下部署和管理容器化的应用程序。 作为一个托管 Kubernetes 服务，Azure 可以自动处理运行状况监视和维护等关键任务。
 * [Azure Cosmos DB][azurecosmosdb-docs] 是一种全局分布式多模型数据库，允许用户根据需要选择不同的数据库和一致性模型。 Cosmos DB 允许全局复制数据，且不需部署和配置群集管理或复制组件。
@@ -53,7 +53,7 @@ ms.locfileid: "39334209"
 
 ### <a name="alternatives"></a>备选项
 
-* [Visual Studio Team Services][vsts] 和 Team Foundation Server 可以为任何应用实现一个持续集成 (CI)、测试和部署 (CD) 管道。
+* [Azure Pipelines][azure-pipelines] 可以为任何应用实现一个用于持续集成 (CI)、测试和持续部署 (CD) 的管道。
 * 若要对群集进行更多的控制，可以直接在 Azure VM 上运行 [Kubernetes][kubernetes]，不必通过托管服务来运行。
 * [Service Fabric][service-fabric] 是另一个可以替代 AKS 的容器业务流程协调程序。
 
@@ -65,7 +65,7 @@ ms.locfileid: "39334209"
 
 作为 Azure Kubernetes 服务群集的一部分，负载均衡器可以将应用程序流量分发到一个或多个运行应用程序的容器 (Pod)。 可以通过这种在 Kubernetes 中运行容器化应用程序的方法，为客户提供高度可用的基础结构。
 
-若要了解其他可用性主题，请参阅体系结构中心提供的[可用性核对清单][availability]。
+若要了解其他可用性主题，请参阅 Azure 体系结构中心提供的[可用性核对清单][availability]。
 
 ### <a name="scalability"></a>可伸缩性
 
@@ -73,7 +73,7 @@ Azure Kubernetes 服务允许按照应用程序的需求调整群集节点的数
 
 应用程序数据存储在 Azure Cosmos DB 中，后者是一种全局分布式多模型数据库，可以进行全局缩放。 Cosmos DB 可以使用传统的数据库组件按需求来缩放基础结构，你可以根据客户的需求选择对 Cosmos DB 进行全局复制。
 
-若要了解其他可伸缩性主题，请参阅体系结构中心提供的[可伸缩性核对清单][scalability]。
+若要了解其他可伸缩性主题，请参阅 Azure 体系结构中心提供的[可伸缩性核对清单][scalability]。
 
 ### <a name="security"></a>安全
 
@@ -123,9 +123,9 @@ Azure Kubernetes 服务允许按照应用程序的需求调整群集节点的数
 
 我们已根据要存储的容器映像数以及运行应用程序所需的 Kubernetes 节点数提供了三个示例性的成本配置文件。
 
-* [小][small-pricing]：对应于每月 1000 个容器生成的情况。
-* [中][medium-pricing]：对应于每月 100,000 个容器生成的情况。
-* [大][large-pricing]：对应于每月 1,000,000 个容器生成的情况。
+* [小][small-pricing]：此定价示例对应于每月 1000 个容器生成的情况。
+* [中][medium-pricing]：此定价示例对应于每月 100,000 个容器生成的情况。
+* [大][large-pricing]：此定价示例对应于每月 1,000,000 个容器生成的情况。
 
 ## <a name="related-resources"></a>相关资源
 
@@ -149,7 +149,7 @@ Azure Kubernetes 服务允许按照应用程序的需求调整群集节点的数
 [security]: /azure/security/
 [scalability]: ../../checklist/scalability.md
 [sshkeydocs]: /azure/virtual-machines/linux/mac-create-ssh-keys
-[vsts]: /vsts/?view=vsts
+[azure-pipelines]: /azure/devops/pipelines
 [kubernetes]: https://kubernetes.io/
 [service-fabric]: /azure/service-fabric/
 

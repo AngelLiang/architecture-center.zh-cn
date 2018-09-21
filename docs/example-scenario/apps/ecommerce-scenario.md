@@ -3,14 +3,14 @@ title: Azure 上的电子商务前端
 description: 通过经验证的方案在 Azure 上托管电子商务站点
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 568821e97c6b90a36429dfa8ec0ef9ed38c7963c
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 1af481476c74b365ce5145636426683c6896b00b
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060968"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389190"
 ---
-# <a name="e-commerce-front-end-on-azure"></a>Azure 上的电子商务前端
+# <a name="e-commerce-frontend-on-azure"></a>Azure 上的电子商务前端
 
 本示例方案详述了如何使用 Azure 平台即服务 (PaaS) 工具实现一个电子商务前端。 许多电子商务网站在一段时间过后都面临季节性和流量不稳定的问题。 对你的产品或服务的需求增加时（不管是可预见的还是不可预见的），可以通过 PaaS 工具自动应对客户数量和交易数量增加的情况。 另外，本方案只要求你支付所使用的容量，让你充分利用云经济。
 
@@ -49,7 +49,7 @@ ms.locfileid: "39060968"
 * [Azure Active Directory - B2C][docs-b2c] 是一项标识管理服务，用于自定义和控制客户在应用程序中的注册、登录和管理配置文件的方式。
 * [存储队列][docs-storage-queues]存储大量可供应用程序访问的队列消息。
 * [Functions][docs-functions] 是无服务器计算选项，可以让应用程序按需运行，不需管理基础结构。
-* [认知服务 - 情绪分析][docs-sentiment-analysis]使用机器学习 API，可让开发人员轻松地在其应用程序中添加智能功能 - 例如情绪和视频检测；面部、语音与视觉识别；语音与语言理解。
+* [认知服务 - 情绪分析][docs-sentiment-analysis]使用机器学习 API，可让开发人员轻松地在应用程序中添加智能功能 - 例如情绪和视频检测；面部、语音与视觉识别；语音与语言理解。
 * [Azure 搜索][docs-search]是一种搜索即服务云解决方案，它可以根据 Web、移动和企业应用程序中的专用异类内容提供丰富的搜索体验。
 * [存储 Blob][docs-storage-blobs] 最适合存储大量的非结构化数据，例如文本或二进制数据。
 * [Redis 缓存][docs-redis-cache]可以提高严重依赖于后端数据存储的系统的性能和可伸缩性，其方式是将经常访问的数据暂时复制到靠近应用程序的快速存储。
@@ -64,12 +64,12 @@ ms.locfileid: "39060968"
 
 * [Service Fabric][docs-service-fabric] - 一个平台，侧重于生成分布式组件，而此类组件适合在严格控制的群集上部署和运行。 Service Fabric 也可用于托管容器。
 * [Azure Kubernetes 服务][docs-kubernetes-service] - 一个平台，用于生成和部署基于容器的解决方案，这些方案可以用作微服务体系结构的某个实现。 这样就可以确保应用程序的不同组件按照需求灵活地进行独立缩放。
-* [Azure 容器实例][docs-container-instances] - 这是一种方法，可以快速地部署和运行生命周期短的容器。 通常情况下，部署此处的容器是为了运行快速处理作业，例如处理一条消息或执行一项计算，然后在它们完成后尽快取消预配。
+* [Azure 容器实例][docs-container-instances] - 这是一种方法，可以快速地部署和运行生命周期短的容器。 部署此处的容器是为了运行快速处理作业，例如处理一条消息或执行一项计算，然后在它们完成后尽快取消预配。
 * [服务总线][service-bus]可以用来替代存储队列。
 
 可用于数据层的其他选项包括：
 
-* [Cosmos DB][docs-cosmosdb] - Microsoft 提供的全局分布式多模型数据库。 这样提供的平台适合运行其他数据模型，例如 Mongo DB、Cassandra、Graph 数据或简单的表存储。
+* [Cosmos DB][docs-cosmosdb] - Microsoft 提供的全局分布式多模型数据库。 此服务提供的平台适合运行其他数据模型，例如 Mongo DB、Cassandra、Graph 数据或简单的表存储。
 
 ## <a name="considerations"></a>注意事项
 
@@ -77,15 +77,15 @@ ms.locfileid: "39060968"
 
 * 考虑在生成云应用程序时，利用[针对可用性的典型设计模式][design-patterns-availability]。
 * 在适当的[应用服务 Web 应用程序参考体系结构][app-service-reference-architecture]中审核可用性注意事项
-* 若要针对可用性进行其他的考量，请参阅体系结构中心的[可用性核对清单][availability]。
+* 若要针对可用性进行其他的考量，请参阅 Azure 体系结构中心的[可用性核对清单][availability]。
 
 ### <a name="scalability"></a>可伸缩性
 
 * 生成云应用程序时，请弄清楚[针对可伸缩性的典型设计模式][design-patterns-scalability]。
 * 在适当的[应用服务 Web 应用程序参考体系结构][app-service-reference-architecture]中审核可伸缩性注意事项
-* 若要了解其他可伸缩性主题，请参阅体系结构中心提供的[可伸缩性核对清单][scalability]。
+* 若要了解其他可伸缩性主题，请参阅 Azure 体系结构中心提供的[可伸缩性核对清单][scalability]。
 
-### <a name="security"></a>“安全”
+### <a name="security"></a>安全
 
 * 考虑在适当情况下利用[针对安全性的典型设计模式][design-patterns-security]。
 * 在适当的[应用服务 Web 应用程序参考体系结构][app-service-reference-architecture]中审核安全性注意事项。
@@ -96,13 +96,13 @@ ms.locfileid: "39060968"
 
 * 考虑在应用程序的某个部分不可用的情况下，利用[断路器模式][circuit-breaker]进行有效的错误处理。
 * 审核[针对复原的典型设计模式][design-patterns-resiliency]，考虑在适当情况下实施这些模式。
-* 可以在体系结构中心找到许多[建议用于应用服务的复原做法][resiliency-app-service]。
+* 可以在 Azure 体系结构中心找到许多[建议用于应用服务的做法][resiliency-app-service]。
 * 考虑对数据层使用活动的[异地复制][sql-geo-replication]，对图像和队列使用[异地冗余][storage-geo-redudancy]存储。
-* 有关[复原][resiliency]的更深入讨论，请查看体系结构中心的相关文章。
+* 有关[复原][resiliency]的更深入讨论，请查看 Azure 体系结构中心的相关文章。
 
 ## <a name="deploy-the-scenario"></a>部署方案
 
-若要部署本方案，可以按照此[分步教程][end-to-end-walkthrough]的说明操作，手动部署每个组件。 本教程还提供了 .NET 示例应用程序，该程序运行简单的购票应用程序。 此外还有一个 ARM 模板，可以自动部署大多数 Azure 资源。
+若要部署本方案，可以按照此[分步教程][end-to-end-walkthrough]的说明操作，手动部署每个组件。 本教程还提供了 .NET 示例应用程序，该程序运行简单的购票应用程序。 此外还有一个资源管理器模板，可以自动部署大多数 Azure 资源。
 
 ## <a name="pricing"></a>定价
 
@@ -110,9 +110,9 @@ ms.locfileid: "39060968"
 
 我们已根据你预期接收的流量提供了三个示例性的成本配置文件：
 
-* [小][small-pricing]：表示生成最低生产级别实例所需的组件。 在这里，我们假定用户数量很少，每月只有数千。 此应用使用某个标准 Web 应用的单个实例，这对于启动自动缩放来说已足够。 其他组件都缩放成一个基本层，可以尽量减少成本，但仍可确保有 SLA 支持和足够的容量，可以处理生产级别的工作负荷。
-* [中][medium-pricing]：表示组件情况符合中等大小的部署。 在这里，我们估计一个月有大约 100,000 个用户使用此系统。 预计的流量在处于中等标准层的单个应用服务实例中处理。 另外，认知和搜索服务的中型层也会添加到计算器中。
-* [大][large-pricing]：表示应用程序需进行大规模的处理，每月的用户数在百万级别，移动的数据量为数 TB。 对于这种级别的使用量，必须将高级层 Web 应用部署在多个区域，并且需前置一个流量管理器。 存储数据的存储空间、数据库和 CDN 均按 TB 级数据量进行配置。
+* [小][small-pricing]：此定价示例表示生成最低生产级别实例所需的组件。 在这里，我们假定用户数量很少，每月只有数千。 此应用使用某个标准 Web 应用的单个实例，这对于启动自动缩放来说已足够。 其他组件都缩放成一个基本层，可以尽量减少成本，但仍可确保有 SLA 支持和足够的容量，可以处理生产级别的工作负荷。
+* [中][medium-pricing]：此定价示例表示组件情况符合中等大小的部署。 在这里，我们估计一个月有大约 100,000 个用户使用此系统。 预计的流量在处于中等标准层的单个应用服务实例中处理。 另外，认知和搜索服务的中型层也会添加到计算器中。
+* [大][large-pricing]：此定价示例表示应用程序需进行大规模的处理，每月的用户数在百万级别，移动的数据量为数 TB。 对于这种级别的使用量，必须将高级层 Web 应用部署在多个区域，并且需前置一个流量管理器。 存储数据的存储空间、数据库和 CDN 均按 TB 级数据量进行配置。
 
 ## <a name="related-resources"></a>相关资源
 

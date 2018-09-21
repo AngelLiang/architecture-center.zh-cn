@@ -3,12 +3,12 @@ title: 将 CI/CD 管道与 VSTS 配合使用
 description: 举例说明如何生成 .NET 应用并将其发布到 Azure Web 应用
 author: christianreddington
 ms.date: 07/11/18
-ms.openlocfilehash: ae4ac5fc02cc841fc39b3cbef46124fe9da75e9b
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: aea757087f4a505a8c52658abe1841c5455977cc
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39061008"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389259"
 ---
 # <a name="cicd-pipeline-with-vsts"></a>将 CI/CD 管道与 VSTS 配合使用
 
@@ -50,13 +50,13 @@ DevOps 集成了开发、质量保证和 IT 运营。 DevOps 要求通过统一�
 
 虽然本文重点介绍 Visual Studio Team Services，但也可在本地使用 [Team Foundation Server][team-foundation-server] 作为替代。 另外，也可将一系列技术一起用于某个利用 [Jenkins][jenkins-on-azure] 的开源开发管道。
 
-从基础结构即代码角度来看，可将 [Azure 资源管理器 (ARM) 模板][arm-templates]包括在 Azure DevOps 项目中，但也可考虑使用 [Terraform][terraform] 或 [Chef][chef]（如果在这里有投资）。 如果首选以基础结构即服务 (IaaS) 为基础的部署并且需要配置管理，则可考虑 [Azure Desired State Configuration][desired-state-configuration]、[Ansible][ansible] 或 [Chef][chef]。
+从基础结构即代码角度来看，可将 [Azure 资源管理器模板][arm-templates]包括在 Azure DevOps 项目中，但也可考虑使用 [Terraform][terraform] 或 [Chef][chef]（如果在这里有投资）。 如果首选以基础结构即服务 (IaaS) 为基础的部署并且需要配置管理，则可考虑 [Azure Automation State Configuration][desired-state-configuration]、[Ansible][ansible] 或 [Chef][chef]。
 
 ### <a name="alternatives-to-web-app-hosting"></a>Web 应用托管的替代方式
 
 以下方式可以替代在 Azure Web 应用中进行的托管：
 
-* [VM][compare-vm-hosting] - 适用于需要进行严格控制的工作负荷，或者所适用的工作负荷依赖于 OS 组件/服务，而后者 Web 应用无法提供（例如 Windows GAC 或 COM）
+* [VM][compare-vm-hosting] - 所适用的工作负荷需要进行严格的控制或者依赖于 OS 组件/服务，而后者 Web 应用无法提供（例如 Windows GAC 或 COM）
 * [容器托管][azure-containers] - 适用于依赖 OS 以及对托管可移植性或托管密度也有要求的情况。
 * [Service Fabric][service-fabric] - 如果工作负荷体系结构侧重于分布式组件，而此类组件适合在严格控制的群集上部署和运行，则可使用此选项。 Service Fabric 也可用于托管容器。
 * [无服务器 Azure Functions][azure-functions] - 如果工作负荷体系结构侧重于精细的分布式组件，几乎不需要依赖，只在需要的情况下运行单个组件（不需持续运行），且不需对组件的运行进行协调，则可使用此选项。
@@ -106,7 +106,7 @@ DevOps 集成了开发、质量保证和 IT 运营。 DevOps 要求通过统一�
 
 若要了解其他可伸缩性主题，请参阅 Azure 体系结构中心的[可伸缩性核对清单][scalability]。
 
-### <a name="security"></a>“安全”
+### <a name="security"></a>安全
 
 考虑在适当情况下利用[针对安全性的典型设计模式][design-patterns-security]。
 
@@ -118,7 +118,7 @@ DevOps 集成了开发、质量保证和 IT 运营。 DevOps 要求通过统一�
 
 审核[针对复原的典型设计模式][design-patterns-resiliency]，考虑在适当情况下实施这些模式。
 
-可以在体系结构中心找到许多[建议用于应用服务的复原做法][resiliency-app-service]。
+可以在 Azure 体系结构中心找到许多[建议用于应用服务的做法][resiliency-app-service]。
 
 若需可复原解决方案的通用设计指南，请参阅[设计适用于 Azure 的可复原应用程序][resiliency]。
 
@@ -135,7 +135,7 @@ DevOps 集成了开发、质量保证和 IT 运营。 DevOps 要求通过统一�
 
 DevOps 项目会部署应用服务计划、应用服务以及 App Insights 资源，并配置 Visual Studio Team Services 项目。
 
-有了 DevOps 项目并完成生成以后，请查看相关联的代码更改、工作项和测试结果。 你会注意到系统未显示测试结果，因为代码不包含任何需要运行的测试。
+部署 DevOps 项目并完成生成以后，请查看相关联的代码更改、工作项和测试结果。 你会注意到系统未显示测试结果，因为代码不包含任何需要运行的测试。
 
 查看发布定义。 请注意，发布管道已设置好，可以将应用程序发布到开发环境中。 请注意，有一个从 **Drop** 生成项目设置的**持续部署触发器**，可以将内容自动发布到开发环境中。 在持续部署过程中，可能会看到跨多个环境的发布。 发布可以跨基础结构（使用基础结构即代码之类的技术），还可以部署所需的应用程序包以及任何配置后任务。
 

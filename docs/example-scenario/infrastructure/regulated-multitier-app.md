@@ -3,12 +3,12 @@ title: 确保管控行业的 Windows Web 应用程序的安全
 description: 经验证的方案，用于在 Azure 上通过 Windows Server 生成安全的多层 Web 应用程序，以便使用规模集、应用程序网关和负载均衡器。
 author: iainfoulds
 ms.date: 07/11/2018
-ms.openlocfilehash: aba714fc1955341645d0faa400768bc09fb8e50b
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 3572f215d9134a6650d76e1b14458226334c6f42
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060988"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389260"
 ---
 # <a name="secure-windows-web-application-for-regulated-industries"></a>确保管控行业的 Windows Web 应用程序的安全
 
@@ -47,7 +47,7 @@ ms.locfileid: "39060988"
 
 ### <a name="alternatives"></a>备选项
 
-* *nix，Windows 可以轻松地被各种其他的 OS 替代，因为基础结构中没有依赖于 OS 的东西。
+* *nix，Windows 可以轻松地被各种其他的操作系统替代，因为基础结构中没有依赖于操作系统的东西。
 
 * [适用于 Linux 的 SQL Server][sql-linux] 可以替代后端数据存储。
 
@@ -69,7 +69,7 @@ ms.locfileid: "39060988"
 
 若要了解其他可伸缩性主题，请参阅 Azure 体系结构中心的[可伸缩性核对清单][scalability]。
 
-### <a name="security"></a>“安全”
+### <a name="security"></a>安全
 
 所有虚拟网络流量都进入前端应用程序层，受网络安全组的保护。 规则会限制流量的流动，只有前端应用程序层 VM 实例可以访问后端数据库层。 不允许数据库层发出的出站 Internet 流量。 为了减少受攻击面，请勿打开直接远程管理端口。 有关详细信息，请参阅 [Azure 网络安全组][nsg-docs]。
 
@@ -86,7 +86,7 @@ ms.locfileid: "39060988"
 **先决条件：**
 
 * 必须已经有 Azure 帐户。 如果没有 Azure 订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
-* 若要将 SQL Server 群集部署到后端规模集中，需要一个 Active Directory 目录服务域。
+* 若要将 SQL Server 群集部署到后端规模集中，需要在 Azure Active Directory (AD) 域服务中有一个域。
 
 若要通过 Azure 资源管理器模板部署此方案的核心基础结构，请执行以下步骤。
 
@@ -106,9 +106,9 @@ ms.locfileid: "39060988"
 
 我们已根据运行应用程序的规模集 VM 实例数提供了三个示例性的成本配置文件。
 
-* [小][small-pricing]：对应于两个前端和两个后端 VM 实例。
-* [中][medium-pricing]：对应于 20 个前端和 5 个后端 VM 实例。
-* [大][large-pricing]：对应于 100 个前端和 10 个后端 VM 实例。
+* [小][small-pricing]：此定价示例对应于两个前端和两个后端 VM 实例。
+* [中][medium-pricing]：此定价示例对应于 20 个前端和 5 个后端 VM 实例。
+* [大][large-pricing]：此定价示例对应于 100 个前端和 10 个后端 VM 实例。
 
 ## <a name="related-resources"></a>相关资源
 

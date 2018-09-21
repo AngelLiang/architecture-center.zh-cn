@@ -3,12 +3,12 @@ title: 用于开发/测试工作负荷的 SAP
 description: 用于开发/测试环境的 SAP 方案
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: 675a5cb4b1ee4001ca50d24c145ce1a177f90da4
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: d0f266e40969cf4782e69041889a686387499722
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060958"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389173"
 ---
 # <a name="sap-for-devtest-workloads"></a>用于开发/测试工作负荷的 SAP
 
@@ -34,7 +34,7 @@ ms.locfileid: "39060958"
 本方案介绍如何在单个虚拟机上预配单个 SAP 系统数据库和 SAP 应用程序服务器。数据流经方案的情形如下所示：
 
 1. 展示层的客户使用其 SAP GUI 或本地的其他用户界面（Internet Explorer、Excel 或其他 Web 应用程序）来访问基于 Azure 的 SAP 系统。
-2. 使用既定的 Express Route 来提供连接。 Express Route 在 Azure 中的 Express Route 网关处终止。 网络流量的路径是：通过 Express Route 网关到达网关子网，再从网关子网到达应用程序层辐射子网（参见[中心辐射][hub-spoke]模式），最后通过网络安全网关到达 SAP 应用程序虚拟机。
+2. 使用既定的 Express Route 来提供连接。 Express Route 连接在 Azure 中的 Express Route 网关处终止。 网络流量的路径是：通过 Express Route 网关到达网关子网，再从网关子网到达应用程序层辐射子网（参见[中心辐射][hub-spoke]模式），最后通过网络安全网关到达 SAP 应用程序虚拟机。
 3. 标识管理服务器提供身份验证服务。
 4. 跳转盒提供本地管理功能。
 
@@ -56,7 +56,7 @@ ms.locfileid: "39060958"
 
 有关如何设计可缩放解决方案的通用指南，请参阅 Azure 体系结构中心的[可伸缩性核对清单][scalability]。
 
-### <a name="security"></a>“安全”
+### <a name="security"></a>安全
 
 若需安全解决方案的通用设计指南，请参阅 [Azure 安全性文档][security]。
 
@@ -79,10 +79,10 @@ ms.locfileid: "39060958"
 
 注意：定价为指导价，仅表明 VM 和存储成本（不包括网络、备份存储和数据入口/出口费用）。
 
-* [小](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1)：小型系统，其 VM 类型为 D8s_v3，使用 8x vCPU，32GB RAM 和 200GB 临时存储，另外还有两个 512GB 的和一个 128GB 的高级存储磁盘。
-* [中](https://azure.com/e/465bd07047d148baab032b2f461550cd)：中型系统，其 VM 类型为 D16s_v3，使用 16x vCPU，64GB RAM 和 400GB 临时存储，另外还有三个 512GB 的和一个 128GB 的高级存储磁盘。
-* [大](https://azure.com/e/ada2e849d68b41c3839cc976000c6931)：大型系统，其 VM 类型为 E32s_v3，使用 32x vCPU，256GB RAM 和 512GB 临时存储，另外还有三个 512GB 的和一个 128GB 的高级存储磁盘。
-* [特大](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef)：特大型系统，其 VM 类型为 M64s，使用 64x vCPU，1024GB RAM 和 2000GB 临时存储，另外还有四个 512GB 的和一个 128GB 的高级存储磁盘。
+* [小](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1)：小型系统，其 VM 类型为 D8s_v3，使用 8x vCPU，32 GB RAM 和 200 GB 临时存储，另外还有两个 512 GB 的和一个 128 GB 的高级存储磁盘。
+* [中](https://azure.com/e/465bd07047d148baab032b2f461550cd)：中型系统，其 VM 类型为 D16s_v3，使用 16x vCPU，64 GB RAM 和 400 GB 临时存储，另外还有三个 512 GB 的和一个 128 GB 的高级存储磁盘。
+* [大](https://azure.com/e/ada2e849d68b41c3839cc976000c6931)：大型系统，其 VM 类型为 E32s_v3，使用 32x vCPU，256 GB RAM 和 512 GB 临时存储，另外还有三个 512 GB 的和一个 128 GB 的高级存储磁盘。
+* [特大](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef)：特大型系统，其 VM 类型为 M64s，使用 64x vCPU，1024 GB RAM 和 2000 GB 临时存储，另外还有四个 512 GB 的和一个 128 GB 的高级存储磁盘。
 
 ## <a name="deployment"></a>部署
 
@@ -92,7 +92,7 @@ ms.locfileid: "39060958"
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-\* SAP 不会安装，需在手动生成基础结构后进行安装。
+\* SAP 不会自动安装，请在生成基础结构后手动进行安装。
 
 <!-- links -->
 [reference architecture]:  /azure/architecture/reference-architectures/sap
