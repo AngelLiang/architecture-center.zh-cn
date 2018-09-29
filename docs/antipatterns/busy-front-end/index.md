@@ -3,12 +3,12 @@ title: 繁忙前端反模式
 description: 大量后台线程中的异步工作可能会耗尽其他前台任务的资源。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: cedb80ddac5ceb1eb901455df3165993fd28a138
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 89a2d6c41af1e19ca1b9b6a0a5dceac615afd60a
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24538723"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428289"
 ---
 # <a name="busy-front-end-antipattern"></a>繁忙前端反模式
 
@@ -209,7 +209,7 @@ CPU 和网络利用率也表明性能有了改进。 CPU 利用率从未达到�
 [sync-io]: ../synchronous-io/index.md
 [web-queue-worker]: /azure/architecture/guide/architecture-styles/web-queue-worker
 
-[WebJobs]: http://www.hanselman.com/blog/IntroducingWindowsAzureWebJobs.aspx
+[WebJobs]: https://www.hanselman.com/blog/IntroducingWindowsAzureWebJobs.aspx
 [ComputePartitioning]: https://msdn.microsoft.com/library/dn589773.aspx
 [ServiceBusQueues]: https://msdn.microsoft.com/library/azure/hh367516.aspx
 [AppDynamics-Transactions-Front-End-Requests]: ./_images/AppDynamicsPerformanceStats.jpg

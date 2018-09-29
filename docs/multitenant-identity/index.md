@@ -5,12 +5,12 @@ author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.next: tailspin
-ms.openlocfilehash: c363ac01e798b522fa95f39586e28fe3af5fae4a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9c2efe9aea9da53177478161b90406d0c2021550
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541667"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429428"
 ---
 # <a name="manage-identity-in-multitenant-applications"></a>管理多租户应用程序中的标识
 
@@ -93,7 +93,7 @@ Azure Active Directory (Azure AD) 提供一些极佳的功能用于支持所有�
 
 
 <!-- Links -->
-[ADConnect]: /azure/active-directory/active-directory-aadconnect
+[ADConnect]: /azure/active-directory/hybrid/whatis-hybrid-identity
 [AzureAD]: /azure/active-directory
 
 [与客户的 AD FS 联合]: adfs.md

@@ -2,12 +2,12 @@
 title: 选择用于将本地 Active Directory 与 Azure 相集成的解决方案。
 description: 比较用于将本地 Active Directory 与 Azure 相集成的参考体系结构。
 ms.date: 07/02/2018
-ms.openlocfilehash: 7e89998c59bccf4d37cebca5ddd4ea7ecba58cd5
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: ee71d27c08274a873b165bad2dc84f9079e5b9d3
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987523"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428680"
 ---
 # <a name="choose-a-solution-for-integrating-on-premises-active-directory-with-azure"></a>选择用于将本地 Active Directory 与 Azure 相集成的解决方案
 
@@ -127,4 +127,4 @@ Azure AD 目录不是本地目录的扩展， 而是包含相同对象和标识�
 [adfs]: ./adfs.md
 
 [azure-active-directory]: /azure/active-directory-domain-services/active-directory-ds-overview
-[azure-ad-connect]: /azure/active-directory/active-directory-aadconnect
+[azure-ad-connect]: /azure/active-directory/hybrid/whatis-hybrid-identity

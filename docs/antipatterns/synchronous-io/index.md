@@ -3,12 +3,12 @@ title: 同步 I/O 反模式
 description: 在完成 I/O 时阻塞调用线程可能会降低性能并影响纵向可伸缩性。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: d5b3635565c6b71ef7716f54ee8cccc76093c3a3
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 961eacb82344ec7e71aaa96fb4cd8bc530721e96
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24538547"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429003"
 ---
 # <a name="synchronous-io-antipattern"></a>同步 I/O 反模式
 
@@ -197,7 +197,7 @@ IIS Web 服务器会将传入的请求排队，并将其转发到 ASP.NET 线程
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/SynchronousIO
 
 
-[async-wrappers]: http://blogs.msdn.com/b/pfxteam/archive/2012/03/24/10287244.aspx
+[async-wrappers]: https://blogs.msdn.microsoft.com/pfxteam/2012/03/24/should-i-expose-asynchronous-wrappers-for-synchronous-methods/
 [performance-counters]: /azure/cloud-services/cloud-services-dotnet-diagnostics-performance-counters
 [web-sites-monitor]: /azure/app-service-web/web-sites-monitor
 

@@ -5,12 +5,12 @@ keywords: AWS 专家, Azure 比较, AWS 比较, azure 与 aws 之间的差别, a
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: f90186ba36f035871ec918c65b05eebe44190ffa
-ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
+ms.openlocfilehash: 04157b9a647779ae47ad0aff8132289a30544acf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/19/2018
-ms.locfileid: "46329889"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429632"
 ---
 # <a name="azure-for-aws-professionals"></a>面向 AWS 专业人员的 Azure
 
@@ -96,7 +96,7 @@ Azure 提供多种方式用于管理资源：
 
 在其中每个接口中，都是围绕资源组创建、部署或修改 Azure 资源。 这类似于在执行 CloudFormation 部署过程中，“堆栈”在分组 AWS 资源时所扮演的角色。
 
-这些接口的语法和结构与其 AWS 等效接口不同，但提供类似的功能。 此外，在 AWS 中使用的许多第三方管理工具，例如 [Hashicorp 的 Terraform](https://www.terraform.io/docs/providers/azurerm/) 和 [Netflix Spinnaker](http://www.spinnaker.io/)，在 Azure 中也可用。
+这些接口的语法和结构与其 AWS 等效接口不同，但提供类似的功能。 此外，在 AWS 中使用的许多第三方管理工具，例如 [Hashicorp 的 Terraform](https://www.terraform.io/docs/providers/azurerm/) 和 [Netflix Spinnaker](https://www.spinnaker.io/)，在 Azure 中也可用。
 
 ### <a name="see-also"></a>另请参阅
 
@@ -426,15 +426,11 @@ AWS 设备场提供跨设备测试服务。 在 Azure 中，[Xamarin Test Cloud]
 
 ## <a name="next-steps"></a>后续步骤
 
--   [交互式 Azure 平台概观](http://azureplatform.azurewebsites.net/)
-
 -   [Azure 入门](https://azure.microsoft.com/get-started/)
 
 -   [Azure 解决方案体系结构](https://azure.microsoft.com/solutions/architecture/)
 
 -   [Azure 参考体系结构](https://azure.microsoft.com/documentation/articles/guidance-architecture/)
-
--   [免费在线课程：面向 AWS 专家的 Microsoft Azure](http://aka.ms/azureforaws)
 
 
 <!-- links -->
