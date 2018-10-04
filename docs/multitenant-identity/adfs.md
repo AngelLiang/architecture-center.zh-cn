@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: 08bf567085a940287de310f61b9f447d0ce5d5ec
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 4b54f031d13449e4d87075af5606967da8b5d3df
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29477438"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428918"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>与客户的 AD FS 联合
 
@@ -64,10 +64,10 @@ Azure Active Directory (Azure AD) 让从 Azure AD 租户（包括 Office365 和 
 | exp |[过期时间]。 此后将不再接受令牌。 |
 | iat |颁发时间。 颁发令牌的时间。 |
 | iss |颁发者。 此声明的值一直是资源伙伴的 AD FS。 |
-| 名称 |用户名。 示例：`john@corp.fabrikam.com` |
+| 名称 |用户名。 示例： `john@corp.fabrikam.com` |
 | NameIdentifier |[名称标识符]。 为其颁发令牌的实体的名称标识符。 |
 | nonce |会话 nonce。 AD FS 生成的唯一值，用于帮助防止遭受重播攻击。 |
-| upn |用户主体名称 (UPN)。 示例：`john@corp.fabrikam.com` |
+| upn |用户主体名称 (UPN)。 示例： `john@corp.fabrikam.com` |
 | pwd_exp |密码过期时段。 用户密码或类似的身份验证机密（例如 PIN）过期前的 秒数。 |
 
 > [!NOTE]
@@ -180,15 +180,15 @@ Set-ADFSClaimsProviderTrust -TargetName "name" -OrganizationalAccountSuffix @("s
 
 
 <!-- Links -->
-[Azure AD Connect]: /azure/active-directory/active-directory-aadconnect/
+[Azure AD Connect]: /azure/active-directory/hybrid/whatis-hybrid-identity
 [联合身份验证信任]: https://technet.microsoft.com/library/cc770993(v=ws.11).aspx
 [帐户伙伴]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx
 [资源伙伴]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx
 [身份验证时刻]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.authenticationinstant%28v=vs.110%29.aspx
-[过期时间]: http://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25#section-4.1.
+[过期时间]: https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25#section-4.1.
 [名称标识符]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.nameidentifier(v=vs.110).aspx
 [active-directory-on-azure]: https://msdn.microsoft.com/library/azure/jj156090.aspx
-[博客文章]: http://www.cloudidentity.com/blog/2015/08/21/OPENID-CONNECT-WEB-SIGN-ON-WITH-ADFS-IN-WINDOWS-SERVER-2016-TP3/
+[博客文章]: https://www.cloudidentity.com/blog/2015/08/21/OPENID-CONNECT-WEB-SIGN-ON-WITH-ADFS-IN-WINDOWS-SERVER-2016-TP3/
 [自定义 AD FS 登录页]: https://technet.microsoft.com/library/dn280950.aspx
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance
 [client assertion]: client-assertion.md

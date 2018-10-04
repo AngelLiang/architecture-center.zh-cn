@@ -1,25 +1,25 @@
 ---
-title: 内容交付网络指南
-description: 有关使用内容交付网络 (CDN) 传送 Azure 中托管的高带宽内容的指南。
+title: 内容分发网络指南
+description: 有关使用内容分发网络 (CDN) 传送 Azure 中托管的高带宽内容的指南。
 author: dragon119
 ms.date: 02/02/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: 42b73db08ecef858f5279ea292cf8c0df77b847c
-ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
+ms.openlocfilehash: 9805b1b6df8cedd7668eb9e85f741ee81c3dfa58
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/27/2018
-ms.locfileid: "29563551"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428884"
 ---
-# <a name="best-practices-for-using-content-delivery-networks-cdns"></a>使用内容交付网络 (CDN) 的最佳做法
+# <a name="best-practices-for-using-content-delivery-networks-cdns"></a>使用内容分发网络 (CDN) 的最佳做法
 
-内容交付网络 (CDN) 是高效地向用户交付 Web 内容的分布式服务器网络。 CDN 将缓存的内容存储在靠近最终用户的边缘服务器上，以最大程度地降低延迟。 
+内容分发网络 (CDN) 是高效地向用户分发 Web 内容的分布式服务器网络。 CDN 将缓存的内容存储在靠近最终用户的边缘服务器上，以最大程度地降低延迟。 
 
 CDN 通常用来交付静态内容，例如图像、样式表、文档、客户端脚本和 HTML 页面。 使用 CDN 的主要优点是延迟较低且能更快地将内容交付给用户，而与托管应用程序的数据中心的地理位置无关。 CDN 还可以帮助降低 Web 应用程序上的负载，因为应用程序不需要为对 CDN 中托管的内容发出的请求提供服务。
  
 ![CDN 示意图](./images/cdn/CDN.png)
 
-在 Azure 中，[Azure 内容交付网络](/azure/cdn/cdn-overview)是一个全局 CDN 解决方案，用于交付在 Azure 中或在任何其他位置中托管的高带宽内容。 使用 Azure CDN，可以缓存从 Azure Blob 存储、Web 应用程序、虚拟机、任何可公开访问的 Web 服务器加载的公开可用对象。 
+在 Azure 中，[Azure 内容分发网络](/azure/cdn/cdn-overview)是一个全局 CDN 解决方案，用于分发在 Azure 中或在任何其他位置中托管的高带宽内容。 使用 Azure CDN，可以缓存从 Azure Blob 存储、Web 应用程序、虚拟机、任何可公开访问的 Web 服务器加载的公开可用对象。 
 
 本主题介绍了使用 CDN 时的一些常规最佳做法和注意事项。 若要了解有关使用 Azure CDN 的详细信息，请参阅 [CDN 文档](/azure/cdn/)。
 
@@ -43,7 +43,7 @@ CDN 的典型用途包括：
 * **版本控制和缓存控制**。 考虑如何更新静态内容和部署新版本。 了解 CDN 如何执行缓存和生存时间 (TTL)。 对于 Azure CDN，请参阅[缓存工作原理](/azure/cdn/cdn-how-caching-works)。
 * **测试**。 在本地或在过渡环境中开发和测试应用程序时，很难对 CDN 设置执行本地测试。
 * **搜索引擎优化 (SEO)**。 使用 CDN 时，图像和文档等内容由不同的域提供。 这可能会影响此内容的 SEO。
-* **内容安全性**。 并非所有 CDN 都针对内容提供了任意形式的访问控制。 某些 CDN 服务（包括 Azure CDN）支持基于令牌的身份验证来保护 CDN 内容。 有关详细信息，请参阅[使用令牌身份验证保护 Azure 内容交付网络资产](/azure/cdn/cdn-token-auth)。
+* **内容安全性**。 并非所有 CDN 都针对内容提供了任意形式的访问控制。 某些 CDN 服务（包括 Azure CDN）支持基于令牌的身份验证来保护 CDN 内容。 有关详细信息，请参阅[使用令牌身份验证保护 Azure 内容分发网络资产](/azure/cdn/cdn-token-auth)。
 * **客户端安全性**。 客户端可从不允许访问 CDN 上资源的环境中连接。 这可能是安全约束的环境，限制只能访问一组已知源，或防止从页来源以外的任何位置加载资源的环境。 需要实施回退才能处理这些情况。
 * **复原能力**。 CDN 是应用程序潜在的单个故障点。 
 
@@ -84,14 +84,14 @@ CDN 用处不大的应用场景包括：
 
 要防止对象在 CDN 上可用，可以从来源中删除这些对象、移除或删除 CDN 终结点，或者在使用 Blob 存储的情况下，将容器或 Blob 设为专用的。 但是，在生存时间到期之前，不会将项移除。 还可以手动清除 CDN 终结点。
 
-### <a name="security"></a>“安全”
+### <a name="security"></a>安全
 
 CDN 可以使用 CDN 提供的证书通过 HTTPS (SSL) 传送内容，也可以通过标准 HTTP 传送内容。 若要避免浏览器发出有关内容混合的警告，可能需要使用 HTTPS 来请求通过 HTTPS 加载的页面所显示的静态内容。
 
 使用 CDN 传送静态资产（如字体文件）时，如果使用 XMLHttpRequest 调用来从不同的域请求这些资源，则可能会遇到同源策略问题。 许多 Web 浏览器会阻止跨源资源共享 (CORS)，除非 Web 服务器已配置为设置相应的响应标头。 可使用以下任一方法配置 CDN 以支持 CORS：
 
 * 对 CDN 进行配置来将 CORS 标头添加到响应。 有关详细信息，请参阅[将 Azure CDN 与 CORS 一起使用](/azure/cdn/cdn-cors)。 
-* 如果源是 Azure blob 存储，请将 CORS 规则添加到存储终结点。 有关详细信息，请参阅 [Cross-Origin Resource Sharing (CORS) Support for the Azure Storage Services](http://msdn.microsoft.com/library/azure/dn535601.aspx)（Azure 存储服务的跨域资源共享 (CORS) 支持）。
+* 如果源是 Azure blob 存储，请将 CORS 规则添加到存储终结点。 有关详细信息，请参阅 [Cross-Origin Resource Sharing (CORS) Support for the Azure Storage Services](/rest/api/storageservices/Cross-Origin-Resource-Sharing--CORS--Support-for-the-Azure-Storage-Services)（Azure 存储服务的跨域资源共享 (CORS) 支持）。
 * 对应用程序进行配置来设置 CORS 标头。 有关示例，请参阅 ASP.NET Core 文档中的[启用跨源请求 (CORS)](/aspnet/core/security/cors)。
 
 ### <a name="cdn-fallback"></a>CDN 回退
