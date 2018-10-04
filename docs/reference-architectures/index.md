@@ -4,18 +4,43 @@ description: 适用于 Azure 上的常见工作负荷的参考体系结构、蓝
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: bd04a866258fb2f6ff849a4f29492610d3545e1f
-ms.sourcegitcommit: 20953a7bed708713e4c972d390a2910505e80f08
+ms.openlocfilehash: c96fc08aca97beb886fa96807d6f9cc5c09d0555
+ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/06/2018
-ms.locfileid: "44040445"
+ms.lasthandoff: 10/03/2018
+ms.locfileid: "48243625"
 ---
 # <a name="azure-reference-architectures"></a>Azure 参考体系结构
 
 我们的参考体系结构已根据方案进行编制，相关的体系结构已分组到一起。 每个体系结构包括建议的做法，以及有关可伸缩性、可用性、可管理性和安全性的注意事项。 大多数体系结构还包括一个可部署的解决方案。
 
-跳转到：[大数据](#big-data-solutions) | [Web 应用程序](#web-applications) | [N 层应用程序](#n-tier-applications) | [虚拟网络](#virtual-networks) | [Active Directory](#extending-on-premises-active-directory-to-azure) | [VM 工作负荷](#vm-workloads)
+跳转到：[AI](#ai-and-machine-learning) | [大数据](#big-data-solutions) | [N 层应用程序](#n-tier-applications) | [虚拟网络](#virtual-networks) | [Active Directory](#extending-on-premises-active-directory-to-azure) | [VM 工作负荷](#vm-workloads) | [Web 应用程序](#web-applications)
+
+## <a name="ai-and-machine-learning"></a>AI 和机器学习
+
+<ul  class="panelContent cardsF">
+<!-- SQL Data Warehouse -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-deep-learning.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/batch-ai.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>针对深度学习模型的批处理计分</h3>
+                        <p>自动运行将神经风格转换应用到视频的批处理作业。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
 
 ## <a name="big-data-solutions"></a>大数据解决方案
 
@@ -73,68 +98,6 @@ ms.locfileid: "44040445"
                     <div class="cardText">
                         <h3>使用 Azure 流分析进行流处理</h3>
                         <p>将两个数据流中的记录相关联来计算移动平均值的端到端流处理管道。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-</ul>
-
-## <a name="web-applications"></a>Web 应用程序
-
-<ul  class="panelContent cardsF">
-<li style="display: flex; flex-direction: column;">
-    <a href="./app-service-web-app/basic-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/app-service.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>基本 Web 应用程序</h3>
-                        <p>使用 Azure 应用服务和 Azure SQL 数据库的 Web 应用程序。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
-    <a href="./app-service-web-app/scalable-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/app-service.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>高度可缩放的 Web 应用程序</h3>
-                        <p>提高 Web 应用程序伸缩性的成熟做法。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
-    <a href="./app-service-web-app/multi-region.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/app-service.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>高度可用的 Web 应用程序</h3>
-                        <p>在多个区域运行应用服务 Web 应用以实现高可用性。</p>
                     </div>
                 </div>
             </div>
@@ -541,3 +504,65 @@ ms.locfileid: "44040445"
 </li>
 </ul>
 
+
+## <a name="web-applications"></a>Web 应用程序
+
+<ul  class="panelContent cardsF">
+<li style="display: flex; flex-direction: column;">
+    <a href="./app-service-web-app/basic-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/app-service.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>基本 Web 应用程序</h3>
+                        <p>使用 Azure 应用服务和 Azure SQL 数据库的 Web 应用程序。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./app-service-web-app/scalable-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/app-service.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>高度可缩放的 Web 应用程序</h3>
+                        <p>提高 Web 应用程序伸缩性的成熟做法。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./app-service-web-app/multi-region.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/app-service.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>高度可用的 Web 应用程序</h3>
+                        <p>在多个区域运行应用服务 Web 应用以实现高可用性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
