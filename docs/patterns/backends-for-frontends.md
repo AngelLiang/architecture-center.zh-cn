@@ -3,12 +3,12 @@ title: 用于前端的后端模式
 description: 创建单独的后端服务，供特定的前端应用程序或接口使用。
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 2991d7a3e05b3ce6cd5148a552bae6d4ba8f7c4c
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: a0dbc9ab58aa218f6faf40b70dad1bdc22d71458
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270013"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428782"
 ---
 # <a name="backends-for-frontends-pattern"></a>用于前端的后端模式
 
@@ -34,7 +34,7 @@ ms.locfileid: "30270013"
 
 每个后端特定于一个接口，因此可针对该接口优化后端。 因此，与试图满足所有接口的需求的泛型后端相比，它更小、复杂性更低并且速度可能更快。 每个接口团队可自主控制其后端，无需依赖于集中式后端开发团队。 这向接口团队提供了后端的语言选择、发布节奏、工作负载优先顺序和功能集成方面的灵活性。
 
-有关详细信息，请参阅[模式：用于前端的后端](http://samnewman.io/patterns/architectural/bff/)。
+有关详细信息，请参阅[模式：用于前端的后端](https://samnewman.io/patterns/architectural/bff/)。
 
 ## <a name="issues-and-considerations"></a>问题和注意事项
 

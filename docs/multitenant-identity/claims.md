@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authenticate
 pnp.series.next: signup
-ms.openlocfilehash: 61788d9759715b21ef1bdda59c5b54d923fd8f62
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 46c43c9bfa4514f206b5e7eabd9223ad4c61628b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541907"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429361"
 ---
 # <a name="work-with-claims-based-identities"></a>使用基于声明的标识
 
@@ -31,17 +31,17 @@ ms.locfileid: "24541907"
 
 下面是 AAD 发送的、可能受应用关注的一些声明：
 
-| ID 令牌中的声明类型 | 说明 |
+| ID 令牌中的声明类型 | Description |
 | --- | --- |
 | aud |令牌的颁发对象。 此值将是应用程序的客户端 ID。 一般情况下，应该不需要考虑此声明，因为中间件会自动验证它。 示例：`"91464657-d17a-4327-91f3-2ed99386406f"` |
-| 组 |用户所属的 AAD 组的列表。 示例：`["93e8f556-8661-4955-87b6-890bc043c30f", "fc781505-18ef-4a31-a7d5-7d931d7b857e"]` |
-| iss |OIDC 令牌的[颁发者]。 示例：`https://sts.windows.net/b9bd2162-77ac-4fb2-8254-5c36e9c0a9c4/` |
-| 名称 |用户的显示名称。 示例：`"Alice A."` |
-| oid |AAD 中用户的对象标识符。 此值是用户的不可变且不可重用的标识符。 请使用此值而不是电子邮件作为用户的唯一标识符；电子邮件地址可能会更改。 如果在应用中使用 Azure AD 图形 API，对象 ID 是用于查询配置文件信息的值。 示例：`"59f9d2dc-995a-4ddf-915e-b3bb314a7fa4"` |
-| 角色 |用户的应用角色列表。    示例：`["SurveyCreator"]` |
-| tid |租户 ID。 此值是 Azure AD 中租户的唯一标识符。 示例：`"b9bd2162-77ac-4fb2-8254-5c36e9c0a9c4"` |
-| unique_name |用户的人工可读显示名称。 示例：`"alice@contoso.com"` |
-| upn |用户主体名称。 示例：`"alice@contoso.com"` |
+| 组 |用户所属的 AAD 组的列表。 示例： `["93e8f556-8661-4955-87b6-890bc043c30f", "fc781505-18ef-4a31-a7d5-7d931d7b857e"]` |
+| iss |OIDC 令牌的[颁发者]。 示例： `https://sts.windows.net/b9bd2162-77ac-4fb2-8254-5c36e9c0a9c4/` |
+| 名称 |用户的显示名称。 示例： `"Alice A."` |
+| oid |AAD 中用户的对象标识符。 此值是用户的不可变且不可重用的标识符。 请使用此值而不是电子邮件作为用户的唯一标识符；电子邮件地址可能会更改。 如果在应用中使用 Azure AD 图形 API，对象 ID 是用于查询配置文件信息的值。 示例： `"59f9d2dc-995a-4ddf-915e-b3bb314a7fa4"` |
+| 角色 |用户的应用角色列表。    示例： `["SurveyCreator"]` |
+| tid |租户 ID。 此值是 Azure AD 中租户的唯一标识符。 示例： `"b9bd2162-77ac-4fb2-8254-5c36e9c0a9c4"` |
+| unique_name |用户的人工可读显示名称。 示例： `"alice@contoso.com"` |
+| upn |用户主体名称。 示例： `"alice@contoso.com"` |
 
 此表列出了 ID 令牌中显示的声明类型。 在 ASP.NET Core 中，OpenID Connect 中间件会在填充用户主体的声明集合时转换某些声明类型：
 
@@ -117,9 +117,9 @@ ms.locfileid: "24541907"
 
 <!-- Links -->
 
-[范围参数]: http://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
+[范围参数]: https://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
 [支持的令牌和声明类型]: /azure/active-directory/active-directory-token-and-claims/
-[颁发者]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
+[颁发者]: https://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [身份验证事件]: authenticate.md#authentication-events
 [signup]: signup.md
 [Claims-Based Authorization]: /aspnet/core/security/authorization/claims

@@ -3,12 +3,12 @@ title: 微服务中的日志记录和监视
 description: 微服务中的日志记录和监视
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: 1da67047daa9ae87cda5dd7dd581d6081183c428
-ms.sourcegitcommit: 786bafefc731245414c3c1510fc21027afe303dc
+ms.openlocfilehash: b7206e2f35b9f227ff298f077ddafef1c6015b15
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2017
-ms.locfileid: "26652988"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428765"
 ---
 # <a name="designing-microservices-logging-and-monitoring"></a>设计微服务：日志记录和监视
 
@@ -64,7 +64,7 @@ ms.locfileid: "26652988"
 
 ## <a name="distributed-tracing"></a>分布式跟踪
 
-如前所述，微服务中的难题之一是如何了解跨服务的事件流。 单个操作或事务可能涉及对多个服务的调用。 若要重新构造整个步骤序列，每个服务应该传播一个关联 ID 用于充当该操作的唯一标识符。 该关联 ID 可以实现跨服务的[分布式跟踪](http://microservices.io/patterns/observability/distributed-tracing.html)。
+如前所述，微服务中的难题之一是如何了解跨服务的事件流。 单个操作或事务可能涉及对多个服务的调用。 若要重新构造整个步骤序列，每个服务应该传播一个关联 ID 用于充当该操作的唯一标识符。 该关联 ID 可以实现跨服务的[分布式跟踪](https://microservices.io/patterns/observability/distributed-tracing.html)。
 
 接收客户端请求的第一个服务应生成关联 ID。 如果该服务对另一服务发出 HTTP 调用，它会在请求标头中放置关联 ID。 同样，如果该服务发送异步消息，则会在该消息中放置关联 ID。 下游服务继续传播关联 ID，以便可以流经整个系统。 此外，写入应用程序指标或日志事件的所有代码都应包含关联 ID。
 
@@ -114,7 +114,7 @@ ms.locfileid: "26652988"
 
 ## <a name="example-logging-with-correlation-ids"></a>示例：使用关联 ID 的日志记录
 
-为了演示本章所述的某些要点，下面提供了一个有关 Package 服务如何实现日志记录的详细示例。 该 Package 服务是以 TypeScript 编写的，使用适用于 Node.js 的 [Koa](http://koajs.com/) Web 框架。 可以在多个 Node.js 日志记录库中进行选择。 我们选择了 [Winston](https://github.com/winstonjs/winston)，经过测试，它是符合我们性能要求的流行日志记录库。
+为了演示本章所述的某些要点，下面提供了一个有关 Package 服务如何实现日志记录的详细示例。 该 Package 服务是以 TypeScript 编写的，使用适用于 Node.js 的 [Koa](https://koajs.com/) Web 框架。 可以在多个 Node.js 日志记录库中进行选择。 我们选择了 [Winston](https://github.com/winstonjs/winston)，经过测试，它是符合我们性能要求的流行日志记录库。
 
 为了封装实现详细信息，我们定义了一个抽象 `ILogger` 接口：
 

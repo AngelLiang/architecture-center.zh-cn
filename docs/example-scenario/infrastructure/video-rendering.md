@@ -3,12 +3,12 @@ title: Azure 上的 3D 视频渲染
 description: 使用 Azure Batch 服务在 Azure 中运行本机 HPC 工作负荷
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: 1d51a9812c890a4877ec0edfdcbf344b27049812
-ms.sourcegitcommit: b7e521ba317f4fcd3253c80ac0c0a355eaaa56c5
+ms.openlocfilehash: 67dc8496656a75eab8f5d0ce45d00f8b1f4ea03f
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/21/2018
-ms.locfileid: "46533926"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428051"
 ---
 # <a name="3d-video-rendering-on-azure"></a>Azure 上的 3D 视频渲染
 
@@ -114,7 +114,7 @@ Azure Batch 帐户中的池可以通过手动干预进行缩放，也可以通�
 * 节点池一开始包含零个 VM，需通过手动缩放来添加 VM
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fhpc%2Fbatchcreatewithpools.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
+    <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>
 
 [详细了解资源管理器模板][azure-arm-templates]

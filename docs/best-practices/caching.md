@@ -4,12 +4,12 @@ description: 有关配置缓存以提高性能和伸缩性的指南。
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: fde1c3e8c65d357746e4ccaddebeebace943cf9d
-ms.sourcegitcommit: 441185360db49cfb3cf39527b68f318d17d4cb3d
+ms.openlocfilehash: 4db85df7331c805af6acbe0673dbcb993a895e03
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/19/2018
-ms.locfileid: "27973138"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429462"
 ---
 # <a name="caching"></a>缓存
 
@@ -132,7 +132,7 @@ ms.locfileid: "27973138"
 
 请小心不要将共享缓存服务可用性的重要依赖性引入解决方案。 如果提供共享缓存的服务不可用，应用程序应能继续工作。 应用程序应该不会在等待缓存服务恢复时停止响应或失败。
 
-因此，应用程序必须准备好检测缓存服务的可用性，并在无法访问缓存时回退到原始数据存储。 [断路器模式](http://msdn.microsoft.com/library/dn589784.aspx)可用于处理这种情况。 提供缓存的服务可以恢复，当该服务可用后，缓存会在从原始数据存储读取数据时，遵循[缓存端模式](http://msdn.microsoft.com/library/dn589799.aspx)等策略重新填充。
+因此，应用程序必须准备好检测缓存服务的可用性，并在无法访问缓存时回退到原始数据存储。 [断路器模式](../patterns/circuit-breaker.md)可用于处理这种情况。 提供缓存的服务可以恢复，当该服务可用后，缓存会在从原始数据存储读取数据时，遵循[缓存端模式](../patterns/cache-aside.md)等策略重新填充。
 
 但是，在缓存暂时不可用的情况下应用程序回退到原始数据存储可能会影响系统的伸缩性。
 在恢复数据存储时，原始数据存储可能忙于处理数据请求，导致超时和连接失败。
@@ -148,7 +148,7 @@ ms.locfileid: "27973138"
 
 为了减少与写入多个目标相关的延迟，当数据写入主服务器上的缓存时，复制到辅助服务器的操作可以异步发生。 此方法可能会导致某些缓存的信息在发生故障时丢失，但是此数据的比例应该小于缓存的总体大小。
 
-如果共享缓存很大，则在节点上分区缓存数据可能很有帮助，这可减少争用的可能性，并提高伸缩性。 许多共享缓存支持动态添加（与删除）节点，以及重新平衡分区之间的数据的功能。 这种方法可能涉及到群集，其中，节点集合将作为无缝单一缓存向客户端应用程序呈现。 但在内部，数据分散在节点之间并遵循某种预定义的分配策略，以便平均地平衡负载。 Microsoft 网站上的[数据分区指南文档](http://msdn.microsoft.com/library/dn589795.aspx)提供了有关可行分区策略的详细信息。
+如果共享缓存很大，则在节点上分区缓存数据可能很有帮助，这可减少争用的可能性，并提高伸缩性。 许多共享缓存支持动态添加（与删除）节点，以及重新平衡分区之间的数据的功能。 这种方法可能涉及到群集，其中，节点集合将作为无缝单一缓存向客户端应用程序呈现。 但在内部，数据分散在节点之间并遵循某种预定义的分配策略，以便平均地平衡负载。 Microsoft 网站上的[数据分区指南文档](https://msdn.microsoft.com/library/dn589795.aspx)提供了有关可行分区策略的详细信息。
 
 群集还可以提高缓存的可用性。 如果节点发生故障，仍可访问缓存的剩余部分。
 群集经常与复制和故障转移结合使用。 每个节点都可复制且副本在节点故障时可快速联机。
@@ -163,7 +163,7 @@ ms.locfileid: "27973138"
 
 应用程序的一个实例可以修改数据项，使该项的缓存版本失效。 应用程序的另一个实例可以尝试从导致缓存未命中的缓存读取此项，因此它将从数据存储中读取数据，并将它添加到缓存。 但是，如果数据存储没有完全与其他副本同步，则应用程序实例可能会使用旧值来读取并填充缓存。
 
-有关处理数据一致性的详细信息，请参阅 [Data consistency primer](http://msdn.microsoft.com/library/dn589800.aspx)（数据一致性入门）。
+有关处理数据一致性的详细信息，请参阅 [Data consistency primer](https://msdn.microsoft.com/library/dn589800.aspx)（数据一致性入门）。
 
 ### <a name="protect-cached-data"></a>保护缓存的数据
 无论使用的缓存服务为何，都应该考虑如何防范缓存中保存的数据遭到未经授权的访问。 有两个主要考虑因素：
@@ -200,29 +200,29 @@ Azure Redis 缓存是高性能缓存解决方案，提供可用性、伸缩性�
 ### <a name="redis-as-an-in-memory-database"></a>Redis 用作内存中数据库
 Redis 支持读取和写入操作。 在 Redis 中，写入操作将定期存储在本地快照文件或仅限附加的日志文件中，从而写入操作可在系统故障时得到保护。 而其他许多缓存（应被视为暂时性数据存储）中并非如此。
 
- 所有写入都是异步的，不会阻止客户端读取和写入数据。 当 Redis 开始运行时，将从快照或日志文件中读取数据，并使用它来构建内存中缓存。 有关详细信息，请参阅 Redis 网站上的 [Redis persistence](http://redis.io/topics/persistence)（Redis 持久性）。
+ 所有写入都是异步的，不会阻止客户端读取和写入数据。 当 Redis 开始运行时，将从快照或日志文件中读取数据，并使用它来构建内存中缓存。 有关详细信息，请参阅 Redis 网站上的 [Redis persistence](https://redis.io/topics/persistence)（Redis 持久性）。
 
 > [!NOTE]
-> Redis 不保证所有写入在发生灾难性故障时都会得到保存，但在最糟的情况下，只会丢失几秒钟的数据。 请记住，缓存并不适合用作权威数据源，应用程序负责使用缓存来确保成功将关键数据保存到适当的数据存储。 有关详细信息，请参阅[缓存端模式](http://msdn.microsoft.com/library/dn589799.aspx)。
+> Redis 不保证所有写入在发生灾难性故障时都会得到保存，但在最糟的情况下，只会丢失几秒钟的数据。 请记住，缓存并不适合用作权威数据源，应用程序负责使用缓存来确保成功将关键数据保存到适当的数据存储。 有关详细信息，请参阅[缓存端模式](../patterns/cache-aside.md)。
 > 
 > 
 
 #### <a name="redis-data-types"></a>Redis 数据类型
-Redis 属于键-值存储，其中的值可以包含简单类型或复杂数据结构，例如哈希、列表和集。 Redis 支持对这些数据类型执行原子操作。 键可以是永久性的，或者标记了一个有限的生存时间，到了该时间后，键及其对应的值会自动从缓存中删除。 有关 Redis 键和值的详细信息，请访问 Redis 网站上的 [An introduction to Redis data types and abstractions](http://redis.io/topics/data-types-intro)（Redis 数据类型和抽象简介）页。
+Redis 属于键-值存储，其中的值可以包含简单类型或复杂数据结构，例如哈希、列表和集。 Redis 支持对这些数据类型执行原子操作。 键可以是永久性的，或者标记了一个有限的生存时间，到了该时间后，键及其对应的值会自动从缓存中删除。 有关 Redis 键和值的详细信息，请访问 Redis 网站上的 [An introduction to Redis data types and abstractions](https://redis.io/topics/data-types-intro)（Redis 数据类型和抽象简介）页。
 
 #### <a name="redis-replication-and-clustering"></a>Redis 复制和群集
 Redis 支持主/从复制，以帮助确保可用性并保持吞吐量。 Redis 主节点的写入操作将复制到一个或多个从属节点。 读取操作可由主节点或任何从属节点提供。
 
-如果执行了网络分区，从属节点可以继续提供数据，并在重新建立连接时以透明方式与主节点重新同步。 有关详细信息，请访问 Redis 网站上的 [Replication](http://redis.io/topics/replication)（复制）页。
+如果执行了网络分区，从属节点可以继续提供数据，并在重新建立连接时以透明方式与主节点重新同步。 有关详细信息，请访问 Redis 网站上的 [Replication](https://redis.io/topics/replication)（复制）页。
 
 Redis 还提供群集，可让用户以透明方式在服务器之间将数据分区成分片并分散负载。 此功能提高了伸缩性，因为可以添加新 Redis 服务器，并且随着缓存大小的增加，数据将重新分区。
 
-此外，群集中的每一台服务器可以使用主/从复制进行复制。 这可确保整个群集中每个节点的可用性。 有关群集和分片的详细信息，请访问 Redis 网站上的 [Redis 群集教程](http://redis.io/topics/cluster-tutorial)页。
+此外，群集中的每一台服务器可以使用主/从复制进行复制。 这可确保整个群集中每个节点的可用性。 有关群集和分片的详细信息，请访问 Redis 网站上的 [Redis 群集教程](https://redis.io/topics/cluster-tutorial)页。
 
 ### <a name="redis-memory-use"></a>Redis 内存使用
 Redis 缓存具有有限的大小，具体取决于主机计算机上可用的资源。 在配置 Redis 服务器时，可以指定服务器可使用的最大内存量。 可为 Redis 缓存中的键配置过期时间，到时它会自动从缓存中删除。 此功能可帮助避免内存中缓存填满陈旧或过时的数据。
 
-当内存填满时，Redis 可以遵循一些策略自动逐出键及其值。 默认策略是 LRU（最近最少使用），但你也可以选择其他策略，例如，随机逐出键，或完全关闭逐出（在此情况下，当缓存已满时，尝试将项添加到缓存会失败）。 [Using Redis as an LRU cache](http://redis.io/topics/lru-cache)（使用 Redis 作为 LRU 缓存）页提供了详细信息。
+当内存填满时，Redis 可以遵循一些策略自动逐出键及其值。 默认策略是 LRU（最近最少使用），但你也可以选择其他策略，例如，随机逐出键，或完全关闭逐出（在此情况下，当缓存已满时，尝试将项添加到缓存会失败）。 [Using Redis as an LRU cache](https://redis.io/topics/lru-cache)（使用 Redis 作为 LRU 缓存）页提供了详细信息。
 
 ### <a name="redis-transactions-and-batches"></a>Redis 事务和批处理
 Redis 可让客户端应用程序提交一系列的操作，用于在缓存中以原子事务的形式读取和写入数据。 保证事务中的所有命令按顺序运行，其他并发客户端所发出的命令将不在两者之间交互编排。
@@ -231,7 +231,7 @@ Redis 可让客户端应用程序提交一系列的操作，用于在缓存中�
 
 在运行阶段，Redis 将按顺序执行每个队列中的命令。 如果在此阶段命令失败，Redis 将继续执行下一个队列中的命令，且它不会回滚任何已运行命令的结果。 这种简化的事务形式有助于保持性能，并避免争用所造成的性能问题。
 
-Redis 实施某种形式的乐观锁定，以帮助保持一致性。 有关事务和使用 Redis 进行锁定的详细信息，请访问 Redis 网站上的[事务](http://redis.io/topics/transactions)页。
+Redis 实施某种形式的乐观锁定，以帮助保持一致性。 有关事务和使用 Redis 进行锁定的详细信息，请访问 Redis 网站上的[事务](https://redis.io/topics/transactions)页。
 
 Redis 还支持非事务式的请求批处理。 客户端用于将命令发送到 Redis 服务器的 Redis 协议可让客户端以同一请求的一部分来发送一系列操作。 这有助于减少网络上的数据包分段。 处理批时，将执行每个命令。 如果其中任一命令的格式不当，则将遭到拒绝（对于事务不会发生这种情况），但会执行剩余的命令。 此外，不保证批中命令的处理顺序。
 
@@ -244,7 +244,7 @@ Redis 专门注重于提供数据快速访问，设计为在受信任的环境�
 
 Redis 不直接支持任何形式的数据加密，因此所有编码必须由客户端应用程序执行。 此外，Redis 不提供任何形式的传输安全性。 如果数据在网络上流动时需要保护数据，建议实施 SSL 代理。
 
-有关详细信息，请访问 Redis 网站上的 [Redis security](http://redis.io/topics/security)（Redis 安全性）页。
+有关详细信息，请访问 Redis 网站上的 [Redis security](https://redis.io/topics/security)（Redis 安全性）页。
 
 > [!NOTE]
 > Azure Redis 缓存通过连接的客户端提供自身的安全层。 底层 Redis 服务器不向公共网络公开。
@@ -292,7 +292,7 @@ Azure Redis 缓存充当底层 Redis 服务器的机制。 目前它支持固定
 
 你在实施复制时可能需要创建多个 VM 作为主节点和从属节点，这可能是一个复杂的过程。 此外，如果想要创建群集，需要多个主服务器和从属服务器。 一个可以提供高度可用性和伸缩性，并且至少包含 6 个 VM 并组织成 3 对主/从服务器（一个群集必须至少包含 3 个主节点）的精简群集复制拓扑。
 
-每个主/从对应彼此靠近以降低延迟。 但如果想要找出靠近的应用程序（该应用程序很可能会使用缓存数据），每一组对可以在位于不同区域的不同 Azure 数据中心运行。  有关生成和配置作为 Azure VM 运行的 Redis 节点的示例，请参阅 [Running Redis on a CentOS Linux VM in Azure](http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx)（在 Azure 中的 CentOS Linux VM 上运行 Redis）。
+每个主/从对应彼此靠近以降低延迟。 但如果想要找出靠近的应用程序（该应用程序很可能会使用缓存数据），每一组对可以在位于不同区域的不同 Azure 数据中心运行。  有关生成和配置作为 Azure VM 运行的 Redis 节点的示例，请参阅 [Running Redis on a CentOS Linux VM in Azure](https://blogs.msdn.microsoft.com/tconte/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure/)（在 Azure 中的 CentOS Linux VM 上运行 Redis）。
 
 > [!NOTE]
 > 请注意，如果以这种方式实施自己的 Redis 缓存，则需要负责监视、管理和保护服务。
@@ -306,15 +306,15 @@ Azure Redis 缓存充当底层 Redis 服务器的机制。 目前它支持固定
 * 在服务器之间分散负载，从而提高性能和伸缩性。
 * 将数据放置在靠近用户访问的地理位置以降低延迟。
 
-对于缓存，最常见的分区形式是分片。 在此策略中，每个分区（或分片）本身是一个 Redis 缓存。 数据使用分片逻辑定向到特定的分区，该逻辑可以使用各种方法来分布数据。 [Sharding pattern](http://msdn.microsoft.com/library/dn589797.aspx)（分片模式）提供了有关实施分片的详细信息。
+对于缓存，最常见的分区形式是分片。 在此策略中，每个分区（或分片）本身是一个 Redis 缓存。 数据使用分片逻辑定向到特定的分区，该逻辑可以使用各种方法来分布数据。 [Sharding pattern](../patterns/sharding.md)（分片模式）提供了有关实施分片的详细信息。
 
 若要在 Redis 缓存中实施分区，可以采用以下方法之一：
 
-* *服务器端查询路由。* 使用此方法时，客户端应用程序会将请求发送到构成缓存的任何 Redis 服务器（可能是最靠近的服务器）。 每个 Redis 服务器将存储用于描述它所保存的分区的元数据，同时还包含有关哪些分区位于其他服务器上的信息。 Redis 服务器检查客户端请求。 如果可以在本地解决，则执行请求的操作。 否则将请求转发到相应的服务器。 此模型是通过 Redis 群集实施的，Redis 网站上的 [Redis 群集教程](http://redis.io/topics/cluster-tutorial)页上提供了更详细的说明。 Redis 群集对客户端应用程序而言是透明的，其他 Redis 服务器可以添加到群集（数据将重新分区），而无需重新配置客户端。
+* *服务器端查询路由。* 使用此方法时，客户端应用程序会将请求发送到构成缓存的任何 Redis 服务器（可能是最靠近的服务器）。 每个 Redis 服务器将存储用于描述它所保存的分区的元数据，同时还包含有关哪些分区位于其他服务器上的信息。 Redis 服务器检查客户端请求。 如果可以在本地解决，则执行请求的操作。 否则将请求转发到相应的服务器。 此模型是通过 Redis 群集实施的，Redis 网站上的 [Redis 群集教程](https://redis.io/topics/cluster-tutorial)页上提供了更详细的说明。 Redis 群集对客户端应用程序而言是透明的，其他 Redis 服务器可以添加到群集（数据将重新分区），而无需重新配置客户端。
 * *客户端分区。* 在此模型中，客户端应用程序包含将请求路由到适当 Redis 服务器的逻辑（可能以库的形式）。 这种方法可以配合 Azure Redis 缓存使用。 创建多个 Azure Redis 缓存（每个数据分区一个缓存），并实施将请求路由到正确缓存的客户端逻辑。 如果分区方案发生更改（例如，如果已创建其他 Azure Redis 缓存），则可能需要重新配置客户端应用程序。
 * *代理辅助分区。* 在此方案中，客户端应用程序将请求发送到一个知道如何数据分区方式的中间代理服务，然后将请求路由到适当的 Redis 服务器。 此方法也可以配合 Azure Redis 缓存使用；代理服务可以实施为 Azure 云服务。 使用此方法实施服务需要提高复杂性，并且执行请求的时间可能比使用客户端分区更长。
 
-Redis 网站上的 [Partitioning: how to split data among multiple Redis instances](http://redis.io/topics/partitioning)（分区：如何在多个 Redis 实例之间拆分数据）页提供了有关使用 Redis 实施分区的更多信息。
+Redis 网站上的 [Partitioning: how to split data among multiple Redis instances](https://redis.io/topics/partitioning)（分区：如何在多个 Redis 实例之间拆分数据）页提供了有关使用 Redis 实施分区的更多信息。
 
 ### <a name="implement-redis-cache-client-applications"></a>实施 Redis 缓存客户端应用程序
 Redis 支持以多种编程语言编写的客户端应用程序。 如果要使用.NET Framework 构建新的应用程序，建议的方法是使用 StackExchange.Redis 客户端库。 此库提供 .NET Framework 对象模型，用于抽象连接到 Redis 服务器连接、发送命令和接收响应所需的详细信息。 在 Visual Studio 中，它以 NuGet 包的形式提供。 可以使用同一个库连接到 Azure Redis 缓存，或者 VM 上托管的自定义 Redis 缓存。
@@ -325,7 +325,7 @@ Redis 支持以多种编程语言编写的客户端应用程序。 如果要使�
 
 在已连接到 Redis 服务器后，可以在用作缓存的 Redis 数据库上获取句柄。 Redis 连接提供了 `GetDatabase` 方法来执行此操作。 然后，可以使用 `StringGet` 和 `StringSet` 方法，从缓存中检索项并在缓存中存储数据。 这些方法需要将键用作参数，并返回缓存中具有匹配值的项 (`StringGet`)，或者将项添加到具有此键的缓存 (`StringSet`)。
 
-根据 Redis 服务器的位置，在将请求传输到服务器以及将响应返回给客户端时，许多操作可能会造成一些延迟。 StackExchange 库公开了许多方法的异步版本，用于帮助客户端应用程序保持响应。 这些方法支持 .NET Framework 中的[基于任务的异步模式](http://msdn.microsoft.com/library/hh873175.aspx)。
+根据 Redis 服务器的位置，在将请求传输到服务器以及将响应返回给客户端时，许多操作可能会造成一些延迟。 StackExchange 库公开了许多方法的异步版本，用于帮助客户端应用程序保持响应。 这些方法支持 .NET Framework 中的[基于任务的异步模式](/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap)。
 
 以下代码片段显示了名为 `RetrieveItem` 的方法。 其中演示了基于 Redis 和 StackExchange 库的缓存端模式的实现。 该方法采用字符串键值，并通过调用 `StringGetAsync` 方法（`StringGet` 的异步版本）尝试从 Redis 缓存中检索相应的项。
 
@@ -476,7 +476,7 @@ Redis 缓存的最简单用法包括存储键-值对，其中的值是未解释�
 
 例如，使用类似于“customer:100”的结构化键来表示 ID 为 100 的客户的键，而不是简单地使用“100”。 使用此方案可以轻松区分存储不同数据类型的值。 例如，也可以使用键“orders:100”来表示 ID为 100 的订单的键。
 
-除了一维二进制字符串以外，Redis 键-值对中的值还可以包含更结构化的信息，包括列表、集（已排序和未排序）和哈希。 Redis 提供全面的命令集用于处理这些类型，其中的许多命令可以通过 StackExchange 等客户端库用于 .NET Framework 应用程序。 Redis 网站上的 [An introduction to Redis data types and abstractions](http://redis.io/topics/data-types-intro)（Redis 数据类型和抽象简介）页更详细地概述了这些类型以及可用于处理这些类型的命令。
+除了一维二进制字符串以外，Redis 键-值对中的值还可以包含更结构化的信息，包括列表、集（已排序和未排序）和哈希。 Redis 提供全面的命令集用于处理这些类型，其中的许多命令可以通过 StackExchange 等客户端库用于 .NET Framework 应用程序。 Redis 网站上的 [An introduction to Redis data types and abstractions](https://redis.io/topics/data-types-intro)（Redis 数据类型和抽象简介）页更详细地概述了这些类型以及可用于处理这些类型的命令。
 
 本部分汇总了这些数据类型和命令的一些常见用例。
 
@@ -859,43 +859,42 @@ ISubscriber subscriber = redisHostConnection.GetSubscriber();
 
 - [Apache Avro](https://avro.apache.org/) 向 Protocol Buffers 和 Thrift 提供类似的功能，但不提供编译步骤。 相反，序列化数据始终包含描述结构的架构。 
 
-- [JSON](http://json.org/) 是使用可人工读取的文本字段的开放标准。 它提供广泛的跨平台支持。 JSON 不使用消息架构。 它是基于文本的格式，在网络上的效率不高。 但是，在某些情况下，可通过 HTTP 直接向客户端返回缓存项，此时，存储 JSON 可以节省从另一格式反序列化然后再序列化为 JSON 的成本。
+- [JSON](https://json.org/) 是使用可人工读取的文本字段的开放标准。 它提供广泛的跨平台支持。 JSON 不使用消息架构。 它是基于文本的格式，在网络上的效率不高。 但是，在某些情况下，可通过 HTTP 直接向客户端返回缓存项，此时，存储 JSON 可以节省从另一格式反序列化然后再序列化为 JSON 的成本。
 
 - [BSON](http://bsonspec.org/) 是一种二进制序列化格式，使用的结构与 JSON 类似。 相对于 JSON，BSON 旨在轻量、易于扫描以及可快速进行序列化和反序列化。 其有效负载的大小与 JSON 相当。 BSON 有效负载可能大于或小于 JSON 有效负载，具体取决于数据。 BSON 拥有 JSON 中不支持的一些其他数据类型，尤其是 BinData（用于字节数组）和日期。
 
-- [MessagePack](http://msgpack.org/) 是旨在压缩网络传输的二进制序列化格式。 没有消息架构或消息类型检查。
+- [MessagePack](https://msgpack.org/) 是旨在压缩网络传输的二进制序列化格式。 没有消息架构或消息类型检查。
 
 - [Bond](https://microsoft.github.io/bond/) 是用于系统化数据的跨平台框架。 它支持跨语言序列化和反序列化。 此处列出的与其他系统的显著差异包括对继承、类型别名和泛型的支持。 
 
-- [gRPC](http://www.grpc.io/) 是由 Google 开发的开放源 RPC 系统。 默认情况下，它将 Protocol Buffers 用作其定义语言和基础消息交换格式。
+- [gRPC](https://www.grpc.io/) 是由 Google 开发的开放源 RPC 系统。 默认情况下，它将 Protocol Buffers 用作其定义语言和基础消息交换格式。
 
 ## <a name="related-patterns-and-guidance"></a>相关模式和指南
 
 在应用程序中实施缓存时，以下模式也可能与方案相关：
 
-* [缓存端模式](http://msdn.microsoft.com/library/dn589799.aspx)：此模式描述如何按需将数据从数据存储载入缓存。 此模式还有助于在缓存中保存的数据与原始数据存储中的数据之间保持一致性。
-* [分片模式](http://msdn.microsoft.com/library/dn589797.aspx)提供了有关实施水平分区，以帮助在存储和访问大量数据时提高伸缩性的信息。
+* [缓存端模式](../patterns/cache-aside.md)：此模式描述如何按需将数据从数据存储载入缓存。 此模式还有助于在缓存中保存的数据与原始数据存储中的数据之间保持一致性。
+* [分片模式](../patterns/sharding.md)提供了有关实施水平分区，以帮助在存储和访问大量数据时提高伸缩性的信息。
 
 ## <a name="more-information"></a>详细信息
-* Microsoft 网站上的 [MemoryCache class](http://msdn.microsoft.com/library/system.runtime.caching.memorycache.aspx)（MemoryCache 类）页
+* Microsoft 网站上的 [MemoryCache class](/dotnet/api/system.runtime.caching.memorycache)（MemoryCache 类）页
 * Microsoft 网站上的 [Azure Redis Cache documentation](https://azure.microsoft.com/documentation/services/cache/)（Azure Redis 缓存文档）页
 * Microsoft 网站上的 [Azure Redis Cache FAQ](/azure/redis-cache/cache-faq)（Azure Redis 缓存常见问题）页
-* Microsoft 网站上的 [Configuration model](http://msdn.microsoft.com/library/windowsazure/hh914149.aspx)（配置模型）页
-* Microsoft 网站上的 [Task-based Asynchronous Pattern](http://msdn.microsoft.com/library/hh873175.aspx)（基于任务的异步模式）页
+* Microsoft 网站上的 [Task-based Asynchronous Pattern](/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap)（基于任务的异步模式）页
 * StackExchange.Redis GitHub 存储库上的 [Pipelines and multiplexers](https://stackexchange.github.io/StackExchange.Redis/PipelinesMultiplexers)（管道和多路复用器）页
-* Redis 网站上的 [Redis persistence](http://redis.io/topics/persistence)（Redis 持久性）页
-* Redis 网站上的 [Replication](http://redis.io/topics/replication)（复制）页
-* Redis 网站上的 [Redis cluster tutorial](http://redis.io/topics/cluster-tutorial)（Redis 群集教程）页
-* Redis 网站上的 [Partitioning: how to split data among multiple Redis instances](http://redis.io/topics/partitioning)（分区：如何在多个 Redis 实例之间拆分数据）页
-* Redis 网站上的 [Using Redis as an LRU Cache](http://redis.io/topics/lru-cache)（使用 Redis 作为 LRU 缓存）页
-* Redis 网站上的 [Transactions](http://redis.io/topics/transactions)（事务）页
-* Redis 网站上的 [Redis security](http://redis.io/topics/security)（Redis 安全性）页
+* Redis 网站上的 [Redis persistence](https://redis.io/topics/persistence)（Redis 持久性）页
+* Redis 网站上的 [Replication](https://redis.io/topics/replication)（复制）页
+* Redis 网站上的 [Redis cluster tutorial](https://redis.io/topics/cluster-tutorial)（Redis 群集教程）页
+* Redis 网站上的 [Partitioning: how to split data among multiple Redis instances](https://redis.io/topics/partitioning)（分区：如何在多个 Redis 实例之间拆分数据）页
+* Redis 网站上的 [Using Redis as an LRU Cache](https://redis.io/topics/lru-cache)（使用 Redis 作为 LRU 缓存）页
+* Redis 网站上的 [Transactions](https://redis.io/topics/transactions)（事务）页
+* Redis 网站上的 [Redis security](https://redis.io/topics/security)（Redis 安全性）页
 * Azure 博客上的 [Lap around Azure Redis Cache](https://azure.microsoft.com/blog/2014/06/04/lap-around-azure-redis-cache-preview/)（浏览 Azure Redis 缓存）页
-* Microsoft 网站上的 [Running Redis on a CentOS Linux VM in Azure](http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx)（在 Azure 中的 CentOS Linux VM 上运行 Redis）页
+* Microsoft 网站上的 [Running Redis on a CentOS Linux VM in Azure](https://blogs.msdn.microsoft.com/tconte/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure/)（在 Azure 中的 CentOS Linux VM 上运行 Redis）页
 * Microsoft 网站上的 [ASP.NET session state provider for Azure Redis Cache](/azure/redis-cache/cache-aspnet-session-state-provider)（Azure Redis 缓存的 ASP.NET 会话状态提供程序）页
 * Microsoft 网站上的 [ASP.NET output cache provider for Azure Redis Cache](/azure/redis-cache/cache-aspnet-output-cache-provider)（Azure Redis 缓存的 ASP.NET 输出缓存提供程序）页
-* Redis 网站上的 [An Introduction to Redis data types and abstractions](http://redis.io/topics/data-types-intro)（Redis 数据类型和抽象简介）页
+* Redis 网站上的 [An Introduction to Redis data types and abstractions](https://redis.io/topics/data-types-intro)（Redis 数据类型和抽象简介）页
 * StackExchange.Redis 网站上的 [Basic usage](https://stackexchange.github.io/StackExchange.Redis/Basics)（基本用法）页
 * StackExchange.Redis 存储库上的 [Transactions in Redis](https://stackexchange.github.io/StackExchange.Redis/Transactions)（Redis 中的事务）页
-* Microsoft 网站上的 [Data partitioning guide](http://msdn.microsoft.com/library/dn589795.aspx)（数据分区指南）
+* Microsoft 网站上的 [Data partitioning guide](https://msdn.microsoft.com/library/dn589795.aspx)（数据分区指南）
 

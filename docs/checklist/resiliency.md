@@ -4,12 +4,12 @@ description: 为设计过程中的复原能力考虑因素提供指导的查检�
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 883424d5d3535f822cdba61ecb9520ce05f75ec7
-ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
+ms.openlocfilehash: 17612ee08e2329ea648fd21d6764e7bae1ca20e2
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352638"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429088"
 ---
 # <a name="resiliency-checklist"></a>复原能力查检表
 
@@ -81,7 +81,7 @@ ms.locfileid: "39352638"
 
 ## <a name="security"></a>“安全”
 
-**针对分布式拒绝服务 (DDoS) 攻击实施应用程序级保护。** Azure 服务可在网络层防范 DDos 攻击。 但是，Azure 无法防范应用程序层攻击，因为很难将真实用户请求与恶意用户请求区分开来。 有关如何防范应用程序层 DDoS 攻击的详细信息，请参阅 [Microsoft Azure 网络安全性](http://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf)中的“防范 DDoS”部分（PDF 下载）。
+**针对分布式拒绝服务 (DDoS) 攻击实施应用程序级保护。** Azure 服务可在网络层防范 DDos 攻击。 但是，Azure 无法防范应用程序层攻击，因为很难将真实用户请求与恶意用户请求区分开来。 有关如何防范应用程序层 DDoS 攻击的详细信息，请参阅 [Microsoft Azure 网络安全性](https://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf)中的“防范 DDoS”部分（PDF 下载）。
 
 **对应用程序资源的访问权限实施最低特权原则。** 尽量限制对应用程序资源的默认访问权限。 只在经过批准后才授予更高级别的权限。 默认授予对应用程序资源的过高访问权限可能导致某人有意或无意删除资源。 Azure 提供[基于角色的访问控制](/azure/active-directory/role-based-access-built-in-roles/)用于管理用户特权，但必须验证具有自身权限系统（例如 SQL Server）的其他资源的最低特权。
 
@@ -99,7 +99,7 @@ ms.locfileid: "39352638"
 
 **自动执行应用程序部署过程。** 如果需要操作人员手动部署应用程序，则人为错误可能导致部署失败。 
 
-**设计发布过程，以便尽量提高应用程序可用性。** 如果发布过程要求服务在部署期间脱机，应用程序只能在重新联机后才可用。 使用[蓝/绿](http://martinfowler.com/bliki/BlueGreenDeployment.html)或[金丝雀发布](http://martinfowler.com/bliki/CanaryRelease.html)部署方法将应用程序部署到生产环境。 这两种方法涉及到连同生产代码一起部署发布代码，因此，在发生故障时，发布代码的用户可重定向到生产代码。
+**设计发布过程，以便尽量提高应用程序可用性。** 如果发布过程要求服务在部署期间脱机，应用程序只能在重新联机后才可用。 使用[蓝/绿](https://martinfowler.com/bliki/BlueGreenDeployment.html)或[金丝雀发布](https://martinfowler.com/bliki/CanaryRelease.html)部署方法将应用程序部署到生产环境。 这两种方法涉及到连同生产代码一起部署发布代码，因此，在发生故障时，发布代码的用户可重定向到生产代码。
 
 **记录并审核应用程序的部署。** 如果使用分阶段部署方法（例如蓝/绿或金丝雀发布方法），则生产环境中会运行的应用程序的多个版本。 如果出现问题，确定应用程序的哪个版本导致该问题至关重要。 实施可靠的日志记录策略来尽量多地捕获版本特定的信息。
 

@@ -4,12 +4,12 @@ description: 有关在云中监视分布式应用程序的最佳实践。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 8dd3979233b03db800bd9514263d9c6fedefa074
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 4de9ce80a17a0ad429166ac2aa7f7f7f66c26db1
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24539011"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429666"
 ---
 # <a name="monitoring-and-diagnostics"></a>监视和诊断
 [!INCLUDE [header](../_includes/header.md)]
@@ -449,7 +449,7 @@ SLA 中经常会规定以下条款：
 确定需要收集哪些检测数据时，请注意以下几点：
 
 * 确保跟踪事件所捕获的信息是机器和用户可读的信息。 对此信息采用妥善定义的架构，以帮助自动处理跨系统的日志数据，并为读取日志的操作和工程人员提供一致性。 包含环境信息，例如部署环境、运行进程的计算机、进程的详细信息，以及调用堆栈。  
-* 仅当必要时才启用分析，因为它可能对系统造成很大的开销。 使用检测进行的分析会在发生每个事件（例如方法调用）时记录事件，而采样只记录选定的事件。 选择可以基于时间（每 n 秒一次）或者基于频率（每 n 个请求一次）。 如果事件频繁发生，通过检测进行分析可能造成太大的负担，并且本身会影响整体性能。 在此情况下，最好使用采样方法。 但是，如果事件频率太低，则采样可能会遗漏事件。 在此情况下，检测可能是更好的方法。
+* 仅当必要时才启用分析，因为它可能对系统造成很大的开销。 使用检测进行的分析会在发生每个事件（例如方法调用）时记录事件，而采样只记录选定的事件。 选择可以基于时间（每隔 *n* 秒一次）或者基于频率（每隔 *n* 个请求一次）。 如果事件频繁发生，通过检测进行分析可能造成太大的负担，并且本身会影响整体性能。 在此情况下，最好使用采样方法。 但是，如果事件频率太低，则采样可能会遗漏事件。 在此情况下，检测可能是更好的方法。
 * 提供足够的上下文，使开发人员或管理员能够确定每个请求的源。 这可能包括某种形式的活动 ID（用于标识请求的特定实例）。 此外还可能包括可用于使此活动与执行的计算工作和使用的资源相关联的信息。 请注意，此工作可能跨进程与计算机边界。 对于计量，上下文还应该包括（直接或间接通过其他关联信息）导致发出请求的客户引用。 此上下文提供有关捕获监视数据时应用程序状态的有用信息。
 * 记录所有请求，以及从中发出这些请求的位置或区域。 此信息可以帮助确定是否有任何位置特定的热点。 此信息还提供有用的数据帮助确定是否要将应用程序或其使用的数据重新分区。
 * 仔细记录并捕获异常的详细信息。 通常，丢失重要的调试信息是因为不良的异常处理。 捕获应用程序引发的异常的完整详细信息，如果可能，还应包含任何内部异常及其他上下文信息。 在可能的情况下，可以包括调用堆栈。
@@ -503,7 +503,7 @@ SLA 中经常会规定以下条款：
 * .NET EventSource
 * 基于清单的 ETW
 
-有关详细信息，请参阅 [Azure: Telemetry Basics and Troubleshooting](http://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)（Azure：遥测基础知识和疑难解答）一文。
+有关详细信息，请参阅 [Azure: Telemetry Basics and Troubleshooting](https://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)（Azure：遥测基础知识和疑难解答）一文。
 
 ### <a name="strategies-for-collecting-instrumentation-data"></a>收集检测数据的策略
 考虑到云的弹性，为了避免从系统中每个节点手动检索遥测数据，应该安排将数据发送到中心位置并进行合并。 在跨多个数据中心的系统中，先根据区域收集、合并数据，再将数据存储在区域中，然后将区域数据聚合成单个中心系统可能很有帮助。
@@ -688,7 +688,7 @@ SLA 中经常会规定以下条款：
 
 ## <a name="more-information"></a>详细信息
 * [监视、诊断和排查 Microsoft Azure 存储问题](/azure/storage/storage-monitoring-diagnosing-troubleshooting)
-* [Azure: Telemetry Basics and Troubleshooting](http://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)（Azure：遥测基础知识和疑难解答）
+* [Azure: Telemetry Basics and Troubleshooting](https://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)（Azure：遥测基础知识和疑难解答）
 * [在 Azure 云服务和虚拟机中启用诊断](/azure/cloud-services/cloud-services-dotnet-diagnostics)
 * [Azure Redis 缓存](https://azure.microsoft.com/services/cache/)、[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 和 [HDInsight](https://azure.microsoft.com/services/hdinsight/)
 * [如何使用 Service Bus 队列](/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues)

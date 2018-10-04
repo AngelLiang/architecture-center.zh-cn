@@ -3,12 +3,12 @@ title: 选择数据分析和报告技术
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 830c61bba64a6971c815330887e5cdcc4f2b5f56
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 05e33a3da0933036a604d2bc4cc5a20ae70fe772
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288909"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428306"
 ---
 # <a name="choosing-a-data-analytics-technology-in-azure"></a>在 Azure 中选择数据分析技术
 
@@ -49,10 +49,10 @@ Jupyter Notebook 提供了一个很棒的环境，在使用 Power BI 之类的�
 
 主要优势：
 
-* 免费服务&mdash;不需要具有 Azure 订阅。
-* 无需在本地安装 Jupyter 和提供支持的 R 或 Python 发行版&mdash;只需使用浏览器即可。
-* 可以从任何设备管理自己的联机库并访问它们。
-* 可以与协作者共享 Notebook。
+* 免费服务 &mdash; 不需要 Azure 订阅。
+* 无需在本地安装 Jupyter 和提供支持的 R 或 Python 发行版 &mdash; 只需使用浏览器即可。
+* 可以从任何设备管理和访问自己的联机库。
+* 可与协作者共享 Notebook。
 
 注意事项：
 
@@ -94,7 +94,7 @@ Jupyter Notebook 提供了一个很棒的环境，在使用 Power BI 之类的�
 
 [2] 通过使用 Power BI Desktop。
 
-[2] 可以在 [Maven 存储库](http://search.maven.org/)中搜索由社区贡献的包。
+[2] 可以在 [Maven 存储库](https://search.maven.org/)中搜索由社区贡献的包。
 
 [3] 可以使用 pip 或 conda 安装 Python 包。 可以从 CRAN 或 GitHub 安装 R 包。 可以使用 [Paket 依存关系管理器](https://fsprojects.github.io/Paket/)通过 nuget.org 安装 F# 中的包。
 

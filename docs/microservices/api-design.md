@@ -3,12 +3,12 @@ title: API 设计
 description: 为微服务设计 API
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: d85407f3092ddb5f77aacfea8def2784c4741eb9
-ms.sourcegitcommit: 786bafefc731245414c3c1510fc21027afe303dc
+ms.openlocfilehash: e3524fca177d8c15b280d0f8a706539369c1773a
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2017
-ms.locfileid: "26653192"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429122"
 ---
 # <a name="designing-microservices-api-design"></a>设计微服务：API 设计
 
@@ -124,10 +124,10 @@ export class Location {
 | DDD 概念 | REST 等效项 | 示例 | 
 |-------------|-----------------|---------|
 | 聚合 | 资源 | `{ "1":1234, "status":"pending"... }` | 
-| 标识 | 代码 | `http://delivery-service/deliveries/1` |
+| 标识 | 代码 | `https://delivery-service/deliveries/1` |
 | 子实体 | 链接 | `{ "href": "/deliveries/1/confirmation" }` |
-| 更新值对象 | PUT 或 PATCH | `PUT http://delivery-service/deliveries/1/dropoff` |
-| 存储库 | 集合 | `http://delivery-service/deliveries?status=pending` |
+| 更新值对象 | PUT 或 PATCH | `PUT https://delivery-service/deliveries/1/dropoff` |
+| 存储库 | 集合 | `https://delivery-service/deliveries?status=pending` |
 
 
 ## <a name="api-versioning"></a>API 版本控制

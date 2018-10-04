@@ -3,12 +3,12 @@ title: 适用于 Azure 上 Linux 虚拟机的 SAP S/4HANA
 description: 有关在 Azure 上的高可用性 Linux 环境中运行 SAP S/4HANA 的成熟做法。
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: 9635de73ec431e0ac678e4008e0c4835796d47ad
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: ab056a01f05bde9e9dc7a4439baed367ee663f93
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864498"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429581"
 ---
 # <a name="sap-s4hana-for-linux-virtual-machines-on-azure"></a>适用于 Azure 上 Linux 虚拟机的 SAP S/4HANA
 
@@ -151,7 +151,7 @@ SAP 应用程序服务器与数据库服务器不断通信。 对于 HANA 数据
 
 - **应用程序服务器层**。 SAP 应用程序服务器不包含业务数据。 在 Azure 上，简单的 DR 策略是在次要区域中创建 SAP 应用程序服务器，然后关闭这些服务器。 在主要应用程序服务器上进行任何配置更改或内核更新后，必须将相同的更改应用到次要区域中的虚拟机。 例如，将 SAP 内核可执行文件复制到 DR 虚拟机。 要将应用程序服务器自动复制到次要区域，建议使用 [Azure Site Recovery](/azure/site-recovery/site-recovery-overview) 解决方案。 截至本文编写时，ASR 尚不支持复制 Azure VM 中的加速网络配置设置。
 
-- **Central Services**。 SAP 应用程序堆栈的此组件也不会保存业务数据。 可以在次要区域中构建一个 VM 来运行 Central Services 角色。 在主要 Central Services 节点中，要同步的唯一内容是 /sapmnt 共享内容。 此外，如果主要 Central Services 服务器上发生配置更改或内核更新，必须在次要区域中运行 Central Services 的 VM 上重复这些操作。 若要同步两个服务器，可以使用 Azure Site Recovery 复制群集节点，或只需使用定期计划的复制作业将 /sapmnt 复制到 DR 端。 有关生成、复制和测试故障转移过程的详细信息，请下载[ SAP NetWeaver：生成基于 Hyper-V 和 Microsoft Azure 的灾难恢复解决方案](http://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx)，并参阅第 4.3 部分“SAP SPOF 层 (ASCS)”。 此文章适用于 Windows 上运行的 NetWeaver，但可为 Linux 创建等效的配置。 对于 Central Services，请使用 [Azure Site Recovery](/en-us/azure/site-recovery/site-recovery-overview) 来复制群集节点和存储。 对于 Linux，请使用高可用性扩展创建三节点地理群集。 
+- **Central Services**。 SAP 应用程序堆栈的此组件也不会保存业务数据。 可以在次要区域中构建一个 VM 来运行 Central Services 角色。 在主要 Central Services 节点中，要同步的唯一内容是 /sapmnt 共享内容。 此外，如果主要 Central Services 服务器上发生配置更改或内核更新，必须在次要区域中运行 Central Services 的 VM 上重复这些操作。 若要同步两个服务器，可以使用 Azure Site Recovery 复制群集节点，或只需使用定期计划的复制作业将 /sapmnt 复制到 DR 端。 有关生成、复制和测试故障转移过程的详细信息，请下载[ SAP NetWeaver：生成基于 Hyper-V 和 Microsoft Azure 的灾难恢复解决方案](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx)，并参阅第 4.3 部分“SAP SPOF 层 (ASCS)”。 此文章适用于 Windows 上运行的 NetWeaver，但可为 Linux 创建等效的配置。 对于 Central Services，请使用 [Azure Site Recovery](/en-us/azure/site-recovery/site-recovery-overview) 来复制群集节点和存储。 对于 Linux，请使用高可用性扩展创建三节点地理群集。 
 
 - **SAP 数据库层**。 使用 HSR 执行 HANA 支持的复制。 除了本地的双节点高可用性设置以外，HSR 还支持多层复制，其中，独立 Azure 区域中的第三个节点充当外部实体而不是群集的一部分，它会注册到 HSR 群集对的辅助副本（复制目标）。 这就构成了复制菊花链。 故障转移到 DR 节点是一个手动过程。
 
@@ -197,6 +197,6 @@ SAP 具有自身的用户管理引擎 (UME)，可在 SAP 应用程序中控制�
 - [在 Microsoft 平台上运行 SAP 应用程序（博客）](https://blogs.msdn.microsoft.com/saponsqlserver/2017/05/04/sap-on-azure-general-update-for-customers-partners-april-2017/)
 - [Azure 社区支持](https://azure.microsoft.com/support/community/)
 - [SAP 社区](https://www.sap.com/community.html)
-- [堆栈溢出](https://stackoverflow.com/tags/sap/)
+- [Stack Overflow](https://stackoverflow.com/tags/sap/)
 
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

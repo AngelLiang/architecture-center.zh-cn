@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: e85817626675cec4d126921c19a31a0983ecd62d
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 70f4a96369c207740400b9dfe72e1e964507f729
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359249"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428119"
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>使用 Azure AD 和 OpenID Connect 进行身份验证
 
@@ -61,7 +61,7 @@ app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions {
 请注意，某些设置来自运行时配置选项。 下面说明了各中间件选项的含义：
 
 * **ClientId**。 应用程序的客户端 ID，在 Azure AD 中注册应用程序时获得。
-* **Authority**。 对于多租户应用程序，将此选项设置为 `https://login.microsoftonline.com/common/`。 这是 Azure AD common 终结点的 URL，允许用户从任何 Azure AD 租户登录。 有关 common 终结点的详细信息，请参阅[这篇博客文章](http://www.cloudidentity.com/blog/2014/08/26/the-common-endpoint-walks-like-a-tenant-talks-like-a-tenant-but-is-not-a-tenant/)。
+* **Authority**。 对于多租户应用程序，将此选项设置为 `https://login.microsoftonline.com/common/`。 这是 Azure AD common 终结点的 URL，允许用户从任何 Azure AD 租户登录。 有关 common 终结点的详细信息，请参阅[这篇博客文章](https://www.cloudidentity.com/blog/2014/08/26/the-common-endpoint-walks-like-a-tenant-talks-like-a-tenant-but-is-not-a-tenant/)。
 * 在 **TokenValidationParameters** 中，将 **ValidateIssuer** 设置为 false。 这意味着应用将负责验证 ID 令牌中的颁发者值。 （中间件仍然验证令牌本身。）有关验证颁发者的详细信息，请参阅[颁发者验证](claims.md#issuer-validation)。
 * **PostLogoutRedirectUri**。 指定用于在注销后重定向用户的 URL。这应当是允许匿名请求的页面 &mdash; 通常是主页。
 * **SignInScheme**。 将其设置为 `CookieAuthenticationDefaults.AuthenticationScheme`。 此设置意味着用户验证身份后，用户声明存储在本地 cookie 中。 使用此 cookie，用户可以在浏览器会话期间保持登录状态。

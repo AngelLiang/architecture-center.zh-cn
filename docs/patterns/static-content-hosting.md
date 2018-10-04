@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: deb15001bea2598d56a2793be78bbc3e7473bdf3
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 450d0c4c08098c1ba48e4c0dac3d058a46e3709b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541683"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428204"
 ---
 # <a name="static-content-hosting-pattern"></a>静态内容托管模式
 
@@ -40,7 +40,7 @@ Web 服务器已经过优化，可以通过高效且动态地执行页面代码�
 
 - 托管的存储服务必须公开一个 HTTP 终结点，供下载静态资源的用户访问。 某些存储服务也支持 HTTPS，因此可以将资源托管在需要 SSL 的存储服务中。
 
-- 为了尽量提高性能和可用性，可考虑使用内容交付网络 (CDN)，将存储容器的内容缓存在全球的多个数据中心。 但是，可能需要支付 CDN 使用费用。
+- 为了尽量提高性能和可用性，可考虑使用内容分发网络 (CDN)，将存储容器的内容缓存在全球的多个数据中心。 但是，可能需要支付 CDN 使用费用。
 
 - 通常情况下，存储帐户会默认进行异地复制，确保在发生可能影响某个数据中心的事件时能够复原。 这意味着，IP 地址可能会变，但 URL 会保持不变。
 
@@ -60,7 +60,7 @@ Web 服务器已经过优化，可以通过高效且动态地执行页面代码�
 
 - 公开在其他托管环境或本地服务器上运行的应用程序的静态资源和内容。
 
-- 通过内容交付网络将内容置于多个地理区域，该网络将存储帐户的内容缓存在全球的多个数据中心。
+- 通过内容分发网络将内容置于多个地理区域，该网络将存储帐户的内容缓存在全球的多个数据中心。
 
 - 监视成本和带宽使用情况。 使用单独的存储帐户来存储部分或全部静态内容，这样可以更容易地将此方面的成本与托管和运行时成本区分开来。
 
@@ -74,7 +74,7 @@ Web 服务器已经过优化，可以通过高效且动态地执行页面代码�
 
 位于 Azure Blob 存储中的静态内容可以直接通过 Web 浏览器来访问。 对于可以公开给客户端的存储，Azure 提供基于 HTTP 的界面。 例如，Azure Blob 存储容器中的内容使用以下形式的 URL 公开：
 
-`http://[ storage-account-name ].blob.core.windows.net/[ container-name ]/[ file-name ]`
+`https://[ storage-account-name ].blob.core.windows.net/[ container-name ]/[ file-name ]`
 
 
 上传内容时，需创建一个或多个 Blob 容器来存储文件和文档。 请注意，新容器的默认权限为“专用”，必须将其更改为“公用”，然后客户端才能访问其中的内容。 如果必须防止内容被匿名访问，可以实施[辅助密钥模式](valet-key.md)，使用户必须提供有效的令牌才能下载资源。
@@ -89,7 +89,7 @@ Web 服务器已经过优化，可以通过高效且动态地执行页面代码�
 交付给客户端的页面中的链接必须指定 Blob 容器和资源的完整 URL。 例如，包含公共容器中图像的链接的页面可能包含以下 HTML。
 
 ```html
-<img src="http://mystorageaccount.blob.core.windows.net/myresources/image1.png"
+<img src="https://mystorageaccount.blob.core.windows.net/myresources/image1.png"
      alt="My image" />
 ```
 
@@ -169,5 +169,4 @@ Views\Home 文件夹中的 Index.cshtml 文件包含的图像元素使用 `Stati
 
 - 演示此模式的示例可在 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting) 上找到。
 - [辅助密钥模式](valet-key.md)。 如果不应将目标资源提供给匿名用户，则需对静态内容所在的存储实施安全措施。 描述如何使用令牌或密钥，让客户端以受限直接访问方式访问特定资源或服务（例如云托管存储服务）。
-- Infosys 博客：[An efficient way of deploying a static web site on Azure](http://www.infosysblogs.com/microsoft/2010/06/an_efficient_way_of_deploying.html)（在 Azure 中高效部署静态网站）。
 - [Blob Service Concepts](https://msdn.microsoft.com/library/azure/dd179376.aspx)（Blob 服务概念）

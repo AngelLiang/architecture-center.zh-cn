@@ -3,12 +3,12 @@ title: 实现全面冗余
 description: 在应用程序中构建冗余，避免出现单一故障点。
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 0df9e0bded9b8719d43b9ba328c2de6a10b37f92
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 18f48ea37f90846e4d337819e6c897d56e472d49
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325455"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428034"
 ---
 # <a name="make-all-things-redundant"></a>实现全面冗余
 
@@ -46,7 +46,7 @@ ms.locfileid: "43325455"
 
 [multi-vm-blueprint]: ../../reference-architectures/virtual-machines-windows/multi-vm.md
 
-[cassandra]: http://cassandra.apache.org/
+[cassandra]: https://cassandra.apache.org/
 [cosmosdb-geo-replication]: /azure/cosmos-db/distribute-data-globally
 [sql-always-on]: https://msdn.microsoft.com/library/hh510230.aspx
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview

@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - messaging
-ms.openlocfilehash: 2c17504f594843c10fcfe221f0087f1087a73fb8
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: fd616676f9487bdfe1bf23b3d0fec6c65b97a8f4
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847101"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429564"
 ---
 # <a name="pipes-and-filters-pattern"></a>管道和筛选器模式
 
@@ -59,7 +59,7 @@ ms.locfileid: "30847101"
 
 - **可靠性**。 使用基础结构来确保管道中的筛选器之间流动的数据不会丢失。
 
-- **幂等性**。 如果管道中的筛选器在接收消息后失败，并且将工作重新安排给筛选器的另一个实例，则部分工作可能已经完成。 如果这项工作仅更新全局状态的一些方面（例如存储在数据库中的信息），则可以重复相同的更新。 如果筛选器在将其结果发布到管道中的下一个筛选器后失败，但在指示它已成功完成工作之前，则可能会发生类似的问题。 在这些情况下，相同的工作可能由筛选器的另一个实例重复执行，导致相同的结果发布两次。 这可能会导致管道中的后续筛选器对相同数据处理两次。 因此，应将管道中的筛选器设计为幂等的。 有关详细信息，请参阅 Jonathan Oliver 博客中的 [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/)（幂等模式）。
+- **幂等性**。 如果管道中的筛选器在接收消息后失败，并且将工作重新安排给筛选器的另一个实例，则部分工作可能已经完成。 如果这项工作仅更新全局状态的一些方面（例如存储在数据库中的信息），则可以重复相同的更新。 如果筛选器在将其结果发布到管道中的下一个筛选器后失败，但在指示它已成功完成工作之前，则可能会发生类似的问题。 在这些情况下，相同的工作可能由筛选器的另一个实例重复执行，导致相同的结果发布两次。 这可能会导致管道中的后续筛选器对相同数据处理两次。 因此，应将管道中的筛选器设计为幂等的。 有关详细信息，请参阅 Jonathan Oliver 博客中的 [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/)（幂等模式）。
 
 - **重复消息**。 如果管道中的筛选器在将消息发布到管道的下一阶段后失败，则可能会运行筛选器的另一个实例，并且它会将相同消息的副本发布到管道。 这可能会导致将相同消息的两个实例传递到下一个筛选器。 为了避免这种情况，管道应该检测和消除重复的消息。
 
@@ -282,4 +282,4 @@ public class FinalReceiverRoleEntry : RoleEntryPoint
 - [使用者竞争模式](competing-consumers.md)。 管道可以包含一个或多个筛选器的多个实例。 此方法可用于为速度缓慢的筛选器运行并行实例，使系统能够分散负载并提高吞吐量。 每个筛选器实例将与其他实例争用输入，筛选器的两个实例不能处理相同的数据。 提供此方法的说明。
 - [计算资源整合模式](compute-resource-consolidation.md)。 可以将应一起缩放的筛选器分组到同一进程中。 提供有关此策略的优点和缺点的详细信息。
 - [补偿事务模式](compensating-transaction.md)。 筛选器可以作为可逆转的操作、或在发生故障时会状态还原到先前版本的补偿操作来实现。 解释如何实现上述目的来维持或达到最终的一致性。
-- Jonathan Oliver 博客中的 [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/)（幂等模式）。
+- Jonathan Oliver 博客中的 [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/)（幂等模式）。

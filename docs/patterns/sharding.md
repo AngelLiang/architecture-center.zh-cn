@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: a4e35a19851f4742b5c154197c22bb1fe13de108
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: bc2b6aeb6966d14327a21849adbbfe635eae59df
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37091098"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428850"
 ---
 # <a name="sharding-pattern"></a>分片模式
 
@@ -219,6 +219,3 @@ Trace.TraceInformation("Fanout query complete - Record Count: {0}",
 - [Data Partitioning Guidance](https://msdn.microsoft.com/library/dn589795.aspx)（数据分区指南）。 对数据存储进行分片可能会引入一系列其他问题。 介绍与在云中对数据存储进行分区相关的这些问题，以提高可伸缩性、减少争用以及优化性能。
 - [索引表模式](index-table.md)。 有时无法只通过分片键的设计来完全支持查询。 通过指定分片键以外的键，使应用程序可以快速从大型数据存储检索数据。
 - [具体化视图模式](materialized-view.md)。 为了保持某些查询操作的性能，创建聚合和汇总数据的具体化视图会十分有用，尤其是在此摘要数据基于跨分片分布的信息时。 介绍如何生成和填充这些视图。
-- “提高简单性”博客上的[分片课程](http://www.addsimplicity.com/adding_simplicity_an_engi/2008/08/shard-lessons.html)。
-- CodeFutures 网站上的[数据库分片](http://dbshards.com/database-sharding/)。
-- Dare Obasanjo 博客上的[构建可缩放数据库：各种数据库分片方案的优缺点](http://www.25hoursaday.com/weblog/2009/01/16/BuildingScalableDatabasesProsAndConsOfVariousDatabaseShardingSchemes.aspx)。

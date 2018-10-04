@@ -1,5 +1,5 @@
 ---
-title: 让使用者竞争
+title: 使用者竞争
 description: 使多个并发使用者能够处理同一消息通道上收到的消息。
 keywords: 设计模式
 author: dragon119
@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
-ms.openlocfilehash: d72a09ef7613bebe3701634e4eac0716400e471d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: aea172dcdb33c0d8513fb69715f1549b4a20f5e6
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542403"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428359"
 ---
 # <a name="competing-consumers-pattern"></a>使用者竞争模式
 
@@ -48,7 +48,7 @@ ms.locfileid: "24542403"
 
 在决定如何实现此模式时，请考虑以下几点：
 
-- **消息排序**。 不能保证使用者服务实例接收消息的顺序，且不一定反映创建消息的顺序。 设计系统以确保消息处理是幂等的，因为这有助于消除对消息处理顺序的任何依赖。 有关详细信息，请参阅 Jonathon Oliver 博客中的 [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/)（幂等模式）。
+- **消息排序**。 不能保证使用者服务实例接收消息的顺序，且不一定反映创建消息的顺序。 设计系统以确保消息处理是幂等的，因为这有助于消除对消息处理顺序的任何依赖。 有关详细信息，请参阅 Jonathon Oliver 博客中的 [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/)（幂等模式）。
 
     > Microsoft Azure 服务总线队列可通过消息会话对消息执行保证的先进先出顺序。 有关详细信息，请参阅[使用会话的消息传送模式](https://msdn.microsoft.com/magazine/jj863132.aspx)。
 

@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - availability
 - management-monitoring
 - resiliency
-ms.openlocfilehash: 3b3bce46b460148af17bfe6064cd052a5f9a6458
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 22a4e47c4dd8dd3dd11a4238e859acbea49f9d1b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847843"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428969"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>运行状况终结点监视模式
 
@@ -52,7 +52,7 @@ ms.locfileid: "30847843"
 - 验证响应代码。 例如，HTTP 响应 200（正常）表示应用程序已做出响应且未出错。 监视系统可能还会检查其他响应代码以提供更全面的结果。
 - 即使返回了 200（正常）状态代码，也会检查响应内容以检测错误。 这可以检测仅影响所返回网页的某个部分或服务响应的错误。 例如，检查页面标题，或查找指示返回了正确页面的特定短语。
 - 测量响应时间，即网络延迟与应用程序执行请求所花费时间的合计。 如果值增大，则可能表示应用程序或网络正在出现问题。
-- 检查位于应用程序外部的资源或服务，例如应用程序用来交付全局缓存中的内容的内容交付网络。
+- 检查位于应用程序外部的资源或服务，例如应用程序用来分发全局缓存中的内容的内容分发网络。
 - 检查 SSL 证书过期时间。
 - 测量针对应用程序 URL 执行 DNS 查找所花费的响应时间，以测量 DNS 延迟和 DNS 故障。
 - 验证 DNS 查找返回的 URL 以确保条目正确。 这有助于避免恶意用户通过成功攻击 DNS 服务器进行请求重定向。
@@ -89,7 +89,7 @@ ms.locfileid: "30847843"
 
      >  DoS 攻击可能只对执行基本功能测试的独立终结点产生较小的影响，而不会影响应用程序的运行。 理想情况下，请避免使用可能透露敏感信息的测试。 如果必须返回可能对攻击者有用的信息，请考虑如何防范终结点和数据受到未经授权的访问。 在这种情况下，只是依靠模糊处理并不足够。 还应考虑使用 HTTPS 连接并加密所有敏感数据，尽管这会增大服务器的负载。
 
-- 如何访问使用身份验证保护的终结点。 并非所有工具和框架都可以配置为在运行状况验证请求中包含凭据。 例如，Microsoft Azure 内置的运行状况验证功能无法提供身份验证凭据。 某些第三方替代方案包括 [Pingdom](https://www.pingdom.com/)、[Panopta](http://www.panopta.com/)、[NewRelic](https://newrelic.com/) 和 [Statuscake](https://www.statuscake.com/)。
+- 如何访问使用身份验证保护的终结点。 并非所有工具和框架都可以配置为在运行状况验证请求中包含凭据。 例如，Microsoft Azure 内置的运行状况验证功能无法提供身份验证凭据。 某些第三方替代方案包括 [Pingdom](https://www.pingdom.com/)、[Panopta](https://www.panopta.com/)、[NewRelic](https://newrelic.com/) 和 [Statuscake](https://www.statuscake.com/)。
 
 - 如何确保监视代理正常运行。 一种方法是公开一个只返回应用程序配置中的值，或者返回可用于测试代理的随机值的终结点。
 

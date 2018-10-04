@@ -3,12 +3,12 @@ title: 选择数据存储技术
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: b14611a2dc34bcb145cf420441795d4124e7baeb
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 496df68024aef0dcf030bb7e0138639610aa8a79
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847203"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429343"
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>在 Azure 中选择大数据存储技术
 
@@ -26,7 +26,7 @@ ms.locfileid: "30847203"
 **NoSQL 数据库**
 
 - [Azure Cosmos DB](/azure/cosmos-db/)
-- [HDInsight 上的 HBase](http://hbase.apache.org/)
+- [HDInsight 上的 HBase](https://hbase.apache.org/)
 
 ## <a name="azure-storage-blobs"></a>Azure 存储 Blob
 
@@ -69,7 +69,7 @@ Azure Cosmos DB 功能：
 
 ## <a name="hbase-on-hdinsight"></a>HDInsight 上的 HBase
 
-[Apache HBase](http://hbase.apache.org/) 是一种开源 NoSQL 数据库，它构建于 Hadoop 基础之上，并基于 Google BigTable 模型化。 HBase 针对按列系列组织的无架构数据库中的大量非结构化和结构化数据提供随机访问和强一致性。
+[Apache HBase](https://hbase.apache.org/) 是一种开源 NoSQL 数据库，它构建于 Hadoop 基础之上，并基于 Google BigTable 模型化。 HBase 针对按列系列组织的无架构数据库中的大量非结构化和结构化数据提供随机访问和强一致性。
 
 数据存储在表的各行中，行中的数据按列系列分组。 HBase 是无架构数据库，也就是说，在使用其数据前，不必定义列以及列中存储的数据类型。 开放源代码可进行线性伸缩，以处理上千节点上数 PB 的数据。 开放源代码可依赖数据冗余、批处理以及 Hadoop 生态系统中的分布式应用程序提供的其他功能。
 
@@ -114,7 +114,7 @@ Azure Cosmos DB 功能：
 |------------------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
 |       主数据库模型       |                      文档存储、图形、键-值存储、宽列存储                      |                                                             宽列存储                                                              |
 |         辅助索引          |                                                 是                                                 |                                                                     否                                                                     |
-|        SQL 语言支持        |                                                 是                                                 |                                     是（使用 [Phoenix](http://phoenix.apache.org/) JDBC 驱动程序）                                      |
+|        SQL 语言支持        |                                                 是                                                 |                                     是（使用 [Phoenix](https://phoenix.apache.org/) JDBC 驱动程序）                                      |
 |            一致性             |                   非常、有限过期、会话、一致前缀或最终                   |                                                                   非常                                                                   |
 | 本机 Azure Functions 集成 |                        [是](/azure/cosmos-db/serverless-computing-database)                        |                                                                     否                                                                     |
 |   自动全局分发    |                          [是](/azure/cosmos-db/distribute-data-globally)                           | 使用最终一致性时，无法跨区域[配置 HBase 群集复制](/azure/hdinsight/hbase/apache-hbase-replication) |

@@ -4,12 +4,12 @@ description: Azure 资源的命名约定。 如何命名虚拟机、存储帐户
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 625f672c80b0256e93932b72367768f37c1e72f4
-ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
+ms.openlocfilehash: 96402b86b9dc0c57599aae585b41d0d03581c333
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/19/2018
-ms.locfileid: "46329872"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429649"
 ---
 # <a name="naming-conventions"></a>命名约定
 
@@ -176,7 +176,7 @@ Azure 资源管理器支持使用任意文本字符串标记实体，以标识�
 
 可以配置自定义域名以便访问 Azure 存储帐户中的 Blob 数据。 BLOB 服务的默认终结点是 https://\<name\>.blob.core.windows.net。
 
-但是如果将自定义域（如 www.contoso.com）映射到存储帐户的 Blob 终结点，则用户也可以使用该域访问存储帐户中的 Blob 数据。 例如，对于自定义域名，`http://mystorage.blob.core.windows.net/mycontainer/myblob` 可以作为 `http://www.contoso.com/mycontainer/myblob` 访问。
+但是如果将自定义域（如 www.contoso.com）映射到存储帐户的 Blob 终结点，则用户也可以使用该域访问存储帐户中的 Blob 数据。 例如，对于自定义域名，`https://mystorage.blob.core.windows.net/mycontainer/myblob` 可以作为 `https://www.contoso.com/mycontainer/myblob` 访问。
 
 有关配置此功能的详细信息，请参阅[为 Blob 存储终结点配置自定义域名](/azure/storage/storage-custom-domain-name/)。
 

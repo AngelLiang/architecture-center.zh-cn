@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
-ms.openlocfilehash: 6e05a30245fbf5183a4e50a54650505f5a5f2aa8
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: bd212b8b4406a08058f811db030843f732e08cdc
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252918"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428833"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>计算资源合并模式
 
@@ -85,7 +85,7 @@ ms.locfileid: "35252918"
 
 在 Azure 上构建云服务时，可以将多个任务执行的处理合并到单个角色。 通常，这是执行后台或异步处理任务的辅助角色。
 
-> 在某些情况下，可以在 Web 角色中包含后台或异步处理任务。 此方法可帮助降低成本和简化部署，尽管它可能会影响 Web 角色提供的面向公众的接口的可伸缩性和响应能力。 [将多个 Azure 辅助角色合并到 Azure Web 角色](http://www.31a2ba2a-b718-11dc-8314-0800200c9a66.com/2012/02/combining-multiple-azure-worker-roles.html)一文包含在 Web 角色中实现后台或异步处理任务的详细说明。
+> 在某些情况下，可以在 Web 角色中包含后台或异步处理任务。 此方法可帮助降低成本和简化部署，尽管它可能会影响 Web 角色提供的面向公众的接口的可伸缩性和响应能力。 
 
 角色负责启动和停止任务。 当 Azure 结构控制器加载角色时，它会对角色引发 `Start` 事件。 可以替代 `WebRole` 或 `WorkerRole` 类的 `OnStart` 方法以处理此事件，这可能是为了初始化此方法中的任务所依赖的数据和其他资源。
 

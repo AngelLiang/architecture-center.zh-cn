@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: 9a0bf170c9b54c3b2ee9cc91d6dcb5c55a13b96a
-ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
+ms.openlocfilehash: 1cb63b61f5eb97726e266f797dfe13011907c95f
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/17/2018
-ms.locfileid: "29963204"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429326"
 ---
 # <a name="event-sourcing-pattern"></a>事件溯源模式
 
@@ -82,7 +82,7 @@ CRUD 方法具有一些限制：
 
 读取事件以获取信息并没有标准方法或现有机制，例如 SQL 查询。 可提取的唯一数据是将事件标识符用作条件的事件流。 事件 ID 通常会映射到各个实体。 仅可根据实体原始状态通过重播与其关联的所有事件来确定实体的当前状态。
 
-每个事件流的长度会影响管理和更新系统。 如果是大型流，请考虑按特定间隔（例如指定数量的事件）创建快照。 可通过快照和重播此时间点后发生的事件获取实体的当前状态。 有关创建数据快照的详细信息，请参阅 [Martin Fowler 的企业应用程序体系结构网站上的快照](http://martinfowler.com/eaaDev/Snapshot.html)和 [Master-Subordinate Snapshot Replication](https://msdn.microsoft.com/library/ff650012.aspx)（主从关系快照复制）。
+每个事件流的长度会影响管理和更新系统。 如果是大型流，请考虑按特定间隔（例如指定数量的事件）创建快照。 可通过快照和重播此时间点后发生的事件获取实体的当前状态。 有关创建数据快照的详细信息，请参阅 [Martin Fowler 的企业应用程序体系结构网站上的快照](https://martinfowler.com/eaaDev/Snapshot.html)和 [Master-Subordinate Snapshot Replication](https://msdn.microsoft.com/library/ff650012.aspx)（主从关系快照复制）。
 
 即使事件溯源会最大程度降低数据更新冲突的可能性，应用程序仍必须能够处理由最终一致性和缺少事务引起的不一致性。 例如，在指示存货减少的事件到达数据存储时，客户可能正在对该商品下订单，这会导致需要在这两个操作之间作出协调，即通知客户或创建延期交付订单。
 
@@ -162,5 +162,3 @@ CRUD 方法具有一些限制：
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx)（数据一致性入门）。 将事件溯源用于单独的读取存储或具体化视图时，读取数据不会立即一致，而是仅为最终一致。 总结有关保持分布式数据一致性的问题。
 
 - [Data Partitioning Guidance](https://msdn.microsoft.com/library/dn589795.aspx)（数据分区指南）。 使用事件溯源时通常进行数据分区，以提高可伸缩性、减少争用和优化性能。 介绍如何将数据划分到离散分区以及可能出现的问题。
-
-- Greg Young 的帖子[Why use Event Sourcing?](http://codebetter.com/gregyoung/2010/02/20/why-use-event-sourcing/)（为何要使用事件溯源？）。

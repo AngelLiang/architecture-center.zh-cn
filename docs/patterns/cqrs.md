@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: c2832aa806909c6f0aab8b6345ffb8162eb59903
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.openlocfilehash: 9a2eecdff7494fb627ea5c4655e6edc789bd5bdf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "33811043"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429683"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>命令和查询责任分离 (CQRS) 模式
 
@@ -248,8 +248,6 @@ public interface IProductsDomain
 
 - [具体化视图模式](materialized-view.md)。 CQRS 实现的读取模型可包含写入模型数据的具体化视图，或该读取模型可用于生成具体化视图。
 
-- 模式与实践指南 [CQRS Journey](http://aka.ms/cqrs)（CQRS 之旅）。 具体而言，[查询责任分离模式命令简介](https://msdn.microsoft.com/library/jj591573.aspx)探讨了模式及其适用性，[尾声：学到的经验教训](https://msdn.microsoft.com/library/jj591568.aspx)介绍使用此模式时会遇到的一些问题。
+- 模式与实践指南 [CQRS Journey](https://aka.ms/cqrs)（CQRS 之旅）。 具体而言，[查询责任分离模式命令简介](https://msdn.microsoft.com/library/jj591573.aspx)探讨了模式及其适用性，[尾声：学到的经验教训](https://msdn.microsoft.com/library/jj591568.aspx)介绍使用此模式时会遇到的一些问题。
 
-- [Martin Fowler 发布的 CQRS](http://martinfowler.com/bliki/CQRS.html) 文章介绍了该模式的基础以及获取其他有用资源的链接。
-
-- [Greg Young 的文章](http://codebetter.com/gregyoung/)从多方面介绍了 CQRS 模式。
+- [Martin Fowler 发布的 CQRS](https://martinfowler.com/bliki/CQRS.html) 文章介绍了该模式的基础以及获取其他有用资源的链接。

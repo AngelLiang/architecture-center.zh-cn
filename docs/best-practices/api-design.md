@@ -4,12 +4,12 @@ description: 有关如何创建合理设计的 Web API 的指南。
 author: dragon119
 ms.date: 01/12/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: 68ed3f59e1fd63ae754ceabf27a182daa0de0e5d
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: 1bd53a7ccc54d086978891f1df5fdc2e25a5d638
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016098"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429362"
 ---
 # <a name="api-design"></a>API 设计
 
@@ -34,7 +34,7 @@ ms.locfileid: "43016098"
 - 每个资源有一个标识符，即，唯一标识该资源的 URI。 例如，特定客户订单的 URI 可能是： 
  
     ```http
-    http://adventure-works.com/orders/1
+    https://adventure-works.com/orders/1
     ```
  
 - 客户端通过交换资源的表示形式来与服务交互。 许多 Web API 使用 JSON 作为交换格式。 例如，对上面所列的 URI 发出 GET 请求可能返回以下响应正文：
@@ -56,8 +56,8 @@ ms.locfileid: "43016098"
         "quantity":4,
         "orderValue":16.60,
         "links": [
-            {"rel":"product","href":"http://adventure-works.com/customers/3", "action":"GET" },
-            {"rel":"product","href":"http://adventure-works.com/customers/3", "action":"PUT" } 
+            {"rel":"product","href":"https://adventure-works.com/customers/3", "action":"GET" },
+            {"rel":"product","href":"https://adventure-works.com/customers/3", "action":"PUT" } 
         ]
     } 
     ```
@@ -77,9 +77,9 @@ ms.locfileid: "43016098"
 侧重于 Web API 公开的业务实体。 例如，在电子商务系统中，主实体可能是客户和订单。 可以通过发送包含订单信息的 HTTP POST 请求来创建订单。 HTTP 响应指示下单是否成功。 如果可能，资源 URI 应基于名词（资源）而不是动词（对资源执行的操作）。 
 
 ```HTTP
-http://adventure-works.com/orders // Good
+https://adventure-works.com/orders // Good
 
-http://adventure-works.com/create-order // Avoid
+https://adventure-works.com/create-order // Avoid
 ```
 
 资源无需基于单个物理数据项。 例如，订单资源可以在内部实现为关系数据库中的多个表，但以单个实体的形式提供给客户端。 避免创建反映数据库内部结构的 API。 REST 旨在为实体建模，以及为应用程序可对这些实体执行的操作建模。 不应将内部实现公开给客户端。
@@ -87,7 +87,7 @@ http://adventure-works.com/create-order // Avoid
 实体通常分组成集合（订单、客户）。 集合是不同于集合中的子项的资源，应具有自身的 URI。 例如，以下 URI 可以表示订单集合： 
 
 ```HTTP
-http://adventure-works.com/orders
+https://adventure-works.com/orders
 ```
 
 向集合 URI 发送 HTTP GET 请求可检索集合中的子项列表。 集合中的每个子项也有自身的唯一 URI。 对子项的 URI 发出 HTTP GET 请求会返回该子项的详细信息。  
@@ -148,7 +148,7 @@ PUT 请求必须是幂等的。 如果客户端多次提交同一个 PUT 请求�
 请求或响应中的 Content-Type 标头指定表示形式的格式。 下面是包含 JSON 数据的 POST 请求示例：
 
 ```HTTP
-POST http://adventure-works.com/orders HTTP/1.1
+POST https://adventure-works.com/orders HTTP/1.1
 Content-Type: application/json; charset=utf-8
 Content-Length: 57
 
@@ -160,7 +160,7 @@ Content-Length: 57
 客户端请求可以包含一个 Accept 标头，该标头包含客户端可以接受的、来自服务器的响应消息中的媒体类型列表。 例如：
 
 ```HTTP
-GET http://adventure-works.com/orders/2 HTTP/1.1
+GET https://adventure-works.com/orders/2 HTTP/1.1
 Accept: application/json
 ```
 
@@ -273,7 +273,7 @@ API 可以允许在 URI 的查询字符串中传递筛选器，例如 */orders?m
 /orders?limit=25&offset=50
 ```
 
-此外，请考虑对返回的项数指定上限，以防拒绝服务攻击。 若要帮助客户端应用程序，返回分页数据的 GET 请求还应包含某种形式的元数据，以指示集合中可用的资源总数。 也许还可以考虑其他智能分页策略；有关详细信息，请参阅 [API Design Notes: Smart Paging](http://bizcoder.com/api-design-notes-smart-paging)（API 设计说明：智能分页）
+此外，请考虑对返回的项数指定上限，以防拒绝服务攻击。 若要帮助客户端应用程序，返回分页数据的 GET 请求还应包含某种形式的元数据，以指示集合中可用的资源总数。 
 
 可以通过提供一个将字段名称用作值的 soft 参数（例如 */orders?sort=ProductID*），使用类似的策略对提取的数据排序。 但是，此方法会对缓存产生负面影响，因为查询字符串参数构成许多缓存实现用作缓存数据的键的资源标识符的一部分。
 
@@ -288,7 +288,7 @@ API 可以允许在 URI 的查询字符串中传递筛选器，例如 */orders?m
 此外，请考虑对这些资源实现 HTTP HEAD 请求。 HEAD 请求与 GET 请求类似，不过，前者只返回描述资源的 HTTP 标头和空消息正文。 客户端应用程序可以发出 HEAD 请求以确定是否要通过使用部分 GET 请求获取某个资源。 例如：
 
 ```HTTP
-HEAD http://adventure-works.com/products/10?fields=productImage HTTP/1.1
+HEAD https://adventure-works.com/products/10?fields=productImage HTTP/1.1
 ```
 
 下面是响应消息的示例： 
@@ -304,7 +304,7 @@ Content-Length: 4580
 Content-Length 标头指定资源的总大小，Accept-Ranges 标头指示相应的 GET 操作支持部分结果。 客户端应用程序可以使用此信息以较小的区块检索图像。 第一个请求通过使用 Range 标头提取前 2500 个字节：
 
 ```HTTP
-GET http://adventure-works.com/products/10?fields=productImage HTTP/1.1
+GET https://adventure-works.com/products/10?fields=productImage HTTP/1.1
 Range: bytes=0-2499
 ```
 
@@ -343,44 +343,44 @@ REST 背后的主要动机之一是它应能够导航整个资源集，而无需
   "links":[
     {
       "rel":"customer",
-      "href":"http://adventure-works.com/customers/3", 
+      "href":"https://adventure-works.com/customers/3", 
       "action":"GET",
       "types":["text/xml","application/json"] 
     },
     {
       "rel":"customer",
-      "href":"http://adventure-works.com/customers/3", 
+      "href":"https://adventure-works.com/customers/3", 
       "action":"PUT",
       "types":["application/x-www-form-urlencoded"]
     },
     {
       "rel":"customer",
-      "href":"http://adventure-works.com/customers/3",
+      "href":"https://adventure-works.com/customers/3",
       "action":"DELETE",
       "types":[]
     },
     {
       "rel":"self",
-      "href":"http://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3", 
       "action":"GET",
       "types":["text/xml","application/json"]
     },
     {
       "rel":"self",
-      "href":"http://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3", 
       "action":"PUT",
       "types":["application/x-www-form-urlencoded"]
     },
     {
       "rel":"self",
-      "href":"http://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3", 
       "action":"DELETE",
       "types":[]
     }]
 }
 ```
 
-在此示例中，`links` 数组包含一组链接。 每个链接表示可对相关实体执行的操作。 每个链接的数据包含关系 ("customer")、URI (`http://adventure-works.com/customers/3`)、HTTP 方法和支持的 MIME 类型。 这是客户端应用程序在调用操作时所需的全部信息。 
+在此示例中，`links` 数组包含一组链接。 每个链接表示可对相关实体执行的操作。 每个链接的数据包含关系 ("customer")、URI (`https://adventure-works.com/customers/3`)、HTTP 方法和支持的 MIME 类型。 这是客户端应用程序在调用操作时所需的全部信息。 
 
 `links` 数组还包含有关已检索的资源本身的自引用信息。 这些链接包含关系 *self*。
 
@@ -395,7 +395,7 @@ Web API 一直保持静态的可能性很小。 随着业务需求变化，可�
 ### <a name="no-versioning"></a>无版本控制
 这是最简单的方法，它对于一些内部 API 来说可能是可以接受的。 较大的更改可以表示为新资源或新链接。  向现有资源添加内容可能未呈现重大更改，因为不应查看此内容的客户端应用程序将直接忽略它。
 
-例如，向 URI *http://adventure-works.com/customers/3* 发出请求应返回包含客户端应用程序所需的 `id`、`name` 和 `address` 字段的单个客户的详细信息：
+例如，向 URI *https://adventure-works.com/customers/3* 发出请求应返回包含客户端应用程序所需的 `id`、`name` 和 `address` 字段的单个客户的详细信息：
 
 ```HTTP
 HTTP/1.1 200 OK
@@ -423,7 +423,7 @@ Content-Type: application/json; charset=utf-8
 ### <a name="uri-versioning"></a>URI 版本控制
 每次修改 Web API 或更改资源的架构时，向每个资源的 URI 添加版本号。 以前存在的 URI 应像以前一样继续运行，并返回符合原始架构的资源。
 
-继续前面的示例，如果将 `address` 字段重构为包含地址的每个构成部分的子字段（例如 `streetAddress`、`city`、`state` 和 `zipCode`），则此版本的资源可通过包含版本号的 URI（如 http://adventure-works.com/v2/customers/3:）公开：
+继续前面的示例，如果将 `address` 字段重构为包含地址的每个构成部分的子字段（例如 `streetAddress`、`city`、`state` 和 `zipCode`），则此版本的资源可通过包含版本号的 URI（如 https://adventure-works.com/v2/customers/3:）公开：
 
 ```HTTP
 HTTP/1.1 200 OK
@@ -435,7 +435,7 @@ Content-Type: application/json; charset=utf-8
 此版本控制机制非常简单，但依赖于将请求路由到相应终结点的服务器。 但是，随着 Web API 经过多次迭代而变得成熟，服务器必须支持多个不同版本，它可能变得难以处理。 此外，从单纯的角度来看，在所有情况下客户端应用程序都要提取相同数据（客户 3），因此 URI 实在不应该因版本而有所不同。 此方案也增加了 HATEOAS 实现的复杂性，因为所有链接都需要在其 URI 中包括版本号。
 
 ### <a name="query-string-versioning"></a>查询字符串版本控制
-不是提供多个 URI，而是可以通过在追加到 HTTP 请求后面的查询字符串中使用参数来指定资源的版本，例如 *http://adventure-works.com/customers/3?version=2* 。 如果 version 参数被较旧的客户端应用程序省略，则应默认为有意义的值（例如 1）。
+不是提供多个 URI，而是可以通过在追加到 HTTP 请求后面的查询字符串中使用参数来指定资源的版本，例如 *https://adventure-works.com/customers/3?version=2* 。 如果 version 参数被较旧的客户端应用程序省略，则应默认为有意义的值（例如 1）。
 
 此方法具有语义优势（即，同一资源始终从同一 URI 进行检索），但它依赖于代码处理请求以分析查询字符串并发送回相应的 HTTP 响应。 此方法也与 URI 版本控制机制一样，增加了实现 HATEOAS 的复杂性。
 
@@ -450,7 +450,7 @@ Content-Type: application/json; charset=utf-8
 版本 1：
 
 ```HTTP
-GET http://adventure-works.com/customers/3 HTTP/1.1
+GET https://adventure-works.com/customers/3 HTTP/1.1
 Custom-Header: api-version=1
 ```
 
@@ -464,7 +464,7 @@ Content-Type: application/json; charset=utf-8
 版本 2：
 
 ```HTTP
-GET http://adventure-works.com/customers/3 HTTP/1.1
+GET https://adventure-works.com/customers/3 HTTP/1.1
 Custom-Header: api-version=2
 ```
 
@@ -481,7 +481,7 @@ Content-Type: application/json; charset=utf-8
 如本指南前面所述，当客户端应用程序向 Web 服务器发送 HTTP GET 请求时，它应使用 Accept 标头规定它可以处理的内容的格式。 通常，*Accept* 标头的用途是允许客户端应用程序指定响应的正文应是 XML、JSON 还是客户端可以分析的其他某种常见格式。 但是，可以定义包括以下信息的自定义媒体类型：该信息使客户端应用程序可以指示它所需的资源版本。 下面的示例演示了将 *Accept* 标头指定为值 *application/vnd.adventure-works.v1+json* 的请求。 *vnd.adventure-works.v1* 元素向 Web 服务器指示它应返回资源的版本 1，而 *json* 元素则指定响应正文的格式应为 JSON：
 
 ```HTTP
-GET http://adventure-works.com/customers/3 HTTP/1.1
+GET https://adventure-works.com/customers/3 HTTP/1.1
 Accept: application/vnd.adventure-works.v1+json
 ```
 
@@ -516,6 +516,5 @@ Content-Type: application/vnd.adventure-works.v1+json; charset=utf-8
 
 ## <a name="more-information"></a>详细信息
 * [Microsoft REST API 准则](https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md)。 有关设计公共 REST API 的详细建议。
-* [REST 指南](http://restcookbook.com/)。 有关构建 RESTful API 的介绍。
 * [Web API 核对清单](https://mathieu.fenniak.net/the-api-checklist/)。 设计和实现 Web API 时要考虑的有用事项列表。
 * [开放式 API 计划](https://www.openapis.org/)。 有关开放式 API 的文档和实施详细信息。

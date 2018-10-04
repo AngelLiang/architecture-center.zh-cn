@@ -3,13 +3,13 @@ title: 订阅治理方案与示例
 description: 提供示例，解释如何针对常见方案实施 Azure 订阅监管。
 author: rdendtler
 ms.date: 01/03/2017
-ms.author: rodend;karlku;tomfitz
-ms.openlocfilehash: 2c10b9a61be0cd7dadff6bfb327d938cc498c935
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.author: rodend
+ms.openlocfilehash: 51be0e1cdbcb3258102c9e4a4790764cada98d1e
+ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43327515"
+ms.lasthandoff: 10/03/2018
+ms.locfileid: "48243659"
 ---
 # <a name="examples-of-implementing-azure-enterprise-scaffold"></a>实施 Azure 企业基架的示例
 本文通过示例介绍企业如何实施 [Azure 企业基架](azure-scaffold.md)的建议事项。 其中使用一家虚构公司 Contoso 来演示常见方案的最佳实践。

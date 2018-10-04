@@ -4,12 +4,12 @@ description: 有关如何实现 API 的指南。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: cc28864de36afdeed2f8a7155a307e312c3a398e
-ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
+ms.openlocfilehash: fff377d347ce93e9fb83fff1f5a44fe1c7b4dbea
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/05/2018
-ms.locfileid: "27596013"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429394"
 ---
 # <a name="api-implementation"></a>API 实现
 
@@ -24,7 +24,7 @@ ms.locfileid: "27596013"
 实现这些请求的代码不应施加任何副作用。 对同一资源重复进行同一请求应导致同一状态。 例如，将多个 DELETE 请求发送到同一 URI 应产生相同的效果，尽管响应消息中的 HTTP 状态代码可能有所不同。 第一个 DELETE 请求可能返回状态代码 204（无内容），而接下来的 DELETE 请求则可能返回状态代码 404（未找到）。
 
 > [!NOTE]
-> Jonathan Oliver 博客上的 [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/)（幂等性模式）一文概述了幂等性以及它如何与数据管理操作相关。
+> Jonathan Oliver 博客上的 [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/)（幂等性模式）一文概述了幂等性以及它如何与数据管理操作相关。
 >
 
 ### <a name="post-actions-that-create-new-resources-should-not-have-unrelated-side-effects"></a>创建新资源的 POST 操作不应具有不相关的副作用
@@ -35,7 +35,7 @@ ms.locfileid: "27596013"
 
 支持对资源集合发出 POST、PUT 和 DELETE 请求。 POST 请求可以包含多个新资源的详细信息并将这些资源全都添加到同一个集合，PUT 请求可以替换集合中的整个资源集，DELETE 请求可以删除整个集合。
 
-ASP.NET Web API 2 中包含的 OData 支持提供了成批处理请求的功能。 客户端应用程序可以打包多个 Web API 请求并通过单个 HTTP 请求将其发送给服务器，然后接收包含每个请求的答复的单个 HTTP 响应。 有关详细信息，请参阅 [Introducing Batch Support in Web API and Web API OData](http://blogs.msdn.com/b/webdev/archive/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata.aspx)（Web API 和 Web API OData 中的批处理支持简介）。
+ASP.NET Web API 2 中包含的 OData 支持提供了成批处理请求的功能。 客户端应用程序可以打包多个 Web API 请求并通过单个 HTTP 请求将其发送给服务器，然后接收包含每个请求的答复的单个 HTTP 响应。 有关详细信息，请参阅 [Introducing Batch Support in Web API and Web API OData](https://blogs.msdn.microsoft.com/webdev/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata/)（Web API 和 Web API OData 中的批处理支持简介）。
 
 ### <a name="follow-the-http-specification-when-sending-a-response"></a>发送响应时请按照 HTTP 规范操作 
 
@@ -56,7 +56,7 @@ HATEOAS 方法使客户端能够从初始的起点导航和发现资源。 这�
 当前没有控制 HATEOAS 的实现的标准，但下面的示例说明了一种可行方法。 在此示例中，用于查找客户的详细信息的 HTTP GET 请求返回一个响应，其中包括引用该客户的订单的 HATEOAS 链接：
 
 ```HTTP
-GET http://adventure-works.com/customers/2 HTTP/1.1
+GET https://adventure-works.com/customers/2 HTTP/1.1
 Accept: text/json
 ...
 ```
@@ -69,23 +69,23 @@ Content-Type: application/json; charset=utf-8
 Content-Length: ...
 {"CustomerID":2,"CustomerName":"Bert","Links":[
     {"rel":"self",
-    "href":"http://adventure-works.com/customers/2",
+    "href":"https://adventure-works.com/customers/2",
     "action":"GET",
     "types":["text/xml","application/json"]},
     {"rel":"self",
-    "href":"http://adventure-works.com/customers/2",
+    "href":"https://adventure-works.com/customers/2",
     "action":"PUT",
     "types":["application/x-www-form-urlencoded"]},
     {"rel":"self",
-    "href":"http://adventure-works.com/customers/2",
+    "href":"https://adventure-works.com/customers/2",
     "action":"DELETE",
     "types":[]},
     {"rel":"orders",
-    "href":"http://adventure-works.com/customers/2/orders",
+    "href":"https://adventure-works.com/customers/2/orders",
     "action":"GET",
     "types":["text/xml","application/json"]},
     {"rel":"orders",
-    "href":"http://adventure-works.com/customers/2/orders",
+    "href":"https://adventure-works.com/customers/2/orders",
     "action":"POST",
     "types":["application/x-www-form-urlencoded"]}
 ]}
@@ -120,11 +120,11 @@ HTTP GET 操作从存储中检索客户数据并构造 `Customer` 对象，并�
 
 HTTP 响应的示例中所示的 HATEOAS 链接指示客户端应用程序可以执行以下操作：
 
-* 向 URI `http://adventure-works.com/customers/2` 发出 HTTP GET 请求以提取客户的详细信息（再次）。 数据可以 XML 或 JSON 格式返回。
-* 向 URI `http://adventure-works.com/customers/2` 发出 HTTP PUT 请求以修改客户的详细信息。 必须在请求消息中以 x-www-form-urlencoded 格式提供新数据。
-* 向 URI `http://adventure-works.com/customers/2` 发出 HTTP DELETE 请求以删除客户。 该请求不需要任何其他信息，也不需要在响应消息正文中返回数据。
-* 向 URI `http://adventure-works.com/customers/2/orders` 发出 HTTP GET 请求以查找客户的所有订单。 数据可以 XML 或 JSON 格式返回。
-* 向 URI `http://adventure-works.com/customers/2/orders` 发出 HTTP PUT 请求以为此客户创建新订单。 必须在请求消息中以 x-www-form-urlencoded 格式提供数据。
+* 向 URI `https://adventure-works.com/customers/2` 发出 HTTP GET 请求以提取客户的详细信息（再次）。 数据可以 XML 或 JSON 格式返回。
+* 向 URI `https://adventure-works.com/customers/2` 发出 HTTP PUT 请求以修改客户的详细信息。 必须在请求消息中以 x-www-form-urlencoded 格式提供新数据。
+* 向 URI `https://adventure-works.com/customers/2` 发出 HTTP DELETE 请求以删除客户。 该请求不需要任何其他信息，也不需要在响应消息正文中返回数据。
+* 向 URI `https://adventure-works.com/customers/2/orders` 发出 HTTP GET 请求以查找客户的所有订单。 数据可以 XML 或 JSON 格式返回。
+* 向 URI `https://adventure-works.com/customers/2/orders` 发出 HTTP PUT 请求以为此客户创建新订单。 必须在请求消息中以 x-www-form-urlencoded 格式提供数据。
 
 ## <a name="handling-exceptions"></a>处理异常
 
@@ -132,7 +132,7 @@ HTTP 响应的示例中所示的 HATEOAS 链接指示客户端应用程序可以
 
 ### <a name="capture-exceptions-and-return-a-meaningful-response-to-clients"></a>捕获异常并向客户端返回有意义的响应
 
-实现 HTTP 操作的代码应提供全面的异常处理，而不是让未捕获的异常传播到框架。 如果异常会导致无法成功完成此操作，则可以在响应消息中传递回此异常，但它应包括导致异常的错误的有意义描述。 该异常还应包括相应的 HTTP 状态代码，而不是对于每种情况都只返回状态代码 500。 例如，如果用户请求导致了违反约束的数据库更新（例如，尝试删除具有未完成订单的客户），则应返回状态代码 409（冲突）和指示冲突原因的消息正文。 如果某种其他情况显示请求无法完成，则可以返回状态代码 400（错误请求）。 可以在 W3C 网站上的 [Status Code Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)（状态代码定义）页中找到 HTTP 状态代码的完整列表。
+实现 HTTP 操作的代码应提供全面的异常处理，而不是让未捕获的异常传播到框架。 如果异常会导致无法成功完成此操作，则可以在响应消息中传递回此异常，但它应包括导致异常的错误的有意义描述。 该异常还应包括相应的 HTTP 状态代码，而不是对于每种情况都只返回状态代码 500。 例如，如果用户请求导致了违反约束的数据库更新（例如，尝试删除具有未完成订单的客户），则应返回状态代码 409（冲突）和指示冲突原因的消息正文。 如果某种其他情况显示请求无法完成，则可以返回状态代码 400（错误请求）。 可以在 W3C 网站上的 [Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)（状态代码定义）页中找到 HTTP 状态代码的完整列表。
 
 代码示例捕获不同条件并返回相应响应。
 
@@ -198,7 +198,7 @@ HTTP 协议可区分因客户端应用程序发生的错误（HTTP 4xx 状态代
 HTTP 1.1 协议支持在客户端和中间服务器中缓存，请求通过这些客户端和服务器使用 Cache-Control 标头进行路由。 当客户端应用程序向 Web API 发送 HTTP GET 请求时，响应可以包含 Cache-Control 标头，以指示响应的正文中的数据是否可以由通过其路由该请求的客户端或中间服务器安全地缓存，以及多长时间之后应失效并视为过期。 下面的示例演示了 HTTP GET 请求和包含 Cache-Control 标头的相应响应：
 
 ```HTTP
-GET http://adventure-works.com/orders/2 HTTP/1.1
+GET https://adventure-works.com/orders/2 HTTP/1.1
 ```
 
 ```HTTP
@@ -339,7 +339,7 @@ Content-Length: ...
 * 客户端构造 GET 请求，该请求包含 If-None-Match HTTP 标头中引用的资源的当前缓存版本的 ETag：
 
     ```HTTP
-    GET http://adventure-works.com/orders/2 HTTP/1.1
+    GET https://adventure-works.com/orders/2 HTTP/1.1
     If-None-Match: "2147483648"
     ```
 * Web API 中的 GET 操作获取所请求数据的当前 ETag（上面示例中的订单 2），并将其与 If-None-Match 标头中的值进行比较。
@@ -349,7 +349,7 @@ Content-Length: ...
 * 客户端使用状态代码来维护缓存。 如果数据尚未更改（状态代码 304），则对象可保持缓存，并且客户端应用程序应继续使用此版本的对象。 如果数据已更改（状态代码 200），则应放弃缓存的对象，并插入新对象。 如果数据不再可用（状态代码 404），则应从缓存中删除该对象。
 
 > [!NOTE]
-> 如果响应标头包含的 Cache-Control 标头为 no-store，则应始终从缓存中删除对象，而不考虑 HTTP 状态代码。
+> 如果响应标头包含 Cache-Control 标头 no-store，则应始终从缓存中删除对象，而不考虑 HTTP 状态代码。
 >
 
 下面的代码显示了已扩展为支持 If-None-Match 标头的 `FindOrderByID` 方法。 请注意，如果省略 If-None-Match 标头，则始终检索指定的订单：
@@ -452,14 +452,14 @@ public class EmptyResultWithCaching : IHttpActionResult
 * 客户端构造 PUT 请求，该请求包含资源的新详细信息，以及 If-Match HTTP 标头中引用的资源的当前缓存版本的 ETag。 下面的示例演示了用于更新订单的 PUT 请求：
 
     ```HTTP
-    PUT http://adventure-works.com/orders/1 HTTP/1.1
+    PUT https://adventure-works.com/orders/1 HTTP/1.1
     If-Match: "2282343857"
     Content-Type: application/x-www-form-urlencoded
     Content-Length: ...
     productID=3&quantity=5&orderValue=250
     ```
 * Web API 中的 PUT 操作获取所请求数据的当前 ETag（上面示例中的订单 1），并将其与 If-Match 标头中的值进行比较。
-* 如果所请求数据的当前 ETag 与请求提供的 ETag 匹配，则资源尚未更改并且 Web API 应执行更新，并在成功的情况下返回包含 HTTP 状态代码 204（无内容）的消息。 响应可以包括资源的更新后版本的 Cache-Control 和 ETag 标头。 响应中应始终包含引用新更新资源的 URI 的 Location 标头。
+* 如果所请求数据的当前 ETag 与请求提供的 ETag 匹配，则资源尚未未更改并且 Web API 应执行更新，并在成功的情况下返回包含 HTTP 状态代码 204（无内容）的消息。 响应可以包括资源的更新后版本的 Cache-Control 和 ETag 标头。 响应中应始终包含引用新更新资源的 URI 的 Location 标头。
 * 如果所请求数据的当前 ETag 与请求提供的 ETag 不匹配，则数据在提取后已被其他用户更改，Web API 应返回包含空的消息正文和状态代码 412（不满足前提条件）的 HTTP 响应。
 * 如果要更新的资源不再存在，则 Web API 应返回状态代码为 404（未找到）的 HTTP 响应。
 * 客户端使用状态代码和响应标头来维护缓存。 如果数据已更新（状态代码 204），则对象可保持缓存（只要 Cache-Control 标头未指定 no-store），但应更新 ETag。 如果数据已被其他用户更改（状态代码 412）或未找到（状态代码 404），则应放弃缓存的对象。
@@ -546,7 +546,7 @@ public class OrdersController : ApiController
 
 ### <a name="optimize-requests-and-responses-that-involve-large-objects"></a>优化涉及大型对象的请求和响应
 
-一些资源可能是大型对象或包含大量字段，例如图形图像或其他类型的二进制数据。 Web API 应支持流式处理以对这些资源的上传和下载进行优化。
+一些资源可能是大型对象或包含大量字段，例如图形图像或其他类型的二进制数据。 Web API 应支持流式处理以实现优化这些资源的上传和下载。
 
 HTTP 协议提供了分块传输编码机制，用于将大型数据对象流式传输回客户端。 当客户端为大型对象发送 HTTP GET 请求时，Web API 可以通过 HTTP 连接在段落*区块*中发送回答复。 最初答复中数据的长度可能未知（可能会生成它），因此托管 Web API 的服务器应发送包含每个区块的响应消息，这些区块指定 Transfer-Encoding: Chunked 标头而不是 Content-Length 标头。 客户端应用程序可以依次接收每个区块以组合成完整响应。 在数据传输完成后，服务器将发送回最后一个区块（大小为零）。 
 
@@ -558,7 +558,7 @@ HTTP 协议提供了分块传输编码机制，用于将大型数据对象流式
 
 ### <a name="implement-partial-responses-for-clients-that-do-not-support-asynchronous-operations"></a>为不支持异步操作的客户端实现部分响应
 
-作为异步流式处理的替代方法，客户端应用程序可以区块方式显式请求大型对象的数据，称为部分响应。 客户端应用程序发送 HTTP HEAD 请求以获取有关对象的信息。 如果 Web API 支持部分响应，则应以包含 Accept-Ranges 标头和 Content-Length 标头（指示该对象的总大小），但消息正文应为空的响应消息响应 HEAD 请求。 客户端应用程序可以使用此信息来构造一系列要接收的在指定字节范围的 GET 请求。 Web API 应返回包含以下内容的响应消息：HTTP 状态 206（部分内容）、指定响应消息正文中包含的实际数据量的 Content-Length 标头，以及指示此数据表示对象的哪一部分（例如 4000 到 8000 个字节）的 Content-Range 标头。
+作为异步流式处理的替代方法，客户端应用程序可以区块方式显式请求大型对象的数据，称为部分响应。 客户端应用程序发送 HTTP HEAD 请求以获取有关对象的信息。 如果 Web API 支持部分响应，则应以包含 Accept-Ranges 标头和 Content-Length 标头（指示该对象的总大小），但消息正文应为空的响应消息响应 HEAD 请求。 客户端应用程序可以使用此信息来构造一系列指定要接收的字节范围的 GET 请求。 Web API 应返回包含以下内容的响应消息：HTTP 状态 206（部分内容）、指定响应消息正文中包含的实际数据量的 Content-Length 标头，以及指示此数据表示对象的哪一部分（例如 4000 到 8000 个字节）的 Content-Range 标头。
 
 HTTP HEAD 请求和部分响应会在 [API 设计][api-design]中详细介绍。
 
@@ -571,7 +571,7 @@ HTTP HEAD 请求和部分响应会在 [API 设计][api-design]中详细介绍。
 如果使用.NET Framework 生成客户端应用程序，则默认情况下所有 POST 和 PUT 消息都将先发送包含 Expect: 100-Continue 标头的消息。 与服务器端一样，由 .NET Framework 透明地处理该过程。 但是，此过程的结果是，每个 POST 和 PUT 请求会导致对服务器进行 2 次往返，即使是小请求，也是如此。 如果应用程序不发送包含大量数据的请求，则可以通过在客户端应用程序中使用 `ServicePointManager` 类创建 `ServicePoint` 对象来禁用此功能。 `ServicePoint` 对象将基于标识服务器上的资源的 URI 的方案和主机片段处理客户端与服务器连接的创建。 然后，可以将 `ServicePoint` 对象的 `Expect100Continue` 属性设置为 false。 客户端通过与 `ServicePoint` 对象的方案和主机片段匹配的 URI 发出的所有后续 POST 和 PUT 请求在发送时会不包含 Expect: 100-Continue 标头。 下面的代码演示如何配置 `ServicePoint` 对象，以便将所有请求都发送到方案为 `http` 且主机为 `www.contoso.com` 的 URI。
 
 ```csharp
-Uri uri = new Uri("http://www.contoso.com/");
+Uri uri = new Uri("https://www.contoso.com/");
 ServicePoint sp = ServicePointManager.FindServicePoint(uri);
 sp.Expect100Continue = false;
 ```
@@ -601,7 +601,7 @@ public class OrdersController : ApiController
 }
 ```
 
-客户端应用程序可以使用 URI `http://www.adventure-works.com/api/orders?limit=30&offset=50` 发出请求，检索从偏移量 50 开始的 30 个订单。
+客户端应用程序可以使用 URI `https://www.adventure-works.com/api/orders?limit=30&offset=50` 发出请求，检索从偏移量 50 开始的 30 个订单。
 
 > [!TIP]
 > 请避免让客户端应用程序指定的查询字符串导致 URI 超过 2000 个字符。 许多 Web 客户端和服务器无法处理这么长的 URI。
@@ -609,7 +609,7 @@ public class OrdersController : ApiController
 >
 
 ## <a name="maintaining-responsiveness-scalability-and-availability"></a>保持响应能力、可伸缩性和可用性
-同一 Web API 可能由世界任何地方运行的许多客户端应用程序利用。 请务必确保将 Web API 实现为在高负载下保持响应能力、可扩展以支持高度变化的工作负荷，并保证执行关键业务操作的客户端的可用性。 确定如何满足这些要求时，请考虑以下几点：
+同一 Web API 可能由世界任何地方运行的许多客户端应用程序利用。 请务必确保将 Web API 实现为在重负载下保持响应能力、可扩展以支持高度变化的工作负荷，并保证执行关键业务操作的客户端的可用性。 确定如何满足这些要求时，请考虑以下几点：
 
 ### <a name="provide-asynchronous-support-for-long-running-requests"></a>为长时间运行的请求提供异步支持
 
@@ -631,11 +631,11 @@ Web API 还应提供一种向客户端应用程序返回处理结果的机制。
 
 - 使用 Azure 通知中心将异步响应推送到客户端应用程序。 有关详细信息，请参阅 [Azure 通知中心通知用户](/azure/notification-hubs/notification-hubs-aspnet-backend-windows-dotnet-wns-notification/)。
 - 使用 Comet 模型来保持客户端与托管 Web API 的服务器之间的永久网络连接，并使用此连接将消息从服务器推送回客户端。 MSDN 杂志文章 [Building a Simple Comet Application in the Microsoft .NET Framework](https://msdn.microsoft.com/magazine/jj891053.aspx)（在 Microsoft .NET Framework 中构建简单的 Comet 应用程序）介绍了一个示例解决方案。
-- 使用 SignalR 通过永久网络连接将 Web 服务器中的实时数据推送到客户端。 SignalR 可作为 NuGet 程序包用于 ASP.NET Web 应用程序。 可以在 [ASP.NET SignalR](http://signalr.net/) 网站上找到详细信息。
+- 使用 SignalR 通过永久网络连接将 Web 服务器中的实时数据推送到客户端。 SignalR 可作为 NuGet 程序包用于 ASP.NET Web 应用程序。 可以在 [ASP.NET SignalR](https://www.asp.net/signalr) 网站上找到详细信息。
 
 ### <a name="ensure-that-each-request-is-stateless"></a>确保每个请求都是无状态的
 
-每个请求应视为原子的。 客户端应用程序发出的一个请求应与同一客户端提交的任何后续请求之间没有任何依赖关系。 此方法可帮助你实现伸缩性；可以在多个服务器上部署 Web 服务的实例。 客户端请求可以定向到其中任一实例，并且结果应始终相同。 因此，它还提高了可用性；如果某个 Web 服务器失败，可以将请求路由到其他实例（通过使用 Azure 流量管理器），同时重新启动该服务器，对客户端应用程序没有任何不良影响。
+每个请求应视为原子的。 客户端应用程序发出的一个请求应与同一客户端提交的任何后续请求之间没有任何依赖关系。 此方法可帮助你实现伸缩性；可以在多个服务器上部署 Web 服务的实例。 客户端请求可以定向到其中任一实例，并且结果应始终相同。 由于类似的原因，它还提高了可用性；如果某个 Web 服务器失败，可以将请求路由到其他实例（通过使用 Azure 流量管理器），同时重新启动该服务器，对客户端应用程序没有任何不良影响。
 
 ### <a name="track-clients-and-implement-throttling-to-reduce-the-chances-of-dos-attacks"></a>跟踪客户端并实施限制以减少 DOS 攻击的可能性
 
@@ -645,7 +645,7 @@ Web API 还应提供一种向客户端应用程序返回处理结果的机制。
 
 HTTP 协议支持永久 HTTP 连接（在这些连接可用时）。 HTTP 1.0 规范已添加 Connection:Keep-Alive 标头以允许客户端应用程序向服务器表明它可能使用同一连接发送后续请求而不是打开新连接。 如果客户端在主机定义的时间段内未重用连接，则该连接会自动关闭。 此行为在 Azure 服务使用的 HTTP 1.1 中是默认设置，因此无需在消息中包括 Keep-Alive 标头。
 
-让连接保持打开状态可以减少延迟和网络拥塞，从而有助于提高响应能力，但让不必要的连接保持打开状态的时间大于所需时间可能会不利于可扩展性，从而限制了其他并发客户端进行连接的能力。 如果客户端应用程序运行在移动设备上，则还会影响电池使用寿命；如果应用程序只偶尔向服务器发出请求，则维持连接的打开状态可能会导致电池更快耗尽。 若要确保不使用 HTTP 1.1 建立永久连接，客户端可以在消息中包括 Connection:Close 标头以覆盖默认行为。 同样，如果服务器正在处理大量客户端请求，它可以在响应消息中包括 Connection:Close 标头，这会关闭连接并节省服务器资源。
+让连接保持打开状态可以减少延迟和网络拥塞，从而有助于提高响应能力，但让不必要的连接保持打开状态的时间长于所需时间可能会不利于可扩展性，从而限制了其他并发客户端进行连接的能力。 如果客户端应用程序运行在移动设备上，则还会影响电池使用寿命；如果应用程序只偶尔向服务器发出请求，则维持连接的打开状态可能会导致电池更快耗尽。 若要确保不使用 HTTP 1.1 建立永久连接，客户端可以在消息中包括 Connection:Close 标头以覆盖默认行为。 同样，如果服务器正在处理大量客户端请求，它可以在响应消息中包括 Connection:Close 标头，这会关闭连接并节省服务器资源。
 
 > [!NOTE]
 > 永久 HTTP 连接是纯粹的可选功能，用于减少与反复建立通信通道关联的网络开销。 Web API 和客户端应用程序都不应依赖于可用的永久 HTTP 连接。 不要使用永久 HTTP 连接实现 Comet 样式通知系统，而是应利用 TCP 层的套接字（或 websocket，如果可用）。 最后，请注意：如果客户端应用程序通过代理与服务器通信，则 Keep-Alive 标头的作用有限；只有与客户端和代理的连接将是持久的。
@@ -662,7 +662,7 @@ HTTP 协议支持永久 HTTP 连接（在这些连接可用时）。 HTTP 1.0 �
 * 法规要求可能会强制执行所有请求和响应的记录和审核。
 * 为了确保可用性，可能有必要监视托管 Web API 的服务器的运行状况并在必要时重新启动它。
 
-如果能够将这些问题从有关 Web API 的实现的技术问题中分离出来，会很有用。 因此，可考虑创建一个[外观](http://en.wikipedia.org/wiki/Facade_pattern)，作为独立的进程运行，并将请求路由到 Web API。 外观可用于进行管理操作，并将验证过的请求转发到 Web API。 使用外观还有许多功能优势，包括：
+如果能够将这些问题从有关 Web API 的实现的技术问题中分离出来，会很有用。 因此，可考虑创建一个[外观](https://en.wikipedia.org/wiki/Facade_pattern)，作为独立的进程运行，并将请求路由到 Web API。 外观可用于进行管理操作，并将验证过的请求转发到 Web API。 使用外观还有许多功能优势，包括：
 
 * 充当多个 Web API 的集成点。
 * 转换消息并转换使用不同技术生成的客户端的通信协议。
@@ -784,10 +784,10 @@ Azure API 管理服务包括一个开发人员门户，其中描述了由 Web AP
 >
 
 ## <a name="more-information"></a>详细信息
-* [ASP.NET Web API OData](http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api) 包含有关如何使用 ASP.NET 实现 OData Web API 的示例和更多信息。
-* [Introducing Batch Support in Web API and Web API OData](http://blogs.msdn.com/b/webdev/archive/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata.aspx)（Web API 和 Web API OData 中的批处理支持简介）介绍了如何使用 OData 在 Web API 中实现批处理操作。
-* Jonathan Oliver 博客上的 [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/)（幂等性模式）概述了幂等性以及它如何与数据管理操作相关。
-* W3C 网站上的 [Status Code Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)（状态代码定义）包含 HTTP 状态代码及其说明的完整列表。
+* [ASP.NET Web API OData](https://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api) 包含有关如何使用 ASP.NET 实现 OData Web API 的示例和更多信息。
+* [Introducing Batch Support in Web API and Web API OData](https://blogs.msdn.microsoft.com/webdev/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata/)（Web API 和 Web API OData 中的批处理支持简介）介绍了如何使用 OData 在 Web API 中实现批处理操作。
+* Jonathan Oliver 博客上的 [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/)（幂等性模式）概述了幂等性以及它如何与数据管理操作相关。
+* W3C 网站上的 [Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)（状态代码定义）包含 HTTP 状态代码及其说明的完整列表。
 * [使用 WebJobs 运行后台任务](/azure/app-service-web/web-sites-create-web-jobs/)提供了有关如何使用 WebJobs 执行后台操作的信息和示例。
 * [Azure 通知中心通知用户](/azure/notification-hubs/notification-hubs-aspnet-backend-windows-dotnet-wns-notification/)介绍了如何使用 Azure 通知中心将异步响应推送到客户端应用程序。
 * [API 管理](https://azure.microsoft.com/services/api-management/)介绍了如何发布可对 Web API 进行受控安全访问的产品。

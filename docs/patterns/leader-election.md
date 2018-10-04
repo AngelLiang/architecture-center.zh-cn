@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - resiliency
-ms.openlocfilehash: 8c8efa0846550557bb53ea81f85ac0e303a77b19
-ms.sourcegitcommit: f19314f18cd794ebe380fa722ca92066b8735b56
+ms.openlocfilehash: 6cc4b19e889cc9fc692e388498cc16ea56b1c981
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37348263"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429190"
 ---
 # <a name="leader-election-pattern"></a>领导选拔模式
 
@@ -43,7 +43,7 @@ ms.locfileid: "37348263"
 有几种策略可用于从分布式环境中的一组任务中选拨领导，这些策略包括：
 - 选择具有排名最低的实例或进程 ID 的任务实例。
 - 争夺一个共享的分布式互斥体。 第一个获得该互斥体的任务实例成为领导。 但是，系统必须确保，当领导终止或者与系统的其余部分断开了连接时，必须释放该互斥体以允许其他任务实例成为领导。
-- 实现常用的领导选拨算法之一，例如[欺负算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html)或[环型算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html)。 这些算法假设选举中的每个候选者都具有唯一的 ID，并且它可以可靠地与其他候选者进行通信。
+- 实现常用的领导选拨算法之一，例如[欺负算法](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html)或[环型算法](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html)。 这些算法假设选举中的每个候选者都具有唯一的 ID，并且它可以可靠地与其他候选者进行通信。
 
 ## <a name="issues-and-considerations"></a>问题和注意事项
 
@@ -198,7 +198,7 @@ private static async Task MyLeaderCoordinatorTask(CancellationToken token)
 - [Autoscaling Guidance](https://msdn.microsoft.com/library/dn589774.aspx)（自动缩放指南）。 可以根据应用程序上负载的变化来启动和停止任务主机的实例。 自动缩放有助于在峰值处理期间保持吞吐量和性能。
 - [计算分区指南](https://msdn.microsoft.com/library/dn589773.aspx)。 本指南介绍了如何将任务分配给云服务中的主机，以便最大程度地降低运行成本，同时保持服务的可伸缩性、性能、可用性和安全性。
 - [基于任务的异步模式](https://msdn.microsoft.com/library/hh873175.aspx)。
-- 展示了[欺负算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html)的示例。
-- 展示了[环型算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html)的示例。
-- [Apache Curator](http://curator.apache.org/) - Apache ZooKeeper 的一个客户端库。
+- 展示了[欺负算法](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html)的示例。
+- 展示了[环型算法](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html)的示例。
+- [Apache Curator](https://curator.apache.org/) - Apache ZooKeeper 的一个客户端库。
 - MSDN 上的 [Lease Blob (REST API)](https://msdn.microsoft.com/library/azure/ee691972.aspx)（租用 Blob (REST API)）一文。

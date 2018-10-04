@@ -3,12 +3,12 @@ title: 选择分析型数据存储
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: cdc32c16e30aec5e1c0cb6959182215f99d56b56
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 3cf7dc533cc6ae3e6d7e2326852b585da8613e18
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846876"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428867"
 ---
 # <a name="choosing-an-analytical-data-store-in-azure"></a>在 Azure 中选择分析型数据存储
 
@@ -57,7 +57,7 @@ ms.locfileid: "30846876"
 | --- | --- | --- | --- | --- | --- | --- |
 | 是托管服务 | 是 | 是 | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 | 是 |
 | 主数据库模型 | 关系（使用列存储索引时的纵栏格式） | 具有纵栏存储的关系表 | 宽列存储 | Hive/内存中 | 表格/MOLAP 语义模型 | 文档存储、图形、键-值存储、宽列存储 |
-| SQL 语言支持 | 是 | 是 | 是（使用 [Phoenix](http://phoenix.apache.org/) JDBC 驱动程序） | 是 | 否 | 是 |
+| SQL 语言支持 | 是 | 是 | 是（使用 [Phoenix](https://phoenix.apache.org/) JDBC 驱动程序） | 是 | 否 | 是 |
 | 针对速度服务层进行了优化 | 是 <sup>2</sup> | 否 | 是 | 是 | 否 | 是 |
 
 [1] 使用手动配置和缩放。

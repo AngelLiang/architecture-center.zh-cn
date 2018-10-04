@@ -7,12 +7,12 @@ pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute-vpn-failover
 pnp.series.prev: vpn
 cardTitle: ExpressRoute
-ms.openlocfilehash: ada07f399925da6da28b24260f5c73f1e106fd7d
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: efaf1ef479f24d51a19236d401cbe5765d052235
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270313"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429513"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute"></a>使用 ExpressRoute 将本地网络连接到 Azure
 
@@ -232,7 +232,7 @@ ExpressRoute 在第 3 层运行。 使用将流量限制到合法资源的网络
 
 若要最大程度提供安全性，请勿为 VM 启用公共 IP 地址，并使用 NSG 确保无法公开访问这些 VM。 只应使用内部 IP 地址提供 VM。 这些地址可以通过 ExpressRoute 网络进行访问，从而使本地 DevOps 员工可以执行配置或维护。
 
-如果必须向外部网络公开 VM 的管理终结点，请使用 NSG 或访问控制列表将这些端口限制为供 IP 地址或网络允许列表可见。
+如果必须向外部网络公开 VM 的管理终结点，请使用 NSG 或访问控制列表将这些端口限制为供 IP 地址或网络白名单可见。
 
 > [!NOTE]
 > 默认情况下，通过 Azure 门户部署的 Azure VM 包含提供登录访问权限的公共 IP 地址。  
@@ -246,7 +246,7 @@ ExpressRoute 在第 3 层运行。 使用将流量限制到合法资源的网络
 
 若要部署该解决方案，请执行以下步骤。
 
-1. 单击下面的按钮：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+1. 单击下面的按钮：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. 等待该链接在 Azure 门户中打开，然后执行以下步骤：
    * 参数文件中已定义**资源组**名称，因此请选择“新建”，并在文本框中输入 `ra-hybrid-er-rg`。
    * 从“位置”下拉框中选择区域。
@@ -254,7 +254,7 @@ ExpressRoute 在第 3 层运行。 使用将流量限制到合法资源的网络
    * 查看条款和条件，并单击“我同意上述条款和条件”复选框。
    * 单击“购买”按钮。
 3. 等待部署完成。
-4. 单击下面的按钮：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy-expressRouteCircuit.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+4. 单击下面的按钮：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy-expressRouteCircuit.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 5. 等待该链接在 Azure 门户中打开，然后执行以下步骤：
    * 在“资源组”部分中选择“使用现有”，在文本框中输入 `ra-hybrid-er-rg`。
    * 从“位置”下拉框中选择区域。

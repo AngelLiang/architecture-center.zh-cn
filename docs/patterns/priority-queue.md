@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
 - performance-scalability
-ms.openlocfilehash: ecfbb38304bb95587e9ca15523ad9594898d9b32
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 400bfbc03cf5640ff32a551636b01d60e6c0ec50
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24543139"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428493"
 ---
 # <a name="priority-queue-pattern"></a>优先级队列模式
 
@@ -176,5 +176,5 @@ this.queueManager.SendBatchAsync(highMessages).Wait();
 
 - [自动缩放指南](https://msdn.microsoft.com/library/dn589774.aspx)。 可以根据队列长度，扩展处理队列的使用者进程池的大小。 此策略可以帮助提高性能，尤其适用于处理高优先级消息的池。
 
-- Abhishek Lal 博客上的 [Enterprise Integration Patterns with Service Bus](http://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/)（使用服务总线的企业集成模式）。
+- Abhishek Lal 博客上的 [Enterprise Integration Patterns with Service Bus](https://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/)（使用服务总线的企业集成模式）。
 

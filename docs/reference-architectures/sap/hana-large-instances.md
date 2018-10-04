@@ -3,12 +3,12 @@ title: 运行 Azure SAP HANA 大型实例
 description: 有关在 Azure 大型实例上的高可用性环境中运行 SAP HANA 的成熟做法。
 author: lbrader
 ms.date: 05/16/2018
-ms.openlocfilehash: 746161ac51335af5c48a559830d6e0345dcfb7b1
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: d9d619dd7fb17c7cf0a66ce73c1e067ec97a2401
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864515"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429700"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>运行 Azure SAP HANA 大型实例
 
@@ -129,8 +129,6 @@ Microsoft 可帮助建立大型实例设置，但你要负责验证操作系统�
 | 日志备份         | 时间点恢复需要此选项。                                                                   |                                                            |
 | 其他备份工具 | 冗余备份位置。                                                                             | 额外的许可费用。                                |
 
-此外，SapHanaTutorial.com 提供了一篇有用的文章 [Comparison between HANA backup options][sap-hana-tutorial]（HANA 备份选项之间的比较）。
-
 ## <a name="manageability-considerations"></a>可管理性注意事项
 使用 SAP HANA Studio、SAP HANA Cockpit、SAP Solution Manager 和其他本机 Linux 工具来监视 CPU、内存、网络带宽和存储空间等 HANA 大型实例资源。 HANA 大型实例未随附内置的监视工具。 Microsoft 会提供所需的资源用于根据组织的要求进行[故障排除和监视][hli-troubleshoot]，Microsoft 支持团队可以帮助排查技术问题。 
 
@@ -183,7 +181,7 @@ Microsoft 可帮助建立大型实例设置，但你要负责验证操作系统�
 [running-SAP]: https://blogs.msdn.microsoft.com/saponsqlserver/2016/06/07/sap-on-sql-general-update-for-customers-partners-june-2016/
 [region]: https://azure.microsoft.com/global-infrastructure/services/
 [running-sap-blog]: https://blogs.msdn.microsoft.com/saponsqlserver/2017/05/04/sap-on-azure-general-update-for-customers-partners-april-2017/
-[quick-sizer]: http://service.sap.com/quicksizing
+[quick-sizer]: https://service.sap.com/quicksizing
 [sap-1793345]: https://launchpad.support.sap.com/#/notes/1793345
 [sap-1872170]: https://launchpad.support.sap.com/#/notes/1872170
 [sap-2121330]: https://launchpad.support.sap.com/#/notes/2121330
@@ -191,12 +189,11 @@ Microsoft 可帮助建立大型实例设置，但你要负责验证操作系统�
 [sap-1736976]: https://launchpad.support.sap.com/#/notes/1736976
 [sap-2296290]: https://launchpad.support.sap.com/#/notes/2296290
 [sap-community]: https://www.sap.com/community.html
-[sap-hana-tutorial]: http://saphanatutorial.com/comparison-between-hana-backup-options/
 [sap-security]: https://archive.sap.com/documents/docs/DOC-62943
 [scripts]: /azure/virtual-machines/workloads/sap/hana-overview-high-availability-disaster-recovery
 [sku]: /azure/expressroute/expressroute-about-virtual-network-gateways
 [sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
-[stack-overflow]: http://stackoverflow.com/tags/sap/info
+[stack-overflow]: https://stackoverflow.com/tags/sap/info
 [stonith]: /azure/virtual-machines/workloads/sap/ha-setup-with-stonith
 [subnet]: /azure/virtual-network/virtual-network-manage-subnet
 [swd]: https://help.sap.com/doc/saphelp_nw70ehp2/7.02.16/en-us/48/8fe37933114e6fe10000000a421937/frameset.htm

@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - resiliency
-ms.openlocfilehash: a822de990d6ce933024207073b110e98f8da40bf
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 3d58537d9c77b97332bcabf762b9af7ed2f20421
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359395"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428136"
 ---
 # <a name="compensating-transaction-pattern"></a>补偿事务模式
 
@@ -38,9 +38,9 @@ ms.locfileid: "26359395"
 
 常见方法是使用工作流来实现需要补偿的最终一致操作。 原始操作进行期间，系统会记录每个步骤以及如何可撤销相应步骤执行的操作的相关信息。 如果操作在任何时刻失败，则工作流会回退已完成的步骤，并撤销每个步骤。 请注意，补偿事务可能并非必须按照原始操作的逆序来撤销工作，其可能会并行执行部分撤销步骤。
 
-> 这种方法类似于 [Clemens Vasters 博客](http://vasters.com/clemensv/2012/09/01/Sagas.aspx)中所述的 Sagas 策略。
+> 这种方法类似于 [Clemens Vasters 博客](https://vasters.com/clemensv/2012/09/01/Sagas.aspx)中所述的 Sagas 策略。
 
-补偿事务也是最终一致操作，并且也可能会失败。 系统应能够在失败时恢复补偿事务，然后继续。 可能需要重复已失败的步骤，因此补偿事务中的步骤应定义为幂等命令。 有关详细信息，请参阅 Jonathan Oliver 博客中的 [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/)（幂等模式）。
+补偿事务也是最终一致操作，并且也可能会失败。 系统应能够在失败时恢复补偿事务，然后继续。 可能需要重复已失败的步骤，因此补偿事务中的步骤应定义为幂等命令。 有关详细信息，请参阅 Jonathan Oliver 博客中的 [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/)（幂等模式）。
 
 某些情况下，除非手动干预，否则可能无法恢复已失败的步骤。 这类情况下，系统应会发出警报，并会提供尽可能多的有关失败原因的信息。
 

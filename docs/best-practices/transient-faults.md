@@ -4,12 +4,12 @@ description: 有关暂时性故障重试处理的指南。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 9562e3447b2219fe2f3df96cfca24b845efa39b0
-ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
+ms.openlocfilehash: 85264faa89e827821a71544f1bf8dc8e0619ef24
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/23/2017
-ms.locfileid: "25545972"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429241"
 ---
 # <a name="transient-fault-handling"></a>暂时性故障处理
 
@@ -62,16 +62,16 @@ ms.locfileid: "25545972"
   * 使用异常类型及其包含的任何数据，或者使用从服务返回的错误代码与消息，来优化重试的间隔和次数。 例如，某些异常或错误代码（如 HTTP 代码 503 - 服务不可用，以及响应中的 Retry-After 标头）会指示错误可能持续的时间，或服务失败且不会响应任何后续尝试。
 * **避免反模式**：
   * 在绝大多数情况下，应该避免使用包含重复重试代码层的实现。 避免使用包括级联重试机制的设计，或避免使用在涉及请求层次结构的操作的每个阶段实施重试的设计，除非有特定的要求。 在这些例外的情况下下，请使用策略避免过多的重试次数和延迟期间过长，并确保了解后果。 例如，如果某个组件对另一个组件发出请求，后者再访问目标服务，并且要对这两个调用各实施重试三次，则总共会对该服务重试九次。 许多服务和资源实施内置重试机制，如果需要在较高级别实施重试，应调查如何禁用或修改此设置。
-  * 切勿实施永不结束的重试机制。 这很可能会导致资源或服务无法从过载情况下恢复，并造成限制与遭到拒绝的连接持续更长时间。 使用有限的重试次数或使用[断路器](http://msdn.microsoft.com/library/dn589784.aspx)等模式，使服务可以恢复。
+  * 切勿实施永不结束的重试机制。 这很可能会导致资源或服务无法从过载情况下恢复，并造成限制与遭到拒绝的连接持续更长时间。 使用有限的重试次数或使用[断路器](../patterns/circuit-breaker.md)等模式，使服务可以恢复。
   * 切勿多次执行立即重试。
   * 避免使用固定重试间隔，尤其是在访问 Azure 中的服务与资源期间要重试很多次时。 此情况下的最佳方法是指数退让策略以及断路功能。
   * 防止同一个客户端有多个实例，或不同客户端有多个实例同时发送重试请求。 如果这有可能发生，请在重试间隔中引入随机化。
 * **测试重试策略与实施：**
   * 确保在尽可能广泛的条件下全面测试重试策略实施，尤其是当实施使用的应用程序与目标资源或服务要承受极端负载时。 要检查测试期间的行为，可以：
-    * 将暂时性与非暂时性故障注入服务中。 例如，发送无效请求或添加代码用于检测包含不同错误类型的测试请求与响应。 有关使用 TestApi 的示例，请参阅[使用 TestApi 进行故障注入测试](http://msdn.microsoft.com/magazine/ff898404.aspx)和 [TestApi 简介 – 第 5 部分：托管的代码故障注入 API](http://blogs.msdn.com/b/ivo_manolov/archive/2009/11/25/9928447.aspx)。
+    * 将暂时性与非暂时性故障注入服务中。 例如，发送无效请求或添加代码用于检测包含不同错误类型的测试请求与响应。 有关使用 TestApi 的示例，请参阅[使用 TestApi 进行故障注入测试](https://msdn.microsoft.com/magazine/ff898404.aspx)和 [TestApi 简介 – 第 5 部分：托管的代码故障注入 API](https://blogs.msdn.microsoft.com/ivo_manolov/2009/11/25/introduction-to-testapi-part-5-managed-code-fault-injection-apis/)。
     * 创建资源或服务模型，用于返回真实服务可能返回的错误范围。 确保覆盖重试策略旨在检测的所有错误类型。
     * 如果服务是你创建及部署的自定义服务，则通过暂时禁用或过载该服务，来强制发生暂时性错误（当然，不应尝试使 Azure 中的任何共享资源或共享服务过载）。
-    * 对于基于 HTTP 的 API，请考虑在自动化测试中使用 FiddlerCore 库来更改 HTTP 请求的结果，方法是增加额外的往返时间或更改响应（例如 HTTP 状态代码、标头、正文或其他因素）。 这样，便可以确定性地测试一部分故障状况，无论是暂时性故障还是其他类型的故障。 有关详细信息，请参阅 [FiddlerCore](http://www.telerik.com/fiddler/fiddlercore)。 有关如何使用该库（特别是 **HttpMangler** 类）的示例，请查看 [Azure 存储 SDK 的源代码](https://github.com/Azure/azure-storage-net/tree/master/Test)。
+    * 对于基于 HTTP 的 API，请考虑在自动化测试中使用 FiddlerCore 库来更改 HTTP 请求的结果，方法是增加额外的往返时间或更改响应（例如 HTTP 状态代码、标头、正文或其他因素）。 这样，便可以确定性地测试一部分故障状况，无论是暂时性故障还是其他类型的故障。 有关详细信息，请参阅 [FiddlerCore](https://www.telerik.com/fiddler/fiddlercore)。 有关如何使用该库（特别是 **HttpMangler** 类）的示例，请查看 [Azure 存储 SDK 的源代码](https://github.com/Azure/azure-storage-net/tree/master/Test)。
     * 执行高负载因子和并发测试，确保重试机制与策略在这些条件下能正常工作，且不会对客户端操作造成不良的影响或导致请求之间交叉污染。
 * **管理重试策略配置：**
   * *重试策略*是所有重试策略元素的组合。 它定义了能确定故障是否可能是暂时性的检测机制、使用的间隔类型（例如固定、指数退让及随机化）、实际间隔值，以及重试次数。
@@ -88,7 +88,7 @@ ms.locfileid: "25545972"
   
   * 如果每次尝试后操作仍然失败，则必须考虑如何处理这种情况：
     * 尽管重试策略会定义操作应重试次数的上限，但它不会防止应用程序使用与重试次数相同的次数一再重复操作。 例如，如果订单处理服务因为严重错误而失败且永久失效，则重试策略会检测连接超时，并将它视为暂时性故障。 代码将按指定的次数重试操作，然后放弃。 但是，当另一位客户下单时，会再次尝试该操作，即使该操作每次肯定都会失败。
-    * 为防止不断重试连续失败的操作，请考虑实施[断路器模式](http://msdn.microsoft.com/library/dn589784.aspx)。 在此模式中，如果在指定的时段内失败次数超过阈值，则会立即将请求返回给调用方，并将失败视为故障，而不会尝试访问失败的资源或服务。
+    * 为防止不断重试连续失败的操作，请考虑实施[断路器模式](../patterns/circuit-breaker.md)。 在此模式中，如果在指定的时段内失败次数超过阈值，则会立即将请求返回给调用方，并将失败视为故障，而不会尝试访问失败的资源或服务。
     * 应用程序将定期测试服务，并间歇性地（请求之间的间隔非常长）检测服务何时可供使用。 适当的间隔取决于方案，例如操作的重要性和服务的性质，可能是数分钟到数个小时。 测试成功时，应用程序将恢复正常操作，并将请求传递给刚刚恢复的服务。
     * 同时，可以故障回复到服务的另一个实例（也许在不同的数据中心或应用程序中）、使用提供兼容（也许是更简单）功能的类似服务，或执行某些替代操作，以期该服务很快可供使用。 例如，有时适合将服务的请求存储在队列或数据存储中，供以后重复使用。 也可以将用户重定向到应用程序的其他实例、使应用程序性能降级但仍可提供可接受的功能，或者只是将消息返回给用户，指出应用程序暂时不可用。
 * **其他注意事项**
@@ -101,10 +101,9 @@ ms.locfileid: "25545972"
 
 ## <a name="more-information"></a>详细信息
 * [特定于 Azure 服务的重试指导原则](./retry-service-specific.md)
-* [暂时性故障处理应用程序块](http://msdn.microsoft.com/library/hh680934.aspx)
-* [断路器模式](http://msdn.microsoft.com/library/dn589784.aspx)
-* [补偿事务模式](http://msdn.microsoft.com/library/dn589804.aspx)
+* [断路器模式](../patterns/circuit-breaker.md)
+* [补偿事务模式](../patterns/compensating-transaction.md)
 * [幂等模式][idempotency-patterns]
 
-[idempotency-patterns]: http://blog.jonathanoliver.com/idempotency-patterns/
+[idempotency-patterns]: https://blog.jonathanoliver.com/idempotency-patterns/
 
