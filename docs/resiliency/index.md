@@ -4,12 +4,12 @@ description: 如何在 Azure 中生成可复原应用程序，以实现高可用
 author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency
-ms.openlocfilehash: f5dfca30b3587e198c1c0f99ad4903ed7b0e33d4
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 55e54347953dc9967ab8ccf67490757e1d58e143
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429276"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819204"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>设计适用于 Azure 的可复原应用程序
 
@@ -354,4 +354,4 @@ Azure 提供许多功能用于实现每个故障级别的应用程序冗余，�
 [throttling-pattern]: ../patterns/throttling.md
 [tm]: https://azure.microsoft.com/services/traffic-manager/
 [tm-failover]: /azure/traffic-manager/traffic-manager-monitoring
-[tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
+[tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager
