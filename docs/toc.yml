@@ -283,18 +283,18 @@ items:
     href: example-scenario/index.md
   - name: AI
     items:
+    - name: 酒店预订聊天机器人
+      href: example-scenario/ai/commerce-chatbot.md
     - name: 图像分类
       href: example-scenario/ai/intelligent-apps-image-processing.md
   - name: 应用
     items:
-    - name: 计算机辅助工程 SaaS
+    - name: 计算机辅助工程
       href: example-scenario/apps/hpc-saas.md
     - name: 银行间的分散式信任
       href: example-scenario/apps/decentralized-trust.md
     - name: Web 应用程序监视
       href: example-scenario/apps/app-monitoring.md
-    - name: 酒店预订聊天机器人
-      href: example-scenario/apps/commerce-chatbot.md
     - name: 将 DevOps 与容器配合使用
       href: example-scenario/apps/devops-with-aks.md
     - name: DevOps 与 Azure DevOps
@@ -315,7 +315,7 @@ items:
       href: example-scenario/data/big-data-with-iot.md
     - name: 数据仓库和分析
       href: example-scenario/data/data-warehouse.md
-    - name: 汽车行业 IOT 数据
+    - name: 汽车 IOT 数据
       href: example-scenario/data/realtime-analytics-vehicle-iot.md
     - name: 实时欺诈检测
       href: example-scenario/data/fraud-detection.md
@@ -328,7 +328,7 @@ items:
     - name: Linux 虚拟机
       href: example-scenario/infrastructure/linux-vdi-citrix.md
     - name: 分解单一式应用程序
-      href: example-scenario/infrastructure/ServiceFabricMicroservices.md
+      href: example-scenario/infrastructure/service-fabric-microservices.md
     - name: 高度可缩放的 WordPress
       href: example-scenario/infrastructure/wordpress.md
     - name: 多层 Windows
@@ -531,9 +531,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: 实施 Azure 企业基架
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: 2b5c74f9ce94b238c8787e0c684248ecae0467af
-ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
+ms.openlocfilehash: 9f2dcd31b5d3a36badf9db6ce5f64fae6085ff96
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "48243676"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819102"
