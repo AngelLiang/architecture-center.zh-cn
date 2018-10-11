@@ -3,12 +3,12 @@ title: 选择搜索数据存储
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: ead07e307e96696faa5ddf48505eee378027523c
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 9576bbba9609a04ccc7851d55dd28853ffc6b701
+ms.sourcegitcommit: f6be2825bf2d37dfe25cfab92b9e3973a6b51e16
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848608"
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48858174"
 ---
 # <a name="choosing-a-search-data-store-in-azure"></a>在 Azure 中选择搜索数据存储
 

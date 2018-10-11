@@ -7,12 +7,12 @@ ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: b5cd4d353c6d6b149c9c1b5547f8da8c25ad5a85
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 5bb0fb990418a28170a8baeffd22e480fb664fda
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429224"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818949"
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>将本地 Active Directory 域与 Azure Active Directory 集成
 
@@ -260,7 +260,7 @@ GitHub 上提供了可实施这些建议和注意事项的参考体系结构部�
 [azure-multifactor-authentication]: /azure/multi-factor-authentication/multi-factor-authentication
 [considerations]: ./considerations.md
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
-[sla-aad]: https://azure.microsoft.com/support/legal/sla/active-directory/v1_0/
+[sla-aad]: https://azure.microsoft.com/support/legal/sla/active-directory
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
 
 

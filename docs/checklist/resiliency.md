@@ -4,12 +4,12 @@ description: 为设计过程中的复原能力考虑因素提供指导的查检�
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 17612ee08e2329ea648fd21d6764e7bae1ca20e2
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 15ad749c12dc8a45c9e7e08376452685d8ad7c9b
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429088"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819017"
 ---
 # <a name="resiliency-checklist"></a>复原能力查检表
 
@@ -39,7 +39,7 @@ ms.locfileid: "47429088"
 
 **使用负载均衡来分发请求。** 负载均衡通过从循环列表中删除不正常的实例，将应用程序请求分发到正常的服务实例。 如果服务使用 Azure 应用服务或 Azure 云服务，则已负载均衡。 但是，如果应用程序使用 Azure VM，则你需要预配负载均衡器。 有关更多详细信息，请参阅 [Azure 负载均衡器](/azure/load-balancer/load-balancer-overview/)概述。
 
-**将 Azure 应用程序网关配置为使用多个实例。** 根据应用程序的要求，[Azure 应用程序网关](/azure/application-gateway/application-gateway-introduction/)可能更适合用于将请求分发到应用程序的服务。 但是，应用程序网关服务的单个实例不享有 SLA 保障，因此，洱应用程序网关实例发生故障时，应用程序也可能发生故障。 预配多个中型或大型应用程序网关实例，保证根据 [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway/v1_0/) 的条款提供服务可用性。
+**将 Azure 应用程序网关配置为使用多个实例。** 根据应用程序的要求，[Azure 应用程序网关](/azure/application-gateway/application-gateway-introduction/)可能更适合用于将请求分发到应用程序的服务。 但是，应用程序网关服务的单个实例不享有 SLA 保障，因此，洱应用程序网关实例发生故障时，应用程序也可能发生故障。 预配多个中型或大型应用程序网关实例，保证根据 [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway/) 的条款提供服务可用性。
 
 **为每个应用层使用 Azure 可用性集。** 将实例放入[可用性集][availability-sets]可提供更高的 [SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 
 
