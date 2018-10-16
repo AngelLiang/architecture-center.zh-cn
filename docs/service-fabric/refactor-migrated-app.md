@@ -3,12 +3,12 @@ title: 重构从 Azure 云服务迁移的 Azure Service Fabric 应用程序
 description: 如何重构从 Azure 云服务迁移的现有 Azure Service Fabric 应用程序
 author: petertay
 ms.date: 01/30/2018
-ms.openlocfilehash: 08ef3af68b8eaba36a5b871449f0aba764fe5a04
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 7b5c115acdbfca0c105e2b861af9a8049b890dca
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29782540"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819068"
 ---
 # <a name="refactor-an-azure-service-fabric-application-migrated-from-azure-cloud-services"></a>重构从 Azure 云服务迁移的 Azure Service Fabric 应用程序
 
@@ -16,7 +16,7 @@ ms.locfileid: "29782540"
 
 本文介绍如何将现有的 Azure Service Fabric 应用程序重构为更精细的体系结构。 本文侧重于重构的 Service Fabric 应用程序的设计、打包、性能和部署注意事项。
 
-## <a name="scenario"></a>方案
+## <a name="scenario"></a>场景
 
 前一篇文章[将 Azure 云服务应用程序迁移到 Azure Service Fabric][migrate-from-cloud-services] 中已经提到，模式和实践团队在 2012 年编写了一篇指南，其中阐述了在 Azure 中设计和实施云服务应用程序的流程。 该指南介绍了一家名为 Tailspin 的虚构公司，他们想要创建一个名为 **Surveys** 的云服务应用程序。 用户可以通过 Surveys 应用程序创建和发布可让公众回答的调查表。 下图展示了此 Surveys 应用程序版本的体系结构：
 
@@ -44,7 +44,7 @@ ms.locfileid: "29782540"
 **Tailspin.AnswerAnalysisService** 服务是从原始 *Tailspin.Workers.Survey* 辅助角色移植的。
 
 > [!NOTE] 
-> 尽量对每个 Web 角色和辅助角色所做的代码更改极少，但 **Tailspin.Web** 和 **Tailspin.Web.Survey.Public** 经过修改，以便自我托管 [Kestrel] Web 服务器。 初期的 Surveys 应用程序是使用 Interet Information Services (IIS) 托管的 ASP.Net 应用程序，但无法在 Service Fabric 中以服务的形式运行 IIS。 因此，任何 Web 服务器（例如 [Kestrel]）必须能够自我托管。 在某些情况下，可以在 Service Fabric 的容器中运行 IIS。 有关详细信息，请参阅[容器的使用方案][container-scenarios]。  
+> 尽量对每个 Web 角色和辅助角色所做的代码更改极少，但 **Tailspin.Web** 和 **Tailspin.Web.Survey.Public** 经过修改，以便自我托管 [Kestrel] Web 服务器。 初期的 Surveys 应用程序是使用 Interet Information Services (IIS) 托管的 ASP.NET 应用程序，但无法在 Service Fabric 中以服务的形式运行 IIS。 因此，任何 Web 服务器（例如 [Kestrel]）必须能够自我托管。 在某些情况下，可以在 Service Fabric 的容器中运行 IIS。 有关详细信息，请参阅[容器的使用方案][container-scenarios]。  
 
 现在，Tailspin 可将 Surveys 应用程序重构为更精细的体系结构。 Tailspin 的重构动机是更方便地开发、生成和部署 Surveys 应用程序。 Tailspin 希望通过将现有的 Web 角色和辅助角色分解成更精细的体系结构，来消除现有的紧密耦合通信，以及这些角色之间的数据依赖关系。
 
@@ -90,7 +90,7 @@ Azure Service Fabric 支持以下编程模型：
 ## <a name="communication-framework"></a>通信框架
 
 Surveys 应用程序中的每个服务使用 RESTful Web API 通信。 RESTful API 提供以下优势：
-* 易用性：使用原生支持创建 Web API 的 ASP.Net Core MVC 生成每个服务。
+* 易用性：使用原生支持创建 Web API 的 ASP.NET Core MVC 生成每个服务。
 * 安全性：尽管每个服务不需要 SSL，但 Tailspin 可以要求每个服务使用 SSL。 
 * 版本控制：可以针对特定版本的 Web API 编写和测试客户端。
 
@@ -142,8 +142,8 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
 Tailspin 使用 Azure 门户部署群集。 Service Fabric 群集资源类型部署所有必要的基础结构，包括 VM 规模集和负载均衡器。 在 Service Fabric 群集的预配过程中，建议的 VM 大小会显示在 Azure 门户中。 请注意，由于 VM 部署在 VM 规模集中，因此，当用户负载增大时，这些 VM 既可纵向扩展，也可横向扩展。
 
 > [!NOTE]
-> 如前所述，在迁移版本的 Surveys 应用程序中，两个 Web 前端是使用 ASP.Net Core 和充当 Web 服务器的 Kestrel 自我托管的。 尽管迁移版本的 Surveys 应用程序不使用反向代理，但我们强烈建议使用 IIS、Nginx 或 Apache 等反向代理。 有关详细信息，请参阅 [ASP.NET Core 中的 Kestrel Web 服务器实现简介][kestrel-intro]。
-> 在重构的 Surveys 应用程序中，两个 Web 前端是使用 ASP.Net Core 和充当 Web 服务器的 [WebListener][weblistener] 自我托管的，因此不需要反向代理。
+> 如前所述，在迁移版本的 Surveys 应用程序中，两个 Web 前端使用 ASP.NET Core 和充当 Web 服务器的 Kestrel 自我托管。 尽管迁移版本的 Surveys 应用程序不使用反向代理，但我们强烈建议使用 IIS、Nginx 或 Apache 等反向代理。 有关详细信息，请参阅 [ASP.NET Core 中的 Kestrel Web 服务器实现简介][kestrel-intro]。
+> 在重构的 Surveys 应用程序中，两个 Web 前端使用 ASP.NET Core 和充当 Web 服务器的 [WebListener][weblistener] 自我托管，因此不需要反向代理。
 
 ## <a name="next-steps"></a>后续步骤
 

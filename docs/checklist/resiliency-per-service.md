@@ -4,12 +4,12 @@ description: 一个检查表，提供各种 Azure 服务的复原能力指南。
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 735d4466f53ff03b67063b49b86f4184bbf1af41
-ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
+ms.openlocfilehash: 50808a837132e905cc89c3c43d40852a04f4885c
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/14/2018
-ms.locfileid: "45584759"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819187"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>特定 Azure 服务的复原能力检查表
 
@@ -39,11 +39,11 @@ ms.locfileid: "45584759"
 
 **为日志创建单独的存储帐户。** 不要对日志和应用程序数据使用相同的存储帐户。 这有助于防止日志记录降低应用程序的性能。
 
-**监视性能。** 使用 [New Relic](http://newrelic.com/) 或 [Application Insights](/azure/application-insights/app-insights-overview/) 等性能监视服务来监视承受负载时的应用程序性能和行为。  性能监视提供应用程序的实时深入信息。 可以使用它来诊断问题，以及执行故障根本原因分析。
+**监视性能。** 使用 [New Relic](https://newrelic.com/) 或 [Application Insights](/azure/application-insights/app-insights-overview/) 等性能监视服务来监视承受负载时的应用程序性能和行为。  性能监视提供应用程序的实时深入信息。 可以使用它来诊断问题，以及执行故障根本原因分析。
 
 ## <a name="application-gateway"></a>应用程序网关
 
-**至少预配两个实例。** 部署至少包含两个实例的应用程序网关。 单个实例会成为单一故障点。 使用两个或更多个实例实现冗余和可伸缩性。 若要满足 [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway/v1_0/)，必须预配两个或更多个中型或大型实例。
+**至少预配两个实例。** 部署至少包含两个实例的应用程序网关。 单个实例会成为单一故障点。 使用两个或更多个实例实现冗余和可伸缩性。 若要满足 [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway)，必须预配两个或更多个中型或大型实例。
 
 ## <a name="cosmos-db"></a>Cosmos DB
 
@@ -77,6 +77,21 @@ ms.locfileid: "45584759"
 
   * 如果数据源是异地复制的，通常应该将每个区域性 Azure 搜索服务的每个索引器指向其本地数据源副本。 但是，对于存储在 Azure SQL 数据库的大型数据集，不建议使用此方法。 原因在于，Azure 搜索无法从辅助 SQL 数据库副本执行增量索引，而只能从主副本执行。 应该将所有索引器指向主副本。 故障转移后，请将 Azure 搜索索引器指向新的主副本。  
   * 如果数据源不是异地复制的，请将多个索引器指向同一个数据源，以便多个区域中的 Azure 搜索服务可从数据源连续独立地编制索引。 有关详细信息，请参阅 [Azure 搜索性能和优化注意事项][search-optimization]。
+
+## <a name="service-bus"></a>服务总线
+
+**对生产工作负荷使用高级层**。 [服务总线高级消息传送](/azure/service-bus-messaging/service-bus-premium-messaging)提供专用和预留的处理资源与内存容量来支持可预测的性能和吞吐量。 使用高级消息传送层还能访问最初只为高级用户提供的新功能。 可以根据预期工作负荷确定消息传送单元数。
+
+**处理重复消息**。 如果发布者在发送消息后立即失败，或者遇到网络或系统问题，它可能无法记录该消息已送达，而是将同一条消息发送到系统两次。 启用重复检测后，服务总线可以处理此问题。 有关详细信息，请参阅[重复检测](/azure/service-bus-messaging/duplicate-detection)。
+
+**处理异常**。 发生用户错误、配置错误或其他错误时，消息传送 API 会生成异常。 客户端代码（发送方和接收方）应在其代码中处理这些异常。 此机制在批处理中尤为重要，在其中可以使用异常处理来避免丢失整批消息。 有关详细信息，请参阅[服务总线消息传送异常](/azure/service-bus-messaging/service-bus-messaging-exceptions)。
+
+**重试策略**。 服务总线允许为应用程序选择最佳的重试策略。 默认策略是最多允许重试 9 次，并等待 30 秒，但可以进一步调整此策略。 有关详细信息，请参阅[重试策略 - 服务总线](/azure/architecture/best-practices/retry-service-specific#service-bus)。
+
+**使用死信队列**。 如果多次重试后仍然无法处理某条消息或将其传送给任何接收方，该消息将移到死信队列。 实施一个过程以从死信队列读取消息、检查消息，并解决问题。 根据具体的场景，可按原样重试发送消息、对其进行更改并重试，或放弃消息。 有关详细信息，请参阅[服务总线死信队列概述](/azure/service-bus-messaging/service-bus-dead-letter-queues)。
+
+**使用异地灾难恢复**。 异地灾难恢复确保在整个 Azure 区域或数据中心由于灾难而不可用时，数据处理可以继续在不同的区域或数据中心进行。 有关详细信息，请参阅 [Azure 服务总线异地灾难恢复](/azure/service-bus-messaging/service-bus-geo-dr)。
+
 
 ## <a name="storage"></a>存储
 

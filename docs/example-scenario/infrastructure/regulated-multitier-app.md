@@ -1,14 +1,14 @@
 ---
 title: 确保管控行业的 Windows Web 应用程序的安全
-description: 经验证的方案，用于在 Azure 上通过 Windows Server 生成安全的多层 Web 应用程序，以便使用规模集、应用程序网关和负载均衡器。
+description: 使用规模集、应用程序网关和负载均衡器在 Azure 上通过 Windows Server 构建安全的多层 Web 应用程序。
 author: iainfoulds
 ms.date: 07/11/2018
-ms.openlocfilehash: 780b82791510b6ca06ef918b66d2547794dfcf87
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 584b5891f9b3d8e174c3eb29835a525ae4a4f156
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428748"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819000"
 ---
 # <a name="secure-windows-web-application-for-regulated-industries"></a>确保管控行业的 Windows Web 应用程序的安全
 
@@ -16,7 +16,7 @@ ms.locfileid: "47428748"
 
 示例应用方案包括：运行手术室应用程序、患者预约和医疗记录保存，或者再抓药和订购。 传统上，组织需针对这些方案保留旧版本地应用程序和服务。 如果可以在 Azure 中以安全且可缩放的方式部署这些 Windows Server 应用程序，组织就可以实现其部署方式的现代化，减少其本地操作成本和管理开销。
 
-## <a name="related-use-cases"></a>相关的用例
+## <a name="relevant-use-cases"></a>相关用例
 
 以下用例可以考虑本方案：
 
@@ -34,7 +34,7 @@ ms.locfileid: "47428748"
 2. 应用程序网关将流量分发到 Azure 虚拟机规模集中的 VM 实例。
 3. ASP.NET 应用程序通过 Azure 负载均衡器连接到后端层中的 Microsoft SQL Server 群集。 这些后端 SQL Server 实例位于单独的 Azure 虚拟网络中，受可以限制流量的网络安全组规则的保护。
 4. 该负载均衡器会将 SQL Server 流量分发到另一虚拟机规模集中的 VM 实例。
-5. Azure Blob 存储充当后端层中 SQL Server 群集的云见证。  已为 Azure 存储的 VNet 服务终结点启用从 VNet 中进行连接的功能。
+5. Azure Blob 存储充当后端层中 SQL Server 群集的云见证。 已为 Azure 存储的 VNet 服务终结点启用从 VNet 中进行连接的功能。
 
 ### <a name="components"></a>组件
 
@@ -51,7 +51,7 @@ ms.locfileid: "47428748"
 
 * [适用于 Linux 的 SQL Server][sql-linux] 可以替代后端数据存储。
 
-* [Cosmos DB][cosmos] 是数据存储的另一替代。
+* [Cosmos DB](/azure/cosmos-db/introduction) 是数据存储的另一种替代方案。
 
 ## <a name="considerations"></a>注意事项
 
@@ -102,27 +102,26 @@ ms.locfileid: "47428748"
 
 ## <a name="pricing"></a>定价
 
-为了方便用户了解运行本方案的成本，我们已在成本计算器中预配置了所有服务。  若要了解自己的特定用例的定价变化情况，请按预期的流量更改相应的变量。
+为了方便用户了解运行本方案的成本，我们已在成本计算器中预配置了所有服务。 若要了解自己的特定用例的定价变化情况，请按预期的流量更改相应的变量。
 
 我们已根据运行应用程序的规模集 VM 实例数提供了三个示例性的成本配置文件。
 
-* [小][small-pricing]：此定价示例对应于两个前端和两个后端 VM 实例。
-* [中][medium-pricing]：此定价示例对应于 20 个前端和 5 个后端 VM 实例。
-* [大][large-pricing]：此定价示例对应于 100 个前端和 10 个后端 VM 实例。
+* [小型][small-pricing]：此定价示例对应于两个前端和两个后端 VM 实例。
+* [中型][medium-pricing]：此定价示例对应于 20 个前端和 5 个后端 VM 实例。
+* [大型][large-pricing]：此定价示例对应于 100 个前端和 10 个后端 VM 实例。
 
 ## <a name="related-resources"></a>相关资源
 
-本方案使用的后端虚拟机规模集运行 Microsoft SQL Server 群集。 也可将 Azure Cosmos DB 用作一个可缩放的、安全的、适用于应用程序数据的数据库层。 使用 [Azure 虚拟网络服务终结点][vnetendpoint-docs]可以保护关键的 Azure 服务资源，只允许你在自己的虚拟网络中对其进行访问。 在本方案中，可以通过 VNet 终结点来确保前端应用程序层和 Cosmos DB 之间流量的安全。 有关 Cosmos DB 的详细信息，请参阅 [Azure Cosmos DB 概述][azurecosmosdb-docs]。
+本方案使用的后端虚拟机规模集运行 Microsoft SQL Server 群集。 也可将 Cosmos DB 用作一个可缩放的、安全的、适用于应用程序数据的数据库层。 使用 [Azure 虚拟网络服务终结点][vnetendpoint-docs]可以保护关键的 Azure 服务资源，只允许你在自己的虚拟网络中对其进行访问。 在本方案中，可以通过 VNet 终结点来确保前端应用程序层和 Cosmos DB 之间流量的安全。 有关详细信息，请参阅 [Azure Cosmos DB 概述][docs-cosmos-db](/azure/cosmos-db/introduction)。
 
-也可以深入查看[使用 SQL Server 的通用 N 层应用程序的参考体系结构][ntiersql-ra]。
+此外，可以详细查看[使用 SQL Server 的通用 N 层应用程序的参考体系结构][ntiersql-ra]。
 
 <!-- links -->
 [appgateway-docs]: /azure/application-gateway/overview
-[architecture]: ./media/regulated-multitier-app/architecture-regulated-multitier-app.png
+[architecture]: ./media/architecture-regulated-multitier-app.png
 [autoscaling]: /azure/architecture/best-practices/auto-scaling
 [availability]: ../../checklist/availability.md
 [azureaz-docs]: /azure/availability-zones/az-overview
-[azurecosmosdb-docs]: /azure/cosmos-db/introduction
 [cloudwitness-docs]: /windows-server/failover-clustering/deploy-cloud-witness
 [loadbalancer-docs]: /azure/load-balancer/load-balancer-overview
 [nsg-docs]: /azure/virtual-network/security-overview
@@ -137,7 +136,6 @@ ms.locfileid: "47428748"
 [vnetendpoint-docs]: /azure/virtual-network/virtual-network-service-endpoints-overview
 [pci-dss]: /azure/security/blueprints/pcidss-iaaswa-overview
 [dmz]: /azure/virtual-network/virtual-networks-dmz-nsg
-[cosmos]: /azure/cosmos-db/
 [sql-linux]: /sql/linux/sql-server-linux-overview?view=sql-server-linux-2017
 
 [small-pricing]: https://azure.com/e/711bbfcbbc884ef8aa91cdf0f2caff72

@@ -3,12 +3,12 @@ title: Azure 计算选项概述
 description: Azure 计算选项概述
 author: MikeWasson
 ms.date: 06/13/2018
-ms.openlocfilehash: ceb70f8eeff42e6cadb8a63c2f36986f26322201
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: cb59c4472b183d9a14031497f0b6db673938c9a9
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206524"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818813"
 ---
 # <a name="overview-of-azure-compute-options"></a>Azure 计算选项概述
 
@@ -18,7 +18,7 @@ ms.locfileid: "36206524"
 
 一端是**服务架构**（Infrastructure-as-a-Service，IaaS）。 使用 IaaS 可以预配所需的 VM 以及关联的网络和存储组件。 然后将需要的任何软件和应用程序部署到这些 VM 上。 除非 Microsoft 管理基础结构，否则该模型最接近传统的本地环境。 仍由你管理单独的 VM。  
 
-平台即服务（Platform-as-a-Service，PaaS）提供托管的承载环境，可在其中部署应用程序而无需管理 VM 或网络资源。 例如，指定实例计数而不是创建单独的 VM，服务将预配、配置并管理必需的资源。 Azure App Service 是 PaaS 服务的一个示例。
+**平台即服务 (PaaS)** 提供托管的承载环境，可在其中部署应用程序而无需管理 VM 或网络资源。 例如，指定实例计数而不是创建单独的 VM，服务将预配、配置并管理必需的资源。 Azure App Service 是 PaaS 服务的一个示例。
 
 从 IaaS 到纯 PaaS 存在一个范围。 例如，Azure VM 可以使用 VM 规模集自动缩放。 此自动缩放功能严格说来，并非 PaaS，但它是可能在 PaaS 服务中找到的管理功能类型。
 

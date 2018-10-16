@@ -5,12 +5,12 @@ author: telmosampaio
 ms.date: 06/19/2018
 pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
 pnp.series.prev: hub-spoke
-ms.openlocfilehash: 283251d5b11f76985405410c5c237e5a64ee98fe
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 0238c5d6f28bacbc32268d4586b30395de36384b
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060789"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876862"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>在 Azure 中使用共享服务实现中心辐射型网络拓扑
 
@@ -72,7 +72,7 @@ ms.locfileid: "39060789"
 
 如果使用需要针对 Azure 和本地环境分开进行控制的组策略对象，请针对每个 Azure 区域使用不同的 AD 站点。 将域控制器置于可供依赖性工作负荷访问的中心 VNet（简称“中心”）。
 
-### <a name="security"></a>“安全”
+### <a name="security"></a>安全
 
 将工作负荷从本地环境移到 Azure 时，其中的某些工作负荷将需要托管在 VM 中。 出于符合性考虑，可能需要对流经这些工作负荷的流量强制实施限制。 
 
@@ -116,7 +116,7 @@ ms.locfileid: "39060789"
 
 2. 打开 `onprem.json` 文件。 
 
-3. 搜索 `Password` 和 `adminPassword` 的所有实例。 在参数中输入用户名和密码的值，然后保存文件。 
+3. 搜索 `UserName`、`adminUserName`、`Password`、`adminPassword` 的所有实例。 在参数中输入用户名和密码的值，然后保存文件。 
 
 4. 运行以下命令：
 

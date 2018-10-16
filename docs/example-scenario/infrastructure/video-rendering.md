@@ -1,22 +1,22 @@
 ---
 title: Azure 上的 3D 视频渲染
-description: 使用 Azure Batch 服务在 Azure 中运行本机 HPC 工作负荷
+description: 使用 Azure Batch 服务在 Azure 中运行本机 HPC 工作负荷。
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: 67dc8496656a75eab8f5d0ce45d00f8b1f4ea03f
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 1206fa7d931fca635118929d433abe232ec5ca9a
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428051"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818611"
 ---
 # <a name="3d-video-rendering-on-azure"></a>Azure 上的 3D 视频渲染
 
-3D 渲染是很费时的过程，需要大量的 CPU 时间才能完成。  在一台计算机中，从静态资产生成视频文件可能需要数小时甚至数天，具体取决于所要生成的视频的长度和复杂程度。  许多公司会购买昂贵的高端台式机来执行这些任务，或者会投资可以向其提交作业的大型渲染场。  但是，如果使用 Azure Batch，则可根据需要随意启用或关闭该功能，根本不需要任何资本投资。
+3D 视频渲染是很费时的过程，需要大量的 CPU 时间才能完成。 在一台计算机中，从静态资产生成视频文件可能需要数小时甚至数天，具体取决于所要生成的视频的长度和复杂程度。 许多公司会购买昂贵的高端台式机来执行这些任务，或者会投资可以向其提交作业的大型渲染场。 但是，如果使用 Azure Batch，则可根据需要随意启用或关闭该功能，根本不需要任何资本投资。
 
 不管是选择 Windows Server 还是选择 Linux 计算节点，都可以通过 Batch 获得始终如一的管理体验并进行作业计划。 有了 Batch，你就可以使用现有的 Windows 或 Linux 应用程序（包括 AutoDesk Maya 和 Blender）在 Azure 中运行大规模的渲染作业。
 
-## <a name="related-use-cases"></a>相关的用例
+## <a name="relevant-use-cases"></a>相关用例
 
 考虑将本方案用于以下类似的用例：
 
@@ -29,14 +29,14 @@ ms.locfileid: "47428051"
 
 ![从体系结构的角度概要说明使用 Azure Batch 的云原生 HPC 解决方案中涉及的组件][architecture]
 
-本示例方案介绍了使用 Azure Batch 时的工作流，数据的流动如下所示：
+本方案演示了一个使用 Azure Batch 的工作流。 数据流如下所示：
 
-1. 将输入文件和处理这些文件的应用程序上传到 Azure 存储帐户
+1. 将输入文件和处理这些文件的应用程序上传到 Azure 存储帐户。
 2. 创建一个包含 Batch 帐户中的计算节点的 Batch 池、一个用于在池中运行工作负荷的作业，以及作业中的任务。
-3. 将输入文件和应用程序下载到 Batch
-4. 监视任务执行情况
-5. 上传任务输出
-6. 下载输出文件
+3. 将输入文件和应用程序下载到 Batch。
+4. 监视任务执行情况。
+5. 上传任务输出。
+6. 下载输出文件。
 
 若要简化此过程，也可使用 [Maya 和 3ds Max 的 Batch 插件][batch-plugins]
 
@@ -44,10 +44,9 @@ ms.locfileid: "47428051"
 
 Azure Batch 基于以下 Azure 技术：
 
-* [资源组][resource-groups]是 Azure 资源的逻辑容器
-* [虚拟网络][vnet]用于“头节点”和“计算”资源
-* [存储][storage]帐户用于同步和数据保留
-* [虚拟机规模集][vmss]由 CycleCloud 用于计算资源
+* [虚拟网络](/azure/virtual-network/virtual-networks-overview)用于头节点和计算资源。
+* [Azure 存储帐户](/azure/storage/common/storage-introduction)用于同步和数据保留。
+* [虚拟机规模集][vmss]由 CycleCloud 用于计算资源。
 
 ## <a name="considerations"></a>注意事项
 
@@ -58,11 +57,11 @@ Azure Batch 基于以下 Azure 技术：
 * 所运行的应用程序是否进行内存绑定？
 * 应用程序是否需要使用 GPU？ 
 * 对于紧密耦合的作业，作业类型是否只能采用不得已的并行方式？或者需要 Infiniband 连接？
-* 需要计算节点上有快速的存储 I/O
+* 需要通过快速 I/O 来访问计算节点上的存储。
 
 Azure 有各种 VM 大小，每种都符合上述应用程序要求，某些是针对 HPC 的，但即使是最小的，也可以提供有效的网格实现：
 
-* [HPC VM 大小][compute-hpc]：考虑到渲染受 CPU 限制，Microsoft 通常会建议使用 Azure H 系列 VM。  此类 VM 是专门针对高端计算需求构建的，提供 8 核和 16 核 vCPU 大小，采用 DDR4 内存、SSD 临时存储以及 Haswell E5 Intel 技术。
+* [HPC VM 大小][compute-hpc]：考虑到渲染受 CPU 限制，Microsoft 通常会建议使用 Azure H 系列 VM。 此类 VM 是专门针对高端计算需求构建的，提供 8 核和 16 核 vCPU 大小，采用 DDR4 内存、SSD 临时存储以及 Haswell E5 Intel 技术。
 * [GPU VM 大小][compute-gpu]：GPU 优化 VM 大小是具有单个或多个 NVIDIA GPU 的专用虚拟机。 这些大小是针对计算密集型、图形密集型和可视化工作负荷设计的。
 * NC、NCv2、NCv3 和 ND 大小针对计算密集型和网络密集型应用程序和算法进行了优化，包括基于 CUDA 和 OpenCL 的应用程序和模拟、AI 以及深度学习。 NV 大小已针对远程可视化效果、流式处理、游戏、编码和 VDI 方案进行了优化和设计，使用 OpenGL 和 DirectX 之类的框架。
 * [内存优化型 VM 大小][compute-memory]：需要更多内存时，内存优化型 VM 大小的内存/CPU 比率更高。
@@ -99,11 +98,11 @@ Azure Batch 帐户中的池可以通过手动干预进行缩放，也可以通�
 
 ### <a name="creating-an-azure-batch-account-and-pools-manually"></a>手动创建 Azure Batch 帐户和池
 
-本示例方案有助于了解 Azure Batch 工作方式，并将 Azure Batch Labs 以示例 SaaS 解决方案（可以为你自己的客户开发）的方式进行了演示：
+本方案演示了 Azure Batch 工作方式，并将 Azure Batch Labs 以示例 SaaS 解决方案（可以为你自己的客户开发）的方式进行了演示：
 
 [Azure Batch Masterclass][batch-labs-masterclass]
 
-### <a name="deploying-the-sample-scenario-using-an-azure-resource-manager-template"></a>使用 Azure 资源管理器模板部署示例方案
+### <a name="deploying-the-example-scenario-using-an-azure-resource-manager-template"></a>使用 Azure 资源管理器模板部署示例方案
 
 此模板将部署：
 
@@ -134,14 +133,15 @@ Azure Batch 的使用费用取决于用于池的 VM 大小以及这些 VM 的分
   50 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口
 
 * 10 个高性能 CPU VM：[费用估算][hpc-est-low]
-  
+
   10 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口
 
-### <a name="low-priority-vm-pricing"></a>低优先级 VM 定价
+### <a name="pricing-for-low-priority-vms"></a>低优先级 VM 的定价
 
-Azure Batch 也支持在节点池中使用低优先级 VM*，这可能会节省大量费用。 若要在标准 VM 和低优先级 VM 之间进行价格比较，并了解有关低优先级 VM 的详细信息，请参阅 [Batch 定价][batch-pricing]。
+Azure Batch 也支持在节点池中使用低优先级 VM，这可能会节省大量费用。 有关详细信息，包括在标准 VM 和低优先级 VM 之间的价格比较，请参阅 [Azure Batch 定价][batch-pricing]。
 
-\* 请注意，只有某些应用程序和工作负荷适合在低优先级 VM 上运行。
+> [!NOTE] 
+> 低优先级 VM 仅适用于某些应用程序和工作负荷。
 
 ## <a name="related-resources"></a>相关资源
 
@@ -152,13 +152,12 @@ Azure Batch 也支持在节点池中使用低优先级 VM*，这可能会节省�
 [在 Azure Batch 上使用容器][batch-containers]
 
 <!-- links -->
-[architecture]: ./media/native-hpc-ref-arch.png
+[architecture]: ./media/architecture-video-rendering.png
 [resource-groups]: /azure/azure-resource-manager/resource-group-overview
 [security]: /azure/security/
 [resiliency]: /azure/architecture/resiliency/
 [scalability]: /azure/architecture/checklist/scalability
 [vmss]: /azure/virtual-machine-scale-sets/overview
-[vnet]: /azure/virtual-network/virtual-networks-overview
 [storage]: https://azure.microsoft.com/services/storage/
 [batch]: https://azure.microsoft.com/services/batch/
 [batch-arch]: https://azure.microsoft.com/solutions/architecture/big-compute-with-azure-batch/
@@ -177,7 +176,7 @@ Azure Batch 也支持在节点池中使用低优先级 VM*，这可能会节省�
 [batch-scaling]: /azure/batch/batch-automatic-scaling
 [hpc-alt-solutions]: /azure/virtual-machines/linux/high-performance-computing?toc=%2fazure%2fbatch%2ftoc.json
 [batch-monitor]: /azure/batch/monitoring-overview
-[batch-pricing]: https://azure.microsoft.com/en-gb/pricing/details/batch/
+[batch-pricing]: https://azure.microsoft.com/pricing/details/batch/
 [batch-doc]: /azure/batch/
 [batch-overview]: https://azure.microsoft.com/services/batch/
 [batch-containers]: https://github.com/Azure/batch-shipyard
