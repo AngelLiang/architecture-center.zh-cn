@@ -1,14 +1,14 @@
 ---
 title: Azure 上的可缩放订单处理
-description: 通过示例方案介绍如何使用 Azure Cosmos DB 生成高度可缩放的订单处理管道。
+description: 使用 Azure Cosmos DB 构建高度可缩放的订单处理管道。
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: aa7281263db7cc72781b740941f3b86dad025baa
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: fe642ffde733914389c36c5be50f35d242a22edf
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389105"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818507"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Azure 上的可缩放订单处理
 
@@ -18,7 +18,7 @@ ms.locfileid: "44389105"
 
 使用托管式 Azure 服务（例如 Cosmos DB 和 HDInsight）可以充分利用 Microsoft 在全局分布式云规模数据存储和检索方面的专业技术，因此可以降低成本。 本方案专门针对电子商务或零售场景；若有其他的数据服务需求，则应查看 [Azure 中提供的完全托管式智能数据库服务][product-category]的列表。
 
-## <a name="related-use-cases"></a>相关的用例
+## <a name="relevant-use-cases"></a>相关用例
 
 以下用例可以考虑本方案：
 
@@ -29,7 +29,7 @@ ms.locfileid: "44389105"
 
 ## <a name="architecture"></a>体系结构
 
-![可缩放订单处理管道的示例体系结构][architecture-diagram]
+![可缩放订单处理管道的示例体系结构][architecture]
 
 此体系结构详细说明了订单处理管道的重要组件。 数据流经方案的情形如下所示：
 
@@ -37,18 +37,18 @@ ms.locfileid: "44389105"
 2. 每个事件消息都通过一个命令处理器微服务引入并映射到定义的一组命令中的一个。 命令处理器从事件流快照数据库中检索与执行该命令相关的任何最新状态。 然后会执行该命令，并将命令的输出以新事件的形式发出。
 3. 以命令输出的形式发出的每个事件会通过 Cosmos DB 提交到一个事件流数据库。
 4. 每次将数据库插入或更新提交到事件流数据库时，Cosmos DB 更改源都会引发一个事件。 下游系统可以订阅与该系统相关的任何事件主题。
-5. 来自 Cosmos DB 更改源的所有事件也会发送到快照事件流微服务，后者会计算已发生事件导致的任何状态更改。 然后，新状态会提交到存储在 Cosmos DB 中的事件流快照数据库。  快照数据库为所有数据元素的当前状态提供一个全局分布式的低延迟数据源。 事件流数据库提供已通过体系结构传递的所有事件消息的完整记录，因此可以进行可靠的测试、故障排除和灾难恢复。  
+5. 来自 Cosmos DB 更改源的所有事件也会发送到快照事件流微服务，后者会计算已发生事件导致的任何状态更改。 然后，新状态会提交到存储在 Cosmos DB 中的事件流快照数据库。 快照数据库为所有数据元素的当前状态提供一个全局分布式的低延迟数据源。 事件流数据库提供已通过体系结构传递的所有事件消息的完整记录，因此可以进行可靠的测试、故障排除和灾难恢复。
 
 ### <a name="components"></a>组件
 
-* [Cosmos DB][docs-cosmos-db] 是 Microsoft 推出的全局分布式多模型数据库，可以让解决方案跨任意数量的地理区域灵活且独立地缩放吞吐量与存储。 它通过综合服务级别协议 (SLA) 提供吞吐量、延迟、可用性和一致性保证。 本方案使用 Cosmos DB 进行事件流存储和快照存储，并利用 [Cosmos DB 的更改源][docs-cosmos-db-change-feed]功能来确保数据一致性和故障恢复。
-* [Apache Kafka on HDInsight][docs-kafka] 是以托管服务方式实现的 Apache Kafka，是一种开源分布式流式处理平台，用于生成实时流数据管道和应用程序。 Kafka 还提供了类似于消息队列的消息中转站功能，用于发布和订阅命名数据流。 本方案使用 Kafka 在订单处理管道中处理出入事件和下游事件。 
+* [Cosmos DB](/azure/cosmos-db/introduction) 是 Microsoft 推出的全球分布式多模型数据库，可以让解决方案跨任意数量的地理区域灵活且独立地缩放吞吐量与存储。 它通过综合服务级别协议 (SLA) 提供吞吐量、延迟、可用性和一致性保证。 本方案使用 Cosmos DB 进行事件流存储和快照存储，并利用 [Cosmos DB 的更改源][docs-cosmos-db-change-feed]功能来确保数据一致性和故障恢复。
+* [Apache Kafka on HDInsight](/azure/hdinsight/kafka/apache-kafka-introduction) 是以托管服务方式实现的 Apache Kafka，是一种开源分布式流式处理平台，用于生成实时流数据管道和应用程序。 Kafka 还提供了类似于消息队列的消息中转站功能，用于发布和订阅命名数据流。 本方案使用 Kafka 在订单处理管道中处理出入事件和下游事件。 
 
 ## <a name="considerations"></a>注意事项
 
-进行实时消息引入、数据存储、流处理、分析数据存储以及分析和报告时，有许多技术选项。 有关这些选项及其功能和主要选择标准的概述，请参阅 [Azure 数据体系结构指南](/azure/architecture/data-guide/)中的[大数据体系结构：实时处理](/azure/architecture/data-guide/technology-choices/real-time-ingestion)。
+进行实时消息引入、数据存储、流处理、分析数据存储以及分析和报告时，有许多技术选项。 有关这些选项及其功能和主要选择标准的概述，请参阅 [Azure 数据体系结构指南](/azure/architecture/data-guide)中的[大数据体系结构：实时处理](/azure/architecture/data-guide/technology-choices/real-time-ingestion)。
 
-微服务已成为一种流行的体系结构类型，可用于构建可复原、高度可缩放、可独立部署且能快速演变的云应用程序。 微服务需要利用不同的方法来设计和生成应用程序。 可以使用 Docker、Kubernetes、Azure Service Fabric 和 Nomad 之类的工具来开发基于微服务的体系结构。 有关如何生成并运行基于微服务的体系结构的指南，请参阅 Azure 体系结构中心的[在 Azure 上设计微服务](/azure/architecture/microservices/)。
+微服务已成为一种流行的体系结构类型，可用于构建可复原、高度可缩放、可独立部署且能快速演变的云应用程序。 微服务需要利用不同的方法来设计和生成应用程序。 可以使用 Docker、Kubernetes、Azure Service Fabric 和 Nomad 之类的工具来开发基于微服务的体系结构。 有关如何生成并运行基于微服务的体系结构的指南，请参阅 Azure 体系结构中心的[在 Azure 上设计微服务](/azure/architecture/microservices)。
 
 ### <a name="availability"></a>可用性
 
@@ -67,7 +67,7 @@ Kafka on HDInsight 可用于为 Kafka 群集[配置存储和可伸缩性](/azure
 
 ### <a name="security"></a>安全
 
-[Cosmos DB 安全模型](/azure/cosmos-db/secure-access-to-data)可以用来验证用户身份并访问其数据和资源。 有关详细信息，请参阅 [Cosmos DB 数据库安全性](/en-us/azure/cosmos-db/database-security)。
+[Cosmos DB 安全模型](/azure/cosmos-db/secure-access-to-data)可以用来验证用户身份并访问其数据和资源。 有关详细信息，请参阅 [Cosmos DB 数据库安全性](/azure/cosmos-db/database-security)。
 
 若需安全解决方案的通用设计指南，请参阅 [Azure 安全性文档][security]。
 
@@ -77,7 +77,7 @@ Kafka on HDInsight 可用于为 Kafka 群集[配置存储和可伸缩性](/azure
 
 ## <a name="pricing"></a>定价
 
-为了方便用户查看运行本方案的成本，我们已在成本计算器中预配置了所有服务。  若要了解自己的特定方案的定价变化情况，请按预期的数据量更改相应的变量。 就本方案来说，示例定价仅包括 Cosmos DB 和一个 Kafka 群集，用于处理 Cosmos DB 更改源引发的事件。 用于始发系统和其他下游系统的事件处理器和微服务未包括在内，其成本主要取决于这些服务的数量和规模，以及为实现它们而选择的技术。
+为了方便用户查看运行本方案的成本，我们已在成本计算器中预配置了所有服务。 若要了解自己的特定方案的定价变化情况，请按预期的数据量更改相应的变量。 就本方案来说，示例定价仅包括 Cosmos DB 和一个 Kafka 群集，用于处理 Cosmos DB 更改源引发的事件。 用于始发系统和其他下游系统的事件处理器和微服务未包括在内，其成本主要取决于这些服务的数量和规模，以及为实现它们而选择的技术。
 
 Azure Cosmos DB 的货币是请求单位 (RU)。 借助请求单位，无需保留读取/写入容量或预配 CPU、内存和 IOPS。 Azure Cosmos DB 支持不同操作（范围从简单读取、写入到复杂图形查询等）的许多 API。 并非所有请求都是相同的，因此系统会根据请求所需的计算量为它们分配规范化数量的请求单位。 解决方案需要的请求单位数取决于数据元素大小以及每秒的数据库读写操作数。 有关详细信息，请参阅 [Azure Cosmos DB 中的请求单位](/azure/cosmos-db/request-units)。 这些估价基于在两个 Azure 区域中运行的 Cosmos DB。
 
@@ -92,29 +92,26 @@ Azure Cosmos DB 的货币是请求单位 (RU)。 借助请求单位，无需保�
 本示例方案基于此体系结构的一个更广泛的版本，该版本由 [Jet.com](https://jet.com) 针对其端到端订单处理管道而构建。 有关详细信息，请参阅 [jet.com 技术方面的客户配置文件][source-document]和 [jet.com 在 Build 2018 的演示文稿][source-presentation]。
 
 其他相关资源包括：
-* _[Designing Data-Intensive Applications](https://dataintensive.net/)_（设计数据密集型应用程序），作者：Martin Kleppmann（O'Reilly Media，2017）。
+* _[Designing Data-Intensive Applications](https://dataintensive.net)_（设计数据密集型应用程序），作者：Martin Kleppmann（O'Reilly Media，2017）。
 * _[ Modeling Made Functional: Tackle Software Complexity with Domain-Driven Design and F#](https://pragprog.com/book/swdddf/domain-modeling-made-functional)_（域建模生效：使用域驱动型设计和 F# 减轻软件复杂性），作者：Scott Wlaschin（Pragmatic Programmers LLC，2018）。
 * 其他 [Cosmos DB 用例][docs-cosmos-db-use-cases]
-* [Azure 数据体系结构指南](/azure/architecture/data-guide/)中的[实时处理体系结构](/azure/architecture/data-guide/big-data/real-time-processing)
+* [Azure 数据体系结构指南](/azure/architecture/data-guide)中的[实时处理体系结构](/azure/architecture/data-guide/big-data/real-time-processing)。
 
 <!-- links -->
+[architecture]: ./media/architecture-ecommerce-order-processing.png
 [product-category]: https://azure.microsoft.com/product-categories/databases/
-[source-document]: https://customers.microsoft.com/en-us/story/jet-com-powers-innovative-e-commerce-engine-on-azure-in-less-than-12-months
+[source-document]: https://customers.microsoft.com/story/jet-com-powers-innovative-e-commerce-engine-on-azure-in-less-than-12-months
 [source-presentation]: https://channel9.msdn.com/events/Build/2018/BRK3602
 [small-pricing]: https://azure.com/e/3d43949ffbb945a88cc0a126dc3a0e6e
 [medium-pricing]: https://azure.com/e/1f1e7bf2a6ad4f7799581211f4369b9b
 [large-pricing]: https://azure.com/e/75207172ece94cf6b5fb354a2252b333
-[architecture-diagram]: ./media/architecture-diagram-cosmos-db.png
-[docs-cosmos-db]: /azure/cosmos-db
 [docs-cosmos-db-change-feed]: /azure/cosmos-db/change-feed
 [docs-cosmos-db-regional-failover]: /azure/cosmos-db/regional-failover
 [docs-cosmos-db-guarantees]: /azure/cosmos-db/distribute-data-globally#AvailabilityGuarantees
 [docs-cosmos-db-use-cases]: /azure/cosmos-db/use-cases
-[docs-kafka]: /azure/hdinsight/kafka/apache-kafka-introduction
 [docs-kafka-high-availability]: /azure/hdinsight/kafka/apache-kafka-high-availability
 [docs-event-hubs]: /azure/event-hubs/event-hubs-what-is-event-hubs
 [docs-stream-analytics]: /azure/stream-analytics/stream-analytics-introduction
-[docs-blob-storage]: /azure/storage/blobs/storage-blobs-introduction
 [availability]: /azure/architecture/checklist/availability
 [scalability]: /azure/architecture/checklist/scalability
 [resiliency]: /azure/architecture/patterns/category/resiliency/
