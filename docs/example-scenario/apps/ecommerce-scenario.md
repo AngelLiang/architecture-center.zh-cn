@@ -1,22 +1,22 @@
 ---
 title: Azure 上的电子商务前端
-description: 通过经验证的方案在 Azure 上托管电子商务站点
+description: 在 Azure 上托管电子商务站点。
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 340f60628bf932489a9fbd11ac3ff1be723a685c
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 6ca85665a5bf63bf71f5badc16406db5df2a34c2
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428068"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819085"
 ---
-# <a name="e-commerce-frontend-on-azure"></a>Azure 上的电子商务前端
+# <a name="an-e-commerce-front-end-on-azure"></a>Azure 上的电子商务前端
 
 本示例方案详述了如何使用 Azure 平台即服务 (PaaS) 工具实现一个电子商务前端。 许多电子商务网站在一段时间过后都面临季节性和流量不稳定的问题。 对你的产品或服务的需求增加时（不管是可预见的还是不可预见的），可以通过 PaaS 工具自动应对客户数量和交易数量增加的情况。 另外，本方案只要求你支付所使用的容量，让你充分利用云经济。
 
 本文档介绍各种 Azure PaaS 组件和注意事项，方便你部署示例性的电子商务应用程序 *Relecloud Concerts*，这是一个在线音乐会订票平台。
 
-## <a name="potential-use-cases"></a>可能的用例
+## <a name="relevant-use-cases"></a>相关用例
 
 以下用例可以考虑本方案：
 
@@ -25,7 +25,7 @@ ms.locfileid: "47428068"
 
 ## <a name="architecture"></a>体系结构
 
-![适用于电子商务应用程序的示例性方案体系结构][architecture-diagram]
+![适用于电子商务应用程序的示例性方案体系结构][architecture]
 
 本方案介绍如何通过某个电子商务站点购票。数据流经方案的情形如下所示：
 
@@ -69,7 +69,7 @@ ms.locfileid: "47428068"
 
 可用于数据层的其他选项包括：
 
-* [Cosmos DB][docs-cosmosdb] - Microsoft 提供的全局分布式多模型数据库。 此服务提供的平台适合运行其他数据模型，例如 Mongo DB、Cassandra、Graph 数据或简单的表存储。
+* [Cosmos DB](/azure/cosmos-db/introduction)：Microsoft 提供的全球分布式多模型数据库。 此服务提供的平台适合运行其他数据模型，例如 Mongo DB、Cassandra、Graph 数据或简单的表存储。
 
 ## <a name="considerations"></a>注意事项
 
@@ -120,11 +120,11 @@ ms.locfileid: "47428068"
 * [容器中的网上商店参考示例][microservices-ecommerce]
 
 <!-- links -->
+[architecture]: ./media/architecture-ecommerce-scenario.png
 [small-pricing]: https://azure.com/e/90fbb6a661a04888a57322985f9b34ac
 [medium-pricing]: https://azure.com/e/38d5d387e3234537b6859660db1c9973
 [large-pricing]: https://azure.com/e/f07f99b6c3134803a14c9b43fcba3e2f
 [app-service-reference-architecture]: ../../reference-architectures/app-service-web-app/basic-web-app.md
-[architecture-diagram]: ./media/architecture-diagram-ecommerce-solution.png
 [availability]: /azure/architecture/checklist/availability
 [circuit-breaker]: /azure/architecture/patterns/circuit-breaker
 [design-patterns-availability]: /azure/architecture/patterns/category/availability
@@ -136,7 +136,6 @@ ms.locfileid: "47428068"
 [docs-cdn]: /azure/cdn/cdn-overview
 [docs-container-instances]: /azure/container-instances/
 [docs-kubernetes-service]: /azure/aks/
-[docs-cosmosdb]: /azure/cosmos-db/
 [docs-functions]: /azure/azure-functions/functions-overview
 [docs-redis-cache]: /azure/redis-cache/cache-overview
 [docs-search]: /azure/search/search-what-is-azure-search
@@ -154,6 +153,6 @@ ms.locfileid: "47428068"
 [resiliency-app-service]: /azure/architecture/checklist/resiliency-per-service#app-service
 [resiliency]: /azure/architecture/checklist/resiliency
 [scalability]: /azure/architecture/checklist/scalability
-[secure-development]: https://www.microsoft.com/en-us/SDL/process/design.aspx
+[secure-development]: https://www.microsoft.com/SDL/process/design.aspx
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview
 [storage-geo-redudancy]: /azure/storage/common/storage-redundancy-grs

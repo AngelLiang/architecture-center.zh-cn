@@ -1,14 +1,14 @@
 ---
 title: 在 Azure 上实时欺诈检测
-description: 经验证的方案，可以使用 Azure 事件中心和流分析实时检测欺诈性活动。
+description: 使用 Azure 事件中心和流分析实时检测欺诈性活动。
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: d80fab460938cceeb84f3ed2ecd97e9e149f8e2d
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: 4de988731aa1c5b0e4c0ba06fa5aed59e2bb7d81
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389122"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818660"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>在 Azure 上实时欺诈检测
 
@@ -20,7 +20,7 @@ ms.locfileid: "44389122"
 
 本示例所代表的部分涉及到更广泛的数据处理体系结构和策略。 整个体系结构此方面的其他选项将在本文后面讨论。
 
-## <a name="related-use-cases"></a>相关的用例
+## <a name="relevant-use-cases"></a>相关用例
 
 以下用例可以考虑本方案：
 
@@ -30,7 +30,7 @@ ms.locfileid: "44389122"
 
 ## <a name="architecture"></a>体系结构
 
-![从体系结构的角度概要说明实时欺诈检测方案的 Azure 组件][architecture-diagram]
+![从体系结构的角度概要说明实时欺诈检测方案的 Azure 组件][architecture]
 
 本方案涉及实时分析管道的后端组件。 数据流经方案的情形如下所示：
 
@@ -43,7 +43,7 @@ ms.locfileid: "44389122"
 
 * [Azure 事件中心][docs-event-hubs]是一个实时流式处理平台和事件引入服务，每秒能够接收和处理数百万个事件。 事件中心可以处理和存储分布式软件和设备生成的事件、数据或遥测。 在本方案中，事件中心接收需要进行欺诈活动分析的所有电话呼叫元数据。
 * [Azure 流分析][docs-stream-analytics]是一个事件处理引擎，可以分析从设备和其他数据源流式传输的大量数据。 它还支持从数据流提取信息，以便确定模式和关系。 这些模式可能触发其他下游操作。 在本方案中，流分析会转换事件中心的输入流，以便确定欺诈性呼叫。
-* [Blob 存储][docs-blob-storage]在本方案中用于存储流分析作业的结果。
+* [Blob 存储](/azure/storage/blobs/storage-blobs-introduction)在本方案中用于存储流分析作业的结果。
 
 ## <a name="considerations"></a>注意事项
 
@@ -61,7 +61,7 @@ Azure Monitor 提供了统一的用户界面，可用于监视各种 Azure 服�
 
 ### <a name="scalability"></a>可伸缩性
 
-本方案的组件设计用于超大规模的引入和大规模并行实时分析。 Azure 事件中心高度可缩放，每秒能够接收和处理数百万个事件且延迟很低。  事件中心可[自动增加](/azure/event-hubs/event-hubs-auto-inflate)吞吐量单元数，以便满足使用需求。 Azure 流分析可以分析多个源提供的大量流数据。 若要纵向扩展流分析，可以增加分配的用于执行流作业的[流单元](/azure/stream-analytics/stream-analytics-streaming-unit-consumption)数。
+本方案的组件设计用于超大规模的引入和大规模并行实时分析。 Azure 事件中心高度可缩放，每秒能够接收和处理数百万个事件且延迟很低。 事件中心可[自动增加](/azure/event-hubs/event-hubs-auto-inflate)吞吐量单元数，以便满足使用需求。 Azure 流分析可以分析多个源提供的大量流数据。 若要纵向扩展流分析，可以增加分配的用于执行流作业的[流单元](/azure/stream-analytics/stream-analytics-streaming-unit-consumption)数。
 
 有关如何设计可缩放方案的通用指南，请参阅 Azure 体系结构中心的[可伸缩性核对清单][scalability]。
 
@@ -91,7 +91,7 @@ Azure 事件中心通过[身份验证和安全模型][docs-event-hubs-security-m
 
 ## <a name="related-resources"></a>相关资源
 
-可以通过机器学习模型生成更复杂的欺诈检测方案。 若要了解使用 Machine Learning Server 生成的方案，请参阅[使用 Machine Learning Server 进行的欺诈检测][r-server-fraud-detection]。 若要了解使用 Machine Learning Server 的其他解决方案模板，请参阅[数据科学方案和解决方案模板][docs-r-server-sample-solutions]。 若要了解使用 Azure Data Lake Analytics 的示例解决方案，请参阅[使用 Azure Data Lake 和 R 进行欺诈检测][technet-fraud-detection]。  
+可以通过机器学习模型生成更复杂的欺诈检测方案。 若要了解使用 Machine Learning Server 生成的方案，请参阅[使用 Machine Learning Server 进行的欺诈检测][r-server-fraud-detection]。 若要了解使用 Machine Learning Server 的其他解决方案模板，请参阅[数据科学方案和解决方案模板][docs-r-server-sample-solutions]。 若要了解使用 Azure Data Lake Analytics 的示例解决方案，请参阅[使用 Azure Data Lake 和 R 进行欺诈检测][technet-fraud-detection]。
 
 <!-- links -->
 [product-category]: https://azure.microsoft.com/product-categories/analytics/
@@ -99,11 +99,10 @@ Azure 事件中心通过[身份验证和安全模型][docs-event-hubs-security-m
 [small-pricing]: https://azure.com/e/74149ec312c049ccba79bfb3cfa67606
 [medium-pricing]: https://azure.com/e/4fc94f7376de484d8ae67a6958cae60a
 [large-pricing]: https://azure.com/e/7da8804396f9428a984578700003ba42
-[architecture-diagram]: ./media/architecture-diagram-fraud-detection.png
+[architecture]: ./media/architecture-fraud-detection.png
 [docs-event-hubs]: /azure/event-hubs/event-hubs-what-is-event-hubs
 [docs-event-hubs-security-model]: /azure/event-hubs/event-hubs-authentication-and-security-model-overview
 [docs-stream-analytics]: /azure/stream-analytics/stream-analytics-introduction
-[docs-blob-storage]: /azure/storage/blobs/storage-blobs-introduction
 [docs-r-server-sample-solutions]: /machine-learning-server/r/sample-solutions
 [r-server-fraud-detection]: https://microsoft.github.io/r-server-fraud-detection/
 [technet-fraud-detection]: https://blogs.technet.microsoft.com/machinelearning/2017/06/28/using-azure-data-lake-and-r-for-fraud-detection/

@@ -1,14 +1,14 @@
 ---
 title: 适用于基于容器的工作负荷的 CI/CD 管道
-description: 经验证的方案，所生成的 DevOps 管道适合使用 Jenkins、Azure 容器注册表、Azure Kubernetes 服务、Cosmos DB 和 Grafana 的 Node.js Web 应用。
+description: 使用 Jenkins、Azure 容器注册表、Azure Kubernetes 服务、Cosmos DB 和 Grafana 为 Node.js Web 应用构建 DevOps 管道。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: d659916e3af0caa2128db25faab441a2af8f3f6a
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: 3212fae2c68eef3a5ed4963d28c0d97ac8f332e0
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389377"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818728"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>适用于基于容器的工作负荷的 CI/CD 管道
 
@@ -18,7 +18,7 @@ ms.locfileid: "44389377"
 
 有了 Azure Kubernetes 服务、容器注册表和 Cosmos DB 之类的 Azure 服务，公司就可以使用最新的应用程序开发技术和工具来简化高可用性的实现过程。
 
-## <a name="related-use-cases"></a>相关的用例
+## <a name="relevant-use-cases"></a>相关用例
 
 以下用例可以考虑本方案：
 
@@ -38,17 +38,17 @@ ms.locfileid: "44389377"
 4. Jenkins 生成作业使用 Azure Kubernetes 服务中的动态生成代理来执行容器生成过程。
 5. 系统会根据源代码管理中的代码创建容器映像并将其推送到 Azure 容器注册表。
 6. Jenkins 通过持续部署 (CD) 将这个更新的容器映像部署到 Kubernetes 群集。
-7. Node.js Web 应用程序将 Azure Cosmos DB 用作其后端。 Cosmos DB 和 Azure Kubernetes 服务都会将指标报告给 Azure Monitor。
+7. Node.js Web 应用程序将 Cosmos DB 用作其后端。 Cosmos DB 和 Azure Kubernetes 服务都会将指标报告给 Azure Monitor。
 8. Grafana 实例根据 Azure Monitor 提供的数据在仪表板上直观显示应用程序性能。
 
 ### <a name="components"></a>组件
 
 * [Jenkins][jenkins] 是一种开源的自动化服务器，与 Azure 服务集成后即可进行持续集成 (CI) 和持续部署 (CD)。 在本方案中，Jenkins 会根据提交到源代码管理中的内容协调新容器映像的创建过程，接着将这些映像推送到 Azure 容器注册表，然后更新 Azure Kubernetes 服务中的应用程序实例。
-* [Azure Linux 虚拟机][azurevm-docs]是用于运行 Jenkins 和 Grafana 实例的 IaaS 平台。
-* [Azure 容器注册表][azureacr-docs]存储和管理 Azure Kubernetes 服务群集使用的容器映像。 映像会以安全的方式进行存储，并可通过 Azure 平台复制到其他区域以加快部署速度。
-* [Azure Kubernetes 服务][azureaks-docs]是一种托管的 Kubernetes 平台，可以让用户在没有容器业务流程专业知识的情况下部署和管理容器化的应用程序。 作为一个托管 Kubernetes 服务，Azure 可以自动处理运行状况监视和维护等关键任务。
-* [Azure Cosmos DB][azurecosmosdb-docs] 是一种全局分布式多模型数据库，允许用户根据需要选择不同的数据库和一致性模型。 Cosmos DB 允许全局复制数据，且不需部署和配置群集管理或复制组件。
-* [Azure Monitor][azuremonitor-docs] 可以跟踪性能、维护安全和确定趋势。 Monitor 获得的指标可供其他资源和工具（例如 Grafana）使用。
+* [Azure Linux 虚拟机][docs-virtual-machines]是用于运行 Jenkins 和 Grafana 实例的 IaaS 平台。
+* [Azure 容器注册表][docs-acr]存储和管理 Azure Kubernetes 服务群集使用的容器映像。 映像会以安全的方式进行存储，并可通过 Azure 平台复制到其他区域以加快部署速度。
+* [Azure Kubernetes 服务][docs-aks]是一种托管的 Kubernetes 平台，可以让用户在没有容器业务流程专业知识的情况下部署和管理容器化的应用程序。 作为一个托管 Kubernetes 服务，Azure 可以自动处理运行状况监视和维护等关键任务。
+* [Azure Cosmos DB][docs-cosmos-db] 是一种全局分布式多模型数据库，允许用户根据需要选择不同的数据库和一致性模型。 Cosmos DB 允许全局复制数据，且不需部署和配置群集管理或复制组件。
+* [Azure Monitor][docs-azure-monitor] 可以跟踪性能、维护安全和确定趋势。 Monitor 获得的指标可供其他资源和工具（例如 Grafana）使用。
 * [Grafana][grafana] 是一种用于查询、可视化、警示和了解指标的开源解决方案。 Grafana 可以通过 Azure Monitor 的数据源插件创建直观的仪表板，以便监视在 Azure Kubernetes 服务中运行并使用 Cosmos DB 的应用程序的性能。
 
 ### <a name="alternatives"></a>备选项
@@ -129,18 +129,18 @@ Azure Kubernetes 服务允许按照应用程序的需求调整群集节点的数
 
 ## <a name="related-resources"></a>相关资源
 
-本方案使用了 Azure 容器注册表和 Azure Kubernetes 服务来存储和运行基于容器的应用程序。 Azure 容器实例也可用于运行基于容器的应用程序，不需预配任何业务流程组件。 有关详细信息，请参阅 [Azure 容器实例概述][azureaci-docs]。
+本方案使用了 Azure 容器注册表和 Azure Kubernetes 服务来存储和运行基于容器的应用程序。 Azure 容器实例也可用于运行基于容器的应用程序，不需预配任何业务流程组件。 有关详细信息，请参阅 [Azure 容器实例概述][docs-aci]。
 
 <!-- links -->
-[architecture]: ./media/devops-with-aks/architecture-devops-with-aks.png
+[architecture]: ./media/architecture-devops-with-aks.png
 [autoscaling]: ../../best-practices/auto-scaling.md
 [availability]: ../../checklist/availability.md
-[azureaci-docs]: /azure/container-instances/container-instances-overview
-[azureacr-docs]: /azure/container-registry/container-registry-intro
-[azurecosmosdb-docs]: /azure/cosmos-db/introduction
-[azureaks-docs]: /azure/aks/intro-kubernetes
-[azuremonitor-docs]: /azure/monitoring-and-diagnostics/monitoring-overview
-[azurevm-docs]: /azure/virtual-machines/linux/overview
+[docs-aci]: /azure/container-instances/container-instances-overview
+[docs-acr]: /azure/container-registry/container-registry-intro
+[docs-aks]: /azure/aks/intro-kubernetes
+[docs-azure-monitor]: /azure/monitoring-and-diagnostics/monitoring-overview
+[docs-cosmos-db]: /azure/cosmos-db/introduction
+[docs-virtual-machines]: /azure/virtual-machines/linux/overview
 [createsp]: /cli/azure/ad/sp#az-ad-sp-create
 [grafana]: https://grafana.com/
 [jenkins]: https://jenkins.io/
