@@ -4,12 +4,12 @@ description: 设置重试机制的服务指南。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 790c933458717f2cb4cde0741b1d22f6ae89cc39
-ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
+ms.openlocfilehash: c5a9bc99c4693f35c38dabcf07b3465add6a8cb1
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/18/2018
-ms.locfileid: "43016106"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429532"
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服务的重试指南
 
@@ -149,7 +149,7 @@ Azure IoT 设备 SDK 可以检测网络、协议或应用程序中的错误。 �
 ## <a name="azure-redis-cache"></a>Azure Redis 缓存
 Azure Redis 高速缓存是一项快速数据访问和低延迟高速缓存服务，基于常用的开放源代码 Redis 高速缓存。 它是由 Microsoft 管理的安全服务，可通过 Azure 中的任意应用程序进行访问。
 
-本部分中的指南假设你使用 StackExchange.Redis 客户端访问高速缓存。 [Redis 网站](http://redis.io/clients)上列出了其他合适的客户端，这些客户端可能具有不同的重试机制。
+本部分中的指南假设你使用 StackExchange.Redis 客户端访问高速缓存。 [Redis 网站](https://redis.io/clients)上列出了其他合适的客户端，这些客户端可能具有不同的重试机制。
 
 请注意，StackExchange.Redis 客户端通过单个连接使用多路复用。 建议的用法是，在应用程序启动时创建客户端实例，并对针对高速缓存执行的所有操作使用此实例。 因此，高速缓存连接只建立一次，且本部分中的所有指南均与此启动连接（而不是访问高速缓存的每个操作）的重试策略相关。
 
@@ -202,7 +202,7 @@ var conn = ConnectionMultiplexer.Connect("redis0:6380,redis1:6380,connectRetry=3
 | 配置选项 |ConnectRetry<br /><br />ConnectTimeout<br /><br />SyncTimeout<br /><br />ReconnectRetryPolicy |3<br /><br />最长 5000 毫秒，外加 SyncTimeout<br />1000<br /><br />LinearRetry 5000 毫秒 |初始连接操作期间重试连接的次数。<br />连接操作的超时（以毫秒为单位）。 重试尝试之间没有延迟。<br />允许同步操作进行的时间（以毫秒为单位）。<br /><br />每 5000 毫秒重试一次。|
 
 > [!NOTE]
-> 对于同步操作，可将 `SyncTimeout` 添加到端到端延迟，但将其值设置过低可能会导致超时时间过长。 请参阅[如何排查 Azure Redis 缓存问题][redis-cache-troubleshoot]。 一般应避免使用同步操作，而改用异步操作。 有关详细信息，请参阅 [Pipelines and Multiplexers](http://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/PipelinesMultiplexers.md)（管道和多路复用器）。
+> 对于同步操作，可将 `SyncTimeout` 添加到端到端延迟，但将其值设置过低可能会导致超时时间过长。 请参阅[如何排查 Azure Redis 缓存问题][redis-cache-troubleshoot]。 一般应避免使用同步操作，而改用异步操作。 有关详细信息，请参阅 [Pipelines and Multiplexers](https://github.com/StackExchange/StackExchange.Redis/blob/master/docs/PipelinesMultiplexers.md)（管道和多路复用器）。
 >
 >
 
@@ -323,10 +323,10 @@ namespace RetryCodeSamples
 }
 ```
 
-有关更多示例，请参阅项目网站上的[配置](http://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Configuration.md#configuration)。
+有关更多示例，请参阅项目网站上的[配置](https://github.com/StackExchange/StackExchange.Redis/blob/master/docs/Configuration.md)。
 
 ### <a name="more-information"></a>详细信息
-* [Redis 网站](http://redis.io/)
+* [Redis 网站](https://redis.io/)
 
 ## <a name="azure-search"></a>Azure 搜索
 Azure 搜索可用于向网站或应用程序添加功能强大且复杂的搜索功能、快速轻松地优化搜索结果，并构造大量经过微调的排名模型。
@@ -341,10 +341,10 @@ Azure 搜索可用于向网站或应用程序添加功能强大且复杂的搜�
 服务总线是云消息传送平台，可提供松散耦合的消息交换，同时提升应用程序各组件（无论是托管在云中还是在本地）的规模和复原能力。
 
 ### <a name="retry-mechanism"></a>重试机制
-服务总线通过 [RetryPolicy](http://msdn.microsoft.com/library/microsoft.servicebus.retrypolicy.aspx) 基类的实现来实现重试。 所有服务总线客户端均公开 **RetryPolicy** 属性，此属性可以设置为 **RetryPolicy** 基类的一个实现。 内置实现为：
+服务总线通过 [RetryPolicy](/dotnet/api/microsoft.servicebus.retrypolicy) 基类的实现来实现重试。 所有服务总线客户端均公开 **RetryPolicy** 属性，此属性可以设置为 **RetryPolicy** 基类的一个实现。 内置实现为：
 
-* [RetryExponential 类](http://msdn.microsoft.com/library/microsoft.servicebus.retryexponential.aspx)。 这会公开用于控制回退间隔和重试计数的属性，以及用于限制操作完成总时间的 **TerminationTimeBuffer** 属性。
-* [NoRetry 类](http://msdn.microsoft.com/library/microsoft.servicebus.noretry.aspx)。 这适用于不需要在服务总线 API 一级进行重试的情况，如其他进程将重试作为批处理或多步操作的一部分进行管理的情况。
+* [RetryExponential 类](/dotnet/api/microsoft.servicebus.retryexponential)。 这会公开用于控制回退间隔和重试计数的属性，以及用于限制操作完成总时间的 **TerminationTimeBuffer** 属性。
+* [NoRetry 类](/dotnet/api/microsoft.servicebus.noretry)。 这适用于不需要在服务总线 API 一级进行重试的情况，如其他进程将重试作为批处理或多步操作的一部分进行管理的情况。
 
 服务总线操作可能返回一系列异常，如[服务总线消息传送异常](/azure/service-bus-messaging/service-bus-messaging-exceptions)中所列。 此列表提供了一些信息来指明重试操作是否合适。 例如，**ServerBusyException** 指明客户端应等待一段时间，并重试操作。 **ServerBusyException** 的出现还会导致服务总线切换到不同模式，这会令计算的重试延迟额外增加 10 秒。 在一段很短的时间后，此模式会重置。
 
@@ -392,7 +392,7 @@ client.RetryPolicy = new RetryExponential(minBackoff: TimeSpan.FromSeconds(0.1),
 使用服务总线时，请注意以下指南：
 
 * 使用内置 **RetryExponential** 实现时，请勿将回退操作实现为响应服务器忙异常和自动切换到适合重试模式的策略。
-* 服务总线支持配对的命名空间这一功能。如果主要命名空间中的队列失败，则此功能会实现自动故障转移到单独命名空间中的备份队列。 在主要队列恢复后，来自辅助队列的消息可以发送回主要队列。 此功能有助于解决临时故障。 有关详细信息，请参阅[异步消息传送模式和高可用性](http://msdn.microsoft.com/library/azure/dn292562.aspx)。
+* 服务总线支持配对的命名空间这一功能。如果主要命名空间中的队列失败，则此功能会实现自动故障转移到单独命名空间中的备份队列。 在主要队列恢复后，来自辅助队列的消息可以发送回主要队列。 此功能有助于解决临时故障。 有关详细信息，请参阅[异步消息传送模式和高可用性](/azure/service-bus-messaging/service-bus-async-messaging)。
 
 请考虑从下列重试操作设置入手。 这些都是通用设置，应监视操作，并对值进行微调以适应自己的方案。
 
@@ -510,7 +510,7 @@ namespace RetryCodeSamples
 ```
 
 ### <a name="more-information"></a>详细信息
-* [异步消息传送模式和高可用性](http://msdn.microsoft.com/library/azure/dn292562.aspx)
+* [异步消息传送模式和高可用性](/azure/service-bus-messaging/service-bus-async-messaging)
 
 ## <a name="service-fabric"></a>Service Fabric
 
@@ -551,10 +551,10 @@ SQL 数据库是一种托管的 SQL 数据库，具有各种大小，可作为�
 访问使用 ADO.NET 的 SQL 数据库时，请注意以下指南：
 
 * 选择适当的服务选项（共享或高级）。 鉴于共享服务器的其他租户的使用情况，共享实例的连接延迟和限制可能比平常要长。 如果需要更加可预测的性能和可靠的低延迟操作，请考虑选择高级选项。
-* 请务必在适当的级别或作用域执行重试，以避免出现导致数据不一致的非幂等操作。 理想情况下，所有操作都应是幂等操作，这样就可以重复执行，而不会导致不一致。 如果并非如此，应在符合以下条件的级别或作用域执行重试：在一个操作失败时允许撤消所有相关更改；例如，从事务作用域内。 有关详细信息，请参阅[云服务基础数据访问层 - 临时故障处理](http://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx#Idempotent_Guarantee)。
+* 请务必在适当的级别或作用域执行重试，以避免出现导致数据不一致的非幂等操作。 理想情况下，所有操作都应是幂等操作，这样就可以重复执行，而不会导致不一致。 如果并非如此，应在符合以下条件的级别或作用域执行重试：在一个操作失败时允许撤消所有相关更改；例如，从事务作用域内。 有关详细信息，请参阅[云服务基础数据访问层 - 临时故障处理](https://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx#Idempotent_Guarantee)。
 * 不建议结合使用固定间隔策略和 Azure SQL 数据库（交互式方案除外，在此类方案中，仅有几次重试的间隔非常短）。 对于大多数方案，请考虑使用指数回退策略。
 * 定义连接时，为连接和命令超时选择合适的值。 当数据库忙碌时，超时太短可能会导致连接过早失败。 超时太长则会导致在检测到失败的连接前等待太久，进而可能会妨碍重试逻辑正常运行。 超时值是端到端延迟的组成部分；它可以有效地增加每次重试尝试的重试策略中指定的重试延迟。
-* 重试一定次数后关闭连接（即使使用指数回退重试逻辑，也是如此），并在新连接上重试操作。 在同一个连接上多次重试相同的操作可能是导致连接问题出现的一个因素。 有关此技术的示例，请参阅[云服务基础数据访问层 - 临时故障处理](http://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx)。
+* 重试一定次数后关闭连接（即使使用指数回退重试逻辑，也是如此），并在新连接上重试操作。 在同一个连接上多次重试相同的操作可能是导致连接问题出现的一个因素。 有关此技术的示例，请参阅[云服务基础数据访问层 - 临时故障处理](https://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx)。
 * 当连接池正在使用中（默认情况）时，可能会从池中选择相同的连接，即使在关闭并重新打开连接后，也可能会出现这样的情况。 如果遇到这种情况，解决方法是调用 **SqlConnection** 类的 **ClearPool** 方法，将连接标记为不可重用。 不过，仅在几次连接尝试均失败，且遇到与失败的连接相关的某类临时故障（如 SQL 超时（错误代码 -2））时，才能这样做。
 * 如果数据访问代码使用作为 **TransactionScope** 实例启动的事务，则重试逻辑应重新打开连接，并启动新的事务作用域。 因此，可重试代码块应包含事务的整个作用域。
 
@@ -614,15 +614,15 @@ using (var reader = await sqlCommand.ExecuteReaderWithRetryAsync())
 ```
 
 ### <a name="more-information"></a>详细信息
-* [云服务基础数据访问层 - 临时故障处理](http://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx)
+* [云服务基础数据访问层 - 临时故障处理](https://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx)
 
-有关如何充分利用 SQL 数据库的一般指南，请参阅 [Azure SQL 数据库性能和弹性指南](http://social.technet.microsoft.com/wiki/contents/articles/3507.windows-azure-sql-database-performance-and-elasticity-guide.aspx)。
+有关如何充分利用 SQL 数据库的一般指南，请参阅 [Azure SQL 数据库性能和弹性指南](https://social.technet.microsoft.com/wiki/contents/articles/3507.windows-azure-sql-database-performance-and-elasticity-guide.aspx)。
 
 ## <a name="sql-database-using-entity-framework-6"></a>使用 Entity Framework 6 的 SQL 数据库
 SQL 数据库是一种托管的 SQL 数据库，具有各种大小，可作为标准（共享）和高级（非共享）服务提供。 Entity Framework 是一种对象关系映射程序，可方便 .NET 开发人员使用域特定对象处理关系数据。 开发人员无需再像往常一样编写大部分数据访问代码。
 
 ### <a name="retry-mechanism"></a>重试机制
-在通过名为[连接复原/重试逻辑](http://msdn.microsoft.com/data/dn456835.aspx)的机制访问使用 Entity Framework 6.0 及更高版本的 SQL 数据库时，提供重试支持。 重试机制的主要功能包括：
+在通过名为[连接复原/重试逻辑](/ef/ef6/fundamentals/connection-resiliency/retry-logic)的机制访问使用 Entity Framework 6.0 及更高版本的 SQL 数据库时，提供重试支持。 重试机制的主要功能包括：
 
 * 主要抽象是 **IDbExecutionStrategy** 接口。 此接口：
   * 定义同步和异步 **Execute*** 方法。
@@ -666,7 +666,7 @@ DbConfiguration.SetConfiguration(new BloggingContextConfiguration());
 public class BloggingContext : DbContext
 ```
 
-如果需要对特定操作使用不同的重试策略，或对特定操作禁用重试，则可以创建配置类，以便能够在 **CallContext** 中设置标志，从而挂起或交换策略。 配置类可以使用此标志切换策略，或禁用提供的策略并使用默认策略。 有关详细信息，请参阅“重试执行策略限制（EF6 及更高版本）”页面中的[挂起执行策略](http://msdn.microsoft.com/dn307226#transactions_workarounds)。
+如果需要对特定操作使用不同的重试策略，或对特定操作禁用重试，则可以创建配置类，以便能够在 **CallContext** 中设置标志，从而挂起或交换策略。 配置类可以使用此标志切换策略，或禁用提供的策略并使用默认策略。 有关详细信息，请参阅[暂停执行策略](/ef/ef6/fundamentals/connection-resiliency/retry-logic#workaround-suspend-execution-strategy)（EF6 及更高版本）。
 
 对各个操作使用特定重试策略的另一种方法是，创建相应策略类的实例，并通过参数提供所需的设置。 然后，需要调用它的 **ExecuteAsync** 方法。
 
@@ -686,7 +686,7 @@ var blogs = await executionStrategy.ExecuteAsync(
 
 使用 **DbConfiguration** 类的最简单方法是在与 **DbContext** 类相同的程序集中找到它。 不过，如果需要在不同的方案（如使用不同的交互式重试策略和后台重试策略）中使用相同的上下文，则这样做并不适合。 如果不同的上下文在各个应用域中执行，则可以通过内置的支持在配置文件中指定配置类，也可以使用代码对它进行明确设置。 如果不同的上下文必须在同一应用域中执行，则需要使用自定义解决方案。
 
-有关详细信息，请参阅[基于代码的配置（EF6 及更高版本）](http://msdn.microsoft.com/data/jj680699.aspx)。
+有关详细信息，请参阅[基于代码的配置](/ef/ef6/fundamentals/configuring/code-based)（EF6 及更高版本）。
 
 下表显示了使用 EF6 时的内置重试策略的默认设置。
 
@@ -765,10 +765,10 @@ namespace RetryCodeSamples
 }
 ```
 
-有关使用 Entity Framework 重试机制的更多示例，请参阅[连接复原/重试逻辑](http://msdn.microsoft.com/data/dn456835.aspx)。
+有关使用 Entity Framework 重试机制的更多示例，请参阅[连接复原/重试逻辑](/ef/ef6/fundamentals/connection-resiliency/retry-logic)。
 
 ### <a name="more-information"></a>详细信息
-* [Azure SQL 数据库性能和弹性指南](http://social.technet.microsoft.com/wiki/contents/articles/3507.windows-azure-sql-database-performance-and-elasticity-guide.aspx)
+* [Azure SQL 数据库性能和弹性指南](https://social.technet.microsoft.com/wiki/contents/articles/3507.windows-azure-sql-database-performance-and-elasticity-guide.aspx)
 
 ## <a name="sql-database-using-entity-framework-core"></a>使用 Entity Framework Core 的 SQL 数据库
 [Entity Framework Core](/ef/core/) 是一种对象关系映射程序，可方便 .NET Core 开发人员使用域特定对象处理数据。 开发人员无需再像往常一样编写大部分数据访问代码。 此版 Entity Framework 从头开始编写，不自动从 EF6.x 继承所有功能。
@@ -803,10 +803,10 @@ using (var db = new BloggingContext())
     {
         using (var transaction = db.Database.BeginTransaction())
         {
-            db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet" });
+            db.Blogs.Add(new Blog { Url = "https://blogs.msdn.com/dotnet" });
             db.SaveChanges();
 
-            db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/visualstudio" });
+            db.Blogs.Add(new Blog { Url = "https://blogs.msdn.com/visualstudio" });
             db.SaveChanges();
 
             transaction.Commit();
@@ -819,13 +819,13 @@ using (var db = new BloggingContext())
 Azure 存储服务包括表和 blob 存储、文件以及存储队列。
 
 ### <a name="retry-mechanism"></a>重试机制
-重试在单独的 REST 操作一级发生，是客户端 API 实现的主要组成部分。 客户端存储 SDK 使用可实现 [IExtendedRetryPolicy Interface](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy.aspx)（IExtendedRetryPolicy 接口）的类。
+重试在单独的 REST 操作一级发生，是客户端 API 实现的主要组成部分。 客户端存储 SDK 使用可实现 [IExtendedRetryPolicy Interface](/dotnet/api/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy)（IExtendedRetryPolicy 接口）的类。
 
 接口的实现各不相同。 存储客户端可以从专门用于访问表、blob 和队列的策略中进行选择。 每个实现使用不同的重试策略，此策略基本上定义了重试间隔和其他详细信息。
 
 内置类支持线性（固定延迟）和指数随机化重试间隔。 当其他进程在较高级别处理重试时，还有不重试策略可供使用。 不过，如果具有内置类未规定的特定要求，则可以实现自己的重试类。
 
-如果使用的是读取访问异地冗余存储 (RA-GRS)，且请求的结果是可重试错误，则备用重试会在主要和辅助存储服务位置之间切换。 有关详细信息，请参阅 [Azure 存储冗余选项](http://msdn.microsoft.com/library/azure/dn727290.aspx)。
+如果使用的是读取访问异地冗余存储 (RA-GRS)，且请求的结果是可重试错误，则备用重试会在主要和辅助存储服务位置之间切换。 有关详细信息，请参阅 [Azure 存储冗余选项](/azure/storage/common/storage-redundancy)。
 
 ### <a name="policy-configuration"></a>策略配置
 重试策略是以编程方式进行配置。 典型的过程是创建并填充 **TableRequestOptions**、**BlobRequestOptions**、**FileRequestOptions** 或 **QueueRequestOptions** 实例。
@@ -872,7 +872,7 @@ context.RequestCompleted += (sender, args) =>
 var stats = await client.GetServiceStatsAsync(null, context);
 ```
 
-除了指明故障是否适合重试，扩展的重试策略还会返回 **RetryContext** 对象，用于指明重试次数、上次请求结果、下次重试是在主要位置还是在辅助位置上发生（有关详细信息，请参阅下表）。 **RetryContext** 对象的属性可用于确定是否以及何时尝试进行重试。 如需了解更多详情，请参阅 [IExtendedRetryPolicy.Evaluate 方法](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy.evaluate.aspx)。
+除了指明故障是否适合重试，扩展的重试策略还会返回 **RetryContext** 对象，用于指明重试次数、上次请求结果、下次重试是在主要位置还是在辅助位置上发生（有关详细信息，请参阅下表）。 **RetryContext** 对象的属性可用于确定是否以及何时尝试进行重试。 如需了解更多详情，请参阅 [IExtendedRetryPolicy.Evaluate 方法](/dotnet/api/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy.evaluate)。
 
 下表显示了内置重试策略的默认设置。
 
@@ -918,9 +918,9 @@ var stats = await client.GetServiceStatsAsync(null, context);
 | 背景<br />或批处理 |30 秒 |指数 |maxAttempt<br />deltaBackoff |5<br />4 秒 |第 1 次尝试 - 约延迟 3 秒<br />第 2 次尝试 - 约延迟 7 秒<br />第 3 次尝试 - 约延迟 15 秒 |
 
 ### <a name="telemetry"></a>遥测
-重试尝试记录到 **TraceSource** 中。 必须配置 **TraceListener**，才能捕获事件并将这些事件写入合适的目标日志。 可以使用 **TextWriterTraceListener** 或 **XmlWriterTraceListener** 将数据写入日志文件、使用 **EventLogTraceListener** 将数据写入 Windows 事件日志，或使用 **EventProviderTraceListener** 将跟踪数据写入 ETW 子系统。 此外，还可以配置缓冲区的自动刷新和即将记录的事件详细信息（例如，错误、警告、信息和详细内容）。 有关详细信息，请参阅 [Client-side Logging with the .NET Storage Client Library](http://msdn.microsoft.com/library/azure/dn782839.aspx)（使用 .NET 存储客户端库的客户端日志记录）。
+重试尝试记录到 **TraceSource** 中。 必须配置 **TraceListener**，才能捕获事件并将这些事件写入合适的目标日志。 可以使用 **TextWriterTraceListener** 或 **XmlWriterTraceListener** 将数据写入日志文件、使用 **EventLogTraceListener** 将数据写入 Windows 事件日志，或使用 **EventProviderTraceListener** 将跟踪数据写入 ETW 子系统。 此外，还可以配置缓冲区的自动刷新和即将记录的事件详细信息（例如，错误、警告、信息和详细内容）。 有关详细信息，请参阅 [Client-side Logging with the .NET Storage Client Library](/rest/api/storageservices/Client-side-Logging-with-the-.NET-Storage-Client-Library)（使用 .NET 存储客户端库的客户端日志记录）。
 
-操作可以接收 **OperationContext** 实例，这会公开可用于附加自定义遥测逻辑的 **Retrying** 事件。 有关详细信息，请参阅 [OperationContext.Retrying 事件](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.operationcontext.retrying.aspx)。
+操作可以接收 **OperationContext** 实例，这会公开可用于附加自定义遥测逻辑的 **Retrying** 事件。 有关详细信息，请参阅 [OperationContext.Retrying 事件](/dotnet/api/microsoft.windowsazure.storage.operationcontext.retrying)。
 
 ### <a name="examples"></a>示例
 以下代码示例展示了如何创建两个具有不同重试设置的 **TableRequestOptions** 实例；一个用于交互式请求，另一个用于后台请求。 然后，此示例在客户端上设置这两个重试策略，以便它们针对所有请求进行应用。此示例还会对特定请求设置交互式策略，以便替代应用于客户端的默认设置。
@@ -1000,7 +1000,7 @@ namespace RetryCodeSamples
 
 ### <a name="more-information"></a>详细信息
 * [Azure 存储客户端库重试策略建议](https://azure.microsoft.com/blog/2014/05/22/azure-storage-client-library-retry-policy-recommendations/)
-* [存储客户端库 2.0 - 实现重试策略](http://gauravmantri.com/2012/12/30/storage-client-library-2-0-implementing-retry-policies/)
+* [存储客户端库 2.0 - 实现重试策略](https://gauravmantri.com/2012/12/30/storage-client-library-2-0-implementing-retry-policies/)
 
 ## <a name="general-rest-and-retry-guidelines"></a>常规 REST 和重试指南
 访问 Azure 或第三方服务时，请注意以下指南：

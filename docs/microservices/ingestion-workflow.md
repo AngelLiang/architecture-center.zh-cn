@@ -1,14 +1,14 @@
 ---
 title: '微服务中的引流和工作流 '
-description: '微服务中的引流和工作流 '
+description: 微服务中的引入和工作流
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: 6477c3f2b0cc6d37dcd4637dc0dde4f7a6e3cc74
-ms.sourcegitcommit: 94c769abc3d37d4922135ec348b5da1f4bbcaa0a
+ms.openlocfilehash: 1851d979ed23b35046474f299128064d1abb375e
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/13/2017
-ms.locfileid: "26678724"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429479"
 ---
 # <a name="designing-microservices-ingestion-and-workflow"></a>设计微服务：引流和工作流 
 
@@ -58,7 +58,7 @@ ms.locfileid: "26678724"
 
 在另一方面，事件中心使用流语义。 使用者根据自身的步调独立读取流。 每个使用者负责跟踪它当前在流中的位置。 使用者应该根据某种预定义的间隔将其当前位置写入持久性存储。 这样，如果使用者遇到故障（例如，使用者崩溃，或主机故障），则新实例可以继续从上一个记录的位置读取流。 此过程称为“检查点设置”。 
 
-出于性能原因，使用者通常不会在每条消息的后面设置检查点， 而是根据某个固定的间隔设置检查点，例如，在处理 *n* 条消息之后或者每隔 *n* 秒设置检查点。 因此，如果某个使用者发生故障，则某些事件可能会处理两次，因为新实例始终从最后一个检查点拾取消息。 利弊：密集的检查点可能会降低性能，但设置稀疏的检查点则意味着在发生故障后需要重放更多事件。  
+出于性能原因，使用者通常不会在每条消息的后面设置检查点， 而是根据某个固定的间隔设置检查点，例如，在处理 n 条消息之后或者每隔 n 秒设置检查点。 因此，如果某个使用者发生故障，则某些事件可能会处理两次，因为新实例始终从最后一个检查点拾取消息。 利弊：密集的检查点可能会降低性能，但设置稀疏的检查点则意味着在发生故障后需要重放更多事件。  
 
 ![](./images/stream-semantics.png)
  
@@ -83,7 +83,7 @@ ms.locfileid: "26678724"
 
 ### <a name="iothub-react"></a>IotHub React 
 
-[IotHub React](https://github.com/Azure/toketi-iothubreact) 是用于从事件中心读取事件的 Akka Streams 库。 Akka Streams 是实施[反应流](http://www.reactive-streams.org/)规范的基于流的编程框架。 使用该库能够生成高效的流式处理管道，其中的所有流式处理操作以异步方式执行，并且管道能够合理处理反压。 当事件源生成事件的速率超过下游使用者接收这些事件的速率时，就会出现反压 &mdash; 无人机交付系统遇到流量高峰时，正好也会出现这种情况。 如果后端服务运行缓慢，IoTHub React 的速度将会下降。 如果增加了容量，则 IoTHub React 会通过管道推送更多消息。
+[IotHub React](https://github.com/Azure/toketi-iothubreact) 是用于从事件中心读取事件的 Akka Streams 库。 Akka Streams 是实施[反应流](https://www.reactive-streams.org/)规范的基于流的编程框架。 使用该库能够生成高效的流式处理管道，其中的所有流式处理操作以异步方式执行，并且管道能够合理处理反压。 当事件源生成事件的速率超过下游使用者接收这些事件的速率时，就会出现反压 &mdash; 无人机交付系统遇到流量高峰时，正好也会出现这种情况。 如果后端服务运行缓慢，IoTHub React 的速度将会下降。 如果增加了容量，则 IoTHub React 会通过管道推送更多消息。
 
 Akka Streams 也是一个用于从事件中心流式处理事件的十分自然的编程模型。 我们无需循环访问一批事件，而可以定义一组要应用到每个事件的操作，然后让 Akka Streams 来处理流。 Akka Streams 在“源”、“流”和“接收器”方面定义流式处理管道。 源生成输出流，流处理输入流并生成输出流，接收器使用流且不生成任何输出。
 
