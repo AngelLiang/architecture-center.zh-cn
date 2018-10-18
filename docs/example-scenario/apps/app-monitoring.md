@@ -3,12 +3,12 @@ title: Azure 上的 Web 应用程序监视
 description: 监视 Azure 应用服务中托管的 Web 应用程序。
 author: adamboeglin
 ms.date: 09/12/2018
-ms.openlocfilehash: b1beb5cf5e29ab1ceb760bf95eab85d819b69342
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: ea57ba50f4e9390d5527587752c3bebad01b6139
+ms.sourcegitcommit: 42797fffb82bbbf86f6deb1da52c61d456be631e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876845"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49313210"
 ---
 # <a name="web-application-monitoring-on-azure"></a>Azure 上的 Web 应用程序监视
 
@@ -99,7 +99,7 @@ Application Insights 会[限制][app-insights-limits]每秒可以处理的请求
 
 部署后，可以观察性能指标的[实时指标流][Live Metrics Stream]。 不会存储此数据 -- 实时指标仅供查看 -- 但可以收集遥测数据，并在以后进行分析。 实时流数据不会产生费用。
 
-Log Analytics 根据引入到服务中的数据的 GB 单位数量计费。 每个月引入到 Azure Log Analytics 服务中的前 5 GB 数据是免费的，最初的 31 天，这些数据将在 Log Analytics 工作区中免费保留。
+Log Analytics 根据引入到服务中的数据的 GB 单位数量计费。 每个月引入到 Azure Log Analytics 服务中的前 5 GB 数据是免费的，最初的 31 天，这些数据将在 Log Analytics 工作区中免费保留。 
 
 ## <a name="next-steps"></a>后续步骤
 
