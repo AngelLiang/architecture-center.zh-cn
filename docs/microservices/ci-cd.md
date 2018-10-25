@@ -2,13 +2,13 @@
 title: 微服务的 CI/CD
 description: 微服务的持续集成和持续交付
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: 7d8a81b7bc236e50d722a68a0115b9220d4e094f
-ms.sourcegitcommit: 786bafefc731245414c3c1510fc21027afe303dc
+ms.date: 10/23/2018
+ms.openlocfilehash: b411e687a111e55a5821d4fdc66975e80f73584b
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2017
-ms.locfileid: "26653056"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962851"
 ---
 # <a name="designing-microservices-continuous-integration"></a>设计微服务：持续集成
 

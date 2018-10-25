@@ -2,17 +2,17 @@
 title: API 网关
 description: 微服务中的 API 网关
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: 6483d416363e24f4084d6b856847a740bf4054d9
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.date: 10/23/2018
+ms.openlocfilehash: 41554e6abf4db61d1fa6e501419425d331495afc
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/29/2017
-ms.locfileid: "27549172"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962817"
 ---
 # <a name="designing-microservices-api-gateways"></a>设计微服务：API 网关
 
-在微服务体系结构中，客户端可能与多个前端服务进行交互。 如果存在这种情况，客户端如何知道要调用哪些终结点？ 引入了新服务或者重构了现有服务时，会发生什么情况？ 服务如何处理 SSL 终止、身份验证和其他问题？ API 网关可以帮助解决这些难题。 
+在微服务体系结构中，客户端可能与多个前端服务进行交互。 在这种情况下，客户端如何知道要调用哪些终结点？ 引入了新服务或者重构了现有服务时，会发生什么情况？ 服务如何处理 SSL 终止、身份验证和其他问题？ API 网关可以帮助解决这些难题。 
 
 ![](./images/gateway.png)
 
@@ -33,7 +33,7 @@ API 网关位于客户端与服务之间。 它充当反向代理，将来自客
 
 [网关聚合](../patterns/gateway-aggregation.md)。 使用网关可将多个单独请求聚合成一个请求。 当单个操作需要调用多个后端服务时，可以应用此模式。 客户端将一个请求发送到网关。 网关会将请求分派到不同的后端系统，然后聚合结果并将其发回给客户端。 这有助于减少客户端与后端之间的通信频率。 
 
-[网关卸载](../patterns/gateway-offloading.md)。 使用网关可将单个服务的功能卸载到网关，尤其适合用于解决横切问题。 可能有效的做法是将这些功能整合到一个位置，而不是让每个服务负责实现这些功能。 对于需要专业技能才能正常实现的功能（例如身份验证和授权），这种做法尤其有效。 
+[网关卸载](../patterns/gateway-offloading.md)。 使用网关可将单个服务的功能卸载到网关，尤其适合用于解决横切问题。 可能有效的做法是将这些功能整合到一个位置，而不是让每个服务负责实现这些功能。 对于需要专业技能才能正确实现的功能（例如身份验证和授权），这种做法尤其有效。 
 
 下面是可卸载到网关的一些功能示例：
 
@@ -57,7 +57,7 @@ API 网关位于客户端与服务之间。 它充当反向代理，将来自客
 
 - [Azure 应用程序网关](/azure/application-gateway/)。 应用程序网关是托管的负载均衡服务，可以执行第 7 层路由和 SSL 终止。 它还提供 Web 应用程序防火墙 (WAF)。
 
-- [Azure API 管理](/azure/api-management/)。 API 管理是可将 API 发布到外部和内部客户的统包式解决方案。 它提供可用于管理面向公众的 API 的功能，包括速率限制、IP 允许列表，以及使用 Azure Active Directory 或其他标识提供者进行身份验证。 API 管理不执行任何负载均衡，因此，应该将它与应用程序网关或反向代理等负载均衡器结合使用。
+- [Azure API 管理](/azure/api-management/)。 API 管理是可将 API 发布到外部和内部客户的统包式解决方案。 它提供可用于管理面向公众的 API 的功能，包括速率限制、IP 允许列表，以及使用 Azure Active Directory 或其他标识提供者进行身份验证。 API 管理不执行任何负载均衡，因此，应该将它与应用程序网关或反向代理等负载均衡器结合使用。 有关将 API 管理与应用程序网关配合使用的信息，请参阅[在包含应用程序网关的内部 VNET 中集成 API 管理](/azure/api-management/api-management-howto-integrate-internal-vnet-appgateway)。
 
 选择网关技术时，请考虑以下因素：
 
@@ -67,54 +67,21 @@ API 网关位于客户端与服务之间。 它充当反向代理，将来自客
 
 **管理**。 更新服务或者添加新服务后，可能需要更新网关路由规则。 请考虑如何管理此过程。 类似的注意事项同样适用于管理 SSL 证书、IP 允许列表和其他配置方面。
 
-## <a name="deployment-considerations"></a>部署注意事项
-
-### <a name="deploying-nginx-or-haproxy-to-kubernetes"></a>将 Nginx 或 HAProxy 部署到 Kubernetes
+## <a name="deploying-nginx-or-haproxy-to-kubernetes"></a>将 Nginx 或 HAProxy 部署到 Kubernetes
 
 可将 Nginx 或 HAProxy 作为 [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/) 或 [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)（指定 Nginx 或 HAProxy 容器映像）部署到 Kubernetes。 使用 ConfigMap 存储代理的配置文件，然后将 ConfigMap 装载为卷。 创建 LoadBalancer 类型的服务，以通过 Azure 负载均衡器公开网关。 
 
-<!-- - Configure a readiness probe that serves a static file from the gateway (rather than routing to another service). -->
-
-一种替代方法是创建入口控制器。 入口控制器是部署负载均衡器或反向代理服务器的 Kubernetes 资源。 有多种实施方案，包括 Nginx 和 HAProxy。 有一个名为 Ingress 的独立资源可以定义入口控制器的设置，例如路由规则和 TLS 证书。 这样，我们就无需管理特定代理服务器技术的复杂配置文件。 在撰写本文时，入口控制器仍是 Kubernetes 的 Beta 版功能，该功能将不断改进。
+一种替代方法是创建入口控制器。 入口控制器是部署负载均衡器或反向代理服务器的 Kubernetes 资源。 有多种实施方案，包括 Nginx 和 HAProxy。 名为 Ingress 的独立资源定义入口控制器的设置，例如路由规则和 TLS 证书。 这样，我们就无需管理特定代理服务器技术的复杂配置文件。
 
 网关是系统中的潜在瓶颈或单一故障点，因此，应至少部署两个副本以实现高可用性。 根据具体的负载，可能需要进一步横向扩展副本。 
 
 另外，请考虑在群集中的一组专用节点上运行网关。 这种做法的好处包括：
 
-- 隔离。 所有入站流量将转到可与后端服务相隔离的固定一组节点。
+- 隔离。 所有入站流量将转到可与后端服务相隔离的一组固定节点。
 
 - 稳定的配置。 如果网关配置不当，则整个应用程序可能不可用。 
 
 - 性能。 出于性能原因，可能需要对网关使用特定的 VM 配置。
-
-<!-- - Load balancing. You can configure the external load balancer so that requests always go to a gateway node. That can save a network hop, which would otherwise happen whenever a request lands on a node that isn't running a gateway pod. This consideration applies mainly to large clusters, where the gateway runs on a relatively small fraction of the total nodes. In Azure Container Service (ACS), this approach currently requires [ACS Engine](https://github.com/Azure/acs-engine)) which allows you to create multiple agent pools. Then you can deploy the gateway as a DaemonSet to the front-end pool. -->
-
-### <a name="azure-application-gateway"></a>Azure 应用程序网关
-
-将应用程序网关连接到 Azure 中的 Kubernetes 群集：
-
-1. 在群集 VNet 中创建一个空子网。
-2. 部署应用程序网关。
-3. 创建类型为 [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) 的 Kubernetes 服务。 这会在每个节点上公开该服务，以便可以从群集外部访问它。 此操作不会创建负载均衡器。
-5. 获取该服务的分配端口号。
-6. 添加应用程序网关规则，其中：
-    - 后端池包含代理 VM。
-    - HTTP 设置指定服务端口号。
-    - 网关侦听器侦听端口 80/443
-    
-将实例计数设置为 2 或更大，以实现高可用性。
-
-### <a name="azure-api-management"></a>Azure API 管理 
-
-将 API 管理连接到 Azure 中的 Kubernetes 群集：
-
-1. 在群集 VNet 中创建一个空子网。
-2. 将 API 管理部署到该子网。
-3. 创建 LoadBalancer 类型的 Kubernetes 服务。 使用[内部负载均衡器](https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer)注释创建内部负载均衡，而不要使用默认的面向 Internet 的负载均衡器。
-4. 使用 kubectl 或 Azure CLI 查找内部负载均衡器的专用 IP。
-5. 使用 API 管理创建定向到负载均衡器专用 IP 地址的 API。
-
-考虑将 API 管理与某个反向代理（不管是 Nginx、HAProxy 还是 Azure 应用程序网关）结合使用。 有关将 API 管理与应用程序网关配合使用的信息，请参阅[在包含应用程序网关的内部 VNET 中集成 API 管理](/azure/api-management/api-management-howto-integrate-internal-vnet-appgateway)。
 
 > [!div class="nextstepaction"]
 > [日志记录和监视](./logging-monitoring.md)

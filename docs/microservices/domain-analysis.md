@@ -2,15 +2,15 @@
 title: 微服务的域分析
 description: 微服务的域分析
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: c3c353a6b30507369357af4b520a51f8afc2fb8d
-ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
+ms.date: 10/23/2018
+ms.openlocfilehash: 22b6126218872ddd8757a8a85de7df2919179d5d
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2018
-ms.locfileid: "27765980"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962936"
 ---
-# <a name="designing-microservices-domain-analysis"></a>设计微服务：领域分析  
+# <a name="designing-microservices-domain-analysis"></a>设计微服务：域分析 
 
 微服务的最大挑战之一是定义各个服务的边界。 一般的规则是服务应该只做“一件事”&mdash; 但是，实践这条规则需要经过认真的考虑。 没有任何机械性的流程可以生成“适当的”设计。 必须深入考虑业务域、要求和目标。 否则，最终可能得到一个杂乱无章的设计，它呈现一些不需要的特征，例如隐藏服务之间的依赖关系、紧密耦合，或者界面的设计不佳。 本章介绍如何采用域驱动的方法来设计微服务。 
 
@@ -78,13 +78,13 @@ ms.locfileid: "27765980"
  
 边界上下文不一定相互独立。 在此图中，连接边界上下文的实线表示两个边界上下文交互的位置。 例如，“交货”依赖于“用户帐户”来获取有关客户的信息，并依赖于“无人机管理”来安排机群中的无人机。
 
-在 *Domain Driven Design*（领域驱动设计）一书中，Eric Evans 描述了当某个领域模型与另一个边界上下文交互时，保持该模型完整性的多种模式。 微服务的主要原则之一是服务通过完善定义的 API 进行通信。 此方法对应于两种模式，即 Evans 所说的“开放主机服务”和“发布语言”。 “开放主机服务”的思路是子系统针对与它通信的其他子系统定义一个正式协议 (API)。 “发布语言”扩展了这种思路，它以其他团队可以用来编写客户端的形式发布 API。 [API 设计](./api-design.md)一章介绍了如何使用 [OpenAPI 规范](https://www.openapis.org/specification/repo)（以前称为 Swagger）来为 REST API 定义语言无关的接口说明（以 JSON 或 YAML 格式表示）。
+在 *Domain Driven Design*（域驱动的设计）一书中，Eric Evans 描述了当某个域模型与另一个边界上下文交互时，保持该模型完整性的多种模式。 微服务的主要原则之一是服务通过完善定义的 API 进行通信。 此方法对应于两种模式，即 Evans 所说的“开放主机服务”和“发布语言”。 “开放主机服务”的思路是子系统针对与它通信的其他子系统定义一个正式协议 (API)。 “发布语言”扩展了这种思路，它以其他团队可以用来编写客户端的形式发布 API。 [API 设计](./api-design.md)一章介绍了如何使用 [OpenAPI 规范](https://www.openapis.org/specification/repo)（以前称为 Swagger）来为 REST API 定义语言无关的接口说明（以 JSON 或 YAML 格式表示）。
 
 本教程的余下部分侧重于“交货”边界上下文。 
 
 ## <a name="tactical-ddd"></a>战术 DDD
 
-在 DDD 的战略阶段，我们要绘制业务领域的关系图，并定义领域模型的边界上下文。 在战术 DDD 阶段，我们要更精确地定义领域模型。 战术模式在单个边界上下文中应用。 在微服务体系结构中，我们对实体和聚合模式特别感兴趣。 应用这些模式有助于标识应用程序中服务的自然边界（请参阅[下一章](./microservice-boundaries.md)）。 作为一般原则，微服务应小于聚合，且不大于边界上下文。 首先，让我们了解战术模式。 然后，我们对无人机交付应用程序中的“交货”边界上下文应用这些模式。  
+在 DDD 的战略阶段，我们要绘制业务域的关系图，并定义域模型的边界上下文。 在战术 DDD 阶段，我们要更精确地定义领域模型。 战术模式在单个边界上下文中应用。 在微服务体系结构中，我们对实体和聚合模式特别感兴趣。 应用这些模式有助于标识应用程序中服务的自然边界（请参阅[下一章](./microservice-boundaries.md)）。 作为一般原则，微服务应小于聚合，且不大于边界上下文。 首先，让我们了解战术模式。 然后，我们对无人机交付应用程序中的“交货”边界上下文应用这些模式。 
 
 ### <a name="overview-of-the-tactical-patterns"></a>战术模式概述
 

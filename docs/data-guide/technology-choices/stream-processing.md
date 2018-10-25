@@ -3,12 +3,12 @@ title: 选择流处理技术
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: fd93418c62b584e79f229e9f42703d148aeb0eca
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: b78ebe253e927eece38930ba7f6186f485a956f7
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37091057"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962903"
 ---
 # <a name="choosing-a-stream-processing-technology-in-azure"></a>在 Azure 中选择流处理技术
 
@@ -68,5 +68,4 @@ ms.locfileid: "37091057"
 另请参阅：
 
 - [选择实时消息引入技术](./real-time-ingestion.md)
-- [比较 Apache Storm 和 Azure 流分析](/azure/stream-analytics/stream-analytics-comparison-storm)
 - [实时处理](../big-data/real-time-processing.md)

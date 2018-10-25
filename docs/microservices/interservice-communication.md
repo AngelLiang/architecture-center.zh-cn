@@ -2,13 +2,13 @@
 title: 微服务中的服务间通信
 description: 微服务中的服务间通信
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: aff2fb7b2be25ca32d6224cee15363880cfb1488
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.date: 10/23/2018
+ms.openlocfilehash: 19a54ffc362a1fc88c3255c9346bd697a319b143
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/29/2017
-ms.locfileid: "27549121"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962953"
 ---
 # <a name="designing-microservices-interservice-communication"></a>设计微服务：服务间通信
 
@@ -99,7 +99,7 @@ ms.locfileid: "27549121"
 > [!NOTE]
 > 服务网格是[代表模式](../patterns/ambassador.md)（代表应用程序发送网络请求的帮助程序服务）的一个例子。 
 
-目前，Kubernetes 中服务网格的主要选项包括 [linkerd](https://linkerd.io/) 和 [Istio](https://istio.io/)。 这两种技术正在快速演进。 在编写本指南时，最新的 Istio 版本为 0.2，因此它仍然是很新的技术。 但是，linkerd 和 Istio 具有一些共同的功能，包括： 
+目前，Kubernetes 中服务网格的主要选项包括 [linkerd](https://linkerd.io/) 和 [Istio](https://istio.io/)。 这两种技术正在快速演进。 但是，linkerd 和 Istio 具有一些共同的功能，包括： 
 
 - 根据观测到的延迟或未完成的请求数，在会话级别进行负载均衡。 这样，便可以基于 Kubernetes 提供的第 4 层负载均衡来提高性能。 
 
