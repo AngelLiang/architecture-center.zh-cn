@@ -3,12 +3,12 @@ title: 绞杀者模式
 description: 通过将特定的功能片断逐渐取代为新的应用程序和服务，逐步迁移旧系统。
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: d03e8a1ef9077b6e00ea5a17423bf7e09b68111a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 0bf0b76a69f947419da83edd894a04dbea02371b
+ms.sourcegitcommit: 2ae794de13c45cf24ad60d4f4dbb193c25944eff
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540979"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50001875"
 ---
 # <a name="strangler-pattern"></a>绞杀者模式
 
@@ -47,6 +47,7 @@ ms.locfileid: "24540979"
 
 ## <a name="related-guidance"></a>相关指南
 
+- Martin Fowler 撰写的有关 [StranglerApplication](https://www.martinfowler.com/bliki/StranglerApplication.html) 的博客文章
 - [防损层模式](./anti-corruption-layer.md)
 - [网关路由模式](./gateway-routing.md)
 

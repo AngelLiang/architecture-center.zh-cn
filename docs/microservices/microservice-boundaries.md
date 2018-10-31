@@ -2,16 +2,15 @@
 title: 识别微服务边界
 description: 识别微服务边界
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: d35b92ffd97c4fda5d6599340925ce3dfea7f15b
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.date: 10/23/2018
+ms.openlocfilehash: 679696818d50b70a5116916bd9198a390abfd7fe
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673396"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962783"
 ---
 # <a name="designing-microservices-identifying-microservice-boundaries"></a>设计微服务：识别微服务边界
-
 
 微服务的适当大小是什么？ 我们经常听到有人说，“不要太大，也不要太小”&mdash; 这句话绝对正确，但实际上没有太大意义。 但是，如果从一个精心设计的领域模型着手，则规划出微服务就容易得多。
 
@@ -49,8 +48,7 @@ ms.locfileid: "33673396"
   
 ## <a name="drone-delivery-defining-the-microservices"></a>无人机交付：定义微服务
 
-回顾一下，前面开发团队已标识四个聚合（“交付”、“包裹”、“无人机”和“帐户”）和两个领域服务（“计划程序”和“监督程序”）。
- 
+回顾一下，前面开发团队已标识四个聚合（“交付”、“包裹”、“无人机”和“帐户”）和两个领域服务（“计划程序”和“监督程序”）。 
 
 “交付”和“包裹”是微服务的突出候选项。 “计划程序”和“监督程序”协调其他微服务执行的活动，因此，将这些领域服务实施为微服务比较有利。  
 
@@ -85,13 +83,18 @@ ms.locfileid: "33673396"
 
 ### <a name="service-orchestrators"></a>服务业务流程协调程序
 
-业务流程协调程序处理与一组服务的部署和管理相关的任务。 这些任务包括在节点上放置服务、监视服务运行状况、重启不正常的服务、对服务实例之间的网络流量进行负载均衡、服务发现、缩放服务实例的数目，以及应用配置更新。 流行的业务流程协调程序包括 Kubernetes、DC/OS、Docker Swarm 和 Service Fabric。 
+业务流程协调程序处理与一组服务的部署和管理相关的任务。 这些任务包括在节点上放置服务、监视服务运行状况、重启不正常的服务、对服务实例之间的网络流量进行负载均衡、服务发现、缩放服务实例的数目，以及应用配置更新。 常用业务流程协调程序包括 Kubernetes、Service Fabric、DC/OS 和 Docker Swarm。
 
-- [Azure 容器服务](/azure/container-service/) (ACS) 是一个 Azure 服务，可用于部署随时可投入生产的 Kubernetes、DC/OS 或 Docker Swarm 群集。
+在 Azure 平台上，请考虑以下选项：
 
-- [AKS（Azure 容器服务）](/azure/aks/)是托管的 Kubernetes 服务。 AKS 预配 Kubernetes 并公开 Kubernetes API 终结点，但可以承载和管理 Kubernetes 控制平面，并可以执行自动升级、自动修补、自动缩放和其他管理任务。 可将 AKS 视为“Kubernetes API 即服务”。 在撰写本文时，AKS 仍为预览版。 但是，AKS 有望成为在 Azure 中运行 Kubernetes 的首选方法。 
+- [Azure Kubernetes 服务](/azure/aks/) (AKS) 是托管的 Kubernetes 服务。 AKS 预配 Kubernetes 并公开 Kubernetes API 终结点，但可以承载和管理 Kubernetes 控制平面，并可以执行自动升级、自动修补、自动缩放和其他管理任务。 可将 AKS 视为“Kubernetes API 即服务”。 
 
 - [Service Fabric](/azure/service-fabric/) 是用于打包、部署和管理微服务的分布式系统平台。 可将微服务作为容器、二进制可执行文件或 [Reliable Services](/azure/service-fabric/service-fabric-reliable-services-introduction) 部署到 Service Fabric。 借助 Reliable Services 编程模型，服务可以直接使用 Service Fabric 编程 API 来查询系统、报告运行状况、接收有关配置和代码更改的通知，以及发现其他服务。 它与 Service Fabric 之间的重要区别在于，它重点用于构建使用 [Reliable Collections](/azure/service-fabric/service-fabric-reliable-services-reliable-collections) 的有状态服务。
+
+- [Azure 容器服务](/azure/container-service/) (ACS) 是一项 Azure 服务，用于部署随时可投入生产的 DC/OS、Docker Swarm 或 Kubernetes 群集。 
+
+  > [!NOTE]
+  > 虽然 ACS 支持 Kubernetes，但建议使用 AKS 在 Azure 上运行 Kubernetes。 AKS 提供增强的管理功能和成本优势。
 
 ### <a name="containers"></a>容器
 
@@ -105,7 +108,7 @@ ms.locfileid: "33673396"
 
 ### <a name="serverless-functions-as-a-service"></a>无服务器（函数即服务）
 
-使用无服务器体系结构时，无需管理 VM 或虚拟网络基础结构。 可以部署代码，然后让托管服务将该代码放入 VM 并执行。 这种方法往往比较适合用于使用基于事件的触发器协调的小粒度函数。 例如，放入队列的消息可能会触发一个函数，该函数从队列中读取并处理该消息。
+使用[无服务器](https://azure.microsoft.com/solutions/serverless/)体系结构时，无需管理 VM 或虚拟网络基础结构。 可以部署代码，然后让托管服务将该代码放入 VM 并执行。 这种方法往往比较适合用于使用基于事件的触发器协调的小粒度函数。 例如，放入队列的消息可能会触发一个函数，该函数从队列中读取并处理该消息。
 
 [Azure Functions][functions] 是支持各种函数触发器（包括 HTTP 请求、服务总线队列和事件中心事件）的无服务器计算服务。 有关完整列表，请参阅 [Azure Functions 触发器和绑定概念][functions-triggers]。 另请考虑 [Azure 事件网格][event-grid]，它是 Azure 中的托管事件路由服务。
 

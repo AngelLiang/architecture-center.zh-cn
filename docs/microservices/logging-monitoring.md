@@ -2,13 +2,13 @@
 title: 微服务中的日志记录和监视
 description: 微服务中的日志记录和监视
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: b7206e2f35b9f227ff298f077ddafef1c6015b15
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 10/23/2018
+ms.openlocfilehash: c2a935f51c57936977fb4402de2113938351069c
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428765"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962868"
 ---
 # <a name="designing-microservices-logging-and-monitoring"></a>设计微服务：日志记录和监视
 
@@ -18,19 +18,19 @@ ms.locfileid: "47428765"
 
 在微服务体系结构中，查明错误或性能瓶颈的确切原因可能特别困难。 单个用户操作可能跨越多个服务。 服务可能达到群集中的网络 I/O 限制。 服务之间的调用链可能会在系统中造成反压，从而导致高延迟或连锁故障。 此外，我们通常不知道特定容器在哪个节点中运行。 放在同一节点上的容器可能争用有限的 CPU 或内存。 
 
-为了反映所发生的情况，应用程序必须发出遥测事件。 可以将这些事件分类为指标和基于文本的日志。 
+若要了解所发生的情况，必须通过应用程序收集遥测数据。  可以将遥测数据分为日志和指标。 [Azure Monitor](/azure/monitoring-and-diagnostics/monitoring-overview) 收集整个 Azure 平台的日志和指标。
 
-指标是可以分析的数字值。 可以使用指标实时（或接近实时）观察系统，或者分析不同时间段的性能趋势。 指标包括：
+**日志**是运行应用程序时发生的事件的文本形式记录。 日志包括应用程序日志（跟踪语句）或 Web 服务器日志等。 日志主要用于取证和根本原因分析。 
 
-- 节点级系统指标，包括 CPU、内存、网络、磁盘和文件系统的使用情况。 借助系统指标可以了解群集中每个节点的资源分配，以及排查异常。
- 
-- Kubernetes 指标。 由于服务在容器中运行，因此我们需要在容器级别而不仅仅是 VM 级别收集指标。 在 Kubernetes 中，cAdvisor (Container Advisor) 是收集有关每个容器使用的 CPU、内存、文件系统和网络资源的统计信息的代理。 kubelet 后台程序从 cAdvisor 收集资源统计信息，并通过 REST API 公开这些信息。
-   
-- 应用程序指标。 包括用于了解服务行为的任何指标。 示例包括排队的入站 HTTP 请求数、请求延迟、消息队列长度或每秒处理的事务数。
+指标是可以分析的数字值。 可以使用指标实时（或接近实时）观察系统，或者分析不同时间段的性能趋势。 指标可以进一步分为：
 
-- 依赖服务指标。 群集中的服务可能调用群集外部的服务，例如托管的 PaaS 服务。 可以使用 [Azure Monitor](/azure/monitoring-and-diagnostics/monitoring-overview) 监视 Azure 服务。 第三方服务不一定提供任何指标。 如果未提供，则必须依赖自己的应用程序指标来跟踪有关延迟和错误率的统计信息。
+- **节点级**指标，包括 CPU、内存、网络、磁盘和文件系统的使用情况。 借助系统指标可以了解群集中每个节点的资源分配，以及排查异常。
 
-日志是运行应用程序时发生的事件的记录。 日志包括应用程序日志（跟踪语句）或 Web 服务器日志等。 日志主要用于取证和根本原因分析。 
+- **容器**指标。 如果服务在容器中运行，则需在容器级别而不仅仅是 VM 级别收集指标。 可以将 Azure Monitor 设置为监视 Azure Kubernetes 服务 (AKS) 中的容器工作负荷。 有关详细信息，请参阅[适用于容器的 Azure Monitor 概述](/azure/monitoring/monitoring-container-insights-overview)。 对于其他容器业务流程协调程序，请使用 [Log Analytics 中的容器监视解决方案](/azure/log-analytics/log-analytics-containers)。
+
+- **应用程序**指标。 包括用于了解服务行为的任何指标。 示例包括排队的入站 HTTP 请求数、请求延迟或消息队列长度。 应用程序还可以创建特定于域的自定义指标，例如每分钟处理的业务事务数。 通过 [Application Insights](/azure/application-insights/app-insights-overview) 来启用应用程序指标。 
+
+- **依赖服务**指标。 服务可能会调用外部服务或终结点，例如托管的 PaaS 服务或 SaaS 服务。 第三方服务不一定提供任何指标。 如果未提供，则必须依赖自己的应用程序指标来跟踪有关延迟和错误率的统计信息。
 
 ## <a name="considerations"></a>注意事项
 

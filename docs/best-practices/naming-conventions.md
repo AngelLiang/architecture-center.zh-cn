@@ -4,12 +4,12 @@ description: Azure 资源的命名约定。 如何命名虚拟机、存储帐户
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 96402b86b9dc0c57599aae585b41d0d03581c333
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 7a94e7b3a54f48a8b1996415e194ecacb4261399
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429649"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962970"
 ---
 # <a name="naming-conventions"></a>命名约定
 
@@ -78,7 +78,7 @@ Azure 中的每个资源或服务类型强制实施一组命名限制和范围�
 
 | 实体 | 范围 | Length | 大小写 | 有效的字符 | 建议的模式 | 示例 |
 | --- | --- | --- | --- | --- | --- | --- |
-|资源组 |订阅 |1-90 |不区分大小写 |字母数字、下划线、括号、连字符、句点（位于末尾的除外）以及 Unicode 字符 |`<service short name>-<environment>-rg` |`profx-prod-rg` |
+|资源组 |订阅 |1-90 |不区分大小写 |与[此处](/rest/api/resources/resourcegroups/createorupdate)所述正则表达式匹配的字母数字、下划线、括号、连字符、句点（位于末尾的除外）以及 Unicode 字符。  |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |可用性集 |资源组 |1-80 |不区分大小写 |字母数字、下划线和连字符 |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |标记 |关联的实体 |512（名称）、256（值） |不区分大小写 |字母数字 |`"key" : "value"` |`"department" : "Central IT"` |
 
