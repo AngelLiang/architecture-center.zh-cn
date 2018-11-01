@@ -3,12 +3,12 @@ title: 选择自然语言处理技术
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: dacf7bf9cf3e9efed212f34da93c1470954965cf
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: bac0318a587a944c104360eb31223cc8755c1860
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288849"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251764"
 ---
 # <a name="choosing-a-natural-language-processing-technology-in-azure"></a>在 Azure 中选择自然语言处理技术
 
@@ -19,7 +19,8 @@ ms.locfileid: "29288849"
 在 Azure 中，以下服务提供自然语言处理 (NLP) 功能：
 
 - [Azure HDInsight with Spark and Spark MLlib](/azure/hdinsight/spark/apache-spark-overview)
-- [Microsoft 认知服务](/azure/#pivot=products&panel=cognitive)
+- [Azure Databricks](/azure/azure-databricks/what-is-azure-databricks)
+- [Microsoft 认知服务](/azure/cognitive-services/welcome)
 
 ## <a name="key-selection-criteria"></a>关键选择条件
 
@@ -35,7 +36,7 @@ ms.locfileid: "29288849"
 
 ## <a name="capability-matrix"></a>功能矩阵
 
-下表汇总了功能上的关键差异。  
+以下各表汇总了功能上的关键差异。  
 
 ### <a name="general-capabilities"></a>常规功能
 

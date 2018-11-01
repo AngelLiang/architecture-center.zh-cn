@@ -4,12 +4,12 @@ description: 有关配置缓存以提高性能和伸缩性的指南。
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 4db85df7331c805af6acbe0673dbcb993a895e03
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: e1c47c735bd618fc46fef3f1ee234f83d3b15bdf
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429462"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251985"
 ---
 # <a name="caching"></a>缓存
 
@@ -288,7 +288,7 @@ Azure 门户拥有便利的图形显示，可通过它监视缓存性能。 例�
 同样地，Azure Redis 缓存的输出缓存提供程序使用户能够保存由 ASP.NET Web 应用程序生成的 HTTP 响应。 配合 Azure Redis 缓存使用输出缓存提供程序可以针对呈现复杂 HTML 输出的应用程序改善响应时间。 生成类似响应的应用程序实例可以使用缓存中的共享输出段，而不用重新生成此 HTML 输出。 有关详细信息，请参阅 [Azure Redis 缓存的 ASP.NET 输出缓存提供程序](/azure/redis-cache/cache-aspnet-output-cache-provider/)。
 
 ## <a name="building-a-custom-redis-cache"></a>构建自定义 Redis 缓存
-Azure Redis 缓存充当底层 Redis 服务器的机制。 目前它支持固定的一组配置，但没有 Redis 群集提供配置。 如果需要 Azure Redis 缓存未涵盖的高级配置（例如大于 53 GB 的缓存），可以使用 Azure 虚拟机来构建和托管自己的 Redis 服务器。
+Azure Redis 缓存充当底层 Redis 服务器的机制。 如果需要 Azure Redis 缓存未涵盖的高级配置（例如大于 53 GB 的缓存），可以使用 Azure 虚拟机来构建和托管自己的 Redis 服务器。
 
 你在实施复制时可能需要创建多个 VM 作为主节点和从属节点，这可能是一个复杂的过程。 此外，如果想要创建群集，需要多个主服务器和从属服务器。 一个可以提供高度可用性和伸缩性，并且至少包含 6 个 VM 并组织成 3 对主/从服务器（一个群集必须至少包含 3 个主节点）的精简群集复制拓扑。
 
