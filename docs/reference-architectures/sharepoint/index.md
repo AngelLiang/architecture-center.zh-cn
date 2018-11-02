@@ -2,13 +2,13 @@
 title: 在 Azure 中运行高可用性 SharePoint Server 2016 场
 description: 有关在 Azure 中设置高可用性 SharePoint Server 2016 场的成熟做法。
 author: njray
-ms.date: 07/14/2018
-ms.openlocfilehash: 6141c73dc8e71f5546395c12421c470e2d16cf78
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 07/26/2018
+ms.openlocfilehash: 1e44c2817a02cda919bfa94e0b8f07b73b35531f
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428986"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916492"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>在 Azure 中运行高可用性 SharePoint Server 2016 场
 

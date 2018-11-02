@@ -2,14 +2,14 @@
 title: 设计适用于 Azure 的可复原应用程序
 description: 如何在 Azure 中生成可复原应用程序，以实现高可用性和灾难恢复。
 author: MikeWasson
-ms.date: 05/26/2017
+ms.date: 07/29/2018
 ms.custom: resiliency
-ms.openlocfilehash: 55e54347953dc9967ab8ccf67490757e1d58e143
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: b925748e1d3d4a8d490bbd5d7cb76f3961ffcfb2
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819204"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916594"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>设计适用于 Azure 的可复原应用程序
 
