@@ -2,23 +2,23 @@
 title: 在 Azure 资源管理器模板中有条件地部署资源
 description: 介绍如何扩展 Azure 资源管理器模板的功能，根据参数的值有条件地部署资源
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: e911e7dc41b4f71ebfaf13a00f8cdbb5b4e2578b
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.date: 10/30/2018
+ms.openlocfilehash: 2c74e17a5f38f9225b696640a23b55b1285276bb
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24538387"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251832"
 ---
 # <a name="conditionally-deploy-a-resource-in-an-azure-resource-manager-template"></a>在 Azure 资源管理器模板中有条件地部署资源
 
 在一些方案中，需要根据某一条件（例如是否存在参数值）设计模板以部署资源。 例如，模板可能部署虚拟网络并包括参数以指定对等互连的其他虚拟网络。 如果未指定对等互连的参数值，则不希望资源管理器部署对等互连资源。
 
-要完成此操作，使用资源中的 [`condition` 元素][azure-resource-manager-condition]以测试参数数组的长度。 若长度为零，则返回 `false` 以阻止部署，但是所有大于零的值将返回 `true` 以允许部署。
+若要完成此操作，请使用资源中的 [condition 元素][azure-resource-manager-condition]来测试参数数组的长度。 若长度为零，则返回 `false` 以阻止部署，但是所有大于零的值将返回 `true` 以允许部署。
 
 ## <a name="example-template"></a>示例模板
 
-让我们看一下演示此操作的示例模板。 我们的模板使用 [`condition` 元素][azure-resource-manager-condition] 以控制 `Microsoft.Network/virtualNetworks/virtualNetworkPeerings` 资源的部署。 此资源创建同一区域中的两个 Azure 虚拟网络之间的对等互连。
+让我们看一下演示此操作的示例模板。 我们的模板使用 [condition 元素][azure-resource-manager-condition]来控制 `Microsoft.Network/virtualNetworks/virtualNetworkPeerings` 资源的部署。 此资源创建同一区域中的两个 Azure 虚拟网络之间的对等互连。
 
 让我们看看模板的每个部分。
 
@@ -40,12 +40,15 @@ ms.locfileid: "24538387"
 ```json
 "virtualNetworkPeerings": [
     {
-        "remoteVirtualNetwork": {
-            "name": "my-other-virtual-network"
-        },
-        "allowForwardedTraffic": true,
-        "allowGatewayTransit": true,
-        "useRemoteGateways": false
+      "name": "firstVNet/peering1",
+      "properties": {
+          "remoteVirtualNetwork": {
+              "id": "[resourceId('Microsoft.Network/virtualNetworks','secondVNet')]"
+          },
+          "allowForwardedTraffic": true,
+          "allowGatewayTransit": true,
+          "useRemoteGateways": false
+      }
     }
 ]
 ```
@@ -60,7 +63,7 @@ ms.locfileid: "24538387"
       "name": "[concat('vnp-', copyIndex())]",
       "condition": "[greater(length(parameters('virtualNetworkPeerings')), 0)]",
       "dependsOn": [
-        "virtualNetworks"
+        "firstVNet", "secondVNet"
       ],
       "copy": {
           "name": "iterator",
@@ -113,17 +116,29 @@ ms.locfileid: "24538387"
   },
 ```
 
-`workaround` 变量包括两个属性，一个名为 `true`，一个名为 `false`。 `true` 属性计算结果为 `virtualNetworkPeerings` 参数数组的值。 `false` 属性计算结果为包括资源管理器希望看到的已命名属性的空对象&mdash;请注意，`false` 实际上是一个数组，它和将满足验证的 `virtualNetworkPeerings` 参数一样。 
+`workaround` 变量包括两个属性，一个名为 `true`，一个名为 `false`。 `true` 属性计算结果为 `virtualNetworkPeerings` 参数数组的值。 `false` 属性计算结果为一个空对象（包括资源管理器预期看到的已命名属性）&mdash;请注意，`false` 实际上是一个数组，它和将符合验证的 `virtualNetworkPeerings` 参数一样。 
 
-`peerings` 变量使用 `workaround` 变量，方法是再次测试 `virtualNetworkPeerings` 参数数组的长度是否大于零。 如果大于零，`string` 计算结果为 `true`，`workaround` 变量计算结果为 `virtualNetworkPeerings` 参数数组。 否则，计算结果为 `false`，`workaround` 变量计算结果为数组的第一个元素中的空对象。
+`peerings` 变量使用 `workaround` 变量，方法是再次测试 `virtualNetworkPeerings` 参数数组的长度是否大于零。 如果大于零，则 `string` 计算结果为 `true`，`workaround` 变量计算结果为 `virtualNetworkPeerings` 参数数组。 否则，计算结果为 `false`，`workaround` 变量计算结果为数组的第一个元素中的空对象。
 
 解决验证问题之后，可以指定嵌套模板中的 `Microsoft.Network/virtualNetworks/virtualNetworkPeerings` 资源的部署，从 `virtualNetworkPeerings` 参数数组传递 `name` 和 `properties`。 可以在嵌套在资源的 `properties` 元素的 `template` 元素中看到。
 
+## <a name="try-the-template"></a>尝试模板
+
+[GitHub][github] 上提供了一个示例模板。 若要部署该模板，请运行以下 [Azure CLI][cli] 命令：
+
+```bash
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example2-conditional/deploy.json
+```
+
 ## <a name="next-steps"></a>后续步骤
 
-* 此技术可在[模板构建块项目](https://github.com/mspnp/template-building-blocks)和 [Azure 参考体系结构](/azure/architecture/reference-architectures/)中实现。 可以使用这些来创建自己的体系结构或部署一个参考体系结构。
+* 使用对象而不是标量值作为模板参数。 请参阅[将对象用作 Azure 资源管理器模板中的参数](./objects-as-parameters.md)
 
 <!-- links -->
 [azure-resource-manager-condition]: /azure/azure-resource-manager/resource-group-authoring-templates#resources
 [azure-resource-manager-variable]: /azure/azure-resource-manager/resource-group-authoring-templates#variables
 [vnet-peering-resource-schema]: /azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples

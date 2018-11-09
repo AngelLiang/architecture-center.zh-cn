@@ -3,12 +3,12 @@ title: 无服务器 Web 应用程序
 description: 演示无服务器 Web 应用程序和 Web API 的参考体系结构
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: c2b46a60a57381ac3fd3f77cffe53b2dab2dacd6
-ms.sourcegitcommit: 113a7248b9793c670b0f2d4278d30ad8616abe6c
+ms.openlocfilehash: d1af03811bda6267fd40ee17823ac8357829f988
+ms.sourcegitcommit: 949b9d3e5a9cdee1051e6be700ed169113e914ae
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/16/2018
-ms.locfileid: "49349949"
+ms.lasthandoff: 11/05/2018
+ms.locfileid: "50983390"
 ---
 # <a name="serverless-web-application"></a>无服务器 Web 应用程序 
 
@@ -148,20 +148,13 @@ public static Task<IActionResult> Run(
 
 - 在函数应用中启用 Azure AD 身份验证。 有关详细信息，请参阅 [Azure 应用服务中的身份验证和授权][app-service-auth]。
 
-- 将策略添加到 API 管理，以通过验证访问令牌来为请求预先授权：
-
-    ```xml
-    <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">
-        <openid-config url="https://login.microsoftonline.com/[Azure AD tenant ID]/.well-known/openid-configuration" />
-        <required-claims>
-            <claim name="aud">
-                <value>[Application ID]</value>
-            </claim>
-        </required-claims>
-    </validate-jwt>
-    ```
+- 将 [validate-jwt 策略][apim-validate-jwt]添加到 API 管理，通过验证访问令牌为请求预先授权。
 
 有关更多详细信息，请参阅 [GitHub 自述文件][readme]。
+
+建议在 Azure AD 中为客户端应用程序和后端 API 创建单独的应用注册。 授予客户端应用程序调用 API 的权限。 可以通过此方法灵活地定义多个 API 和客户端并控制其权限。 
+
+在 API 中，使用[范围][scopes]可以让应用程序对其从用户请求的具体权限进行精细的控制。 例如，API 可能有 `Read` 和 `Write` 两个范围，而特定的客户端应用可能会要求用户仅授予 `Read` 权限。
 
 ### <a name="authorization"></a>授权
 
@@ -275,11 +268,21 @@ public static Task<IActionResult> Run(
 
 ## <a name="devops-considerations"></a>DevOps 注意事项
 
+### <a name="deployment"></a>部署
+
+若要部署函数应用，建议使用[包文件][functions-run-from-package]（“从包运行”）。 使用此方法时，请将 zip 文件上传到 Blob 存储容器，然后 Functions 运行时就会将 zip 文件作为只读文件系统装载。 这是原子操作，可以减少因部署失败而导致应用程序处于不一致状态的情况。 该操作还可以缩短冷启动时间，尤其是对 Node.js 应用而言，因为所有文件都是一次性地进行交换。
+
 ### <a name="api-versioning"></a>API 版本控制
 
-API 是服务与客户端之间的协定，或该服务的使用者。 支持 API 协定中的版本控制。 如果做了重大的 API 更改，请推出新的 API 版本。 在独立的函数应用中，连同原始版本一样部署新版本。 这样可将现有客户端迁移到新 API，且不中断客户端应用程序。 最终可以弃用旧版本。 有关 API 版本控制的详细信息，请参阅[对 RESTful Web API 进行版本控制][api-versioning]。
+API 是服务与客户端之间的协定。 在此体系结构中，API 协定在 API 管理层定义。 API 管理支持两个不同但互补的[版本控制概念][apim-versioning]：
 
-对于不属于重大 API 更改的更新，请将新版本部署到同一函数应用中的过渡槽。 验证部署是否成功，然后将过渡版本交换为生产版本。
+- 版本：API 使用者可以根据需要选择 API 版本（例如 v1 或 v2）。 
+
+- 修订版：API 管理员可以在 API 中进行非重大更改并部署这些更改。另外还可以提供更改日志，将所做的更改告知 API 使用者。
+
+如果在 API 中进行重大更改，请在 API 管理中发布新版本。 在独立的函数应用中，连同原始版本一样部署新版本。 这样可将现有客户端迁移到新 API，且不中断客户端应用程序。 最终可以弃用旧版本。 API 管理支持多种[版本控制方案][apim-versioning-schemes]：URL 路径、HTTP 标头或查询字符串。 有关一般性的 API 版本控制的详细信息，请参阅[对 RESTful Web API 进行版本控制][api-versioning]。
+
+对于不属于重大 API 更改的更新，请将新版本部署到同一函数应用中的过渡槽。 验证部署是否成功，然后将过渡版本交换为生产版本。 在 API 管理中发布修订版。
 
 ## <a name="deploy-the-solution"></a>部署解决方案
 
@@ -292,6 +295,9 @@ API 是服务与客户端之间的协定，或该服务的使用者。 支持 AP
 [apim-ip]: /azure/api-management/api-management-faq#is-the-api-management-gateway-ip-address-constant-can-i-use-it-in-firewall-rules
 [api-geo]: /azure/api-management/api-management-howto-deploy-multi-region
 [apim-scale]: /azure/api-management/api-management-howto-autoscale
+[apim-validate-jwt]: /azure/api-management/api-management-access-restriction-policies#ValidateJWT
+[apim-versioning]: /azure/api-management/api-management-get-started-publish-versions
+[apim-versioning-schemes]: /azure/api-management/api-management-get-started-publish-versions#choose-a-versioning-scheme
 [app-service-auth]: /azure/app-service/app-service-authentication-overview
 [app-service-ip-restrictions]: /azure/app-service/app-service-ip-restrictions
 [app-service-security]: /azure/app-service/app-service-security
@@ -310,9 +316,11 @@ API 是服务与客户端之间的协定，或该服务的使用者。 支持 AP
 [functions-bindings]: /azure/azure-functions/functions-triggers-bindings
 [functions-cold-start]: https://blogs.msdn.microsoft.com/appserviceteam/2018/02/07/understanding-serverless-cold-start/
 [functions-https]: /azure/app-service/app-service-web-tutorial-custom-ssl#enforce-https
-[functions-proxy]: /azure-functions/functions-proxies
+[functions-proxy]: /azure/azure-functions/functions-proxies
+[functions-run-from-package]: /azure/azure-functions/run-functions-from-deployment-package
 [functions-scale]: /azure/azure-functions/functions-scale
 [functions-timeout]: /azure/azure-functions/functions-scale#consumption-plan
+[functions-zip-deploy]: /azure/azure-functions/deployment-zip-push
 [graph]: https://developer.microsoft.com/graph/docs/concepts/overview
 [key-vault-web-app]: /azure/key-vault/tutorial-web-application-keyvault
 [microservices-domain-analysis]: ../../microservices/domain-analysis.md
@@ -321,6 +329,7 @@ API 是服务与客户端之间的协定，或该服务的使用者。 支持 AP
 [partition-key]: /azure/cosmos-db/partition-data
 [pipelines]: /azure/devops/pipelines/index
 [ru]: /azure/cosmos-db/request-units
+[scopes]: /azure/active-directory/develop/v2-permissions-and-consent
 [static-hosting]: /azure/storage/blobs/storage-blob-static-website
 [static-hosting-preview]: https://azure.microsoft.com/blog/azure-storage-static-web-hosting-public-preview/
 [storage-https]: /azure/storage/common/storage-require-secure-transfer

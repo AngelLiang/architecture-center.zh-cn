@@ -2,13 +2,13 @@
 title: 在 Azure 资源管理器模板上更新资源
 description: 介绍了如何扩展 Azure 资源管理器模板的功能来更新资源
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: f235f0b4d54d65ccc2fa67876916e922d75f6d07
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 10/31/2018
+ms.openlocfilehash: dc97534e658c9728ac617b4e52031e2553600458
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429022"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251815"
 ---
 # <a name="update-a-resource-in-an-azure-resource-manager-template"></a>在 Azure 资源管理器模板上更新资源
 
@@ -122,16 +122,13 @@ ms.locfileid: "47429022"
 
 ## <a name="try-the-template"></a>尝试模板
 
-如果要试验此模板，请按照下列步骤进行操作：
+[GitHub][github] 上提供了一个示例模板。 若要部署该模板，请运行以下 [Azure CLI][cli] 命令：
 
-1.  转到 Azure 门户，选择“+”图标，搜索“模板部署”
-2.  导航到“模板部署”页，选择“创建”按钮。 此按钮会打开“自定义部署”边栏选项卡。
-3.  选择“编辑”图标。
-4.  选择空模板。
-5.  将示例模板复制粘贴到右侧窗格中。
-6.  选择“保存”按钮。
-7.  返回到“自定义部署”窗格，但是这一次包含一些下拉列表框。 选择订阅，或者创建新订阅或使用现有资源组，然后选择位置。 查看条款和条件，并选择“我同意”按钮。
-8.  选择“购买”按钮。
+```bash
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example1-update/deploy.json
+```
 
 在部署完成后，打开在门户中指定的资源组。 将看到名为 `firstVNet` 的虚拟网络和名为 `nic1` 的 NIC。 单击 `firstVNet`，并单击 `subnets`。 会看到原来创建的 `firstSubnet`，还会看到已在 `updateVNet` 资源中添加的 `secondSubnet`。 
 
@@ -145,4 +142,7 @@ ms.locfileid: "47429022"
 
 ## <a name="next-steps"></a>后续步骤
 
-* 此技术可在[模板构建块项目](https://github.com/mspnp/template-building-blocks)和 [Azure 参考体系结构](/azure/architecture/reference-architectures/)中实现。 可以使用这些来创建自己的体系结构或部署一个参考体系结构。
+* 了解如何根据某一条件（例如是否存在某个参数值）部署资源。 请参阅[在 Azure 资源管理器模板中有条件地部署资源](./conditional-deploy.md)。
+
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples

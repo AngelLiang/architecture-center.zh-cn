@@ -2,17 +2,17 @@
 title: 在 Azure 与 Internet 之间实施外围网络
 description: 如何在 Azure 中实施一个提供 Internet 访问方式的安全混合网络体系结构。
 author: telmosampaio
-ms.date: 07/02/2018
+ms.date: 10/22/2018
 pnp.series.title: Network DMZ
 pnp.series.next: nva-ha
 pnp.series.prev: secure-vnet-hybrid
 cardTitle: DMZ between Azure and the Internet
-ms.openlocfilehash: 7a062d2394ae8b3bd1b17c19cbdf512327f9a766
-ms.sourcegitcommit: 9b459f75254d97617e16eddd0d411d1f80b7fe90
+ms.openlocfilehash: d12c76a08f028d54784de330c62311f294802cb9
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37403141"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916322"
 ---
 # <a name="dmz-between-azure-and-the-internet"></a>Azure 与 Internet 之间的外围网络
 

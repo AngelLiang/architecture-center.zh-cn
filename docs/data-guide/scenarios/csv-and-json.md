@@ -3,12 +3,12 @@ title: 处理 CSV 和 JSON 文件
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 02e684d562cfe555f9e3596ad0a2f1a00d05c7a7
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: b9a0deae5499a4df4e43e15914490b89e0e3a50c
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298605"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251798"
 ---
 # <a name="working-with-csv-and-json-files-for-data-solutions"></a>处理数据解决方案的 CSV 和 JSON 文件
 
@@ -44,6 +44,8 @@ CSV 更常用于导出和导入数据，或者处理数据以供分析和机器�
 ## <a name="working-with-csv-and-json-data-in-azure"></a>在 Azure 中处理 CSV 和 JSON 数据
 
 Azure 提供多种解决方案用于根据需要处理 CSV 和 JSON 文件。 这些文件的主要存储位置是 Azure 存储或 Azure Data Lake Store。 处理这些文件和其他基于文本的文件的大多数 Azure 服务都与任一对象存储服务相集成。 但是，在某些情况下，可以选择将数据直接导入 Azure SQL 或其他某个数据存储。 SQL Server 原生支持存储和处理 JSON 文档，因此，可以轻松[导入和处理这些类型的文件](/sql/relational-databases/json/import-json-documents-into-sql-server)。 可以使用 SQL 批量导入等实用工具轻松[导入 CSV 文件](/sql/relational-databases/json/import-json-documents-into-sql-server)。
+
+也可直接从 Azure Blob 存储查询 JSON 文件，不需将其导入 Azure SQL 中。 如需此方法的完整示例，请参阅[通过 Azure SQL 使用 JSON 文件](https://medium.com/@mauridb/work-with-json-files-with-azure-sql-8946f066ddd4)。 目前，此选项不适用于 CSV 文件。
 
 可以根据情况对数据执行[批处理](../big-data/batch-processing.md)或[实时处理](../big-data/real-time-processing.md)。
 

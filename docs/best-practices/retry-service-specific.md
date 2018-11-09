@@ -2,14 +2,14 @@
 title: 重试服务指南
 description: 设置重试机制的服务指南。
 author: dragon119
-ms.date: 07/13/2016
+ms.date: 08/13/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: c5a9bc99c4693f35c38dabcf07b3465add6a8cb1
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 801bcc6e7a296cc9d68a46231461a6b37ebd7de5
+ms.sourcegitcommit: ca5283af555189e830eed7884c83d058fa7ebaa0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429532"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50757801"
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服务的重试指南
 
@@ -58,7 +58,7 @@ Active Directory 身份验证库 (ADAL) 提供适用于 Azure Active Directory �
 
 | **上下文** | **示例目标 E2E<br />最长延迟** | **重试策略** | **设置** | **值** | **工作原理** |
 | --- | --- | --- | --- | --- | --- |
-| 交互式, UI,<br />或 foreground |2 秒 |FixedInterval |重试计数<br />重试间隔<br />首次快速重试 |3<br />500 毫秒<br />是 |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 延迟 500 毫秒<br />第 3 次尝试 - 延迟 500 毫秒 |
+| 交互式, UI,<br />或 foreground |2 秒 |FixedInterval |重试计数<br />重试间隔<br />首次快速重试 |3<br />500 毫秒<br />true |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 延迟 500 毫秒<br />第 3 次尝试 - 延迟 500 毫秒 |
 | 背景或<br />批处理 |60 秒 |ExponentialBackoff |重试计数<br />最小回退<br />最大回退<br />增量回退<br />首次快速重试 |5<br />0 秒<br />60 秒<br />2 秒<br />false |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 约延迟 2 秒<br />第 3 次尝试 - 约延迟 6 秒<br />第 4 次尝试 - 约延迟 14 秒<br />第 5 次尝试 - 约延迟 30 秒 |
 
 ### <a name="more-information"></a>详细信息
@@ -562,7 +562,7 @@ SQL 数据库是一种托管的 SQL 数据库，具有各种大小，可作为�
 
 | **上下文** | **示例目标 E2E<br />最长延迟** | **重试策略** | **设置** | **值** | **工作原理** |
 | --- | --- | --- | --- | --- | --- |
-| 交互式, UI,<br />或 foreground |2 秒 |FixedInterval |重试计数<br />重试间隔<br />首次快速重试 |3<br />500 毫秒<br />是 |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 延迟 500 毫秒<br />第 3 次尝试 - 延迟 500 毫秒 |
+| 交互式, UI,<br />或 foreground |2 秒 |FixedInterval |重试计数<br />重试间隔<br />首次快速重试 |3<br />500 毫秒<br />true |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 延迟 500 毫秒<br />第 3 次尝试 - 延迟 500 毫秒 |
 | 背景<br />或批处理 |30 秒 |ExponentialBackoff |重试计数<br />最小回退<br />最大回退<br />增量回退<br />首次快速重试 |5<br />0 秒<br />60 秒<br />2 秒<br />false |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 约延迟 2 秒<br />第 3 次尝试 - 约延迟 6 秒<br />第 4 次尝试 - 约延迟 14 秒<br />第 5 次尝试 - 约延迟 30 秒 |
 
 > [!NOTE]

@@ -5,12 +5,12 @@ author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: client-assertion
-ms.openlocfilehash: b6d2e431da85f7c304747df2f804f1714596bfc6
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: a47b8835df1c970ac7c50af78aae73116d6a12b4
+ms.sourcegitcommit: d59e2631fb08665bc30f6b65bfc7e1b75935cbd5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429173"
+ms.lasthandoff: 11/05/2018
+ms.locfileid: "51021944"
 ---
 # <a name="use-azure-key-vault-to-protect-application-secrets"></a>使用 Azure Key Vault 保护应用程序机密
 
@@ -88,7 +88,7 @@ Surveys 应用程序从以下位置加载配置设置：
 
 2. 选择希望管理员访问的订阅。
 3. 在“订阅”边栏选项卡中，选择“访问控制 (IAM)”。
-4. 单击 **“添加”**。
+4. 单击“添加”。
 4. 在“角色”下，选择“所有者”。
 5. 键入要添加为“所有者”的用户的电子邮件地址。
 6. 选择用户并单击“保存”。
@@ -221,25 +221,25 @@ Surveys 应用程序从以下位置加载配置设置：
 ### <a name="update-the-user-secrets"></a>更新用户机密
 在解决方案资源管理器中，右键单击 Tailspin.Surveys.Web 项目并选“管理用户机密”。 在 secrets.json 文件中，删除现有的 JSON 并粘贴以下代码：
 
-    ```
-    {
-      "AzureAd": {
-        "ClientId": "[Surveys web app client ID]",
-        "ClientSecret": "[Surveys web app client secret]",
-        "PostLogoutRedirectUri": "https://localhost:44300/",
-        "WebApiResourceId": "[App ID URI of your Surveys.WebAPI application]",
-        "Asymmetric": {
-          "CertificateThumbprint": "[certificate thumbprint. Example: 105b2ff3bc842c53582661716db1b7cdc6b43ec9]",
-          "StoreName": "My",
-          "StoreLocation": "CurrentUser",
-          "ValidationRequired": "false"
-        }
-      },
-      "KeyVault": {
-        "Name": "[key vault name]"
-      }
+```json
+{
+  "AzureAd": {
+    "ClientId": "[Surveys web app client ID]",
+    "ClientSecret": "[Surveys web app client secret]",
+    "PostLogoutRedirectUri": "https://localhost:44300/",
+    "WebApiResourceId": "[App ID URI of your Surveys.WebAPI application]",
+    "Asymmetric": {
+      "CertificateThumbprint": "[certificate thumbprint. Example: 105b2ff3bc842c53582661716db1b7cdc6b43ec9]",
+      "StoreName": "My",
+      "StoreLocation": "CurrentUser",
+      "ValidationRequired": "false"
     }
-    ```
+  },
+  "KeyVault": {
+    "Name": "[key vault name]"
+  }
+}
+```
 
 用正确的值替换[方括号]中的项。
 
@@ -258,7 +258,7 @@ Surveys 应用程序从以下位置加载配置设置：
 
 接下来，在解决方案资源管理器中，右键单击 Tailspin.Surveys.WebApi 项目并选择“管理用户机密”。 删除现有的 JSON 并粘贴以下代码：
 
-```
+```json
 {
   "AzureAd": {
     "ClientId": "[Surveys.WebAPI client ID]",

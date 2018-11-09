@@ -2,12 +2,13 @@
 title: 用于选择数据存储的条件
 description: Azure 计算选项概述
 author: MikeWasson
-ms.openlocfilehash: 70f746f80c29623004620d83eb38747777df7f84
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.date: 06/01/2018
+ms.openlocfilehash: f8996cdeb937a28b3f3056da3921a3f89dd36b1a
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252867"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916424"
 ---
 # <a name="criteria-for-choosing-a-data-store"></a>用于选择数据存储的条件
 
@@ -46,7 +47,7 @@ Azure 支持许多类型的数据存储解决方案，每个都提供了不同�
 - **总体成本**。 在你的解决方案内使用此服务的总体成本是多少？ 需要运行多少个实例来支持运行时间和吞吐量要求？ 在此计算中，请考虑运营成本。 首选使用托管服务的一个原因是降低了运营成本。
 - **成本效益**。 是否可以对数据进行分区以便经济高效地存储数据？ 例如，是否可以将大型对象从昂贵的关系数据库移动到对象存储中？
 
-### <a name="security"></a>“安全”
+### <a name="security"></a>安全
 
 - **安全性**。 需要哪种类型的加密？ 是否需要静态加密？ 希望使用哪种身份验证机制来连接到数据？
 - **审核**。 需要生成哪种类型的审核日志？

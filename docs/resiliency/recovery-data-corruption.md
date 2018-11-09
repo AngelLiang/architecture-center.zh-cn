@@ -2,13 +2,13 @@
 title: 从数据损坏或意外删除中恢复
 description: 本文可帮助了解如何从数据损坏或意外数据删除中恢复，并可帮助设计有复原能力和高可用性的容错应用程序，以及对灾难恢复进行规划
 author: MikeWasson
-ms.date: 01/10/2018
-ms.openlocfilehash: b0716de39fe69d607b9a63e51356d28bbcdbfeae
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.date: 11/11/2018
+ms.openlocfilehash: 1f3dd448ac6172727481c437fb8a113f25d83464
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012420"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916256"
 ---
 # <a name="recover-from-data-corruption-or-accidental-deletion"></a>从数据损坏或意外删除中恢复 
 

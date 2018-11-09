@@ -2,14 +2,14 @@
 title: 多区域 Web 应用程序
 description: 对于在 Microsoft Azure 中运行的具有高可用性的 Web 应用程序，建议使用的体系结构。
 author: MikeWasson
-ms.date: 11/23/2016
+ms.date: 10/25/2018
 cardTitle: Run in multiple regions
-ms.openlocfilehash: 5493deea871f25fb6ea3531a22d92d83916930b1
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 1ed69f4f7e79fe2025e2a10d50e851ac4c02f1a6
+ms.sourcegitcommit: 065fa8ecb37c8be1827da861243ad6a33c75c99d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876799"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "50136652"
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>在多个区域中运行 Web 应用程序
 [!INCLUDE [header](../../_includes/header.md)]
@@ -70,9 +70,7 @@ ms.locfileid: "48876799"
 使用[活动异地复制][sql-replication]在一个不同的区域中创建可读取的次要副本。 最多可以有四个可读取的次要副本。 如果主数据库失败或者需要使其脱机，请故障转移到辅助数据库。 可以为任何弹性数据库池中的任何数据库配置活动异地复制。
 
 ### <a name="cosmos-db"></a>Cosmos DB
-Cosmos DB 支持跨区域的异地复制。 一个区域被指定为可写入的，其他区域是只读副本。
-
-如果发生区域性中断，可以通过选择另一个区域作为写入区域来进行故障转移。 客户端 SDK 会自动将写入请求发送到当前写入区域，因此，在故障转移后不需要更新客户端配置。 有关详细信息，请参阅[如何使用 Azure Cosmos DB 进行全局数据分配][cosmosdb-geo]。
+Cosmos DB 支持跨多主数据库区域（多个写入区域）的异地复制。 也可将一个区域指定为可写区域，将其他区域指定为只读副本。 如果发生区域性中断，可以通过选择另一个区域作为写入区域来进行故障转移。 客户端 SDK 会自动将写入请求发送到当前写入区域，因此，在故障转移后不需要更新客户端配置。 有关详细信息，请参阅[使用 Azure Cosmos DB 全局分配数据][cosmosdb-geo]。
 
 > [!NOTE]
 > 所有副本都属于同一资源组。
@@ -136,10 +134,11 @@ Set-AzureRmTrafficManagerEndpoint -TrafficManagerEndpoint $endpoint
 
 有关详细信息，请参阅 [Azure 流量管理器 Cmdlet][tm-ps]。
 
-**Azure 命令行界面 (CLI)**
+**Azure CLI**
 
 ```bat
-azure network traffic-manager endpoint set --name <endpoint> --profile-name <profile> --resource-group <resource-group> --type AzureEndpoints --priority 3
+az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile> \
+    --name <endpoint-name> --type azureEndpoints --priority 3
 ```    
 
 ### <a name="sql-database"></a>SQL 数据库

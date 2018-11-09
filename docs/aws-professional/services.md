@@ -5,20 +5,18 @@ keywords: 云服务比较, 比较云服务, 多云, 比较 azure aws, 比较 azu
 author: lbrader
 ms.date: 11/30/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: d665adb946b9c93827fbc55243edc3a558668416
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 33b67f57c8c725cfb68c400b4e2b67102e5d4872
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819221"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251951"
 ---
 # <a name="aws-to-azure-services-comparison"></a>AWS 和 Azure 服务比较
 
 本文帮助你了解 Microsoft Azure 服务与 Amazon Web Services (AWS) 之间的区别。 无论是要利用 Azure 和 AWS 规划多云解决方案，还是要迁移到 Azure，你都可以从各个方面对 Azure 和 AWS 服务的 IT 功能进行比较。
 
 下面的表格针对一些 AWS 服务列出了多项 Azure 服务。 Azure 服务之间具有相似性，但功能的深度和广度各有不同。
-
-[下载 Azure 和 AWS 云服务映射 PDF](https://aka.ms/awsazureguide)
 
 ## <a name="azure-and-aws-for-multicloud-solutions"></a>适用于多云解决方案的 Azure 和 AWS
 
@@ -102,7 +100,7 @@ Azure 和 AWS 作为领先的公有云平台，各自都在全球范围内为企
 | <strong>&nbsp;</strong> |          无           |                                                                                       [Power BI Embedded](https://azure.microsoft.com/services/power-bi-embedded/)                                                                                       |                                                               允许将可视化效果和数据分析工具嵌入应用程序。                                                               |
 |         搜索          |  Elasticsearch Service  |                                                                     [市场 - Elasticsearch](https://azuremarketplace.microsoft.com/marketplace/apps?page=1&search=Elasticsearch)                                                                     |                                                                             基于 Apache Lucene 的可缩放搜索服务器。                                                                             |
 | <strong>&nbsp;</strong> |       CloudSearch       |                                                                                               [Azure 搜索](https://azure.microsoft.com/services/search/)                                                                                               |                                                                 提供全文搜索及相关搜索分析和功能。                                                                 |
-|    机器学习     |    机器学习     |                          [Azure 机器学习工作室](https://azure.microsoft.com/services/machine-learning/) <br/><br/>[Azure Machine Learning Workbench](https://azure.microsoft.com/services/machine-learning-services/)                           |                    购买端到端工作流来创建、处理、优化和发布预测模型，用于根据复杂数据集理解可能发生的情况。                    |
+|    机器学习     |    机器学习     |                          [Azure 机器学习工作室](https://azure.microsoft.com/services/machine-learning/) <br/><br/>[Azure 机器学习服务](https://azure.microsoft.com/services/machine-learning-services/)                           |                    购买端到端工作流来创建、处理、优化和发布预测模型，用于根据复杂数据集理解可能发生的情况。                    |
 |     数据发现      |          无           |                                                                                            [数据目录](https://azure.microsoft.com/services/data-catalog/)                                                                                            |                                                     能够更好地注册、丰富、发现、理解和使用数据源。                                                     |
 | <strong>&nbsp;</strong> |      Amazon Athena      |                                                                                  [Azure Data Lake Analytics](https://azure.microsoft.com/services/data-lake-analytics/)                                                                                  |                                                     提供利用标准 SQL 进行数据库分析的无服务器交互式查询服务。                                                      |
 

@@ -2,13 +2,13 @@
 title: 将 Azure 云服务应用程序迁移到 Azure Service Fabric
 description: 如何将 Azure 云服务中的应用程序迁移到 Azure Service Fabric。
 author: MikeWasson
-ms.date: 04/27/2017
-ms.openlocfilehash: b9ecbc88ae74da99a0ff3bb8814a9cb3422f79d5
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.date: 04/11/2018
+ms.openlocfilehash: a1b4e005b2dab67d8107f4002468e1d7622ae342
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012682"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916441"
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>将 Azure 云服务应用程序迁移到 Azure Service Fabric 
 
@@ -177,7 +177,7 @@ Service Fabric 可供各种 Microsoft 服务使用，包括 Azure SQL 数据库�
 
  云服务包含以下配置和包文件：
 
-| 文件 | 说明 |
+| 文件 | Description |
 |------|-------------|
 | 服务定义 (.csdef) | Azure 用于配置云服务的设置。 定义角色、终结点、启动任务和配置设置名称。 |
 | 服务配置 (.cscfg) | 针对每个部署的设置，包括角色实例数、终结点端口号和配置设置的值。 
@@ -199,7 +199,7 @@ Application package
 
 Service Fabric 应用程序包含以下配置文件：
 
-| 文件 | Location | 说明 |
+| 文件 | 位置 | Description |
 |------|----------|-------------|
 | ApplicationManifest.xml | 应用程序包 | 定义构成应用程序的服务。 |
 | ServiceManifest.xml | 服务包| 描述一个或多个服务。 |

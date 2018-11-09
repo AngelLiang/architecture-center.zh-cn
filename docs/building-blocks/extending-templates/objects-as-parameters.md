@@ -2,13 +2,13 @@
 title: 将对象用作 Azure 资源管理器模板中的参数
 description: 介绍如何扩展 Azure 资源管理器模板的功能，以便将对象用作参数
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: dd53c55a26b2452c375d8d1e1a98886b15febaeb
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.date: 10/30/2018
+ms.openlocfilehash: c1955823b3474efa0abea1d9634add5f13d02eda
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876745"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251883"
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>将对象用作 Azure 资源管理器模板中的参数
 
@@ -301,25 +301,21 @@ ms.locfileid: "48876745"
 
 ## <a name="try-the-template"></a>尝试模板
 
-如果要试验此模板，请按照下列步骤进行操作： 
+[GitHub][github] 上提供了一个示例模板。 若要部署该模板，请克隆存储库并运行以下 [Azure CLI][cli] 命令：
 
-1.  转到 Azure 门户，选择“+”图标，搜索“模板部署”
-2.  导航到“模板部署”页，选择“创建”按钮。 此按钮会打开“自定义部署”边栏选项卡。
-3.  选择“编辑模板”按钮。
-4.  选择空模板。 
-5.  将示例模板复制粘贴到右侧窗格中。
-6.  选择“保存”按钮。
-7.  返回到“自定义部署”窗格后，请选择“编辑参数”按钮。
-8.  在“编辑参数”边栏选项卡中，删除现有的模板。
-9.  复制并粘贴上述示例参数模板。
-10. 选择“保存”按钮，返回到“自定义部署”边栏选项卡。
-11. 在“自定义部署”边栏选项卡中选择订阅，新建资源组或使用现有资源组，然后选择位置。 查看条款和条件，并选中“我同意”复选框。
-12. 选择“购买”按钮。
+```bash
+git clone https://github.com/mspnp/template-examples.git
+cd template-examples/example3-object-param
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example3-object-param/deploy.json \
+    --parameters deploy.parameters.json
+```
 
 ## <a name="next-steps"></a>后续步骤
 
-* 可以扩展这些技术来实现[属性对象转换器和收集器](./collector.md)。 转换器和收集器技术更常规，可从模板链接。
-* 此技术也可在[模板构建块项目](https://github.com/mspnp/template-building-blocks)和 [Azure 参考体系结构](/azure/architecture/reference-architectures/)中实现。 请查看我们的模板，了解如何实现此技术。
+- 了解如何创建一个模板来循环访问对象数组并将其转换为 JSON 架构。 请参阅[在 Azure 资源管理器模板中实现属性转换器和收集器](./collector.md)
+
 
 <!-- links -->
 [azure-resource-manager-authoring-templates]: /azure/azure-resource-manager/resource-group-authoring-templates
@@ -327,3 +323,5 @@ ms.locfileid: "48876745"
 [azure-resource-manager-create-multiple-instances]: /azure/azure-resource-manager/resource-group-create-multiple
 [azure-resource-manager-functions]: /azure/azure-resource-manager/resource-group-template-functions-resource
 [nsg]: /azure/virtual-network/virtual-networks-nsg
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples

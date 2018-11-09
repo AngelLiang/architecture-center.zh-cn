@@ -2,13 +2,13 @@
 title: 选择 Azure 计算服务的条件
 description: 跨多个轴比较 Azure 计算服务
 author: MikeWasson
-ms.date: 06/13/2018
-ms.openlocfilehash: b7a5b08e1d9a9eba33003b3d478a61388a496272
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.date: 08/08/2018
+ms.openlocfilehash: dbd5314c4c77e83f5b45ef0b49e83860479c8f92
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016113"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916358"
 ---
 # <a name="criteria-for-choosing-an-azure-compute-service"></a>选择 Azure 计算服务的条件
 
