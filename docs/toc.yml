@@ -345,8 +345,6 @@ items:
     items:
     - name: 针对深度学习模型的批处理计分
       href: reference-architectures/ai/batch-scoring-deep-learning.md
-    - name: Python 模型的实时评分
-      href: reference-architectures/ai/realtime-scoring-python.md
   - name: 大数据
     items:
     - name: 将 Enterprise BI 与 SQL 数据仓库配合使用
@@ -385,6 +383,18 @@ items:
       href: reference-architectures/identity/adds-forest.md
     - name: 将 AD FS 扩展到 Azure
       href: reference-architectures/identity/adfs.md
+  - name: N 层应用程序
+    items:
+    - name: 使用 SQL Server 的 N 层应用程序
+      href: reference-architectures/n-tier/n-tier-sql-server.md
+    - name: 多区域 N 层应用程序
+      href: reference-architectures/n-tier/multi-region-sql-server.md
+    - name: 使用 Cassandra 的 N 层应用程序
+      href: reference-architectures/n-tier/n-tier-cassandra.md
+    - name: 部署 Linux VM
+      href: reference-architectures/n-tier/linux-vm.md
+    - name: 部署 Windows VM
+      href: reference-architectures/n-tier/windows-vm.md
   - name: 外围网络
     items:
     - name: Azure 与本地之间的外围网络
@@ -409,18 +419,8 @@ items:
       href: reference-architectures/serverless/event-processing.md
   - name: VM 工作负荷
     items:
-    - name: 单个 Linux VM
-      href: reference-architectures/n-tier/linux-vm.md
-    - name: 单个 Windows VM
-      href: reference-architectures/n-tier/windows-vm.md
     - name: Jenkins 服务器
       href: reference-architectures/jenkins/index.md
-    - name: 使用 SQL Server 的 N 层应用程序
-      href: reference-architectures/n-tier/n-tier-sql-server.md
-    - name: 多区域 N 层应用程序
-      href: reference-architectures/n-tier/multi-region-sql-server.md
-    - name: 使用 Cassandra 的 N 层应用程序
-      href: reference-architectures/n-tier/n-tier-cassandra.md
     - name: SharePoint Server 2016
       href: reference-architectures/sharepoint/index.md
   - name: Web 应用程序
@@ -543,9 +543,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: 实施 Azure 企业基架
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: 8df93c4b01953902e56a1cd2aab1231b3de3ae52
-ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
+ms.openlocfilehash: 087c1573a34735dd33b1c52a83bf4a11322540a1
+ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/11/2018
-ms.locfileid: "51527671"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51263790"
