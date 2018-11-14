@@ -2,17 +2,15 @@
 title: 后台作业指南
 description: 有关独立于用户界面运行的后台任务的指南。
 author: dragon119
-ms.date: 05/24/2017
-pnp.series.title: Best Practices
-ms.openlocfilehash: 57fd7a6cc400b53e51e08fb5a1377dce4ae61327
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.date: 11/05/2018
+ms.openlocfilehash: 0c48121a0d5cff33893a8f242c70f4a275c46f73
+ms.sourcegitcommit: d59e2631fb08665bc30f6b65bfc7e1b75935cbd5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251917"
+ms.lasthandoff: 11/05/2018
+ms.locfileid: "51021927"
 ---
 # <a name="background-jobs"></a>后台作业
-[!INCLUDE [header](../_includes/header.md)]
 
 许多类型的应用程序需要运行与用户界面 (UI) 无关的后台任务。 示例包括批处理作业、密集处理型任务，以及长时间运行的过程，例如工作流。 后台作业无需用户交互就可执行 -- 应用程序可以启动作业，并继续处理来自用户的交互请求。 这有助于减少应用程序 UI 上的负载，从而提高可用性，降低交互响应时间。
 
@@ -74,8 +72,7 @@ ms.locfileid: "50251917"
 * [**Azure Web 应用和 Web 作业**](#azure-web-apps-and-webjobs)。 可以根据 Web 应用上下文中各种不同类型的脚本或可执行程序，使用 Web 作业来执行自定义作业。
 * [Azure 虚拟机](#azure-virtual-machines)。 如果有 Windows 服务或想要使用 Windows 任务计划程序，则常见的做法是将后台任务托管在专用虚拟机中。
 * [Azure Batch](#azure-batch)。 Batch 是一种平台服务，该服务计划在虚拟机托管集合上运行的计算密集型工作。 它可以自动缩放计算资源。
-* [Azure 容器服务](#azure-container-service)。 Azure 容器服务在 Azure 上提供容器托管环境。 
-* [Azure 云服务](#azure-cloud-services)。 可以在作为后台任务执行的角色中编写代码。
+* [**Azure Kubernetes 服务**](#azure-kubernetes-service) (AKS)。 Azure Kubernetes 服务为 Azure 上的 Kubernetes 提供一个托管型宿主环境。 
 
 以下各节详细介绍每一个选项，并提供相关注意事项，帮助你选择适当的选项。
 
@@ -110,11 +107,8 @@ Azure Web 作业具有以下特征：
 * 默认情况下，Web 作业会随 Web 应用缩放。 但是，可以通过将 **is_singleton** 配置属性设置为 **true**，将作业配置为在单个实例上运行。 单个实例 Web 作业适用于不希望以同时进行多个实例的方式进行缩放或运行的任务（如重建索引、数据分析和类似任务）。
 * 要将 Web 应用性能对任务的影响降到最低，请考虑在新的应用服务计划中创建空的 Azure Web 应用，以托管可能长时间运行或资源密集型的 Web 作业。
 
-### <a name="more-information"></a>详细信息
-* [有关 Azure Web 作业的推荐资源](/azure/app-service-web/websites-webjobs-resources)列出了 Web 作业的许多有用资源、下载内容和示例。
-
 ### <a name="azure-virtual-machines"></a>Azure 虚拟机
-实施后台任务时，可以避免将其部署到 Azure Web 应用或云服务，但有时这些选项可能不方便。 典型的示例包括 Windows 服务、第三方实用程序和可执行程序。 另一个示例是针对托管应用程序以外的执行环境所编写的程序。 例如，它可能是你想要从 Windows 或 .NET 应用程序执行的 Unix 或 Linux 程序。 可以为 Azure 虚拟机选择各种操作系统，并在该虚拟机上运行服务或可执行文件。
+实施后台任务时，可以避免将其部署到 Azure Web 应用，但有时这些选项可能不方便。 典型的示例包括 Windows 服务、第三方实用程序和可执行程序。 另一个示例是针对托管应用程序以外的执行环境所编写的程序。 例如，它可能是你想要从 Windows 或 .NET 应用程序执行的 Unix 或 Linux 程序。 可以为 Azure 虚拟机选择各种操作系统，并在该虚拟机上运行服务或可执行文件。
 
 若要确定何时使用虚拟机，请参阅 [Azure 应用服务s, Cloud Services and Virtual Machines comparison](/azure/app-service-web/choose-web-site-cloud-service-vm/)（Azure 应用程序服务、云服务和虚拟机的比较）。 有关虚拟机选项的信息，请参阅 [Azure 中的 Windows 虚拟机大小](/azure/virtual-machines/windows/sizes)。 有关虚拟机可用的操作系统和预建映像的详细信息，请参阅 [Azure 虚拟机市场](https://azure.microsoft.com/gallery/virtual-machines/)。
 
@@ -133,8 +127,9 @@ Azure Web 作业具有以下特征：
 * 没有任何工具可以监视 Azure 门户中的任务，并且对于失败的任务没有任何自动重新启动功能 -- 不过，用户可以监视虚拟机的基本状态，并使用[Azure 资源管理器 Cmdlet](https://msdn.microsoft.com/library/mt125356.aspx) 来管理它。 但是，计算节点中没有任何工具可用于控制进程和线程。 通常，使用虚拟机时，需要付出额外的工作量才能实施一个机制用于从任务的检测中收集数据，以及从虚拟机中的操作系统收集数据。 一个适当的解决方案是使用 [System Center Management Pack for Azure](https://www.microsoft.com/download/details.aspx?id=50013)（用于 Azure 的 System Center 管理包）。
 * 可以考虑创建通过 HTTP 终结点公开的监视探测。 这些探测器的代码可以执行运行状况检查、收集操作信息和统计信息，或者整理错误信息，并将其返回给管理应用程序。 有关详细信息，请参阅[运行状况终结点监视模式](../patterns/health-endpoint-monitoring.md)。
 
-#### <a name="more-information"></a>详细信息
-* Azure 上的[虚拟机](https://azure.microsoft.com/services/virtual-machines/)
+有关详细信息，请参阅：
+
+* [虚拟机](https://azure.microsoft.com/services/virtual-machines/)
 * [Azure 虚拟机常见问题解答](/azure/virtual-machines/virtual-machines-linux-classic-faq?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ### <a name="azure-batch"></a>Azure 批处理 
@@ -149,15 +144,15 @@ Batch 在固有并行的工作负载上运行良好。 它还可执行并行计�
 
 Azure Batch 作业在节点池上运行 (VM)。 一种方法是仅在需要时分配池并在作业完成后将其删除。 这可最大化利用率，因为节点不是空闲状态，但是作业必须等待节点分配。 或者，可以提前创建池。 此方法可最小化启动作业的时间，但是会导致节点处于空闲状态。 有关详细信息，请参阅[池和计算节点生存期](/azure/batch/batch-api-basics#pool-and-compute-node-lifetime)。
 
-#### <a name="more-information"></a>详细信息 
+有关详细信息，请参阅：
 
-* [使用 Batch 运行固有并行的工作负载](/azure/batch/batch-technical-overview) 
+* [什么是 Azure Batch？](/azure/batch/batch-technical-overview) 
 * [使用 Batch 开发大规模并行计算解决方案](/azure/batch/batch-api-basics) 
 * [适用于大规模计算工作负载的 Batch 和 HPC 解决方案](/azure/batch/batch-hpc-solutions)
 
-### <a name="azure-container-service"></a>Azure 容器服务 
+### <a name="azure-kubernetes-service"></a>Azure Kubernetes 服务
 
-通过 Azure 容器服务，可在 Azure 中配置和管理 VM 以运行容器化的应用程序。 它针对业务流程提供了 Docker Swarm、DC/OS 或 Kubernetes 选项。 
+Azure Kubernetes 服务 (AKS) 管理托管的 Kubernetes 环境，使用户可以轻松地部署和管理容器化的应用程序。 
 
 容器有助于运行后台作业。 一些优点包括： 
 
@@ -168,92 +163,15 @@ Azure Batch 作业在节点池上运行 (VM)。 一种方法是仅在需要时�
 
 #### <a name="considerations"></a>注意事项
 
-- 需要了解如何使用容器业务流程协调程序。 这是否可能成为一个问题取决于 DevOps 团队的技能组合。  
-- 容器服务在 IaaS 环境中运行。 它预配专用 VNet 内的 VM 的群集。 
+- 需要了解如何使用容器业务流程协调程序。 这是否可能成为一个问题取决于 DevOps 团队的技能组合。
 
-#### <a name="more-information"></a>详细信息 
+有关详细信息，请参阅：
 
-* [Azure 容器服务的 Docker 容器托管解决方案简介](/azure/container-service/container-service-intro) 
+* [Azure 中的容器概述](https://azure.microsoft.com/overview/containers/) 
 * [专用 Docker 容器注册表简介](/azure/container-registry/container-registry-intro) 
 
-### <a name="azure-cloud-services"></a>Azure 云服务 
-可以在 Web 角色或单独的辅助角色中执行后台任务。 是否使用辅助角色的决定应该基于伸缩性和弹性要求、任务生存期、发行安排、安全性、容错、资源争用、复杂性和逻辑体系结构等考虑因素。 有关详细信息，请参阅[计算资源整合模式](../patterns/compute-resource-consolidation.md)。
-
-可通过多种方式在云服务角色中实施后台任务：
-
-* 在角色中创建 **RoleEntryPoint** 类的实现，并使用它的方法来执行后台任务。 任务在 WaIISHost.exe 的上下文中运行。 它们可以使用 **CloudConfigurationManager** 类的 **GetSetting** 方法来加载配置设置。 有关详细信息，请参阅[生命周期](#lifecycle)。
-* 应用程序启动时，使用启动任务来执行后台任务。 要强制任务继续在后台运行，请将 **taskType** 属性设置为 **background**（如果不这样做，应用程序启动进程会中止并等待任务完成）。 有关详细信息，请参阅 [Run startup tasks in Azure](/azure/cloud-services/cloud-services-startup-tasks)（在 Azure 中运行启动任务）。
-* 可以使用 WebJobs SDK 来实施作为启动任务启动的后台任务（如 Web 作业）。 有关详细信息，请参阅[在 Azure 应用服务中创建 .NET Web 作业](/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started)。
-* 使用启动任务可以安装一个 Windows 服务来执行一个或多个后台任务。 必须将 **taskType** 属性设置为 **background**，以便服务在后台执行。 有关详细信息，请参阅 [Run startup tasks in Azure](/azure/cloud-services/cloud-services-startup-tasks)（在 Azure 中运行启动任务）。
-
-在 Web 角色中运行后台任务的主要优势在于可以节省托管成本，因为不要求部署其他角色。
-
-在辅助角色中运行后台任务具有以下优势：
-
-* 可让为每种类型的角色单独管理缩放。 例如，可能需要更多的 Web 角色实例才能支持当前负载，但需要更少的辅助角色实例即可执行后台任务。 从 UI 角色单独缩放后台任务计算实例可以减少托管成本，同时保持可接受的性能。
-* 卸载来自 Web 角色的后台任务的处理开销。 提供 UI 的 Web 角色可以保持响应度，这还可能意味着需要更少的实例，即可支持来自用户的给定请求数量。
-* 通过它，可实现关注点分离。 每种角色类型可以实施特定一组明确定义的相关任务。 这就简化了代码设计和维护，因为各角色之间的代码和功能依赖性降低。
-* 有助于隔离敏感的进程和数据。 例如，实施 UI 的 Web 角色无需访问辅助角色管理和控制的数据。 这可用于增强安全性，尤其是使用[守护程序模式](../patterns/gatekeeper.md)等模式时。  
-
-#### <a name="considerations"></a>注意事项
-如果使用云服务 Web 和辅助角色，请在选择部署后台任务的方式和位置时注意以下要点：
-
-* 在现有 Web 角色中托管后台任务可以节省只对这些任务运行不同辅助角色的成本。 但如果争用进程和其他资源，则可能影响应用程序的性能和可用性。 使用单独的辅助角色可防止长时间运行或资源密集型后台任务影响 Web 角色。
-* 如果使用 **RoleEntryPoint** 类托管后台任务，可以轻松地将该类移到另一个角色。 例如，如果在 Web 角色中创建该类，后来确定需要在辅助角色中运行任务，可以将 **RoleEntryPoint** 类实现移入辅助角色。
-* 启动任务旨在执行程序或脚本。 将后台作业部署为可执行程序可能更困难，尤其是还需要部署依赖程序集时。 在使用启动任务时，部署和使用脚本定义后台作业可能更容易。
-* 导致后台任务失败的异常会造成不同的影响，具体取决于任务的托管方式：
-  * 如果使用 **RoleEntryPoint** 类的方式，失败的任务将导致角色重新启动，从而使任务自动重新启动。 这可能会影响应用程序的可用性。 若要避免此问题，请确保在 **RoleEntryPoint** 类和所有后台任务中包含可靠的异常处理。 如果适用，请使用代码来重新启动失败的任务，并且仅当无法正常地从代码失败中恢复时，才引发异常来重新启动角色。
-  * 如果使用启动任务，则需要负责管理任务执行，并检查任务是否失败。
-* 管理和监视启动任务比使用 **RoleEntryPoint** 类的方式更困难。 但是，Azure Web WebJobs SDK 包含了仪表板，以方便管理通过启动任务启动的 Web 作业。
-
-#### <a name="lifecycle"></a>生命周期 
- 如果决定使用 **RoleEntryPoint** 类为使用 Web 角色和辅助角色的云服务应用程序实施后台作业，则必须了解此类的生命周期以正确使用它。
-
-Web 角色和辅助角色在启动、运行和停止时会经历一组不同的阶段。 **RoleEntryPoint** 类将公开一系列事件，用于指示这些阶段何时发生。 可以使用这些事件来初始化、运行和停止自定义后台任务。 整个周期为：
-
-* Azure 加载角色程序集，并在其中搜索派生自 **RoleEntryPoint** 的类。
-* 如果找到此类，则调用 **RoleEntryPoint.OnStart()**。 重写此方法可初始化后台任务。
-* 完成 **OnStart** 方法后，Azure 将调用应用程序全局文件（如果存在，例如，运行 ASP.NET 的 Web 角色中的 Global.asax）中的 **Application_Start()**。
-* Azure 在与 **OnStart()** 对同时执行的新前台线程调用 **RoleEntryPoint.Run()**。 重写此方法可启动后台任务。
-* Run 方法结束时，Azure 首先调用应用程序的全局文件中的 **Application_End()**（若存在），然后调用 **RoleEntryPoint.OnStop()**。 可以重写 **OnStop** 方法来停止后台任务、清理资源、处置对象，并关闭任务可能已使用的连接。
-* Azure 辅助角色主机进程已停止。 此时，该角色会被回收并重新启动。
-
-有关 **RoleEntryPoint** 类的用法详细信息和示例，请参阅[计算资源整合模式](../patterns/compute-resource-consolidation.md)。
-
-#### <a name="implementation-considerations"></a>实现注意事项
-
-如果正在 Web 或辅助角色中执行后台任务，请注意以下几点：
-
-* **RoleEntryPoint** 类中的默认 **Run** 方法实现包含对 **Thread.Sleep(Timeout.Infinite)**（将角色保持为无限生存）的调用。 若重写 **Run** 方法（执行后台任务通常需要这样做），则不能允许代码从该方法退出，除非想要回收角色实例。
-* **Run** 方法的典型实现包含用于启动每个后台任务的代码，以及定期检查所有后台任务状态的循环构造。 它可以重新启动任何失败的任务，或监视用于指示作业已完成的取消标记。
-* 如果后台任务引发了未处理的异常，则应该回收该任务，同时允许角色中的任何其他后台任务继续运行。 但是，如果异常是由于任务外部的对象（例如共享存储）损坏所造成的，则应由 **RoleEntryPoint** 类处理异常，应取消所有任务，并允许 **Run** 方法结束。 然后，Azure 将重新启动角色。
-* 使用 **OnStop** 方法可以暂停或终止后台任务并清理资源。 这可能涉及到停止长时间运行的任务或多步骤任务。 请务必考虑到这种操作的后果，以避免数据不一致。 如果角色实例出于任何原因（用户启动的关机除外）而停止，**OnStop** 方法中运行的代码必须在五分钟内完成，然后才能将它强行终止。 确保代码可以在这段时间内完成，或者可以容忍无法完成运行。  
-* 当 **RoleEntryPoint.OnStart** 方法返回值 **true** 时，Azure 负载均衡器开始将流量定向到角色实例。 因此，请考虑将所有初始化代码置于 **OnStart** 方法中，使未成功初始化的角色实例不会收到任何流量。
-* 除了 **RoleEntryPoint** 类的方法以外，还可以使用启动任务。 应该使用启动任务来初始化需要在 Azure 负载均衡器中更改的任何设置，因为在角色接收任何请求之前将执行这些任务。 有关详细信息，请参阅 [Run startup tasks in Azure](/azure/cloud-services/cloud-services-startup-tasks/)（在 Azure 中运行启动任务）。
-* 如果启动任务发生错误，它可以强制角色持续重新启动。 这可能阻止虚拟 IP (VIP) 地址交换回之前暂存版本，因为交换需要具有对该角色的独占访问权限。 在角色重新启动时无法做到这一点。 若要解决此问题：
-  
-  * 将以下代码添加到角色中 **OnStart** 和 **Run** 方法的开头：
-    
-    ```C#
-    var freeze = CloudConfigurationManager.GetSetting("Freeze");
-    if (freeze != null)
-    {
-      if (Boolean.Parse(freeze))
-      {
-        Thread.Sleep(System.Threading.Timeout.Infinite);
-      }
-    }
-    ```
-    
-  * 对于角色，请将 **Freeze** 设置的定义作为布尔值添加到 ServiceDefinition.csdef 和 ServiceConfiguration.\*.cscfg 文件，并将它设置为 **false**。 如果角色进入重复重新启动模式，可以将设置更改为 true 以冻结角色的执行，并允许他与以前的版本交换。
-
-#### <a name="more-information"></a>详细信息
-* [计算资源整合模式](../patterns/compute-resource-consolidation.md)
-* [Azure WebJobs SDK 入门](/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started/)
-
-
 ## <a name="partitioning"></a>分区
-如果确定在现有的计算实例（例如 Web 应用、Web 角色、现有辅助角色或虚拟机）中包含后台任务，必须考虑这会如何影响计算实例和后台任务本身的质量属性。 这些因素可帮助你确定是要将任务与现有计算实例放在一起，还是将它们隔离成独立的计算实例：
+如果决定在现有的计算实例中包括后台任务，必须考虑这会如何影响计算实例和后台任务本身的质量属性。 这些因素可帮助你确定是要将任务与现有计算实例放在一起，还是将它们隔离成独立的计算实例：
 
 * **可用性**：后台任务可能无需具有应用程序其他部分所具有的相同可用性级别，特别是直接参与用户交互的 UI 和其他部分。 由于可将操作排入队列，后台任务可能更容许延迟、重试的连接失败，以及影响可用性的其他因素。 但是，必须有足够的容量来防止备份可能阻止队列和影响整个应用程序的请求。
 * **伸缩性**：后台任务对 UI 和应用程序的交互部分可能有不同的伸缩性要求。 缩放 UI 可能需要符合需求的高峰，而未完成的后台任务可能在较空闲的时间由较少的计算实例数完成。
@@ -285,9 +203,8 @@ Web 角色和辅助角色在启动、运行和停止时会经历一组不同的�
 ## <a name="resiliency-considerations"></a>复原注意事项
 后台任务必须具有复原能力，以便为应用程序提供可靠的服务。 规划和设计后台任务时，请注意以下几点：
 
-* 后台任务必须能够正常处理角色或服务重新启动，而不会损坏数据或导致应用程序不一致。 对于长时间运行的任务或多步骤任务，请考虑使用*检查点*，方法是在永久性存储中保存作业状态，或者在队列中将作业状态另存为消息（如果适当）。 例如，可以在队列的消息中永久保存状态信息，并根据任务进度增量更新此状态信息，以便从上次已知正常的检查点处理任务，而不必从头重新开始。 使用 Azure 服务总线队列时，可以使用消息会话来实现相同的方案。 会话允许用户使用 [SetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.setstate?view=azureservicebus-4.0.0) 和 [GetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.getstate?view=azureservicebus-4.0.0) 方法来保存和检索应用程序处理状态。 有关设计可靠的多步骤过程和工作流的详细信息，请参阅 [Scheduler Agent Supervisor Pattern](../patterns/scheduler-agent-supervisor.md)（计划程序代理监督程序模式）。
-* 使用 Web 角色或辅助角色托管多个后台任务时，请设计 **Run** 方法的重写来监视失败或已停止的任务，并将其重新启动。 如果这不可行，并且你正在使用辅助角色，可从 Run 方法中退出，强制执行辅助角色以重新启动。
-* 使用队列来与后台任务通信时，队列可以充当缓冲区，用于在应用程序超过一般负载时，存储发送给任务的请求。 这样，任务便可以在相对空闲期间与 UI 同步。 这也意味着，回收角色不会阻止 UI。 有关详细信息，请参阅[基于队列的负载调节模式](../patterns/queue-based-load-leveling.md)。 如果某些任务比其他任务更重要，请考虑实施[优先级队列模式](../patterns/priority-queue.md)，确保这些任务在较不重要的任务之前运行。
+* 后台任务必须能够正常应对重启，不会损坏数据，也不会导致应用程序中出现不一致的情况。 对于长时间运行的任务或多步骤任务，请考虑使用*检查点*，方法是在永久性存储中保存作业状态，或者在队列中将作业状态另存为消息（如果适当）。 例如，可以在队列的消息中永久保存状态信息，并根据任务进度增量更新此状态信息，以便从上次已知正常的检查点处理任务，而不必从头重新开始。 使用 Azure 服务总线队列时，可以使用消息会话来实现相同的方案。 会话允许用户使用 [SetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.setstate?view=azureservicebus-4.0.0) 和 [GetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.getstate?view=azureservicebus-4.0.0) 方法来保存和检索应用程序处理状态。 有关设计可靠的多步骤过程和工作流的详细信息，请参阅 [Scheduler Agent Supervisor Pattern](../patterns/scheduler-agent-supervisor.md)（计划程序代理监督程序模式）。
+* 使用队列来与后台任务通信时，队列可以充当缓冲区，用于在应用程序超过一般负载时，存储发送给任务的请求。 这样，任务便可以在相对空闲期间与 UI 同步。 这也意味着，重启不会阻止 UI。 有关详细信息，请参阅[基于队列的负载调节模式](../patterns/queue-based-load-leveling.md)。 如果某些任务比其他任务更重要，请考虑实施[优先级队列模式](../patterns/priority-queue.md)，确保这些任务在较不重要的任务之前运行。
 * 必须将消息或进程消息启动的后台任务设计为处理不一致情况，例如消息以错误顺序到达、消息重复导致错误（通常称为*有害消息*）和消息传送多次。 请注意以下几点：
   * 必须按特定顺序处理消息，例如，根据数据的现有数据值更改数据的消息（例如，将值添加到现有值）可能不以其原始发送顺序到达。 或者，可能因为每个实例上的负载不同，后台任务的不同实例按不同的顺序处理消息。 必须按特定顺序处理的消息应该包括序号、键，或者可由后台任务用来确保按正确顺序处理这些消息的其他某个指示器。 如果使用 Azure 服务总线，可以使用消息会话来保证传送顺序。 但是，尽可能设计好过程，使消息顺序变得不重要的思路通常更有效率。
   * 一般而言，后台任务会在队列中扫视消息，这会暂时向其他消息使用者隐藏消息。 然后，它会在成功处理消息后，将其删除。 如果后台任务在处理某个消息时失败，该消息会在扫视超时后重新出现在队列中。 该消息由任务的另一个实例处理，或在此实例的下一个处理周期进行处理。 如果消息一直导致使用者出错，则会阻止任务、队列，并最终在队列填满时阻止应用程序本身。 因此，请务必在队列中检测并删除有害消息。 如果使用 Azure 服务总线，导致出错的消息可以自动或手动移到关联的死信队列。
@@ -297,31 +214,20 @@ Web 角色和辅助角色在启动、运行和停止时会经历一组不同的�
 ## <a name="scaling-and-performance-considerations"></a>缩放和性能注意事项
 后台任务必须提供足够的性能，确保它们不会阻止应用程序，或者不会因系统负载不足而延迟操作时导致不一致。 通常，可以通过缩放托管后台任务的计算实例来提高性能。 规划和设计后台任务时，请注意以下有关伸缩性和性能的要点：
 
-* Azure 根据当前的需求和负载或预定义的计划，支持对 Web 应用、云服务 Web 角色和辅助角色以及虚拟机托管的部署使用自动缩放（向外缩放和向内缩放）。 使用此功能可确保整个应用程序具有足够的性能，同时将运行时成本降到最低。
-* 当后台任务具有与云服务应用程序其他部分（例如，UI 或数据访问层等组件）的不同的性能时，将不同辅助角色的后台任务托管在一起可让 UI 和辅助任务角色单独进行缩放以管理负载。 如果多个后台任务彼此有明显不同的性能，请考虑将它们分割成不同的辅助角色并单独缩放每个角色类型。 但请注意，相比将所有任务合并成较少的角色，这可能会增加运行时成本。
-* 只是缩放角色可能不足以防止在低负载下损失性能。 还可能需要缩放存储队列和其他资源，以防止整体处理链的单个点变成瓶颈。 另外，请考虑其他限制，例如存储的最大吞吐量，以及应用程序的其他服务和后台任务依赖的服务。
+* Azure 根据当前的需求和负载或预定义的计划，支持对 Web 应用和虚拟机托管的部署使用自动缩放（向外缩放和向内缩放）。 使用此功能可确保整个应用程序具有足够的性能，同时将运行时成本降到最低。
+* 当后台任务的执行功能不同于应用程序的其他部分（例如，UI 或数据访问层等组件）时，在另一计算服务中将后台任务托管在一起可让 UI 和后台任务单独进行缩放，便于管理负载。 如果多个后台任务彼此有明显不同的执行功能，请考虑将它们分割并单独缩放每个类型。 但请注意，这可能会增加运行时成本。
+* 只是缩放计算资源可能不足以防止在相应的负载下损失性能。 还可能需要缩放存储队列和其他资源，以防止整体处理链的单个点变成瓶颈。 另外，请考虑其他限制，例如存储的最大吞吐量，以及应用程序的其他服务和后台任务依赖的服务。
 * 必须针对缩放设计后台任务。 例如，后台任务必须能够动态检测正在使用的存储队列数，以侦听相应的队列或向其发送消息。
 * 默认情况下，Web 作业会随着其关联的 Azure Web 应用实例进行缩放。 但是，如果只想要将 Web 作业当作单个实例运行，可以创建包含 JSON 数据 { "is_singleton": true } 的 Settings.job 文件。 这会强制 Azure 只运行 Web 作业的一个实例，即使关联的 Web 应用有多个实例。 对于必须以单个实例运行的计划作业而言，这可能是有用的方法。
 
 ## <a name="related-patterns"></a>相关模式
-* [异步消息传送入门](https://msdn.microsoft.com/library/dn589781.aspx)
-* [自动缩放指南](https://msdn.microsoft.com/library/dn589774.aspx)
 * [补偿事务模式](../patterns/compensating-transaction.md)
 * [使用者竞争模式](../patterns/competing-consumers.md)
 * [计算分区指南](https://msdn.microsoft.com/library/dn589773.aspx)
-* [计算资源整合模式](https://msdn.microsoft.com/library/dn589778.aspx)
 * [守护程序模式](../patterns/gatekeeper.md)
 * [领导选拔模式](../patterns/leader-election.md)
 * [管道和筛选器模式](../patterns/pipes-and-filters.md)
 * [优先级队列模式](../patterns/priority-queue.md)
 * [基于队列的负载调节模式](../patterns/queue-based-load-leveling.md)
 * [计划程序代理监督程序模式](../patterns/scheduler-agent-supervisor.md)
-
-## <a name="more-information"></a>详细信息
-* [执行后台任务](https://msdn.microsoft.com/library/ff803365.aspx)
-* [Azure 云服务角色生命周期](https://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Windows-Azure-Cloud-Services-Role-Lifecycle)（视频）
-* [什么是 Azure WebJobs SDK](https://docs.microsoft.com/azure/app-service-web/websites-dotnet-webjobs-sdk)
-* [使用 WebJobs 运行后台任务](https://docs.microsoft.com/azure/app-service-web/web-sites-create-web-jobs)
-* [Azure 队列和服务总线队列 - 比较与对照](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)
-* [如何在云服务中启用诊断](https://docs.microsoft.com/azure/cloud-services/cloud-services-dotnet-diagnostics)
 

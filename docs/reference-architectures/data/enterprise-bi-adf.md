@@ -2,17 +2,19 @@
 title: 将自动化企业 BI 与 SQL 数据仓库和 Azure 数据工厂配合使用
 description: 使用 Azure 数据工厂将 Azure 上的 ELT 工作流自动化
 author: MikeWasson
-ms.date: 07/01/2018
-ms.openlocfilehash: f004c02da93335e74b07b9720236832ad7f744db
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.date: 11/06/2018
+ms.openlocfilehash: 39089d80047b584ac590d285097020212ab72911
+ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876896"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51263723"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>将自动化企业 BI 与 SQL 数据仓库和 Azure 数据工厂配合使用
 
-此参考体系结构演示如何在 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt)（提取-加载-转换）管道中执行增量加载。 它使用 Azure 数据工厂将 ELT 管道自动化。 该管道以增量方式将最新的 OLTP 数据从本地 SQL Server 数据库移入 SQL 数据仓库。 事务数据将转换为表格模型以供分析。 [**部署此解决方案**。](#deploy-the-solution)
+此参考体系结构演示如何在 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt)（提取-加载-转换）管道中执行增量加载。 它使用 Azure 数据工厂将 ELT 管道自动化。 该管道以增量方式将最新的 OLTP 数据从本地 SQL Server 数据库移入 SQL 数据仓库。 事务数据将转换为表格模型以供分析。 
+
+[GitHub][github] 中提供了本体系结构的参考实现。
 
 ![](./images/enterprise-bi-sqldw-adf.png)
 
@@ -29,7 +31,7 @@ ms.locfileid: "48876896"
 
 ### <a name="data-sources"></a>数据源
 
-**本地 SQL Server**。 源数据位于本地的 SQL Server 数据库中。 为了模拟本地环境，此体系结构的部署脚本将在 Azure 中预配一个装有 SQL Server 的虚拟机。 [Wide World Importers OLTP 示例数据库][wwi] 用作源数据库。
+**本地 SQL Server**。 源数据位于本地的 SQL Server 数据库中。 为了模拟本地环境，此体系结构的部署脚本将在 Azure 中预配一个装有 SQL Server 的虚拟机。 [Wide World Importers OLTP 示例数据库][wwi]用作源数据库。
 
 **外部数据**。 数据仓库的常见方案是集成多个数据源。 此参考体系结构加载一个包含不同年份的城市人口的外部数据集，并将它与 OLTP 数据库中的数据集成。 可以使用此数据获取如下所述的见解：“每个区域的销量增长率是否达到或超过人口增长率？”
 
@@ -39,7 +41,7 @@ ms.locfileid: "48876896"
 
 **Azure SQL 数据仓库**。 [SQL 数据仓库](/azure/sql-data-warehouse/)是分布式系统，旨在对大型数据执行分析。 它支持大规模并行处理 (MPP)，因此很适合用于运行高性能分析。 
 
-**Azure 数据工厂** [数据工厂][adf] 是一个托管服务，用于协调和自动化数据的移动与转换。 在此体系结构中，数据工厂协调 ELT 过程的各个阶段。
+**Azure 数据工厂**。 [数据工厂][adf]是一项托管服务，用于协调和自动化数据的移动与转换。 在此体系结构中，数据工厂协调 ELT 过程的各个阶段。
 
 ### <a name="analysis-and-reporting"></a>分析和报告
 
@@ -55,7 +57,7 @@ ms.locfileid: "48876896"
 
 ## <a name="data-pipeline"></a>数据管道
 
-在 [Azure 数据工厂][adf] 中，管道是用于协调某个任务的活动的逻辑分组 &mdash; 在本例中，该任务是将数据载入 SQL 数据仓库并对其进行转换。 
+在 [Azure 数据工厂][adf]中，管道是用于协调某个任务的活动的逻辑分组 &mdash; 在本例中，该任务是将数据加载到 SQL 数据仓库中并对其进行转换。 
 
 此参考体系结构定义一个运行一系列子管道的主管道。 每个子管道将数据载入一个或多个数据仓库表。
 
@@ -119,7 +121,7 @@ Azure 数据工厂可以使用 [Blob 存储连接器](/azure/data-factory/connec
 
 3. 若要重新汇编区块，请使用 T-SQL [PIVOT](/sql/t-sql/queries/from-using-pivot-and-unpivot) 运算符将行转换为列，然后连接每个城市的列值。
 
-难点在于，需要根据地理数据的大小，将每个城市拆分为不同数量的行。 若要正常使用 PIVOT 运算符，每个城市的行数必须相同。 为此，T-SQL 查询（请查看 [此主题][MergeLocation]）会通过一些技法在行中填充空值，以便在透视后，每个城市的行数相同。 生成的查询比每次循环访问一行要快得多。
+难点在于，需要根据地理数据的大小，将每个城市拆分为不同数量的行。 若要正常使用 PIVOT 运算符，每个城市的行数必须相同。 为此，T-SQL 查询（请查看[此文][MergeLocation]）会通过一些技法在行中填充空值，以便在透视后，每个城市的列数相同。 生成的查询比每次循环访问一行要快得多。
 
 可对图像数据使用相同的方法。
 
@@ -186,7 +188,7 @@ Power BI 查询可以使用此列找到给定销售发票的正确 City 记录�
 
 ## <a name="deploy-the-solution"></a>部署解决方案
 
-[GitHub][ref-arch-repo-folder] 中提供了此参考体系结构的部署。 它将部署以下部分：
+若要部署并运行参考实现，请按 [GitHub 自述文件][github]中的步骤操作。 它将部署以下部分：
 
   * 一个用于模拟本地数据库服务器的 Windows VM。 该 VM 包含 SQL Server 2017 和相关工具以及 Power BI Desktop。
   * 一个 Azure 存储帐户。该帐户提供 Blob 存储用于保存从 SQL Server 数据库导出的数据。
@@ -194,327 +196,8 @@ Power BI 查询可以使用此列找到给定销售发票的正确 City 记录�
   * 一个 Azure Analysis Services 实例。
   * Azure 数据工厂和 ELT 作业的数据工厂管道。
 
-### <a name="prerequisites"></a>先决条件
-
-[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
-
-### <a name="variables"></a>变量
-
-以下步骤包括一些用户定义的变量。 需要将这些变量替换为定义的值。
-
-- `<data_factory_name>`。 数据工厂名称。
-- `<analysis_server_name>`。 Analysis Services 服务器名称。
-- `<active_directory_upn>`。 Azure Active Directory 用户主体名称 (UPN)。 例如，`user@contoso.com`。
-- `<data_warehouse_server_name>`。 SQL 数据仓库服务器名称。
-- `<data_warehouse_password>`。 SQL 数据仓库管理员密码。
-- `<resource_group_name>`。 资源组的名称。
-- `<region>`。 部署资源的 Azure 区域。
-- `<storage_account_name>`。 存储帐户名称。 必须遵循存储帐户的[命名规则](../../best-practices/naming-conventions.md#naming-rules-and-restrictions)。
-- `<sql-db-password>`。 SQL Server 登录密码。
-
-### <a name="deploy-azure-data-factory"></a>部署 Azure 数据工厂
-
-1. 导航到 [GitHub 存储库][ref-arch-repo] 的 `data\enterprise_bi_sqldw_advanced\azure\templates` 文件夹。
-
-2. 运行以下 Azure CLI 命令创建资源组。  
-
-    ```bash
-    az group create --name <resource_group_name> --location <region>  
-    ```
-
-    指定支持 SQL 数据仓库、Azure Analysis Services 和数据工厂 v2 的区域。 参阅 [Azure 产品（按区域）](https://azure.microsoft.com/global-infrastructure/services/)。
-
-3. 运行以下命令
-
-    ```
-    az group deployment create --resource-group <resource_group_name> \
-        --template-file adf-create-deploy.json \
-        --parameters factoryName=<data_factory_name> location=<location>
-    ```
-
-接下来，使用 Azure 门户获取 Azure 数据工厂[集成运行时](/azure/data-factory/concepts-integration-runtime)的身份验证密钥，如下所示：
-
-1. 在 [Azure 门户](https://portal.azure.com/)中，导航到数据工厂实例。
-
-2. 在“数据工厂”边栏选项卡中，单击“创作和监视”。 此时会在另一个浏览器窗口中打开 Azure 数据工厂门户。
-
-    ![](./images/adf-blade.png)
-
-3. 在 Azure 数据工厂门户中，选择铅笔图标（“创作”）。 
-
-4. 单击“连接”，然后选择“集成运行时”。
-
-5. 在“sourceIntegrationRuntime”下，单击铅笔图标（“编辑”）。
-
-    > [!NOTE]
-    > 门户将显示“不可用”状态。 在部署本地服务器之前，这是预期的状态。
-
-6. 找到“密钥 1”并复制身份验证密钥的值。
-
-下一步骤需要用到此身份验证密钥。
-
-### <a name="deploy-the-simulated-on-premises-server"></a>部署模拟的本地服务器
-
-此步骤将 VM 部署为包含 SQL Server 2017 和相关工具的模拟本地服务器。 它还会将 [Wide World Importers OLTP 数据库][wwi] 载入 SQL Server。
-
-1. 导航到存储库的 `data\enterprise_bi_sqldw_advanced\onprem\templates` 文件夹。
-
-2. 在 `onprem.parameters.json` 文件中，搜索 `adminPassword`。 这是用于登录 SQL Server VM 的密码。 将值替换为另一个密码。
-
-3. 在同一文件中，搜索 `SqlUserCredentials`。 此属性指定 SQL Server 帐户凭据。 将密码替换为其他值。
-
-4. 在同一文件中，将 Integration Runtime 身份验证密钥粘贴到 `IntegrationRuntimeGatewayKey` 参数中，如下所示：
-
-    ```json
-    "protectedSettings": {
-        "configurationArguments": {
-            "SqlUserCredentials": {
-                "userName": ".\\adminUser",
-                "password": "<sql-db-password>"
-            },
-            "IntegrationRuntimeGatewayKey": "<authentication key>"
-        }
-    ```
-
-5. 运行以下命令。
-
-    ```bash
-    azbb -s <subscription_id> -g <resource_group_name> -l <region> -p onprem.parameters.json --deploy
-    ```
-
-此步骤可能需要 20 到 30 分钟才能完成。 整个过程包括运行 [DSC](/powershell/dsc/overview) 脚本来安装工具和还原数据库。 
-
-### <a name="deploy-azure-resources"></a>部署 Azure 资源
-
-此步骤预配 SQL 数据仓库、Azure Analysis Services 和数据工厂。
-
-1. 导航到 [GitHub 存储库][ref-arch-repo] 的 `data\enterprise_bi_sqldw_advanced\azure\templates` 文件夹。
-
-2. 运行以下 Azure CLI 命令。 替换尖括号中显示的参数值。
-
-    ```bash
-    az group deployment create --resource-group <resource_group_name> \
-     --template-file azure-resources-deploy.json \
-     --parameters "dwServerName"="<data_warehouse_server_name>" \
-     "dwAdminLogin"="adminuser" "dwAdminPassword"="<data_warehouse_password>" \ 
-     "storageAccountName"="<storage_account_name>" \
-     "analysisServerName"="<analysis_server_name>" \
-     "analysisServerAdmin"="<user@contoso.com>"
-    ```
-
-    - `storageAccountName` 参数必须后接存储帐户的[命名规则](../../best-practices/naming-conventions.md#naming-rules-and-restrictions)。 
-    - 对于 `analysisServerAdmin` 参数，请使用 Azure Active Directory 用户主体名称 (UPN)。
-
-3. 运行以下 Azure CLI 命令，获取存储帐户的访问密钥。 下一步骤中将会用到此密钥。
-
-    ```bash
-    az storage account keys list -n <storage_account_name> -g <resource_group_name> --query [0].value
-    ```
-
-4. 运行以下 Azure CLI 命令。 替换尖括号中显示的参数值。 
-
-    ```bash
-    az group deployment create --resource-group <resource_group_name> \
-    --template-file adf-pipeline-deploy.json \
-    --parameters "factoryName"="<data_factory_name>" \
-    "sinkDWConnectionString"="Server=tcp:<data_warehouse_server_name>.database.windows.net,1433;Initial Catalog=wwi;Persist Security Info=False;User ID=adminuser;Password=<data_warehouse_password>;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" \
-    "blobConnectionString"="DefaultEndpointsProtocol=https;AccountName=<storage_account_name>;AccountKey=<storage_account_key>;EndpointSuffix=core.windows.net" \
-    "sourceDBConnectionString"="Server=sql1;Database=WideWorldImporters;User Id=adminuser;Password=<sql-db-password>;Trusted_Connection=True;"
-    ```
-
-    连接字符串包含尖括号中所示的子字符串，必须替换这些子字符串。 对于 `<storage_account_key>`，请使用上一步骤中获取的密钥。 对于 `<sql-db-password>`，请使用前面在 `onprem.parameters.json` 文件中指定的 SQL Server 帐户密码。
-
-### <a name="run-the-data-warehouse-scripts"></a>运行数据仓库脚本
-
-1. 在 [Azure 门户](https://portal.azure.com/)中，找到名为 `sql-vm1` 的本地 VM。 VM 的用户名和密码已在 `onprem.parameters.json` 文件中指定。
-
-2. 单击“连接”，使用远程桌面连接到 VM。
-
-3. 在远程桌面会话中打开命令提示符，并导航到 VM 上的以下文件夹：
-
-    ```
-    cd C:\SampleDataFiles\reference-architectures\data\enterprise_bi_sqldw_advanced\azure\sqldw_scripts
-    ```
-
-4. 运行以下命令：
-
-    ```
-    deploy_database.cmd -S <data_warehouse_server_name>.database.windows.net -d wwi -U adminuser -P <data_warehouse_password> -N -I
-    ```
-
-    对于 `<data_warehouse_server_name>` 和 `<data_warehouse_password>`，请使用前面指定的数据仓库服务器名称和密码。
-
-若要验证此步骤，可以使用 SQL Server Management Studio (SSMS) 连接到 SQL 数据仓库数据库。 应会看到数据库表架构。
-
-### <a name="run-the-data-factory-pipeline"></a>运行数据工厂管道
-
-1. 在同一远程桌面会话中，打开 PowerShell 窗口。
-
-2. 运行以下 PowerShell 命令。 出现提示时选择“是”。
-
-    ```powershell
-    Install-Module -Name AzureRM -AllowClobber
-    ```
-
-3. 运行以下 PowerShell 命令。 在系统提示时输入 Azure 凭据。
-
-    ```powershell
-    Connect-AzureRmAccount 
-    ```
-
-4. 运行以下 PowerShell 命令。 替换尖括号中的值。
-
-    ```powershell
-    Set-AzureRmContext -SubscriptionId <subscription id>
-
-    Invoke-AzureRmDataFactoryV2Pipeline -DataFactory <data-factory-name> -PipelineName "MasterPipeline" -ResourceGroupName <resource_group_name>
-
-5. In the Azure Portal, navigate to the Data Factory instance that was created earlier.
-
-6. In the Data Factory blade, click **Author & Monitor**. This opens the Azure Data Factory portal in another browser window.
-
-    ![](./images/adf-blade.png)
-
-7. In the Azure Data Factory portal, click the **Monitor** icon. 
-
-8. Verify that the pipeline completes successfully. It can take a few minutes.
-
-    ![](./images/adf-pipeline-progress.png)
-
-
-## Build the Analysis Services model
-
-In this step, you will create a tabular model that imports data from the data warehouse. Then you will deploy the model to Azure Analysis Services.
-
-**Create a new tabular project**
-
-1. From your Remote Desktop session, launch SQL Server Data Tools 2015.
-
-2. Select **File** > **New** > **Project**.
-
-3. In the **New Project** dialog, under **Templates**, select  **Business Intelligence** > **Analysis Services** > **Analysis Services Tabular Project**. 
-
-4. Name the project and click **OK**.
-
-5. In the **Tabular model designer** dialog, select **Integrated workspace**  and set **Compatibility level** to `SQL Server 2017 / Azure Analysis Services (1400)`. 
-
-6. Click **OK**.
-
-
-**Import data**
-
-1. In the **Tabular Model Explorer** window, right-click the project and select **Import from Data Source**.
-
-2. Select **Azure SQL Data Warehouse** and click **Connect**.
-
-3. For **Server**, enter the fully qualified name of your Azure SQL Data Warehouse server. You can get this value from the Azure Portal. For **Database**, enter `wwi`. Click **OK**.
-
-4. In the next dialog, choose **Database** authentication and enter your Azure SQL Data Warehouse user name and password, and click **OK**.
-
-5. In the **Navigator** dialog, select the checkboxes for the **Fact.\*** and **Dimension.\*** tables.
-
-    ![](./images/analysis-services-import-2.png)
-
-6. Click **Load**. When processing is complete, click **Close**. You should now see a tabular view of the data.
-
-**Create measures**
-
-1. In the model designer, select the **Fact Sale** table.
-
-2. Click a cell in the the measure grid. By default, the measure grid is displayed below the table. 
-
-    ![](./images/tabular-model-measures.png)
-
-3. In the formula bar, enter the following and press ENTER:
-
-    ```
-    Total Sales:=SUM('Fact Sale'[Total Including Tax])
-    ```
-
-4. Repeat these steps to create the following measures:
-
-    ```
-    Number of Years:=(MAX('Fact CityPopulation'[YearNumber])-MIN('Fact CityPopulation'[YearNumber]))+1
-    
-    Beginning Population:=CALCULATE(SUM('Fact CityPopulation'[Population]),FILTER('Fact CityPopulation','Fact CityPopulation'[YearNumber]=MIN('Fact CityPopulation'[YearNumber])))
-    
-    Ending Population:=CALCULATE(SUM('Fact CityPopulation'[Population]),FILTER('Fact CityPopulation','Fact CityPopulation'[YearNumber]=MAX('Fact CityPopulation'[YearNumber])))
-    
-    CAGR:=IFERROR((([Ending Population]/[Beginning Population])^(1/[Number of Years]))-1,0)
-    ```
-
-    ![](./images/analysis-services-measures.png)
-
-For more information about creating measures in SQL Server Data Tools, see [Measures](/sql/analysis-services/tabular-models/measures-ssas-tabular).
-
-**Create relationships**
-
-1. In the **Tabular Model Explorer** window, right-click the project and select **Model View** > **Diagram View**.
-
-2. Drag the **[Fact Sale].[City Key]** field to the **[Dimension City].[City Key]** field to create a relationship.  
-
-3. Drag the **[Face CityPopulation].[City Key]** field to the **[Dimension City].[City Key]** field.  
-
-    ![](./images/analysis-services-relations-2.png)
-
-**Deploy the model**
-
-1. From the **File** menu, choose **Save All**.
-
-2. In **Solution Explorer**, right-click the project and select **Properties**. 
-
-3. Under **Server**, enter the URL of your Azure Analysis Services instance. You can get this value from the Azure Portal. In the portal, select the Analysis Services resource, click the Overview pane, and look for the **Server Name** property. It will be similar to `asazure://westus.asazure.windows.net/contoso`. Click **OK**.
-
-    ![](./images/analysis-services-properties.png)
-
-4. In **Solution Explorer**, right-click the project and select **Deploy**. Sign into Azure if prompted. When processing is complete, click **Close**.
-
-5. In the Azure portal, view the details for your Azure Analysis Services instance. Verify that your model appears in the list of models.
-
-    ![](./images/analysis-services-models.png)
-
-## Analyze the data in Power BI Desktop
-
-In this step, you will use Power BI to create a report from the data in Analysis Services.
-
-1. From your Remote Desktop session, launch Power BI Desktop.
-
-2. In the Welcome Scren, click **Get Data**.
-
-3. Select **Azure** > **Azure Analysis Services database**. Click **Connect**
-
-    ![](./images/power-bi-get-data.png)
-
-4. Enter the URL of your Analysis Services instance, then click **OK**. Sign into Azure if prompted.
-
-5. In the **Navigator** dialog, expand the tabular project, select the model, and click **OK**.
-
-2. In the **Visualizations** pane, select the **Table** icon. In the Report view, resize the visualization to make it larger.
-
-6. In the **Fields** pane, expand **Dimension City**.
-
-7. From **Dimension City**, drag **City** and **State Province** to the **Values** well.
-
-9. In the **Fields** pane, expand **Fact Sale**.
-
-10. From **Fact Sale**, drag **CAGR**, **Ending Population**,  and **Total Sales** to the **Value** well.
-
-11. Under **Visual Level Filters**, select **Ending Population**. Set the filter to "is greater than 100000" and click **Apply filter**.
-
-12. Under **Visual Level Filters**, select **Total Sales**. Set the filter to "is 0" and click **Apply filter**.
-
-![](./images/power-bi-report-2.png)
-
-The table now shows cities with population greater than 100,000 and zero sales. CAGR  stands for Compounded Annual Growth Rate and measures the rate of population growth per city. You could use this value to find cities with high growth rates, for example. However, note that the values for CAGR in the model aren't accurate, because they are derived from sample data.
-
-To learn more about Power BI Desktop, see [Getting started with Power BI Desktop](/power-bi/desktop-getting-started).
-
-
 [adf]: //azure/data-factory
-[azure-cli-2]: //azure/install-azure-cli
-[azbb-repo]: https://github.com/mspnp/template-building-blocks
-[azbb-wiki]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
+[github]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw_advanced
 [MergeLocation]: https://github.com/mspnp/reference-architectures/blob/master/data/enterprise_bi_sqldw_advanced/azure/sqldw_scripts/city/%5BIntegration%5D.%5BMergeLocation%5D.sql
-[ref-arch-repo]: https://github.com/mspnp/reference-architectures
-[ref-arch-repo-folder]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw_advanced
 [wwi]: //sql/sample/world-wide-importers/wide-world-importers-oltp-database
+

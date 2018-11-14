@@ -3,17 +3,17 @@ title: 缓存端
 description: 将数据按需从数据存储加载到缓存中
 keywords: 设计模式
 author: dragon119
-ms.date: 06/23/2017
+ms.date: 11/01/2018
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: d4d7c9dcd612c780e3e494509a57b6b4a0144423
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: 4c93ed02ff28e79cedc26f83364592baba96821d
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012454"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916357"
 ---
 # <a name="cache-aside-pattern"></a>缓存端模式
 
@@ -70,7 +70,7 @@ ms.locfileid: "31012454"
 
 在 Microsoft Azure 中，可以使用 Azure Redis 缓存来创建可由应用程序的多个实例共享的分布式缓存。 
 
-若要连接到 Azure Redis 缓存实例，请调用静态 `Connect` 方法并传入连接字符串。 该方法返回表示连接的 `ConnectionMultiplexer`。 共享应用程序中的 `ConnectionMultiplexer` 实例的一个方法是，拥有返回连接示例的静态属性（与下列示例类似）。 此方法是一种线程安全方法，仅初始化连接的一个实例。
+以下代码示例使用 [StackExchange.Redis] 客户端，这是针对 .NET 编写的 Redis 客户端库。 若要连接到 Azure Redis 缓存实例，请调用静态 `ConnectionMultiplexer.Connect` 方法并传入连接字符串。 该方法返回表示连接的 `ConnectionMultiplexer`。 共享应用程序中的 `ConnectionMultiplexer` 实例的一个方法是，拥有返回连接示例的静态属性（与下列示例类似）。 此方法是一种线程安全方法，仅初始化连接的一个实例。
 
 ```csharp
 private static ConnectionMultiplexer Connection;
@@ -85,7 +85,7 @@ private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionM
 public static ConnectionMultiplexer Connection => lazyConnection.Value;
 ```
 
-以下代码示例中的 `GetMyEntityAsync` 方法演示对基于 Azure Redis 缓存的缓存端模式的实现。 此方法使用直读方法从缓存检索对象。
+以下代码示例中的 `GetMyEntityAsync` 方法演示如何实现缓存端模式。 此方法使用直读方法从缓存检索对象。
 
 通过将整数 ID 用作密钥来识别对象。 `GetMyEntityAsync` 方法尝试使用此密钥从缓存检索项。 如果找到匹配项，则它将返回。 如果缓存中没有匹配项，`GetMyEntityAsync` 方法将从数据存储检索对象、将其添加到缓存中，然后将其返回。 从数据存储实际读取数据的代码取决于数据存储，所以它未在此处显示。 请注意，缓存的项已配置为过期，以防止在其他位置对其进行更新后它会变得陈旧。
 
@@ -126,7 +126,7 @@ public async Task<MyEntity> GetMyEntityAsync(int id)
 }
 ```
 
->  此示例使用 Azure Redis 缓存 API 访问存储并从缓存中检索信息。 有关详细信息，请参阅[使用 Microsoft Azure Redis 缓存](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache)和[如何使用 Redis 缓存创建 Web 应用](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto)
+>  此示例使用 Redis 缓存访问存储并从缓存中检索信息。 有关详细信息，请参阅[使用 Microsoft Azure Redis 缓存](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache)和[如何使用 Redis 缓存创建 Web 应用](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto)
 
 如下所示，`UpdateEntityAsync` 方法演示如何在应用程序更改值时使缓存中的对象无效。 代码更新原始数据存储，然后从缓存中删除缓存的项。
 
@@ -155,3 +155,6 @@ public async Task UpdateEntityAsync(MyEntity entity)
 - [Caching Guidance](https://docs.microsoft.com/azure/architecture/best-practices/caching)（缓存指南）。 提供有关如何在云解决方案中缓存数据的其他信息，以及实现缓存时应考虑的问题。
 
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx)（数据一致性入门）。 云应用程序通常使用遍布数据存储的数据。 系统的一个重要方面是在此环境中管理和维护数据一致性，特别是可能出现的并发性和可用性问题。 此入门介绍了有关跨分布式数据的一致性问题，并总结了应用程序实现最终一致性以维持数据的可用性的方法。
+
+
+[StackExchange.Redis]: https://github.com/StackExchange/StackExchange.Redis

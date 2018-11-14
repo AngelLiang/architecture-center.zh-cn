@@ -2,17 +2,19 @@
 title: 使用 Azure 流分析进行流处理
 description: 在 Azure 中创建端到端流处理管道
 author: MikeWasson
-ms.date: 08/09/2018
-ms.openlocfilehash: 82887bdd45f811ac733ead18c1f256098e575253
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.date: 11/06/2018
+ms.openlocfilehash: e16547ccdcb81007e154e341f09be555ac82d1a1
+ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "40025466"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51263756"
 ---
 # <a name="stream-processing-with-azure-stream-analytics"></a>使用 Azure 流分析进行流处理
 
-本参考体系结构演示一个端到端流处理管道。 该管道从两个源引入数据、关联两个流中的记录，然后计算某个时间窗口的移动平均值。 将存储结果以供进一步分析。 [**部署此解决方案**。](#deploy-the-solution)
+本参考体系结构演示一个端到端流处理管道。 该管道从两个源引入数据、关联两个流中的记录，然后计算某个时间窗口的移动平均值。 将存储结果以供进一步分析。 
+
+[GitHub][github] 中提供了本体系结构的参考实现。 
 
 ![](./images/stream-processing-asa/stream-processing-asa.png)
 
@@ -37,6 +39,8 @@ ms.locfileid: "40025466"
 ## <a name="data-ingestion"></a>数据引入
 
 为了模拟数据源，此参考体系结构使用了[纽约市出租车数据](https://uofi.app.box.com/v/NYCtaxidata/folder/2332218797)数据集<sup>[[1]](#note1)</sup>。 此数据集包含纽约市过去 4 年（2010 年 &ndash; 2013 年）的出租车行程数据。 其包含两种类型的记录：行程数据和费用数据。 行程数据包括行程持续时间、行程距离以及上车和下车地点。 费用数据包括乘车费、税费和小费金额。 这两种记录类型中的通用字段包括牌照号、出租车驾照和供应商 ID。 这三个字段相结合，唯一标识了出租车和驾驶员。 数据以 CSV 格式存储。 
+
+[1] <span id="note1">Donovan, Brian；Work, Dan (2016)：纽约市出租车行程数据 (2010-2013)。 伊利诺伊大学厄巴纳-香槟分校。 https://doi.org/10.13012/J8PN93H8
 
 数据生成器是一个读取记录并将其发送到 Azure 事件中心的 .NET Core 应用程序。 该生成器发送 JSON 格式的行程数据以及 CSV 格式的费用数据。 
 
@@ -209,162 +213,7 @@ Cosmos DB 的吞吐量容量以[请求单位](/azure/cosmos-db/request-units) (R
 
 ## <a name="deploy-the-solution"></a>部署解决方案
 
-[GitHub](https://github.com/mspnp/reference-architectures/tree/master/data) 中提供了此参考体系结构的部署。 
+若要部署并运行参考实现，请按 [GitHub 自述文件][github]中的步骤操作。 
 
-### <a name="prerequisites"></a>先决条件
 
-1. 克隆、下载[参考体系结构](https://github.com/mspnp/reference-architectures) GitHub 存储库的 zip 文件或创建其分支。
-
-2. 安装运行数据生成器的 [Docker](https://www.docker.com/)。
-
-3. 安装 [Azure CLI 2.0](/cli/azure/install-azure-cli?view=azure-cli-latest)。
-
-4. 在命令提示符、bash 提示符或 PowerShell 提示符下，按如下所示登录到你的 Azure 帐户：
-
-    ```
-    az login
-    ```
-
-### <a name="download-the-source-data-files"></a>下载源数据文件
-
-1. 在 GitHub 存储库中的 `data/streaming_asa` 目录下创建名为 `DataFile` 的目录。
-
-2. 打开 Web 浏览器并导航到 https://uofi.app.box.com/v/NYCtaxidata/folder/2332219935。
-
-3. 单击此页上的“下载”按钮，下载该年份的所有出租车数据 zip 文件。
-
-4. 将 zip 文件解压缩到 `DataFile` 目录。
-
-    > [!NOTE]
-    > 此 zip 文件包含其他 zip 文件。 不要解压缩子 zip 文件。
-
-目录结构应如下所示：
-
-```
-/data
-    /streaming_asa
-        /DataFile
-            /FOIL2013
-                trip_data_1.zip
-                trip_data_2.zip
-                trip_data_3.zip
-                ...
-```
-
-### <a name="deploy-the-azure-resources"></a>部署 Azure 资源
-
-1. 在 shell 或 Windows 命令提示符下，运行以下命令并遵照登录提示操作：
-
-    ```bash
-    az login
-    ```
-
-2. 导航到 GitHub 存储库中的 `data/streaming_asa` 文件夹。
-
-    ```bash
-    cd data/streaming_asa
-    ```
-
-2. 运行以下命令以部署 Azure 资源：
-
-    ```bash
-    export resourceGroup='[Resource group name]'
-    export resourceLocation='[Location]'
-    export cosmosDatabaseAccount='[Cosmos DB account name]'
-    export cosmosDatabase='[Cosmod DB database name]'
-    export cosmosDataBaseCollection='[Cosmos DB collection name]'
-    export eventHubNamespace='[Event Hubs namespace name]'
-
-    # Create a resource group
-    az group create --name $resourceGroup --location $resourceLocation
-
-    # Deploy resources
-    az group deployment create --resource-group $resourceGroup \
-      --template-file ./azure/deployresources.json --parameters \
-      eventHubNamespace=$eventHubNamespace \
-      outputCosmosDatabaseAccount=$cosmosDatabaseAccount \
-      outputCosmosDatabase=$cosmosDatabase \
-      outputCosmosDatabaseCollection=$cosmosDataBaseCollection
-
-    # Create a database 
-    az cosmosdb database create --name $cosmosDatabaseAccount \
-        --db-name $cosmosDatabase --resource-group $resourceGroup
-
-    # Create a collection
-    az cosmosdb collection create --collection-name $cosmosDataBaseCollection \
-        --name $cosmosDatabaseAccount --db-name $cosmosDatabase \
-        --resource-group $resourceGroup
-    ```
-
-3. 在 Azure 门户中，导航到创建的资源组。
-
-4. 打开流分析作业的边栏选项卡。
-
-5. 单击“启动”以启动作业。 选择“现在”作为输出开始时间。 等待作业开始。
-
-### <a name="run-the-data-generator"></a>运行数据生成器
-
-1. 获取事件中心连接字符串。 可以通过 Azure 门户或运行以下 CLI 命令来获取这些字符串：
-
-    ```bash
-    # RIDE_EVENT_HUB
-    az eventhubs eventhub authorization-rule keys list \
-        --eventhub-name taxi-ride \
-        --name taxi-ride-asa-access-policy \
-        --namespace-name $eventHubNamespace \
-        --resource-group $resourceGroup \
-        --query primaryConnectionString
-
-    # FARE_EVENT_HUB
-    az eventhubs eventhub authorization-rule keys list \
-        --eventhub-name taxi-fare \
-        --name taxi-fare-asa-access-policy \
-        --namespace-name $eventHubNamespace \
-        --resource-group $resourceGroup \
-        --query primaryConnectionString
-    ```
-
-2. 导航到 GitHub 存储库中的 `data/streaming_asa/onprem` 目录
-
-3. 按如下所示更新 `main.env` 文件中的值：
-
-    ```
-    RIDE_EVENT_HUB=[Connection string for taxi-ride event hub]
-    FARE_EVENT_HUB=[Connection string for taxi-fare event hub]
-    RIDE_DATA_FILE_PATH=/DataFile/FOIL2013
-    MINUTES_TO_LEAD=0
-    PUSH_RIDE_DATA_FIRST=false
-    ```
-
-4. 运行以下命令以生成 Docker 映像。
-
-    ```bash
-    docker build --no-cache -t dataloader .
-    ```
-
-5. 导航回到父目录 `data/stream_asa`。
-
-    ```bash
-    cd ..
-    ```
-
-6. 运行以下命令以运行 Docker 映像。
-
-    ```bash
-    docker run -v `pwd`/DataFile:/DataFile --env-file=onprem/main.env dataloader:latest
-    ```
-
-输出应如下所示：
-
-```
-Created 10000 records for TaxiFare
-Created 10000 records for TaxiRide
-Created 20000 records for TaxiFare
-Created 20000 records for TaxiRide
-Created 30000 records for TaxiFare
-...
-```
-
-让程序运行至少 5 分钟（流分析查询中定义的时间窗口）。 若要验证流分析作业是否在正常运行，请打开 Azure 门户并导航到 Cosmos DB 数据库。 打开“数据资源管理器”边栏选项卡并查看文档。 
-
-[1] <span id="note1">Donovan, Brian；Work, Dan (2016)：纽约市出租车行程数据 (2010-2013)。 伊利诺伊大学厄巴纳-香槟分校。 https://doi.org/10.13012/J8PN93H8
+[github]: https://github.com/mspnp/reference-architectures/tree/master/data/streaming_asa
