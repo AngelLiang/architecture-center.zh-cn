@@ -3,153 +3,153 @@ title: Azure 上的 3D 视频渲染
 description: 使用 Azure Batch 服务在 Azure 中运行本机 HPC 工作负荷。
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: 1206fa7d931fca635118929d433abe232ec5ca9a
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 1ffdaa5467fec73a01b8caa18b71c2bc4e49abbe
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818611"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610679"
 ---
-# <a name="3d-video-rendering-on-azure"></a><span data-ttu-id="85b7e-103">Azure 上的 3D 视频渲染</span><span class="sxs-lookup"><span data-stu-id="85b7e-103">3D video rendering on Azure</span></span>
+# <a name="3d-video-rendering-on-azure"></a><span data-ttu-id="dc2f9-103">Azure 上的 3D 视频渲染</span><span class="sxs-lookup"><span data-stu-id="dc2f9-103">3D video rendering on Azure</span></span>
 
-<span data-ttu-id="85b7e-104">3D 视频渲染是很费时的过程，需要大量的 CPU 时间才能完成。</span><span class="sxs-lookup"><span data-stu-id="85b7e-104">3D video rendering is a time consuming process that requires a significant amount of CPU time to complete.</span></span> <span data-ttu-id="85b7e-105">在一台计算机中，从静态资产生成视频文件可能需要数小时甚至数天，具体取决于所要生成的视频的长度和复杂程度。</span><span class="sxs-lookup"><span data-stu-id="85b7e-105">On a single machine, the process of generating a video file from static assets can take hours or even days depending on the length and complexity of the video you are producing.</span></span> <span data-ttu-id="85b7e-106">许多公司会购买昂贵的高端台式机来执行这些任务，或者会投资可以向其提交作业的大型渲染场。</span><span class="sxs-lookup"><span data-stu-id="85b7e-106">Many companies will purchase either expensive high end desktop computers to perform these tasks, or invest in large render farms that they can submit jobs to.</span></span> <span data-ttu-id="85b7e-107">但是，如果使用 Azure Batch，则可根据需要随意启用或关闭该功能，根本不需要任何资本投资。</span><span class="sxs-lookup"><span data-stu-id="85b7e-107">However, by taking advantage of Azure Batch, that power is available to you when you need it and shuts itself down when you don't, all without any capital investment.</span></span>
+<span data-ttu-id="dc2f9-104">3D 视频渲染是很费时的过程，需要大量的 CPU 时间才能完成。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-104">3D video rendering is a time consuming process that requires a significant amount of CPU time to complete.</span></span> <span data-ttu-id="dc2f9-105">在一台计算机中，从静态资产生成视频文件可能需要数小时甚至数天，具体取决于所要生成的视频的长度和复杂程度。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-105">On a single machine, the process of generating a video file from static assets can take hours or even days depending on the length and complexity of the video you are producing.</span></span> <span data-ttu-id="dc2f9-106">许多公司会购买昂贵的高端台式机来执行这些任务，或者会投资可以向其提交作业的大型渲染场。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-106">Many companies will purchase either expensive high end desktop computers to perform these tasks, or invest in large render farms that they can submit jobs to.</span></span> <span data-ttu-id="dc2f9-107">但是，如果使用 Azure Batch，则可根据需要随意启用或关闭该功能，根本不需要任何资本投资。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-107">However, by taking advantage of Azure Batch, that power is available to you when you need it and shuts itself down when you don't, all without any capital investment.</span></span>
 
-<span data-ttu-id="85b7e-108">不管是选择 Windows Server 还是选择 Linux 计算节点，都可以通过 Batch 获得始终如一的管理体验并进行作业计划。</span><span class="sxs-lookup"><span data-stu-id="85b7e-108">Batch gives you a consistent management experience and job scheduling, whether you select Windows Server or Linux compute nodes.</span></span> <span data-ttu-id="85b7e-109">有了 Batch，你就可以使用现有的 Windows 或 Linux 应用程序（包括 AutoDesk Maya 和 Blender）在 Azure 中运行大规模的渲染作业。</span><span class="sxs-lookup"><span data-stu-id="85b7e-109">With Batch, you can use your existing Windows or Linux applications, including AutoDesk Maya and Blender, to run large-scale render jobs in Azure.</span></span>
+<span data-ttu-id="dc2f9-108">不管是选择 Windows Server 还是选择 Linux 计算节点，都可以通过 Batch 获得始终如一的管理体验并进行作业计划。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-108">Batch gives you a consistent management experience and job scheduling, whether you select Windows Server or Linux compute nodes.</span></span> <span data-ttu-id="dc2f9-109">有了 Batch，你就可以使用现有的 Windows 或 Linux 应用程序（包括 AutoDesk Maya 和 Blender）在 Azure 中运行大规模的渲染作业。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-109">With Batch, you can use your existing Windows or Linux applications, including AutoDesk Maya and Blender, to run large-scale render jobs in Azure.</span></span>
 
-## <a name="relevant-use-cases"></a><span data-ttu-id="85b7e-110">相关用例</span><span class="sxs-lookup"><span data-stu-id="85b7e-110">Relevant use cases</span></span>
+## <a name="relevant-use-cases"></a><span data-ttu-id="dc2f9-110">相关用例</span><span class="sxs-lookup"><span data-stu-id="dc2f9-110">Relevant use cases</span></span>
 
-<span data-ttu-id="85b7e-111">考虑将本方案用于以下类似的用例：</span><span class="sxs-lookup"><span data-stu-id="85b7e-111">Consider this scenario for these similar use cases:</span></span>
+<span data-ttu-id="dc2f9-111">其他相关用例包括：</span><span class="sxs-lookup"><span data-stu-id="dc2f9-111">Other relevant use cases include:</span></span>
 
-* <span data-ttu-id="85b7e-112">3D 建模</span><span class="sxs-lookup"><span data-stu-id="85b7e-112">3D modeling</span></span>
-* <span data-ttu-id="85b7e-113">Visual FX (VFX) 渲染</span><span class="sxs-lookup"><span data-stu-id="85b7e-113">Visual FX (VFX) rendering</span></span>
-* <span data-ttu-id="85b7e-114">视频转码</span><span class="sxs-lookup"><span data-stu-id="85b7e-114">Video transcoding</span></span>
-* <span data-ttu-id="85b7e-115">图像处理、颜色校正和重设大小</span><span class="sxs-lookup"><span data-stu-id="85b7e-115">Image processing, color correction, and resizing</span></span>
+* <span data-ttu-id="dc2f9-112">3D 建模</span><span class="sxs-lookup"><span data-stu-id="dc2f9-112">3D modeling</span></span>
+* <span data-ttu-id="dc2f9-113">Visual FX (VFX) 渲染</span><span class="sxs-lookup"><span data-stu-id="dc2f9-113">Visual FX (VFX) rendering</span></span>
+* <span data-ttu-id="dc2f9-114">视频转码</span><span class="sxs-lookup"><span data-stu-id="dc2f9-114">Video transcoding</span></span>
+* <span data-ttu-id="dc2f9-115">图像处理、颜色校正和重设大小</span><span class="sxs-lookup"><span data-stu-id="dc2f9-115">Image processing, color correction, and resizing</span></span>
 
-## <a name="architecture"></a><span data-ttu-id="85b7e-116">体系结构</span><span class="sxs-lookup"><span data-stu-id="85b7e-116">Architecture</span></span>
+## <a name="architecture"></a><span data-ttu-id="dc2f9-116">体系结构</span><span class="sxs-lookup"><span data-stu-id="dc2f9-116">Architecture</span></span>
 
 ![从体系结构的角度概要说明使用 Azure Batch 的云原生 HPC 解决方案中涉及的组件][architecture]
 
-<span data-ttu-id="85b7e-118">本方案演示了一个使用 Azure Batch 的工作流。</span><span class="sxs-lookup"><span data-stu-id="85b7e-118">This scenario shows a workflow that uses Azure Batch.</span></span> <span data-ttu-id="85b7e-119">数据流如下所示：</span><span class="sxs-lookup"><span data-stu-id="85b7e-119">The data flows as follows:</span></span>
+<span data-ttu-id="dc2f9-118">本方案演示了一个使用 Azure Batch 的工作流。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-118">This scenario shows a workflow that uses Azure Batch.</span></span> <span data-ttu-id="dc2f9-119">数据流如下所示：</span><span class="sxs-lookup"><span data-stu-id="dc2f9-119">The data flows as follows:</span></span>
 
-1. <span data-ttu-id="85b7e-120">将输入文件和处理这些文件的应用程序上传到 Azure 存储帐户。</span><span class="sxs-lookup"><span data-stu-id="85b7e-120">Upload input files and the applications to process those files to your Azure Storage account.</span></span>
-2. <span data-ttu-id="85b7e-121">创建一个包含 Batch 帐户中的计算节点的 Batch 池、一个用于在池中运行工作负荷的作业，以及作业中的任务。</span><span class="sxs-lookup"><span data-stu-id="85b7e-121">Create a Batch pool of compute nodes in your Batch account, a job to run the workload on the pool, and tasks in the job.</span></span>
-3. <span data-ttu-id="85b7e-122">将输入文件和应用程序下载到 Batch。</span><span class="sxs-lookup"><span data-stu-id="85b7e-122">Download input files and the applications to Batch.</span></span>
-4. <span data-ttu-id="85b7e-123">监视任务执行情况。</span><span class="sxs-lookup"><span data-stu-id="85b7e-123">Monitor task execution.</span></span>
-5. <span data-ttu-id="85b7e-124">上传任务输出。</span><span class="sxs-lookup"><span data-stu-id="85b7e-124">Upload task output.</span></span>
-6. <span data-ttu-id="85b7e-125">下载输出文件。</span><span class="sxs-lookup"><span data-stu-id="85b7e-125">Download output files.</span></span>
+1. <span data-ttu-id="dc2f9-120">将输入文件和处理这些文件的应用程序上传到 Azure 存储帐户。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-120">Upload input files and the applications to process those files to your Azure Storage account.</span></span>
+2. <span data-ttu-id="dc2f9-121">创建一个包含 Batch 帐户中的计算节点的 Batch 池、一个用于在池中运行工作负荷的作业，以及作业中的任务。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-121">Create a Batch pool of compute nodes in your Batch account, a job to run the workload on the pool, and tasks in the job.</span></span>
+3. <span data-ttu-id="dc2f9-122">将输入文件和应用程序下载到 Batch。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-122">Download input files and the applications to Batch.</span></span>
+4. <span data-ttu-id="dc2f9-123">监视任务执行情况。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-123">Monitor task execution.</span></span>
+5. <span data-ttu-id="dc2f9-124">上传任务输出。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-124">Upload task output.</span></span>
+6. <span data-ttu-id="dc2f9-125">下载输出文件。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-125">Download output files.</span></span>
 
-<span data-ttu-id="85b7e-126">若要简化此过程，也可使用 [Maya 和 3ds Max 的 Batch 插件][batch-plugins]</span><span class="sxs-lookup"><span data-stu-id="85b7e-126">To simplify this process, you could also use the [Batch Plugins for Maya and 3ds Max][batch-plugins]</span></span>
+<span data-ttu-id="dc2f9-126">若要简化此过程，也可使用 [Maya 和 3ds Max 的 Batch 插件][batch-plugins]</span><span class="sxs-lookup"><span data-stu-id="dc2f9-126">To simplify this process, you could also use the [Batch Plugins for Maya and 3ds Max][batch-plugins]</span></span>
 
-### <a name="components"></a><span data-ttu-id="85b7e-127">组件</span><span class="sxs-lookup"><span data-stu-id="85b7e-127">Components</span></span>
+### <a name="components"></a><span data-ttu-id="dc2f9-127">组件</span><span class="sxs-lookup"><span data-stu-id="dc2f9-127">Components</span></span>
 
-<span data-ttu-id="85b7e-128">Azure Batch 基于以下 Azure 技术：</span><span class="sxs-lookup"><span data-stu-id="85b7e-128">Azure Batch builds upon the following Azure technologies:</span></span>
+<span data-ttu-id="dc2f9-128">Azure Batch 基于以下 Azure 技术：</span><span class="sxs-lookup"><span data-stu-id="dc2f9-128">Azure Batch builds upon the following Azure technologies:</span></span>
 
-* <span data-ttu-id="85b7e-129">[虚拟网络](/azure/virtual-network/virtual-networks-overview)用于头节点和计算资源。</span><span class="sxs-lookup"><span data-stu-id="85b7e-129">[Virtual Networks](/azure/virtual-network/virtual-networks-overview) are used for both the head node and the compute resources.</span></span>
-* <span data-ttu-id="85b7e-130">[Azure 存储帐户](/azure/storage/common/storage-introduction)用于同步和数据保留。</span><span class="sxs-lookup"><span data-stu-id="85b7e-130">[Azure Storage accounts](/azure/storage/common/storage-introduction) are used for synchronization and data retention.</span></span>
-* <span data-ttu-id="85b7e-131">[虚拟机规模集][vmss]由 CycleCloud 用于计算资源。</span><span class="sxs-lookup"><span data-stu-id="85b7e-131">[Virtual Machine Scale Sets][vmss] are used by CycleCloud for compute resources.</span></span>
+* <span data-ttu-id="dc2f9-129">[虚拟网络](/azure/virtual-network/virtual-networks-overview)用于头节点和计算资源。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-129">[Virtual Networks](/azure/virtual-network/virtual-networks-overview) are used for both the head node and the compute resources.</span></span>
+* <span data-ttu-id="dc2f9-130">[Azure 存储帐户](/azure/storage/common/storage-introduction)用于同步和数据保留。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-130">[Azure Storage accounts](/azure/storage/common/storage-introduction) are used for synchronization and data retention.</span></span>
+* <span data-ttu-id="dc2f9-131">[虚拟机规模集][vmss]由 CycleCloud 用于计算资源。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-131">[Virtual Machine Scale Sets][vmss] are used by CycleCloud for compute resources.</span></span>
 
-## <a name="considerations"></a><span data-ttu-id="85b7e-132">注意事项</span><span class="sxs-lookup"><span data-stu-id="85b7e-132">Considerations</span></span>
+## <a name="considerations"></a><span data-ttu-id="dc2f9-132">注意事项</span><span class="sxs-lookup"><span data-stu-id="dc2f9-132">Considerations</span></span>
 
-### <a name="machine-sizes-available-for-azure-batch"></a><span data-ttu-id="85b7e-133">适用于 Azure Batch 的计算机大小</span><span class="sxs-lookup"><span data-stu-id="85b7e-133">Machine Sizes available for Azure Batch</span></span>
+### <a name="machine-sizes-available-for-azure-batch"></a><span data-ttu-id="dc2f9-133">适用于 Azure Batch 的计算机大小</span><span class="sxs-lookup"><span data-stu-id="dc2f9-133">Machine Sizes available for Azure Batch</span></span>
 
-<span data-ttu-id="85b7e-134">虽然大多数渲染客户会选择 CPU 功率高的资源，但是其他使用虚拟机规模集的工作负荷可能会按其他标准来选择 VM，具体取决于许多因素：</span><span class="sxs-lookup"><span data-stu-id="85b7e-134">While most rendering customers will choose resources with high CPU power, other workloads using virtual machine scale sets may choose VMs differently and will depend on a number of factors:</span></span>
+<span data-ttu-id="dc2f9-134">虽然大多数渲染客户会选择 CPU 功率高的资源，但是其他使用虚拟机规模集的工作负荷可能会按其他标准来选择 VM，具体取决于许多因素：</span><span class="sxs-lookup"><span data-stu-id="dc2f9-134">While most rendering customers will choose resources with high CPU power, other workloads using virtual machine scale sets may choose VMs differently and will depend on a number of factors:</span></span>
 
-* <span data-ttu-id="85b7e-135">所运行的应用程序是否进行内存绑定？</span><span class="sxs-lookup"><span data-stu-id="85b7e-135">Is the application being run memory bound?</span></span>
-* <span data-ttu-id="85b7e-136">应用程序是否需要使用 GPU？</span><span class="sxs-lookup"><span data-stu-id="85b7e-136">Does the application need to use GPUs?</span></span> 
-* <span data-ttu-id="85b7e-137">对于紧密耦合的作业，作业类型是否只能采用不得已的并行方式？或者需要 Infiniband 连接？</span><span class="sxs-lookup"><span data-stu-id="85b7e-137">Are the job types embarrassingly parallel or require infiniband connectivity for tightly coupled jobs?</span></span>
-* <span data-ttu-id="85b7e-138">需要通过快速 I/O 来访问计算节点上的存储。</span><span class="sxs-lookup"><span data-stu-id="85b7e-138">Require fast I/O to access storage on the compute Nodes.</span></span>
+* <span data-ttu-id="dc2f9-135">所运行的应用程序是否进行内存绑定？</span><span class="sxs-lookup"><span data-stu-id="dc2f9-135">Is the application being run memory bound?</span></span>
+* <span data-ttu-id="dc2f9-136">应用程序是否需要使用 GPU？</span><span class="sxs-lookup"><span data-stu-id="dc2f9-136">Does the application need to use GPUs?</span></span> 
+* <span data-ttu-id="dc2f9-137">对于紧密耦合的作业，作业类型是否只能采用不得已的并行方式？或者需要 Infiniband 连接？</span><span class="sxs-lookup"><span data-stu-id="dc2f9-137">Are the job types embarrassingly parallel or require infiniband connectivity for tightly coupled jobs?</span></span>
+* <span data-ttu-id="dc2f9-138">需要通过快速 I/O 来访问计算节点上的存储。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-138">Require fast I/O to access storage on the compute Nodes.</span></span>
 
-<span data-ttu-id="85b7e-139">Azure 有各种 VM 大小，每种都符合上述应用程序要求，某些是针对 HPC 的，但即使是最小的，也可以提供有效的网格实现：</span><span class="sxs-lookup"><span data-stu-id="85b7e-139">Azure has a wide range of VM sizes that can address each and every one of the above application requirements, some are specific to HPC, but even the smallest sizes can be utilized to provide an effective grid implementation:</span></span>
+<span data-ttu-id="dc2f9-139">Azure 有各种 VM 大小，每种都符合上述应用程序要求，某些是针对 HPC 的，但即使是最小的，也可以提供有效的网格实现：</span><span class="sxs-lookup"><span data-stu-id="dc2f9-139">Azure has a wide range of VM sizes that can address each and every one of the above application requirements, some are specific to HPC, but even the smallest sizes can be utilized to provide an effective grid implementation:</span></span>
 
-* <span data-ttu-id="85b7e-140">[HPC VM 大小][compute-hpc]：考虑到渲染受 CPU 限制，Microsoft 通常会建议使用 Azure H 系列 VM。</span><span class="sxs-lookup"><span data-stu-id="85b7e-140">[HPC VM sizes][compute-hpc] Due to the CPU bound nature of rendering, Microsoft typically suggests the Azure H-Series VMs.</span></span> <span data-ttu-id="85b7e-141">此类 VM 是专门针对高端计算需求构建的，提供 8 核和 16 核 vCPU 大小，采用 DDR4 内存、SSD 临时存储以及 Haswell E5 Intel 技术。</span><span class="sxs-lookup"><span data-stu-id="85b7e-141">This type of VM is built specifically for high end computational needs, they have 8 and 16 core vCPU sizes available, and features DDR4 memory, SSD temporary storage, and Haswell E5 Intel technology.</span></span>
-* <span data-ttu-id="85b7e-142">[GPU VM 大小][compute-gpu]：GPU 优化 VM 大小是具有单个或多个 NVIDIA GPU 的专用虚拟机。</span><span class="sxs-lookup"><span data-stu-id="85b7e-142">[GPU VM sizes][compute-gpu] GPU optimized VM sizes are specialized virtual machines available with single or multiple NVIDIA GPUs.</span></span> <span data-ttu-id="85b7e-143">这些大小是针对计算密集型、图形密集型和可视化工作负荷设计的。</span><span class="sxs-lookup"><span data-stu-id="85b7e-143">These sizes are designed for compute-intensive, graphics-intensive, and visualization workloads.</span></span>
-* <span data-ttu-id="85b7e-144">NC、NCv2、NCv3 和 ND 大小针对计算密集型和网络密集型应用程序和算法进行了优化，包括基于 CUDA 和 OpenCL 的应用程序和模拟、AI 以及深度学习。</span><span class="sxs-lookup"><span data-stu-id="85b7e-144">NC, NCv2, NCv3, and ND sizes are optimized for compute-intensive and network-intensive applications and algorithms, including CUDA and OpenCL-based applications and simulations, AI, and Deep Learning.</span></span> <span data-ttu-id="85b7e-145">NV 大小已针对远程可视化效果、流式处理、游戏、编码和 VDI 方案进行了优化和设计，使用 OpenGL 和 DirectX 之类的框架。</span><span class="sxs-lookup"><span data-stu-id="85b7e-145">NV sizes are optimized and designed for remote visualization, streaming, gaming, encoding, and VDI scenarios utilizing frameworks such as OpenGL and DirectX.</span></span>
-* <span data-ttu-id="85b7e-146">[内存优化型 VM 大小][compute-memory]：需要更多内存时，内存优化型 VM 大小的内存/CPU 比率更高。</span><span class="sxs-lookup"><span data-stu-id="85b7e-146">[Memory optimized VM sizes][compute-memory] When more memory is required, the memory optimized VM sizes offer a higher memory-to-CPU ratio.</span></span>
-* <span data-ttu-id="85b7e-147">[常规用途 VM 大小][compute-general]：常规用途 VM 大小也可使用，提供均衡的 CPU/内存比率。</span><span class="sxs-lookup"><span data-stu-id="85b7e-147">[General purposes VM sizes][compute-general] General-purpose VM sizes are also available and provide balanced CPU-to-memory ratio.</span></span>
+* <span data-ttu-id="dc2f9-140">[HPC VM 大小][compute-hpc]：考虑到渲染受 CPU 限制，Microsoft 通常会建议使用 Azure H 系列 VM。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-140">[HPC VM sizes][compute-hpc] Due to the CPU bound nature of rendering, Microsoft typically suggests the Azure H-Series VMs.</span></span> <span data-ttu-id="dc2f9-141">此类 VM 是专门针对高端计算需求构建的，提供 8 核和 16 核 vCPU 大小，采用 DDR4 内存、SSD 临时存储以及 Haswell E5 Intel 技术。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-141">This type of VM is built specifically for high end computational needs, they have 8 and 16 core vCPU sizes available, and features DDR4 memory, SSD temporary storage, and Haswell E5 Intel technology.</span></span>
+* <span data-ttu-id="dc2f9-142">[GPU VM 大小][compute-gpu]：GPU 优化 VM 大小是具有单个或多个 NVIDIA GPU 的专用虚拟机。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-142">[GPU VM sizes][compute-gpu] GPU optimized VM sizes are specialized virtual machines available with single or multiple NVIDIA GPUs.</span></span> <span data-ttu-id="dc2f9-143">这些大小是针对计算密集型、图形密集型和可视化工作负荷设计的。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-143">These sizes are designed for compute-intensive, graphics-intensive, and visualization workloads.</span></span>
+* <span data-ttu-id="dc2f9-144">NC、NCv2、NCv3 和 ND 大小针对计算密集型和网络密集型应用程序和算法进行了优化，包括基于 CUDA 和 OpenCL 的应用程序和模拟、AI 以及深度学习。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-144">NC, NCv2, NCv3, and ND sizes are optimized for compute-intensive and network-intensive applications and algorithms, including CUDA and OpenCL-based applications and simulations, AI, and Deep Learning.</span></span> <span data-ttu-id="dc2f9-145">NV 大小已针对远程可视化效果、流式处理、游戏、编码和 VDI 方案进行了优化和设计，使用 OpenGL 和 DirectX 之类的框架。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-145">NV sizes are optimized and designed for remote visualization, streaming, gaming, encoding, and VDI scenarios utilizing frameworks such as OpenGL and DirectX.</span></span>
+* <span data-ttu-id="dc2f9-146">[内存优化型 VM 大小][compute-memory]：需要更多内存时，内存优化型 VM 大小的内存/CPU 比率更高。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-146">[Memory optimized VM sizes][compute-memory] When more memory is required, the memory optimized VM sizes offer a higher memory-to-CPU ratio.</span></span>
+* <span data-ttu-id="dc2f9-147">[常规用途 VM 大小][compute-general]：常规用途 VM 大小也可使用，提供均衡的 CPU/内存比率。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-147">[General purposes VM sizes][compute-general] General-purpose VM sizes are also available and provide balanced CPU-to-memory ratio.</span></span>
 
-### <a name="alternatives"></a><span data-ttu-id="85b7e-148">备选项</span><span class="sxs-lookup"><span data-stu-id="85b7e-148">Alternatives</span></span>
+### <a name="alternatives"></a><span data-ttu-id="dc2f9-148">备选项</span><span class="sxs-lookup"><span data-stu-id="dc2f9-148">Alternatives</span></span>
 
-<span data-ttu-id="85b7e-149">如果需要对 Azure 中的渲染环境进行更多的控制，或者需要混合实现，则可使用 CycleCloud 计算功能来协调云中的 IaaS 网格。</span><span class="sxs-lookup"><span data-stu-id="85b7e-149">If you require more control over your rendering environment in Azure or need a hybrid implementation, then CycleCloud computing can help orchestrate an IaaS grid in the cloud.</span></span> <span data-ttu-id="85b7e-150">它使用与 Azure Batch 相同的基础 Azure 技术，使生成和维护 IaaS 网格变得很高效。</span><span class="sxs-lookup"><span data-stu-id="85b7e-150">Using the same underlying Azure technologies as Azure Batch, it makes building and maintaining an IaaS grid an efficient process.</span></span> <span data-ttu-id="85b7e-151">若要查找更多信息并了解设计原则，请查看以下链接：</span><span class="sxs-lookup"><span data-stu-id="85b7e-151">To find out more and learn about the design principles use the following link:</span></span>
+<span data-ttu-id="dc2f9-149">如果需要对 Azure 中的渲染环境进行更多的控制，或者需要混合实现，则可使用 CycleCloud 计算功能来协调云中的 IaaS 网格。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-149">If you require more control over your rendering environment in Azure or need a hybrid implementation, then CycleCloud computing can help orchestrate an IaaS grid in the cloud.</span></span> <span data-ttu-id="dc2f9-150">它使用与 Azure Batch 相同的基础 Azure 技术，使生成和维护 IaaS 网格变得很高效。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-150">Using the same underlying Azure technologies as Azure Batch, it makes building and maintaining an IaaS grid an efficient process.</span></span> <span data-ttu-id="dc2f9-151">若要查找更多信息并了解设计原则，请查看以下链接：</span><span class="sxs-lookup"><span data-stu-id="dc2f9-151">To find out more and learn about the design principles use the following link:</span></span>
 
-<span data-ttu-id="85b7e-152">有关 Azure 中提供的所有 HPC 解决方案的完整概述，请参阅[使用 Azure VM 的 HPC、Batch 和大计算解决方案][hpc-alt-solutions]一文</span><span class="sxs-lookup"><span data-stu-id="85b7e-152">For a complete overview of all the HPC solutions that are available to you in Azure, see the article [HPC, Batch, and Big Compute solutions using Azure VMs][hpc-alt-solutions]</span></span>
+<span data-ttu-id="dc2f9-152">有关 Azure 中提供的所有 HPC 解决方案的完整概述，请参阅[使用 Azure VM 的 HPC、Batch 和大计算解决方案][hpc-alt-solutions]一文</span><span class="sxs-lookup"><span data-stu-id="dc2f9-152">For a complete overview of all the HPC solutions that are available to you in Azure, see the article [HPC, Batch, and Big Compute solutions using Azure VMs][hpc-alt-solutions]</span></span>
 
-### <a name="availability"></a><span data-ttu-id="85b7e-153">可用性</span><span class="sxs-lookup"><span data-stu-id="85b7e-153">Availability</span></span>
+### <a name="availability"></a><span data-ttu-id="dc2f9-153">可用性</span><span class="sxs-lookup"><span data-stu-id="dc2f9-153">Availability</span></span>
 
-<span data-ttu-id="85b7e-154">可以通过一系列的服务、工具和 API 监视 Azure Batch 组件。</span><span class="sxs-lookup"><span data-stu-id="85b7e-154">Monitoring of the Azure Batch components is available through a range of services, tools, and APIs.</span></span> <span data-ttu-id="85b7e-155">监视功能在[监视 Batch 解决方案][batch-monitor]一文中有进一步的介绍。</span><span class="sxs-lookup"><span data-stu-id="85b7e-155">Monitoring is discussed further in the [Monitor Batch solutions][batch-monitor] article.</span></span>
+<span data-ttu-id="dc2f9-154">可以通过一系列的服务、工具和 API 监视 Azure Batch 组件。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-154">Monitoring of the Azure Batch components is available through a range of services, tools, and APIs.</span></span> <span data-ttu-id="dc2f9-155">监视功能在[监视 Batch 解决方案][batch-monitor]一文中有进一步的介绍。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-155">Monitoring is discussed further in the [Monitor Batch solutions][batch-monitor] article.</span></span>
 
-### <a name="scalability"></a><span data-ttu-id="85b7e-156">可伸缩性</span><span class="sxs-lookup"><span data-stu-id="85b7e-156">Scalability</span></span>
+### <a name="scalability"></a><span data-ttu-id="dc2f9-156">可伸缩性</span><span class="sxs-lookup"><span data-stu-id="dc2f9-156">Scalability</span></span>
 
-<span data-ttu-id="85b7e-157">Azure Batch 帐户中的池可以通过手动干预进行缩放，也可以通过基于 Azure Batch 指标的公式进行自动缩放。</span><span class="sxs-lookup"><span data-stu-id="85b7e-157">Pools within an Azure Batch account can either scale through manual intervention or, by using a formula based on Azure Batch metrics, be scaled automatically.</span></span> <span data-ttu-id="85b7e-158">有关可伸缩性的详细信息，请参阅[创建用于缩放 Batch 池中的节点的自动缩放公式][batch-scaling]一文。</span><span class="sxs-lookup"><span data-stu-id="85b7e-158">For more information on scalability, see the article [Create an automatic scaling formula for scaling nodes in a Batch pool][batch-scaling].</span></span>
+<span data-ttu-id="dc2f9-157">Azure Batch 帐户中的池可以通过手动干预进行缩放，也可以通过基于 Azure Batch 指标的公式进行自动缩放。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-157">Pools within an Azure Batch account can either scale through manual intervention or, by using a formula based on Azure Batch metrics, be scaled automatically.</span></span> <span data-ttu-id="dc2f9-158">有关可伸缩性的详细信息，请参阅[创建用于缩放 Batch 池中的节点的自动缩放公式][batch-scaling]一文。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-158">For more information on scalability, see the article [Create an automatic scaling formula for scaling nodes in a Batch pool][batch-scaling].</span></span>
 
-### <a name="security"></a><span data-ttu-id="85b7e-159">安全</span><span class="sxs-lookup"><span data-stu-id="85b7e-159">Security</span></span>
+### <a name="security"></a><span data-ttu-id="dc2f9-159">安全</span><span class="sxs-lookup"><span data-stu-id="dc2f9-159">Security</span></span>
 
-<span data-ttu-id="85b7e-160">若需安全解决方案的通用设计指南，请参阅 [Azure 安全性文档][security]。</span><span class="sxs-lookup"><span data-stu-id="85b7e-160">For general guidance on designing secure solutions, see the [Azure Security Documentation][security].</span></span>
+<span data-ttu-id="dc2f9-160">若需安全解决方案的通用设计指南，请参阅 [Azure 安全性文档][security]。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-160">For general guidance on designing secure solutions, see the [Azure Security Documentation][security].</span></span>
 
-### <a name="resiliency"></a><span data-ttu-id="85b7e-161">复原</span><span class="sxs-lookup"><span data-stu-id="85b7e-161">Resiliency</span></span>
+### <a name="resiliency"></a><span data-ttu-id="dc2f9-161">复原</span><span class="sxs-lookup"><span data-stu-id="dc2f9-161">Resiliency</span></span>
 
-<span data-ttu-id="85b7e-162">虽然 Azure Batch 中目前没有故障转移功能，但建议你执行以下步骤，确保发生计划外中断时的可用性：</span><span class="sxs-lookup"><span data-stu-id="85b7e-162">While there is currently no failover capability in Azure Batch, we recommend using the following steps to ensure availability if there is an unplanned outage:</span></span>
+<span data-ttu-id="dc2f9-162">虽然 Azure Batch 中目前没有故障转移功能，但建议你执行以下步骤，确保发生计划外中断时的可用性：</span><span class="sxs-lookup"><span data-stu-id="dc2f9-162">While there is currently no failover capability in Azure Batch, we recommend using the following steps to ensure availability if there is an unplanned outage:</span></span>
 
-* <span data-ttu-id="85b7e-163">使用备用的存储帐户在备用的 Azure 位置创建一个 Azure Batch 帐户</span><span class="sxs-lookup"><span data-stu-id="85b7e-163">Create an Azure Batch account in an alternate Azure location with an alternate Storage Account</span></span>
-* <span data-ttu-id="85b7e-164">使用同一名称创建相同的节点池，不分配任何节点</span><span class="sxs-lookup"><span data-stu-id="85b7e-164">Create the same node pools with the same name, with zero nodes allocated</span></span>
-* <span data-ttu-id="85b7e-165">确保通过备用存储帐户创建并更新应用程序</span><span class="sxs-lookup"><span data-stu-id="85b7e-165">Ensure Applications are created and updated to the alternate Storage Account</span></span>
-* <span data-ttu-id="85b7e-166">将输入文件上传到备用的 Azure Batch 帐户，提交作业时也提交到该帐户</span><span class="sxs-lookup"><span data-stu-id="85b7e-166">Upload input files and submit jobs to the alternate Azure Batch account</span></span>
+* <span data-ttu-id="dc2f9-163">使用备用的存储帐户在备用的 Azure 位置创建一个 Azure Batch 帐户</span><span class="sxs-lookup"><span data-stu-id="dc2f9-163">Create an Azure Batch account in an alternate Azure location with an alternate Storage Account</span></span>
+* <span data-ttu-id="dc2f9-164">使用同一名称创建相同的节点池，不分配任何节点</span><span class="sxs-lookup"><span data-stu-id="dc2f9-164">Create the same node pools with the same name, with zero nodes allocated</span></span>
+* <span data-ttu-id="dc2f9-165">确保通过备用存储帐户创建并更新应用程序</span><span class="sxs-lookup"><span data-stu-id="dc2f9-165">Ensure Applications are created and updated to the alternate Storage Account</span></span>
+* <span data-ttu-id="dc2f9-166">将输入文件上传到备用的 Azure Batch 帐户，提交作业时也提交到该帐户</span><span class="sxs-lookup"><span data-stu-id="dc2f9-166">Upload input files and submit jobs to the alternate Azure Batch account</span></span>
 
-## <a name="deploy-this-scenario"></a><span data-ttu-id="85b7e-167">部署此方案</span><span class="sxs-lookup"><span data-stu-id="85b7e-167">Deploy this scenario</span></span>
+## <a name="deploy-this-scenario"></a><span data-ttu-id="dc2f9-167">部署此方案</span><span class="sxs-lookup"><span data-stu-id="dc2f9-167">Deploy this scenario</span></span>
 
-### <a name="creating-an-azure-batch-account-and-pools-manually"></a><span data-ttu-id="85b7e-168">手动创建 Azure Batch 帐户和池</span><span class="sxs-lookup"><span data-stu-id="85b7e-168">Creating an Azure Batch account and pools manually</span></span>
+### <a name="creating-an-azure-batch-account-and-pools-manually"></a><span data-ttu-id="dc2f9-168">手动创建 Azure Batch 帐户和池</span><span class="sxs-lookup"><span data-stu-id="dc2f9-168">Creating an Azure Batch account and pools manually</span></span>
 
-<span data-ttu-id="85b7e-169">本方案演示了 Azure Batch 工作方式，并将 Azure Batch Labs 以示例 SaaS 解决方案（可以为你自己的客户开发）的方式进行了演示：</span><span class="sxs-lookup"><span data-stu-id="85b7e-169">This scenario demonstrates how Azure Batch works while showcasing Azure Batch Labs as an example SaaS solution that can be developed for your own customers:</span></span>
+<span data-ttu-id="dc2f9-169">本方案演示了 Azure Batch 工作方式，并将 Azure Batch Labs 以示例 SaaS 解决方案（可以为你自己的客户开发）的方式进行了演示：</span><span class="sxs-lookup"><span data-stu-id="dc2f9-169">This scenario demonstrates how Azure Batch works while showcasing Azure Batch Labs as an example SaaS solution that can be developed for your own customers:</span></span>
 
-<span data-ttu-id="85b7e-170">[Azure Batch Masterclass][batch-labs-masterclass]</span><span class="sxs-lookup"><span data-stu-id="85b7e-170">[Azure Batch Masterclass][batch-labs-masterclass]</span></span>
+<span data-ttu-id="dc2f9-170">[Azure Batch Masterclass][batch-labs-masterclass]</span><span class="sxs-lookup"><span data-stu-id="dc2f9-170">[Azure Batch Masterclass][batch-labs-masterclass]</span></span>
 
-### <a name="deploying-the-example-scenario-using-an-azure-resource-manager-template"></a><span data-ttu-id="85b7e-171">使用 Azure 资源管理器模板部署示例方案</span><span class="sxs-lookup"><span data-stu-id="85b7e-171">Deploying the example scenario using an Azure Resource Manager template</span></span>
+### <a name="deploying-the-example-scenario-using-an-azure-resource-manager-template"></a><span data-ttu-id="dc2f9-171">使用 Azure 资源管理器模板部署示例方案</span><span class="sxs-lookup"><span data-stu-id="dc2f9-171">Deploying the example scenario using an Azure Resource Manager template</span></span>
 
-<span data-ttu-id="85b7e-172">此模板将部署：</span><span class="sxs-lookup"><span data-stu-id="85b7e-172">The template will deploy:</span></span>
+<span data-ttu-id="dc2f9-172">此模板将部署：</span><span class="sxs-lookup"><span data-stu-id="dc2f9-172">The template will deploy:</span></span>
 
-* <span data-ttu-id="85b7e-173">一个新的 Azure Batch 帐户</span><span class="sxs-lookup"><span data-stu-id="85b7e-173">A new Azure Batch account</span></span>
-* <span data-ttu-id="85b7e-174">一个存储帐户</span><span class="sxs-lookup"><span data-stu-id="85b7e-174">A storage account</span></span>
-* <span data-ttu-id="85b7e-175">一个与 Batch 帐户关联的节点池</span><span class="sxs-lookup"><span data-stu-id="85b7e-175">A node pool associated with the batch account</span></span>
-* <span data-ttu-id="85b7e-176">节点池将会配置为对 Canonical Ubuntu 映像使用 A2 v2 VM</span><span class="sxs-lookup"><span data-stu-id="85b7e-176">The node pool will be configured to use A2 v2 VMs with Canonical Ubuntu images</span></span>
-* <span data-ttu-id="85b7e-177">节点池一开始包含零个 VM，需通过手动缩放来添加 VM</span><span class="sxs-lookup"><span data-stu-id="85b7e-177">The node pool will contain zero VMs initially and will require you to manually scale to add VMs</span></span>
+* <span data-ttu-id="dc2f9-173">一个新的 Azure Batch 帐户</span><span class="sxs-lookup"><span data-stu-id="dc2f9-173">A new Azure Batch account</span></span>
+* <span data-ttu-id="dc2f9-174">一个存储帐户</span><span class="sxs-lookup"><span data-stu-id="dc2f9-174">A storage account</span></span>
+* <span data-ttu-id="dc2f9-175">一个与 Batch 帐户关联的节点池</span><span class="sxs-lookup"><span data-stu-id="dc2f9-175">A node pool associated with the batch account</span></span>
+* <span data-ttu-id="dc2f9-176">节点池将会配置为对 Canonical Ubuntu 映像使用 A2 v2 VM</span><span class="sxs-lookup"><span data-stu-id="dc2f9-176">The node pool will be configured to use A2 v2 VMs with Canonical Ubuntu images</span></span>
+* <span data-ttu-id="dc2f9-177">节点池一开始包含零个 VM，需通过手动缩放来添加 VM</span><span class="sxs-lookup"><span data-stu-id="dc2f9-177">The node pool will contain zero VMs initially and will require you to manually scale to add VMs</span></span>
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fhpc%2Fbatchcreatewithpools.json" target="_blank">
     <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>
 
-<span data-ttu-id="85b7e-178">[详细了解资源管理器模板][azure-arm-templates]</span><span class="sxs-lookup"><span data-stu-id="85b7e-178">[Learn more about Resource Manager templates][azure-arm-templates]</span></span>
+<span data-ttu-id="dc2f9-178">[详细了解资源管理器模板][azure-arm-templates]</span><span class="sxs-lookup"><span data-stu-id="dc2f9-178">[Learn more about Resource Manager templates][azure-arm-templates]</span></span>
 
-## <a name="pricing"></a><span data-ttu-id="85b7e-179">定价</span><span class="sxs-lookup"><span data-stu-id="85b7e-179">Pricing</span></span>
+## <a name="pricing"></a><span data-ttu-id="dc2f9-179">定价</span><span class="sxs-lookup"><span data-stu-id="dc2f9-179">Pricing</span></span>
 
-<span data-ttu-id="85b7e-180">Azure Batch 的使用费用取决于用于池的 VM 大小以及这些 VM 的分配和运行时长。创建 Azure Batch 帐户没有相关费用。</span><span class="sxs-lookup"><span data-stu-id="85b7e-180">The cost of using Azure Batch will depend on the VM sizes that are used for the pools and how long these VMs are allocated and running, there is no cost associated with an Azure Batch account creation.</span></span> <span data-ttu-id="85b7e-181">存储和数据出口应考虑在内，因为这些需额外付费。</span><span class="sxs-lookup"><span data-stu-id="85b7e-181">Storage and data egress should be taken into account as these will apply additional costs.</span></span>
+<span data-ttu-id="dc2f9-180">Azure Batch 的使用费用取决于用于池的 VM 大小以及这些 VM 的分配和运行时长。创建 Azure Batch 帐户没有相关费用。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-180">The cost of using Azure Batch will depend on the VM sizes that are used for the pools and how long these VMs are allocated and running, there is no cost associated with an Azure Batch account creation.</span></span> <span data-ttu-id="dc2f9-181">存储和数据出口应考虑在内，因为这些需额外付费。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-181">Storage and data egress should be taken into account as these will apply additional costs.</span></span>
 
-<span data-ttu-id="85b7e-182">下面以示例方式说明了一个在 8 小时内完成的作业在使用不同数目的服务器时可能会产生的费用：</span><span class="sxs-lookup"><span data-stu-id="85b7e-182">The following are examples of costs that could be incurred for a job that completes in 8 hours using a different number of servers:</span></span>
+<span data-ttu-id="dc2f9-182">下面以示例方式说明了一个在 8 小时内完成的作业在使用不同数目的服务器时可能会产生的费用：</span><span class="sxs-lookup"><span data-stu-id="dc2f9-182">The following are examples of costs that could be incurred for a job that completes in 8 hours using a different number of servers:</span></span>
 
-* <span data-ttu-id="85b7e-183">100 个高性能 CPU VM：[费用估算][hpc-est-high]</span><span class="sxs-lookup"><span data-stu-id="85b7e-183">100 High-Performance CPU VMs: [Cost Estimate][hpc-est-high]</span></span>
+* <span data-ttu-id="dc2f9-183">100 个高性能 CPU VM：[费用估算][hpc-est-high]</span><span class="sxs-lookup"><span data-stu-id="dc2f9-183">100 High-Performance CPU VMs: [Cost Estimate][hpc-est-high]</span></span>
 
-  <span data-ttu-id="85b7e-184">100 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口</span><span class="sxs-lookup"><span data-stu-id="85b7e-184">100 x H16m (16 cores, 225 GB RAM, Premium Storage 512 GB), 2 TB Blob Storage, 1-TB egress</span></span>
+  <span data-ttu-id="dc2f9-184">100 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口</span><span class="sxs-lookup"><span data-stu-id="dc2f9-184">100 x H16m (16 cores, 225 GB RAM, Premium Storage 512 GB), 2 TB Blob Storage, 1-TB egress</span></span>
 
-* <span data-ttu-id="85b7e-185">50 个高性能 CPU VM：[费用估算][hpc-est-med]</span><span class="sxs-lookup"><span data-stu-id="85b7e-185">50 High-Performance CPU VMs: [Cost Estimate][hpc-est-med]</span></span>
+* <span data-ttu-id="dc2f9-185">50 个高性能 CPU VM：[费用估算][hpc-est-med]</span><span class="sxs-lookup"><span data-stu-id="dc2f9-185">50 High-Performance CPU VMs: [Cost Estimate][hpc-est-med]</span></span>
 
-  <span data-ttu-id="85b7e-186">50 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口</span><span class="sxs-lookup"><span data-stu-id="85b7e-186">50 x H16m (16 cores, 225 GB RAM, Premium Storage 512 GB), 2 TB Blob Storage, 1-TB egress</span></span>
+  <span data-ttu-id="dc2f9-186">50 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口</span><span class="sxs-lookup"><span data-stu-id="dc2f9-186">50 x H16m (16 cores, 225 GB RAM, Premium Storage 512 GB), 2 TB Blob Storage, 1-TB egress</span></span>
 
-* <span data-ttu-id="85b7e-187">10 个高性能 CPU VM：[费用估算][hpc-est-low]</span><span class="sxs-lookup"><span data-stu-id="85b7e-187">10 High-Performance CPU VMs: [Cost Estimate][hpc-est-low]</span></span>
+* <span data-ttu-id="dc2f9-187">10 个高性能 CPU VM：[费用估算][hpc-est-low]</span><span class="sxs-lookup"><span data-stu-id="dc2f9-187">10 High-Performance CPU VMs: [Cost Estimate][hpc-est-low]</span></span>
 
-  <span data-ttu-id="85b7e-188">10 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口</span><span class="sxs-lookup"><span data-stu-id="85b7e-188">10 x H16m (16 cores, 225 GB RAM, Premium Storage 512 GB), 2 TB Blob Storage, 1-TB egress</span></span>
+  <span data-ttu-id="dc2f9-188">10 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口</span><span class="sxs-lookup"><span data-stu-id="dc2f9-188">10 x H16m (16 cores, 225 GB RAM, Premium Storage 512 GB), 2 TB Blob Storage, 1-TB egress</span></span>
 
-### <a name="pricing-for-low-priority-vms"></a><span data-ttu-id="85b7e-189">低优先级 VM 的定价</span><span class="sxs-lookup"><span data-stu-id="85b7e-189">Pricing for low-priority VMs</span></span>
+### <a name="pricing-for-low-priority-vms"></a><span data-ttu-id="dc2f9-189">低优先级 VM 的定价</span><span class="sxs-lookup"><span data-stu-id="dc2f9-189">Pricing for low-priority VMs</span></span>
 
-<span data-ttu-id="85b7e-190">Azure Batch 也支持在节点池中使用低优先级 VM，这可能会节省大量费用。</span><span class="sxs-lookup"><span data-stu-id="85b7e-190">Azure Batch also supports the use of low-priority VMs in the node pools, which can potentially provide a substantial cost saving.</span></span> <span data-ttu-id="85b7e-191">有关详细信息，包括在标准 VM 和低优先级 VM 之间的价格比较，请参阅 [Azure Batch 定价][batch-pricing]。</span><span class="sxs-lookup"><span data-stu-id="85b7e-191">For more information, including a price comparison between standard VMs and low-priority VMs, see [Azure Batch Pricing][batch-pricing].</span></span>
+<span data-ttu-id="dc2f9-190">Azure Batch 也支持在节点池中使用低优先级 VM，这可能会节省大量费用。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-190">Azure Batch also supports the use of low-priority VMs in the node pools, which can potentially provide a substantial cost saving.</span></span> <span data-ttu-id="dc2f9-191">有关详细信息，包括在标准 VM 和低优先级 VM 之间的价格比较，请参阅 [Azure Batch 定价][batch-pricing]。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-191">For more information, including a price comparison between standard VMs and low-priority VMs, see [Azure Batch Pricing][batch-pricing].</span></span>
 
 > [!NOTE] 
-> <span data-ttu-id="85b7e-192">低优先级 VM 仅适用于某些应用程序和工作负荷。</span><span class="sxs-lookup"><span data-stu-id="85b7e-192">Low-priority VMs are only suitable for certain applications and workloads.</span></span>
+> <span data-ttu-id="dc2f9-192">低优先级 VM 仅适用于某些应用程序和工作负荷。</span><span class="sxs-lookup"><span data-stu-id="dc2f9-192">Low-priority VMs are only suitable for certain applications and workloads.</span></span>
 
-## <a name="related-resources"></a><span data-ttu-id="85b7e-193">相关资源</span><span class="sxs-lookup"><span data-stu-id="85b7e-193">Related resources</span></span>
+## <a name="related-resources"></a><span data-ttu-id="dc2f9-193">相关资源</span><span class="sxs-lookup"><span data-stu-id="dc2f9-193">Related resources</span></span>
 
-<span data-ttu-id="85b7e-194">[Azure Batch 概述][batch-overview]</span><span class="sxs-lookup"><span data-stu-id="85b7e-194">[Azure Batch Overview][batch-overview]</span></span>
+<span data-ttu-id="dc2f9-194">[Azure Batch 概述][batch-overview]</span><span class="sxs-lookup"><span data-stu-id="dc2f9-194">[Azure Batch Overview][batch-overview]</span></span>
 
-<span data-ttu-id="85b7e-195">[Azure Batch 文档][batch-doc]</span><span class="sxs-lookup"><span data-stu-id="85b7e-195">[Azure Batch Documentation][batch-doc]</span></span>
+<span data-ttu-id="dc2f9-195">[Azure Batch 文档][batch-doc]</span><span class="sxs-lookup"><span data-stu-id="dc2f9-195">[Azure Batch Documentation][batch-doc]</span></span>
 
-<span data-ttu-id="85b7e-196">[在 Azure Batch 上使用容器][batch-containers]</span><span class="sxs-lookup"><span data-stu-id="85b7e-196">[Using containers on Azure Batch][batch-containers]</span></span>
+<span data-ttu-id="dc2f9-196">[在 Azure Batch 上使用容器][batch-containers]</span><span class="sxs-lookup"><span data-stu-id="dc2f9-196">[Using containers on Azure Batch][batch-containers]</span></span>
 
 <!-- links -->
 [architecture]: ./media/architecture-video-rendering.png
