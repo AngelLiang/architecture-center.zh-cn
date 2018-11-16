@@ -3,12 +3,12 @@ title: Azure 上的 3D 视频渲染
 description: 使用 Azure Batch 服务在 Azure 中运行本机 HPC 工作负荷。
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: 1206fa7d931fca635118929d433abe232ec5ca9a
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 1ffdaa5467fec73a01b8caa18b71c2bc4e49abbe
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818611"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610679"
 ---
 # <a name="3d-video-rendering-on-azure"></a>Azure 上的 3D 视频渲染
 
@@ -18,7 +18,7 @@ ms.locfileid: "48818611"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-考虑将本方案用于以下类似的用例：
+其他相关用例包括：
 
 * 3D 建模
 * Visual FX (VFX) 渲染

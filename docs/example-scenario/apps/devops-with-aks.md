@@ -3,12 +3,12 @@ title: 适用于基于容器的工作负荷的 CI/CD 管道
 description: 使用 Jenkins、Azure 容器注册表、Azure Kubernetes 服务、Cosmos DB 和 Grafana 为 Node.js Web 应用构建 DevOps 管道。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 3212fae2c68eef3a5ed4963d28c0d97ac8f332e0
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: db8de674ee2789c5b41cebebee5745ecc8544122
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818728"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610832"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>适用于基于容器的工作负荷的 CI/CD 管道
 
@@ -20,7 +20,7 @@ ms.locfileid: "48818728"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-以下用例可以考虑本方案：
+其他相关用例包括：
 
 * 改革应用程序开发做法，采用微服务式的基于容器的方法。
 * 缩短应用程序开发和部署生命周期。

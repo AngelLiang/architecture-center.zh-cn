@@ -3,12 +3,12 @@ title: Azure 上银行间的分散式信任
 description: 建立受信任的环境以进行通信和信息共享，而不必求助于集中式数据库。
 author: vitoc
 ms.date: 09/09/2018
-ms.openlocfilehash: fe27f885635ce5ae4ce368992affa1a85d7af416
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: bc472bc5bafc3eb20e583f41d71ed783725a039e
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876744"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610560"
 ---
 # <a name="decentralized-trust-between-banks-on-azure"></a>Azure 上银行间的分散式信任
 
@@ -22,13 +22,13 @@ ms.locfileid: "48876744"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-其他这些用例采用类似的设计模式：
+其他相关用例包括：
 
 * 分配的预算在跨国公司的不同业务部门之间转移
 * 跨界付款
 * 贸易融资方案
 * 涉及不同公司的会员系统
-* 供应链生态系统，等等
+* 供应链生态系统
 
 ## <a name="architecture"></a>体系结构
 
@@ -72,7 +72,7 @@ ms.locfileid: "48876744"
 
 在区块链方面，一个常见的考虑因素是区块链在预设时间内可以包含的事务数。 此方案使用权威证明，与使用工作证明相比，可以更好地管理可伸缩性。 在基于权威证明的网络中，达成共识的参与者是已知的并且是受管理的，因此权威证明更适合相互了解的组织联盟的专用区块链。 通过自定义仪表板可以轻松监视平均区块时间、每分钟事务数和计算资源消耗量等参数。 然后，可以根据规模要求相应地调整资源。
 
-有关如何设计可缩放方案的通用指南，请参阅 Azure 体系结构中心的[可伸缩性核对清单][scalability]。
+有关如何设计可缩放解决方案的通用指南，请参阅 Azure 体系结构中心的[可伸缩性核对清单][scalability]。
 
 ### <a name="security"></a>安全
 
@@ -100,7 +100,7 @@ ms.locfileid: "48876744"
 
 ## <a name="next-steps"></a>后续步骤
 
-若要查看此方案的示例，请在 Azure 上部署 [Ethereum PoA 区块链演示应用程序][deploy]，然后浏览[方案源代码的自述文件][source]。
+若要查看此方案的示例，请在 Azure 上部署 [Ethereum PoA 区块链演示应用程序][deploy]。 然后，查看[方案源代码的自述文件][source]。
 
 ## <a name="related-resources"></a>相关资源
 

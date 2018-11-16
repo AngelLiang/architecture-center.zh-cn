@@ -3,12 +3,12 @@ title: 用于销售和市场营销的数据仓库和分析
 description: 合并来自多个源的数据并优化数据分析。
 author: alexbuckgit
 ms.date: 09/15/2018
-ms.openlocfilehash: f9ca9785b65f18098a91aedc1f3157f49456a6e1
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: e4c0a37f61f3edfb1f29d26df546f02d31fd40f7
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818643"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610696"
 ---
 # <a name="data-warehousing-and-analytics-for-sales-and-marketing"></a>用于销售和市场营销的数据仓库和分析
 
@@ -24,7 +24,7 @@ ms.locfileid: "48818643"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-还可以使用此方法来实现以下目的：
+此方法还可以用来：
 
 * 建立数据仓库，用作数据的单一事实源。
 * 将关系数据源与其他非结构化数据集相集成。

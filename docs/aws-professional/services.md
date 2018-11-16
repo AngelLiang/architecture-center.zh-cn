@@ -3,13 +3,13 @@ title: 比较 Azure 和 AWS 服务 - 多云
 description: 了解如何针对多云解决方案或迁移到 Azure，比较 Microsoft Azure 云服务与 Amazon Web Services (AWS)。 了解各自的 IT 功能。
 keywords: 云服务比较, 比较云服务, 多云, 比较 azure aws, 比较 azure 和 aws, 比较 aws 和 azure, IT 功能
 author: lbrader
-ms.date: 11/06/2018
-ms.openlocfilehash: abf3d8afb21fbf6d49423c0759613eeae6b53849
-ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
+ms.date: 11/09/2018
+ms.openlocfilehash: ddfbf637ba820a9785e6698c8655dda4d971aaa0
+ms.sourcegitcommit: cc234a522b7fc35af3bcacdc044c2e2b529e54ed
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51263824"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51347621"
 ---
 # <a name="aws-to-azure-services-comparison"></a>AWS 和 Azure 服务比较
 
@@ -36,7 +36,7 @@ Azure 和 AWS 作为领先的公有云平台，各自都在全球范围内为企
 |                  区域                   |                  AWS 服务                   |                                                                                                                                                    Azure 服务                                                                                                                                                    |                                                                                              Description                                                                                              |
 |-----------------------------------------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |             虚拟服务器             |     Elastic Compute Cloud (EC2) 实例      |                                                                                                                  [Azure 虚拟机](https://azure.microsoft.com/services/virtual-machines/)                                                                                                                   | 虚拟服务器让用户可以部署、管理以及维护 OS 和服务器软件。 实例类型结合了 CPU/RAM。 用户为其使用部分付费，并且可以灵活更改大小。 |
-|         <strong>&nbsp;</strong>         |                Amazon Lightsail                |                                                                                                              [Azure 虚拟机和映像](https://azure.microsoft.com/services/virtual-machines/)                                                                                                              |                                                    虚拟机模板集合，构建虚拟机时可从中进行选择。                                                     |
+|         <strong>&nbsp;</strong>         |                Amazon Lightsail                |                                                                                                              [Azure 市场](https://azuremarketplace.microsoft.com/marketplace/apps/category/compute)                                                                                                              |                                                    Azure 市场中包括各种应用程序的一些预配置的 VM 映像。                                                     |
 |           容器实例           |          EC2 Container Service (ECS)           |                                                                                                                 [Azure 容器服务](https://azure.microsoft.com/services/container-service/)                                                                                                                  |        Azure 容器实例是在 Azure 中运行容器的最快捷方式，既无需预配任何虚拟机，也不必采用更高级的业务流程服务。         |
 |         <strong>&nbsp;</strong>         |             EC2 Container Registry             |                                                                                                                [Azure 容器注册表](https://azure.microsoft.com/services/container-registry/)                                                                                                                 |                                            客户能存储 Docker 格式化的映像。 用于在 Azure 上创建所有类型的容器部署。                                             |
 | 微服务/容器业务流程协调程序 | 适用于 Kubernetes 的弹性容器服务 (EKS) |                                                                                                              [Azure Kubernetes 服务 (AKS)](https://azure.microsoft.com/services/kubernetes-service/)                                                                                                               |                  使用 Kubernetes 部署经过协调的容器化应用程序。 通过自动升级和内置操作控制台简化群集监视和管理。                  |

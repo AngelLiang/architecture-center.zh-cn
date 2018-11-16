@@ -3,14 +3,14 @@ title: 将 Enterprise BI 与 SQL 数据仓库配合使用
 description: 使用 Azure 从本地存储的关系数据获取业务见解
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: d5b680346267a17b5016b8897dc03ddcf18a7fe9
-ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
+ms.openlocfilehash: 2822cf6d2a75d521f182c267f4bf2bac462d2b7f
+ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51263807"
+ms.lasthandoff: 11/11/2018
+ms.locfileid: "51527705"
 ---
-# <a name="enterprise-bi-with-sql-data-warehouse"></a>将 Enterprise BI 与 SQL 数据仓库配合使用
+# <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>将 Azure 中的 Enterprise BI 与 SQL 数据仓库配合使用
 
 此参考体系结构实现 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt)（提取-加载-转换）管道，该管道可将数据从本地 SQL Server 数据库移到 SQL 数据仓库，并转换数据以进行分析。 
 
@@ -199,7 +199,7 @@ Azure Analysis Services 使用 Azure Active Directory (Azure AD) 对连接到 An
 
 ## <a name="next-steps"></a>后续步骤
 
-- 使用 Azure 数据工厂将 ELT 管道自动化。 请参阅[将自动化企业 BI 与 SQL 数据仓库和 Azure 数据工厂配合使用][adf=ra]。
+- 使用 Azure 数据工厂将 ELT 管道自动化。 请参阅[将自动化企业 BI 与 SQL 数据仓库和 Azure 数据工厂配合使用][adf-ra]。
 
 <!-- links -->
 

@@ -3,12 +3,12 @@ title: Azure 上的计算机辅助工程服务
 description: 为 Azure 上的计算机辅助工程 (CAE) 提供软件即服务 (SaaS) 平台。
 author: alexbuckgit
 ms.date: 08/22/2018
-ms.openlocfilehash: d17ac218052c5b98e8790f1386be035618a2d957
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 8bdf7198223f7194d0cd717949699bb3a508674e
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818677"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610543"
 ---
 # <a name="a-computer-aided-engineering-service-on-azure"></a>Azure 上的计算机辅助工程服务
 
@@ -26,7 +26,7 @@ ms.locfileid: "48818677"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-使用此体系结构的其他方案可能包括：
+其他相关用例包括：
 
 * 基因组学研究
 * 天气仿真

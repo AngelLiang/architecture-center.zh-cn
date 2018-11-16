@@ -3,12 +3,12 @@ title: 在 Azure 上使用 Oracle 数据库运行 SAP 生产工作负荷
 description: 在 Azure 中使用 Oracle 数据库运行 SAP 生产部署。
 author: DharmeshBhagat
 ms.date: 9/12/2018
-ms.openlocfilehash: 4c0e054a9024cd50581acd5b472a09d6e98d2bed
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 75942b4d9b18b7bbe7a162826bcf4fe9ece22dce
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818559"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610900"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>在 Azure 上使用 Oracle 数据库运行 SAP 生产工作负荷
 
@@ -20,7 +20,7 @@ SAP 系统用于运行任务关键型业务应用程序。 任何服务中断都
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-考虑在以下方案中使用本示例：
+其他相关用例包括：
 
 * SAP 上运行的任务关键型工作负荷。
 * 非关键的 SAP 工作负荷。

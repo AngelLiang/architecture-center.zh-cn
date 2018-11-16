@@ -3,22 +3,22 @@ title: Azure 上的 Web 应用程序监视
 description: 监视 Azure 应用服务中托管的 Web 应用程序。
 author: adamboeglin
 ms.date: 09/12/2018
-ms.openlocfilehash: ea57ba50f4e9390d5527587752c3bebad01b6139
-ms.sourcegitcommit: 42797fffb82bbbf86f6deb1da52c61d456be631e
+ms.openlocfilehash: ba008035c37d1d4e2d2f823463344e4941c0b4c4
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/13/2018
-ms.locfileid: "49313210"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610747"
 ---
 # <a name="web-application-monitoring-on-azure"></a>Azure 上的 Web 应用程序监视
 
-Azure 上的平台即服务 (PaaS) 产品/服务可以管理计算资源，并在某些方面改变部署的监视方式。 Azure 包含多个监视服务，其中的每个服务发挥特定的作用。 这些服务共同提供一个综合性的解决方案，可从应用程序及其使用的 Azure 资源收集、分析和处理遥测数据。
+Azure 平台即服务 (PaaS) 产品/服务为你管理计算资源，并且影响你监视部署的方式。 Azure 包含多个监视服务，其中的每个服务发挥特定的作用。 这些服务共同提供一个综合性的解决方案，可从应用程序及其使用的 Azure 资源收集、分析和处理遥测数据。
 
 本方案探讨可用的监视服务，并介绍可对多个数据源使用的数据流模型。 监视时，可将多个工具和服务用于 Azure 部署。 在本方案中，我们确切地选择了随时可用的服务，因为它们易于使用。 本文稍后会介绍其他监视选项。
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-以下用例可以考虑本方案：
+其他相关用例包括：
 
 - 检测一个用于监视遥测的 Web 应用程序。
 - 收集 Azure 上部署的某个应用程序的前端和后端遥测数据。
@@ -48,7 +48,7 @@ Azure 上的平台即服务 (PaaS) 产品/服务可以管理计算资源，并�
 
 ## <a name="considerations"></a>注意事项
 
-最佳做法是在开发时使用 [Application Insights SDK][Application Insights SDKs] 将 Application Insights 添加到代码，然后根据应用程序进行自定义。 这些开源 SDK 适用于大多数应用程序框架。 若要扩充和控制所收集的数据，可将用于测试和生产部署的 SDK 整合到开发过程中。 应用要满足的主要要求是，通过面向 Internet 的地址直接或间接连接到托管的 Application Insights 引入终结点。 然后，可以添加遥测数据或扩充现有的遥测数据收集。
+建议的做法是在开发期间使用 [Application Insights SDK][Application Insights SDKs] 将 Application Insights 添加到代码，然后根据应用程序进行自定义。 这些开源 SDK 适用于大多数应用程序框架。 若要扩充和控制所收集的数据，可将用于测试和生产部署的 SDK 整合到开发过程中。 应用要满足的主要要求是，通过面向 Internet 的地址直接或间接连接到托管的 Application Insights 引入终结点。 然后，可以添加遥测数据或扩充现有的遥测数据收集。
 
 运行时监视是另一种简便的入门方法。 必须通过配置文件控制收集的遥测数据。 例如，可以包含运行时方法，以便通过 [Application Insights 状态监视器][Application Insights Status Monitor]等工具将 SDK 部署到正确的文件夹，并添加适当的配置开始进行监视。
 
@@ -60,7 +60,7 @@ Azure Monitor、Application Insights 和 Log Analytics 都会发送[警报](/azu
 
 ### <a name="alternatives"></a>备选项
 
-本文介绍可方便使用的监视选项和热门功能，但你也可以使用其他许多选项，包括用于创建自己的日志记录机制的选项。 最佳做法之一是在解决方案中构建层时添加监视服务。 下面是一些可能的扩展和替代方法：
+本文介绍可方便使用的监视选项和热门功能，但你也可以使用其他许多选项，包括用于创建自己的日志记录机制的选项。 建议的做法是在解决方案中构建层时添加监视服务。 下面是一些可能的扩展和替代方法：
 
 - 使用 [Azure Monitor Data Source For Grafana][Azure Monitor Data Source For Grafana] 在 Grafana 中整合 Azure Monitor 和 Application Insights 指标。
 - [Data Dog][data-dog] 为 Azure Monitor 提供连接器
@@ -72,7 +72,7 @@ Azure Monitor、Application Insights 和 Log Analytics 都会发送[警报](/azu
 
 此方案侧重于主要用于监视的 PaaS 解决方案，因为这些解决方案可以方便地处理可用性和可伸缩性，并有服务级别协议 (SLA) 的保障。 例如，应用服务为其可用性提供有保障的 [SLA][SLA]。
 
-Application Insights 会[限制][app-insights-limits]每秒可以处理的请求数。 如果超过请求数限制，消息可能会受到限制。 为防止发生此情况，可以实施[筛选][message-filtering]或[采样][message-sampling]来降低数据速率
+Application Insights 会[限制][app-insights-limits]每秒可以处理的请求数。 如果超过请求数限制，消息可能会受到限制。 为防止发生限制，可以实施[筛选][message-filtering]或[采样][message-sampling]来降低数据速率
 
 但是，所运行的应用程序的高可用性考虑因素由开发人员负责。 有关规模等方面的信息，请参阅基本 Web 应用程序参考体系结构中的[可伸缩性注意事项](#scalability-considerations)部分。 部署应用后，可以设置测试，以使用 Application Insights [监视其可用性][monitor its availability]。
 
@@ -97,7 +97,7 @@ Application Insights 会[限制][app-insights-limits]每秒可以处理的请求
 
 在调试期间以及发布应用后，Application Insights 的遥测数据将发送到 Azure 门户。 若要进行测试并避免产生费用，可以检测有限的遥测数据量。 若要添加更多指标，可以引发遥测限制。 若要提高控制粒度，请参阅 [Application Insights 中的采样][Sampling in Application Insights]。
 
-部署后，可以观察性能指标的[实时指标流][Live Metrics Stream]。 不会存储此数据 -- 实时指标仅供查看 -- 但可以收集遥测数据，并在以后进行分析。 实时流数据不会产生费用。
+部署后，可以观察性能指标的[实时指标流][Live Metrics Stream]。 不会存储此数据 &mdash; 实时指标仅供查看 &mdash; 但可以收集遥测数据，并在以后进行分析。 实时流数据不会产生费用。
 
 Log Analytics 根据引入到服务中的数据的 GB 单位数量计费。 每个月引入到 Azure Log Analytics 服务中的前 5 GB 数据是免费的，最初的 31 天，这些数据将在 Log Analytics 工作区中免费保留。 
 

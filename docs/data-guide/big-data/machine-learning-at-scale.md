@@ -3,12 +3,12 @@ title: 规模化机器学习
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 4e584da18893ac7405fa00863fe034e45b2e3903
-ms.sourcegitcommit: 7ced70ebc11aa0df0dc0104092d3cc6ad5c28bd6
+ms.openlocfilehash: a44785b61faec8a45160fa2895fbc03e2c580a77
+ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/11/2018
-ms.locfileid: "34062810"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51577134"
 ---
 # <a name="machine-learning-at-scale"></a>规模化机器学习
 
@@ -59,7 +59,7 @@ ms.locfileid: "34062810"
 - 使用认知工具包提供的预先训练的神经网络模型。
 - 嵌入由 Core ML 提供的适用于 iOS 应用的序列化模型。 
 
-如果预构建的模型不适合你的数据或应用场景，Azure 中的选项还包括 Azure 机器学习、基于 Spark MLlib 和 MMLSpark 的 HDInsight、认知工具包以及 SQL 机器学习服务。 如果决定使用自定义模型，必须设计一个管道并使其包括模型训练和实施。 
+如果预构建的模型不适合你的数据或应用场景，Azure 中的选项还包括 Azure 机器学习、基于 Spark MLlib 和 MMLSpark 的 HDInsight、Azure Databricks、认知工具包以及 SQL 机器学习服务。 如果决定使用自定义模型，必须设计一个管道并使其包括模型训练和实施。 
 
 ![Azure 中的模型选项](./images/machine-learning-model-training-and-deployment.png)
 

@@ -3,12 +3,12 @@ title: 将 CI/CD 管道与 Azure DevOps 配合使用
 description: 使用 Azure DevOps 生成 .NET 应用并将其发布到 Azure Web 应用。
 author: christianreddington
 ms.date: 07/11/18
-ms.openlocfilehash: 80890784d4c97aac418cef4e49f9075dbef10b8a
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 97f16b2d3d9c15bc6f5db6fad4c9d8097243ad3d
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818932"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610781"
 ---
 # <a name="cicd-pipeline-with-azure-devops"></a>将 CI/CD 管道与 Azure DevOps 配合使用
 
@@ -109,7 +109,7 @@ DevOps 集成了开发、质量保证和 IT 运营。 DevOps 要求通过统一�
 
 ### <a name="resiliency"></a>复原
 
-审核[针对复原的典型设计模式][design-patterns-resiliency]，考虑在适当情况下实施这些模式。
+根据情况考虑实施[针对复原的典型设计模式][design-patterns-resiliency]。
 
 可以在 Azure 体系结构中心找到许多[建议用于应用服务的做法][resiliency-app-service]。
 

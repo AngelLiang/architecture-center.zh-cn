@@ -3,12 +3,12 @@ title: Azure 上的 SAP 工作负荷的开发/测试环境
 description: 为 SAP 工作负荷构建开发/测试环境。
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: b47e4cb527d3e4ecd74bee7bcf08f2794da56d6c
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 1cfd15b0287a1979ae5ad60e41a0b1627a2e115c
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876779"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610798"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Azure 上的 SAP 工作负荷的开发/测试环境
 
@@ -22,7 +22,7 @@ ms.locfileid: "48876779"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-以下用例可以考虑本方案：
+其他相关用例包括：
 
 * 非关键性 SAP 非生产工作负荷（沙盒、开发、测试、质量保证）
 * 非关键性 SAP 业务型工作负荷

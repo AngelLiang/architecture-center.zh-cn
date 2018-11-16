@@ -3,12 +3,12 @@ title: Azure 上的保险索赔图像分类
 description: 将图像处理内置到 Azure 应用程序中。
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 31d328f8e5e27ea255024b7f461f2bfaeffc3ca7
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 9640f8b5454891ed00f669bada9f7c9c69b89734
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818524"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610526"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Azure 上的保险索赔图像分类
 
@@ -20,10 +20,10 @@ ms.locfileid: "48818524"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-以下用例可以考虑本方案：
+其他相关用例包括：
 
-* 对时尚网站上的图像分类。
-* 对游戏屏幕截图中的遥测数据分类。
+* 对时尚网站上的图像进行分类。
+* 对游戏屏幕截图中的遥测数据进行分类。
 
 ## <a name="architecture"></a>体系结构
 
@@ -58,7 +58,7 @@ ms.locfileid: "48818524"
 
 Cosmos DB 不会按照预配的请求单位 (RU) 自动缩放。 有关如何估算需求的指南，请参阅文档中的[请求单位](/azure/cosmos-db/request-units)。 若要充分利用 Cosmos DB 中的缩放功能，请了解[分区键](/azure/cosmos-db/partition-data)在 CosmosDB 中的工作方式。
 
-很多情况下，为了确保可用性、可伸缩性和分区，NoSQL 数据库会牺牲一致性（这就是所谓的 CAP 法则）。 本示例方案使用键-值数据模型，很少需要事务一致性，因为大多数操作就其定义来说属于原子操作。 有关如何[选择正确的数据存储](../../guide/technology-choices/data-store-overview.md)的其他指南，请访问 Azure 体系结构中心。  如果实现要求高一致性，则可在 CosmosDB 中[选择一致性级别](/azure/cosmos-db/consistency-levels)。
+很多情况下，为了确保可用性、可伸缩性和分区，NoSQL 数据库会牺牲一致性（这就是所谓的 CAP 法则）。 本示例方案使用键-值数据模型，很少需要事务一致性，因为大多数操作就其定义来说属于原子操作。 有关如何[选择正确的数据存储](../../guide/technology-choices/data-store-overview.md)的其他指南，请访问 Azure 体系结构中心。 如果实现要求高一致性，则可在 CosmosDB 中[选择一致性级别](/azure/cosmos-db/consistency-levels)。
 
 有关如何设计可缩放解决方案的通用指南，请参阅 Azure 体系结构中心的[可伸缩性核对清单][scalability]。
 
@@ -86,9 +86,9 @@ Cosmos DB 不会按照预配的请求单位 (RU) 自动缩放。 有关如何估
 
 ## <a name="related-resources"></a>相关资源
 
-如需此方案的引导式学习路径，请参阅[在 Azure 中生成无服务器 Web 应用][serverless]。
+如果需要引导式学习路径，请参阅[在 Azure 中构建无服务器 Web 应用][serverless]。
 
-将此示例方案部署到生产环境中之前，请参阅 Azure Functions [最佳做法][functions-best-practices]。
+在生产环境中部署此示例方案之前，请查看用于[优化 Azure Functions 的性能和可靠性][functions-best-practices]的建议做法。
 
 <!-- links -->
 [architecture]: ./media/architecture-intelligent-apps-image-processing.png

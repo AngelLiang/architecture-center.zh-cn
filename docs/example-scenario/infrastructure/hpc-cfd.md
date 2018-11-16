@@ -1,16 +1,16 @@
 ---
-title: 在 Azure 上运行计算流体动力学 (CFD) 仿真
-description: 在 Azure 上执行计算流体动力学 (CFD) 仿真。
+title: 在 Azure 上运行计算流体动力学 (CFD) 模拟
+description: 在 Azure 上执行计算流体动力学 (CFD) 模拟。
 author: mikewarr
 ms.date: 09/20/2018
-ms.openlocfilehash: 5734e6fe707e3beb5e23f2ad2b4344ba289803bb
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: f32e055838d6c62584130f61a0d92b06cc46ec63
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818560"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610628"
 ---
-# <a name="running-computational-fluid-dynamics-cfd-simulations-on-azure"></a>在 Azure 上运行计算流体动力学 (CFD) 仿真
+# <a name="running-computational-fluid-dynamics-cfd-simulations-on-azure"></a>在 Azure 上运行计算流体动力学 (CFD) 模拟
 
 计算流体动力学 (CFD) 仿真需要大量的计算时间，并需要专业化的硬件。 随着群集用量的增加，仿真时间和总体网格用量也会增加，导致备用容量出现问题，排队时间延长。 添加物理硬件可能费用高昂，并且不一定与企业经历的用量高峰与低谷相一致。 利用 Azure 可以化解其中的许多难题，而且不需要额外的资本性支出。
 
@@ -20,7 +20,7 @@ Azure 提供所需的硬件用于在 GPU 和 CPU 虚拟机上运行 CFD 作业�
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-对于以下可以使用 CFD 应用程序的行业，请考虑此方案：
+CFD 应用程序的其他相关行业包括：
 
 * 航空
 * 汽车

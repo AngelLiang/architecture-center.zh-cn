@@ -3,12 +3,12 @@ title: 将旧式 Web 应用程序迁移到 Azure 上基于 API 的体系结构
 description: 使用 Azure API 管理来实现旧式 Web 应用程序的现代化。
 author: begim
 ms.date: 09/13/2018
-ms.openlocfilehash: 1aa7ea6dc895146e13677dd9867fb2530f0a8f04
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: f468b3c6dc1c58e03555613b152882316ae2a017
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876777"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610577"
 ---
 # <a name="migrating-a-legacy-web-application-to-an-api-based-architecture-on-azure"></a>将旧式 Web 应用程序迁移到 Azure 上基于 API 的体系结构
 
@@ -20,7 +20,7 @@ ms.locfileid: "48876777"
 * 内部开发团队将编写要通过新 HTTP API 公开的新业务功能。
 * 合同开发团队将生成一个要托管在 Azure 中的基于浏览器的新 UI。
 
-新应用程序功能分阶段交付。 他们将逐渐替代现有的、为目前电子商务业务提供动力的基于浏览器的客户端-服务器 UI 功能（托管在本地）。
+新应用程序功能分阶段交付。 这些功能将逐渐替代现有的、为目前电子商务业务提供动力的基于浏览器的客户端-服务器 UI 功能（托管在本地）。
 
 管理团队不希望进行不必要的现代化。 此外，他们希望能够保持控制项目范围和成本。 为此，他们决定保留现有的 SOAP HTTP 服务。 他们还希望能够尽量减少对现有 UI 做出的更改。 利用 [Azure API 管理 (APIM)][apim] 可以解决该项目的许多要求和约束。
 
@@ -81,11 +81,12 @@ APIM 实例配置为将旧式 HTTP 服务映射到新的 API 合同。 这样，
 > [!NOTE]
 > “开发人员”层可用于评估 API 管理功能。 不应在生产环境中使用“开发人员”层。
 
-若要查看预计成本并根据部署需求进行自定义，可在 [Azue 定价计算器][pricing-calculator]中修改缩放单元和应用服务实例的数目。
+若要查看预计成本并根据部署需求进行自定义，可在 [Azure 定价计算器][pricing-calculator]中修改缩放单元和应用服务实例的数目。
 
 ## <a name="related-resources"></a>相关资源
 
 查看有关 Azure API 管理的丰富[文档和参考文章][apim]。
+
 
 <!-- links -->
 [architecture]: ./media/architecture-apim-api-scenario.png

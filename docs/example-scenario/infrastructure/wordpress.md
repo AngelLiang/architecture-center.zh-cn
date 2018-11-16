@@ -3,12 +3,12 @@ title: Azure 上高度可扩展且高度安全的 WordPress 网站
 description: 构建高度可扩展且高度安全的 WordPress 网站以用于媒体事件。
 author: david-stanford
 ms.date: 09/18/2018
-ms.openlocfilehash: f7dd73524b2b63cd7d38e8e03bfd4b8edac251a9
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 6ff39d09fa301c8c68ce2a644cc489c0e87a22fa
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818473"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610594"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>高度可缩放的安全 WordPress 网站
 
@@ -16,7 +16,7 @@ ms.locfileid: "48818473"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-以下用例可以考虑本方案：
+其他相关用例包括：
 
 * 媒体活动导致流量激增。
 * 博客网站使用 WordPress 作为内容管理系统。

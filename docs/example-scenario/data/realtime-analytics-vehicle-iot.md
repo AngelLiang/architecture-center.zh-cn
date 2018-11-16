@@ -1,14 +1,14 @@
 ---
 title: 引入和处理实时汽车 IoT 数据
 description: 使用 IoT 引入和处理实时车辆数据。
-author: meeral
+author: msdpalam
 ms.date: 09/12/2018
-ms.openlocfilehash: 663332185f64987215384a1d4af4b7ed9b50847c
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 6562e3277e6b6eb38993132284ad43542ef4c0d3
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876879"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610730"
 ---
 # <a name="ingestion-and-processing-of-real-time-automotive-iot-data"></a>引入和处理实时汽车 IoT 数据
 
@@ -23,7 +23,7 @@ ms.locfileid: "48876879"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-创建远程通信数据引入和处理系统时，请结合上述目标，针对以下用例考虑使用此方案：
+其他相关用例包括：
 
 * 车辆保养提醒和警报。
 * 为乘客提供基于位置的服务（例如 SOS）。
@@ -65,7 +65,7 @@ ms.locfileid: "48876879"
 * 托管的 [HDInsight Kafka](/azure/hdinsight/kafka/apache-kafka-introduction) 附带 99.9% 的 SLA，并与 Azure 托管磁盘集成
 * [Azure Databricks](/azure/azure-databricks/what-is-azure-databricks) 一开始就针对云中的性能和成本效益做了优化。 Databricks 运行时为 Apache Spark 工作负荷增加了多个关键功能，在提高 Azure 中运行的工作负荷性能的同时，还能将成本降低 10 到 100 倍。这些功能包括：
 * Azure Databricks 与以下 Azure 数据库和存储深度集成：[Azure SQL 数据仓库](/azure/sql-data-warehouse)、[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db)、[Azure Data Lake Storage](https://azure.microsoft.com/services/storage/data-lake-storage) 和 [Azure Blob 存储](https://azure.microsoft.com/services/storage/blobs)。
-    * 自动缩放和自动终止 Spark 群集，以自动将成本减到最少。
+    * 自动缩放和自动终止 Spark 群集，以自动将成本降至最低。
     * 性能优化，包括缓存、索引和高级查询优化，与云中或本地环境中的传统 Apache Spark 部署相比，可将性能提升 10 到 100 倍。
     * 与 Azure Active Directory 集成后，可以使用 Azure Databricks 运行基于 Azure 的完整解决方案。
     * 使用 Azure Databricks 中基于角色的访问可以精细地向用户授予对笔记本、群集、作业和数据的权限。

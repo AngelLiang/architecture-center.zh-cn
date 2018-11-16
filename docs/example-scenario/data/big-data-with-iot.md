@@ -3,12 +3,12 @@ title: 建筑行业中的 IoT 和数据分析
 description: 使用 IoT 设备和数据分析提供建筑项目的全面管理和运营。
 author: alexbuckgit
 ms.date: 08/29/2018
-ms.openlocfilehash: 7ab0de50b0eba1ab420e450f3408fe5dc45f04ac
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 74868191687e63a54a69fdacb7276983d98faf74
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818490"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610917"
 ---
 # <a name="iot-and-data-analytics-in-the-construction-industry"></a>建筑行业中的 IoT 和数据分析
 
@@ -29,7 +29,7 @@ ms.locfileid: "48818490"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-以下用例可以考虑本解决方案：
+其他相关用例包括：
 
 * 建筑、采矿或设备制造方案
 * 要存储和分析的大规模设备数据集合
@@ -47,7 +47,7 @@ ms.locfileid: "48818490"
 4. 收集的原始数据直接从 IoT 中心发送到 Azure Blob 存储，并立即可供查看和分析。
 5. 通过 IoT 中心收集的数据由 Azure 流分析作业以近实时的速度进行处理，并存储在 Azure SQL 数据库中。
 6. 分析师和最终用户可以使用 Smart Construction Cloud Web 应用程序来查看和分析传感器数据与图像。 
-7. Web 应用程序的用户按需启动批处理作业。 批处理作业在 Apache Spark on HDInsight 中运行，可分析 Cassandra 群集中存储的新数据。 
+7. Web 应用程序的用户按需启动批处理作业。 批处理作业在 Apache Spark on HDInsight 中运行，可分析 Cassandra 群集中存储的新数据。 
 
 ### <a name="components"></a>组件
 

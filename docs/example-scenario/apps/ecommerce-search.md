@@ -3,24 +3,24 @@ title: 用于电子商务的智能产品搜索引擎
 description: 在电子商务应用程序中提供世界一流的搜索体验。
 author: jelledruyts
 ms.date: 09/14/2018
-ms.openlocfilehash: f18e9fd3705c24da71da747c46ab42f263fd06af
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: a57477c26665b4560671550f6fdd81c2d9505e71
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818742"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610662"
 ---
 # <a name="intelligent-product-search-engine-for-e-commerce"></a>用于电子商务的智能产品搜索引擎
 
 本示例方案演示如何使用专用搜索服务来大幅提高电子商务客户搜索结果的相关性。
 
-搜索是可让客户找到并最终购买产品的主要机制，因此，至关重要的是，搜索结果必须与搜索查询的意向相关，并且端到端的搜索体验能够提供近实时的结果、语言分析、地理位置匹配、筛选、分面、自动填充和匹配项突出显示等，以此符合巨量信息搜索的预期。
+搜索是可让客户找到并最终购买产品的主要机制，因此，至关重要的是，搜索结果必须与搜索查询的意向相关，并且端到端的搜索体验能够提供近实时的结果、语言分析、地理位置匹配、筛选、分面、自动填充和匹配项突出显示等，藉此符合巨量信息搜索的预期。
 
 假设某个典型电子商务 Web 应用程序的产品数据存储在 SQL Server 或 Azure SQL 数据库等等关系数据库中。 搜索查询通常是使用 `LIKE` 查询或[全文搜索][docs-sql-fts]功能在数据库内部处理的。 如果改用 [Azure 搜索][docs-search]，则可以解放操作数据库，使其不用执行查询处理，同时，可以轻松开始利用这些难以实现的功能，让它们尽量为客户提供最佳的搜索体验。 此外，由于 Azure 搜索是一个平台即服务 (PaaS) 组件，你无需考虑如何管理基础结构或成为搜索专家。
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-其他这些用例采用类似的设计模式：
+其他相关用例包括：
 
 * 查找靠近用户实际位置的房地产清单或商店。
 * 在新闻网站中搜索新闻文章，或查找赛事结果，其中最近的信息排在前面。

@@ -3,12 +3,12 @@ title: Azure 上的电子商务前端
 description: 在 Azure 上托管电子商务站点。
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 6ca85665a5bf63bf71f5badc16406db5df2a34c2
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 7baaf4d2986a00ab72b60a540bcd9d864893b109
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819085"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610815"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Azure 上的电子商务前端
 
@@ -18,7 +18,7 @@ ms.locfileid: "48819085"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-以下用例可以考虑本方案：
+其他相关用例包括：
 
 * 生成一个需要通过弹性缩放来应对不同时间的用户数突增的应用程序。
 * 生成一个根据设计可以在全世界的不同 Azure 区域运行并可确保高可用性的应用程序。

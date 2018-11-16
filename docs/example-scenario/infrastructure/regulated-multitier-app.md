@@ -3,12 +3,12 @@ title: 确保管控行业的 Windows Web 应用程序的安全
 description: 使用规模集、应用程序网关和负载均衡器在 Azure 上通过 Windows Server 构建安全的多层 Web 应用程序。
 author: iainfoulds
 ms.date: 07/11/2018
-ms.openlocfilehash: 584b5891f9b3d8e174c3eb29835a525ae4a4f156
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: c7137988bd9b5e26718b4fe0955a3dca3dc638b8
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819000"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610713"
 ---
 # <a name="secure-windows-web-application-for-regulated-industries"></a>确保管控行业的 Windows Web 应用程序的安全
 
@@ -18,7 +18,7 @@ ms.locfileid: "48819000"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-以下用例可以考虑本方案：
+其他相关用例包括：
 
 * 在安全的云环境中实现应用程序部署方式的现代化。
 * 减少旧版本地应用程序和服务管理的开销。

@@ -3,12 +3,12 @@ title: Azure 上提供的用于酒店预订的对话式聊天机器人
 description: 使用 Azure 机器人服务为商务应用程序构建对话式聊天机器人。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 826aa36da5f30a871abd90fd8ab2b202ffdf93f0
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: a922a75d621672fcac95296b1d99112d68c91107
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819620"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610764"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Azure 上提供的用于酒店预订的对话式聊天机器人
 
@@ -20,11 +20,11 @@ ms.locfileid: "48819620"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-以下用例可以考虑本方案：
+其他相关用例包括：
 
 * 查看餐馆外卖菜单并下单
 * 查看酒店房间可用情况并订房
-* 搜索并订购提供的照片
+* 搜索可用照片并订购打印版
 
 ## <a name="architecture"></a>体系结构
 
@@ -96,7 +96,7 @@ ms.locfileid: "48819620"
 
 ### <a name="deploy-infrastructure-components"></a>部署基础结构组件
 
-若要通过 Azure 资源管理器模板部署基础结构组件，请执行以下步骤。
+若要通过资源管理器模板部署基础结构组件，请执行以下步骤。
 
 1. 单击“部署到 Azure”按钮：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fcommerce-chatbot.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. 等待模板部署在 Azure 门户中打开，然后完成以下步骤：
@@ -149,7 +149,8 @@ GitHub 上提供了一个示例 C# 应用程序：
 
 ## <a name="related-resources"></a>相关资源
 
-如需一系列介绍如何利用 Azure 机器人服务的引导式教程，请参阅文档的[教程节点][botservice-docs]。
+有关 Azure 机器人服务的一系列引导式教程，请参阅文档的[教程部分][botservice-docs]。
+
 
 <!-- links -->
 [aadb2c-docs]: /azure/active-directory-b2c/active-directory-b2c-overview
