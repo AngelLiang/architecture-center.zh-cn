@@ -3,12 +3,12 @@ title: Azure 上的可缩放订单处理
 description: 使用 Azure Cosmos DB 构建高度可缩放的订单处理管道。
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: fe642ffde733914389c36c5be50f35d242a22edf
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 1c3bb2cc33be74f5ff8ee0513de4c3f7df70aa37
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818507"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610849"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Azure 上的可缩放订单处理
 
@@ -20,7 +20,7 @@ ms.locfileid: "48818507"
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-以下用例可以考虑本方案：
+其他相关用例包括：
 
 * 电子商务或零售点后端系统。
 * 库存管理系统。
