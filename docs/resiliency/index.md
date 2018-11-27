@@ -4,12 +4,12 @@ description: 如何在 Azure 中生成可复原应用程序，以实现高可用
 author: MikeWasson
 ms.date: 07/29/2018
 ms.custom: resiliency
-ms.openlocfilehash: b925748e1d3d4a8d490bbd5d7cb76f3961ffcfb2
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 73600650dc96fe85ad59e286079a3523ef25d055
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916594"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305955"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>设计适用于 Azure 的可复原应用程序
 
@@ -174,7 +174,9 @@ Azure 提供许多功能用于实现每个故障级别的应用程序冗余，�
 
 **可用性集**。 若要防范局部性硬件故障（例如磁盘或网络交换机故障），请在可用性集中部署两个或更多个 VM。 可用性集包括两个或更多个容错域，它们共用一个电源和网络交换机。 可用性集中的 VM 分布在不同的容错域中，因此，如果硬件故障影响了一个容错域，仍可将网络流量路由到其他容错域中的 VM。 有关可用性集的详细信息，请参阅[在 Azure 中管理 Windows 虚拟机的可用性](/azure/virtual-machines/windows/manage-availability)。
 
-**可用性区域**。  可用性区域是 Azure 区域中的物理独立区域。 每个可用性区域有独立的电源、网络和散热设备。 跨可用性区域部署 VM 有助于在发生数据中心范围的故障时保护应用程序。 
+**可用性区域**。  可用性区域是 Azure 区域中的物理独立区域。 每个可用性区域有独立的电源、网络和散热设备。 跨可用性区域部署 VM 有助于在发生数据中心范围的故障时保护应用程序。
+
+**Azure Site Recovery**。  将 Azure 虚拟机复制到另一个 Azure 区域以满足业务连续性和灾难恢复需求。 可以执行定期的 DR 演练以确保操作满足符合性需求。 源区域中发生故障时，VM 将按照指定的设置复制到所选区域，以便恢复应用程序。 有关详细信息，请参阅[使用 ASR 复制 Azure VM][site-recovery]。
 
 **配对区域**。 若要在发生区域性服务中断时保护应用程序，可以跨多个区域部署应用程序，并使用 Azure 流量管理器将 Internet 流量分发到不同的区域。 每个 Azure 区域与另一个区域配对。 它们共同构成了[区域对](/azure/best-practices-availability-paired-regions)。 除巴西南部以外，区域对位于同一区域，以符合税务和执法管辖范围方面的数据驻留要求。
 
@@ -202,9 +204,11 @@ Azure 提供许多功能用于实现每个故障级别的应用程序冗余，�
 * 将 Azure 应用服务应用横向扩展到多个实例。 应用服务可自动在实例之间进行负载均衡。 请参阅[基本 Web 应用程序][ra-basic-web]。
 * 使用 [Azure 流量管理器][tm]在一组终结点之间分配流量。
 
-**复制数据**。 复制数据是处理数据存储中非暂时性故障的常规策略。 许多存储技术（包括 Azure SQL 数据库、Cosmos DB 和 Apache Cassandra）提供内置复制。 必须同时考虑读取和写入路径。 根据所用的存储技术，可以创建多个可写副本，或者创建单个可写副本和多个只读副本。 
+**复制数据**。 复制数据是处理数据存储中非暂时性故障的常规策略。 许多存储技术（包括 Azure SQL 数据库、Cosmos DB 和 Apache Cassandra）提供内置复制。 必须同时考虑读取和写入路径。 根据所用的存储技术，可以创建多个可写副本，或者创建单个可写副本和多个只读副本。
 
-为了最大程度地提高可用性，可将副本放在多个区域。 但是，这会增大复制数据时的延迟。 跨区域复制通常是以异步方式执行的，这意味着，如果某个副本发生故障，将无法遵循最终一致性模型，并可能会丢失数据。 
+为了最大程度地提高可用性，可将副本放在多个区域。 但是，这会增大复制数据时的延迟。 跨区域复制通常是以异步方式执行的，这意味着，如果某个副本发生故障，将无法遵循最终一致性模型，并可能会丢失数据。
+
+可以使用 [Azure Site Recovery][site-recovery] 将 Azure 虚拟机从一个区域复制到另一个区域。 Site Recovery 将向目标区域持续复制数据。 主站点发生故障时，可以故障转移到辅助位置
 
 **正常降级**。 如果某个服务发生故障且没有故障转移路径，应用程序有时能够正常降级，同时仍能提供可接受的用户体验。 例如：
 
@@ -355,3 +359,4 @@ Azure 提供许多功能用于实现每个故障级别的应用程序冗余，�
 [tm]: https://azure.microsoft.com/services/traffic-manager/
 [tm-failover]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager
+[site-recovery]:/azure/site-recovery/azure-to-azure-quickstart/

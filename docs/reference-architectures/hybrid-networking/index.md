@@ -3,12 +3,12 @@ title: 选择用于将本地网络连接到 Azure 的解决方案
 description: 比较用于将本地网络连接到 Azure 的参考体系结构。
 author: telmosampaio
 ms.date: 07/02/2018
-ms.openlocfilehash: 0cc07d3b7d45accf9f99ce32914b0ef065d62f32
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: a9e2a212d65530e714635bbfae3a57766e77c3a6
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987472"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295475"
 ---
 # <a name="connect-an-on-premises-network-to-azure"></a>将本地网络连接到 Azure
 
@@ -28,7 +28,7 @@ ms.locfileid: "38987472"
 
 - 需要本地 VPN 设备。
 - 尽管 Microsoft 保证每个 VPN 网关 99.9% 的可用性，但此 [SLA](https://azure.microsoft.com/support/legal/sla/vpn-gateway/) 仅涵盖 VPN 网关，并不涉及与网关之间的网络连接。
-- 通过 Azure VPN 网关的 VPN 连接当前最多支持 200 Mbps 的带宽。 如果预期会超过此吞吐量，可能需要跨多个 VPN 连接对 Azure 虚拟网络进行分区。
+- 通过 Azure VPN 网关的 VPN 连接当前最多支持 1.25 Gbps 的带宽。 如果预期会超过此吞吐量，可能需要跨多个 VPN 连接对 Azure 虚拟网络进行分区。
 
 **参考体系结构**
 

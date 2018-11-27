@@ -3,12 +3,12 @@ title: 无缓存对立模式
 description: 反复提取相同的数据可能会降低性能和可伸缩性。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: f94a9f3f9166e87949a0e60af818cd89796dc3e2
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: ec19cde567fb63248c121328322e834d99c841e8
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428936"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295576"
 ---
 # <a name="no-caching-antipattern"></a>无缓存反模式
 
@@ -59,7 +59,7 @@ public class PersonRepository : IPersonRepository
 - 读取时，应用程序尝试从缓存中读取数据。 如果数据不在缓存中，应用程序会从数据源中检索数据，并将其添加到缓存。
 - 写入时，应用程序将更改直接写入数据源，并从缓存中删除旧值。 下一次有需要时，会在缓存中检索和添加数据。
 
-此方法适合经常更改的数据。 下面将前一示例更新为使用 [缓存端][cache-aside] 模式。  
+此方法适合经常更改的数据。 下面将前一示例更新为使用[缓存端][cache-aside-pattern]模式。  
 
 ```csharp
 public class CachedPersonRepository : IPersonRepository
