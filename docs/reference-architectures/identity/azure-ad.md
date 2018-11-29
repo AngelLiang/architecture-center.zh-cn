@@ -7,12 +7,12 @@ ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: 5bb0fb990418a28170a8baeffd22e480fb664fda
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: c265870b9a664afbde561d324ae42fd3a2d9a87e
+ms.sourcegitcommit: 1287d635289b1c49e94f839b537b4944df85111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818949"
+ms.lasthandoff: 11/27/2018
+ms.locfileid: "52332351"
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>将本地 Active Directory 域与 Azure Active Directory 集成
 
@@ -218,7 +218,7 @@ Azure AD Connect 通过安装以下工具来维护本地计算机中的 Azure AD
 
 GitHub 上提供了可实施这些建议和注意事项的参考体系结构部署。 此参考体系结构会在 Azure 中部署一个可用来测试和试验的模拟本地网络。 可以按照以下说明，使用 Windows VM 或 Linux VM 部署该参考体系结构： 
 
-1. 单击下面的按钮：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fidentity%2Fazure-ad%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
+1. 单击下面的按钮：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fidentity-reference-architectures%2Fmaster%2Fazure-ad%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. 在 Azure 门户中打开该链接后，必须输入某些设置的值： 
    * 参数文件中已定义**资源组**名称，因此请选择“新建”，并在文本框中输入 `ra-aad-onpremise-rg`。
    * 从“位置”下拉框中选择区域。

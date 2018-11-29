@@ -2,17 +2,17 @@
 title: 微服务体系结构样式
 description: 介绍 Azure 上微服务体系结构的好处、挑战和最佳做法
 author: MikeWasson
-ms.date: 08/30/2018
-ms.openlocfilehash: fb23ac3e408f3a202d925a1bf684bc30d423f218
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 11/13/2018
+ms.openlocfilehash: 4e5d50f829323829c953977257e690354566ebf6
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325437"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295525"
 ---
 # <a name="microservices-architecture-style"></a>微服务体系结构样式
 
-微服务体系结构由一系列小型的自治服务组成。 每个服务都是自包含服务，并且应实现单个业务功能。 有关在 Azure 上构建微服务体系结构的详细指导，请参阅[在 Azure 中设计、构建和操作微服务](../../microservices/index.md)。
+微服务体系结构由一系列小型的自治服务组成。 每个服务都是自包含服务，并且应实现单个业务功能。 
 
 ![](./images/microservices-logical.svg)
  
@@ -91,7 +91,7 @@ ms.locfileid: "43325437"
 
 - **技能组合**。 微服务是一种高度分布式系统。 请仔细评估团队是否具有成功使用微服务所需的技能和经验。
 
-## <a name="best-practices"></a>最佳实践
+## <a name="best-practices"></a>最佳做法
 
 - 围绕业务域对服务建模。 
 
@@ -111,39 +111,9 @@ ms.locfileid: "43325437"
 
 - 隔离故障。 使用复原策略可防止某个服务中的故障级联。 请参阅[复原模式][resiliency-patterns]和[设计可复原应用程序][resiliency-overview]。
 
-## <a name="microservices-using-azure-container-service"></a>使用 Azure 容器服务的微服务 
+## <a name="next-steps"></a>后续步骤
 
-可以使用 [Azure 容器服务](/azure/container-service/)来配置和预配 Docker 群集。 Azure 容器服务支持多种常用容器业务流程协调程序，包括 Kubernetes、DC/OS 和 Docker Swarm。
-
-![](./images/microservices-acs.png)
- 
-**公共节点**。 这些节点可通过面向公众的负载均衡器访问。 API 网关就托管在这些节点上。
-
-**后端节点**。 这些节点运行客户端通过 API 网关访问的服务。 这些节点不直接接收 Internet 流量。 后端节点可包含多个 VM 池，每个池都有一个不同的硬件配置文件。 例如，可为常规计算工作负载、高 CPU 工作负载和高内存工作负载分别创建不同的池。 
-
-**管理 VM**。 这些 VM 运行容器业务流程协调程序的主节点。 
-
-**网络**。 公共节点、后端节点和管理 VM 放置在同一虚拟网络 (VNet) 内的不同子网中。 
-
-**负载均衡器**。  一个面向外部的负载均衡器位于公共节点前面。 它将 Internet 请求分布到公共节点。 另一个负载均衡器放在管理 VM 前面，以允许使用 NAT 规则将安全外壳 (ssh) 流量发送到管理 VM。
-
-为了实现可靠性和可伸缩性，会跨多个 VM 复制每个服务。 但是，由于服务也相对轻量（相比单一式应用程序），因此，通常会将多个服务打包到一个 VM 中。 密度越高意味着资源利用率越高。 如果某个服务不使用大量资源，则无需专门使用整个 VM 来运行该服务。
-
-下图展示运行四个不同服务（由不同的形状表示）的三个节点。 请注意，每个服务至少有两个实例。 
- 
-![](./images/microservices-node-density.png)
-
-## <a name="microservices-using-azure-service-fabric"></a>使用 Azure Service Fabric 的微服务
-
-下图展示使用 [Azure Service Fabric](/azure/service-fabric/) 的微服务体系结构。
-
-![](./images/service-fabric.png)
-
-Service Fabric 群集部署到一个或多个 VM 规模集。 你的群集中可能有多个 VM 规模集，以便包含各种 VM 类型。 API 网关放在 Service Fabric 群集前面，由一个外部负载均衡器接收客户端请求。
-
-Service Fabric 运行时执行群集管理，包括服务放置、节点故障转移和运行状况监视。 该运行时部署于群集节点自身。 这里没有一组单独的群集管理 VM。
-
-服务使用 Service Fabric 内置的反向代理相互通信。 Service Fabric 提供发现服务，可用于解析指定服务的终结点。
+有关在 Azure 上构建微服务体系结构的详细指导，请参阅[在 Azure 中设计、构建和操作微服务](../../microservices/index.md)。
 
 
 <!-- links -->

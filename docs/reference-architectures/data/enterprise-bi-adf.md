@@ -3,16 +3,18 @@ title: 将自动化企业 BI 与 SQL 数据仓库和 Azure 数据工厂配合使
 description: 使用 Azure 数据工厂将 Azure 上的 ELT 工作流自动化
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: 39089d80047b584ac590d285097020212ab72911
-ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
+ms.openlocfilehash: 3fedcd08572a9fe1fc610f5fbab12f8ff0d53073
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51263723"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295612"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>将自动化企业 BI 与 SQL 数据仓库和 Azure 数据工厂配合使用
 
-此参考体系结构演示如何在 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt)（提取-加载-转换）管道中执行增量加载。 它使用 Azure 数据工厂将 ELT 管道自动化。 该管道以增量方式将最新的 OLTP 数据从本地 SQL Server 数据库移入 SQL 数据仓库。 事务数据将转换为表格模型以供分析。 
+此参考体系结构演示如何在 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt)（提取-加载-转换）管道中执行增量加载。 它使用 Azure 数据工厂将 ELT 管道自动化。 该管道以增量方式将最新的 OLTP 数据从本地 SQL Server 数据库移入 SQL 数据仓库。 事务数据将转换为表格模型以供分析。
+
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
 
 [GitHub][github] 中提供了本体系结构的参考实现。
 
