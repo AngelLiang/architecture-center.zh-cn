@@ -3,12 +3,12 @@ title: 大数据体系结构样式
 description: 介绍了 Azure 上的大数据体系结构的好处、挑战和最佳做法
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 073a1a88f1aaca7f09bd1f47ba79216b0727ca24
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 107ea7ad4e97a891236596291b0cee41a72eb865
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325365"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295559"
 ---
 # <a name="big-data-architecture-style"></a>大数据体系结构样式
 
@@ -75,7 +75,7 @@ Azure 包括了可以在大数据体系结构中使用的许多服务。 它们�
 - **技术成熟度**。 大数据中使用的许多技术在不断发展。 虽然诸如 Hive 和 Pig 的核心 Hadoop 技术已经稳定，但是诸如 Spark 的新兴技术随每个新版本引入了大量的更改和增强。 与其他 Azure 服务相比，诸如 Azure Data Lake Analytics 和 Azure 数据工厂的托管服务相对年轻，并且可能会随时间发展。
 - **安全性**。 大数据解决方案通常依赖于将所有静态数据存储在一个集中式 Data Lake 中。 确保对此数据的访问安全可能比较困难，尤其是当必须通过多个应用程序和平台引入和使用数据时。
 
-## <a name="best-practices"></a>最佳实践
+## <a name="best-practices"></a>最佳做法
 
 - **利用并行**。 大多数大数据处理技术会将工作负荷分布到多个处理单元中。 这需要以可拆分格式创建和存储静态数据文件。 分布式文件系统（例如 HDFS）可以优化读取和写入性能，并且通过多个群集节点并行执行实际处理，这降低了整体作业时间。
 
@@ -124,6 +124,10 @@ Azure 包括了可以在大数据体系结构中使用的许多服务。 它们�
 - 某些 IoT 解决方案可使命令和控制消息发送到设备。
 
 > 本部分介绍了 IoT 的极高级别视图，需要考虑许多细微问题和挑战。 要获取更为详细的参考架构和讨论，请参阅 [Microsoft Azure IoT 参考架构][iot-ref-arch]（PDF 下载）。
+
+## <a name="next-steps"></a>后续步骤
+
+- 详细了解[大数据体系结构](../../data-guide/big-data/index.md)。
 
  <!-- links -->
 

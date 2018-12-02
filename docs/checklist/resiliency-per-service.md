@@ -4,12 +4,12 @@ description: 一个检查表，提供各种 Azure 服务的复原能力指南。
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 50808a837132e905cc89c3c43d40852a04f4885c
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 53a37595bd6e70fa3a43e9a72b2ae47d2225009f
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916696"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305921"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>特定 Azure 服务的复原能力检查表
 
@@ -139,6 +139,8 @@ ms.locfileid: "50916696"
 
 **将每个应用程序层放入不同的可用性集。** 在 N 层应用程序中，不要将不同层中的 VM 放入同一个可用性集。 可用性集中的 VM 放置在不同的容错域 (FD) 和更新域 (UD) 中。 但是，为了获得 FD 与 UD 的冗余优势，可用性集中的每个 VM 必须能够处理相同的客户端请求。
 
+**使用 Azure Site Recovery 复制 VM。** 使用 [Site Recovery][site-recovery] 复制 Azure VM 时，所有 VM 磁盘将以异步方式持续复制到目标区域。 每隔几分钟就会创建恢复点。 这可以实现分钟量级的恢复点目标 (RPO)。 可以开展灾难恢复演练任意次，这不会影响生产应用程序或正在进行的复制。 有关详细信息，请参阅[运行灾难恢复到 Azure 的演练][site-recovery-test]。
+
 **根据性能要求选择适当的 VM 大小。** 将现有工作负荷转移到 Azure 时，首先请使用与本地服务器最匹配的 VM 大小。 然后测量与 CPU、内存和磁盘 IOPS 有关的实际工作负荷的性能，并根据需要调整大小。 这有助于确保应用程序在云环境中的行为符合预期。 此外，如果需要多个 NIC，请注意每种大小的 NIC 限制。
 
 **对 VHD 使用托管磁盘。** [托管磁盘][managed-disks]为可用性集中的 VM 提供更高的可靠性，因为这些磁盘彼此充分隔离，可避免单一故障点。 此外，托管磁盘不受存储帐户中创建的 VHD 的 IOPS 限制。 有关详细信息，请参阅[在 Azure 中管理 Windows 虚拟机的可用性][vm-manage-availability]。
@@ -166,6 +168,8 @@ ms.locfileid: "50916696"
 [diagnostics-logs]: /azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs/
 [managed-disks]: /azure/storage/storage-managed-disks-overview
 [search-optimization]: /azure/search/search-performance-optimization/
+[site-recovery]: /azure/site-recovery/
+[site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
 [sql-backup]: /azure/sql-database/sql-database-automated-backups/
 [sql-restore]: /azure/sql-database/sql-database-recovery-using-backups/
 [vm-manage-availability]: /azure/virtual-machines/windows/manage-availability#use-managed-disks-for-vms-in-an-availability-set

@@ -3,12 +3,12 @@ title: 批处理
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: d6843bf4e20c3eb26e61cfa09300ad533e969c2e
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: eecee13e9b22b0382a0128e1c6ab8b960cbd4fea
+ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298655"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52550472"
 ---
 # <a name="batch-processing"></a>批处理
 
@@ -75,7 +75,7 @@ ms.locfileid: "30298655"
 
 ### <a name="analytics-and-reporting"></a>分析和报告
 
-- **Azure Analysis Services**。 许多大数据解决方案包含集中式联机分析处理 (OLAP) 数据模型（通常称为多维数据集）并据此生成报告、仪表板和交互式“切片和切块”，因此可以模拟传统的企业商业智能体系结构。 Azure Analysis Services 支持创建多维和表格模型来满足此需求。
+- **Azure Analysis Services**。 许多大数据解决方案包含集中式联机分析处理 (OLAP) 数据模型（通常称为多维数据集）并据此生成报告、仪表板和交互式“切片和切块”，因此可以模拟传统的企业商业智能体系结构。 Azure Analysis Services 支持创建表格模型来满足此需求。
 - **Power BI**。 数据分析师可以使用 Power BI，基于 OLAP 模型中的数据模型或者直接从分析数据存储创建交互式数据可视化效果。
 - **Microsoft Excel**。 Microsoft Excel 是全球最广泛使用的软件应用程序之一，提供大量的数据分析和可视化功能。 数据分析师可以使用 Excel 从分析数据存储构建文档数据模型，或者将 OLAP 数据模型中的数据检索到交互式数据透视表和图表。
 
@@ -83,7 +83,7 @@ ms.locfileid: "30298655"
 
 ### <a name="orchestration"></a>业务流程
 
-- **Azure 数据工厂** 使用 Azure 数据工厂管道可以定义一系列根据重复临时窗口计划的活动。 这些活动可以在按需 HDInsight 群集中启动数据复制操作，以及：Hive、Pig、MapReduce 或 Spark 作业；Azure Date Lake Analytics 中的 U-SQL 作业；Azure SQL 数据仓库或 Azure SQL 数据库中的存储过程。
+- **Azure 数据工厂**。 使用 Azure 数据工厂管道可以定义一系列根据重复临时窗口计划的活动。 这些活动可以在按需 HDInsight 群集中启动数据复制操作，以及：Hive、Pig、MapReduce 或 Spark 作业；Azure Date Lake Analytics 中的 U-SQL 作业；Azure SQL 数据仓库或 Azure SQL 数据库中的存储过程。
 - **Oozie** 和 **Sqoop**。 Oozie 是 Apache Hadoop 生态系统的作业自动化引擎，可用于启动数据复制操作和 Hive、Pig 与 MapReduce 作业来处理数据，以及启动 Sqoop 作业在 HDFS 与 SQL 数据库之间复制数据。
 
 有关详细信息，请参阅[管道业务流程](../technology-choices/pipeline-orchestration-data-movement.md)

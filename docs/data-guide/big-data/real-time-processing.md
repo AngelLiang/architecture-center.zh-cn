@@ -3,12 +3,12 @@ title: 实时处理
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 4abb159924f902b5babe0673cc021e80b00c8529
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: 1499fecc20dcbf51472b92bb588b91db0fb58a7f
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37090979"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295593"
 ---
 # <a name="real-time-processing"></a>实时处理
 
@@ -76,3 +76,8 @@ ms.locfileid: "37090979"
 
 在单纯的实时解决方案中，大多数处理业务流程由消息引入和流处理组件管理。 但是，在结合批处理与实时处理的 lambda 体系结构中，可能需要使用 Azure 数据工厂或 Apache Oozie 和 Sqoop 等业务流程框架来管理捕获的实时数据的批处理工作流。
 
+## <a name="next-steps"></a>后续步骤
+
+以下参考体系结构演示了一个端到端流处理管道：
+
+- [使用 Azure 流分析进行流处理](../../reference-architectures/data/stream-processing-stream-analytics.md)

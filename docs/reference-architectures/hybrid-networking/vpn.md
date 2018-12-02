@@ -7,12 +7,12 @@ pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute
 pnp.series.prev: ./index
 cardTitle: VPN
-ms.openlocfilehash: 6e705c40663eff421e79067f916a1ebad6e72822
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: a494ff952dd6c8be3b38c2ca7f6740a44b5b30e1
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916543"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295661"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>使用 VPN 网关将本地网络连接到 Azure
 
@@ -413,7 +413,7 @@ ms.locfileid: "50916543"
 
     ![[3]][3]
 
-    应将结果与可供 VPN 网关使用的带宽（对于基本和标准 SKU 为 100 Mbps，对于高性能 SKU 为 200 Mbps）进行比较：
+    应该将结果与 VPN 网关可用的带宽（从基本 SKU 提供的 100 Mbps，到 VpnGw3 SKU 提供的 1.25 Gbps）进行比较：
 
     ![[4]][4]
 

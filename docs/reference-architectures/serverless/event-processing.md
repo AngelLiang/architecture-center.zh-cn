@@ -3,16 +3,16 @@ title: 使用 Azure Functions 进行无服务器事件处理
 description: 演示无服务器事件引入和处理的参考体系结构
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: 2bb7600fbed95e4b9368cf342c0bc6a75c5f8755
-ms.sourcegitcommit: 113a7248b9793c670b0f2d4278d30ad8616abe6c
+ms.openlocfilehash: 76c8b9c1244c987c96e38e50ecad7814cc49cd88
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/16/2018
-ms.locfileid: "49349932"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295644"
 ---
 # <a name="serverless-event-processing-using-azure-functions"></a>使用 Azure Functions 进行无服务器事件处理
 
-本参考体系结构演示一个可以引入数据流、处理数据，并将结果写入后端数据库的事件驱动式无服务器体系结构。 [GitHub][github] 中提供了本体系结构的参考实现。
+本参考体系结构演示一个可以引入数据流、处理数据，并将结果写入后端数据库的事件驱动式[无服务器](https://azure.microsoft.com/solutions/serverless/)体系结构。 [GitHub][github] 中提供了本体系结构的参考实现。
 
 ![](./_images/serverless-event-processing.png)
 

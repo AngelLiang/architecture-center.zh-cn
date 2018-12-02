@@ -4,12 +4,12 @@ description: 为设计过程中的复原能力考虑因素提供指导的查检�
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 15ad749c12dc8a45c9e7e08376452685d8ad7c9b
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: ce538a0b234a5b120415980e983096f567f9cf86
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819017"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305938"
 ---
 # <a name="resiliency-checklist"></a>复原能力查检表
 
@@ -43,6 +43,8 @@ ms.locfileid: "48819017"
 
 **为每个应用层使用 Azure 可用性集。** 将实例放入[可用性集][availability-sets]可提供更高的 [SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 
 
+**使用 Azure Site Recovery 复制 VM。** 使用 [Site Recovery][site-recovery] 复制 Azure VM 时，所有 VM 磁盘将以异步方式持续复制到目标区域。 每隔几分钟就会创建恢复点。 这可以实现分钟量级的恢复点目标 (RPO)。
+
 **考虑跨多个区域部署应用程序。** 如果将应用程序部署到单个区域，在发生整个区域不可用的情况时（这种情况很罕见），应用程序也不可用。 根据应用程序的 SLA 条款，这种情况可能不可接受。 为此，请考虑跨多个区域部署应用程序及其服务。 多区域部署可以使用主动-主动模式（将请求分发到多个活动实例）或主动-被动模式（预留一个“热”实例，以防主实例发生故障）。 我们建议跨区域对部署应用程序服务的多个实例。 有关详细信息，请参阅[业务连续性和灾难恢复 (BCDR)：Azure 配对区域](/azure/best-practices-availability-paired-regions)。
 
 **使用 Azure 流量管理器将应用程序的流量路由到不同的区域。**  [Azure 流量管理器][traffic-manager]在 DNS 级别执行负载均衡，根据指定的[流量路由][traffic-manager-routing]方法和应用程序终结点的运行状况将流量路由到不同区域。 如果不使用流量管理器，则受限于部署的单个区域，从而会限制规模，增大用户的延迟，并导致应用程序在发生区域范围的服务中断时停机。
@@ -64,7 +66,7 @@ ms.locfileid: "48819017"
 
 ## <a name="data-management"></a>数据管理
 
-**了解应用程序数据源的复制方法。** 应用程序数据将存储在不同的数据源中，因此具有不同的可用性要求。 评估 Azure 中每种数据存储的复制方法，包括 [Azure 存储复制](/azure/storage/storage-redundancy/)和 [SQL 数据库活动异地复制](/azure/sql-database/sql-database-geo-replication-overview/)，确保满足应用程序的数据要求。
+**了解应用程序数据源的复制方法。** 应用程序数据将存储在不同的数据源中，因此具有不同的可用性要求。 评估 Azure 中每种数据存储的复制方法，包括 [Azure 存储复制](/azure/storage/storage-redundancy/)和 [SQL 数据库活动异地复制](/azure/sql-database/sql-database-geo-replication-overview/)，确保满足应用程序的数据要求。 如果使用 [Site Recovery][site-recovery] 复制 Azure VM，则所有 VM 磁盘将以异步方式持续复制到目标区域。 每隔几分钟就会创建恢复点。 
 
 **确保没有任何用户帐户同时有权访问生产和备份数据。** 如果单个用户帐户同时有权写入生产和备份源，则将会透露数据备份。 恶意用户可能有意删除所有数据，而普通用户可能意外删除数据。 将应用程序设计为限制每个用户帐户的权限，以便只有需要写访问权限的用户拥有写访问权限，并且只能写入生产或备份数据，但不能同时写入两者。
 
@@ -87,7 +89,7 @@ ms.locfileid: "48819017"
 
 ## <a name="testing"></a>测试
 
-**对应用程序执行故障转移和故障恢复测试。** 如果不全面测试故障转移和故障恢复，则无法确定在灾难恢复过程中，应用程序中的依赖服务以同步方式恢复正常运行。 确保应用程序的依赖服务按正确的顺序故障转移和故障恢复。
+**对应用程序执行故障转移和故障恢复测试。** 如果不全面测试故障转移和故障恢复，则无法确定在灾难恢复过程中，应用程序中的依赖服务以同步方式恢复正常运行。 确保应用程序的依赖服务按正确的顺序故障转移和故障恢复。 如果使用 [Azure Site Recovery][site-recovery] 复制 VM，请定期通过执行测试故障转移来运行灾难恢复演练。 有关详细信息，请参阅[运行灾难恢复到 Azure 的演练][site-recovery-test]。
 
 **对应用程序执行故障注入测试。** 应用程序可能出于多种不同的原因而发生故障，例如，证书过期、VM 中系统资源耗尽或存储故障。 在尽可能接近生产环境的环境中，通过模拟或触发实际故障来测试应用程序。 例如，删除证书、人为地消耗系统资源，或删除存储源。 验证应用程序是否能够从所有类型的故障（单独或组合的故障）中恢复。 检查故障是否不会通过系统传播或引发连锁故障。
 
@@ -176,6 +178,8 @@ ms.locfileid: "48819017"
 [resource-manager]: /azure/azure-resource-manager/resource-group-overview/
 [retry-pattern]: ../patterns/retry.md
 [retry-service-guidance]: ../best-practices/retry-service-specific.md
+[site-recovery]: /azure/site-recovery/
+[site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
 [traffic-manager]: /azure/traffic-manager/traffic-manager-overview/
 [traffic-manager-routing]: /azure/traffic-manager/traffic-manager-routing-methods/
 [vmss-autoscale]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview/

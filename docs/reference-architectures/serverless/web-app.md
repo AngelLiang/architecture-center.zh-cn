@@ -3,16 +3,16 @@ title: 无服务器 Web 应用程序
 description: 演示无服务器 Web 应用程序和 Web API 的参考体系结构
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: d1af03811bda6267fd40ee17823ac8357829f988
-ms.sourcegitcommit: 949b9d3e5a9cdee1051e6be700ed169113e914ae
+ms.openlocfilehash: 9263c8bec794e4b2bb9f397289b23307eb02f0c7
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/05/2018
-ms.locfileid: "50983390"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295678"
 ---
 # <a name="serverless-web-application"></a>无服务器 Web 应用程序 
 
-本参考体系结构演示一个无服务器 Web 应用程序。 该应用程序提供 Azure Blob 存储中的静态内容，并使用 Azure Functions 来实现一个 API。 该 API 从 Cosmos DB 读取数据，并将结果返回到 Web 应用。 [GitHub][github] 中提供了本体系结构的参考实现。
+本参考体系结构演示一个[无服务器](https://azure.microsoft.com/solutions/serverless/) Web 应用程序。 该应用程序提供 Azure Blob 存储中的静态内容，并使用 Azure Functions 来实现一个 API。 该 API 从 Cosmos DB 读取数据，并将结果返回到 Web 应用。 [GitHub][github] 中提供了本体系结构的参考实现。
 
 ![](./_images/serverless-web-app.png)
  

@@ -3,12 +3,12 @@ title: 规模化机器学习
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: a44785b61faec8a45160fa2895fbc03e2c580a77
-ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
+ms.openlocfilehash: f2d35f7344a1e760fc6d3ce2292f33b8d3dd7df7
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51577134"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295476"
 ---
 # <a name="machine-learning-at-scale"></a>规模化机器学习
 
@@ -68,3 +68,10 @@ ms.locfileid: "51577134"
 - [选择认知服务技术](../technology-choices/cognitive-services.md)
 - [选择机器学习技术](../technology-choices/data-science-and-machine-learning.md)
 - [选择自然语言处理技术](../technology-choices/natural-language-processing.md)
+
+## <a name="next-steps"></a>后续步骤
+
+以下参考体系结构演示了 Azure 中的机器学习方案：
+
+- [Azure 上深度学习模型的批处理评分](../../reference-architectures/ai/batch-scoring-deep-learning.md)
+- [Azure 上 Python Scikit-Learn 和深度学习模型的实时评分](../../reference-architectures/ai/realtime-scoring-python.md)
