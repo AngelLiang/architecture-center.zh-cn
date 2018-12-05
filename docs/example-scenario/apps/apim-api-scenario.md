@@ -36,12 +36,12 @@ ms.locfileid: "51610577"
 2. 仍然是从现有的 Web 应用调用现有的 HTTP 服务。 这些调用在企业网络内部执行。
 3. 入站调用是从 Azure 向现有内部服务发出的：
     * 安全团队允许来自 APIM 实例的流量[使用安全传输 (HTTPS/SSL)][apim-ssl] 通过企业防火墙传递到现有的本地服务。
-    * 运营团队只允许从 APIM 实例向服务发出入站调用。 在企业网络边界内将 [APIM 实例的 IP 地址加入白名单][apim-whitelist-ip]可满足此要求。
+    * 运营团队只允许从 APIM 实例向服务发出入站调用。 在企业网络边界内将 [APIM 实例的 IP 地址加入允许列表][apim-whitelist-ip]可满足此要求。
     * 在本地 HTTP 服务请求管道（**只**处理来自外部的连接）中配置一个新模块，用于验证[APIM 提供的证书][apim-mutualcert-auth]。
 1. 新 API：
     * 只通过提供 API 结构的 APIM 实例公开。 不会直接访问新 API。
     * 开发并发布为 [Azure PaaS Web API 应用][azure-api-apps]。
-    * 已加入白名单（通过 [Web 应用设置][azure-appservice-ip-restrict]），仅接受 [APIM VIP][apim-faq-vip]。
+    * 已加入允许列表（通过 [Web 应用设置][azure-appservice-ip-restrict]），仅接受 [APIM VIP][apim-faq-vip]。
     * 托管在已启用安全传输/SSL 的 Azure Web 应用中。
     * 已启用授权，该授权由 [Azure 应用服务][azure-appservice-auth]使用 Azure Active Directory 和 OAuth2 提供。
 2. 基于浏览器的新 Web 应用程序将依赖于 Azure API 管理实例来使用现有的 HTTP API **和**新的 API。
