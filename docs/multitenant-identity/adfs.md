@@ -2,16 +2,16 @@
 title: 与客户的 AD FS 联合
 description: 如何在多租户应用程序中与客户的 AD FS 联合
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: 4b54f031d13449e4d87075af5606967da8b5d3df
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: fec10ca0e067b3b51bf9dba70d66ceb12423787d
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428918"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902691"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>与客户的 AD FS 联合
 
@@ -59,7 +59,7 @@ Azure Active Directory (Azure AD) 让从 Azure AD 租户（包括 Office365 和 
 | 声明 | 说明 |
 | --- | --- |
 | aud |目标受众。 为其发出声明的应用程序。 |
-| authenticationinstant |[身份验证时刻]。 身份验证的发生时间。 |
+| authenticationinstant |[即时身份验证]。 身份验证的发生时间。 |
 | c_hash |代码哈希值。 这是令牌内容的哈希值。 |
 | exp |[过期时间]。 此后将不再接受令牌。 |
 | iat |颁发时间。 颁发令牌的时间。 |
@@ -67,7 +67,7 @@ Azure Active Directory (Azure AD) 让从 Azure AD 租户（包括 Office365 和 
 | 名称 |用户名。 示例： `john@corp.fabrikam.com` |
 | NameIdentifier |[名称标识符]。 为其颁发令牌的实体的名称标识符。 |
 | nonce |会话 nonce。 AD FS 生成的唯一值，用于帮助防止遭受重播攻击。 |
-| upn |用户主体名称 (UPN)。 示例： `john@corp.fabrikam.com` |
+| upn |用户主体名称 (UPN)。 示例：`john@corp.fabrikam.com` |
 | pwd_exp |密码过期时段。 用户密码或类似的身份验证机密（例如 PIN）过期前的 秒数。 |
 
 > [!NOTE]
@@ -184,7 +184,7 @@ Set-ADFSClaimsProviderTrust -TargetName "name" -OrganizationalAccountSuffix @("s
 [联合身份验证信任]: https://technet.microsoft.com/library/cc770993(v=ws.11).aspx
 [帐户伙伴]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx
 [资源伙伴]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx
-[身份验证时刻]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.authenticationinstant%28v=vs.110%29.aspx
+[即时身份验证]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.authenticationinstant%28v=vs.110%29.aspx
 [过期时间]: https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25#section-4.1.
 [名称标识符]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.nameidentifier(v=vs.110).aspx
 [active-directory-on-azure]: https://msdn.microsoft.com/library/azure/jj156090.aspx
