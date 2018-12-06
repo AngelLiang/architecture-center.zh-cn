@@ -2,16 +2,16 @@
 title: 使用客户端断言从 Azure AD 获取访问令牌
 description: 如何使用客户端断言从 Azure AD 获取访问令牌。
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: adfs
 pnp.series.next: key-vault
-ms.openlocfilehash: 9fe1ee2ec5a540edc41c3a310476507f8d862f0c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 58eed82c982fe1c6cba0f04b237d92d117a26fd4
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540275"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902252"
 ---
 # <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a>使用客户端断言从 Azure AD 获取访问令牌
 
@@ -98,7 +98,7 @@ public class CertificateCredentialService : ICredentialService
 
 有关在 Surveys 应用程序中设置客户端断言的信息，请参阅[使用 Azure Key Vault 保护应用程序机密][key vault]。
 
-[下一篇][key vault]
+[**下一篇**][key vault]
 
 <!-- Links -->
 [configure-web-app]: /azure/app-service-web/web-sites-configure/

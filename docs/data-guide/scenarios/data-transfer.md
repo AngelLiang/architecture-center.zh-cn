@@ -2,13 +2,13 @@
 title: 选择数据传输技术
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 53dcf8a69ad8ae100dbdbb230a9280efd419342a
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.date: 02/12/2018
+ms.openlocfilehash: d5fbdc3a49ab16be2626b772ffd1af782963a2f0
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252747"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902659"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>将数据传入和传出 Azure
 
@@ -59,7 +59,7 @@ ms.locfileid: "35252747"
 
 ## <a name="data-pipeline"></a>数据管道
 
-**Azure 数据工厂** [Azure 数据工厂](/azure/data-factory/)是一个托管服务，最适合用于在许多 Azure 服务和/或本地之间定期传输文件。 可以使用 Azure 数据工厂创建和计划数据驱动型工作流（称为管道），以便从不同的数据存储引入数据。 它可以使用计算服务（例如 Azure HDInsight Hadoop、Spark、Azure Data Lake Analytics、Azure 机器学习）处理和转换数据。 创建数据驱动的工作流用于[协调](../technology-choices/pipeline-orchestration-data-movement.md)和自动化数据移动和数据转换。
+**Azure 数据工厂**。 [Azure 数据工厂](/azure/data-factory/)是一个托管服务，最适合用于在许多 Azure 服务和/或本地之间定期传输文件。 可以使用 Azure 数据工厂创建和计划数据驱动型工作流（称为管道），以便从不同的数据存储引入数据。 它可以使用计算服务（例如 Azure HDInsight Hadoop、Spark、Azure Data Lake Analytics、Azure 机器学习）处理和转换数据。 创建数据驱动的工作流用于[协调](../technology-choices/pipeline-orchestration-data-movement.md)和自动化数据移动和数据转换。
 
 ## <a name="key-selection-criteria"></a>关键选择条件
 

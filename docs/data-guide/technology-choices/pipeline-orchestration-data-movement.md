@@ -2,13 +2,13 @@
 title: 选择数据管道业务流程技术
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 17aeb871bc815793295ed610795e5e83de72c637
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.date: 02/12/2018
+ms.openlocfilehash: 7d1fddf54216b756a5dc2c183a43449a2f45a122
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288799"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902359"
 ---
 # <a name="choosing-a-data-pipeline-orchestration-technology-in-azure"></a>在 Azure 中选择数据管道业务流程技术
 
@@ -38,7 +38,7 @@ ms.locfileid: "29288799"
 
 ## <a name="capability-matrix"></a>功能矩阵
 
-下表汇总了功能上的关键差异。
+以下各表汇总了功能上的关键差异。
 
 ### <a name="general-capabilities"></a>常规功能
 
@@ -70,6 +70,6 @@ ms.locfileid: "29288799"
 | | Azure 数据工厂 | SQL Server Integration Services (SSIS) | Oozie on HDInsight
 | --- | --- | --- | --- |
 | 纵向扩展 | 是 | 否 | 否 |
-| 向外扩展 | 是 | 否 | 是（通过将工作节点添加到群集） |
-| 针对大数据进行了优化 | 是 | 否 | 是 |
+| 横向扩展 | 是 | 否 | 是（通过将工作节点添加到群集） |
+| 针对大数据优化 | 是 | 否 | 是 |
 

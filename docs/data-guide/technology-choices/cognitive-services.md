@@ -2,13 +2,13 @@
 title: 选择认知服务技术
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 055769188fbd6742b94094ee18766293812849fa
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.date: 02/12/2018
+ms.openlocfilehash: 0551bf05cb47cb3972b0d5f2e5226e23cbdacc68
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847775"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902539"
 ---
 # <a name="choosing-a-microsoft-cognitive-services-technology"></a>选择 Microsoft 认知服务技术
 

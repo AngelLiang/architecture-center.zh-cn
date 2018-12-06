@@ -2,13 +2,13 @@
 title: 联机分析处理 (OLAP)
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 92b71934f2081e95c3c9b0d4dc9edeb3885b12e8
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.date: 02/12/2018
+ms.openlocfilehash: beed0d642e85096efc0b6fe492181b8dcd771d2d
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846801"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902592"
 ---
 # <a name="online-analytical-processing-olap"></a>联机分析处理 (OLAP)
 
@@ -53,14 +53,14 @@ ms.locfileid: "30846801"
 
 语义建模和分析处理通常具有以下特征：
 
-| 要求 | 说明 |
+| 要求 | Description |
 | --- | --- |
 | 架构 | 写入时架构，强制实施|
 | 使用事务 | 否 |
 | 锁定策略 | 无 |
 | 可更新 | 否（通常需要重新计算多维数据集） |
 | 可追加 | 否（通常需要重新计算多维数据集） |
-| 工作负载 | 高频读取，只读的 |
+| 工作负荷 | 高频读取，只读的 |
 | 索引 | 多维索引 |
 | 基准大小 | 中小型 |
 | 模型 | 多维 |

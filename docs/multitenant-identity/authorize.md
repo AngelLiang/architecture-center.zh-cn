@@ -2,16 +2,16 @@
 title: 多租户应用程序中的授权
 description: 如何在多租户应用程序中执行授权
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: 321dc52a3e6f803a032288c2341e490cdba8c20a
-ms.sourcegitcommit: 9a2d56ac7927f0a2bbfee07198d43d9c5cb85755
+ms.openlocfilehash: bbf702fe6651625a1aeceff7e4e321dd08c38544
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/22/2018
-ms.locfileid: "36327647"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902487"
 ---
 # <a name="role-based-and-resource-based-authorization"></a>基于角色和基于资源的授权
 

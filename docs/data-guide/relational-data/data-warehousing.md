@@ -2,13 +2,13 @@
 title: 数据仓库和数据市场
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 9b90d77ce1a81cd4a7532f5d4230ada8b4991d13
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.date: 02/12/2018
+ms.openlocfilehash: 92f8ab8d828dd4b30c43a07e15959e5670852195
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252799"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902776"
 ---
 # <a name="data-warehousing-and-data-marts"></a>数据仓库和数据市场
 

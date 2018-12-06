@@ -2,13 +2,13 @@
 title: 选择自然语言处理技术
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: bac0318a587a944c104360eb31223cc8755c1860
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.date: 02/12/2018
+ms.openlocfilehash: b1cb019164285d16b6e9d34eae220801785adab9
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251764"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902300"
 ---
 # <a name="choosing-a-natural-language-processing-technology-in-azure"></a>在 Azure 中选择自然语言处理技术
 

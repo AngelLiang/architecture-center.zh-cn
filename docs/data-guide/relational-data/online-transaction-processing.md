@@ -2,13 +2,13 @@
 title: 联机事务处理 (OLTP)
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 8650b919fc1a59240343015493a1fe41c8729a72
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.date: 02/12/2018
+ms.openlocfilehash: be24bc173359539785385de4a188e7536f6d2ffe
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848693"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902745"
 ---
 # <a name="online-transaction-processing-oltp"></a>联机事务处理 (OLTP)
 
@@ -28,7 +28,7 @@ ms.locfileid: "30848693"
 
 事务数据往往具有以下特征：
 
-| 要求 | 说明 |
+| 要求 | Description |
 | --- | --- |
 | 规范化 | 高度规范化 |
 | 架构 | 写入时架构，强制实施|
@@ -38,7 +38,7 @@ ms.locfileid: "30848693"
 | 锁定策略 | 悲观或乐观|
 | 可更新 | 是 |
 | 可追加 | 是 |
-| 工作负载 | 大量写入，适度读取 |
+| 工作负荷 | 大量写入，适度读取 |
 | 索引 | 主要和辅助索引 |
 | 基准大小 | 中小型 |
 | 模型 | 关系 |

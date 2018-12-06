@@ -2,16 +2,16 @@
 title: 多租户应用程序中的身份验证
 description: 多租户应用程序如何从 Azure AD 验证用户身份
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: 70f4a96369c207740400b9dfe72e1e964507f729
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 58ccf75cd34f8efec17898c85295587da282cf45
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428119"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902708"
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>使用 Azure AD 和 OpenID Connect 进行身份验证
 
