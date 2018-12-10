@@ -1,16 +1,17 @@
 ---
-title: 选择用于将本地网络连接到 Azure 的解决方案
+title: 将本地网络连接到 Azure
+titleSuffix: Azure Reference Architectures
 description: 比较用于将本地网络连接到 Azure 的参考体系结构。
 author: telmosampaio
 ms.date: 07/02/2018
-ms.openlocfilehash: a9e2a212d65530e714635bbfae3a57766e77c3a6
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.openlocfilehash: de509b6d95805f4fc871f6dbd76a87d2c0bec6f1
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295475"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119908"
 ---
-# <a name="connect-an-on-premises-network-to-azure"></a>将本地网络连接到 Azure
+# <a name="choose-a-solution-for-connecting-an-on-premises-network-to-azure"></a>选择用于将本地网络连接到 Azure 的解决方案
 
 本文比较了用于将本地网络连接到 Azure 虚拟网络 (VNet) 的选项。 每个选项都有可用的更详细的参考体系结构。
 
@@ -75,11 +76,9 @@ ms.locfileid: "52295475"
 
 - [使用 ExpressRoute 和 VPN 故障转移的混合网络](./expressroute-vpn-failover.md)
 
-
 ## <a name="hub-spoke-network-topology"></a>中心辐射型网络拓扑
 
 可以使用中心辐射型网络拓扑，在隔离工作负荷的同时共享标识和安全性之类的服务。 中心是 Azure 中的一个虚拟网络 (VNet)，充当到本地网络的连接的中心点。 辐射是与中心对等互连的 VNet。 共享服务部署在中心，而各个工作负荷则以辐射的形式部署。
-
 
 **参考体系结构**
 

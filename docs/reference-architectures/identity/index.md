@@ -1,13 +1,15 @@
 ---
-title: 选择用于将本地 Active Directory 与 Azure 相集成的解决方案。
-description: 比较用于将本地 Active Directory 与 Azure 相集成的参考体系结构。
+title: 将本地 Active Directory 与 Azure 集成
+titleSuffix: Azure Reference Architectures
+description: 比较用于将本地 Active Directory 与 Azure 集成的参考体系结构。
 ms.date: 07/02/2018
-ms.openlocfilehash: ee71d27c08274a873b165bad2dc84f9079e5b9d3
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 905dedda6de1a107f55b2f7651441780a685aea7
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428680"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119857"
 ---
 # <a name="choose-a-solution-for-integrating-on-premises-active-directory-with-azure"></a>选择用于将本地 Active Directory 与 Azure 相集成的解决方案
 
@@ -15,21 +17,21 @@ ms.locfileid: "47428680"
 
 许多组织使用 Active Directory 域服务 (AD DS) 来验证与用户、计算机、应用程序或包括在安全边界中的其他资源相关联的身份。 目录和标识服务通常托管在本地，但如果应用程序有一部分托管本地，还有一部分托管在 Azure 中，则将来自 Azure 的身份验证请求发回到本地时，可能会出现延迟。 在 Azure 中实施目录和标识服务可以降低此延迟。
 
-Azure 提供两种解决方案用于在 Azure 中实施目录和标识服务： 
+Azure 提供两种解决方案用于在 Azure 中实施目录和标识服务：
 
-* 使用 [Azure AD][azure-active-directory] 可在云中创建 Active Directory 域，并将其连接到本地 Active Directory 域。 [Azure AD Connect][azure-ad-connect] 可将本地目录与 Azure AD 相集成。
+- 使用 [Azure AD][azure-active-directory] 可在云中创建 Active Directory 域，并将其连接到本地 Active Directory 域。 [Azure AD Connect][azure-ad-connect] 可将本地目录与 Azure AD 相集成。
 
-* 通过在 Azure 中部署一个运行 AD DS（作为域控制器）的 VM，将现有的本地 Active Directory 基础结构扩展到 Azure。 如果本地网络和 Azure 虚拟网络 (VNet) 通过 VPN 或 ExpressRoute 连接进行连接，则往往会使用此体系结构。 此体系结构存在多种可能的变通形式： 
+- 通过在 Azure 中部署一个运行 AD DS（作为域控制器）的 VM，将现有的本地 Active Directory 基础结构扩展到 Azure。 如果本地网络和 Azure 虚拟网络 (VNet) 通过 VPN 或 ExpressRoute 连接进行连接，则往往会使用此体系结构。 此体系结构存在多种可能的变通形式：
 
-    - 在 Azure 中创建一个域，并将其加入本地 AD 林。
-    - 在 Azure 中创建受本地林中的域信任的独立林。
-    - 将 Active Directory 联合身份验证服务 (AD FS) 部署复制到 Azure。 
+  - 在 Azure 中创建一个域，并将其加入本地 AD 林。
+  - 在 Azure 中创建受本地林中的域信任的独立林。
+  - 将 Active Directory 联合身份验证服务 (AD FS) 部署复制到 Azure。
 
 后续部分更详细介绍了其中的每个选项。
 
 ## <a name="integrate-your-on-premises-domains-with-azure-ad"></a>将本地域与 Azure AD 集成
 
-使用 Azure Active Directory (Azure AD) 在 Azure 中创建域，并将其链接到本地 AD 域。 
+使用 Azure Active Directory (Azure AD) 在 Azure 中创建域，并将其链接到本地 AD 域。
 
 Azure AD 目录不是本地目录的扩展， 而是包含相同对象和标识的副本。 在本地对这些项所做的更改会复制到 Azure AD，但在 Azure AD 中所做的更改不会复制回到本地域。
 
@@ -37,15 +39,15 @@ Azure AD 目录不是本地目录的扩展， 而是包含相同对象和标识�
 
 **优点**
 
-* 无需在云中维护 AD 基础结构。 Azure AD 完全由 Microsoft 管理和维护。
-* Azure AD 提供本地所提供的相同标识信息。
-* 身份验证可以在 Azure 中发生，从而减少了外部应用程序和用户访问本地域的需要。
+- 无需在云中维护 AD 基础结构。 Azure AD 完全由 Microsoft 管理和维护。
+- Azure AD 提供本地所提供的相同标识信息。
+- 身份验证可以在 Azure 中发生，从而减少了外部应用程序和用户访问本地域的需要。
 
 **挑战**
 
-* 标识服务限制为由用户和组访问。 无法对服务和计算机帐户进行身份验证。
-* 必须配置与本地域之间的连接，使 Azure AD 目录保持同步。 
-* 可能需要重新编写应用程序才能通过 Azure AD 启用身份验证。
+- 标识服务限制为由用户和组访问。 无法对服务和计算机帐户进行身份验证。
+- 必须配置与本地域之间的连接，使 Azure AD 目录保持同步。 
+- 可能需要重新编写应用程序才能通过 Azure AD 启用身份验证。
 
 **参考体系结构**
 
@@ -59,15 +61,15 @@ Azure AD 目录不是本地目录的扩展， 而是包含相同对象和标识�
 
 **优点**
 
-* 可访问本地所提供的相同标识信息。
-* 可对本地和 Azure 中的用户、服务和计算机帐户进行身份验证。
-* 无需管理独立的 AD 林。 Azure 中的域可属于本地林。
-* 可对 Azure 中的域应用本地组策略对象所定义的组策略。
+- 可访问本地所提供的相同标识信息。
+- 可对本地和 Azure 中的用户、服务和计算机帐户进行身份验证。
+- 无需管理独立的 AD 林。 Azure 中的域可属于本地林。
+- 可对 Azure 中的域应用本地组策略对象所定义的组策略。
 
 **挑战**
 
-* 必须在云中部署和管理自己的 AD DS 服务器与域。
-* 云中的域服务器与本地运行的服务器之间可能存在一定的同步延迟。
+- 必须在云中部署和管理自己的 AD DS 服务器与域。
+- 云中的域服务器与本地运行的服务器之间可能存在一定的同步延迟。
 
 **参考体系结构**
 
@@ -81,13 +83,13 @@ Azure AD 目录不是本地目录的扩展， 而是包含相同对象和标识�
 
 **优点**
 
-* 可以实施本地标识和隔离仅限 Azure 的标识。
-* 无需从本地 AD 林复制到 Azure。
+- 可以实施本地标识和隔离仅限 Azure 的标识。
+- 无需从本地 AD 林复制到 Azure。
 
 **挑战**
 
-* 在 Azure 中针对本地标识执行身份验证需要额外与本地 AD 服务器建立网络跃点。
-* 必须在云中部署 AD DS 服务器和林，并在林之间建立适当的信任关系。
+- 在 Azure 中针对本地标识执行身份验证需要额外与本地 AD 服务器建立网络跃点。
+- 必须在云中部署 AD DS 服务器和林，并在林之间建立适当的信任关系。
 
 **参考体系结构**
 
@@ -99,20 +101,20 @@ Azure AD 目录不是本地目录的扩展， 而是包含相同对象和标识�
 
 此体系结构的典型用途：
 
-* 对合作伙伴组织中的用户执行身份验证和授权。
-* 允许用户从组织防火墙外部运行的 Web 浏览器进行身份验证。
-* 允许用户通过已授权的外部设备（例如移动设备）建立连接。 
+- 对合作伙伴组织中的用户执行身份验证和授权。
+- 允许用户从组织防火墙外部运行的 Web 浏览器进行身份验证。
+- 允许用户通过已授权的外部设备（例如移动设备）建立连接。 
 
 **优点**
 
-* 可以利用声明感知的应用程序。
-* 能够信任外部合作伙伴，从而完成身份验证。
-* 与大量的身份验证协议兼容。
+- 可以利用声明感知的应用程序。
+- 能够信任外部合作伙伴，从而完成身份验证。
+- 与大量的身份验证协议兼容。
 
 **挑战**
 
-* 必须在 Azure 中部署自己的 AD DS、AD FS 和 AD FS Web 应用程序代理服务器。
-* 此体系结构的配置可能比较复杂。
+- 必须在 Azure 中部署自己的 AD DS、AD FS 和 AD FS Web 应用程序代理服务器。
+- 此体系结构的配置可能比较复杂。
 
 **参考体系结构**
 

@@ -1,20 +1,22 @@
 ---
-title: 在 Azure 中运行高可用性 SharePoint Server 2016 场
-description: 有关在 Azure 中设置高可用性 SharePoint Server 2016 场的成熟做法。
+title: 在 Azure 中运行具有高可用性的 SharePoint Server 2016 场
+titleSuffix: Azure Reference Architectures
+description: 建议为在 Azure 中部署具有高可用性的 SharePoint Server 2016 场而使用的体系结构。
 author: njray
 ms.date: 07/26/2018
-ms.openlocfilehash: 5db146956134f9b297b520d666d8dabbc8793caf
-ms.sourcegitcommit: 77d62f966d910cd5a3d11ade7ae5a73234e093f2
+ms.custom: seodec18
+ms.openlocfilehash: 6cc8255f95cb4944ff3ef138ad5edf2e5bbea4b4
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51293253"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120095"
 ---
-# <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>在 Azure 中运行高可用性 SharePoint Server 2016 场
+# <a name="run-a-highly-available-sharepoint-server-2016-farm-in-azure"></a>在 Azure 中运行具有高可用性的 SharePoint Server 2016 场
 
-此参考体系结构演示有关使用 MinRole 拓扑和 SQL Server Always On 可用性组，在 Azure 中设置高可用性 SharePoint Server 2016 场的一系列成熟做法。 无需提供面向 Internet 的终结点，即可在安全的虚拟网络中部署 SharePoint 场。 [**部署此解决方案**。](#deploy-the-solution) 
+此参考体系结构演示有关使用 MinRole 拓扑和 SQL Server Always On 可用性组在 Azure 中部署具有高可用性的 SharePoint Server 2016 场的成熟做法。 无需提供面向 Internet 的终结点，即可在安全的虚拟网络中部署 SharePoint 场。 [**部署此解决方案**](#deploy-the-solution)。
 
-![](./images/sharepoint-ha.png)
+![在 Azure 中运行具有高可用性的 SharePoint Server 2016 场的参考体系结构](./images/sharepoint-ha.png)
 
 下载此体系结构的 [Visio 文件][visio-download]。
 
@@ -26,15 +28,15 @@ ms.locfileid: "51293253"
 
 - **资源组**。 [资源组][resource-group]是保存相关 Azure 资源的容器。 SharePoint 服务器使用一个资源组，独立于 VM 的基础结构组件（例如虚拟网络和负载均衡器）使用另一个资源组。
 
-- **虚拟网络 (VNet)**。 VM 部署在具有唯一 Intranet 地址空间的 VNet 中。 VNet 进一步细分为子网。 
+- **虚拟网络 (VNet)**。 VM 部署在具有唯一 Intranet 地址空间的 VNet 中。 VNet 进一步细分为子网。
 
 - **虚拟机 (VM)**。 VM 部署到 VNet 中，已将专用静态 IP 地址分配到所有 VM。 建议对运行 SQL Server 和 SharePoint Server 2016 的 VM 使用静态 IP 地址，以免重启后 IP 地址缓存出现问题以及地址发生更改。
 
-- **可用性集**。 将每个 SharePoint 角色的 VM 放入单独的[可用性集][availability-set]，并为每个角色至少预配两个虚拟机 (VM)。 这样，VM 便可以满足更高的服务级别协议 (SLA)。 
+- **可用性集**。 将每个 SharePoint 角色的 VM 放入单独的[可用性集][availability-set]，并为每个角色至少预配两个虚拟机 (VM)。 这样，VM 便可以满足更高的服务级别协议 (SLA)。
 
-- **内部负载均衡器**。 [负载均衡器][load-balancer]将 SharePoint 请求流量从本地网络分配到 SharePoint 场的前端 Web 服务器。 
+- **内部负载均衡器**。 [负载均衡器][load-balancer]将 SharePoint 请求流量从本地网络分配到 SharePoint 场的前端 Web 服务器。
 
-- **网络安全组 (NSG)**。 对于包含虚拟机的每个子网，需创建一个[网络安全组][nsg]。 使用 NSG 限制 VNet 中的网络流量，以隔离子网。 
+- **网络安全组 (NSG)**。 对于包含虚拟机的每个子网，需创建一个[网络安全组][nsg]。 使用 NSG 限制 VNet 中的网络流量，以隔离子网。
 
 - **网关**。 网关在本地网络与 Azure 虚拟网络之间提供连接。 连接可以使用 ExpressRoute 或站点到站点 VPN。 有关详细信息，请参阅[将本地网络连接到 Azure][hybrid-ra]。
 
@@ -42,11 +44,11 @@ ms.locfileid: "51293253"
 
   SharePoint Server 2016 也支持使用 [Azure Active Directory 域服务](/azure/active-directory-domain-services/)。 Azure AD 域服务提供托管域服务，因此不需在 Azure 中部署和管理域控制器。
 
-- **SQL Server Always On 可用性组**。 为了实现 SQL Server 数据库的高可用性，我们建议创建 [SQL Server Always On 可用性组][sql-always-on]。 将两个虚拟机用于 SQL Server。 一个虚拟机包含主数据库副本，另一个虚拟机包含次要副本。 
+- **SQL Server Always On 可用性组**。 为了实现 SQL Server 数据库的高可用性，我们建议创建 [SQL Server Always On 可用性组][sql-always-on]。 将两个虚拟机用于 SQL Server。 一个虚拟机包含主数据库副本，另一个虚拟机包含次要副本。
 
 - **多数节点 VM**。 此 VM 可让故障转移群集建立仲裁。 有关详细信息，请参阅[了解故障转移群集中的仲裁配置][sql-quorum]。
 
-- **SharePoint 服务器**。 SharePoint 服务器执行 Web 前端、缓存、应用程序和搜索角色。 
+- **SharePoint 服务器**。 SharePoint 服务器执行 Web 前端、缓存、应用程序和搜索角色。
 
 - **Jumpbox**。 也称为[守护主机][bastion-host]。 这是管理员在网络上用来连接其他 VM 的安全 VM。 Jumpbox 中的某个 NSG 只允许来自安全列表中的公共 IP 地址的远程流量。 该 NSG 应允许远程桌面 (RDP) 流量。
 
@@ -60,7 +62,7 @@ ms.locfileid: "51293253"
 
 ### <a name="virtual-network-and-subnet-recommendations"></a>有关虚拟网络和子网的建议
 
-对每个 SharePoint 角色使用一个子网，此外，对网关和 Jumpbox 各使用一个子网。 
+对每个 SharePoint 角色使用一个子网，此外，对网关和 Jumpbox 各使用一个子网。
 
 网关子网必须命名为 *GatewaySubnet*。 从虚拟网络地址空间的最后一个部分中分配网关子网地址空间。 有关详细信息，请参阅[使用 VPN 网关将本地网络连接到 Azure][hybrid-vpn-ra]。
 
@@ -74,28 +76,28 @@ ms.locfileid: "51293253"
 - Standard_DS1_v2 虚拟机上有 1 个多数节点 = 1 个核心
 - Standard_DS1_v2 虚拟机上有 1 个管理服务器 = 1 个核心
 
-确保 Azure 订阅提供足够的 VM 核心配额用于部署，否则部署将会失败。 请参阅 [Azure 订阅和服务限制、配额与约束][quotas]。 
+确保 Azure 订阅提供足够的 VM 核心配额用于部署，否则部署将会失败。 请参阅 [Azure 订阅和服务限制、配额与约束][quotas]。
 
-对于除搜索索引器以外的所有 SharePoint 角色，我们建议使用 [Standard_DS3_v2][vm-sizes-general] VM 大小。 搜索索引器应至少使用 [Standard_DS13_v2][vm-sizes-memory] 大小。 对于测试，此参考体系结构的参数文件为搜索索引器角色指定了较小的 DS3_v2 大小。 对于生产部署，请更新参数文件以使用 DS13 大小或更大大小。 有关详细信息，请参阅 [SharePoint Server 2016 的硬件和软件要求][sharepoint-reqs]。 
+对于除搜索索引器以外的所有 SharePoint 角色，我们建议使用 [Standard_DS3_v2][vm-sizes-general] VM 大小。 搜索索引器应至少使用 [Standard_DS13_v2][vm-sizes-memory] 大小。 对于测试，此参考体系结构的参数文件为搜索索引器角色指定了较小的 DS3_v2 大小。 对于生产部署，请更新参数文件以使用 DS13 大小或更大大小。 有关详细信息，请参阅 [SharePoint Server 2016 的硬件和软件要求][sharepoint-reqs]。
 
-对于 SQL Server VM，建议至少配备 4 个核心和 8 GB RAM。 此参考体系结构的参数文件指定了 DS3_v2 大小。 对于生产部署，可能需要指定更大的 VM 大小。 有关详细信息，请参阅[存储和 SQL Server 容量规划与配置 (SharePoint Server)](/sharepoint/administration/storage-and-sql-server-capacity-planning-and-configuration#estimate-memory-requirements)。 
- 
+对于 SQL Server VM，建议至少配备 4 个核心和 8 GB RAM。 此参考体系结构的参数文件指定了 DS3_v2 大小。 对于生产部署，可能需要指定更大的 VM 大小。 有关详细信息，请参阅[存储和 SQL Server 容量规划与配置 (SharePoint Server)](/sharepoint/administration/storage-and-sql-server-capacity-planning-and-configuration#estimate-memory-requirements)。
+
 ### <a name="nsg-recommendations"></a>有关 NSG 的建议
 
-建议针对包含 VM 的每个子网创建一个 NSG，以实现子网隔离。 若要配置子网隔离，请添加 NSG 规则用于定义每个子网允许或拒绝的入站或出站流量。 有关详细信息，请参阅[使用网络安全组筛选网络流量][virtual-networks-nsg]。 
+建议针对包含 VM 的每个子网创建一个 NSG，以实现子网隔离。 若要配置子网隔离，请添加 NSG 规则用于定义每个子网允许或拒绝的入站或出站流量。 有关详细信息，请参阅[使用网络安全组筛选网络流量][virtual-networks-nsg]。
 
-请不要将 NSG 分配到网关子网，否则网关将会停止运行。 
+请不要将 NSG 分配到网关子网，否则网关将会停止运行。
 
 ### <a name="storage-recommendations"></a>有关存储的建议
 
 场中 VM 的存储配置应该符合对本地部署使用的相应最佳做法。 SharePoint 服务器应该单独提供一个磁盘用于日志。 托管搜索索引角色的 SharePoint 服务器需要提供额外的磁盘空间用于存储搜索索引。 对于 SQL Server，标准做法是将数据和日志区分开来。 为数据库备份存储添加更多磁盘，并为 [tempdb][tempdb] 单独使用一个磁盘。
 
-为了获得最高可靠性，我们建议使用 [Azure 托管磁盘][managed-disks]。 托管磁盘可确保隔离可用性集中 VM 的磁盘，以避免单一故障点。 
+为了获得最高可靠性，我们建议使用 [Azure 托管磁盘][managed-disks]。 托管磁盘可确保隔离可用性集中 VM 的磁盘，以避免单一故障点。
 
 > [!NOTE]
 > 目前，此参考体系结构的资源管理器模板不使用托管磁盘。 我们正在计划将该模板更新为使用托管磁盘。
 
-为所有 SharePoint 和 SQL Server VM 使用高级托管磁盘。 可为多数节点服务器、域控制器和管理服务器使用标准托管磁盘。 
+为所有 SharePoint 和 SQL Server VM 使用高级托管磁盘。 可为多数节点服务器、域控制器和管理服务器使用标准托管磁盘。
 
 ### <a name="sharepoint-server-recommendations"></a>有关 SharePoint Server 的建议
 
@@ -113,10 +115,9 @@ ms.locfileid: "51293253"
 
 为了满足每秒最低 200 MB 磁盘吞吐量的支持要求，请确保规划好搜索体系结构。 请参阅[在 SharePoint Server 2013 中规划企业搜索体系结构][sharepoint-search]。 另请遵照[有关在 SharePoint Server 2016 中爬网的最佳做法][sharepoint-crawling]中的准则。
 
-此外，请将搜索组件数据存储在高性能的独立存储卷或分区中。 为了减少负载并提高吞吐量，请配置此体系结构中所需的对象缓存用户帐户。 将 Windows Server 操作系统文件、SharePoint Server 2016 程序文件和诊断日志拆分到具有普通性能的三个独立存储卷或分区中。 
+此外，请将搜索组件数据存储在高性能的独立存储卷或分区中。 为了减少负载并提高吞吐量，请配置此体系结构中所需的对象缓存用户帐户。 将 Windows Server 操作系统文件、SharePoint Server 2016 程序文件和诊断日志拆分到具有普通性能的三个独立存储卷或分区中。
 
 有关这些建议的详细信息，请参阅 [SharePoint Server 2016 中的初始部署管理帐户和服务帐户][sharepoint-accounts]。
-
 
 ### <a name="hybrid-workloads"></a>混合工作负荷
 
@@ -132,11 +133,11 @@ SharePoint Server 2016 无法使用 Azure SQL 数据库，因此，此体系结�
 
 有关建议的 VM 大小，以及 Azure 中运行的 SQL Server 的其他性能建议，请参阅[有关 Azure 虚拟机中 SQL Server 的性能最佳做法][sql-performance]。 另请遵循[有关 SharePoint Server 2016 场中 SQL Server 的最佳做法][sql-sharepoint-best-practices]中的建议。
 
-我们建议将多数节点服务器放在复制伙伴的独立计算机上。 通过该服务器，高安全模式会话中的辅助复制伙伴服务器可以判断是否要启动自动故障转移。 与两个伙伴不同，多数节点服务器不会为数据库提供服务，但只是为自动故障转移提供支持。 
+我们建议将多数节点服务器放在复制伙伴的独立计算机上。 通过该服务器，高安全模式会话中的辅助复制伙伴服务器可以判断是否要启动自动故障转移。 与两个伙伴不同，多数节点服务器不会为数据库提供服务，但只是为自动故障转移提供支持。
 
 ## <a name="scalability-considerations"></a>可伸缩性注意事项
 
-若要纵向扩展现有的服务器，只需更改 VM 大小。 
+若要纵向扩展现有的服务器，只需更改 VM 大小。
 
 使用 SharePoint Server 2016 中的 [MinRoles][minroles] 功能，可以基于服务器的角色横向扩展服务器，以及从角色中删除服务器。 将服务器添加到某个角色时，可以指定任意单个角色或一个组合角色。 但是，如果将服务器添加到搜索角色，则还必须使用 PowerShell 重新配置搜索拓扑。 还可以使用 MinRoles 转换角色。 有关详细信息，请参阅[在 SharePoint Server 2016 中管理 MinRole 服务器场][sharepoint-minrole]。
 
@@ -152,7 +153,7 @@ SharePoint Server 2016 无法使用 Azure SQL 数据库，因此，此体系结�
 
 若要操作和维护服务器、服务器场和站点，请遵循有关 SharePoint 操作的建议做法。 有关详细信息，请参阅 [针对 SharePoint Server 2016 的操作][sharepoint-ops]。
 
-在 SharePoint 环境中管理 SQL Server 时要考虑的任务可能与通常要对数据库应用程序考虑的任务不同。 最佳做法是使用夜间增量备份，每周完全备份所有的 SQL 数据库。 每隔 15 分钟备份一次事务日志。 另一种做法是针对数据库执行 SQL Server 维护任务，同时禁用内置的 SharePoint 任务。 有关详细信息，请参阅[存储和 SQL Server 容量规划与配置][sql-server-capacity-planning]。 
+在 SharePoint 环境中管理 SQL Server 时要考虑的任务可能与通常要对数据库应用程序考虑的任务不同。 最佳做法是使用夜间增量备份，每周完全备份所有的 SQL 数据库。 每隔 15 分钟备份一次事务日志。 另一种做法是针对数据库执行 SQL Server 维护任务，同时禁用内置的 SharePoint 任务。 有关详细信息，请参阅[存储和 SQL Server 容量规划与配置][sql-server-capacity-planning]。
 
 ## <a name="security-considerations"></a>安全注意事项
 
@@ -175,7 +176,7 @@ SharePoint Server 2016 无法使用 Azure SQL 数据库，因此，此体系结�
 - ra-onprem-sp2016-rg
 - ra-sp2016-network-rg
 
-模板参数文件将引用这些名称，因此，如果更改了这些名称，请相应地更新参数文件。 
+模板参数文件将引用这些名称，因此，如果更改了这些名称，请相应地更新参数文件。
 
 参数文件在不同的位置包含了硬编码的密码。 在部署之前，请更改这些值。
 
@@ -183,7 +184,7 @@ SharePoint Server 2016 无法使用 Azure SQL 数据库，因此，此体系结�
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
-### <a name="deploy-the-solution"></a>部署解决方案 
+### <a name="deployment-steps"></a>部署步骤
 
 1. 运行以下命令以部署模拟的本地网络。
 
@@ -203,12 +204,13 @@ SharePoint Server 2016 无法使用 Azure SQL 数据库，因此，此体系结�
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure1.json --deploy
     ```
 
-4. 运行以下命令以创建故障转移群集和可用性组。 
+4. 运行以下命令以创建故障转移群集和可用性组。
 
     ```bash
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure2-cluster.json --deploy
+    ```
 
-5. Run the following command to deploy the remaining VMs.
+5. 运行以下命令以部署剩余 VM。
 
     ```bash
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure3.json --deploy
@@ -230,7 +232,7 @@ SharePoint Server 2016 无法使用 Azure SQL 数据库，因此，此体系结�
 
 输出应如下所示：
 
-```powershell
+```console
 ComputerName     : 10.0.3.100
 RemoteAddress    : 10.0.3.100
 RemotePort       : 1433
@@ -239,7 +241,7 @@ SourceAddress    : 10.0.0.132
 TcpTestSucceeded : True
 ```
 
-如果失败，请使用 Azure 门户重启名为 `ra-sp-sql-vm2` 的 VM。 VM 重启后，再次运行 `Test-NetConnection` 命令。 在 VM 重启后，可能需要等待大约一分钟，连接才能成功。 
+如果失败，请使用 Azure 门户重启名为 `ra-sp-sql-vm2` 的 VM。 VM 重启后，再次运行 `Test-NetConnection` 命令。 在 VM 重启后，可能需要等待大约一分钟，连接才能成功。
 
 现在，如下所示完成部署。
 
@@ -265,13 +267,13 @@ TcpTestSucceeded : True
 
 1. 在 [Azure 门户][azure-portal]中，导航到 `ra-onprem-sp2016-rg` 资源组。
 
-2. 在资源列表中，选择名为 `ra-onpr-u-vm1` 的 VM 资源。 
+2. 在资源列表中，选择名为 `ra-onpr-u-vm1` 的 VM 资源。
 
 3. 根据[连接到虚拟机][connect-to-vm]中所述连接到该 VM。 用户名为 `\onpremuser`。
 
-5.  与该 VM 建立远程连接后，请在该 VM 中打开浏览器并导航到 `http://portal.contoso.local`。
+4. 与该 VM 建立远程连接后，请在该 VM 中打开浏览器并导航到 `http://portal.contoso.local`。
 
-6.  在“Windows 安全性”框中，使用用户名 `contoso.local\testuser` 登录到 SharePoint 门户。
+5. 在“Windows 安全性”框中，使用用户名 `contoso.local\testuser` 登录到 SharePoint 门户。
 
 执行此项登录会在本地网络使用的 Fabrikam.com 域与 SharePoint 门户使用的 contoso.local 域之间建立隧道。 SharePoint 站点打开后，便会出现根演示站点。
 
