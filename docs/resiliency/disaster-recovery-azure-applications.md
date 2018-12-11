@@ -3,12 +3,12 @@ title: Azure 应用程序灾难恢复
 description: 有关在Microsoft Azure 上设计应用程序以实现灾难恢复的技术概述和深入信息。
 author: adamglick
 ms.date: 09/12/2018
-ms.openlocfilehash: 4f879445154e37502bbeeeb90939737b6072e6ec
-ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
+ms.openlocfilehash: ff5da8a3d2612d7c122ec8ed87979eddf778dbf0
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/14/2018
-ms.locfileid: "45584793"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902844"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Azure 应用程序灾难恢复
 

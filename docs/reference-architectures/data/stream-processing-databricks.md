@@ -2,13 +2,13 @@
 title: 使用 Azure Databricks 进行流处理
 description: 使用 Azure Databricks 在 Azure 中创建端到端流处理管道
 author: petertaylor9999
-ms.date: 11/01/2018
-ms.openlocfilehash: a7e9df57572c9b3a3b0e4f418f148449aa40b04c
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.date: 11/30/2018
+ms.openlocfilehash: 0640e900c212d2b75cc9cdd5bec3a4f7c050490d
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295722"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902827"
 ---
 # <a name="stream-processing-with-azure-databricks"></a>使用 Azure Databricks 进行流处理
 
@@ -269,7 +269,7 @@ spark.streams.addListener(new StreamingMetricsListener())
 
 ### <a name="latency-and-throughput-for-streaming-queries"></a>流查询的延迟和吞吐量 
 
-```
+```shell
 taxijob_CL
 | where TimeGenerated > startofday(datetime(<date>)) and TimeGenerated < endofday(datetime(<date>))
 | project  mdc_inputRowsPerSecond_d, mdc_durationms_triggerExecution_d  
@@ -277,7 +277,7 @@ taxijob_CL
 ``` 
 ### <a name="exceptions-logged-during-stream-query-execution"></a>流查询执行期间记录的异常
 
-```
+```shell
 taxijob_CL
 | where TimeGenerated > startofday(datetime(<date>)) and TimeGenerated < endofday(datetime(<date>))
 | where Level contains "Error" 
@@ -285,7 +285,7 @@ taxijob_CL
 
 ### <a name="accumulation-of-malformed-fare-and-ride-data"></a>格式不当的费用和行程数据的累积数目
 
-```
+```shell
 SparkMetric_CL 
 | where TimeGenerated > startofday(datetime(<date>)) and TimeGenerated < endofday(datetime(<date>))
 | render timechart 
@@ -298,7 +298,8 @@ SparkMetric_CL
 ```
 
 ### <a name="job-execution-to-trace-resiliency"></a>用于跟踪复原能力的作业执行
-```
+
+```shell
 SparkMetric_CL 
 | where TimeGenerated > startofday(datetime(<date>)) and TimeGenerated < endofday(datetime(<date>))
 | render timechart 
@@ -307,11 +308,11 @@ SparkMetric_CL
 
 ## <a name="deploy-the-solution"></a>部署解决方案
 
-[GitHub](https://github.com/mspnp/reference-architectures/tree/master/data) 中提供了此参考体系结构的部署。 
+[GitHub](https://github.com/mspnp/azure-databricks-streaming-analytics) 中提供了此参考体系结构的部署。 
 
 ### <a name="prerequisites"></a>先决条件
 
-1. 克隆、下载[参考体系结构](https://github.com/mspnp/reference-architectures) GitHub 存储库的 zip 文件或创建其分支。
+1. 克隆或下载 [stream processing with Azure Databricks](https://github.com/mspnp/azure-databricks-streaming-analytics)（使用 Azure Databricks 进行流处理）一文的 GitHub 存储库或者创建其分库。
 
 2. 安装运行数据生成器的 [Docker](https://www.docker.com/)。
 
@@ -320,7 +321,7 @@ SparkMetric_CL
 4. 安装 [Databricks CLI](https://docs.databricks.com/user-guide/dev-tools/databricks-cli.html)。
 
 5. 在命令提示符、bash 提示符或 PowerShell 提示符下，按如下所示登录到你的 Azure 帐户：
-    ```
+    ```shell
     az login
     ```
 6. 安装包含以下资源的 Java IDE：
@@ -330,7 +331,7 @@ SparkMetric_CL
 
 ### <a name="download-the-new-york-city-taxi-and-neighborhood-data-files"></a>下载纽约市出租车和周边区域数据文件
 
-1. 在本地文件系统中的 `data/streaming_azuredatabricks` 目录下创建名为 `DataFile` 的目录。
+1. 在本地文件系统的已克隆 Github 存储库的根中创建名为 `DataFile` 的目录。
 
 2. 打开 Web 浏览器并导航到 https://uofi.app.box.com/v/NYCtaxidata/folder/2332219935。
 
@@ -341,17 +342,15 @@ SparkMetric_CL
     > [!NOTE]
     > 此 zip 文件包含其他 zip 文件。 不要解压缩子 zip 文件。
 
-    目录结构应如下所示：
+    目录结构必须如下所示：
 
-    ```
-    /data
-        /streaming_azuredatabricks
-            /DataFile
-                /FOIL2013
-                    trip_data_1.zip
-                    trip_data_2.zip
-                    trip_data_3.zip
-                    ...
+    ```shell
+    /DataFile
+        /FOIL2013
+            trip_data_1.zip
+            trip_data_2.zip
+            trip_data_3.zip
+            ...
     ```
 
 5. 打开 Web 浏览器并导航到 https://www.zillow.com/howto/api/neighborhood-boundaries.htm。 
@@ -368,10 +367,10 @@ SparkMetric_CL
     az login
     ```
 
-2. 导航到 GitHub 存储库中的 `data/streaming_azuredatabricks` 文件夹。
+2. 导航到 GitHub 存储库中名为 `azure` 的文件夹：
 
     ```bash
-    cd data/streaming_azuredatabricks
+    cd azure
     ```
 
 3. 运行以下命令以部署 Azure 资源：
@@ -390,7 +389,7 @@ SparkMetric_CL
 
     # Deploy resources
     az group deployment create --resource-group $resourceGroup \
-        --template-file ./azure/deployresources.json --parameters \
+        --template-file deployresources.json --parameters \
         eventHubNamespace=$eventHubNamespace \
         databricksWorkspaceName=$databricksWorkspaceName \
         cosmosDatabaseAccount=$cosmosDatabaseAccount \
@@ -439,7 +438,7 @@ SparkMetric_CL
 4. 在“输入用于创建表的 CQL 命令”部分的 `newyorktaxi` 旁边的文本框中输入 `neighborhoodstats`。
 
 5. 在下面的文本框中输入以下内容：
-```
+```shell
 (neighborhood text, window_end timestamp, number_of_rides bigint,total_fare_amount double, primary key(neighborhood, window_end))
 ```
 6. 在“吞吐量(1,000 - 1,000,000 RU/秒)”文本框中，输入值 `4000`。
@@ -451,17 +450,17 @@ SparkMetric_CL
 首先输入事件中心的机密：
 
 1. 使用先决条件部分的步骤 2 中安装的 **Azure Databricks CLI**，创建 Azure Databricks 机密范围：
-    ```
+    ```shell
     databricks secrets create-scope --scope "azure-databricks-job"
     ```
 2. 添加出租车行程事件中心的机密：
-    ```
+    ```shell
     databricks secrets put --scope "azure-databricks-job" --key "taxi-ride"
     ```
     执行后，此命令会打开 vi 编辑器。 输入在执行“部署 Azure 资源”部分的步骤 4 时，**eventHubs** 输出部分显示的 **taxi-ride-eh** 值。 保存并退出 vi。
 
 3. 添加出租车费用事件中心的机密：
-    ```
+    ```shell
     databricks secrets put --scope "azure-databricks-job" --key "taxi-fare"
     ```
     执行后，此命令会打开 vi 编辑器。 输入在执行“部署 Azure 资源”部分的步骤 4 时，**eventHubs** 输出部分显示的 **taxi-fare-eh** 值。 保存并退出 vi。
@@ -471,13 +470,13 @@ SparkMetric_CL
 1. 打开 Azure 门户，导航到在“部署 Azure 资源”部分的步骤 3 中指定的资源组。 单击“Azure Cosmos DB 帐户”。
 
 2. 使用 **Azure Databricks CLI** 添加 Cosmos DB 用户名的机密：
-    ```
+    ```shell
     databricks secrets put --scope azure-databricks-job --key "cassandra-username"
     ```
 执行后，此命令会打开 vi 编辑器。 输入在执行“部署 Azure 资源”部分的步骤 4 时，**CosmosDb** 输出部分显示的 **username** 值。 保存并退出 vi。
 
 3. 接下来，添加 Cosmos DB 密码的机密：
-    ```
+    ```shell
     databricks secrets put --scope azure-databricks-job --key "cassandra-password"
     ```
 
@@ -493,7 +492,7 @@ SparkMetric_CL
     dbfs mkdirs dbfs:/azure-databricks-jobs
     ```
 
-2. 导航到 data/streaming_azuredatabricks/DataFile 并输入以下内容：
+2. 导航到 `DataFile` 目录并输入以下内容：
     ```bash
     dbfs cp ZillowNeighborhoods-NY.zip dbfs:/azure-databricks-jobs
     ```
@@ -502,37 +501,37 @@ SparkMetric_CL
 
 在本部分，需要使用 Log Analytics 工作区 ID 和主密钥。 工作区 ID 是在执行“部署 Azure 资源”部分的步骤 4 时，**logAnalytics** 输出部分显示的 **workspaceId** 值。 主密钥是输出部分显示的 **secret** 值。 
 
-1. 若要配置 log4j 日志记录，请打开 data\streaming_azuredatabricks\azure\AzureDataBricksJob\src\main\resources\com\microsoft\pnp\azuredatabricksjob\log4j.properties。 编辑以下两个值：
-    ```
+1. 若要配置 log4j 日志记录，请打开 `\azure\AzureDataBricksJob\src\main\resources\com\microsoft\pnp\azuredatabricksjob\log4j.properties`。 编辑以下两个值：
+    ```shell
     log4j.appender.A1.workspaceId=<Log Analytics workspace ID>
     log4j.appender.A1.secret=<Log Analytics primary key>
     ```
 
-2. 若要配置自定义日志记录，请打开 data\streaming_azuredatabricks\azure\azure-databricks-monitoring\scripts\metrics.properties。 编辑以下两个值：
-    ``` 
+2. 若要配置自定义日志记录，请打开 `\azure\azure-databricks-monitoring\scripts\metrics.properties`。 编辑以下两个值：
+    ```shell
     *.sink.loganalytics.workspaceId=<Log Analytics workspace ID>
     *.sink.loganalytics.secret=<Log Analytics primary key>
     ```
 
 ### <a name="build-the-jar-files-for-the-databricks-job-and-databricks-monitoring"></a>生成用于 Databricks 作业和 Databricks 监视的 .jar 文件
 
-1. 使用 Java IDE 导入 **data/streaming_azuredatabricks** 目录所在的根目录中名为 **pom.xml** 的 Maven 项目文件。 
+1. 使用 Java IDE 导入根目录中名为 **pom.xml** 的 Maven 项目文件。 
 
 2. 执行全新生成。 此项生成的输出是名为 **azure-databricks-job-1.0-SNAPSHOT.jar** 和 **azure-databricks-monitoring-0.9.jar** 的文件。 
 
 ### <a name="configure-custom-logging-for-the-databricks-job"></a>为 Databricks 作业配置自定义日志记录
 
 1. 在 **Databricks CLI** 中输入以下命令，将 **azure-databricks-monitoring-0.9.jar** 文件复制到 Databricks 文件系统：
-    ```
+    ```shell
     databricks fs cp --overwrite azure-databricks-monitoring-0.9.jar dbfs:/azure-databricks-job/azure-databricks-monitoring-0.9.jar
     ```
 
-2. 输入以下命令，将 data\streaming_azuredatabricks\azure\azure-databricks-monitoring\scripts\metrics.properties 中的自定义日志记录属性复制到 Databricks 文件系统：
-    ```
+2. 输入以下命令，将自定义日志记录属性从 `\azure\azure-databricks-monitoring\scripts\metrics.properties` 复制到 Databricks 文件系统：
+    ```shell
     databricks fs cp --overwrite metrics.properties dbfs:/azure-databricks-job/metrics.properties
     ```
 
-3. 如果尚未确定 Databricks 群集的名称，现在请选择一个名称。 稍后将在群集的 Databricks 文件系统路径中输入以下名称。 输入以下命令，将 data\streaming_azuredatabricks\azure\azure-databricks-monitoring\scripts\spark.metrics 中的初始化脚本复制到 Databricks 文件系统：
+3. 如果尚未确定 Databricks 群集的名称，现在请选择一个名称。 稍后将在群集的 Databricks 文件系统路径中输入以下名称。 输入以下命令，将初始化脚本从 `\azure\azure-databricks-monitoring\scripts\spark.metrics` 复制到 Databricks 文件系统：
     ```
     databricks fs cp --overwrite spark-metrics.sh dbfs:/databricks/init/<cluster-name>/spark-metrics.sh
     ```
@@ -576,7 +575,7 @@ SparkMetric_CL
 5. 在“Main 类”字段中输入 **com.microsoft.pnp.TaxiCabReader**。
 
 6. 在“参数”字段中输入以下内容：
-    ```
+    ```shell
     -n jar:file:/dbfs/azure-databricks-jobs/ZillowNeighborhoods-NY.zip!/ZillowNeighborhoods-NY.shp --taxi-ride-consumer-group taxi-ride-eh-cg --taxi-fare-consumer-group taxi-fare-eh-cg --window-interval "1 minute" --cassandra-host <Cosmos DB Cassandra host name from above> 
     ``` 
 
@@ -629,11 +628,11 @@ SparkMetric_CL
 
 ### <a name="run-the-data-generator"></a>运行数据生成器
 
-1. 导航到 GitHub 存储库中的 `data/streaming_azuredatabricks/onprem` 目录。
+1. 导航到 GitHub 存储库中名为 `onprem` 的目录。
 
 2. 按如下所示更新 **main.env** 文件中的值：
 
-    ```
+    ```shell
     RIDE_EVENT_HUB=[Connection string for the taxi-ride event hub]
     FARE_EVENT_HUB=[Connection string for the taxi-fare event hub]
     RIDE_DATA_FILE_PATH=/DataFile/FOIL2013
@@ -648,7 +647,7 @@ SparkMetric_CL
     docker build --no-cache -t dataloader .
     ```
 
-4. 导航回到父目录 `data/stream_azuredatabricks`。
+4. 导航回父目录。
 
     ```bash
     cd ..
