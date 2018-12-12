@@ -2,13 +2,13 @@
 title: 云设计模式
 description: Microsoft Azure 的云设计模式
 keywords: Azure
-ms.date: 06/23/2017
-ms.openlocfilehash: 308e9bc784fc791d04adcecaae64bf258edeb20b
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 12/10/2018
+ms.openlocfilehash: 26ee59ef15fc63bb5e823cd85f610cd9ad01177a
+ms.sourcegitcommit: 9a15af3a25f25b8730968d32cbb006434b183e18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326191"
+ms.lasthandoff: 12/11/2018
+ms.locfileid: "53234044"
 ---
 # <a name="cloud-design-patterns"></a>云设计模式
 
@@ -104,6 +104,7 @@ ms.locfileid: "43326191"
 |              [具体化视图](./materialized-view.md)              |                                        当未针对所需的查询操作完美设置数据的格式时，在一个或多个数据存储中基于数据生成预填充的视图。                                        |
 |              [管道和筛选器](./pipes-and-filters.md)              |                                                        将一个执行复杂处理的任务分解为一系列可重复使用的单个元素。                                                        |
 |                 [优先级队列](./priority-queue.md)                 |                                 为发送到服务的请求确定优先级，以便高优先级请求能够得到比低优先级请求更快速地接收和处理。                                  |
+| [发布方/订阅方](./publisher-subscriber.md) | 使应用程序能够以异步方式向多个感兴趣的使用者公布事件，而无需将发送方与接收方耦合。 |
 |      [基于队列的负载调控](./queue-based-load-leveling.md)      |                                               使用队列在任务与所调用的服务之间充当缓冲，从而缓解间歇性负载过大现象。                                               |
 |                          [重试](./retry.md)                          |               当应用程序尝试连接到服务或网络资源时，使应用程序能够通过以透明方式重试先前失败的操作来处理预期的临时故障。                |
 |     [计划程序代理监督程序](./scheduler-agent-supervisor.md)     |                                                              跨一组分布式服务和其他远程资源协调一组操作。                                                               |
