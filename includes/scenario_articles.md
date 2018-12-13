@@ -110,11 +110,11 @@
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./apps/media/architecture-devops-dotnet-webapp.png" height="140px" />
+                            <img src="./apps/media/architecture-devops-dotnet-webapp.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>将 CI/CD 管道与 Azure DevOps 配合使用</h3>
+                        <h3>使用 Azure DevOps 设计 CI/CD 管道</h3>
                         <p>使用 Azure DevOps 生成 .NET 应用并将其发布到 Azure Web 应用。</p>
                     </div>
                 </div>
@@ -411,8 +411,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>在 Azure 上为实现高可用性和灾难恢复而构建的多层 Web 应用程序</h3>
-                        <p>使用 Azure 虚拟机、可用性集、可用性区域、Azure Site Recovery 和 Azure 流量管理器在 Azure 上创建为实现高可用性和灾难恢复而构建的多层 Web 应用程序</p>
+                        <h3>Azure 上可实现高可用性和灾难恢复的多层 Web 应用程序</h3>
+                        <p>使用 Azure 虚拟机、可用性集、可用性区域、Azure Site Recovery 和 Azure 流量管理器在 Azure 上创建可实现高可用性和灾难恢复的多层 Web 应用程序</p>
                     </div>
                 </div>
             </div>
@@ -430,7 +430,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>确保管控行业的 Windows Web 应用程序的安全</h3>
+                        <h3>使用 Windows 虚拟机在 Azure 上构建安全的 Web 应用</h3>
                         <p>使用规模集、应用程序网关和负载均衡器在 Azure 上通过 Windows Server 构建安全的多层 Web 应用程序。</p>
                     </div>
                 </div>

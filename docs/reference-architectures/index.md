@@ -4,21 +4,22 @@ description: 适用于 Azure 上的常见工作负荷的参考体系结构、蓝
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: 5b117ce308fcc47cae68bb83166ada71b75f6ce7
-ms.sourcegitcommit: 7d21aec9d9de0004ac777c1d1e364f53aac2350d
+ms.openlocfilehash: efac05ff95431f9551c6fb76939dbb91cfa01d1d
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53120763"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307004"
 ---
 # <a name="azure-reference-architectures"></a>Azure 参考体系结构
 
 我们的参考体系结构已根据方案进行编制，相关的体系结构已分组到一起。 每个体系结构包括建议的做法，以及有关可伸缩性、可用性、可管理性和安全性的注意事项。 大多数体系结构还包括一个可部署的解决方案。
 
-跳转到：[AI](#ai-and-machine-learning) | [大数据](#big-data-solutions) | [无服务器](#serverless-applications) | [虚拟网络](#virtual-networks) |  [VM 工作负荷](#vm-workloads) | [SAP](#sap) | [Web 应用](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
+跳转到：[AI](#ai-and-machine-learning) | [大数据](#big-data-solutions) | [无服务器](#serverless-applications) | [虚拟网络](#virtual-networks) | [VM 工作负荷](#vm-workloads) | [SAP](#sap) | [Web 应用](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
 
 ## <a name="ai-and-machine-learning"></a>AI 和机器学习
 
+<!-- markdownlint-disable MD033 -->
 <ul  class="panelContent cardsF">
 <!-- Batch scoring for deep learning models -->
 <li style="display: flex; flex-direction: column;">
@@ -54,6 +55,26 @@ ms.locfileid: "53120763"
                     <div class="cardText">
                         <h3>Python 模型的实时评分</h3>
                         <p>将 Python 模型部署为 Web 服务，以便使用常规 Python 模型或深度学习模型进行实时预测。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Batch scoring for R models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/realtime-scoring-r.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/logo-r.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>机器学习模型的实时评分</h3>
+                        <p>在 R 中使用运行于 Azure Kubernetes 服务 (AKS) 中的 Microsoft Machine Learning Server 实现实时预测服务。</p>
                     </div>
                 </div>
             </div>
