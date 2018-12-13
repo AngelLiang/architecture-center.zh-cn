@@ -3,12 +3,13 @@ title: 将旧式 Web 应用程序迁移到 Azure 上基于 API 的体系结构
 description: 使用 Azure API 管理来实现旧式 Web 应用程序的现代化。
 author: begim
 ms.date: 09/13/2018
-ms.openlocfilehash: f468b3c6dc1c58e03555613b152882316ae2a017
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: ea063653b4962e42cbec7f9d98c16e22e987efd1
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610577"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004700"
 ---
 # <a name="migrating-a-legacy-web-application-to-an-api-based-architecture-on-azure"></a>将旧式 Web 应用程序迁移到 Azure 上基于 API 的体系结构
 

@@ -3,12 +3,13 @@ title: Azure 上银行间的分散式信任
 description: 建立受信任的环境以进行通信和信息共享，而不必求助于集中式数据库。
 author: vitoc
 ms.date: 09/09/2018
-ms.openlocfilehash: bc472bc5bafc3eb20e583f41d71ed783725a039e
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: csa-team
+ms.openlocfilehash: 91c41f7bd6bd6f4eb8cd00859f7ce9065f8a86be
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610560"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004727"
 ---
 # <a name="decentralized-trust-between-banks-on-azure"></a>Azure 上银行间的分散式信任
 
