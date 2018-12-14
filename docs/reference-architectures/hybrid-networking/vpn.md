@@ -1,47 +1,44 @@
 ---
 title: 使用 VPN 将本地网络连接到 Azure
-description: 如何实现这样一个安全的站点到站点网络体系结构：跨 Azure 虚拟网络，以及使用 VPN 建立连接的本地网络。
+titleSuffix: Azure Reference Architectures
+description: 实现这样一个安全的站点到站点网络体系结构：跨 Azure 虚拟网络，以及使用 VPN 建立连接的本地网络。
 author: RohitSharma-pnp
 ms.date: 10/22/2018
-pnp.series.title: Connect an on-premises network to Azure
-pnp.series.next: expressroute
-pnp.series.prev: ./index
-cardTitle: VPN
-ms.openlocfilehash: a494ff952dd6c8be3b38c2ca7f6740a44b5b30e1
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.openlocfilehash: a1bb2e250cb261e1a56abfb58b099fd078c068e5
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295661"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120435"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>使用 VPN 网关将本地网络连接到 Azure
 
-此参考体系结构演示如何使用站点到站点虚拟专用网络 (VPN) 将本地网络扩展到 Azure。 本地网络与 Azure 虚拟专用网络 (VNet) 之间的流量通过 IPSec VPN 隧道传送。 [**部署此解决方案**。](#deploy-the-solution)
+此参考体系结构演示如何使用站点到站点虚拟专用网络 (VPN) 将本地网络扩展到 Azure。 本地网络与 Azure 虚拟专用网络 (VNet) 之间的流量通过 IPSec VPN 隧道传送。 [**部署此解决方案**](#deploy-the-solution)。
 
-![[0]][0]
+![跨本地和 Azure 基础结构的混合网络](./images/vpn.png)
 
 下载此体系结构的 [Visio 文件][visio-download]。
 
-## <a name="architecture"></a>体系结构 
+## <a name="architecture"></a>体系结构
 
 该体系结构包括以下组件。
 
-* **本地网络**。 组织中运行的专用局域网。
+- **本地网络**。 组织中运行的专用局域网。
 
-* **VPN 设备**。 用于与本地网络建立外部连接的设备或服务。 该 VPN 设备可以是硬件设备，也可以是软件解决方案，例如 Windows Server 2012 中的路由和远程访问服务 (RRAS)。 有关支持的 VPN 设备的列表以及有关如何配置它们以连接到 Azure VPN 网关的信息，请参阅[关于站点到站点 VPN 网关连接的 VPN 设备][vpn-appliance]一文中针对所选设备的说明。
+- **VPN 设备**。 用于与本地网络建立外部连接的设备或服务。 该 VPN 设备可以是硬件设备，也可以是软件解决方案，例如 Windows Server 2012 中的路由和远程访问服务 (RRAS)。 有关支持的 VPN 设备的列表以及有关如何配置它们以连接到 Azure VPN 网关的信息，请参阅[关于站点到站点 VPN 网关连接的 VPN 设备][vpn-appliance]一文中针对所选设备的说明。
 
-* **虚拟网络 (VNet)**。 云应用程序和 Azure VPN 网关的组件驻留在相同 [VNet][azure-virtual-network] 中。
+- **虚拟网络 (VNet)**。 云应用程序和 Azure VPN 网关的组件驻留在相同 [VNet][azure-virtual-network] 中。
 
-* **Azure VPN 网关**。 [VPN 网关][azure-vpn-gateway]服务使你可以通过 VPN 设备将 VNet 连接到本地网络。 有关详细信息，请参阅[将本地网络连接到 Microsoft Azure 虚拟网络][connect-to-an-Azure-vnet]。 VPN 网关包括以下元素：
-  
-  * **虚拟网络网关**。 为 VNet 提供虚拟 VPN 设备的资源。 它负责将流量从本地网络路由到 VNet。
-  * **本地网络网关**。 本地 VPN 设备的抽象。 从云应用程序到本地网络的网络流量通过此网关进行路由。
-  * **连接**。 该连接包含一些属性，这些属性指定连接类型 (IPSec)，以及与本地 VPN 设备共享的、用于加密流量的密钥。
-  * **网关子网**。 虚拟网络网关保留在自己的子网中，该子网需满足下面“建议”一节中所述的要求。
+- **Azure VPN 网关**。 [VPN 网关][azure-vpn-gateway]服务使你可以通过 VPN 设备将 VNet 连接到本地网络。 有关详细信息，请参阅[将本地网络连接到 Microsoft Azure 虚拟网络][connect-to-an-Azure-vnet]。 VPN 网关包括以下元素：
 
-* **云应用程序**。 Azure 中托管的应用程序。 它可以包含多个层，以及通过 Azure 负载均衡器连接的多个子网。 有关应用程序基础结构的详细信息，请参阅[运行 Windows VM 工作负荷][windows-vm-ra]和[运行 Linux VM 工作负荷][linux-vm-ra]。
+  - **虚拟网络网关**。 为 VNet 提供虚拟 VPN 设备的资源。 它负责将流量从本地网络路由到 VNet。
+  - **本地网络网关**。 本地 VPN 设备的抽象。 从云应用程序到本地网络的网络流量通过此网关进行路由。
+  - **连接**。 该连接包含一些属性，这些属性指定连接类型 (IPSec)，以及与本地 VPN 设备共享的、用于加密流量的密钥。
+  - **网关子网**。 虚拟网络网关保留在自己的子网中，该子网需满足下面“建议”一节中所述的要求。
 
-* **内部负载均衡器**。 来自 VPN 网关的网络流量通过内部负载均衡器路由到云应用程序。 该负载均衡器位于应用程序的前端子网中。
+- **云应用程序**。 Azure 中托管的应用程序。 它可以包含多个层，以及通过 Azure 负载均衡器连接的多个子网。 有关应用程序基础结构的详细信息，请参阅[运行 Windows VM 工作负荷][windows-vm-ra]和[运行 Linux VM 工作负荷][linux-vm-ra]。
+
+- **内部负载均衡器**。 来自 VPN 网关的网络流量通过内部负载均衡器路由到云应用程序。 该负载均衡器位于应用程序的前端子网中。
 
 ## <a name="recommendations"></a>建议
 
@@ -56,12 +53,11 @@ ms.locfileid: "52295661"
 1. 将 VNet 地址空间中的变量位设置为 1（直到网关子网所使用的位），然后将剩余位设置为 0。
 2. 将得到的位转换为十进制，然后将它表示为前缀长度设置为网关子网大小的地址空间。
 
-例如，对于 IP 地址范围为 10.20.0.0/16 的 VNet，应用上面的步骤 1 会成为 10.20.0b11111111.0b11100000。  将该数字转换为十进制并将它表示为地址空间会生成 10.20.255.224/27。 
+例如，对于 IP 地址范围为 10.20.0.0/16 的 VNet，应用上面的步骤 1 会成为 10.20.0b11111111.0b11100000。  将该数字转换为十进制并将它表示为地址空间会生成 10.20.255.224/27。
 
 > [!WARNING]
 > 请勿向网关子网部署任何 VM。 此外，请勿向此子网分配 NSG，因为它会导致网关停止工作。
-> 
-> 
+>
 
 ### <a name="virtual-network-gateway"></a>虚拟网络网关
 
@@ -77,15 +73,13 @@ ms.locfileid: "52295661"
 
 > [!NOTE]
 > 创建网关后，必须先删除并重新创建网关才能更改网关类型。
-> 
-> 
+>
 
 选择最符合你吞吐量要求的 Azure VPN 网关 SKU。 有关详细信息，请参阅[网关 SKU][azure-gateway-skus]
 
 > [!NOTE]
 > 基本 SKU 不与 Azure ExpressRoute 兼容。 可以在创建网关之后[更改 SKU][changing-SKUs]。
-> 
-> 
+>
 
 会基于预配和提供网关的时间量进行收费。 请参阅 [VPN 网关定价][azure-gateway-charges]。
 
@@ -103,9 +97,9 @@ ms.locfileid: "52295661"
 
 测试连接以验证以下事项：
 
-* 本地 VPN 设备通过 Azure VPN 网关将流量正确路由到云应用程序。
-* VNet 将流量正确路由回本地网络。
-* 正确阻止两个方向上的禁止流量。
+- 本地 VPN 设备通过 Azure VPN 网关将流量正确路由到云应用程序。
+- VNet 将流量正确路由回本地网络。
+- 正确阻止两个方向上的禁止流量。
 
 ## <a name="scalability-considerations"></a>可伸缩性注意事项
 
@@ -123,7 +117,7 @@ ms.locfileid: "52295661"
 
 如果组织具有多个本地站点，请创建与一个或多个 Azure VNet 之间的[多站点连接][vpn-gateway-multi-site]。 此方法需要动态（基于路由的）路由，因此请确保本地 VPN 网关支持此功能。
 
-有关服务级别协议的详细信息，请参阅 [VPN 网关的 SLA][sla-for-vpn-gateway]。 
+有关服务级别协议的详细信息，请参阅 [VPN 网关的 SLA][sla-for-vpn-gateway]。
 
 ## <a name="manageability-considerations"></a>可管理性注意事项
 
@@ -133,7 +127,7 @@ ms.locfileid: "52295661"
 
 使用 Azure 门户中提供的审核日志监视 Azure VPN 网关的运行日志。 为本地网络网关、Azure 网络网关和连接分别提供了单独的日志。 此信息可以用于跟踪对网关进行的任何更改，并且在以前正常运行的网关由于某种原因而停止工作时可能会十分有用。
 
-![[2]][2]
+![Azure 门户中的审核日志](../_images/guidance-hybrid-network-vpn/audit-logs.png)
 
 监视连接，并跟踪连接失败事件。 可以使用监视包（如 [Nagios][nagios]）捕获并报告此信息。
 
@@ -143,8 +137,7 @@ ms.locfileid: "52295661"
 
 > [!NOTE]
 > 当前无法使用 Azure Key Vault 为 Azure VPN 网关预共享密钥。
-> 
-> 
+>
 
 确保本地 VPN 设备使用的加密方法[与 Azure VPN 网关兼容][vpn-appliance-ipsec]。 对于基于策略的路由，Azure VPN 网关支持 AES256、AES128 和 3DES 加密算法。 基于路由的网关支持 AES256 和 3DES。
 
@@ -154,11 +147,9 @@ ms.locfileid: "52295661"
 
 > [!NOTE]
 > 强制隧道可能会影响与 Azure 服务（例如存储服务）和 Windows 许可证管理器之间的连接。
-> 
-> 
+>
 
-
-## <a name="troubleshooting"></a>故障排除 
+## <a name="troubleshooting"></a>故障排除
 
 有关常见 VPN 相关错误故障排除的常规信息，请参阅[常见 VPN 相关错误故障排除][troubleshooting-vpn-errors]。
 
@@ -176,7 +167,7 @@ ms.locfileid: "52295661"
 
         - Inability to connect, possibly due to an incorrect IP address specified for the Azure VPN gateway in the RRAS VPN network interface configuration.
 
-        ```
+        ```console
         EventID            : 20111
         MachineName        : on-prem-vm
         Data               : {41, 3, 0, 0}
@@ -208,7 +199,7 @@ ms.locfileid: "52295661"
 
         - The wrong shared key being specified in the RRAS VPN network interface configuration.
 
-        ```
+        ```console
         EventID            : 20111
         MachineName        : on-prem-vm
         Data               : {233, 53, 0, 0}
@@ -232,15 +223,15 @@ ms.locfileid: "52295661"
         Container          :
         ```
 
-    还可以使用以下 PowerShell 命令获取有关通过 RRAS 服务尝试连接的事件日志信息： 
+    还可以使用以下 PowerShell 命令获取有关通过 RRAS 服务尝试连接的事件日志信息：
 
-    ```
+    ```powershell
     Get-EventLog -LogName Application -Source RasClient | Format-List -Property *
     ```
 
     如果出现连接故障，则此日志会包含类似于以下内容的错误：
 
-    ```
+    ```console
     EventID            : 20227
     MachineName        : on-prem-vm
     Data               : {}
@@ -264,13 +255,13 @@ ms.locfileid: "52295661"
 
     VPN 设备可能无法通过 Azure VPN 网关正确路由流量。 使用 [PsPing][psping] 这类工具可验证跨 VPN 网关的连接和路由。 例如，若要测试从本地计算机到位于 VNet 上的 Web 服务器的连接，请运行以下命令（将 `<<web-server-address>>` 替换为 Web 服务器的地址）：
 
-    ```
+    ```console
     PsPing -t <<web-server-address>>:80
     ```
 
     如果本地计算机可以将流量路由到 Web 服务器，则你应看到类似于以下内容的输出：
 
-    ```
+    ```console
     D:\PSTools>psping -t 10.20.0.5:80
 
     PsPing v2.01 - PsPing - ping, latency, bandwidth measurement utility
@@ -290,7 +281,7 @@ ms.locfileid: "52295661"
 
     如果本地计算机无法与指定目标进行通信，则你会看到如下消息：
 
-    ```
+    ```console
     D:\PSTools>psping -t 10.20.1.6:80
 
     PsPing v2.01 - PsPing - ping, latency, bandwidth measurement utility
@@ -320,7 +311,7 @@ ms.locfileid: "52295661"
 
     可以使用以下 Azure CLI 命令查看 Azure VPN 网关存储的共享密钥：
 
-    ```
+    ```azurecli
     azure network vpn-connection shared-key show <<resource-group>> <<vpn-connection-name>>
     ```
 
@@ -330,13 +321,13 @@ ms.locfileid: "52295661"
 
     可以使用以下 Azure CLI 命令查看子网详细信息：
 
-    ```
+    ```azurecli
     azure network vnet subnet show -g <<resource-group>> -e <<vnet-name>> -n GatewaySubnet
     ```
 
     确保没有名为 Network Security Group id 的数据字段。以下示例显示分配了 NSG (VPN-Gateway-Group) 的 GatewaySubnet 实例的结果。 如果没有为此 NSG 定义任何规则，则这可能会阻止网关正常工作。
 
-    ```
+    ```console
     C:\>azure network vnet subnet show -g profx-prod-rg -e profx-vnet -n GatewaySubnet
         info:    Executing command network vnet subnet show
         + Looking up virtual network "profx-vnet"
@@ -353,7 +344,7 @@ ms.locfileid: "52295661"
 
     检查与包含这些虚拟机的子网关联的任何 NSG 规则。 可以使用以下 Azure CLI 命令查看所有 NSG 规则：
 
-    ```
+    ```azurecli
     azure network nsg show -g <<resource-group>> -n <<nsg-name>>
     ```
 
@@ -361,13 +352,13 @@ ms.locfileid: "52295661"
 
     可以使用以下 Azure PowerShell 命令检查 Azure VPN 连接的当前状态。 `<<connection-name>>` 参数是链接虚拟网络网关和本地网关的 Azure VPN 连接的名称。
 
-    ```
+    ```powershell
     Get-AzureRmVirtualNetworkGatewayConnection -Name <<connection-name>> - ResourceGroupName <<resource-group>>
     ```
 
     以下代码片段突出显示在网关已连接（第一个示例）和断开连接（第二个示例）时生成的输出：
 
-    ```
+    ```powershell
     PS C:\> Get-AzureRmVirtualNetworkGatewayConnection -Name profx-gateway-connection -ResourceGroupName profx-prod-rg
 
     AuthorizationKey           :
@@ -385,7 +376,7 @@ ms.locfileid: "52295661"
     ...
     ```
 
-    ```
+    ```powershell
     PS C:\> Get-AzureRmVirtualNetworkGatewayConnection -Name profx-gateway-connection2 -ResourceGroupName profx-prod-rg
 
     AuthorizationKey           :
@@ -411,11 +402,11 @@ ms.locfileid: "52295661"
 
     如何进行验证取决于在本地运行的 VPN 设备。 例如，如果在 Windows Server 2012 上使用 RRAS，则可以使用性能监视器跟踪通过 VPN 连接接收和传输的数据量。 使用 RAS Total 对象，选择 Bytes Received/Sec 和 Bytes Transmitted/Sec 计数器：
 
-    ![[3]][3]
+    ![用于监视 VPN 网络流量的性能计数器](../_images/guidance-hybrid-network-vpn/RRAS-perf-counters.png)
 
     应该将结果与 VPN 网关可用的带宽（从基本 SKU 提供的 100 Mbps，到 VpnGw3 SKU 提供的 1.25 Gbps）进行比较：
 
-    ![[4]][4]
+    ![示例 VPN 网络性能图](../_images/guidance-hybrid-network-vpn/RRAS-perf-graph.png)
 
 - **验证是否已为应用程序负载部署了正确数量和大小的 VM。**
 
@@ -427,21 +418,22 @@ ms.locfileid: "52295661"
 
 ## <a name="deploy-the-solution"></a>部署解决方案
 
-
-**先决条件。** 必须提供一个已配置适当网络设备的现有本地基础结构。
+**先决条件**。 必须提供一个已配置适当网络设备的现有本地基础结构。
 
 若要部署该解决方案，请执行以下步骤。
 
+<!-- markdownlint-disable MD033 -->
+
 1. 单击下面的按钮：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fvpn%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
-2. 等待该链接在 Azure 门户中打开，然后执行以下步骤： 
-   * 参数文件中已定义**资源组**名称，因此请选择“新建”，并在文本框中输入 `ra-hybrid-vpn-rg`。
-   * 从“位置”下拉框中选择区域。
-   * 不要编辑“模板根 URI”或“参数根 URI”文本框。
-   * 查看条款和条件，并单击“我同意上述条款和条件”复选框。
-   * 单击“购买”按钮。
+2. 等待该链接在 Azure 门户中打开，然后执行以下步骤：
+   - 参数文件中已定义**资源组**名称，因此请选择“新建”，并在文本框中输入 `ra-hybrid-vpn-rg`。
+   - 从“位置”下拉框中选择区域。
+   - 不要编辑“模板根 URI”或“参数根 URI”文本框。
+   - 查看条款和条件，并单击“我同意上述条款和条件”复选框。
+   - 单击“购买”按钮。
 3. 等待部署完成。
 
-
+<!-- markdownlint-enable MD033 -->
 
 <!-- links -->
 
@@ -489,7 +481,3 @@ ms.locfileid: "52295661"
 [virtualNetworkGateway-parameters]: https://github.com/mspnp/hybrid-networking/vpn/parameters/virtualNetworkGateway.parameters.json
 [azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/
 [CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
-[0]: ./images/vpn.png "跨本地和 Azure 基础结构的混合网络"
-[2]: ../_images/guidance-hybrid-network-vpn/audit-logs.png "Azure 门户中的审核日志"
-[3]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-counters.png "用于监视 VPN 网络流量的性能计数器"
-[4]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-graph.png "示例 VPN 网络性能图"

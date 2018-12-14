@@ -1,58 +1,59 @@
 ---
 title: 在 Azure 中实现中心辐射型网络拓扑
-description: 如何在 Azure 中实现中心辐射型网络拓扑。
+titleSuffix: Azure Reference Architectures
+description: 在 Azure 中实现中心辐射型网络拓扑。
 author: telmosampaio
 ms.date: 10/08/2018
+ms.custom: seodec18
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: e14abb5526b6ecd8637fb89c4ef7154d3b26f7a4
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 23821353fe943d3e389ed89ca26b946ff6afeed3
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916331"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120283"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>在 Azure 中实现中心辐射型网络拓扑
 
-此参考体系结构展示了如何在 Azure 中实现中心辐射型拓扑。 *中心*是 Azure 中的一个虚拟网络 (VNet)，充当到本地网络的连接的中心点。 *辐射*是与中心对等互连的 VNet，可用于隔离工作负荷。 流量通过 ExpressRoute 或 VPN 网关连接在本地数据中心与中心之间流动。  [**部署此解决方案**](#deploy-the-solution)。
+此参考体系结构展示了如何在 Azure 中实现中心辐射型拓扑。 *中心*是 Azure 中的一个虚拟网络 (VNet)，充当到本地网络的连接的中心点。 *辐射*是与中心对等互连的 VNet，可用于隔离工作负荷。 流量通过 ExpressRoute 或 VPN 网关连接在本地数据中心与中心之间流动。 [**部署此解决方案**](#deploy-the-solution)。
 
 ![[0]][0]
 
 *下载此体系结构的 [Visio 文件][visio-download]*
 
-
 此拓扑的好处包括：
 
-* **节省成本** - 通过将可以由多个工作负荷（例如网络虚拟设备 (NVAs) 和 DNS 服务器）共享的服务集中放置在单个位置中。
-* **克服订阅限制** - 通过将不同订阅中的 Vnet 对等互连到中心。
-* **关注点隔离**（在中心 IT（SecOps、InfraOps）与工作负荷 (DevOps) 之间）。
+- **节省成本** - 通过将可以由多个工作负荷（例如网络虚拟设备 (NVAs) 和 DNS 服务器）共享的服务集中放置在单个位置中。
+- **克服订阅限制** - 通过将不同订阅中的 Vnet 对等互连到中心。
+- **关注点隔离**（在中心 IT（SecOps、InfraOps）与工作负荷 (DevOps) 之间）。
 
 此体系结构的典型用途包括：
 
-* 在各种环境（例如开发、测试和生产）中部署的需要使用共享服务（例如 DNS、IDS、NTP 或 AD DS）的工作负荷。 共享服务放置在中心 VNet 中，而每个环境都部署到辐射以保持隔离。
-* 不需要彼此连接但需要访问共享服务的工作负荷。
-* 需要对安全方面进行集中控制（例如作为外围网络的中心内的防火墙），并且需要在每个辐射中对工作负荷进行隔离管理的企业。
+- 在各种环境（例如开发、测试和生产）中部署的需要使用共享服务（例如 DNS、IDS、NTP 或 AD DS）的工作负荷。 共享服务放置在中心 VNet 中，而每个环境都部署到辐射以保持隔离。
+- 不需要彼此连接但需要访问共享服务的工作负荷。
+- 需要对安全方面进行集中控制（例如作为外围网络的中心内的防火墙），并且需要在每个辐射中对工作负荷进行隔离管理的企业。
 
 ## <a name="architecture"></a>体系结构
 
 该体系结构包括以下组件。
 
-* **本地网络**。 在组织内运行的一个专用局域网。
+- **本地网络**。 在组织内运行的一个专用局域网。
 
-* **VPN 设备**。 提供到本地网络的外部连接的设备或服务。 VPN 设备可以是硬件设备，也可以是软件解决方案，例如 Windows Server 2012 中的路由和远程访问服务 (RRAS)。 有关受支持 VPN 设备的列表和有关为连接到 Azure 而配置所选 VPN 设备的信息，请参阅 [About VPN devices for Site-to-Site VPN Gateway connections][vpn-appliance]（关于站点到站点 VPN 网关连接的 VPN 设备）。
+- **VPN 设备**。 提供到本地网络的外部连接的设备或服务。 VPN 设备可以是硬件设备，也可以是软件解决方案，例如 Windows Server 2012 中的路由和远程访问服务 (RRAS)。 有关受支持 VPN 设备的列表和有关为连接到 Azure 而配置所选 VPN 设备的信息，请参阅 [About VPN devices for Site-to-Site VPN Gateway connections][vpn-appliance]（关于站点到站点 VPN 网关连接的 VPN 设备）。
 
-* **VPN 虚拟网络网关或 ExpressRoute 网关**。 虚拟网络网关可以将 VNet 连接到用于本地网络连接的 VPN 设备或 ExpressRoute 线路。 有关详细信息，请参阅[将本地网络连接到 Microsoft Azure 虚拟网络][connect-to-an-Azure-vnet]。
+- **VPN 虚拟网络网关或 ExpressRoute 网关**。 虚拟网络网关可以将 VNet 连接到用于本地网络连接的 VPN 设备或 ExpressRoute 线路。 有关详细信息，请参阅[将本地网络连接到 Microsoft Azure 虚拟网络][connect-to-an-Azure-vnet]。
 
 > [!NOTE]
 > 此参考体系结构的部署脚本使用 VPN 网关进行连接，使用 Azure 中的 VNet 来模拟本地网络。
 
-* **中心 VNet**。 用作中心辐射型拓扑中的中心的 Azure VNet。 中心是到本地网络的连接的中心点，它还托管着可以由辐射 VNet 中托管的各种工作负荷使用的服务。
+- **中心 VNet**。 用作中心辐射型拓扑中的中心的 Azure VNet。 中心是到本地网络的连接的中心点，它还托管着可以由辐射 VNet 中托管的各种工作负荷使用的服务。
 
-* **网关子网**。 虚拟网络网关保留在同一子网中。
+- **网关子网**。 虚拟网络网关保留在同一子网中。
 
-* **辐射 VNet**。 用作中心辐射型拓扑中的辐射的一个或多个 Azure VNet。 辐射可以用来隔离其自己的 VNet 中的工作负荷，独立于其他辐射进行管理。 每个工作负荷可以包括多个层，并具有通过 Azure 负载均衡器连接的多个子网。 有关应用程序基础结构的详细信息，请参阅[运行 Windows VM 工作负荷][windows-vm-ra]和[运行 Linux VM 工作负荷][linux-vm-ra]。
+- **辐射 VNet**。 用作中心辐射型拓扑中的辐射的一个或多个 Azure VNet。 辐射可以用来隔离其自己的 VNet 中的工作负荷，独立于其他辐射进行管理。 每个工作负荷可以包括多个层，并具有通过 Azure 负载均衡器连接的多个子网。 有关应用程序基础结构的详细信息，请参阅[运行 Windows VM 工作负荷][windows-vm-ra]和[运行 Linux VM 工作负荷][linux-vm-ra]。
 
-* **VNet 对等互连**。 可以使用[对等互连连接][vnet-peering]来连接两个 VNet。 对等互连连接是 VNet 之间的不可传递低延迟连接。 进行对等互连后，VNet 可使用 Azure 主干交换流量，不需要使用路由器。 在中心辐射型网络拓扑中，将使用 VNet 对等互连来将中心连接到每个辐射。 可在相同区域或不同区域中的虚拟网络之间建立对等互连。 有关详细信息，请参阅[要求和约束][vnet-peering-requirements]。
+- **VNet 对等互连**。 可以使用[对等互连连接][vnet-peering]来连接两个 VNet。 对等互连连接是 VNet 之间的不可传递低延迟连接。 进行对等互连后，VNet 可使用 Azure 主干交换流量，不需要使用路由器。 在中心辐射型网络拓扑中，将使用 VNet 对等互连来将中心连接到每个辐射。 可在相同区域或不同区域中的虚拟网络之间建立对等互连。 有关详细信息，请参阅[要求和约束][vnet-peering-requirements]。
 
 > [!NOTE]
 > 文本仅涵盖了[资源管理器](/azure/azure-resource-manager/resource-group-overview)部署，但也可以将经典 VNet 连接到同一订阅中的资源管理器 VNet。 这样，辐射将可以托管经典部署，并且仍然可以从中心内共享的各种服务受益。
@@ -63,7 +64,7 @@ ms.locfileid: "50916331"
 
 ### <a name="resource-groups"></a>资源组
 
-中心 VNet 和每个辐射 VNet 可以在不同的资源组中实现，甚至可以在不同的订阅中实现。 如果对等虚拟网络位于不同的订阅中，两个订阅可关联到同一个或不同的 Azure Active Directory 租户。 这样，可以对各个工作负荷进行非集中管理，同时在中心 VNet 内维护共享服务。 
+中心 VNet 和每个辐射 VNet 可以在不同的资源组中实现，甚至可以在不同的订阅中实现。 如果对等虚拟网络位于不同的订阅中，两个订阅可关联到同一个或不同的 Azure Active Directory 租户。 这样，可以对各个工作负荷进行非集中管理，同时在中心 VNet 内维护共享服务。
 
 ### <a name="vnet-and-gatewaysubnet"></a>VNet 和 GatewaySubnet
 
@@ -76,7 +77,7 @@ ms.locfileid: "50916331"
 
 要实现更高的可用性，可以将 ExpressRoute 外加 VPN 用于故障转移。 请参阅[将本地网络连接到 Azure 并将 ExpressRoute 和 VPN 用于故障转移][hybrid-ha]。
 
-如果不需要与本地网络的连接，还可以在不使用网关的情况下使用中心辐射型拓扑。 
+如果不需要与本地网络的连接，还可以在不使用网关的情况下使用中心辐射型拓扑。
 
 ### <a name="vnet-peering"></a>VNet 对等互连
 
@@ -86,9 +87,9 @@ VNet 对等互连是两个 VNet 之间的不可传递关系。 如果需要将�
 
 还可以将辐射配置为使用中心 VNet 网关与远程网络进行通信。 若要允许网关流量从辐射流动到中心，以及允许连接到远程网络，必须：
 
-  - 在中心内配置 VNet 对等互连连接以**允许网关中转**。
-  - 在每个辐射中配置 VNet 对等互连连接以**使用远程网关**。
-  - 配置所有 VNet 对等互连连接以**允许转发的流量**。
+- 在中心内配置 VNet 对等互连连接以**允许网关中转**。
+- 在每个辐射中配置 VNet 对等互连连接以**使用远程网关**。
+- 配置所有 VNet 对等互连连接以**允许转发的流量**。
 
 ## <a name="considerations"></a>注意事项
 
@@ -135,7 +136,7 @@ VNet 对等互连是两个 VNet 之间的不可传递关系。 如果需要将�
 
 2. 打开 `onprem.json` 文件。 替换 `adminUsername` 和 `adminPassword` 的值。
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -156,7 +157,7 @@ VNet 对等互连是两个 VNet 之间的不可传递关系。 如果需要将�
 
 1. 打开 `hub-vnet.json` 文件。 替换 `adminUsername` 和 `adminPassword` 的值。
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -165,7 +166,7 @@ VNet 对等互连是两个 VNet 之间的不可传递关系。 如果需要将�
 
 3. 找到 `sharedKey` 的两个实例，并输入 VPN 连接的共享密钥。 值必须匹配。
 
-    ```bash
+    ```json
     "sharedKey": "",
     ```
 
@@ -192,6 +193,7 @@ VNet 对等互连是两个 VNet 之间的不可传递关系。 如果需要将�
    ```powershell
    Test-NetConnection 10.0.0.68 -CommonTCPPort RDP
    ```
+
 输出应如下所示：
 
 ```powershell
@@ -216,7 +218,7 @@ TcpTestSucceeded : True
 
 4. 使用 `ping` 命令测试与中心 VNet 中 Jumpbox VM 连接。
 
-   ```bash
+   ```shell
    ping 10.0.0.68
    ```
 
@@ -226,7 +228,7 @@ TcpTestSucceeded : True
 
 1. 打开 `spoke1.json` 文件。 替换 `adminUsername` 和 `adminPassword` 的值。
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -238,7 +240,7 @@ TcpTestSucceeded : True
    ```bash
    azbb -s <subscription_id> -g spoke1-vnet-rg -l <location> -p spoke1.json --deploy
    ```
-  
+
 4. 针对 `spoke2.json` 文件重复步骤 1-2。
 
 5. 运行以下命令：
@@ -276,11 +278,11 @@ TcpTestSucceeded : True
 
 1. 使用 Azure 门户在 `onprem-jb-rg` 资源组中找到名为 `jb-vm1` 的 VM。
 
-2. 单击 `Connect`，并复制门户中显示的 `ssh` 命令。 
+2. 单击 `Connect`，并复制门户中显示的 `ssh` 命令。
 
 3. 在 Linux 提示符下，运行 `ssh` 连接到模拟本地环境。 使用 `onprem.json` 参数文件中指定的密码。
 
-5. 使用 `ping` 命令测试与每个辐射中 Jumpbox VM 的连接。
+4. 使用 `ping` 命令测试与每个辐射中 Jumpbox VM 的连接。
 
    ```bash
    ping 10.1.0.68
@@ -293,7 +295,7 @@ TcpTestSucceeded : True
 
 1. 打开 `hub-nva.json` 文件。 替换 `adminUsername` 和 `adminPassword` 的值。
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -322,9 +324,9 @@ TcpTestSucceeded : True
 [vnet-peering-requirements]: /azure/virtual-network/virtual-network-manage-peering#requirements-and-constraints
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
 [windows-vm-ra]: ../virtual-machines-windows/index.md
-
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-hub-spoke.vsdx
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
+
 [0]: ./images/hub-spoke.png "Azure 中的中心辐射型拓扑"
 [1]: ./images/hub-spoke-gateway-routing.svg "Azure 中的具有可传递路由的中心辐射型拓扑"
 [2]: ./images/hub-spoke-no-gateway-routing.svg "Azure 中的具有使用 NVA 的可传递路由的中心辐射型拓扑"
