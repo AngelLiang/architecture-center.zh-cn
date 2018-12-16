@@ -1,62 +1,77 @@
 ---
 title: 内容分发网络指南
+titleSuffix: Best practices for cloud applications
 description: 有关使用内容分发网络 (CDN) 传送 Azure 中托管的高带宽内容的指南。
 author: dragon119
 ms.date: 02/02/2018
-pnp.series.title: Best Practices
-ms.openlocfilehash: 9805b1b6df8cedd7668eb9e85f741ee81c3dfa58
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 5fb3ac17833a2399bb73e9cc7064651090ac7ee1
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428884"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307191"
 ---
-# <a name="best-practices-for-using-content-delivery-networks-cdns"></a>使用内容分发网络 (CDN) 的最佳做法
+# <a name="content-delivery-networks-cdns"></a>内容分发网络 (CDN)
 
-内容分发网络 (CDN) 是高效地向用户分发 Web 内容的分布式服务器网络。 CDN 将缓存的内容存储在靠近最终用户的边缘服务器上，以最大程度地降低延迟。 
+内容分发网络 (CDN) 是高效地向用户分发 Web 内容的分布式服务器网络。 CDN 将缓存的内容存储在靠近最终用户的边缘服务器上，以最大程度地降低延迟。
 
 CDN 通常用来交付静态内容，例如图像、样式表、文档、客户端脚本和 HTML 页面。 使用 CDN 的主要优点是延迟较低且能更快地将内容交付给用户，而与托管应用程序的数据中心的地理位置无关。 CDN 还可以帮助降低 Web 应用程序上的负载，因为应用程序不需要为对 CDN 中托管的内容发出的请求提供服务。
- 
+
 ![CDN 示意图](./images/cdn/CDN.png)
 
-在 Azure 中，[Azure 内容分发网络](/azure/cdn/cdn-overview)是一个全局 CDN 解决方案，用于分发在 Azure 中或在任何其他位置中托管的高带宽内容。 使用 Azure CDN，可以缓存从 Azure Blob 存储、Web 应用程序、虚拟机、任何可公开访问的 Web 服务器加载的公开可用对象。 
+在 Azure 中，[Azure 内容分发网络](/azure/cdn/cdn-overview)是一个全局 CDN 解决方案，用于分发在 Azure 中或在任何其他位置中托管的高带宽内容。 使用 Azure CDN，可以缓存从 Azure Blob 存储、Web 应用程序、虚拟机、任何可公开访问的 Web 服务器加载的公开可用对象。
 
-本主题介绍了使用 CDN 时的一些常规最佳做法和注意事项。 若要了解有关使用 Azure CDN 的详细信息，请参阅 [CDN 文档](/azure/cdn/)。
+本主题介绍了使用 CDN 时的一些常规最佳做法和注意事项。 有关详细信息，请参阅 [Azure CDN](/azure/cdn/)。
 
 ## <a name="how-and-why-a-cdn-is-used"></a>如何和为何使用 CDN
 
 CDN 的典型用途包括：  
 
-* 传送客户端应用程序的静态资源，通常来自网站。 这些资源可以是图像、样式表、文档、文件、客户端脚本、HTML 页面、HTML 片段，或服务器无需为每个请求修改的任何其他内容。 应用程序可以在运行时创建项，并让 CDN 使用它们（例如，通过创建当前头条新闻列表），但不会为每个请求都这么做。
-* 将公共静态内容和共享内容传送给设备，例如移动电话和平板电脑。 应用程序本身是一个 Web 服务，可将 API 提供给不同设备上运行的客户端。 CDN 还可以通过 Web 服务传送静态数据集供客户端使用（也许用于生成客户端 UI）。 例如，CDN 可用于分发 JSON 或 XML 文档。
-* 让客户端使用仅包含公共静态内容的整个网站，而无需任何专用计算资源。
-* 根据需要将视频文件流式传输到客户端。 视频可从提供 CDN 连接的全球数据中心获得低延迟和可靠连接的好处。 Microsoft Azure 媒体服务 (AMS) 与 Azure CDN 集成，向 CDN 直接传送内容以实现进一步的内容分发。 有关详细信息，请参阅[流式处理终结点概述](/azure/media-services/media-services-streaming-endpoints-overview)。
-* 一般而言，这可以改善用户体验，特别是与托管应用程序的数据中心距离遥远的用户。 否则，这些用户可能会遇到较高的延迟。 Web 应用程序中内容的总大小基本上都是静态的，使用 CDN 有助于保持性能和总体用户体验，同时无需将应用程序部署到多个数据中心。 有关 Azure CDN 节点位置的列表，请参阅 [Azure CDN POP 位置](/azure/cdn/cdn-pop-locations/)。
-* 支持 IoT（物联网）解决方案。 IoT 解决方案中涉及的巨量设备和电器可能很容易压垮某个应用程序（如果该应用程序必须直接将固件更新分发给每个设备）。
-* 应对需求高峰和浪涌而无需缩放应用程序，避免增加后续运行成本。 例如，对于硬件设备（例如特定型号的路由器）或消费型设备（例如智能电视）发布操作系统更新时，如果数以百万的用户和设备在短期间内下载更新，则可能会根据需要生成庞大的高峰量。
+- 传送客户端应用程序的静态资源，通常来自网站。 这些资源可以是图像、样式表、文档、文件、客户端脚本、HTML 页面、HTML 片段，或服务器无需为每个请求修改的任何其他内容。 应用程序可以在运行时创建项，并让 CDN 使用它们（例如，通过创建当前头条新闻列表），但不会为每个请求都这么做。
+
+- 将公共静态内容和共享内容传送给设备，例如移动电话和平板电脑。 应用程序本身是一个 Web 服务，可将 API 提供给不同设备上运行的客户端。 CDN 还可以通过 Web 服务传送静态数据集供客户端使用（也许用于生成客户端 UI）。 例如，CDN 可用于分发 JSON 或 XML 文档。
+
+- 让客户端使用仅包含公共静态内容的整个网站，而无需任何专用计算资源。
+
+- 根据需要将视频文件流式传输到客户端。 视频可从提供 CDN 连接的全球数据中心获得低延迟和可靠连接的好处。 Microsoft Azure 媒体服务 (AMS) 与 Azure CDN 集成，向 CDN 直接传送内容以实现进一步的内容分发。 有关详细信息，请参阅[流式处理终结点概述](/azure/media-services/media-services-streaming-endpoints-overview)。
+
+- 一般而言，这可以改善用户体验，特别是与托管应用程序的数据中心距离遥远的用户。 否则，这些用户可能会遇到较高的延迟。 Web 应用程序中内容的总大小基本上都是静态的，使用 CDN 有助于保持性能和总体用户体验，同时无需将应用程序部署到多个数据中心。 有关 Azure CDN 节点位置的列表，请参阅 [Azure CDN POP 位置](/azure/cdn/cdn-pop-locations/)。
+
+- 支持 IoT（物联网）解决方案。 IoT 解决方案中涉及的巨量设备和电器可能很容易压垮某个应用程序（如果该应用程序必须直接将固件更新分发给每个设备）。
+
+- 应对需求高峰和浪涌而无需缩放应用程序，避免增加后续运行成本。 例如，对于硬件设备（例如特定型号的路由器）或消费型设备（例如智能电视）发布操作系统更新时，如果数以百万的用户和设备在短期间内下载更新，则可能会根据需要生成庞大的高峰量。
 
 ## <a name="challenges"></a>挑战
 
-计划使用 CDN 时必须考虑到几个难题。  
+计划使用 CDN 时必须考虑到几个难题。
 
-* **部署**。 确定 CDN 从中提取内容的来源，以及是否需要将内容部署到多个存储系统。 请考虑用于部署静态内容和资源的流程。 例如，可能需要执行单独的步骤才能将内容加载到 Azure Blob 存储中。
-* **版本控制和缓存控制**。 考虑如何更新静态内容和部署新版本。 了解 CDN 如何执行缓存和生存时间 (TTL)。 对于 Azure CDN，请参阅[缓存工作原理](/azure/cdn/cdn-how-caching-works)。
-* **测试**。 在本地或在过渡环境中开发和测试应用程序时，很难对 CDN 设置执行本地测试。
-* **搜索引擎优化 (SEO)**。 使用 CDN 时，图像和文档等内容由不同的域提供。 这可能会影响此内容的 SEO。
-* **内容安全性**。 并非所有 CDN 都针对内容提供了任意形式的访问控制。 某些 CDN 服务（包括 Azure CDN）支持基于令牌的身份验证来保护 CDN 内容。 有关详细信息，请参阅[使用令牌身份验证保护 Azure 内容分发网络资产](/azure/cdn/cdn-token-auth)。
-* **客户端安全性**。 客户端可从不允许访问 CDN 上资源的环境中连接。 这可能是安全约束的环境，限制只能访问一组已知源，或防止从页来源以外的任何位置加载资源的环境。 需要实施回退才能处理这些情况。
-* **复原能力**。 CDN 是应用程序潜在的单个故障点。 
+- **部署**。 确定 CDN 从中提取内容的来源，以及是否需要将内容部署到多个存储系统。 请考虑用于部署静态内容和资源的流程。 例如，可能需要执行单独的步骤才能将内容加载到 Azure Blob 存储中。
+
+- **版本控制和缓存控制**。 考虑如何更新静态内容和部署新版本。 了解 CDN 如何执行缓存和生存时间 (TTL)。 对于 Azure CDN，请参阅[缓存工作原理](/azure/cdn/cdn-how-caching-works)。
+
+- **测试**。 在本地或在过渡环境中开发和测试应用程序时，很难对 CDN 设置执行本地测试。
+
+- **搜索引擎优化 (SEO)**。 使用 CDN 时，图像和文档等内容由不同的域提供。 这可能会影响此内容的 SEO。
+
+- **内容安全性**。 并非所有 CDN 都针对内容提供了任意形式的访问控制。 某些 CDN 服务（包括 Azure CDN）支持基于令牌的身份验证来保护 CDN 内容。 有关详细信息，请参阅[使用令牌身份验证保护 Azure 内容分发网络资产](/azure/cdn/cdn-token-auth)。
+
+- **客户端安全性**。 客户端可从不允许访问 CDN 上资源的环境中连接。 这可能是安全约束的环境，限制只能访问一组已知源，或防止从页来源以外的任何位置加载资源的环境。 需要实施回退才能处理这些情况。
+
+- **复原能力**。 CDN 是应用程序潜在的单个故障点。
 
 CDN 用处不大的应用场景包括：  
 
-* 如果内容点击率偏低，则可能表示该内容在有效期（由其生存时间设置确定）只被访问了几次。 
-* 数据是专用的，例如用于大型企业或供应链生态系统。
+- 如果内容点击率偏低，则可能表示该内容在有效期（由其生存时间设置确定）只被访问了几次。
+
+- 数据是专用的，例如用于大型企业或供应链生态系统。
 
 ## <a name="general-guidelines-and-good-practices"></a>一般性指导原则和最佳实践
 
 使用 CDN 是最小化应用程序负载和最大化可用性与性能的良好做法。 考虑为应用程序使用的所有适当内容和资源采用此策略。 设计策略来使用 CDN 时，请注意以下部分中所述的要点。
 
 ### <a name="deployment"></a>部署
+
 如果未在应用程序部署包或过程中包含静态内容，该静态内容可能需要与应用程序分开设置和部署。 考虑这如何影响版本控制方法，也就是用于管理应用程序组件和静态资源内容的方法。
 
 考虑使用绑定和缩减技术来为客户端减少加载次数。 捆绑将多个文件合并到单个文件中。 缩减在不更改功能的情况下从脚本和 CSS 文件中删除不必要的字符。
@@ -67,9 +82,9 @@ CDN 用处不大的应用场景包括：
 
 请考虑用于文件压缩的选项，例如 gzip (GNU zip)。 压缩可以由 Web 应用程序宿主在源服务器上执行，也可以由 CDN 直接在边缘服务器上执行。 有关详细信息，请参阅[通过在 Azure CDN 中压缩文件来提高性能](/azure/cdn/cdn-improve-performance)。
 
-
 ### <a name="routing-and-versioning"></a>路由和版本控制
-可能需要在不同的时间使用不同的 CDN 实例。 例如，在部署新版的应用程序时，可能需要使用新的 CDN 并保留以前版本的旧 CDN（以便以旧格式保存内容）。 如果将 Azure Blob 存储用作内容来源，可以创建一个独立存储帐户或容器，并将 CDN 终结点指向它。 
+
+可能需要在不同的时间使用不同的 CDN 实例。 例如，在部署新版的应用程序时，可能需要使用新的 CDN 并保留以前版本的旧 CDN（以便以旧格式保存内容）。 如果将 Azure Blob 存储用作内容来源，可以创建一个独立存储帐户或容器，并将 CDN 终结点指向它。
 
 不要使用查询字符串来表示 CDN 上资源链接中不同版本的应用程序，因为从 Azure Blob 存储检索内容时，查询字符串是资源名称（Blob 名称）的一部分。 此方式还会影响客户端缓存资源的方式。
 
@@ -78,7 +93,8 @@ CDN 用处不大的应用场景包括：
 考虑按国家/地区限制 CDN 内容访问。 Azure CDN 允许根据来源国家/地区筛选请求，并限制传送的内容。 有关详细信息，请参阅 [Restrict access to your content by country](/azure/cdn/cdn-restrict-access-by-country/)（按国家/地区限制内容访问）。
 
 ### <a name="cache-control"></a>缓存控制
-考虑如何管理系统中的缓存。 例如，在 Azure CDN 中，可以设置全局缓存规则，然后为特定的源终结点设置自定义缓存。 可以通过在源终结点发送缓存指令标头来控制如何在 CDN 中执行缓存。 
+
+考虑如何管理系统中的缓存。 例如，在 Azure CDN 中，可以设置全局缓存规则，然后为特定的源终结点设置自定义缓存。 可以通过在源终结点发送缓存指令标头来控制如何在 CDN 中执行缓存。
 
 有关详细信息，请参阅[缓存工作原理](/azure/cdn/cdn-how-caching-works)。
 
@@ -90,9 +106,12 @@ CDN 可以使用 CDN 提供的证书通过 HTTPS (SSL) 传送内容，也可以�
 
 使用 CDN 传送静态资产（如字体文件）时，如果使用 XMLHttpRequest 调用来从不同的域请求这些资源，则可能会遇到同源策略问题。 许多 Web 浏览器会阻止跨源资源共享 (CORS)，除非 Web 服务器已配置为设置相应的响应标头。 可使用以下任一方法配置 CDN 以支持 CORS：
 
-* 对 CDN 进行配置来将 CORS 标头添加到响应。 有关详细信息，请参阅[将 Azure CDN 与 CORS 一起使用](/azure/cdn/cdn-cors)。 
-* 如果源是 Azure blob 存储，请将 CORS 规则添加到存储终结点。 有关详细信息，请参阅 [Cross-Origin Resource Sharing (CORS) Support for the Azure Storage Services](/rest/api/storageservices/Cross-Origin-Resource-Sharing--CORS--Support-for-the-Azure-Storage-Services)（Azure 存储服务的跨域资源共享 (CORS) 支持）。
-* 对应用程序进行配置来设置 CORS 标头。 有关示例，请参阅 ASP.NET Core 文档中的[启用跨源请求 (CORS)](/aspnet/core/security/cors)。
+- 对 CDN 进行配置来将 CORS 标头添加到响应。 有关详细信息，请参阅[将 Azure CDN 与 CORS 一起使用](/azure/cdn/cdn-cors)。
+
+- 如果源是 Azure blob 存储，请将 CORS 规则添加到存储终结点。 有关详细信息，请参阅 [Cross-Origin Resource Sharing (CORS) Support for the Azure Storage Services](/rest/api/storageservices/Cross-Origin-Resource-Sharing--CORS--Support-for-the-Azure-Storage-Services)（Azure 存储服务的跨域资源共享 (CORS) 支持）。
+
+- 对应用程序进行配置来设置 CORS 标头。 有关示例，请参阅 ASP.NET Core 文档中的[启用跨源请求 (CORS)](/aspnet/core/security/cors)。
 
 ### <a name="cdn-fallback"></a>CDN 回退
+
 考虑应用程序如何处理 CDN 失败或暂时不可用的情况。 如果 CDN 不可用，客户端应用程序可以使用执行前面请求期间的本地缓存资源的副本（位于客户端），或者可以添加代码来检测失败，而不是从来源请求资源（应用程序文件夹或保留资源的 Azure Blob 容器）。

@@ -1,24 +1,26 @@
 ---
-title: 将 Enterprise BI 与 SQL 数据仓库配合使用
-description: 使用 Azure 从本地存储的关系数据获取业务见解
+title: 企业商业智能
+titleSuffix: Azure Reference Architectures
+description: 使用 Azure 从本地存储的关系数据获取业务见解。
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: 2822cf6d2a75d521f182c267f4bf2bac462d2b7f
-ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
+ms.custom: seodec18
+ms.openlocfilehash: 656bf6f1bd342856fd8a2d2aa0b62a9dd4d4f87f
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/11/2018
-ms.locfileid: "51527705"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120078"
 ---
 # <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>将 Azure 中的 Enterprise BI 与 SQL 数据仓库配合使用
 
-此参考体系结构实现 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt)（提取-加载-转换）管道，该管道可将数据从本地 SQL Server 数据库移到 SQL 数据仓库，并转换数据以进行分析。 
+此参考体系结构实现[提取、加载和转换 (ELT)](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) 管道，该管道可将数据从本地 SQL Server 数据库移到 SQL 数据仓库，并转换数据以进行分析。
 
-[GitHub][github-folder] 中提供了本体系结构的参考实现
+[GitHub][github-folder] 中提供了本体系结构的参考实现。
 
-![](./images/enterprise-bi-sqldw.png)
+![将 Azure 中的企业 BI 与 SQL 数据仓库配合使用的体系结构图](./images/enterprise-bi-sqldw.png)
 
-**场景**：某个组织在本地的 SQL Server 数据库中存储了大型 OLTP 数据集。 该组织想要使用 SQL 数据仓库通过 Power BI 执行分析。 
+**场景**：某个组织在本地的 SQL Server 数据库中存储了大型 OLTP 数据集。 该组织想要使用 SQL 数据仓库通过 Power BI 执行分析。
 
 此参考体系结构是针对一次性或按需作业设计的。 如果需要持续移动数据（每小时或每日），我们建议使用 Azure 数据工厂来定义自动化工作流。 如需使用数据工厂的参考体系结构，请参阅[将自动化企业 BI 与 SQL 数据仓库和 Azure 数据工厂配合使用][adf-ra]。
 
@@ -34,7 +36,7 @@ ms.locfileid: "51527705"
 
 **Blob 存储**。 Blob 存储用作临时区域，在将数据载入 SQL 数据仓库之前，会先将数据复制到该区域。
 
-**Azure SQL 数据仓库**。 [SQL 数据仓库](/azure/sql-data-warehouse/)是分布式系统，旨在对大型数据执行分析。 它支持大规模并行处理 (MPP)，因此很适合用于运行高性能分析。 
+**Azure SQL 数据仓库**。 [SQL 数据仓库](/azure/sql-data-warehouse/)是分布式系统，旨在对大型数据执行分析。 它支持大规模并行处理 (MPP)，因此很适合用于运行高性能分析。
 
 ### <a name="analysis-and-reporting"></a>分析和报告
 
@@ -46,10 +48,10 @@ ms.locfileid: "51527705"
 
 ### <a name="authentication"></a>身份验证
 
-**Azure Active Directory** (Azure AD) 通过 Power BI 对连接到 Analysis Services 服务器的用户进行身份验证。
+**Azure Active Directory (Azure AD)** 通过 Power BI 对连接到 Analysis Services 服务器的用户进行身份验证。
 
 ## <a name="data-pipeline"></a>数据管道
- 
+
 此参考体系结构使用 [WorldWideImporters](/sql/sample/world-wide-importers/wide-world-importers-oltp-database) 示例数据库作为数据源。 数据管道具有以下阶段：
 
 1. 将数据从 SQL Server 导出到平面文件（bcp 实用工具）。
@@ -58,10 +60,11 @@ ms.locfileid: "51527705"
 4. 将数据转换为星型架构 (T-SQL)。
 5. 将语义模型载入 Analysis Services (SQL Server Data Tools)。
 
-![](./images/enterprise-bi-sqldw-pipeline.png)
- 
+![企业 BI 管道图](./images/enterprise-bi-sqldw-pipeline.png)
+
 > [!NOTE]
-> 对于步骤 1 &ndash; 3，请考虑使用 Redgate Data Platform Studio。 Data Platform Studio 应用了适当的兼容性修补程序和优化措施，可以快速启动 SQL 数据仓库操作。 有关详细信息，请参阅[使用 Redgate Data Platform Studio 加载数据](/azure/sql-data-warehouse/sql-data-warehouse-load-with-redgate)。 
+> 对于步骤 1 &ndash; 3，请考虑使用 Redgate Data Platform Studio。 Data Platform Studio 应用了适当的兼容性修补程序和优化措施，可以快速启动 SQL 数据仓库操作。 有关详细信息，请参阅[使用 Redgate Data Platform Studio 加载数据](/azure/sql-data-warehouse/sql-data-warehouse-load-with-redgate)。
+>
 
 后续部分将会更详细地介绍这些阶段。
 
@@ -71,7 +74,7 @@ ms.locfileid: "51527705"
 
 **建议**
 
-请尽量将数据提取安排在非高峰期，以最大程度地减少生产环境中的资源争用情况。 
+请尽量将数据提取安排在非高峰期，以最大程度地减少生产环境中的资源争用情况。
 
 避免在数据库服务器上运行 bcp， 应该从另一台计算机运行 bcp。 将文件写入本地驱动器。 确保有足够的 I/O 资源用于处理并发写入。 为获得最佳性能，请将文件导出到专用的高速存储驱动器。
 
@@ -83,11 +86,11 @@ ms.locfileid: "51527705"
 
 **建议**
 
-在靠近源数据位置的区域中创建存储帐户。 在同一区域中部署存储帐户和 SQL 数据仓库实例。 
+在靠近源数据位置的区域中创建存储帐户。 在同一区域中部署存储帐户和 SQL 数据仓库实例。
 
-不要在运行生产工作负荷的同一台计算机上运行 AzCopy，因为 CPU 和 I/O 消耗可能会干扰生产工作负荷。 
+不要在运行生产工作负荷的同一台计算机上运行 AzCopy，因为 CPU 和 I/O 消耗可能会干扰生产工作负荷。
 
-首先测试上传，以确定大致的上传速度。 可以在 AzCopy 中使用 /NC 选项来指定并发复制操作的数目。 使用默认值启动，然后使用此设置进行试验，以优化性能。 在低带宽环境中，过多的并发操作可能会使网络连接瘫痪，并导致操作无法彻底完成。  
+首先测试上传，以确定大致的上传速度。 可以在 AzCopy 中使用 /NC 选项来指定并发复制操作的数目。 使用默认值启动，然后使用此设置进行试验，以优化性能。 在低带宽环境中，过多的并发操作可能会使网络连接瘫痪，并导致操作无法彻底完成。
 
 AzCopy 通过公共 Internet 将数据移到存储中。 如果速度不够快，请考虑设置 [ExpressRoute](/azure/expressroute/) 线路。 ExpressRoute 是通过专用连接将数据路由到 Azure 的服务。 如果网络连接速度太慢，可以采用另一种做法，即以物理方式将磁盘上的数据传送到 Azure 数据中心。 有关详细信息，请参阅[将数据传入和传出 Azure](/azure/architecture/data-guide/scenarios/data-transfer)。
 
@@ -95,7 +98,7 @@ AzCopy 通过公共 Internet 将数据移到存储中。 如果速度不够快�
 
 ### <a name="load-data-into-sql-data-warehouse"></a>将数据载入 SQL 数据仓库
 
-使用 [PolyBase](/sql/relational-databases/polybase/polybase-guide) 将文件从 Blob 存储载入数据仓库。 PolyBase 利用 SQL 数据仓库的 MPP（大规模并行处理）体系结构，因此是将数据载入 Azure SQL 数据仓库的最快方式。 
+使用 [PolyBase](/sql/relational-databases/polybase/polybase-guide) 将文件从 Blob 存储载入数据仓库。 PolyBase 利用 SQL 数据仓库的 MPP（大规模并行处理）体系结构，因此是将数据载入 Azure SQL 数据仓库的最快方式。
 
 加载数据的过程包括两个步骤：
 
@@ -114,7 +117,7 @@ PolyBase 可以读取 Gzip 压缩文件。 但是，只会对每个压缩文件�
 
 注意以下限制：
 
-- PolyBase 支持的最大列大小为 `varchar(8000)`、`nvarchar(4000)` 或 `varbinary(8000)`。 如果数据超过这些限制，一种做法是在导出数据时将数据分解为区块，然后在导入后重新汇编区块。 
+- PolyBase 支持的最大列大小为 `varchar(8000)`、`nvarchar(4000)` 或 `varbinary(8000)`。 如果数据超过这些限制，一种做法是在导出数据时将数据分解为区块，然后在导入后重新汇编区块。
 
 - PolyBase 使用固定行终止符 \n 或换行符。 如果源数据中显示换行符，则可能会导致问题。
 
@@ -154,7 +157,7 @@ Power BI 支持使用两个选项连接到 Azure Analysis Services：
 
 **建议**
 
-避免直接对数据仓库运行 BI 仪表板查询。 BI 仪表板要求的响应时间很短，针对仓库直接运行查询可能无法满足该要求。 此外，刷新仪表板的操作将计入并发查询次数，这可能会影响性能。 
+避免直接对数据仓库运行 BI 仪表板查询。 BI 仪表板要求的响应时间很短，针对仓库直接运行查询可能无法满足该要求。 此外，刷新仪表板的操作将计入并发查询次数，这可能会影响性能。
 
 Azure Analysis Services 旨在处理 BI 仪表板的查询要求，因此建议的做法是从 Power BI 查询 Analysis Services。
 
@@ -168,7 +171,7 @@ Azure Analysis Services 旨在处理 BI 仪表板的查询要求，因此建议�
 
 对于生产工作负荷，我们建议使用 Azure Analysis Services 的标准层，因为该层支持分区和 DirectQuery。 在层中，实例大小确定内存和处理能力。 处理能力以查询处理单位 (QPU) 来计量。 请监视 QPU 使用率以选择适当的大小。 有关详细信息，请参阅[监视服务器指标](/azure/analysis-services/analysis-services-monitor)。
 
-在负载较高的情况下，查询性能可能因查询并发性而下降。 可以通过创建副本池来处理查询，以横向扩展 Analysis Services，从而能够并行执行更多的查询。 处理数据模型的工作始终在主服务器上进行。 默认情况下，主服务器也会处理查询。 （可选）可以指定以独占方式运行处理的主服务器，让查询池处理所有查询。 如果处理要求较高，应将处理负载与查询池隔离开来。 如果查询负载较高，而处理负载相对较低，则可以在查询池中包含主服务器。 有关详细信息，请参阅 [Azure Analysis Services 横向扩展](/azure/analysis-services/analysis-services-scale-out)。 
+在负载较高的情况下，查询性能可能因查询并发性而下降。 可以通过创建副本池来处理查询，以横向扩展 Analysis Services，从而能够并行执行更多的查询。 处理数据模型的工作始终在主服务器上进行。 默认情况下，主服务器也会处理查询。 （可选）可以指定以独占方式运行处理的主服务器，让查询池处理所有查询。 如果处理要求较高，应将处理负载与查询池隔离开来。 如果查询负载较高，而处理负载相对较低，则可以在查询池中包含主服务器。 有关详细信息，请参阅 [Azure Analysis Services 横向扩展](/azure/analysis-services/analysis-services-scale-out)。
 
 若要减少不必要的处理量，请考虑使用分区将表格模型划分为逻辑部分。 可以单独处理每个分区。 有关详细信息，请参阅[分区](/sql/analysis-services/tabular-models/partitions-ssas-tabular)。
 
@@ -191,11 +194,10 @@ Azure Analysis Services 使用 Azure Active Directory (Azure AD) 对连接到 An
 
 若要部署并运行参考实现，请按 [GitHub 自述文件][github-folder]中的步骤操作。 它将部署以下部分：
 
-  * 一个用于模拟本地数据库服务器的 Windows VM。 该 VM 包含 SQL Server 2017 和相关工具以及 Power BI Desktop。
-  * 一个 Azure 存储帐户。该帐户提供 Blob 存储用于保存从 SQL Server 数据库导出的数据。
-  * 一个 Azure SQL 数据仓库实例。
-  * 一个 Azure Analysis Services 实例。
-
+- 一个用于模拟本地数据库服务器的 Windows VM。 该 VM 包含 SQL Server 2017 和相关工具以及 Power BI Desktop。
+- 一个 Azure 存储帐户。该帐户提供 Blob 存储用于保存从 SQL Server 数据库导出的数据。
+- 一个 Azure SQL 数据仓库实例。
+- 一个 Azure Analysis Services 实例。
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -206,4 +208,3 @@ Azure Analysis Services 使用 Azure Active Directory (Azure AD) 对连接到 An
 [adf-ra]: ./enterprise-bi-adf.md
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw
 [wwi]: /sql/sample/world-wide-importers/wide-world-importers-oltp-database
-

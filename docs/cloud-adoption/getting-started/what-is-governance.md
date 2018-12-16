@@ -1,16 +1,16 @@
 ---
-title: 企业云的采用：什么是云资源治理？
+title: 企业云的采用：什么是云资源调控？
 description: 解释 Azure 中的资源访问调控的概念
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 14c26cbccdbea524a7c7220b3bb98ed2a118c30d
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: fb01b2e2823c16e32f8ded696de0b6faf1d2e610
+ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389207"
+ms.lasthandoff: 12/10/2018
+ms.locfileid: "53179274"
 ---
-# <a name="enterprise-cloud-adoption-what-is-cloud-resource-governance"></a>企业云的采用：什么是云资源治理？
+# <a name="enterprise-cloud-adoption-what-is-cloud-resource-governance"></a>企业云的采用：什么是云资源调控？
 
 在 [Azure 的工作原理](what-is-azure.md)中我们已了解到，Azure 是代表用户运行虚拟化硬件和软件的服务器与网络硬件的集合。 Azure 可让组织根据需要轻松创建、读取、更新和删除资源，使开发工作和 IT 部门变得更加轻盈。
 
@@ -20,7 +20,7 @@ ms.locfileid: "44389207"
 
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ii94] 
 
-每家组织的目标和要求都是独特的，因此，不存在以一应百的调控方法。 Azure 实施两个主要的管理工具：**基于资源的访问控制 (RBAC)** 和**资源策略**，每家组织可以使用这些工具设计自己的调控模型。
+每家组织的目标和要求都是独特的，因此，不存在以一应百的调控方法。 Azure 实施两个主要的管理工具：**基于角色的访问控制 (RBAC)** 和**资源策略**，每家组织可以使用这些工具设计自己的调控模型。
 
 RBAC 定义角色，而角色定义获得该角色的用户的功能。 例如，**所有者**角色可以资源的所有功能（创建、读取、更新和删除），**读取者**角色只能启用读取功能。 可以使用应用到许多资源类型的宽泛范围定义角色，也可以使用应用到少量资源类型的狭窄范围定义角色。 
 

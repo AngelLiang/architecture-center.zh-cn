@@ -1,44 +1,45 @@
 ---
 title: 在 Azure 上运行 Windows VM
-description: 如何在 Azure 上运行 Windows VM，并注意可伸缩性、弹性、可管理性和安全性。
+titleSuffix: Azure Reference Architectures
+description: 在 Azure 上运行 Windows 虚拟机的最佳做法。
 author: telmosampaio
 ms.date: 09/13/2018
-ms.openlocfilehash: 59e7cf255fcc55c5124e7160d831217ba62a8b88
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 9a6725bfebf468cc3ce7e9ba618d30c30b7d6046
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916264"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120027"
 ---
-# <a name="run-a-windows-vm-on-azure"></a>在 Azure 上运行 Windows VM
+# <a name="run-a-windows-virtual-machine-on-azure"></a>在 Azure 上运行 Windows 虚拟机
 
-本文介绍一组经验证的做法，说明如何在 Azure 上运行 Windows 虚拟机 (VM)。 其中包括有关预配 VM 以及网络和存储组件的建议。 [部署此解决方案。](#deploy-the-solution)
+本文介绍经验证的做法，说明如何在 Azure 上运行 Windows 虚拟机 (VM)。 其中包括有关预配 VM 以及网络和存储组件的建议。 [**部署此解决方案**](#deploy-the-solution)。
 
-![[0]][0]
+![Azure 中的单一 Windows VM 体系结构](./images/single-vm-diagram.png)
 
 ## <a name="components"></a>组件
 
 除 VM 本身以外，预配 Azure VM 还需要其他一些组件，包括网络和存储资源。
 
-* **资源组。** [资源组][resource-manager-overview]是保存相关 Azure 资源的逻辑容器。 一般情况下，可根据资源的生存期及其管理者将资源分组。 
+- 资源组。 [资源组][resource-manager-overview]是保存相关 Azure 资源的逻辑容器。 一般情况下，可根据资源的生存期及其管理者将资源分组。
 
-* **VM**。 可以通过发布的映像列表或上传到 Azure Blob 存储的自定义托管映像或虚拟硬盘 (VHD) 文件来预配 VM。
+- **VM**。 可以通过发布的映像列表或上传到 Azure Blob 存储的自定义托管映像或虚拟硬盘 (VHD) 文件来预配 VM。
 
-* **托管磁盘**。 [Azure 托管磁盘][managed-disks]可代你处理存储，从而简化了磁盘管理。 OS 磁盘是存储在 [Azure 存储][azure-storage]中的 VHD，因此即使主机关闭，OS 磁盘也仍然存在。 我们还建议创建一个或多个[数据磁盘][data-disk]（用于保存应用程序数据的持久性 VHD）。
+- **托管磁盘**。 [Azure 托管磁盘][managed-disks]可代你处理存储，从而简化了磁盘管理。 OS 磁盘是存储在 [Azure 存储][azure-storage]中的 VHD，因此即使主机关闭，OS 磁盘也仍然存在。 我们还建议创建一个或多个[数据磁盘][data-disk]（用于保存应用程序数据的持久性 VHD）。
 
-* **临时磁盘。** 使用临时磁盘（Windows 上的 `D:` 驱动器）创建 VM。 此磁盘存储在主机的物理驱动器上。 它并非保存在 Azure 存储中，并且在重启期间以及发生其他 VM 生命周期事件期间可能会被删除。 只使用此磁盘存储临时数据，如页面文件或交换文件。
+- **临时磁盘**。 使用临时磁盘（Windows 上的 `D:` 驱动器）创建 VM。 此磁盘存储在主机的物理驱动器上。 它并非保存在 Azure 存储中，并且在重启期间以及发生其他 VM 生命周期事件期间可能会被删除。 只使用此磁盘存储临时数据，如页面文件或交换文件。
 
-* **虚拟网络 (VNet)**。 每个 Azure VM 都会部署到可细分为多个子网的 VNet 中。
+- **虚拟网络 (VNet)**。 每个 Azure VM 都会部署到可细分为多个子网的 VNet 中。
 
-* **网络接口 (NIC)**。 NIC 使 VM 能够与虚拟网络进行通信。  
+- **网络接口 (NIC)**。 NIC 使 VM 能够与虚拟网络进行通信。
 
-* **公共 IP 地址。** 须使用公共 IP 地址才能与 VM 通信 &mdash; 例如，通过远程桌面 (RDP)。  
+- **公共 IP 地址**。 须使用公共 IP 地址才能与 VM 通信 &mdash; 例如，通过远程桌面 (RDP)。
 
-* **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 域的托管服务，它使用 Microsoft Azure 基础结构提供名称解析。 通过在 Azure 中托管域，可以使用与其他 Azure 服务相同的凭据、API、工具和计费来管理 DNS 记录。
+- **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 域的托管服务，它使用 Microsoft Azure 基础结构提供名称解析。 通过在 Azure 中托管域，可以使用与其他 Azure 服务相同的凭据、API、工具和计费来管理 DNS 记录。
 
-* **网络安全组 (NSG)**。 [网络安全组][nsg]用于允许或拒绝向 VM 传送网络流量。 NSG 可与子网或单个 VM 实例相关联。 
+- **网络安全组 (NSG)**。 [网络安全组][nsg]用于允许或拒绝向 VM 传送网络流量。 NSG 可与子网或单个 VM 实例相关联。
 
-* **诊断。** 诊断日志记录对于 VM 管理和故障排除至关重要。
+- **诊断**。 诊断日志记录对于 VM 管理和故障排除至关重要。
 
 ## <a name="vm-recommendations"></a>VM 建议
 
@@ -46,17 +47,17 @@ Azure 提供多种不同的虚拟机大小。 有关详细信息，请参阅 [Az
 
 通常选择离内部用户或客户最近的 Azure 区域。 但是，并非所有 VM 大小都可在所有区域中使用。 有关详细信息，请参阅[每个区域的服务][services-by-region]。 要获取特定区域中可用 VM 大小的列表，请从 Azure 命令行接口 (CLI) 运行以下命令：
 
-```
+```azurecli
 az vm list-sizes --location <location>
 ```
 
 要了解如何选择发布的 VM 映像，请参阅[查找 Windows VM 映像][select-vm-image]。
 
-启用监视和诊断，包括基本运行状况指标、诊断基础结构日志和[启动诊断][boot-diagnostics]。 如果 VM 陷入不可启动状态，启动诊断有助于诊断启动故障。 有关详细信息，请参阅[启用监视和诊断][enable-monitoring]。  
+启用监视和诊断，包括基本运行状况指标、诊断基础结构日志和[启动诊断][boot-diagnostics]。 如果 VM 陷入不可启动状态，启动诊断有助于诊断启动故障。 有关详细信息，请参阅[启用监视和诊断][enable-monitoring]。
 
 ## <a name="disk-and-storage-recommendations"></a>磁盘和存储建议
 
-为获得最佳磁盘 I/O 性能，建议使用[高级存储][premium-storage]，它在固态硬盘 (SSD) 上存储数据。 成本取决于预配磁盘的容量。 IOPS 和吞吐量（即数据传输速率）也取决于磁盘大小，因此在预配磁盘时，请全面考虑三个因素（容量、IOPS 和吞吐量）。 
+为获得最佳磁盘 I/O 性能，建议使用[高级存储][premium-storage]，它在固态硬盘 (SSD) 上存储数据。 成本取决于预配磁盘的容量。 IOPS 和吞吐量（即数据传输速率）也取决于磁盘大小，因此在预配磁盘时，请全面考虑三个因素（容量、IOPS 和吞吐量）。
 
 我们还建议使用[托管磁盘][managed-disks]。 托管磁盘不需要存储帐户。 只需指定磁盘的大小和类型，就可以将它部署为高度可用的资源。
 
@@ -67,13 +68,12 @@ az vm list-sizes --location <location>
 > [!NOTE]
 > 如果不使用托管磁盘，请为每个 VM 创建单独的 Azure 存储帐户来存放虚拟硬盘 (VHD)，以避免达到存储帐户的 [(IOPS) 限制][vm-disk-limits]。 请注意存储帐户的总 I/O 限制。 有关详细信息，请参阅[虚拟机磁盘限制][vm-disk-limits]。
 
-
 ## <a name="network-recommendations"></a>网络建议
 
 公共 IP 地址可以是动态的或静态的。 默认是动态的。
 
-* 如果需要不会更改的固定 IP 地址 &mdash; 例如，如果需要创建 DNS 'A' 记录或将 IP 地址添加到安全列表，请保留[静态 IP 地址][static-ip]。
-* 还可以为 IP 地址创建完全限定域名 (FQDN)。 然后，可在 DNS 中注册指向 FQDN 的 [CNAME 记录][cname-record]。 有关详细信息，请参阅[在 Azure 门户中创建完全限定的域名][fqdn]。
+- 如果需要不会更改的固定 IP 地址 &mdash; 例如，如果需要创建 DNS 'A' 记录或将 IP 地址添加到安全列表，请保留[静态 IP 地址][static-ip]。
+- 还可以为 IP 地址创建完全限定域名 (FQDN)。 然后，可在 DNS 中注册指向 FQDN 的 [CNAME 记录][cname-record]。 有关详细信息，请参阅[在 Azure 门户中创建完全限定的域名][fqdn]。
 
 所有 NSG 都包含一组[默认规则][nsg-default-rules]，其中包括阻止所有入站 Internet 流量的规则。 无法删除默认规则，但其他规则可以覆盖它们。 要启用 Internet 流量，请创建允许特定端口的入站流量的规则 &mdash; 例如，将端口 80 用于 HTTP。
 
@@ -93,45 +93,45 @@ VM 可能会受到[计划内维护][planned-maintenance]或[计划外维护][man
 
 ## <a name="manageability-considerations"></a>可管理性注意事项
 
-**资源组。** 将共享相同生命周期、密切相关的资源放入同一[资源组][resource-manager-overview]。 资源组可让你以组的形式部署和监视资源，并按资源组跟踪计费成本。 还可以删除作为集的资源，这对于测试部署非常有用。 指定有意义的资源名称，以便简化特定资源的查找并了解其角色。 有关详细信息，请参阅 [Azure 资源的建议命名约定][naming-conventions]。
+**资源组**。 将共享相同生命周期、密切相关的资源放入同一[资源组][resource-manager-overview]。 资源组可让你以组的形式部署和监视资源，并按资源组跟踪计费成本。 还可以删除作为集的资源，这对于测试部署非常有用。 指定有意义的资源名称，以便简化特定资源的查找并了解其角色。 有关详细信息，请参阅 [Azure 资源的建议命名约定][naming-conventions]。
 
-**停止 VM。** Azure 对“已停止”和“已解除分配”状态做了区分。 当 VM 状态为已停止时（而不是当 VM 已解除分配时）将向你收费。 在 Azure 门户中，“停止”按钮可解除分配 VM。 如果在已登录时通过 OS 关闭，VM 会停止，但不会解除分配，因此仍会产生费用。
+**停止 VM**。 Azure 对“已停止”和“已解除分配”状态做了区分。 当 VM 状态为已停止时（而不是当 VM 已解除分配时）将向你收费。 在 Azure 门户中，“停止”按钮可解除分配 VM。 如果在已登录时通过 OS 关闭，VM 会停止，但不会解除分配，因此仍会产生费用。
 
-**删除 VM。** 如果删除 VM，则不会删除 VHD。 这意味着可以安全地删除 VM，而不会丢失数据。 但是，仍将向你收取存储费用。 若要删除 VHD，请从 [Blob 存储][blob-storage]中删除相应的文件。 要防止意外删除，请使用[资源锁][resource-lock]锁定整个资源组或锁定单个资源（如 VM）。
+**删除 VM**。 如果删除 VM，则不会删除 VHD。 这意味着可以安全地删除 VM，而不会丢失数据。 但是，仍将向你收取存储费用。 若要删除 VHD，请从 [Blob 存储][blob-storage]中删除相应的文件。 要防止意外删除，请使用[资源锁][resource-lock]锁定整个资源组或锁定单个资源（如 VM）。
 
 ## <a name="security-considerations"></a>安全注意事项
 
 使用 [Azure 安全中心][security-center]可在一个中心视图中获得 Azure 资源的安全状态。 安全中心监视潜在的安全问题，并全面描述了部署的安全运行状况。 安全中心针对每个 Azure 订阅进行配置。 启用安全数据收集，如 [Azure 安全中心快速入门指南][security-center-get-started]中所述。 启用数据收集后，安全中心会自动扫描该订阅下创建的所有 VM。
 
-**修补程序管理。** 如果启用，安全中心会检查是否缺少任何安全更新和关键更新。 使用 VM 上的[组策略设置][group-policy]可实现自动系统更新。
+**修补程序管理**。 如果启用，安全中心会检查是否缺少任何安全更新和关键更新。 使用 VM 上的[组策略设置][group-policy]可实现自动系统更新。
 
-**反恶意软件。** 如果启用，安全中心会检查是否已安装反恶意软件。 还可以使用安全中心从 Azure 门户中安装反恶意软件。
+**反恶意软件**。 如果启用，安全中心会检查是否已安装反恶意软件。 还可以使用安全中心从 Azure 门户中安装反恶意软件。
 
-**操作。** 使用[基于角色的访问控制 (RBAC)][rbac] 来控制对部署的 Azure 资源的访问。 RBAC 允许将授权角色分配给开发运营团队的成员。 例如，“读者”角色可以查看 Azure 资源，但不能创建、管理或删除这些资源。 某些角色特定于特定的 Azure 资源类型。 例如，“虚拟机参与者”角色可以执行重启或解除分配 VM、重置管理员密码、创建新的 VM 等操作。 可能对此体系结构有用的其他[内置 RBAC 角色][rbac-roles]包括[开发测试实验室用户][rbac-devtest]和[网络参与者][rbac-network]。 可将用户分配给多个角色，并且可以创建自定义角色以实现更细化的权限。
+**操作**。 使用[基于角色的访问控制 (RBAC)][rbac] 来控制对部署的 Azure 资源的访问。 RBAC 允许将授权角色分配给开发运营团队的成员。 例如，“读者”角色可以查看 Azure 资源，但不能创建、管理或删除这些资源。 某些角色特定于特定的 Azure 资源类型。 例如，“虚拟机参与者”角色可以执行重启或解除分配 VM、重置管理员密码、创建新的 VM 等操作。 可能对此体系结构有用的其他[内置 RBAC 角色][rbac-roles]包括[开发测试实验室用户][rbac-devtest]和[网络参与者][rbac-network]。 可将用户分配给多个角色，并且可以创建自定义角色以实现更细化的权限。
 
 > [!NOTE]
-> RBAC 不限制已登录到 VM 的用户可以执行的操作。 这些权限由来宾 OS 上的帐户类型决定。   
+> RBAC 不限制已登录到 VM 的用户可以执行的操作。 这些权限由来宾 OS 上的帐户类型决定。
 
 使用[审核日志][audit-logs]可查看预配操作和其他 VM 事件。
 
-**数据加密。** 如果需要加密 OS 磁盘和数据磁盘，请考虑使用 [Azure 磁盘加密][disk-encryption]。 
+**数据加密**。 如果需要加密 OS 磁盘和数据磁盘，请考虑使用 [Azure 磁盘加密][disk-encryption]。
 
-**DDOS 防护**。 我们建议启用 [DDoS 防护标准版](/azure/virtual-network/ddos-protection-overview)，其中提供了针对 VNet 中的资源的更多 DDoS 缓解功能。 虽然基本 DDoS 已作为 Azure 平台的一部分自动启用，但 DDoS 防护标准版提供了专门针对 Azure 虚拟网络资源优化的缓解功能。  
+**DDOS 防护**。 我们建议启用 [DDoS 防护标准版](/azure/virtual-network/ddos-protection-overview)，其中提供了针对 VNet 中的资源的更多 DDoS 缓解功能。 虽然基本 DDoS 已作为 Azure 平台的一部分自动启用，但 DDoS 防护标准版提供了专门针对 Azure 虚拟网络资源优化的缓解功能。
 
 ## <a name="deploy-the-solution"></a>部署解决方案
 
 [GitHub][github-folder] 上提供了此体系结构的部署。 它将部署以下部分：
 
-  * 一个虚拟网络，其中包含用于托管 VM 的名为 **web** 的单个子网。
-  * 一个 NSG，其中包含两个用于允许 RDP 和 HTTP 流量发送到 VM 的传入规则。
-  * 一个运行 Windows Server 2016 Datacenter Edition 最新版本的 VM。
-  * 一个用于格式化两个数据磁盘的示例自定义脚本扩展，另一个用于部署 Internet Information Services (IIS) 的 PowerShell DSC 脚本。
+- 一个虚拟网络，其中包含用于托管 VM 的名为 **web** 的单个子网。
+- 一个 NSG，其中包含两个用于允许 RDP 和 HTTP 流量发送到 VM 的传入规则。
+- 一个运行 Windows Server 2016 Datacenter Edition 最新版本的 VM。
+- 一个用于格式化两个数据磁盘的示例自定义脚本扩展，另一个用于部署 Internet Information Services (IIS) 的 PowerShell DSC 脚本。
 
 ### <a name="prerequisites"></a>先决条件
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
-### <a name="deploy-the-solution-using-azbb"></a>使用 azbb 部署解决方案
+### <a name="deployment-steps"></a>部署步骤
 
 若要部署此参考体系结构，请执行以下步骤：
 
@@ -139,20 +139,20 @@ VM 可能会受到[计划内维护][planned-maintenance]或[计划外维护][man
 
 2. 打开 `single-vm-v2.json` 文件，输入括在引号中的用户名和密码，然后保存文件。
 
-  ```bash
-  "adminUsername": "",
-  "adminPassword": "",
-  ```
+    ```json
+    "adminUsername": "",
+    "adminPassword": "",
+    ```
 
 3. 运行 `azbb` 以部署示例 VM，如下所示。
 
-  ```bash
+  ```azurecli
   azbb -s <subscription_id> -g <resource_group_name> -l <location> -p single-vm-v2.json --deploy
   ```
 
 若要验证部署，请运行以下 Azure CLI 命令，找到 VM 的公共 IP 地址：
 
-```bash
+```azurecli
 az vm show -n ra-single-windows-vm1 -g <resource-group-name> -d -o table
 ```
 
@@ -208,4 +208,3 @@ az vm show -n ra-single-windows-vm1 -g <resource-group-name> -d -o table
 [vm-resize]: /azure/virtual-machines/virtual-machines-linux-change-vm-size
 [vm-size-tables]: /azure/virtual-machines/virtual-machines-windows-sizes
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
-[0]: ./images/single-vm-diagram.png "Azure 中的单一 Windows VM 体系结构"

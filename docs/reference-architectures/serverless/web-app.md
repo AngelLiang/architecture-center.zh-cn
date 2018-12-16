@@ -1,36 +1,39 @@
 ---
 title: 无服务器 Web 应用程序
-description: 演示无服务器 Web 应用程序和 Web API 的参考体系结构
+titleSuffix: Azure Reference Architectures
+description: 建议用于无服务器 Web 应用程序和 Web API 的体系结构。
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: 9263c8bec794e4b2bb9f397289b23307eb02f0c7
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seodec18
+ms.openlocfilehash: ee735ac4f23cc2a819e2322bd9c4fb3b5adf5f3b
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295678"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120285"
 ---
-# <a name="serverless-web-application"></a>无服务器 Web 应用程序 
+# <a name="serverless-web-application-on-azure"></a>Azure 上的无服务器 Web 应用程序
 
 本参考体系结构演示一个[无服务器](https://azure.microsoft.com/solutions/serverless/) Web 应用程序。 该应用程序提供 Azure Blob 存储中的静态内容，并使用 Azure Functions 来实现一个 API。 该 API 从 Cosmos DB 读取数据，并将结果返回到 Web 应用。 [GitHub][github] 中提供了本体系结构的参考实现。
 
-![](./_images/serverless-web-app.png)
- 
+![无服务器 Web 应用程序的参考体系结构](./_images/serverless-web-app.png)
+
 术语“无服务器”有两种不同但相关的含义：
 
-- **后端即服务** (BaaS)。 后端云服务（例如数据库和存储）提供 API，使客户端应用程序能够直接连接到这些服务。 
-- **函数即服务** (FaaS)。 在此模型中，“函数”是部署到云的一段代码，在托管环境中运行，用于完全抽象化运行代码的服务器。 
+- **后端即服务** (BaaS)。 后端云服务（例如数据库和存储）提供 API，使客户端应用程序能够直接连接到这些服务。
+- **函数即服务** (FaaS)。 在此模型中，“函数”是部署到云的一段代码，在托管环境中运行，用于完全抽象化运行代码的服务器。
 
 这两个定义在概念上有共同之处，即，开发人员和 DevOps 人员无需部署、配置或管理服务器。 本参考体系结构侧重于使用 Azure Functions 的 FaaS，不过，由一个示例 BaaS 提供 Azure Blob 存储中的 Web 内容。 FaaS 的部分重要特征包括：
 
 1. 计算资源由平台按需动态分配。
-1. 基于消耗量的定价：你只需支付执行代码所用的计算资源的费用。
+1. 基于消耗量的定价：只需支付执行代码时使用的计算资源的费用。
 1. 可根据流量按需缩放计算资源，开发人员无需执行任何配置。
 
 函数在激发外部触发器时执行，例如，当 HTTP 请求或消息抵达队列时。 这样可以得到一种[事件驱动的体系结构样式][event-driven]，即无服务器体系结构的原生样式。 若要协调体系结构中组件之间的工作，请考虑使用消息中转站或发布/订阅模式。 在选择 Azure 中的消息传送技术时如需帮助，请参阅[选择用于传送消息的 Azure 服务][azure-messaging]。
 
 ## <a name="architecture"></a>体系结构
-该体系结构包括以下组件。
+
+该体系结构包括以下组件：
 
 **Blob 存储**。 静态 Web 内容（例如 HTML、CSS 和 JavaScript 文件）存储在 Azure Blob 存储中，并通过[静态网站托管][static-hosting]提供给客户端。 所有动态交互通过调用后端 API 的 JavaScript 代码进行。 没有任何服务器端代码可以呈现网页。 静态网站托管支持索引文档和自定义的 404 错误页。
 
@@ -49,7 +52,7 @@ API 管理还可用于实现横切任务，例如：
 - 验证 OAuth 身份验证令牌
 - 启用跨域请求 (CORS)
 - 缓存响应
-- 监视和记录请求  
+- 监视和记录请求
 
 如果不需要 API 管理提供的所有功能，可以选择使用 [Functions 代理][functions-proxy]。 使用 Azure Functions 的此功能可以通过创建后端函数的路由，为多个函数应用定义单个 API 接口。 函数代理还可以针对 HTTP 请求和响应执行有限转换。 但是，这些代理提供的基于策略的功能不如 API 管理那样丰富。
 
@@ -65,7 +68,7 @@ API 管理还可用于实现横切任务，例如：
 
 ### <a name="function-app-plans"></a>函数应用计划
 
-Azure Functions 支持两种托管模型。 **消耗量计划**：运行代码时自动分配计算能力。  **应用服务计划**：为代码分配一组 VM。 应用服务计划定义 VM 数目和 VM 大小。 
+Azure Functions 支持两种托管模型。 **消耗量计划**：运行代码时自动分配计算能力。  **应用服务计划**：为代码分配一组 VM。 应用服务计划定义 VM 数目和 VM 大小。
 
 请注意，根据上述定义，应用服务计划在严格意义上并非无服务器计划。 编程模型相同，但是 &mdash; 相同的函数代码既可以在消耗量计划中运行，也可以在应用服务计划中运行。
 
@@ -79,9 +82,9 @@ Azure Functions 支持两种托管模型。 **消耗量计划**：运行代码�
 
 ### <a name="function-app-boundaries"></a>函数应用边界
 
-函数应用程序托管一个或多个函数的执行。 可以使用函数应用将多个函数作为一个逻辑单元分组到一起。 在函数应用中，函数共享相同的应用程序设置、托管计划和部署生命周期。 每个函数应用有自身的主机名。  
+函数应用程序托管一个或多个函数的执行。 可以使用函数应用将多个函数作为一个逻辑单元分组到一起。 在函数应用中，函数共享相同的应用程序设置、托管计划和部署生命周期。 每个函数应用有自身的主机名。
 
-使用函数应用将共享相同生命周期和设置的函数分组到一起。 不共享相同生命周期的函数应该托管在不同的函数应用中。 
+使用函数应用将共享相同生命周期和设置的函数分组到一起。 不共享相同生命周期的函数应该托管在不同的函数应用中。
 
 考虑采用微服务方法。在这种情况下，每个函数应用代表一个可能包含多个相关函数的微服务。 在微服务体系结构中，服务应具有松散耦合和高功能内聚的特点。 松散耦合意味着无需同时更新其他服务即可更改一个服务。 内聚表示服务具有一种妥善定义的用途。 有关这些概念的详细介绍，请参阅[设计微服务：域分析][microservices-domain-analysis]。
 
@@ -94,13 +97,13 @@ Azure Functions 支持两种托管模型。 **消耗量计划**：运行代码�
 ```csharp
 [FunctionName("GetStatusFunction")]
 public static Task<IActionResult> Run(
-    [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req, 
+    [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
     [CosmosDB(
         databaseName: "%COSMOSDB_DATABASE_NAME%",
         collectionName: "%COSMOSDB_DATABASE_COL%",
         ConnectionStringSetting = "COSMOSDB_CONNECTION_STRING",
         Id = "{Query.deviceId}",
-        PartitionKey = "{Query.deviceId}")] dynamic deviceStatus, 
+        PartitionKey = "{Query.deviceId}")] dynamic deviceStatus,
     ILogger log)
 {
     ...
@@ -111,7 +114,7 @@ public static Task<IActionResult> Run(
 
 ## <a name="scalability-considerations"></a>可伸缩性注意事项
 
-**Functions**。 对于消耗量计划，HTTP 触发器根据流量缩放。 并发函数实例数有限制，但每个实例一次可以处理多个请求。 对于应用服务计划，HTTP 触发器根据 VM 实例数缩放，该数目可以是固定值，也可以根据一组自动缩放规则自动缩放。 有关信息，请参阅 [Azure Functions 的缩放和托管][functions-scale]。 
+**Functions**。 对于消耗量计划，HTTP 触发器根据流量缩放。 并发函数实例数有限制，但每个实例一次可以处理多个请求。 对于应用服务计划，HTTP 触发器根据 VM 实例数缩放，该数目可以是固定值，也可以根据一组自动缩放规则自动缩放。 有关信息，请参阅 [Azure Functions 的缩放和托管][functions-scale]。
 
 **Cosmos DB**。 Cosmos DB 的吞吐量容量以[请求单位][ru] (RU) 来度量。 1-RU 吞吐量相当于获取 1KB 文档所需的吞吐量。 若要将某个 Cosmos DB 容器扩展到超过 10,000 RU，必须在创建该容器时指定[分区键][partition-key]，并在创建的每个文档中包含该分区键。 有关分区键的详细信息，请参阅 [Azure Cosmos DB 中的分区和缩放][cosmosdb-scale]。
 
@@ -136,10 +139,10 @@ public static Task<IActionResult> Run(
 在此体系结构中，客户端应用程序是在浏览器中运行的单页应用程序 (SPA)。 此类客户端应用程序无法将客户端保密或者隐藏授权代码，因此，隐式授权流比较合适。 （请参阅[应使用哪种 OAuth 2.0 流程？][oauth-flow]）。 整体流如下所述：
 
 1. 用户在 Web 应用程序中单击“登录”链接。
-1. 浏览器重定向到 Azure AD 登录页。 
+1. 浏览器重定向到 Azure AD 登录页。
 1. 用户登录。
 1. Azure AD 重定向回到客户端应用程序，并在 URL 片段中包含访问令牌。
-1. 当 Web 应用程序调用 API 时，会在 Authentication 标头中包含访问令牌。 应用程序 ID 在访问令牌中作为受众（“aud”）声明发送。 
+1. 当 Web 应用程序调用 API 时，会在 Authentication 标头中包含访问令牌。 应用程序 ID 在访问令牌中作为受众（“aud”）声明发送。
 1. 后端 API 验证访问令牌。
 
 配置身份验证：
@@ -152,30 +155,30 @@ public static Task<IActionResult> Run(
 
 有关更多详细信息，请参阅 [GitHub 自述文件][readme]。
 
-建议在 Azure AD 中为客户端应用程序和后端 API 创建单独的应用注册。 授予客户端应用程序调用 API 的权限。 可以通过此方法灵活地定义多个 API 和客户端并控制其权限。 
+建议在 Azure AD 中为客户端应用程序和后端 API 创建单独的应用注册。 授予客户端应用程序调用 API 的权限。 可以通过此方法灵活地定义多个 API 和客户端并控制其权限。
 
 在 API 中，使用[范围][scopes]可以让应用程序对其从用户请求的具体权限进行精细的控制。 例如，API 可能有 `Read` 和 `Write` 两个范围，而特定的客户端应用可能会要求用户仅授予 `Read` 权限。
 
 ### <a name="authorization"></a>授权
 
-在许多应用程序中，后端 API 必须检查用户是否有权执行给定的操作。 建议使用[基于声明的授权][claims]，其中，有关用户的信息将由标识提供者（在本例中为 Azure AD）传递，并用于做出授权决策。 
+在许多应用程序中，后端 API 必须检查用户是否有权执行给定的操作。 建议使用[基于声明的授权][claims]，其中，有关用户的信息将由标识提供者（在本例中为 Azure AD）传递，并用于做出授权决策。
 
-某些声明在 Azure AD 返回给客户端的 ID 令牌中提供。 可以通过检查请求中的 X-MS-CLIENT-PRINCIPAL 标头，从函数应用内部获取这些声明。 对于其他声明，可使用 [Microsoft Graph][graph] 来查询 Azure AD（登录期间需要用户许可）。 
+某些声明在 Azure AD 返回给客户端的 ID 令牌中提供。 可以通过检查请求中的 X-MS-CLIENT-PRINCIPAL 标头，从函数应用内部获取这些声明。 对于其他声明，可使用 [Microsoft Graph][graph] 来查询 Azure AD（登录期间需要用户许可）。
 
-例如，在 Azure AD 中注册应用程序时，可在应用程序的注册清单中定义一组应用程序角色。 当用户登录到应用程序时，Azure AD 会针对授予用户的每个角色（包括通过组成员身份继承的角色）包含一个“roles”声明。 
+例如，在 Azure AD 中注册应用程序时，可在应用程序的注册清单中定义一组应用程序角色。 当用户登录到应用程序时，Azure AD 会针对授予用户的每个角色（包括通过组成员身份继承的角色）包含一个“roles”声明。
 
-在参考实现中，函数会检查经过身份验证的用户是否为 `GetStatus` 应用程序角色的成员。 如果不是，则函数会返回“HTTP 未授权”(401) 响应。 
+在参考实现中，函数会检查经过身份验证的用户是否为 `GetStatus` 应用程序角色的成员。 如果不是，则函数会返回“HTTP 未授权”(401) 响应。
 
 ```csharp
 [FunctionName("GetStatusFunction")]
 public static Task<IActionResult> Run(
-    [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, 
+    [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
     [CosmosDB(
         databaseName: "%COSMOSDB_DATABASE_NAME%",
         collectionName: "%COSMOSDB_DATABASE_COL%",
         ConnectionStringSetting = "COSMOSDB_CONNECTION_STRING",
         Id = "{Query.deviceId}",
-        PartitionKey = "{Query.deviceId}")] dynamic deviceStatus, 
+        PartitionKey = "{Query.deviceId}")] dynamic deviceStatus,
     ILogger log)
 {
     log.LogInformation("Processing GetStatus request.");
@@ -219,16 +222,16 @@ public static Task<IActionResult> Run(
 
 在此示例中，**allow-credentials** 属性为 **true**。 这会授权浏览器通过请求发送凭据（包括 Cookie）。 否则，浏览器默认不会通过跨域请求发送凭据。
 
-> [!NOTE] 
+> [!NOTE]
 > 将 **allow-credentials** 设置为 **true** 时请小心，因为这意味着网站可以在用户不知情的情况下，代表用户将用户的凭据发送到 API。 必须信任允许的源。
 
 ### <a name="enforce-https"></a>实施 HTTPS
 
 为获得最高安全性，必须在整个请求管道中使用 HTTPS：
 
-- **CDN**。 Azure CDN 默认支持在 `*.azureedge.net` 子域中使用 HTTPS。 若要在 CDN 中为自定义域名启用 HTTPS，请参阅[教程：在 Azure CDN 自定义域中配置 HTTPS][cdn-https]。 
+- **CDN**。 Azure CDN 默认支持在 `*.azureedge.net` 子域中使用 HTTPS。 若要在 CDN 中为自定义域名启用 HTTPS，请参阅[教程：在 Azure CDN 自定义域中配置 HTTPS][cdn-https]。
 
-- **静态网站托管**。 在存储帐户中启用“[需要安全传输][storage-https]”选项。 启用此选项后，存储帐户只允许来自安全 HTTPS 连接的请求。 
+- **静态网站托管**。 在存储帐户中启用“[需要安全传输][storage-https]”选项。 启用此选项后，存储帐户只允许来自安全 HTTPS 连接的请求。
 
 - **API 管理**。 将 API 配置为仅使用 HTTPS 协议。 可以通过 Azure 门户或资源管理器模板进行此配置：
 
@@ -250,15 +253,15 @@ public static Task<IActionResult> Run(
     }
     ```
 
-- **Azure Functions**。 启用“[仅限 HTTPS][functions-https]”设置。 
+- **Azure Functions**。 启用“[仅限 HTTPS][functions-https]”设置。
 
 ### <a name="lock-down-the-function-app"></a>锁定函数应用
 
 对函数的所有调用应通过 API 网关发出。 可按如下所述实现此目的：
 
-- 将函数应用配置为要求提供函数密钥。 API 管理网关在调用函数应用时会包含函数密钥。 这可以防止客户端绕过网关直接调用函数。 
+- 将函数应用配置为要求提供函数密钥。 API 管理网关在调用函数应用时会包含函数密钥。 这可以防止客户端绕过网关直接调用函数。
 
-- API 管理网关采用一个[静态 IP 地址][apim-ip]。 将 Azure 函数限制为仅允许来自该静态 IP 地址的调用。 有关详细信息，请参阅 [Azure 应用服务静态 IP 限制][app-service-ip-restrictions]。 （此功能仅适用于标准层服务。） 
+- API 管理网关采用一个[静态 IP 地址][apim-ip]。 将 Azure 函数限制为仅允许来自该静态 IP 地址的调用。 有关详细信息，请参阅 [Azure 应用服务静态 IP 限制][app-service-ip-restrictions]。 （此功能仅适用于标准层服务。）
 
 ### <a name="protect-application-secrets"></a>保护应用程序机密
 
@@ -276,7 +279,7 @@ public static Task<IActionResult> Run(
 
 API 是服务与客户端之间的协定。 在此体系结构中，API 协定在 API 管理层定义。 API 管理支持两个不同但互补的[版本控制概念][apim-versioning]：
 
-- 版本：API 使用者可以根据需要选择 API 版本（例如 v1 或 v2）。 
+- 版本：API 使用者可以根据需要选择 API 版本（例如 v1 或 v2）。
 
 - 修订版：API 管理员可以在 API 中进行非重大更改并部署这些更改。另外还可以提供更改日志，将所做的更改告知 API 使用者。
 
@@ -286,7 +289,7 @@ API 是服务与客户端之间的协定。 在此体系结构中，API 协定�
 
 ## <a name="deploy-the-solution"></a>部署解决方案
 
-若要部署此参考体系结构，请查看 [GitHub 自述文件][readme]。 
+若要部署此参考体系结构，请查看 [GitHub 自述文件][readme]。
 
 <!-- links -->
 

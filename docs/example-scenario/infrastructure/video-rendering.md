@@ -3,12 +3,13 @@ title: Azure 上的 3D 视频渲染
 description: 使用 Azure Batch 服务在 Azure 中运行本机 HPC 工作负荷。
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: 1ffdaa5467fec73a01b8caa18b71c2bc4e49abbe
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 7dacefd5179c426912dd97af9af7b5a39505392d
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610679"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004828"
 ---
 # <a name="3d-video-rendering-on-azure"></a>Azure 上的 3D 视频渲染
 
@@ -124,15 +125,15 @@ Azure Batch 的使用费用取决于用于池的 VM 大小以及这些 VM 的分
 
 下面以示例方式说明了一个在 8 小时内完成的作业在使用不同数目的服务器时可能会产生的费用：
 
-* 100 个高性能 CPU VM：[费用估算][hpc-est-high]
+* 100 台高性能 CPU VM：[成本估算][hpc-est-high]
 
   100 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口
 
-* 50 个高性能 CPU VM：[费用估算][hpc-est-med]
+* 50 台高性能 CPU VM：[成本估算][hpc-est-med]
 
   50 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口
 
-* 10 个高性能 CPU VM：[费用估算][hpc-est-low]
+* 10 台高性能 CPU VM：[成本估算][hpc-est-low]
 
   10 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口
 

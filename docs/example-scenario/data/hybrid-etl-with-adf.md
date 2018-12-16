@@ -3,12 +3,13 @@ title: 将混合 ETL 与现有本地 SSIS 和 Azure 数据工厂配合使用
 description: 将混合 ETL 与现有本地 SQL Server Integration Services (SSIS) 部署和 Azure 数据工厂配合使用
 author: alhieng
 ms.date: 9/20/2018
-ms.openlocfilehash: c4c0cfd63ef1d6c620eb36e16622ad9ffb7b5d80
-ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
+ms.custom: tsp-team
+ms.openlocfilehash: cc6c2bfe85dc0d1eb8ad29e044611f1e435810c3
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52579453"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53306783"
 ---
 # <a name="hybrid-etl-with-existing-on-premises-ssis-and-azure-data-factory"></a>将混合 ETL 与现有本地 SSIS 和 Azure 数据工厂配合使用
 
@@ -29,7 +30,7 @@ ADF 允许客户利用其现有的 ETL 包，同时可以遏制在本地 ETL 开
 * 将网络路由器日志加载到数据库进行分析。
 * 准备人力资源招聘数据进行分析报告。
 * 将产品和销售数据载入数据仓库进行销售预测。
-* 将财务和会计数据自动加载到运营数据存储或数据仓库。
+* 自动加载财务和会计方面的运营数据存储或数据仓库。
 
 ## <a name="architecture"></a>体系结构
 

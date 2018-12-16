@@ -1,19 +1,20 @@
 ---
 title: 可用性核对清单
+titleSuffix: Azure Design Review Framework
 description: 为设计过程中的可用性考虑因素提供指导的核对清单。
 author: dragon119
-ms.date: 01/10/2018
+ms.date: 11/26/2018
 ms.custom: checklist
-ms.openlocfilehash: 5a819c5612fba9623c239bcc43f9004cd97dfb76
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: 37e61b35d73007b9bac1ebaecfbf42792ae3903b
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305887"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307225"
 ---
 # <a name="availability-checklist"></a>可用性核对清单
 
-可用性指系统正常工作时间所占的比例，是[软件质量的构成要素](../guide/pillars.md)之一。 使用此核对清单可以从可用性的角度审查应用程序的体系结构。 
+可用性指系统正常工作时间所占的比例，是[软件质量的构成要素](../guide/pillars.md)之一。 使用此核对清单可以从可用性的角度审查应用程序的体系结构。
 
 ## <a name="application-design"></a>应用程序设计
 
@@ -29,7 +30,7 @@ ms.locfileid: "52305887"
 
 **将应用程序设计为可正常降级。** 应用程序上的负载可能超出一个或多个部件的容量，导致降低可用性和连接失败。 缩放有助于缓解此问题，但可能会达到资源可用性或成本等其他因素施加的限制。 当应用程序达到资源限制时，应采取适当的措施来尽量减小对用户的影响。 例如，在电子商务系统中，如果订单处理子系统处于高压状态或发生故障，可以暂时禁用该子系统，同时允许其他功能（例如浏览产品目录）继续工作。 适当的做法是延后对故障子系统发出的请求，例如，仍然允许客户提交订单，但同时要保存订单，以便在订单子系统稍后再次可用时进行处理。
 
-**适当处理急剧突发事件。** 大多数应用程序需要在不同的时间处理不同的工作负荷。 自动缩放有助于处理负载，但可能需要一些时间使其他实例联机并处理请求。 通过将应用程序设计为将请求加入其使用的服务队列，并在队列接近完全容量时适当降级，以防止突发和意外的活动高峰导致超出应用程序的处理能力。 确保有足够的性能和容量可供非高峰条件清空队列和处理未完成的请求。 有关详细信息，请参阅 [Queue-Based Load Leveling Pattern](https://msdn.microsoft.com/library/dn589783.aspx)（基于队列的负载调节模式）。
+**适当处理急剧突发事件。** 大多数应用程序需要在不同的时间处理不同的工作负荷。 自动缩放有助于处理负载，但可能需要一些时间使其他实例联机并处理请求。 通过将应用程序设计为将请求加入其使用的服务队列，并在队列接近完全容量时适当降级，以防止突发和意外的活动高峰导致超出应用程序的处理能力。 确保有足够的性能和容量可供非高峰条件清空队列和处理未完成的请求。 有关详细信息，请参阅[基于队列的负载调节模式](../patterns/queue-based-load-leveling.md)。
 
 ## <a name="deployment-and-maintenance"></a>部署和维护
 
@@ -55,7 +56,7 @@ ms.locfileid: "52305887"
 
 **使用定期备份和时间点还原**。 定期自动备份未保留在其他位置的数据，并确认可以在发生故障时可靠还原数据和应用程序本身。 确保备份符合恢复点目标 (RPO)。 数据复制不是备份功能，因为人为错误或恶意操作可能会损坏所有副本中的数据。 备份过程必须是安全的，这样才能保护传输中和存储中的数据。 数据库或部分数据存储通常可以使用事务日志恢复到以前的某个时间点。 有关详细信息，请参阅[发生数据损坏或意外删除后进行恢复](../resiliency/recovery-data-corruption.md)
 
-**使用 Azure Site Recovery 复制 VM 磁盘。** 使用 [Site Recovery][site-recovery] 复制 Azure VM 时，所有 VM 磁盘将以异步方式持续复制到目标区域。 每隔几分钟就会创建恢复点。 这可以实现分钟量级的 RPO。 
+**使用 Azure Site Recovery 复制 VM 磁盘。** 使用 [Site Recovery][site-recovery] 复制 Azure VM 时，所有 VM 磁盘将以异步方式持续复制到目标区域。 每隔几分钟就会创建恢复点。 这可以实现分钟量级的 RPO。
 
 ## <a name="errors-and-failures"></a>错误和故障
 
@@ -87,4 +88,3 @@ ms.locfileid: "52305887"
 [availability-sets]:/azure/virtual-machines/virtual-machines-windows-manage-availability/
 [site-recovery]: /azure/site-recovery/
 [site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
-

@@ -1,31 +1,33 @@
 ---
-title: 将自动化企业 BI 与 SQL 数据仓库和 Azure 数据工厂配合使用
-description: 使用 Azure 数据工厂将 Azure 上的 ELT 工作流自动化
+title: 自动化企业商业智能 (BI)
+titleSuffix: Azure Reference Architectures
+description: 将 Azure 数据工厂与 SQL 数据仓库配合使用，在 Azure 中自动完成提取、加载和转换 (ELT) 工作流。
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: 3fedcd08572a9fe1fc610f5fbab12f8ff0d53073
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seodec18
+ms.openlocfilehash: d87583802496f8be85e44c896ae7d6a26306cffc
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295612"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120333"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>将自动化企业 BI 与 SQL 数据仓库和 Azure 数据工厂配合使用
 
-此参考体系结构演示如何在 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt)（提取-加载-转换）管道中执行增量加载。 它使用 Azure 数据工厂将 ELT 管道自动化。 该管道以增量方式将最新的 OLTP 数据从本地 SQL Server 数据库移入 SQL 数据仓库。 事务数据将转换为表格模型以供分析。
+此参考体系结构演示如何在[提取、加载和转换 (ELT)](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) 管道中执行增量加载。 它使用 Azure 数据工厂将 ELT 管道自动化。 该管道以增量方式将最新的 OLTP 数据从本地 SQL Server 数据库移入 SQL 数据仓库。 事务数据将转换为表格模型以供分析。
 
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
 
 [GitHub][github] 中提供了本体系结构的参考实现。
 
-![](./images/enterprise-bi-sqldw-adf.png)
+![将自动化企业 BI 与 SQL 数据仓库和 Azure 数据工厂配合使用的体系结构图](./images/enterprise-bi-sqldw-adf.png)
 
 此体系结构构建在[企业 BI 与 SQL 数据仓库](./enterprise-bi-sqldw.md)中所述的体系结构基础之上，但添加了一些对企业数据仓库方案而言非常重要的功能。
 
--   使用数据工厂将管道自动化。
--   增量加载。
--   集成多个数据源。
--   加载地理空间数据和图像等二进制数据。
+- 使用数据工厂将管道自动化。
+- 增量加载。
+- 集成多个数据源。
+- 加载地理空间数据和图像等二进制数据。
 
 ## <a name="architecture"></a>体系结构
 
@@ -41,7 +43,7 @@ ms.locfileid: "52295612"
 
 **Blob 存储**。 Blob 存储用作临时区域，在将源数据载入 SQL 数据仓库之前，会在此区域中存储这些数据。
 
-**Azure SQL 数据仓库**。 [SQL 数据仓库](/azure/sql-data-warehouse/)是分布式系统，旨在对大型数据执行分析。 它支持大规模并行处理 (MPP)，因此很适合用于运行高性能分析。 
+**Azure SQL 数据仓库**。 [SQL 数据仓库](/azure/sql-data-warehouse/)是分布式系统，旨在对大型数据执行分析。 它支持大规模并行处理 (MPP)，因此很适合用于运行高性能分析。
 
 **Azure 数据工厂**。 [数据工厂][adf]是一项托管服务，用于协调和自动化数据的移动与转换。 在此体系结构中，数据工厂协调 ELT 过程的各个阶段。
 
@@ -59,22 +61,23 @@ ms.locfileid: "52295612"
 
 ## <a name="data-pipeline"></a>数据管道
 
-在 [Azure 数据工厂][adf]中，管道是用于协调某个任务的活动的逻辑分组 &mdash; 在本例中，该任务是将数据加载到 SQL 数据仓库中并对其进行转换。 
+在 [Azure 数据工厂][adf]中，管道是用于协调某个任务的活动的逻辑分组 &mdash; 在本例中，该任务是将数据加载到 SQL 数据仓库中并对其进行转换。
 
 此参考体系结构定义一个运行一系列子管道的主管道。 每个子管道将数据载入一个或多个数据仓库表。
 
-![](./images/adf-pipeline.png)
+![Azure 数据工厂中管道的屏幕截图](./images/adf-pipeline.png)
 
 ## <a name="incremental-loading"></a>增量加载
 
-运行自动化的 ETL 或 ELT 过程时，最有效的做法是仅加载自上次运行以来已发生更改的数据。 这称为“增量加载”，相对于加载所有数据的“完全加载”。 若要执行增量加载，需要通过某种方式来识别哪些数据已更改。 最常用的方法是使用高水印值，即，跟踪源表中某个列的最新值：日期时间列，或唯一整数列。 
+运行自动化的 ETL 或 ELT 过程时，最有效的做法是仅加载自上次运行以来已发生更改的数据。 这称为“增量加载”，相对于加载所有数据的“完全加载”。 若要执行增量加载，需要通过某种方式来识别哪些数据已更改。 最常用的方法是使用高水印值，即，跟踪源表中某个列的最新值：日期时间列，或唯一整数列。
 
-从 SQL Server 2016 开始，可以使用[时态表](/sql/relational-databases/tables/temporal-tables)。 这些表的版本受系统控制，可保留数据更改的完整历史记录。 数据库引擎会在单独的历史记录表中自动记录每项更改的历史记录。 可以通过将 FOR SYSTEM_TIME 子句添加到查询，来查询历史数据。 在内部，数据库引擎会查询历史记录表，但此操作对于应用程序而言是透明的。 
+从 SQL Server 2016 开始，可以使用[时态表](/sql/relational-databases/tables/temporal-tables)。 这些表的版本受系统控制，可保留数据更改的完整历史记录。 数据库引擎会在单独的历史记录表中自动记录每项更改的历史记录。 可以通过将 FOR SYSTEM_TIME 子句添加到查询，来查询历史数据。 在内部，数据库引擎会查询历史记录表，但此操作对于应用程序而言是透明的。
 
 > [!NOTE]
-> 对于早期版本的 SQL Server，可以使用[变更数据捕获](/sql/relational-databases/track-changes/about-change-data-capture-sql-server) (CDC)。 与时态表相比，此方法不够方便，因为必须查询单独的更改表，而更改是按日志序列号而不是时间戳跟踪的。 
+> 对于早期版本的 SQL Server，可以使用[变更数据捕获](/sql/relational-databases/track-changes/about-change-data-capture-sql-server) (CDC)。 与时态表相比，此方法不够方便，因为必须查询单独的更改表，而更改是按日志序列号而不是时间戳跟踪的。
+>
 
-时态表适用于随时可能更改的维度数据。 事实数据表通常代表不可变的事务（例如销量），在这种情况下，保留系统版本历史记录没有意义。 相反，事务通常具有一个表示事务日期的列，该日期可用作水印值。 例如，在 Wide World Importers OLTP 数据库中，Sales.Invoices 和 Sales.InvoiceLines 表具有一个默认值为 `sysdatetime()` 的 `LastEditedWhen` 字段。 
+时态表适用于随时可能更改的维度数据。 事实数据表通常代表不可变的事务（例如销量），在这种情况下，保留系统版本历史记录没有意义。 相反，事务通常具有一个表示事务日期的列，该日期可用作水印值。 例如，在 Wide World Importers OLTP 数据库中，Sales.Invoices 和 Sales.InvoiceLines 表具有一个默认值为 `sysdatetime()` 的 `LastEditedWhen` 字段。
 
 下面是 ELT 管道的常规流：
 
@@ -86,7 +89,7 @@ ms.locfileid: "52295612"
 
 该表也可用于记录每个 ELT 轮次的沿袭。 对于给定的记录，该沿袭会将该记录与生成数据的 ELT 轮次相关联。 对于每个 ETL 轮次，将为每个表创建新的沿袭记录，其中显示起始和结束加载时间。 每个记录的沿袭键存储在维度表和事实数据表中。
 
-![](./images/city-dimension-table.png)
+![城市维度表的屏幕截图](./images/city-dimension-table.png)
 
 将一批新数据载入仓库后，刷新 Analysis Services 表格模型。 请参阅[使用 REST API 执行异步刷新](/azure/analysis-services/analysis-services-async-refresh)。
 
@@ -94,7 +97,7 @@ ms.locfileid: "52295612"
 
 数据清理应是 ELT 过程的一部分。 在此参考体系结构中，一个错误数据源是城市人口表，其中的某些城市人口为零，可能的原因是没有可用的数据。 在处理期间，ELT 管道会从城市人口表中删除这些城市。 针对临时表而不是外部表执行数据清理。
 
-以下存储过程从城市人口表中删除人口为零的城市。 （可在[此处](https://github.com/mspnp/reference-architectures/blob/master/data/enterprise_bi_sqldw_advanced/azure/sqldw_scripts/citypopulation/%5BIntegration%5D.%5BMigrateExternalCityPopulationData%5D.sql)找到源文件。） 
+以下存储过程从城市人口表中删除人口为零的城市。 （可在[此处](https://github.com/mspnp/reference-architectures/blob/master/data/enterprise_bi_sqldw_advanced/azure/sqldw_scripts/citypopulation/%5BIntegration%5D.%5BMigrateExternalCityPopulationData%5D.sql)找到源文件。）
 
 ```sql
 DELETE FROM [Integration].[CityPopulation_Staging]
@@ -109,9 +112,9 @@ HAVING COUNT(RowNumber) = 4)
 
 数据仓库通常合并多个源的数据。 此参考体系结构加载包含人口统计数据的外部数据源。 此数据集在 Azure Blob 存储中作为 [WorldWideImportersDW](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/wide-world-importers/sample-scripts/polybase) 示例的一部分提供。
 
-Azure 数据工厂可以使用 [Blob 存储连接器](/azure/data-factory/connector-azure-blob-storage)直接从 Blob 存储复制。 但是，连接器需要连接字符串或共享访问签名，因此它无法用于复制具有公共读取访问权限的 Blob。 解决方法之一是使用 PolyBase 创建基于 Blob 存储的外部表，然后将外部表复制到 SQL 数据仓库中。 
+Azure 数据工厂可以使用 [Blob 存储连接器](/azure/data-factory/connector-azure-blob-storage)直接从 Blob 存储复制。 但是，连接器需要连接字符串或共享访问签名，因此它无法用于复制具有公共读取访问权限的 Blob。 解决方法之一是使用 PolyBase 创建基于 Blob 存储的外部表，然后将外部表复制到 SQL 数据仓库中。
 
-## <a name="handling-large-binary-data"></a>处理大型二进制数据 
+## <a name="handling-large-binary-data"></a>处理大型二进制数据
 
 在源数据库中，Cities 表包含一个 Location 列，该列保存了 [geography](/sql/t-sql/spatial-geography/spatial-types-geography) 空间数据类型。 SQL 数据仓库原生并不支持 **geography** 类型，因此，在加载期间，此字段将转换为 **varbinary** 类型。 （请参阅[适用于不支持的数据类型的解决方法](/azure/sql-data-warehouse/sql-data-warehouse-tables-data-types#unsupported-data-types)。）
 
@@ -129,17 +132,17 @@ Azure 数据工厂可以使用 [Blob 存储连接器](/azure/data-factory/connec
 
 ## <a name="slowly-changing-dimensions"></a>缓慢变化的维度
 
-维度数据相对而言是静态的，但仍可能发生变化。 例如，某个产品可能会重新分配到不同的产品类别。 可通过多种方法来处理缓慢变化的维度。 常用的方法称为[类型 2](https://wikipedia.org/wiki/Slowly_changing_dimension#Type_2:_add_new_row)，即，每当维度发生变化，就添加一条新记录。 
+维度数据相对而言是静态的，但仍可能发生变化。 例如，某个产品可能会重新分配到不同的产品类别。 可通过多种方法来处理缓慢变化的维度。 常用的方法称为[类型 2](https://wikipedia.org/wiki/Slowly_changing_dimension#Type_2:_add_new_row)，即，每当维度发生变化，就添加一条新记录。
 
 若要实现“类型 2”方法，维度表中需要包含附加的列，用于指定给定记录的有效日期范围。 此外，源数据库中的主键将会复制，因此，维度表必须包含一个人造主键。
 
 下图显示了 Dimension.City 表。 `WWI City ID` 列是源数据库中的主键。 `City Key` 列是在运行 ETL 管道期间生成的人造键。 另请注意，该表包含 `Valid From` 和 `Valid To` 列，这些列定义每个行的有效时间范围。 当前值包含等于“9999-12-31”的 `Valid To`。
 
-![](./images/city-dimension-table.png)
+![城市维度表的屏幕截图](./images/city-dimension-table.png)
 
 此方法的优势在于，它会保留历史数据，而这些数据对于分析可能非常有用。 但是，这也意味着，同一个实体存在多个行。 例如，以下记录与 `WWI City ID` = 28561 相匹配：
 
-![](./images/city-dimension-table-2.png)
+![城市维度表的第二个屏幕截图](./images/city-dimension-table-2.png)
 
 对于每个销售事实，需要将该事实与 City 维度表中对应于发票日期的单个行相关联。 在执行 ETL 过程期间，创建一个附加列 
 
@@ -180,9 +183,9 @@ Power BI 查询可以使用此列找到给定销售发票的正确 City 记录�
 
 注意以下限制：
 
-- 在创建此参考体系结构时，Azure 存储和 Azure SQL 数据仓库支持 VNet 服务终结点，但 Azure Analysis Service 则不支持此类终结点。 请在[此处](https://azure.microsoft.com/updates/?product=virtual-network)查看最新状态。 
+- 在创建此参考体系结构时，Azure 存储和 Azure SQL 数据仓库支持 VNet 服务终结点，但 Azure Analysis Service 则不支持此类终结点。 请在[此处](https://azure.microsoft.com/updates/?product=virtual-network)查看最新状态。
 
-- 如果为 Azure 存储启用了服务终结点，PolyBase 无法将数据从存储复制到 SQL 数据仓库。 此问题有一种缓解方法。 有关详细信息，请参阅[将 VNet 服务终结点与 Azure 存储配合使用的影响](/azure/sql-database/sql-database-vnet-service-endpoint-rule-overview?toc=%2fazure%2fvirtual-network%2ftoc.json#impact-of-using-vnet-service-endpoints-with-azure-storage)。 
+- 如果为 Azure 存储启用了服务终结点，PolyBase 无法将数据从存储复制到 SQL 数据仓库。 此问题有一种缓解方法。 有关详细信息，请参阅[将 VNet 服务终结点与 Azure 存储配合使用的影响](/azure/sql-database/sql-database-vnet-service-endpoint-rule-overview?toc=%2fazure%2fvirtual-network%2ftoc.json#impact-of-using-vnet-service-endpoints-with-azure-storage)。
 
 - 若要将数据从本地移入 Azure 存储，需要将本地或 ExpressRoute 中的公共 IP 地址加入允许列表。 有关详细信息，请参阅[在虚拟网络中保护 Azure 服务](/azure/virtual-network/virtual-network-service-endpoints-overview#securing-azure-services-to-virtual-networks)。
 
@@ -192,14 +195,13 @@ Power BI 查询可以使用此列找到给定销售发票的正确 City 记录�
 
 若要部署并运行参考实现，请按 [GitHub 自述文件][github]中的步骤操作。 它将部署以下部分：
 
-  * 一个用于模拟本地数据库服务器的 Windows VM。 该 VM 包含 SQL Server 2017 和相关工具以及 Power BI Desktop。
-  * 一个 Azure 存储帐户。该帐户提供 Blob 存储用于保存从 SQL Server 数据库导出的数据。
-  * 一个 Azure SQL 数据仓库实例。
-  * 一个 Azure Analysis Services 实例。
-  * Azure 数据工厂和 ELT 作业的数据工厂管道。
+- 一个用于模拟本地数据库服务器的 Windows VM。 该 VM 包含 SQL Server 2017 和相关工具以及 Power BI Desktop。
+- 一个 Azure 存储帐户。该帐户提供 Blob 存储用于保存从 SQL Server 数据库导出的数据。
+- 一个 Azure SQL 数据仓库实例。
+- 一个 Azure Analysis Services 实例。
+- Azure 数据工厂和 ELT 作业的数据工厂管道。
 
-[adf]: //azure/data-factory
+[adf]: /azure/data-factory
 [github]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw_advanced
 [MergeLocation]: https://github.com/mspnp/reference-architectures/blob/master/data/enterprise_bi_sqldw_advanced/azure/sqldw_scripts/city/%5BIntegration%5D.%5BMergeLocation%5D.sql
-[wwi]: //sql/sample/world-wide-importers/wide-world-importers-oltp-database
-
+[wwi]: /sql/sample/world-wide-importers/wide-world-importers-oltp-database

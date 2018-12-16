@@ -3,12 +3,13 @@ title: Azure 上的电子商务前端
 description: 在 Azure 上托管电子商务站点。
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 7baaf4d2986a00ab72b60a540bcd9d864893b109
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: e48f7607fcef6e5048c57f4f8f63b2f6bdd4f183
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610815"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004862"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Azure 上的电子商务前端
 
@@ -69,7 +70,7 @@ ms.locfileid: "51610815"
 
 可用于数据层的其他选项包括：
 
-* [Cosmos DB](/azure/cosmos-db/introduction)：Microsoft 提供的全球分布式多模型数据库。 此服务提供的平台适合运行其他数据模型，例如 Mongo DB、Cassandra、Graph 数据或简单的表存储。
+* [Cosmos DB](/azure/cosmos-db/introduction)：Microsoft 推出的全球分布式多模型数据库。 此服务提供的平台适合运行其他数据模型，例如 Mongo DB、Cassandra、Graph 数据或简单的表存储。
 
 ## <a name="considerations"></a>注意事项
 
@@ -110,9 +111,9 @@ ms.locfileid: "51610815"
 
 我们已根据你预期接收的流量提供了三个示例性的成本配置文件：
 
-* [小][small-pricing]：此定价示例表示生成最低生产级别实例所需的组件。 在这里，我们假定用户数量很少，每月只有数千。 此应用使用某个标准 Web 应用的单个实例，这对于启动自动缩放来说已足够。 其他组件都缩放成一个基本层，可以尽量减少成本，但仍可确保有 SLA 支持和足够的容量，可以处理生产级别的工作负荷。
-* [中][medium-pricing]：此定价示例表示组件情况符合中等大小的部署。 在这里，我们估计一个月有大约 100,000 个用户使用此系统。 预计的流量在处于中等标准层的单个应用服务实例中处理。 另外，认知和搜索服务的中型层也会添加到计算器中。
-* [大][large-pricing]：此定价示例表示应用程序需进行大规模的处理，每月的用户数在百万级别，移动的数据量为数 TB。 对于这种级别的使用量，必须将高级层 Web 应用部署在多个区域，并且需前置一个流量管理器。 存储数据的存储空间、数据库和 CDN 均按 TB 级数据量进行配置。
+* [小型][small-pricing]：此定价示例表示生成最低生产级别实例所需的组件。 在这里，我们假定用户数量很少，每月只有数千。 此应用使用某个标准 Web 应用的单个实例，这对于启动自动缩放来说已足够。 其他组件都缩放成一个基本层，可以尽量减少成本，但仍可确保有 SLA 支持和足够的容量，可以处理生产级别的工作负荷。
+* [中型][medium-pricing]：此定价示例表示组件情况符合中等大小的部署。 在这里，我们估计一个月有大约 100,000 个用户使用此系统。 预计的流量在处于中等标准层的单个应用服务实例中处理。 另外，认知和搜索服务的中型层也会添加到计算器中。
+* [大型][large-pricing]：此定价示例表示应用程序需进行大规模的处理，每月的用户数在百万级别，移动的数据量为数 TB。 对于这种级别的使用量，必须将高级层 Web 应用部署在多个区域，并且需前置一个流量管理器。 存储数据的存储空间、数据库和 CDN 均按 TB 级数据量进行配置。
 
 ## <a name="related-resources"></a>相关资源
 

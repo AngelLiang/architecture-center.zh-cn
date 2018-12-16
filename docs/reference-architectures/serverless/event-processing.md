@@ -1,20 +1,22 @@
 ---
 title: 使用 Azure Functions 进行无服务器事件处理
+titleSuffix: Azure Reference Architectures
 description: 演示无服务器事件引入和处理的参考体系结构
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: 76c8b9c1244c987c96e38e50ecad7814cc49cd88
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seodec18
+ms.openlocfilehash: 1a3c73ca35f7e849211837dee33a530d786c827f
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295644"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119891"
 ---
 # <a name="serverless-event-processing-using-azure-functions"></a>使用 Azure Functions 进行无服务器事件处理
 
 本参考体系结构演示一个可以引入数据流、处理数据，并将结果写入后端数据库的事件驱动式[无服务器](https://azure.microsoft.com/solutions/serverless/)体系结构。 [GitHub][github] 中提供了本体系结构的参考实现。
 
-![](./_images/serverless-event-processing.png)
+![使用 Azure Functions 进行的无服务器事件处理的参考体系结构](./_images/serverless-event-processing.png)
 
 ## <a name="architecture"></a>体系结构
 
@@ -49,16 +51,16 @@ Cosmos DB 的吞吐量容量以[请求单位][ru] (RU) 来度量。 若要将某
 
 下面是适当分区键的一些特征：
 
-- 键值空间较大。 
+- 键值空间较大。
 - 为每个键值平均分配读取/写入，避免出现热键。
-- 为任何一个键值存储的数据上限不超过最大物理分区大小 (10 GB)。 
-- 文档的分区键不会更改。 无法更新现有文档中的分区键。 
+- 为任何一个键值存储的数据上限不超过最大物理分区大小 (10 GB)。
+- 文档的分区键不会更改。 无法更新现有文档中的分区键。
 
 在本参考体系结构的方案中，函数针对发送数据的每个设备正好存储一个文档。 函数使用 upsert 操作持续以最新的设备状态更新文档。 设备 ID 非常适合在此方案中用作分区键，因为写入操作将在不同的键之间平均分配，并且每个分区的大小严格受限，因为每个键值对应单个文档。 有关分区键的详细信息，请参阅 [Azure Cosmos DB 中的分区和缩放][cosmosdb-scale]。
 
 ## <a name="resiliency-considerations"></a>复原注意事项
 
-配合 Functions 使用事件中心触发器时，可以捕获处理循环中的异常。 如果发生未经处理的异常，Functions 运行时不会重试消息。 如果无法处理某个消息，会将该消息放入死信队列。 使用带外进程来检查消息并确定纠正措施。 
+配合 Functions 使用事件中心触发器时，可以捕获处理循环中的异常。 如果发生未经处理的异常，Functions 运行时不会重试消息。 如果无法处理某个消息，会将该消息放入死信队列。 使用带外进程来检查消息并确定纠正措施。
 
 以下代码演示引入函数如何捕获异常，并将未经处理的消息放入死信队列。
 
@@ -99,9 +101,9 @@ public static async Task RunAsync(
 
 请注意，函数使用[队列存储输出绑定][queue-binding]将项放入队列。
 
-上面所示的代码还会将异常记录到 Application Insights。 可以使用分区键和序号将死信消息与日志中的异常相关联。 
+上面所示的代码还会将异常记录到 Application Insights。 可以使用分区键和序号将死信消息与日志中的异常相关联。
 
-死信队列中的消息应该包含足够的信息，使你能够了解错误的上下文。 在此示例中，`DeadLetterMessage` 类包含异常消息、原始事件数据，以及反序列化的事件消息（如果有）。 
+死信队列中的消息应该包含足够的信息，使你能够了解错误的上下文。 在此示例中，`DeadLetterMessage` 类包含异常消息、原始事件数据，以及反序列化的事件消息（如果有）。
 
 ```csharp
 public class DeadLetterMessage
@@ -128,7 +130,7 @@ public class DeadLetterMessage
 
 ## <a name="deploy-the-solution"></a>部署解决方案
 
-若要部署此参考体系结构，请查看 [GitHub 自述文件][readme]。 
+若要部署此参考体系结构，请查看 [GitHub 自述文件][readme]。
 
 <!-- links -->
 

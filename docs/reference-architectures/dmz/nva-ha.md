@@ -1,43 +1,42 @@
 ---
-title: 部署高可用性网络虚拟设备
-description: 如何部署具有高可用性的网络虚拟设备。
+title: 部署具有高可用性的网络虚拟设备。
+titleSuffix: Azure Reference Architectures
+description: 部署具有高可用性的网络虚拟设备。
 author: telmosampaio
-ms.date: 12/06/2016
-pnp.series.title: Network DMZ
-pnp.series.prev: secure-vnet-dmz
-cardTitle: Deploy highly available network virtual appliances
-ms.openlocfilehash: 556ec1e78960d64cce3bf803fc46c9146ce2584d
-ms.sourcegitcommit: f4069cf68456b5c74acb1b890dc4e45e11f12b59
+ms.date: 12/08/2018
+ms.custom: seodec18
+ms.openlocfilehash: d3f9017db1bbf9741b10db16eb5a3dbab78f1160
+ms.sourcegitcommit: 7d21aec9d9de0004ac777c1d1e364f53aac2350d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/04/2018
-ms.locfileid: "43675825"
+ms.lasthandoff: 12/09/2018
+ms.locfileid: "53120746"
 ---
 # <a name="deploy-highly-available-network-virtual-appliances"></a>部署具有高可用性的网络虚拟设备。
 
-本文展示了如何在 Azure 中部署一组网络虚拟设备 (NVA) 以实现高可用性。 NVA 通常用来控制从外围网络（也称为 DMZ）到其他网络或子网的网络流量流。 若要了解如何在 Azure 中实现外围网络，请参阅 [Microsoft cloud services and network security][cloud-security]（Microsoft 云服务和网络安全）。 本文包括了仅用于入口、仅用于出口和同时用于入口和出口的示例体系结构。 
+本文展示了如何在 Azure 中部署一组网络虚拟设备 (NVA) 以实现高可用性。 NVA 通常用来控制从外围网络（也称为 DMZ）到其他网络或子网的网络流量流。 若要了解如何在 Azure 中实现外围网络，请参阅 [Microsoft cloud services and network security][cloud-security]（Microsoft 云服务和网络安全）。 本文包括了仅用于入口、仅用于出口和同时用于入口和出口的示例体系结构。
 
-<strong>先决条件：</strong>本文假定读者对 Azure 网络、[Azure 负载均衡器][lb-overview]和[用户定义的路由][udr-overview] (UDR) 有一个基本了解。 
+**先决条件：** 本文假设读者对 Azure 网络、[Azure 负载均衡器][lb-overview]和[用户定义的路由][udr-overview] (UDR) 有一个基本了解。
 
+## <a name="architecture-diagrams"></a>体系结构关系图
 
-## <a name="architecture-diagrams"></a>体系结构示意图
-
-NVA 可以采用许多不同的体系结构部署到外围网络中。 例如，下图展示了用于入口的[单个 NVA][nva-scenario] 的使用。 
+NVA 可以采用许多不同的体系结构部署到外围网络中。 例如，下图展示了用于入口的[单个 NVA][nva-scenario] 的使用。
 
 ![[0]][0]
 
 在此体系结构中，NVA 会检查所有入站和出站网络流量并且仅会放行符合网络安全规则的流量，从而提供一个安全的网络边界。 不过，因为所有网络流量都必须通过 NVA，这意味着 NVA 是网络中的单一故障点。 如果 NVA 发生故障，则网络流量没有其他路径可用，并且所有后端子网都不可用。
 
-若要使 NVA 高度可用，请将多个 NVA 部署到可用性集中。    
+若要使 NVA 高度可用，请将多个 NVA 部署到可用性集中。
 
 下面的体系结构描述了实现高度可用的 NVA 所需的资源和配置：
 
 | 解决方案 | 优点 | 注意事项 |
 | --- | --- | --- |
-| [具有第 7 层 NVA 的入口][ingress-with-layer-7] |所有 NVA 节点都是主动的 |需要一个可以终止连接的 NVA 并使用 SNAT</br> 对于来自 Internet 和来自 Azure 的流量，需要单独的一组 NVA </br> 只能用于在 Azure 外部产生的流量 |
+| [具有第 7 层 NVA 的入口][ingress-with-layer-7] |所有 NVA 节点都是主动的 |需要一个可以终止连接的 NVA 并使用 SNAT<br/> 对于来自 Internet 和来自 Azure 的流量，需要单独的一组 NVA <br/> 只能用于在 Azure 外部产生的流量 |
 | [具有第 7 层 NVA 的出口][egress-with-layer-7] |所有 NVA 节点都是主动的 | 需要一个可以终止连接的 NVA 并实现源网络地址转换 (SNAT)
 | [具有第 7 层 NVA 的入口-出口][ingress-egress-with-layer-7] |所有节点都是主动的<br/>能够处理在 Azure 中产生的流量 |需要一个可以终止连接的 NVA 并使用 SNAT<br/>对于来自 Internet 和来自 Azure 的流量，需要单独的一组 NVA |
 | [PIP-UDR 切换][pip-udr-switch] |用于所有流量的单组 NVA<br/>可以处理所有流量（没有端口限制规则） |主动-被动<br/>需要故障转移流程 |
+| [不使用 SNAT 的 PIP-UDR](#pip-udr-nvas-without-snat) | 用于所有流量的单组 NVA<br/>可以处理所有流量（没有端口限制规则）<br/>不需要为入站请求配置 SNAT |主动-被动<br/>需要故障转移流程<br/>在虚拟网络外部运行的探测和故障转移逻辑 |
 
 ## <a name="ingress-with-layer-7-nvas"></a>具有第 7 层 NVA 的入口
 
@@ -63,7 +62,7 @@ NVA 可以采用许多不同的体系结构部署到外围网络中。 例如，
 
 ## <a name="ingress-egress-with-layer-7-nvas"></a>具有第 7 层 NVA 的入口-出口
 
-在上面的两个体系结构中，都有一个单独的用于入口和出口的外围网络。 下面的体系结构演示了如何创建可以同时用于入口和出口的外围网络以用于第 7 层流量，例如 HTTP 或 HTTPS： 
+在上面的两个体系结构中，都有一个单独的用于入口和出口的外围网络。 下面的体系结构演示了如何创建可以同时用于入口和出口的外围网络以用于第 7 层流量，例如 HTTP 或 HTTPS：
 
 ![[4]][4]
 
@@ -74,27 +73,50 @@ NVA 可以采用许多不同的体系结构部署到外围网络中。 例如，
 
 ## <a name="pip-udr-switch-with-layer-4-nvas"></a>采用第 4 层 NVA 的 PIP-UDR 切换
 
-下面的体系结构展示了具有一个主动和一个被动 NVA 的体系结构。 此体系结构同时处理第 4 层流量的入口和出口： 
+下面的体系结构展示了具有一个主动和一个被动 NVA 的体系结构。 此体系结构同时处理第 4 层流量的入口和出口：
 
 ![[3]][3]
 
-此体系结构类似于本文中讨论的第一个体系结构。 该体系结构包括了用于接受和筛选传入的第 4 层请求的单个 NVA。 此体系结构添加了另一个被动 NVA 来提供高可用性。 如果主动 NVA 发生故障，则被动 NVA 将成为主动的，并且 UDR 和 PIP 将更改为指向目前的主动 NVA 上的 NIC。 对 UDR 和 PIP 的这些更改可以手动完成，也可以使用自动化流程来完成。 自动化流程通常是在 Azure 中运行的守护程序或其他监视服务。 它查询主动 NVA 上的运行状态探测，并且在检测到 NVA 故障时执行 UDR 和 PIP 切换。 
+> [!TIP]
+> [GitHub][pnp-ha-nva] 上提供了此体系结构的完整解决方案。
+
+此体系结构类似于本文中讨论的第一个体系结构。 该体系结构包括了用于接受和筛选传入的第 4 层请求的单个 NVA。 此体系结构添加了另一个被动 NVA 来提供高可用性。 如果主动 NVA 发生故障，则被动 NVA 将成为主动的，并且 UDR 和 PIP 将更改为指向目前的主动 NVA 上的 NIC。 对 UDR 和 PIP 的这些更改可以手动完成，也可以使用自动化流程来完成。 自动化流程通常是在 Azure 中运行的守护程序或其他监视服务。 它查询主动 NVA 上的运行状态探测，并且在检测到 NVA 故障时执行 UDR 和 PIP 切换。
 
 上图显示了一个示例 [ZooKeeper][zookeeper] 群集，它提供了一个高可用性守护程序。 在 ZooKeeper 群集内，节点的仲裁选拨一个领导。 如果领导发生故障，则剩余节点将举行选举来选拨新领导。 对于此体系结构，领导节点将执行对 NVA 上的运行状况终结点进行查询的守护程序。 如果 NVA 无法响应运行状况探测，则守护程序将激活被动 NVA。 然后，守护程序将调用 Azure REST API 来从发生故障的 NVA 中删除 PIP 并将其附加到新激活的 NVA。 然后，守护程序将修改 UDR 来指向新激活的 NVA 的内部 IP 地址。
 
-> [!NOTE]
-> 不要将 ZooKeeper 节点包括在只能使用包括 NVA 的路由进行访问的子网中。 否则，如果 NVA 发生故障，则 ZooKeeper 节点将无法访问。 如果守护程序因任何原因而发生故障，则你将无法访问任何 ZooKeeper 节点来诊断问题。 
+不要将 ZooKeeper 节点包括在只能使用包括 NVA 的路由进行访问的子网中。 否则，如果 NVA 发生故障，则 ZooKeeper 节点将无法访问。 如果守护程序因任何原因而发生故障，则你将无法访问任何 ZooKeeper 节点来诊断问题。
 
-<!--### Solution Deployment-->
+若要查看完整解决方案（包括示例代码），请参阅 [GitHub 存储库][pnp-ha-nva]中的文件。
 
-<!-- instructions for deploying this solution here --> 
+## <a name="pip-udr-nvas-without-snat"></a>不使用 SNAT 的 PIP-UDR NVA
+
+此体系结构使用两个 Azure 虚拟机来托管采用主动-被动配置的 NVA 防火墙，该防火墙支持自动故障转移，但不需要源网络地址转换 (SNAT)。
+
+![不使用 SNAT 体系结构的 PIP-UDR NVA](./images/nva-ha/pip-udr-without-snat.png)
+
+> [!TIP]
+> [GitHub][ha-nva-fo] 上提供了此体系结构的完整解决方案。
+
+此解决方案适用于无法在 NVA 防火墙中为入站请求配置 SNAT 的 Azure 客户。 SNAT 隐藏原始源客户端 IP 地址。 如果需要记录原始 IP 或者在 NVA 后面的其他分层安全组件中使用原始 IP，则此解决方案可提供一种基本方法。
+
+UDR 表条目的故障转移由某个下一跃点地址自动完成，该地址设置为主动 NVA 防火墙虚拟机上的接口的 IP 地址。 自动故障转移逻辑托管在使用 [Azure Functions](/azure/azure-functions/) 创建的函数应用中。 故障转移代码在 Azure Functions 中作为无服务器函数运行。 部署十分方便、经济高效，且易于维护和自定义。 此外，函数应用托管在 Azure Functions 中，因此不依赖于虚拟网络。 如果对虚拟网络的更改会影响 NVA 防火墙，则函数应用可继续独立运行。 此外，测试更加准确，因为测试是使用与入站客户端请求相同的路由在虚拟网络外部进行的。
+
+为了检查 NVA 防火墙的可用性，函数应用代码将通过两种方式之一探测防火墙：
+
+- 监视托管 NVA 防火墙的 Azure 虚拟机的状态。
+
+- 测试防火墙中是否向后端 Web 服务器开放了端口。 对于此选项，NVA 必须通过 PIP 公开一个套接字，供函数应用代码测试。
+
+配置函数应用时，请选择要使用的探测类型。 若要查看完整解决方案（包括示例代码），请参阅 [GitHub 存储库][ha-nva-fo]中的文件。
 
 ## <a name="next-steps"></a>后续步骤
-* 了解如何使用第 7 层 NVA [在 Azure 与本地数据中心之间实现外围网络][dmz-on-prem]。
-* 了解如何使用第 7 层 NVA [在 Azure 与 Internet 之间实现外围网络][dmz-internet]。
-* [排查 Azure 中的网络虚拟设备问题](/azure/virtual-network/virtual-network-troubleshoot-nva)
+
+- 了解如何使用第 7 层 NVA [在 Azure 与本地数据中心之间实现外围网络][dmz-on-prem]。
+- 了解如何使用第 7 层 NVA [在 Azure 与 Internet 之间实现外围网络][dmz-internet]。
+- [排查 Azure 中的网络虚拟设备问题](/azure/virtual-network/virtual-network-troubleshoot-nva)
 
 <!-- links -->
+
 [cloud-security]: /azure/best-practices-network-security
 [dmz-on-prem]: ./secure-vnet-hybrid.md
 [dmz-internet]: ./secure-vnet-dmz.md
@@ -106,8 +128,11 @@ NVA 可以采用许多不同的体系结构部署到外围网络中。 例如，
 [pip-udr-switch]: #pip-udr-switch-with-layer-4-nvas
 [udr-overview]: /azure/virtual-network/virtual-networks-udr-overview/
 [zookeeper]: https://zookeeper.apache.org/
+[pnp-ha-nva]: https://github.com/mspnp/ha-nva
+[ha-nva-fo]: https://aka.ms/ha-nva-fo
 
 <!-- images -->
+
 [0]: ./images/nva-ha/single-nva.png "单 NVA 体系结构"
 [1]: ./images/nva-ha/l7-ingress.png "第 7 层入口"
 [2]: ./images/nva-ha/l7-ingress-egress.png "第 7 层出口"

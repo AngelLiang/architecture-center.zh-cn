@@ -1,40 +1,41 @@
 ---
-title: 确保管控行业的 Windows Web 应用程序的安全
+title: 使用 Windows 虚拟机在 Azure 上构建安全的 Web 应用
 description: 使用规模集、应用程序网关和负载均衡器在 Azure 上通过 Windows Server 构建安全的多层 Web 应用程序。
 author: iainfoulds
-ms.date: 07/11/2018
-ms.openlocfilehash: c7137988bd9b5e26718b4fe0955a3dca3dc638b8
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.date: 12/06/2018
+ms.custom: seodec18
+ms.openlocfilehash: 4e4d2117fbc46eda46f7ef276a71739e3a79270e
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610713"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307055"
 ---
-# <a name="secure-windows-web-application-for-regulated-industries"></a>确保管控行业的 Windows Web 应用程序的安全
+# <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>使用 Windows 虚拟机在 Azure 上构建安全的 Web 应用程序
 
-本示例方案适用于需确保多层应用程序安全的管控行业。 在本方案中，一个前端 ASP.NET 应用程序以安全方式连接到受保护的后端 Microsoft SQL Server 群集。
+本方案提供的体系结构和设计指南适用于在 Microsoft Azure 上运行安全的多层 Web 应用程序。 在此示例中，ASP.NET 应用程序通过虚拟机以安全方式连接到受保护的后端 Microsoft SQL Server 群集。
 
-示例应用方案包括：运行手术室应用程序、患者预约和医疗记录保存，或者再抓药和订购。 传统上，组织需针对这些方案保留旧版本地应用程序和服务。 如果可以在 Azure 中以安全且可缩放的方式部署这些 Windows Server 应用程序，组织就可以实现其部署方式的现代化，减少其本地操作成本和管理开销。
+传统上，组织需保留旧版本地应用程序和服务来提供安全的基础结构。 如果可以在 Azure 中安全地部署这些 Windows Server 应用程序，组织就可以实现其部署方式的现代化，减少其本地操作成本和管理开销。
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-其他相关用例包括：
+下面是此方案的一些应用示例：
 
 * 在安全的云环境中实现应用程序部署方式的现代化。
-* 减少旧版本地应用程序和服务管理的开销。
+* 减少旧版本地应用程序和服务的管理开销。
 * 改善患者的医疗保健以及对新应用程序平台的体验。
 
 ## <a name="architecture"></a>体系结构
 
 ![从体系结构的角度概要说明针对管控行业的多层 Windows Server 应用程序中涉及的 Azure 组件][architecture]
 
-本方案介绍的多层管控行业应用程序使用 ASP.NET 和 Microsoft SQL Server。 数据流经方案的情形如下所示：
+此方案演示一个连接到后端数据库的前端 Web 应用程序，二者都在 Windows Server 2016 上运行。 数据流经方案的情形如下所示：
 
-1. 用户通过 Azure 应用程序网关访问前端 ASP.NET 管控行业应用程序。
+1. 用户通过 Azure 应用程序网关访问前端 ASP.NET 应用程序。
 2. 应用程序网关将流量分发到 Azure 虚拟机规模集中的 VM 实例。
-3. ASP.NET 应用程序通过 Azure 负载均衡器连接到后端层中的 Microsoft SQL Server 群集。 这些后端 SQL Server 实例位于单独的 Azure 虚拟网络中，受可以限制流量的网络安全组规则的保护。
+3. 应用程序通过 Azure 负载均衡器连接到后端层中的 Microsoft SQL Server 群集。 这些后端 SQL Server 实例位于单独的 Azure 虚拟网络中，受可以限制流量的网络安全组规则的保护。
 4. 该负载均衡器会将 SQL Server 流量分发到另一虚拟机规模集中的 VM 实例。
-5. Azure Blob 存储充当后端层中 SQL Server 群集的云见证。 已为 Azure 存储的 VNet 服务终结点启用从 VNet 中进行连接的功能。
+5. Azure Blob 存储充当后端层中 SQL Server 群集的[云见证][cloud-witness]。 已为 Azure 存储的 VNet 服务终结点启用从 VNet 中进行连接的功能。
 
 ### <a name="components"></a>组件
 
@@ -47,7 +48,7 @@ ms.locfileid: "51610713"
 
 ### <a name="alternatives"></a>备选项
 
-* *nix，Windows 可以轻松地被各种其他的操作系统替代，因为基础结构中没有依赖于操作系统的东西。
+* Linux 和 Windows 可以互换使用，因为基础结构不依赖于操作系统。
 
 * [适用于 Linux 的 SQL Server][sql-linux] 可以替代后端数据存储。
 
@@ -61,7 +62,7 @@ ms.locfileid: "51610713"
 
 可以将数据库层配置为使用 Always On 可用性组。 使用此 SQL Server 配置时，最多可以为群集中的一个主数据库配置八个辅助数据库。 如果主数据库发生问题，则群集可以故障转移到其中一个辅助数据库，这样应用程序就会继续可用。 有关详细信息，请参阅[适用于 SQL Server 的 Always On 可用性组概述][sqlalwayson-docs]。
 
-若要了解其他可用性主题，请参阅 Azure 体系结构中心的[可用性核对清单][availability]。
+如需更多可用性指南，请参阅 Azure 体系结构中心的[可用性核对清单][availability]。
 
 ### <a name="scalability"></a>可伸缩性
 
@@ -112,9 +113,9 @@ ms.locfileid: "51610713"
 
 ## <a name="related-resources"></a>相关资源
 
-本方案使用的后端虚拟机规模集运行 Microsoft SQL Server 群集。 也可将 Cosmos DB 用作一个可缩放的、安全的、适用于应用程序数据的数据库层。 使用 [Azure 虚拟网络服务终结点][vnetendpoint-docs]可以保护关键的 Azure 服务资源，只允许你在自己的虚拟网络中对其进行访问。 在本方案中，可以通过 VNet 终结点来确保前端应用程序层和 Cosmos DB 之间流量的安全。 有关详细信息，请参阅 [Azure Cosmos DB 概述][docs-cosmos-db](/azure/cosmos-db/introduction)。
+本方案使用的后端虚拟机规模集运行 Microsoft SQL Server 群集。 也可将 Cosmos DB 用作一个可缩放的、安全的、适用于应用程序数据的数据库层。 使用 [Azure 虚拟网络服务终结点][vnetendpoint-docs]可以保护关键的 Azure 服务资源，只允许你在自己的虚拟网络中对其进行访问。 在本方案中，可以通过 VNet 终结点来确保前端应用程序层和 Cosmos DB 之间流量的安全。 有关详细信息，请参阅 [Azure Cosmos DB 概述](/azure/cosmos-db/introduction)。
 
-此外，可以详细查看[使用 SQL Server 的通用 N 层应用程序的参考体系结构][ntiersql-ra]。
+如需更详细的实施指南，请参阅[使用 SQL Server 的 N 层应用程序的参考体系结构][ntiersql-ra]。
 
 <!-- links -->
 [appgateway-docs]: /azure/application-gateway/overview
@@ -137,7 +138,7 @@ ms.locfileid: "51610713"
 [pci-dss]: /azure/security/blueprints/pcidss-iaaswa-overview
 [dmz]: /azure/virtual-network/virtual-networks-dmz-nsg
 [sql-linux]: /sql/linux/sql-server-linux-overview?view=sql-server-linux-2017
-
+[cloud-witness]: /windows-server/failover-clustering/deploy-cloud-witness
 [small-pricing]: https://azure.com/e/711bbfcbbc884ef8aa91cdf0f2caff72
 [medium-pricing]: https://azure.com/e/b622d82d79b34b8398c4bce35477856f
 [large-pricing]: https://azure.com/e/1d99d8b92f90496787abecffa1473a93

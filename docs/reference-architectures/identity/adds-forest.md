@@ -1,33 +1,31 @@
 ---
 title: 在 Azure 中创建 AD DS 资源林
+titleSuffix: Azure Reference Architectures
 description: >-
   如何在 Azure 中创建受信任的 Active Directory 域。
 
   指南,vpn 网关,ExpressRoute,负载均衡器,虚拟网络,active-directory
 author: telmosampaio
 ms.date: 05/02/2018
-pnp.series.title: Identity management
-pnp.series.prev: adds-extend-domain
-pnp.series.next: adfs
-cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: 0bbf8aff91aaec8718e44f4450711ff96cfc1878
-ms.sourcegitcommit: 1287d635289b1c49e94f839b537b4944df85111d
+ms.custom: seodec18
+ms.openlocfilehash: e8ad2efd24286f23698bb8e294b15d88232c1166
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/27/2018
-ms.locfileid: "52332317"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120367"
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>在 Azure 中创建 Active Directory 域服务 (AD DS) 资源林
 
-此参考体系结构展示了如何在 Azure 中创建本地 AD 林中的域信任的一个单独 Active Directory 域。 [**部署此解决方案**。](#deploy-the-solution)
+此参考体系结构展示了如何在 Azure 中创建本地 AD 林中的域信任的一个单独 Active Directory 域。 [**部署此解决方案**](#deploy-the-solution)。
 
-[![0]][0] 
+![使用独立的 Active Directory 域保护混合网络体系结构的安全](./images/adds-forest.png)
 
 下载此体系结构的 [Visio 文件][visio-download]。
 
-Active Directory 域服务 (AD DS) 以分层结构存储标识信息。 分层结构中的顶层节点称为林。 林包含域，域包含其他类型的对象。 此参考体系结构在 Azure 中创建与本地域之间具有单向传出信任关系的 AD DS 林。 Azure 中的林包含本地不存在的一个域。 由于信任关系，将信任针对本地域的登录，允许其访问该单独 Azure 域中的资源。 
+Active Directory 域服务 (AD DS) 以分层结构存储标识信息。 分层结构中的顶层节点称为林。 林包含域，域包含其他类型的对象。 此参考体系结构在 Azure 中创建与本地域之间具有单向传出信任关系的 AD DS 林。 Azure 中的林包含本地不存在的一个域。 由于信任关系，将信任针对本地域的登录，允许其访问该单独 Azure 域中的资源。
 
-此体系结构的典型用途包括为云中拥有的对象和标识维护安全隔离，以及将各个域从本地迁移到云。 
+此体系结构的典型用途包括为云中拥有的对象和标识维护安全隔离，以及将各个域从本地迁移到云。
 
 有关其他注意事项，请参阅[选择用于将本地 Active Directory 与 Azure 相集成的解决方案][considerations]。 
 
@@ -35,17 +33,17 @@ Active Directory 域服务 (AD DS) 以分层结构存储标识信息。 分层�
 
 该体系结构具有以下组件。
 
-* **本地网络**。 本地网络包含其自己的 Active Directory 林和域。
-* **Active Directory 服务器**。 它们是域控制器，用于实现在云中作为 VM 运行的域服务。 这些服务器托管的林中包含独立于本地域的一个或多个域。
-* **单向信任关系**。 关系图中的示例显示了从 Azure 中的域到本地域的单向信任。 此关系允许本地用户访问 Azure 中的域的资源，但无法反向访问。 如果云用户也需要访问本地资源，则可以创建双向信任。
-* **Active Directory 子网**。 AD DS 服务器托管在一个单独的子网中。 网络安全组 (NSG) 规则对 AD DS 服务器进行保护，并提供防火墙以阻止来自意外来源的流量。
-* **Azure 网关**。 Azure 网关在本地网络与 Azure VNet 之间提供连接。 这可以是 [VPN 连接][azure-vpn-gateway]，也可以是 [Azure ExpressRoute][azure-expressroute]。 有关详细信息，请参阅[在 Azure 中实现安全的混合网络体系结构][implementing-a-secure-hybrid-network-architecture]。
+- **本地网络**。 本地网络包含其自己的 Active Directory 林和域。
+- **Active Directory 服务器**。 它们是域控制器，用于实现在云中作为 VM 运行的域服务。 这些服务器托管的林中包含独立于本地域的一个或多个域。
+- **单向信任关系**。 关系图中的示例显示了从 Azure 中的域到本地域的单向信任。 此关系允许本地用户访问 Azure 中的域的资源，但无法反向访问。 如果云用户也需要访问本地资源，则可以创建双向信任。
+- **Active Directory 子网**。 AD DS 服务器托管在一个单独的子网中。 网络安全组 (NSG) 规则对 AD DS 服务器进行保护，并提供防火墙以阻止来自意外来源的流量。
+- **Azure 网关**。 Azure 网关在本地网络与 Azure VNet 之间提供连接。 这可以是 [VPN 连接][azure-vpn-gateway]，也可以是 [Azure ExpressRoute][azure-expressroute]。 有关详细信息，请参阅[在 Azure 中实现安全的混合网络体系结构][implementing-a-secure-hybrid-network-architecture]。
 
 ## <a name="recommendations"></a>建议
 
 有关在 Azure 中实施 Active Directory 的具体建议，请参阅以下文章：
 
-- [将 Active Directory 域服务 (AD DS) 扩展到 Azure][adds-extend-domain]。 
+- [将 Active Directory 域服务 (AD DS) 扩展到 Azure][adds-extend-domain]。
 - [在 Azure 虚拟机上部署 Windows Server Active Directory 的指南][ad-azure-guidelines]。
 
 ### <a name="trust"></a>信任
@@ -56,8 +54,8 @@ Active Directory 域服务 (AD DS) 以分层结构存储标识信息。 分层�
 
 信任可以是单向的，也可以是双向的：
 
-* 单向信任允许一个域或林（称为*传入*域或林）中的用户访问另一个域或林（*传出*域或林）中拥有的资源。
-* 双向信任允许任一域或林中的用户访问另一个域或林中拥有的资源。
+- 单向信任允许一个域或林（称为*传入*域或林）中的用户访问另一个域或林（*传出*域或林）中拥有的资源。
+- 双向信任允许任一域或林中的用户访问另一个域或林中拥有的资源。
 
 下表总结了一些简单方案的信任配置：
 
@@ -79,8 +77,8 @@ Active Directory 能够针对属于同一域的域控制器自动进行缩放。
 
 ## <a name="manageability-considerations"></a>可管理性注意事项
 
-有关管理和监视注意事项的详细信息，请参阅[将 Active Directory 扩展到 Azure][adds-extend-domain]。 
- 
+有关管理和监视注意事项的详细信息，请参阅[将 Active Directory 扩展到 Azure][adds-extend-domain]。
+
 有关详细信息，请参阅[监视 Active Directory][monitoring_ad]。 可以在管理子网中的监视服务器上安装 [Microsoft Systems Center][microsoft_systems_center] 之类的工具来帮助执行这些任务。
 
 ## <a name="security-considerations"></a>安全注意事项
@@ -113,9 +111,9 @@ Active Directory 能够针对属于同一域的域控制器自动进行缩放。
 
 1. 打开 `azure.json` 文件。 搜索 `adminPassword` 和 `Password` 的实例并添加密码值。
 
-2. 在同一文件中，搜索 `sharedKey` 的实例并输入 VPN 连接的共享密钥。 
+2. 在同一文件中，搜索 `sharedKey` 的实例并输入 VPN 连接的共享密钥。
 
-    ```bash
+    ```json
     "sharedKey": "",
     ```
 
@@ -127,30 +125,28 @@ Active Directory 能够针对属于同一域的域控制器自动进行缩放。
 
    部署到本地 VNet 所在的同一个资源组。
 
-
 ### <a name="test-the-ad-trust-relation"></a>测试 AD 信任关系
 
 1. 使用 Azure 门户导航到已创建的资源组。
 
 2. 使用 Azure 门户找到名为 `ra-adt-mgmt-vm1` 的 VM。
 
-2. 单击 `Connect` 来与 VM 建立远程桌面会话。 用户名为 `contoso\testuser`，密码为 `onprem.json` 参数文件中指定的密码。
+3. 单击 `Connect` 来与 VM 建立远程桌面会话。 用户名为 `contoso\testuser`，密码为 `onprem.json` 参数文件中指定的密码。
 
-3. 在远程桌面会话中，与 192.168.0.4（名为 `ra-adtrust-onpremise-ad-vm1` 的 VM 的 IP 地址）建立另一个远程桌面会话。 用户名为 `contoso\testuser`，密码为 `azure.json` 参数文件中指定的密码。
+4. 在远程桌面会话中，与 192.168.0.4（名为 `ra-adtrust-onpremise-ad-vm1` 的 VM 的 IP 地址）建立另一个远程桌面会话。 用户名为 `contoso\testuser`，密码为 `azure.json` 参数文件中指定的密码。
 
-4. 在 `ra-adtrust-onpremise-ad-vm1` 的远程桌面会话中转到“服务器管理器”，然后单击“工具” > “Active Directory 域和信任”。 
+5. 在 `ra-adtrust-onpremise-ad-vm1` 的远程桌面会话中转到“服务器管理器”，然后单击“工具” > “Active Directory 域和信任”。
 
-5. 在左窗格中右键单击“contoso.com”，然后选择“属性”。
+6. 在左窗格中右键单击“contoso.com”，然后选择“属性”。
 
-6. 单击“信任”选项卡。此时会看到 treyresearch.net 作为传入信任列出。
+7. 单击“信任”选项卡。此时会看到 treyresearch.net 作为传入信任列出。
 
-![](./images/ad-forest-trust.png)
-
+![“Active Directory 林信任”对话框的屏幕截图](./images/ad-forest-trust.png)
 
 ## <a name="next-steps"></a>后续步骤
 
-* 了解[将本地 AD DS 域扩展到 Azure][adds-extend-domain] 的最佳做法
-* 了解在 Azure 中[创建 AD FS 基础结构][adfs]的最佳做法。
+- 了解[将本地 AD DS 域扩展到 Azure][adds-extend-domain] 的最佳做法
+- 了解在 Azure 中[创建 AD FS 基础结构][adfs]的最佳做法。
 
 <!-- links -->
 [adds-extend-domain]: adds-extend-domain.md
@@ -179,4 +175,3 @@ Active Directory 能够针对属于同一域的域控制器自动进行缩放。
 [outgoing-trust]: https://raw.githubusercontent.com/mspnp/identity-reference-architectures/master/adds-forest/extensions/outgoing-trust.ps1
 [verify-a-trust]: https://technet.microsoft.com/library/cc753821.aspx
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
-[0]: ./images/adds-forest.png "使用独立的 Active Directory 域保护混合网络体系结构的安全"

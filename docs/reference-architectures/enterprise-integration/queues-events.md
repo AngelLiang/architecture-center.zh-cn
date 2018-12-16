@@ -1,23 +1,24 @@
 ---
-title: 使用消息队列和事件的企业集成 - Azure Integration Services
-description: 本体系结构参考演示如何使用 Azure 逻辑应用、Azure API 管理、Azure 服务总线和 Azure 事件网格来实现企业集成模式
+title: 使用消息队列和事件的企业集成
+titleSuffix: Azure Reference Architectures
+description: 建议用于通过 Azure 逻辑应用、Azure API 管理、Azure 服务总线和 Azure 事件网格来实现企业集成模式的体系结构。
 author: mattfarm
-ms.author: mattfarm
 ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
 ms.date: 12/03/2018
-ms.openlocfilehash: 6a4d7ce81dfae48f760693a4fc875d5ad59abe3a
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.custom: integration-services
+ms.openlocfilehash: 6357cb5015c8f10c0f4a8aa1b310ddbb38367004
+ms.sourcegitcommit: a0a9981e7586bed8d876a54e055dea1e392118f8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52919081"
+ms.lasthandoff: 12/11/2018
+ms.locfileid: "53233857"
 ---
 # <a name="enterprise-integration-on-azure-using-message-queues-and-events"></a>Azure 上使用消息队列和事件的企业集成
 
-此体系结构集成企业后端系统，使用消息队列和事件将服务分离，以提高可伸缩性和可靠性。 后端系统可能包括软件即服务 (SaaS) 系统、Azure 服务以及企业中现有的 Web 服务。
+此参考体系结构集成企业后端系统，使用消息队列和事件将服务分离，以提高可伸缩性和可靠性。 后端系统可能包括软件即服务 (SaaS) 系统、Azure 服务以及企业中现有的 Web 服务。
 
-![体系结构图 - 企业集成与队列和事件](./_images/enterprise-integration-queues-events.png)
+![适用于使用队列和事件的企业集成的参考体系结构](./_images/enterprise-integration-queues-events.png)
 
 ## <a name="architecture"></a>体系结构
 
@@ -25,9 +26,9 @@ ms.locfileid: "52919081"
 
 此版体系结构添加了两个组件，使系统的可靠性和可伸缩性更高：
 
-- **[Azure 服务总线][service-bus]**。 服务总线是安全且可靠的消息代理。  
+- **[Azure 服务总线][service-bus]**。 服务总线是安全且可靠的消息代理。
 
-- **[Azure 事件网格][event-grid]**。 事件网格是事件路由服务。 它使用发布/订阅 (pub/sub) 事件模型。
+- **[Azure 事件网格][event-grid]**。 事件网格是事件路由服务。 它使用[发布/订阅](../../patterns/publisher-subscriber.md) (pub/sub) 事件模型。
 
 与对后端服务进行直接的同步调用相比，使用消息代理的异步通信具有许多优势：
 
@@ -39,21 +40,21 @@ ms.locfileid: "52919081"
 
 有了事件网格，系统中的各种组件就可以在事件发生时做出反应，不必依赖轮询或计划的任务。 与消息队列一样，它有助于分离应用程序和服务。 应用程序或服务可以发布事件，任何相关的订阅方都会获得通知。 可以在不更新发送方的情况下添加新的订阅方。
 
-许多 Azure 服务支持将事件发送到事件网格。 例如，将新文件添加到 Blob 存储时，逻辑应用可以侦听事件。 此模式可启用反应式工作流，即上传某个文件或将消息置于队列中会启动一系列过程。 这些过程可能并行执行，也可能按特定顺序执行。 
+许多 Azure 服务支持将事件发送到事件网格。 例如，将新文件添加到 Blob 存储时，逻辑应用可以侦听事件。 此模式可启用反应式工作流，即上传某个文件或将消息置于队列中会启动一系列过程。 这些过程可能并行执行，也可能按特定顺序执行。
 
 ## <a name="recommendations"></a>建议
 
 [基本企业集成][basic-enterprise-integration]中描述的建议适用于此体系结构。 以下建议也适用：
 
-### <a name="service-bus"></a>服务总线 
+### <a name="service-bus"></a>服务总线
 
-服务总线有两种传递模式：拉取或推送。 在拉取模型中，接收方会持续轮询新消息。 轮询可能效率不高，尤其是在有许多队列且每个队列都收到一些消息的情况下，或者是在两个消息的时间间隔很长的情况下。 在推送模型中，服务总线会在有新消息时通过事件网格发送事件。 接收方可订阅事件。 触发事件时，接收方可从服务总线拉取下一批消息。 
+服务总线有两种传递模式：拉取或推送。 在拉取模型中，接收方会持续轮询新消息。 轮询可能效率不高，尤其是在有许多队列且每个队列都收到一些消息的情况下，或者是在两个消息的时间间隔很长的情况下。 在推送模型中，服务总线会在有新消息时通过事件网格发送事件。 接收方可订阅事件。 触发事件时，接收方可从服务总线拉取下一批消息。
 
 创建逻辑应用来使用服务总线消息时，建议将推送模型与事件网格集成配合使用。 它通常更经济有效，因为逻辑应用不需轮询服务总线。 有关详细信息，请参阅 [Azure 服务总线到事件网格的集成概述](/azure/service-bus-messaging/service-bus-to-event-grid-integration-concept)。 目前，服务总线[高级层](https://azure.microsoft.com/pricing/details/service-bus/)是事件网格通知所需的。
 
 请使用 [PeekLock](/azure/service-bus-messaging/service-bus-messaging-overview#queues) 来访问一组消息。 使用 PeekLock 时，逻辑应用可以执行步骤来验证每条消息，然后完成或放弃该消息。 此方法可以防范意外的消息丢失。
 
-### <a name="event-grid"></a>事件网格 
+### <a name="event-grid"></a>事件网格
 
 事件网格触发器的触发意味着发生了“至少 1 个”事件。 例如，逻辑应用在获取服务总线消息的事件网格触发器时，应假定可能需要处理多个消息。
 
@@ -81,7 +82,6 @@ ms.locfileid: "52919081"
 如果需要将服务总线队列公开为 HTTP 终结点（例如，以便发布新消息），请使用 API 管理将此终结点前置，以对其提供保护。 然后，可以适当地使用证书或 OAuth 身份验证来保护终结点。 保护终结点的最简单方法是使用包含 HTTP 请求/响应触发器的逻辑应用作为中介。
 
 事件网格服务通过验证代码保护事件传送。 如果通过逻辑应用来使用事件，则会自动执行验证。 有关详细信息，请参阅[事件网格安全性和身份验证](/azure/event-grid/security-authentication)。
-
 
 [apim]: /azure/api-management
 [apim-sla]: https://azure.microsoft.com/support/legal/sla/api-management/

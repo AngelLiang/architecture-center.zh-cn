@@ -1,46 +1,45 @@
 ---
 title: 将 Active Directory 域服务 (AD DS) 扩展到 Azure
+titleSuffix: Azure Reference Architectures
 description: 将本地 Active Directory 域扩展到 Azure
 author: telmosampaio
 ms.date: 05/02/2018
-pnp.series.title: Identity management
-pnp.series.prev: azure-ad
-pnp.series.next: adds-forest
-ms.openlocfilehash: ff3ef7565b692ad63b7ff779497df0f85d3bca3a
-ms.sourcegitcommit: 1287d635289b1c49e94f839b537b4944df85111d
+ms.custom: seodec18
+ms.openlocfilehash: 69ce95fcf74579f6446cf99dad9ed53ced31fde7
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/27/2018
-ms.locfileid: "52332300"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120401"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>将 Active Directory 域服务 (AD DS) 扩展到 Azure
 
-此参考体系结构展示了如何使用 Active Directory 域服务 (AD DS) 将 Active Directory 环境扩展到 Azure 以提供分布式身份验证服务。 [**部署此解决方案**。](#deploy-the-solution)
+此参考体系结构展示了如何使用 Active Directory 域服务 (AD DS) 将 Active Directory 环境扩展到 Azure 以提供分布式身份验证服务。 [**部署此解决方案**](#deploy-the-solution)。
 
-[![0]][0] 
+![使用 Active Directory 保护混合网络体系结构的安全](./images/adds-extend-domain.png)
 
 下载此体系结构的 [Visio 文件][visio-download]。
 
-AD DS 用来对安全域中包括的用户、计算机、应用程序或其他标识进行身份验证。 它可以托管在本地，但是如果你的应用程序部分托管在本地部分托管在 Azure 中，则将此功能复制到 Azure 中可能更为高效。 这可以降低由于将身份验证和本地授权请求从云发送回在本地运行的 AD DS 而导致的延迟。 
+AD DS 用来对安全域中包括的用户、计算机、应用程序或其他标识进行身份验证。 它可以托管在本地，但是如果你的应用程序部分托管在本地部分托管在 Azure 中，则将此功能复制到 Azure 中可能更为高效。 这可以降低由于将身份验证和本地授权请求从云发送回在本地运行的 AD DS 而导致的延迟。
 
 如果本地网络和 Azure 虚拟网络通过 VPN 或 ExpressRoute 连接进行连接，通常会使用此体系结构。 此体系结构还支持双向复制，这意味着既可以在本地又可以在云中进行更改，并且两个源都将保持一致。 此体系结构的典型用途包括功能分布在本地和 Azure 中的混合应用程序以及使用 Active Directory 执行身份验证的应用程序和服务。
 
-有关其他注意事项，请参阅[选择用于将本地 Active Directory 与 Azure 相集成的解决方案][considerations]。 
+有关其他注意事项，请参阅[选择用于将本地 Active Directory 与 Azure 相集成的解决方案][considerations]。
 
-## <a name="architecture"></a>体系结构 
+## <a name="architecture"></a>体系结构
 
 此体系结构扩展了 [Azure 与 Internet 之间的外围网络][implementing-a-secure-hybrid-network-architecture-with-internet-access]中显示的体系结构。 它包括以下组件。
 
-* **本地网络**。 本地网络包括可以对位于本地的组件执行身份验证和授权的本地 Active Directory 服务器。
-* **Active Directory 服务器**。 它们是域控制器，用于实现在云中作为 VM 运行的目录服务 (AD DS)。 这些服务器可以为在 Azure 虚拟网络中运行的组件提供身份验证。
-* **Active Directory 子网**。 AD DS 服务器托管在一个单独的子网中。 网络安全组 (NSG) 规则对 AD DS 服务器进行保护，并提供防火墙以阻止来自意外来源的流量。
-* **Azure 网关和 Active Directory 同步**。 Azure 网关在本地网络与 Azure VNet 之间提供连接。 这可以是 [VPN 连接][azure-vpn-gateway]，也可以是 [Azure ExpressRoute][azure-expressroute]。 云中的 Active Directory 服务器与本地 Active Directory 服务器之间的所有同步请求都通过该网关。 用户定义的路由 (UDR) 处理传递到 Azure 的本地流量的路由。 传入到 Active Directory 服务器或从中传出的流量不通过此方案中使用的网络虚拟设备 (NVA)。
+- **本地网络**。 本地网络包括可以对位于本地的组件执行身份验证和授权的本地 Active Directory 服务器。
+- **Active Directory 服务器**。 它们是域控制器，用于实现在云中作为 VM 运行的目录服务 (AD DS)。 这些服务器可以为在 Azure 虚拟网络中运行的组件提供身份验证。
+- **Active Directory 子网**。 AD DS 服务器托管在一个单独的子网中。 网络安全组 (NSG) 规则对 AD DS 服务器进行保护，并提供防火墙以阻止来自意外来源的流量。
+- **Azure 网关和 Active Directory 同步**。 Azure 网关在本地网络与 Azure VNet 之间提供连接。 这可以是 [VPN 连接][azure-vpn-gateway]，也可以是 [Azure ExpressRoute][azure-expressroute]。 云中的 Active Directory 服务器与本地 Active Directory 服务器之间的所有同步请求都通过该网关。 用户定义的路由 (UDR) 处理传递到 Azure 的本地流量的路由。 传入到 Active Directory 服务器或从中传出的流量不通过此方案中使用的网络虚拟设备 (NVA)。
 
-有关配置 UDR 和 NVA 的详细信息，请参阅[在 Azure 中实现安全的混合网络体系结构][implementing-a-secure-hybrid-network-architecture]。 
+有关配置 UDR 和 NVA 的详细信息，请参阅[在 Azure 中实现安全的混合网络体系结构][implementing-a-secure-hybrid-network-architecture]。
 
 ## <a name="recommendations"></a>建议
 
-以下建议适用于大多数方案。 除非有优先于这些建议的特定要求，否则请遵循这些建议。 
+以下建议适用于大多数方案。 除非有优先于这些建议的特定要求，否则请遵循这些建议。
 
 ### <a name="vm-recommendations"></a>VM 建议
 
@@ -56,10 +55,9 @@ AD DS 用来对安全域中包括的用户、计算机、应用程序或其他�
 
 > [!NOTE]
 > 不要为任何 AD DS 的 VM NIC 配置公共 IP 地址。 有关更多详细信息，请参阅[安全注意事项][security-considerations]。
-> 
-> 
+>
 
-Active Directory 子网 NSG 要求规则允许来自本地的传入流量。 有关 AD DS 使用的端口的详细信息，请参阅 [Active Directory and Active Directory Domain Services Port Requirements][ad-ds-ports]（Active Directory 和 Active Directory 域服务端口要求）。 此外，请确保 UDR 表不通过此体系结构中使用的 NVA 来路由 AD DS 流量。 
+Active Directory 子网 NSG 要求规则允许来自本地的传入流量。 有关 AD DS 使用的端口的详细信息，请参阅 [Active Directory and Active Directory Domain Services Port Requirements][ad-ds-ports]（Active Directory 和 Active Directory 域服务端口要求）。 此外，请确保 UDR 表不通过此体系结构中使用的 NVA 来路由 AD DS 流量。
 
 ### <a name="active-directory-site"></a>Active Directory 站点
 
@@ -75,7 +73,7 @@ Active Directory 子网 NSG 要求规则允许来自本地的传入流量。 有
 
 ### <a name="monitoring"></a>监视
 
-监视域控制器 VM 以及 AD DS 服务的资源并创建一个计划来快速更正任何问题。 有关详细信息，请参阅 [Monitoring Active Directory][monitoring_ad]（监视 Active Directory）。 可以在监视服务器上（请参阅体系结构图）安装 [Microsoft Systems Center][microsoft_systems_center] 之类的工具来帮助执行这些任务。  
+监视域控制器 VM 以及 AD DS 服务的资源并创建一个计划来快速更正任何问题。 有关详细信息，请参阅 [Monitoring Active Directory][monitoring_ad]（监视 Active Directory）。 可以在监视服务器上（请参阅体系结构图）安装 [Microsoft Systems Center][microsoft_systems_center] 之类的工具来帮助执行这些任务。
 
 ## <a name="scalability-considerations"></a>可伸缩性注意事项
 
@@ -121,11 +119,11 @@ AD DS 服务器提供身份验证服务并且是引入注目的攻击目标。 �
 
 ### <a name="deploy-the-azure-vnet"></a>部署 Azure VNet
 
-1. 打开 `azure.json` 文件。  搜索 `adminPassword` 和 `Password` 的实例并添加密码值。 
+1. 打开 `azure.json` 文件。  搜索 `adminPassword` 和 `Password` 的实例并添加密码值。
 
-2. 在同一文件中，搜索 `sharedKey` 的实例并输入 VPN 连接的共享密钥。 
+2. 在同一文件中，搜索 `sharedKey` 的实例并输入 VPN 连接的共享密钥。
 
-    ```bash
+    ```json
     "sharedKey": "",
     ```
 
@@ -149,16 +147,16 @@ AD DS 服务器提供身份验证服务并且是引入注目的攻击目标。 �
 
 4. 在远程桌面会话中，与 10.0.4.4（名为 `adds-vm1` 的 VM 的 IP 地址）建立另一个远程桌面会话。 用户名为 `contoso\testuser`，密码为 `azure.json` 参数文件中指定的密码。
 
-5. 在 `adds-vm1` 的远程桌面会话中，转到“服务器管理器”并单击“添加要管理的其他服务器”。 
+5. 在 `adds-vm1` 的远程桌面会话中，转到“服务器管理器”并单击“添加要管理的其他服务器”。
 
 6. 在“Active Directory”选项卡中，单击“立即查找”。 应会看到 AD、AD DS 和 Web VM 的列表。
 
-   ![](./images/add-servers-dialog.png)
+   ![“添加服务器”对话框的屏幕截图](./images/add-servers-dialog.png)
 
 ## <a name="next-steps"></a>后续步骤
 
-* 了解在 Azure 中[创建 AD DS 资源林][adds-resource-forest]的最佳做法。
-* 了解在 Azure 中[创建 Active Directory 联合身份验证服务 (AD FS) 基础结构][adfs]的最佳做法。
+- 了解在 Azure 中[创建 AD DS 资源林][adds-resource-forest]的最佳做法。
+- 了解在 Azure 中[创建 Active Directory 联合身份验证服务 (AD FS) 基础结构][adfs]的最佳做法。
 
 <!-- links -->
 
@@ -178,7 +176,7 @@ AD DS 服务器提供身份验证服务并且是引入注目的攻击目标。 �
 [capacity-planning-for-adds]: https://social.technet.microsoft.com/wiki/contents/articles/14355.capacity-planning-for-active-directory-domain-services.aspx
 [considerations]: ./considerations.md
 [GitHub]: https://github.com/mspnp/identity-reference-architectures/tree/master/adds-extend-domain
-[microsoft_systems_center]: https://www.microsoft.com/server-cloud/products/system-center-2016/
+[microsoft_systems_center]: https://www.microsoft.com/download/details.aspx?id=50013
 [monitoring_ad]: https://msdn.microsoft.com/library/bb727046.aspx
 [security-considerations]: #security-considerations
 [set-a-static-ip-address]: /azure/virtual-network/virtual-networks-static-private-ip-arm-pportal

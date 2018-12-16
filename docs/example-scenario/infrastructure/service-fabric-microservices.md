@@ -1,16 +1,17 @@
 ---
-title: 使用 Service Fabric 分解整体应用程序
-description: 将大型整体应用程序分解为微服务。
+title: 使用 Service Fabric 分解单一式应用程序
+description: 将大型单一式应用程序分解为微服务。
 author: timomta
 ms.date: 09/20/2018
-ms.openlocfilehash: 9194ddd53a6d78f49fea2f7bb36fbc8721a502ea
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.custom: fasttrack
+ms.openlocfilehash: 438d2eabff39356a7593f2da798a74eebe94553a
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819621"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004626"
 ---
-# <a name="using-service-fabric-to-decompose-monolithic-applications"></a>使用 Service Fabric 分解整体应用程序
+# <a name="using-service-fabric-to-decompose-monolithic-applications"></a>使用 Service Fabric 分解单一式应用程序
 
 本示例方案逐步讲解一种使用 [Service Fabric](/azure/service-fabric/service-fabric-overview) 即平台服务来分解一个庞大的整体应用程序的方法。 本文假设要采用迭代方法将一个 IIS/ASP.NET 网站分解成由多个可管理的微服务组成的应用程序。
 
@@ -42,7 +43,7 @@ ms.locfileid: "48819621"
 - 一个路由或网关服务，该服务可接受传入的浏览器请求，并分析这些请求以确定它们应该由哪个服务来处理，并将请求转发到该服务。
 - 四个 ASP.NET Core 应用程序，它们是单个 IIS 站点下作为 ASP.NET 应用程序运行的正式虚拟目录。 应用程序已隔离到其自身独立的微服务中。 效果是可以单独更改、版本控制和升级这些应用程序。 在本示例中，我们使用 .Net Core 和 ASP.NET Core 重新编写了每个应用程序。 这些应用程序编写为 [Reliable Services](/azure/service-fabric/service-fabric-reliable-services-introduction)，因此，它们原生就能访问整个 Service Fabric 平台功能和优势（通信服务、运行状况报告、通知等）。
 - 一个名为“索引服务”的 Windows 服务，该服务放在 Windows 容器中，因此，它不再直接更改底层服务器的注册表，而可以自主运行，并作为一个单元连同其所有依赖项一起部署。
-- 一个存档服务，它只是一个按计划运行的、针对站点执行一些任务的可执行文件。 之所以将它作为独立的可执行文件托管，是因为我们确定它只需执行预定的功能，而无需对它进行修改，且不值得投入精力对其进行更改。
+- 一个存档服务，它只是一个按计划运行的、针对站点执行一些任务的可执行文件。 之所以直接将它作为独立的可执行文件托管，是因为我们确定它可以在不进行修改的情况执行预定的功能，不值得投入精力对其进行更改。
 
 ## <a name="considerations"></a>注意事项
 
@@ -66,29 +67,29 @@ ms.locfileid: "48819621"
 
 ### <a name="availability-scalability-and-security"></a>可用性、可伸缩性和安全性
 
-Service Fabric [能够支持不同形式的微服务](/azure/service-fabric/service-fabric-choose-framework)，并在同一群集上的微服务之间保持快速方便的调用。 Service Fabric 具有[容错](/azure/service-fabric/service-fabric-availability-services)能力，能够自我修复可运行容器和可执行文件的群集，甚至提供本机 API 用于直接编写微服务（上面称为“Reliable Services”）。 平台可以简化每个微服务的滚动升级和版本控制。 可以告知平台要运行在整个 Service Fabric 群集中分布的更多或更少的任意给定微服务，以便仅[扩展](/azure/service-fabric/service-fabric-concepts-scalability)或缩减所需的微服务。
+Service Fabric [能够支持不同形式的微服务](/azure/service-fabric/service-fabric-choose-framework)，并在同一群集上的微服务之间保持快速方便的调用。 Service Fabric 具有[容错](/azure/service-fabric/service-fabric-availability-services)能力，能够自我修复可运行容器和可执行文件的群集，甚至提供一个本机 API，用于直接编写微服务（上面称为“Reliable Services”）。 平台可以简化每个微服务的滚动升级和版本控制。 可以要求平台多运行或少运行在整个 Service Fabric 群集中分布的任意给定微服务，以便仅横向[缩放](/azure/service-fabric/service-fabric-concepts-scalability)所需的微服务。
 
 Service Fabric 是在包含网络、存储和操作系统的虚拟（或物理）节点的基础结构上构建的群集。 因此，它需要执行一系列管理、维护和监视任务。
 
-此外，还需要考虑到群集的监管和控制。 你可能不希望用户任意将数据库部署到生产数据库服务器，同理，你可能不希望用户在不受监督的情况下将应用程序部署到 Service Fabric 群集。
+此外，还需要考虑到群集的治理和控制。 你不希望用户将数据库随意部署到生产数据库服务器，同理，你也不希望用户在不受监督的情况下将应用程序部署到 Service Fabric 群集。
 
 Service Fabric 能够托管许多不同的[应用程序方案](/azure/service-fabric/service-fabric-application-scenarios)，请花点时间了解哪些功能适用于你的方案。
 
 ## <a name="pricing"></a>定价
 
-对于 Azure 中托管的 Service Fabric 群集，成本主要与群集中的节点数量和大小相关。 Azure 允许快速方便地创建由指定的底层节点大小组成的群集，但计算费用取决于节点大小与节点数量的乘积。
+对于 Azure 中托管的 Service Fabric 群集，成本主要与群集中的节点数量和大小相关。 Azure 允许快速方便地创建由指定的基础节点大小组成的群集，但计算费用取决于节点大小与节点数量的乘积。
 
 其他小部分成本是每个节点的虚拟磁盘的存储费用，以及 Azure 的网络 IO 传出费用（例如，从 Azure 传出到用户浏览器的网络流量）。
 
-为帮助你大致了解成本，我们使用群集大小、网络和存储的默认值创建了一个示例：请查看[定价计算器](https://azure.com/e/52dea096e5844d5495a7b22a9b2ccdde)。 请根据具体的情况任意更新此默认计算器中的值。
+为帮助你大致了解成本，我们使用群集大小、网络和存储的某些默认值创建了一个示例：请查看[定价计算器](https://azure.com/e/52dea096e5844d5495a7b22a9b2ccdde)。 请根据具体的情况随意更新此默认计算器中的值。
 
 ## <a name="next-steps"></a>后续步骤
 
-请花点时间浏览[文档](/azure/service-fabric/service-fabric-overview)并查看适用于 Service Fabric 的多个不同[应用程序方案](/azure/service-fabric/service-fabric-application-scenarios)，以熟悉该平台。 该文档介绍了群集由哪些组件构成、可在哪些平台上运行、其软件体系结构和维护工作。
+请花点时间浏览[文档](/azure/service-fabric/service-fabric-overview)并查看适用于 Service Fabric 的多个不同[应用程序方案](/azure/service-fabric/service-fabric-application-scenarios)，以熟悉该平台。 该文档介绍群集由哪些组件构成、可在哪些平台上运行、其软件体系结构和维护工作。
 
-若要查看现有 .NET 应用程序的 Service Fabric 演示，请部署 Service Fabric [快速入门](/azure/service-fabric/service-fabric-quickstart-dotnet)项目。
+若要查看现有 .NET 应用程序的 Service Fabric 演示，请部署 Service Fabric [快速入门](/azure/service-fabric/service-fabric-quickstart-dotnet)。
 
-从当前应用程序的角度开始考虑其不同的功能。 选择其中的一项功能，并认真考虑如何做到只从整个应用程序中隔离该功能。 每次提取一个离散的可理解片段。
+从当前应用程序的角度开始考虑其不同的功能。 选择其中的一项功能，并认真考虑如何做到在整个应用程序中仅隔离该功能。 每次提取一个离散的可理解片段。
 
 ## <a name="related-resources"></a>相关资源
 

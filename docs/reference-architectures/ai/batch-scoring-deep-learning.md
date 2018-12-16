@@ -1,40 +1,42 @@
 ---
-title: Azure 上针对深度学习模型的批处理计分
-description: 此参考体系结构显示如何使用 Azure Batch AI 将神经样式传输应用于视频
+title: 针对深度学习模型的批处理计分
+titleSuffix: Azure Reference Architectures
+description: 这个用于参考的体系结构显示如何使用 Azure Batch AI 将神经样式传输应用于视频。
 author: jiata
 ms.date: 10/02/2018
-ms.author: jiata
-ms.openlocfilehash: 1f3f3d3882b2b30eb29acd26c9eab9ff128028e2
-ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
+ms.custom: azcat-ai
+ms.openlocfilehash: 0396903a39d00a4131df65872a63f4b3fde8dce7
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "48243712"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119874"
 ---
 # <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Azure 上针对深度学习模型的批处理计分
 
-此参考体系结构显示如何使用 Azure Batch AI 将神经样式传输应用于视频。 样式传输是一种深度学习技术，它以另一个映像的样式构成现有映像。 可将此体系结构概括为任何使用批处理计分和深度学习的方案。 [**部署此解决方案**](#deploy-the-solution)。
- 
-![](./_images/batch-ai-deep-learning.png)
+这个用于参考的体系结构显示如何使用 Azure Batch AI 将神经样式传输应用于视频。 样式传输是一种深度学习技术，它以另一个图像的样式构成现有图像。 可概括此体系结构，将它用于任何为深度学习使用批处理计分的场景。 [**部署此解决方案**](#deploy-the-solution)。
 
-**方案**：媒体组织存在一个需改变其样式的视频，使其看起来像一幅特定的画。 该组织希望能以自动化的方式及时将这种样式应用于视频的所有帧。 有关神经样式传输算法的详细背景信息，请参阅[使用卷积神经网络的映像样式传输][image-style-transfer] (PDF)。
+![使用 Azure Batch AI 的深度学习模型的体系结构图](./_images/batch-ai-deep-learning.png)
 
-| 样式映像： | 输入/内容视频： | 输出视频： | 
+**场景**：媒体组织的一个视频需要改变样式，使其看起来像一幅特定的画。 该组织希望能以自动化的方式及时将这种样式应用于视频的所有帧。 有关神经样式传输算法的详细背景信息，请参阅[使用卷积神经网络的图像样式传输][image-style-transfer] (PDF)。
+
+| 样式图像： | 输入/内容视频： | 输出视频： |
 |--------|--------|---------|
 | <img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/style_image.jpg" width="300"> | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video.mp4 "输入视频") 单击以观看视频 | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video.mp4 "输出视频") 单击以观看视频 |
 
-此参考体系结构专为 Azure 存储中存在新媒体时而触发的工作负载而设计。 处理包括以下步骤：
+这个用于参考的体系结构专为 Azure 存储中存在新媒体时而触发的工作负载而设计。 包括以下处理步骤：
 
-1. 将选定的样式映像（如梵高的画作）和样式传输脚本上传到 Blob 存储。
+1. 将选定的样式图像（如梵高的画作）和样式传输脚本上传到 Blob 存储。
 1. 创建已准备好开始工作的自动缩放 Batch AI 群集。
 1. 将视频文件拆分为单独的帧并将这些帧上传到 Blob 存储中。
 1. 上传所有帧后，将触发器文件上传到 Blob 存储中。
 1. 此文件触发逻辑应用，该应用创建在 Azure 容器实例中运行的容器。
 1. 容器运行创建 Batch AI 作业的脚本。 每个作业在 Batch AI 群集的节点间并行应用神经样式传输。
-1. 生成映像后，将它们保存回 Blob 存储。
-1. 下载生成的帧，并将映像拼结成视频。
+1. 生成图像后，将它们保存回 Blob 存储。
+1. 下载生成的帧，并将图像拼结成视频。
 
 ## <a name="architecture"></a>体系结构
+
 该体系结构包括以下组件。
 
 ### <a name="compute"></a>计算
@@ -43,26 +45,26 @@ ms.locfileid: "48243712"
 
 ### <a name="storage"></a>存储
 
-[Blob 存储][blob-storage]用于存储所有映像（输入映像、样式映像和输出映像）以及从 Batch AI 生成的所有日志。 Blob 存储通过 [blobfuse][blobfuse] 与 Batch AI 集成，blobfuse 是由 Blob 存储支持的开源虚拟文件系统。 对于此工作负载所需的性能而言，Blob 存储也非常经济高效。
+[Blob 存储][blob-storage]用于存储所有图像（输入图像、样式图像和输出图像）以及从 Batch AI 生成的所有日志。 Blob 存储通过 [blobfuse][blobfuse] 与 Batch AI 集成，blobfuse 是由 Blob 存储支持的开源虚拟文件系统。 对于此工作负载所需的性能而言，Blob 存储也非常经济高效。
 
 ### <a name="trigger--scheduling"></a>触发/计划
 
-[Azure 逻辑应用][logic-apps]用于触发工作流。 逻辑应用检测到已将 BLOb 添加到容器中时，便会触发 Batch AI 进程。 逻辑应用非常适合此参考体系结构，因为它是检测 Blob 存储更改的简单方法，并提供了更改触发器的简单进程。
+[Azure 逻辑应用][logic-apps]用于触发工作流。 逻辑应用检测到已将 BLOb 添加到容器中时，便会触发 Batch AI 进程。 逻辑应用非常适合这个用于参考的体系结构，因为它是检测 Blob 存储更改的简单方法，并提供了更改触发器的简单进程。
 
 [Azure 容器实例][container-instances]用于运行创建 Batch AI 作业的 Python 脚本。 在 Docker 容器中运行这些脚本是按需运行它们的便捷方式。 对于此体系结构，我们使用容器实例，因为它有一个预构建的逻辑应用连接器，该连接器允许逻辑应用触发 Batch AI 作业。 容器实例可快速启动无状态进程。
 
-[DockerHub][dockerhub] 用于存储容器实例用于执行作业创建进程的 Docker 映像。 选择 DockerHub 用于此体系结构，因为它易于使用，并且是 Docker 用户的默认映像存储库。 也可使用 [Azure 容器注册表][container-registry]。
+[DockerHub][dockerhub] 用于存储容器实例用于建进执行作业创程的 Docker 映像。 选择 DockerHub 用于此体系结构，因为它易于使用，并且是 Docker 用户的默认映像存储库。 也可使用 [Azure 容器注册表][container-registry]。
 
 ### <a name="data-preparation"></a>数据准备工作
 
-此参考体系结构使用“树上的猩猩”视频片段。 可从[此处][source-video]下载该片段，然后按照以下步骤针对工作流进行处理：
+这个用于参考的体系结构使用“树上的猩猩”视频片段。 可从[此处][source-video]下载该片段，然后按照以下步骤针对工作流进行处理：
 
 1. 使用 [AzCopy][azcopy] 从公共 blob 下载视频。
 2. 使用 [FFmpeg][ffmpeg] 提取音频文件，以便稍后可将音频文件拼结回输出视频。
 3. 使用 FFmpeg 将视频分成单个帧。 独立地并行处理这些帧。
 4. 使用 AzCopy 将各个帧复制到 blob 容器中。
 
-在此阶段，视频片段的形式可用于神经样式传输。 
+在此阶段，视频片段的形式可用于神经样式传输。
 
 ## <a name="performance-considerations"></a>性能注意事项
 
@@ -74,29 +76,29 @@ ms.locfileid: "48243712"
 
 ### <a name="parallelizing-across-vms-vs-cores"></a>跨 VM 和内核并行执行
 
-将样式传输进程作为批处理作业运行时，主要在 GPU 上运行的作业必须在 VM 间并行化。 可使用两种方法：可使用具有单个 GPU 的 VM 创建更大的群集，也可使用具有许多 GPU 的 VM 创建较小的群集。 
+将样式传输进程作为批处理作业运行时，主要在 GPU 上运行的作业必须在 VM 间并行化。 可使用两种方法：可使用具有单个 GPU 的 VM 创建更大的群集，也可使用具有许多 GPU 的 VM 创建较小的群集。
 
 对于此工作负载，这两个选项的性能相当。 使用更少的 VM 且每个 VM 具有更多的 GPU，可帮助减少数据移动。 但是，此工作负载的每个作业的数据量并不是很大，因此 blob 存储不会受到太多限制。
 
-### <a name="images-batch-size-per-batch-ai-job"></a>每个 Batch AI 作业的映像批大小
+### <a name="images-batch-size-per-batch-ai-job"></a>每个 Batch AI 作业的图像批大小
 
-另一个必须配置的参数是每个 Batch AI 作业要处理的映像数。 一方面，你希望确保工作广泛分部在节点间，如果作业失败，不必重试太多映像。 这意味着具有多个 Batch AI 作业，因此每个作业要处理的映像数量很少。 另一方面，如果每个作业处理的映像太少，则安装/启动时间会不成比例地变长。 可将作业数设置为等于群集中的最大节点数。 这在没有作业失败时最有效，因为它可以最大限度地降低安装/启动成本。 但是，如果作业失败，则可能需要重新处理大量映像。
+另一个必须配置的参数是每个 Batch AI 作业要处理的图像数。 一方面，你希望确保工作广泛分部在节点间，如果作业失败，不必重试太多图像。 这意味着具有多个 Batch AI 作业，因此每个作业要处理的图像数量很少。 另一方面，如果每个作业处理的图像太少，则安装/启动时间会不成比例地变长。 可将作业数设置为等于群集中的最大节点数。 这在没有作业失败时最有效，因为它可以最大限度地降低安装/启动成本。 但是，如果作业失败，则可能需要重新处理大量图像。
 
 ### <a name="file-servers"></a>文件服务器
 
-使用 Batch AI 时，可根据方案所需的吞吐量选择多个存储选项。 对于吞吐量需求低的工作负载，使用 blob 存储（通过 blobfuse）就足够了。 或者，Batch AI 还支持 Batch AI 文件服务器（托管的单节点 NFS），可自动将其安装在群集节点上，为作业提供可集中访问的存储位置。 大多数情况下，一个工作区只需要一个文件服务器，可将训练作业的数据分为不同的目录。 如果单节点 NFS 不适用于工作负载，Batch AI 支持其他存储选项，包括 Azure 文件或自定义解决方案，如 Gluster 或 Lustre 文件系统。
+使用 Batch AI 时，可根据场景所需的吞吐量选择多个存储选项。 对于吞吐量需求低的工作负载，使用 blob 存储（通过 blobfuse）就足够了。 或者，Batch AI 还支持 Batch AI 文件服务器（托管的单节点 NFS），可自动将其安装在群集节点上，为作业提供可集中访问的存储位置。 大多数情况下，一个工作区只需要一个文件服务器，可将训练作业的数据分为不同的目录。 如果单节点 NFS 不适用于工作负载，Batch AI 支持其他存储选项，包括 Azure 文件或自定义解决方案，如 Gluster 或 Lustre 文件系统。
 
 ## <a name="security-considerations"></a>安全注意事项
 
 ### <a name="restricting-access-to-azure-blob-storage"></a>限制对 Azure Blob 存储的访问
 
-在此参考体系结构中，Azure Blob 存储是需要保护的主要存储组件。 GitHub 存储库中显示的基线部署使用存储帐户密钥来访问 Blob 存储。 为进一步控制和保护，请考虑改用共享访问签名 (SAS)。 这允许对存储中的对象进行有限的访问，而无需对帐户密钥进行硬编码或以纯文本形式保存。 此方法特别有用，因为帐户密钥在逻辑应用的设计器界面中以纯文本形式可见。 使用 SAS 还有助于确保存储帐户具有适当监管，并且仅向有意拥有访问权限的人员授予该访问权限。
+在这个用于参考的体系结构中，Azure Blob 存储是需要保护的主要存储组件。 GitHub 存储库中显示的基线部署使用存储帐户密钥来访问 Blob 存储。 为进一步控制和保护，请考虑改用共享访问签名 (SAS)。 这允许对存储中的对象进行有限的访问，而无需对帐户密钥进行硬编码或以纯文本形式保存。 此方法特别有用，因为帐户密钥在逻辑应用的设计器界面中以纯文本形式可见。 使用 SAS 还有助于确保存储帐户具有适当监管，并且仅向有意拥有访问权限的人员授予该访问权限。
 
 在具有更多敏感数据的情况下，请确保所有存储密钥都受到保护，因为这些密钥可授予对工作负载的所有输入和输出数据的完全访问权限。
 
 ### <a name="data-encryption-and-data-movement"></a>数据加密和数据移动
 
-此参考体系结构使用样式传输作为批处理计分进程的示例。 在数据敏感性更强的情况下，存储中的数据应静态加密。 每次将数据从一个位置移动到另一位置时，都使用 SSL 来保护数据传输。 有关详细信息，请参阅 [Azure 存储安全指南][storage-security]。 
+这个用于参考的体系结构使用样式传输作为批处理计分进程的示例。 在数据敏感性更强的情况下，存储中的数据应静态加密。 每次将数据从一个位置移动到另一位置时，都使用 SSL 来保护数据传输。 有关详细信息，请参阅 [Azure 存储安全指南][storage-security]。
 
 ### <a name="securing-data-in-a-virtual-network"></a>保护虚拟网络中的数据
 
@@ -108,30 +110,29 @@ ms.locfileid: "48243712"
 
 - 使用 RBAC 限制用户只能访问他们所需的资源。
 - 预配两个单独的存储帐户。 将输入和输出数据存储在第一个帐户中。 可授予外部用户访问此帐户的权限。 将可执行脚本和输出日志文件存储在另一帐户中。 外部用户不应有权访问此帐户。 这可确保外部用户无法修改任何可执行文件（注入恶意代码），并且无法访问可能包含敏感信息的日志文件。
-- 恶意用户可对作业队列执行 DDoS 攻击或在作业队列中注入格式错误的有害消息，从而导致系统锁定或导致出列错误。 
+- 恶意用户可对作业队列执行 DDoS 攻击或在作业队列中注入格式错误的有害消息，从而导致系统锁定或导致出列错误。
 
 ## <a name="monitoring-and-logging"></a>监视和日志记录
 
 ### <a name="monitoring-batch-ai-jobs"></a>监视 Batch AI 作业
 
-运行作业时，监视进度并确保操作按预期进行，这点至关重要。 然而，在活动节点群集间进行监视可能是一项挑战。 
+运行作业时，监视进度并确保操作按预期进行，这点至关重要。 然而，在活动节点群集间进行监视可能是一项挑战。
 
-要了解群集的整体状态，请转到 Azure 门户的“Batch AI”边栏选项卡以检查群集中节点的状态。 如果节点处于非活动状态或作业失败，则错误日志将保存到 Blob 存储，并且还可在 Azure 门户的“作业”边栏选项卡中访问。 
+要了解群集的整体状态，请转到 Azure 门户的“Batch AI”边栏选项卡以检查群集中节点的状态。 如果节点处于非活动状态或作业失败，则错误日志将保存到 Blob 存储，并且还可在 Azure 门户的“作业”边栏选项卡中访问。
 
 通过将日志连接到 Application Insights，或通过运行单独的进程来轮询 Batch AI 群集及其作业的状态，可进一步进行监视。
 
 ### <a name="logging-in-batch-ai"></a>Batch AI 中的日志记录
 
-Batch AI 自动将所有 stdout/stderr 记录到关联的 Blob 存储帐户中。 使用存储资源管理器等存储导航工具可更轻松地浏览日志文件。 
+Batch AI 自动将所有 stdout/stderr 记录到关联的 Blob 存储帐户中。 使用存储资源管理器等存储导航工具可更轻松地浏览日志文件。
 
-此参考体系结构的部署步骤还展示了如何设置更简单的日志记录系统，以便将不同作业中的所有日志保存到 Blob 容器中的同一目录中，如下所示。
-使用这些日志可监视每个作业和每个映像处理所需的时间。 通过此可更好地了解如何进一步优化进程。
+这个用于参考的体系结构的部署步骤还展示了如何设置更简单的日志记录系统，以便将不同作业中的所有日志保存到 Blob 容器中的同一目录中，如下所示。 使用这些日志可监视每个作业和每个图像处理所需的时间。 通过此可更好地了解如何进一步优化进程。
 
-![](./_images/batch-ai-logging.png)
+![适用于 Azure Batch AI 的日志记录的屏幕截图](./_images/batch-ai-logging.png)
 
 ## <a name="cost-considerations"></a>成本注意事项
 
-与存储和计划组件相比，此参考体系结构中使用的计算资源在成本方面遥遥领先。 其中一个主要挑战是在支持 GPU 的计算机群集中有效地并行化工作。
+与存储和计划组件相比，这个用于参考的体系结构中使用的计算资源在成本方面遥遥领先。 其中一个主要挑战是在支持 GPU 的计算机群集中有效地并行化工作。
 
 Batch AI 群集大小可根据队列中的作业自动增加和减少。 可通过以下两种方式之一使用 Batch AI 启用自动缩放。 可通过编程方式执行此操作，可在[部署步骤][deployment]中的 `.env` 文件中进行配置，也可在创建群集后直接在门户中更改缩放公式。
 
@@ -141,7 +142,9 @@ Batch AI 群集大小可根据队列中的作业自动增加和减少。 可通�
 
 ## <a name="deploy-the-solution"></a>部署解决方案
 
-若要部署此参考体系结构，请按照 [GitHub 存储库][deployment]中所述的步骤进行操作。
+若要部署这个用于参考的体系结构，请按照 [GitHub 存储库][deployment]中所述的步骤进行操作。
+
+<!-- links -->
 
 [azcopy]: /azure/storage/common/storage-use-azcopy-linux
 [batch-ai]: /azure/batch-ai/

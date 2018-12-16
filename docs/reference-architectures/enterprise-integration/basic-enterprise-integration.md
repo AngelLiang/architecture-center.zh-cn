@@ -1,24 +1,25 @@
 ---
-title: 使用 Azure Integration Services 的企业集成
-description: 本体系结构参考演示如何使用 Azure 逻辑应用和 Azure API 管理来实现一个简单的企业集成模式
+title: 使用 Azure 的基本企业集成
+titleSuffix: Azure Reference Architectures
+description: 建议用于通过 Azure 逻辑应用和 Azure API 管理实现简单企业集成模式的体系结构。
 services: logic-apps
 author: mattfarm
-ms.author: mattfarm
 ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
 ms.date: 12/03/2018
-ms.openlocfilehash: c8aa3f8b736fabd1a6701778f22a7eec9bf46ee7
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.custom: integration-services
+ms.openlocfilehash: 36419706714b8516a309cf634649a4b44a9bc136
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52919090"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120197"
 ---
 # <a name="basic-enterprise-integration-on-azure"></a>Azure 上的基本企业集成
 
 本引用体系结构使用 [Azure Integration Services][integration-services] 来协调对企业后端系统的调用。 后端系统可能包括软件即服务 (SaaS) 系统、Azure 服务以及企业中现有的 Web 服务。
 
-Azure Integration Services 是用于集成应用程序和数据的服务的集合。 本体系结构使用这其中的两种服务：用于协调工作流的[逻辑应用][logic-apps]，以及用于创建 API 目录的 [API 管理][apim]。 本体系结构足以处理基本的集成方案，即对后端服务进行同步调用时触发工作流的情况。 使用[队列和事件](./queues-events.md)的更复杂体系结构基于这个基本的体系结构而构建。 
+Azure Integration Services 是用于集成应用程序和数据的服务的集合。 此体系结构使用下述服务中的两种：用于协调工作流的[逻辑应用][logic-apps]和用于创建 API 目录的 [API 管理][apim]。 本体系结构足以处理基本的集成方案，即对后端服务进行同步调用时触发工作流的情况。 使用[队列和事件](./queues-events.md)的更复杂体系结构基于这个基本的体系结构而构建。
 
 ![体系结构图 - 简单的企业集成](./_images/simple-enterprise-integration.png)
 
@@ -32,13 +33,13 @@ Azure Integration Services 是用于集成应用程序和数据的服务的集�
 
 - **Azure API 管理**。 [API 管理][apim]是用于发布 HTTP API 目录的托管服务，可以促进重复使用和可发现性。 API 管理包含两个相关的组件：
 
-    - **API 网关**。 API 网关接受 HTTP 调用并将其路由到后端。 
+  - **API 网关**。 API 网关接受 HTTP 调用并将其路由到后端。
 
-    - **开发人员门户**。 Azure API 管理的每个实例都可以访问[开发人员门户][apim-dev-portal]。 开发人员可以通过此门户访问有关 API 调用的文档和代码示例。 还可以在开发人员门户中测试 API。
+  - **开发人员门户**。 Azure API 管理的每个实例都可以访问[开发人员门户][apim-dev-portal]。 开发人员可以通过此门户访问有关 API 调用的文档和代码示例。 还可以在开发人员门户中测试 API。
 
-    在本体系结构中，可以通过[导入逻辑应用][apim-logic-app]作为 API 来生成复合 API。 也可导入现有的 Web 服务，方法是[导入 OpenAPI][apim-openapi] (Swagger) 规范或从 WSDL 规范[导入 SOAP API][apim-soap]。 
+  在本体系结构中，可以通过[导入逻辑应用][apim-logic-app]作为 API 来生成复合 API。 也可导入现有的 Web 服务，方法是[导入 OpenAPI][apim-openapi] (Swagger) 规范或从 WSDL 规范[导入 SOAP API][apim-soap]。
 
-    API 网关用于将前端客户端与后端分离。 例如，它可以重新编写 URL 或在请求抵达后端之前转换请求。 它还处理许多跨领域问题，例如身份验证、跨域资源共享 (CORS) 支持以及响应缓存。
+  API 网关用于将前端客户端与后端分离。 例如，它可以重新编写 URL 或在请求抵达后端之前转换请求。 它还处理许多跨领域问题，例如身份验证、跨域资源共享 (CORS) 支持以及响应缓存。
 
 - **Azure DNS**。 [Azure DNS][dns] 是 DNS 域的托管服务。 Azure DNS 使用 Microsoft Azure 基础结构提供名称解析。 通过在 Azure 中托管域，可以使用与其他 Azure 服务相同的凭据、API、工具和计费来管理 DNS 记录。 若要使用自定义域名（例如 contoso.com），请创建可将自定义域名映射到 IP 地址的 DNS 记录。 有关详细信息，请参阅[在 API 管理中配置自定义域名][apim-domain]。
 
@@ -54,7 +55,7 @@ Azure Integration Services 是用于集成应用程序和数据的服务的集�
 
 每个 Azure API 管理实例都有一个默认的域名，它是 `azure-api.net` 的子域，例如 `contoso.azure-api.net`。 考虑为组织配置[自定义域][apim-domain]。
 
-### <a name="logic-apps"></a>逻辑应用 
+### <a name="logic-apps"></a>逻辑应用
 
 如果不需要保证较低的延迟进行响应，则非常适合使用逻辑应用，例如执行异步操作，或者运行时间适中的 API 调用。 如果需要保证低延迟（例如，在调用会导致用户界面停滞的情况下），请使用其他技术。 例如，使用 Azure Functions 或部署到 Azure 应用服务的 Web API。 对于 API 使用者，请优先 API 管理而不是 API。
 
@@ -82,7 +83,6 @@ Azure Integration Services 是用于集成应用程序和数据的服务的集�
 
 使用高级层时，可以跨多个 Azure 区域缩放 API 管理实例。 这样可以让 API 管理有资格获得更高的 SLA，让你可以在多个区域靠近用户的位置预配服务。
 
-
 逻辑应用的无服务器模型意味着管理员无需规划服务可伸缩性。 服务会根据需求自动缩放。
 
 ## <a name="availability-considerations"></a>可用性注意事项
@@ -98,9 +98,9 @@ Azure Integration Services 是用于集成应用程序和数据的服务的集�
 
 定期[备份][apim-backup] API 管理配置。 将备份文件存储在不同于服务部署区域的某个位置或 Azure 区域。 根据 [RTO][rto] 选择灾难恢复策略：
 
-* 在灾难恢复事件中，预配新的 API 管理实例，将备份还原到新实例，并重新指向 DNS 记录。
+- 在灾难恢复事件中，预配新的 API 管理实例，将备份还原到新实例，并重新指向 DNS 记录。
 
-* 在另一 Azure 区域中保留 API 管理服务的被动实例。 定期将备份还原到该实例，使之与主动服务同步。 若要在发生灾难恢复事件期间还原服务，只需重新指向 DNS 记录。 此方法会产生额外的成本，因为需为被动实例付费，但会缩短恢复时间。 
+- 在另一 Azure 区域中保留 API 管理服务的被动实例。 定期将备份还原到该实例，使之与主动服务同步。 若要在发生灾难恢复事件期间还原服务，只需重新指向 DNS 记录。 此方法会产生额外的成本，因为需为被动实例付费，但会缩短恢复时间。
 
 对于逻辑应用，建议使用配置即代码方法进行备份和还原。 由于逻辑应用无服务器，因此可以通过 Azure 资源管理器模板快速地重新创建它们。 请将模板保存在源代码管理中，并将模板与持续集成/持续部署 (CI/CD) 过程相集成。 在灾难恢复事件中，请将模板部署到新区域。
 
@@ -112,13 +112,13 @@ Azure Integration Services 是用于集成应用程序和数据的服务的集�
 
 将资源分配到资源组时，请考虑以下因素：
 
-* **生命周期**。 一般情况下，应将具有相同生命周期的资源放入同一个资源组。
+- **生命周期**。 一般情况下，应将具有相同生命周期的资源放入同一个资源组。
 
-* **访问**。 若要对组中的资源应用访问策略，可以使用[基于角色的访问控制][rbac] (RBAC)。
+- **访问**。 若要对组中的资源应用访问策略，可以使用[基于角色的访问控制][rbac] (RBAC)。
 
-* **计费**。 可以查看资源组的累计成本。
+- **计费**。 可以查看资源组的累计成本。
 
-* **API 管理的定价层**。 对开发和测试环境使用开发人员层。 为了尽量降低预生产期间的成本，请部署生产环境的副本、运行测试，然后关闭。
+- **API 管理的定价层**。 对开发和测试环境使用开发人员层。 为了尽量降低预生产期间的成本，请部署生产环境的副本、运行测试，然后关闭。
 
 ### <a name="deployment"></a>部署
 
@@ -132,9 +132,9 @@ Azure Integration Services 是用于集成应用程序和数据的服务的集�
 
 API 管理支持两个不同但互补的版本控制概念：
 
-* 版本：API 使用者可以根据需要选择 API 版本（例如 v1、v2、beta 或 production）。
+- 版本：API 使用者可以根据需要选择 API 版本（例如 v1、v2、beta 或 production）。
 
-* 修订版：API 管理员可以在 API 中进行非重大更改并部署这些更改。另外还可以提供更改日志，将所做的更改告知 API 使用者。
+- 修订版：API 管理员可以在 API 中进行非重大更改并部署这些更改。另外还可以提供更改日志，将所做的更改告知 API 使用者。
 
 可在开发环境中创建修订版，并使用资源管理器模板在其他环境中部署此项更改。 有关详细信息，请参阅[发布 API 的多个版本][apim-versions]
 
@@ -149,29 +149,29 @@ API 管理支持两个不同但互补的版本控制概念：
 
 每个服务还提供以下选项：
 
-* 若要进行更深入的分析和仪表板显示，请将逻辑应用日志发送到 [Azure Log Analytics][logic-apps-log-analytics]。
+- 若要进行更深入的分析和仪表板显示，请将逻辑应用日志发送到 [Azure Log Analytics][logic-apps-log-analytics]。
 
-* 若要进行 DevOps 监视，请为 API 管理配置 Azure Application Insights。
+- 若要进行 DevOps 监视，请为 API 管理配置 Azure Application Insights。
 
-* API 管理支持[使用 Power BI 解决方案模板进行自定义 API 分析][apim-pbi]。 可以使用此解决方案模板来创建自己的分析解决方案。 业务用户可在 Power BI 中查看报表。
+- API 管理支持[使用 Power BI 解决方案模板进行自定义 API 分析][apim-pbi]。 可以使用此解决方案模板来创建自己的分析解决方案。 业务用户可在 Power BI 中查看报表。
 
 ## <a name="security-considerations"></a>安全注意事项
 
 下面是一些针对本体系结构的安全注意事项，虽然此列表并未完整描述所有的安全最佳做法：
 
-* Azure API 管理服务具有固定的公共 IP 地址。 只有 API 管理的 IP 地址能调用逻辑应用终结点。 有关详细信息，请参阅[限制传入 IP 地址][logic-apps-restrict-ip]。
+- Azure API 管理服务具有固定的公共 IP 地址。 只有 API 管理的 IP 地址能调用逻辑应用终结点。 有关详细信息，请参阅[限制传入 IP 地址][logic-apps-restrict-ip]。
 
-* 为确保用户拥有适当的访问级别，请使用基于角色的访问控制 (RBAC)。
+- 为确保用户拥有适当的访问级别，请使用基于角色的访问控制 (RBAC)。
 
-* 使用 OAuth 或 OpenID Connect 保护 API 管理中的公共 API 终结点。 若要保护公共 API 终结点，请配置标识提供者并添加 JSON Web 令牌 (JWT) 验证策略。 有关详细信息，请参阅[结合 Azure Active Directory 和 API 管理使用 OAuth 2.0 保护 API][apim-oauth]。
+- 使用 OAuth 或 OpenID Connect 保护 API 管理中的公共 API 终结点。 若要保护公共 API 终结点，请配置标识提供者并添加 JSON Web 令牌 (JWT) 验证策略。 有关详细信息，请参阅[结合 Azure Active Directory 和 API 管理使用 OAuth 2.0 保护 API][apim-oauth]。
 
-* 使用相互身份验证证书从 API 管理连接到后端服务。
+- 使用相互身份验证证书从 API 管理连接到后端服务。
 
-* 在 API 管理 API 上强制实施 HTTPS。
+- 在 API 管理 API 上强制实施 HTTPS。
 
 ### <a name="storing-secrets"></a>存储机密
 
-切勿将密码、访问密钥或连接字符串签入源代码管理。 如果需要这些值，请使用适当的技术保护和部署这些值。 
+切勿将密码、访问密钥或连接字符串签入源代码管理。 如果需要这些值，请使用适当的技术保护和部署这些值。
 
 如果逻辑应用所需的任何敏感值不能在连接器中创建，请将这些值存储在 Azure Key Vault 中，并从资源管理器模板引用它们。 请为每个环境使用部署模板参数和参数文件。 有关详细信息，请参阅[保护工作流中的参数和输入][logic-apps-secure]。
 
@@ -202,7 +202,7 @@ API 管理使用称作“命名值”或“属性”的对象管理机密。 这
 [apim-monitor]: /azure/api-management/api-management-howto-use-azure-monitor
 [apim-oauth]: /azure/api-management/api-management-howto-protect-backend-with-aad
 [apim-openapi]: /azure/api-management/import-api-from-oas
-[apim-pbi]: http://aka.ms/apimpbi
+[apim-pbi]: https://aka.ms/apimpbi
 [apim-pricing]: https://azure.microsoft.com/pricing/details/api-management/
 [apim-properties]: /azure/api-management/api-management-howto-properties
 [apim-sla]: https://azure.microsoft.com/support/legal/sla/api-management/

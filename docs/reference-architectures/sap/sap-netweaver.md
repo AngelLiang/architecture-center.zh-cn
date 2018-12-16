@@ -1,33 +1,36 @@
 ---
-title: 在 Azure 虚拟机上部署适用于 AnyDB 的 SAP NetWeaver (Windows)
+title: 在 Azure VM 上部署适用于 AnyDB 的 SAP NetWeaver (Windows)
+titleSuffix: Azure Reference Architectures
 description: 有关在 Azure 上的高可用性 Linux 环境中运行 SAP S/4HANA 的成熟做法。
 author: lbrader
 ms.date: 08/03/2018
-ms.openlocfilehash: 3a8c59b63d55dea520f807efbe72ff56e678ec8e
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seodec18
+ms.openlocfilehash: 4014d5736527a2f29692720d199b4a1aa8f76020
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916577"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120180"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>在 Azure 虚拟机上部署适用于 AnyDB 的 SAP NetWeaver (Windows)
 
 此参考体系结构演示有关在 Azure 上的高可用性 Windows 环境中运行 SAP NetWeaver 的一套成熟做法。 数据库为 AnyDB（除了 SAP HANA 之外，该 SAP 术语还指任何受支持的 DBMS）。 将使用可根据组织需求更改的特定虚拟机 (VM) 大小部署此体系结构。
 
-![](./images/sap-netweaver.png)
+![Azure VM 上适用于 AnyDB 的 SAP NetWeaver (Windows) 的参考体系结构](./images/sap-netweaver.png)
 
 下载此体系结构的 [Visio 文件][visio-download]。
 
-> [!NOTE] 
+> [!NOTE]
 > 部署此参考体系结构需要获取 SAP 产品和其他非 Microsoft 技术的相应许可。
 
 ## <a name="architecture"></a>体系结构
+
 该体系结构包括以下基础结构和关键软件组件。
 
 虚拟网络。 Azure 虚拟网络服务在 Azure 资源之间建立安全连接。 在此体系结构中，虚拟网络将通过[中心-分支型](../hybrid-networking/hub-spoke.md)拓扑的中心内部署的 VPN 网关连接到本地环境。 分支是用于 SAP 应用程序和数据库层的虚拟网络。
 
 **子网**。 针对以下每个层将虚拟网络细分为单独的子网：应用 (SAP NetWeaver)、数据库、共享服务 (jumpbox) 和 Active Directory。
-    
+
 **虚拟机**。 此体系结构对应用层和数据库层使用虚拟机。这些层划分为：
 
 - **SAP NetWeaver**。 应用层使用 Windows 虚拟机，并运行 SAP Central Services 和 SAP 应用程序服务器。 运行 Central Services 的 VM 配置为 SIOS DataKeeper Cluster Edition 支持的 Windows Server 故障转移群集，以实现高可用性。
@@ -35,7 +38,7 @@ ms.locfileid: "50916577"
 - **Jumpbox**。 也称为守护主机。 这是网络中的一个安全虚拟机，管理员使用它来连接其他虚拟机。
 - **Windows Server Active Directory 域控制器。** 对域中的所有 VM 和用户使用域控制器。
 
-**负载均衡器**。 [Azure 负载均衡器](/azure/load-balancer/load-balancer-overview)实例用于将流量分配到应用层子网中的虚拟机。 在数据层，可以通过内置 SAP 负载均衡器、Azure 负载均衡器或其他机制来实现高可用性，具体取决于 DBMS。 有关详细信息，请参阅[适用于 SAP NetWeaver 的 Azure 虚拟机 DBMS 部署](/azure/virtual-machines/workloads/sap/dbms-guide)。 
+**负载均衡器**。 [Azure 负载均衡器](/azure/load-balancer/load-balancer-overview)实例用于将流量分配到应用层子网中的虚拟机。 在数据层，可以通过内置 SAP 负载均衡器、Azure 负载均衡器或其他机制来实现高可用性，具体取决于 DBMS。 有关详细信息，请参阅[适用于 SAP NetWeaver 的 Azure 虚拟机 DBMS 部署](/azure/virtual-machines/workloads/sap/dbms-guide)。
 
 **可用性集**。 用于 SAP Web 调度程序、SAP 应用程序服务器和 (A)SCS 角色的虚拟机已分组到单独的[可用性集](/azure/virtual-machines/windows/tutorial-availability-sets)，为每个角色至少预配两个虚拟机。 这样，虚拟机便可以满足更高的[服务级别协议 (SLA)](https://azure.microsoft.com/support/legal/sla/virtual-machines)。
 
@@ -45,9 +48,10 @@ ms.locfileid: "50916577"
 
 **网关**。 网关将本地网络扩展到 Azure 虚拟网络。 建议使用 [ExpressRoute](/azure/architecture/reference-architectures/hybrid-networking/expressroute) Azure 服务来创建不必经由公共 Internet 的专用连接，但也可以使用[站点到站点](/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal)连接。
 
-**Azure 存储**。 若要提供虚拟机的虚拟硬盘 (VHD) 持久存储，必须使用 [Azure 存储](/azure/storage/storage-standard-storage)。 [云见证](/windows-server/failover-clustering/deploy-cloud-witness)也会使用 Azure 存储来实施故障转移群集操作。 
+**Azure 存储**。 若要提供虚拟机的虚拟硬盘 (VHD) 持久存储，必须使用 [Azure 存储](/azure/storage/storage-standard-storage)。 [云见证](/windows-server/failover-clustering/deploy-cloud-witness)也会使用 Azure 存储来实施故障转移群集操作。
 
 ## <a name="recommendations"></a>建议
+
 你的要求可能不同于此处描述的体系结构。 请使用以下建议作为入手点。
 
 ### <a name="sap-web-dispatcher-pool"></a>SAP Web 调度程序池
@@ -68,7 +72,7 @@ Web 调度程序组件用作 SAP 应用程序服务器之间的 SAP 流量的负
 
 有关详细信息，请参阅 [在 Microsoft 平台上运行 SAP 应用程序](https://blogs.msdn.microsoft.com/saponsqlserver/2017/05/04/sap-on-azure-general-update-for-customers-partners-april-2017/)中的“3. 针对在 Azure 上的 SIOS 中运行 ASCS 的 SAP 客户的重要更新”。
 
-处理群集的另一种方法是使用 Windows Server 故障转移群集实施文件共享群集。 [SAP](https://blogs.sap.com/2018/03/19/migration-from-a-shared-disk-cluster-to-a-file-share-cluster/) 最近修改了 Central Services 部署模式，以允许通过 UNC 路径访问 /sapmnt 全局目录。 此项更改[消除了](https://blogs.msdn.microsoft.com/saponsqlserver/2017/08/10/high-available-ascs-for-windows-on-file-share-shared-disk-no-longer-required/)需要在 Central Services VM 上使用 SIOS 或其他共享磁盘解决方案的要求。 我们仍然建议确保 /sapmnt UNC 共享具有[高可用性](https://blogs.sap.com/2017/07/21/how-to-create-a-high-available-sapmnt-share/)。 可在 Central Services 实例上实现此目的：配合 Windows Server 2016 中的[横向扩展文件服务器](https://blogs.msdn.microsoft.com/saponsqlserver/2017/11/14/file-server-with-sofs-and-s2d-as-an-alternative-to-cluster-shared-disk-for-clustering-of-an-sap-ascs-instance-in-azure-is-generally-available/) (SOFS) 和[存储空间直通](https://blogs.sap.com/2018/03/07/your-sap-on-azure-part-5-ascs-high-availability-with-storage-spaces-direct/) (S2D) 功能使用 Windows Server 故障转移群集。 
+处理群集的另一种方法是使用 Windows Server 故障转移群集实施文件共享群集。 [SAP](https://blogs.sap.com/2018/03/19/migration-from-a-shared-disk-cluster-to-a-file-share-cluster/) 最近修改了 Central Services 部署模式，以允许通过 UNC 路径访问 /sapmnt 全局目录。 此项更改[消除了](https://blogs.msdn.microsoft.com/saponsqlserver/2017/08/10/high-available-ascs-for-windows-on-file-share-shared-disk-no-longer-required/)需要在 Central Services VM 上使用 SIOS 或其他共享磁盘解决方案的要求。 我们仍然建议确保 /sapmnt UNC 共享具有[高可用性](https://blogs.sap.com/2017/07/21/how-to-create-a-high-available-sapmnt-share/)。 可在 Central Services 实例上实现此目的：配合 Windows Server 2016 中的[横向扩展文件服务器](https://blogs.msdn.microsoft.com/saponsqlserver/2017/11/14/file-server-with-sofs-and-s2d-as-an-alternative-to-cluster-shared-disk-for-clustering-of-an-sap-ascs-instance-in-azure-is-generally-available/) (SOFS) 和[存储空间直通](https://blogs.sap.com/2018/03/07/your-sap-on-azure-part-5-ascs-high-availability-with-storage-spaces-direct/) (S2D) 功能使用 Windows Server 故障转移群集。
 
 ### <a name="availability-sets"></a>可用性集
 
@@ -145,7 +149,7 @@ SAP 应用程序服务器的高可用性是通过对应用程序服务器池中�
 
 - **应用程序服务器层**。 SAP 应用程序服务器不包含业务数据。 在 Azure 上，简单的 DR 策略是在次要区域中创建 SAP 应用程序服务器，然后关闭这些服务器。 在主要应用程序服务器上进行任何配置更改或内核更新后，必须将相同的更改复制到次要区域中的虚拟机。 例如，将内核可执行文件复制到 DR 虚拟机。 要将应用程序服务器自动复制到次要区域，建议使用 [Azure Site Recovery](/azure/site-recovery/site-recovery-overview) 解决方案。
 
-- **Central Services**。 SAP 应用程序堆栈的此组件也不会保存业务数据。 可以在灾难恢复区域中构建一个 VM 来运行 Central Services 角色。 在主要 Central Services 节点中，要同步的唯一内容是 /sapmnt 共享内容。 此外，如果主要 Central Services 服务器上发生配置更改或内核更新，必须在灾难恢复区域中运行 Central Services 的 VM 上重复这些操作。 若要同步两个服务器，可以使用 Azure Site Recovery 复制群集节点，或只需使用定期计划的复制作业将 /sapmnt 复制到灾难恢复区域。 有关此简单复制方法的生成、复制和测试故障转移过程的详细信息，请下载[ SAP NetWeaver：生成基于 Hyper-V 和 Microsoft Azure 的灾难恢复解决方案](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx)，并参阅“4.3. SAP SPOF 层 (ASCS)”。
+- **Central Services**。 SAP 应用程序堆栈的此组件也不会保存业务数据。 可以在灾难恢复区域中构建一个 VM 来运行 Central Services 角色。 在主要 Central Services 节点中，要同步的唯一内容是 /sapmnt 共享内容。 此外，如果主要 Central Services 服务器上发生配置更改或内核更新，必须在灾难恢复区域中运行 Central Services 的 VM 上重复这些操作。 若要同步两个服务器，可以使用 Azure Site Recovery 复制群集节点，或只需使用定期计划的复制作业将 /sapmnt 复制到灾难恢复区域。 有关此简单复制方法的生成、复制和测试故障转移过程的详细信息，请下载 [SAP NetWeaver：生成基于 Hyper-V 和 Microsoft Azure 的灾难恢复解决方案](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx)，并参阅“4.3. SAP SPOF 层 (ASCS)”。
 
 - **数据库层**。 最好是使用数据库本身的集成复制技术来实现 DR。 例如，对于 SQL Server，我们建议使用 AlwaysOn 可用性组在远程区域中建立副本，并通过手动故障转移以异步方式复制事务。 异步复制可避免影响到主站点中交互式工作负荷的性能。 用户可以借助手动故障转移来评估 DR 影响，并确定是否适合从 DR 站点操作。
 
@@ -159,7 +163,7 @@ Azure 提供多种功能用于[监视和诊断](/azure/architecture/best-practic
 
 ## <a name="security-considerations"></a>安全注意事项
 
-SAP 具有自身的用户管理引擎 (UME)，可在 SAP 应用程序中控制基于角色的访问和授权。 有关详细信息，请参阅[适用于 ABAP 的 SAP NetWeaver 应用程序服务器安全指南](https://help.sap.com/doc/7b932ef4728810148a4b1a83b0e91070/1610 001/en-US/frameset.htm?4dde53b3e9142e51e10000000a42189c.html)和 [SAP NetWeaver 应用程序服务器 Java 安全指南](https://help.sap.com/doc/saphelp_snc_uiaddon_10/1.0/en-US/57/d8bfcf38f66f48b95ce1f52b3f5184/frameset.htm)。
+SAP 具有自身的用户管理引擎 (UME)，可在 SAP 应用程序中控制基于角色的访问和授权。 有关详细信息，请参阅[适用于 ABAP 的 SAP NetWeaver 应用程序服务器安全指南](https://help.sap.com/viewer/864321b9b3dd487d94c70f6a007b0397/7.4.19)和 [SAP NetWeaver 应用程序服务器 Java 安全指南](https://help.sap.com/doc/saphelp_snc_uiaddon_10/1.0/en-US/57/d8bfcf38f66f48b95ce1f52b3f5184/frameset.htm)。
 
 在其他网络安全性方面，请考虑实施[外围网络](../dmz/secure-vnet-hybrid.md)。外围网络使用网络虚拟设备在 Web 调度程序子网的前面创建防火墙。
 

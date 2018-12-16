@@ -3,12 +3,13 @@ title: 在 Azure 上运行计算流体动力学 (CFD) 模拟
 description: 在 Azure 上执行计算流体动力学 (CFD) 模拟。
 author: mikewarr
 ms.date: 09/20/2018
-ms.openlocfilehash: f32e055838d6c62584130f61a0d92b06cc46ec63
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 42921122d74d07bf890f55be61b04c7e9a4f4e87
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610628"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004653"
 ---
 # <a name="running-computational-fluid-dynamics-cfd-simulations-on-azure"></a>在 Azure 上运行计算流体动力学 (CFD) 模拟
 
@@ -91,7 +92,7 @@ Avere 缓存是一个可选解决方案，它能大幅提高应用程序作业�
 
 * 区域：北欧
 * Azure CycleCloud 服务器：1 个标准 D3（4 个 CPU，14 GB 内存，32 GB 标准 HDD）
-* Azure CycleCloud 主服务器：1 个标准 D12 v（4 个 CPU，28 GB 内存，32 GB 标准 HDD）
+* Azure CycleCloud 主服务器：1 个标准 D12（4 个 CPU，28 GB 内存，32 GB 标准 HDD）
 * Azure CycleCloud 节点阵列：10 个标准 H16r（16 个 CPU，112 GB 内存）
 * Azure 群集上的 Avere vFXT：3 个 x D16s v3（200 GB OS 磁盘，1 TB 高级 SSD 数据磁盘）
 * 数据传出量：1 TB

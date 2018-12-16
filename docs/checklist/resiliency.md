@@ -1,15 +1,16 @@
 ---
 title: 复原能力查检表
+titleSuffix: Azure Design Review Framework
 description: 为设计过程中的复原能力考虑因素提供指导的查检表。
 author: petertaylor9999
-ms.date: 01/10/2018
+ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: ce538a0b234a5b120415980e983096f567f9cf86
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: 1201e2045c6a5f7be9c8286cd192559a8d66d169
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305938"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307446"
 ---
 # <a name="resiliency-checklist"></a>复原能力查检表
 
@@ -23,25 +24,24 @@ ms.locfileid: "52305938"
 
 **对应用程序执行故障模式分析 (FMA)。** FMA 是在设计阶段提前将复原能力整合到应用程序的过程。 有关详细信息，请参阅[故障模式分析][fma]。 FMA 的目标包括：  
 
-* 识别应用程序可能遇到的故障类型。
-* 捕获每种故障对应用程序造成的潜在影响。
-* 确定恢复策略。
+- 识别应用程序可能遇到的故障类型。
+- 捕获每种故障对应用程序造成的潜在影响。
+- 确定恢复策略。
   
-
-**部署服务的多个实例。** 如果应用程序依赖于服务的单个实例，则会造成单一故障点。 预配多个实例能够提高复原能力和可伸缩性。 对于 [Azure 应用服务](/azure/app-service/app-service-value-prop-what-is/)，请选择提供多个实例的[应用服务计划](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview/)。 对于 Azure 云服务，请将每个角色配置为使用[多个实例](/azure/cloud-services/cloud-services-choose-me/#scaling-and-management)。 对于 [Azure 虚拟机 (VM)](/azure/virtual-machines/virtual-machines-windows-about/?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，请确保 VM 体系结构包含多个 VM，并且每个 VM 包含在[可用性集][availability-sets]中。   
+**部署服务的多个实例。** 如果应用程序依赖于服务的单个实例，则会造成单一故障点。 预配多个实例能够提高复原能力和可伸缩性。 对于 [Azure 应用服务](/azure/app-service/app-service-value-prop-what-is/)，请选择提供多个实例的[应用服务计划](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview/)。 对于 Azure 云服务，请将每个角色配置为使用[多个实例](/azure/cloud-services/cloud-services-choose-me/#scaling-and-management)。 对于 [Azure 虚拟机 (VM)](/azure/virtual-machines/virtual-machines-windows-about/?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，请确保 VM 体系结构包含多个 VM，并且每个 VM 包含在[可用性集][availability-sets]中。
 
 **使用自动缩放来响应负载增加。** 如果应用程序未配置为随着负载的增加而自动横向扩展，如果用户的请求饱和，那么应用程序的服务可能会失败。 有关详细信息，请参阅以下文章：
 
-* 一般信息：[可伸缩性查检表](./scalability.md)
-* Azure 应用服务：[手动或自动缩放实例计数][app-service-autoscale]
-* 云服务：[如何自动缩放云服务][cloud-service-autoscale]
-* 虚拟机：[自动缩放和虚拟机规模集][vmss-autoscale]
+- 常规：[伸缩性清单](./scalability.md)
+- Azure 应用服务：[手动或自动缩放实例计数][app-service-autoscale]
+- 云服务：[如何自动缩放云服务][cloud-service-autoscale]
+- 虚拟机：[自动缩放和虚拟机规模集][vmss-autoscale]
 
 **使用负载均衡来分发请求。** 负载均衡通过从循环列表中删除不正常的实例，将应用程序请求分发到正常的服务实例。 如果服务使用 Azure 应用服务或 Azure 云服务，则已负载均衡。 但是，如果应用程序使用 Azure VM，则你需要预配负载均衡器。 有关更多详细信息，请参阅 [Azure 负载均衡器](/azure/load-balancer/load-balancer-overview/)概述。
 
 **将 Azure 应用程序网关配置为使用多个实例。** 根据应用程序的要求，[Azure 应用程序网关](/azure/application-gateway/application-gateway-introduction/)可能更适合用于将请求分发到应用程序的服务。 但是，应用程序网关服务的单个实例不享有 SLA 保障，因此，洱应用程序网关实例发生故障时，应用程序也可能发生故障。 预配多个中型或大型应用程序网关实例，保证根据 [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway/) 的条款提供服务可用性。
 
-**为每个应用层使用 Azure 可用性集。** 将实例放入[可用性集][availability-sets]可提供更高的 [SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 
+**为每个应用层使用 Azure 可用性集。** 将实例放入[可用性集][availability-sets]可提供更高的 [SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。
 
 **使用 Azure Site Recovery 复制 VM。** 使用 [Site Recovery][site-recovery] 复制 Azure VM 时，所有 VM 磁盘将以异步方式持续复制到目标区域。 每隔几分钟就会创建恢复点。 这可以实现分钟量级的恢复点目标 (RPO)。
 
@@ -51,22 +51,25 @@ ms.locfileid: "52305938"
 
 **为负载均衡器和流量管理器配置并测试运行状况探测。** 确保运行状况逻辑检查系统关键部件，并相应地对运行状况探测做出响应。
 
-* [Azure 流量管理器][traffic-manager]和 [Azure 负载均衡器][load-balancer]的运行状况探测充当特定的功能。 对于流量管理器，运行状况探测确定是否故障转移到另一个区域。 对于负载均衡器，它确定是否从轮转项目中删除某个 VM。      
-* 对于流量管理器探测，运行状况终结点应检查所有关键依赖项，它们部署在同一区域，其故障应触发故障转移到另一个区域。  
-* 对于负载均衡器，运行状况终结点应报告 VM 的运行状况。 不要包含其他层或外部服务。 否则，在 VM 外部发生的故障会导致负载均衡器从轮转项目中删除该 VM。
-* 有关在应用程序中实施运行状况监视的指导，请参阅[运行状况终结点监视模式](https://msdn.microsoft.com/library/dn589789.aspx)。
+- [Azure 流量管理器][traffic-manager]和 [Azure 负载均衡器][load-balancer]的运行状况探测充当特定的功能。 对于流量管理器，运行状况探测确定是否故障转移到另一个区域。 对于负载均衡器，它确定是否从轮转项目中删除某个 VM。
+
+- 对于流量管理器探测，运行状况终结点应检查所有关键依赖项，它们部署在同一区域，其故障应触发故障转移到另一个区域。
+
+- 对于负载均衡器，运行状况终结点应报告 VM 的运行状况。 不要包含其他层或外部服务。 否则，在 VM 外部发生的故障会导致负载均衡器从轮转项目中删除该 VM。
+
+- 有关在应用程序中实施运行状况监视的指导，请参阅[运行状况终结点监视模式](../patterns/health-endpoint-monitoring.md)。
 
 **监视第三方服务。** 如果应用程序依赖于第三方服务，请确定这些第三方服务可能会在哪个位置出现何种故障，以及这些故障对应用程序造成的影响。 第三方服务可能不包括监视和诊断，因此，必须记录其调用，并使用唯一标识符将其与应用程序的运行状况和诊断日志记录相关联。 有关监视和诊断的成熟做法的详细信息，请参阅[监视和诊断指南][monitoring-and-diagnostics-guidance]。
 
 **确保使用的任何第三方服务提供 SLA。** 如果应用程序依赖于某个第三方服务，但该服务不以 SLA 的形式保证可用性，则也无法保证应用程序的可用性。 SLA 只与应用程序的最低可用性组件一样高。
 
-**在适用的情况下，请实施复原模式以进行远程操作。** 如果应用程序依赖于远程服务之间的通信，请遵循处理暂时性故障的[设计模式](../patterns/category/resiliency.md)，例如[重试模式][retry-pattern]和[断路器模式][circuit-breaker]。 
+**在适用的情况下，请实施复原模式以进行远程操作。** 如果应用程序依赖于远程服务之间的通信，请遵循处理暂时性故障的[设计模式](../patterns/category/resiliency.md)，例如[重试模式](../patterns/retry.md)和[断路器模式](../patterns/circuit-breaker.md)。
 
 **尽量执行异步操作。** 同步操作可能会独占资源，并在调用方等待进程完成时阻塞其他操作。 设计应用程序的每个组成部分，以尽量执行异步操作。 有关如何在 C# 中实现异步编程的详细信息，请参阅[使用 async 和 await 进行异步编程][asynchronous-c-sharp]。
 
 ## <a name="data-management"></a>数据管理
 
-**了解应用程序数据源的复制方法。** 应用程序数据将存储在不同的数据源中，因此具有不同的可用性要求。 评估 Azure 中每种数据存储的复制方法，包括 [Azure 存储复制](/azure/storage/storage-redundancy/)和 [SQL 数据库活动异地复制](/azure/sql-database/sql-database-geo-replication-overview/)，确保满足应用程序的数据要求。 如果使用 [Site Recovery][site-recovery] 复制 Azure VM，则所有 VM 磁盘将以异步方式持续复制到目标区域。 每隔几分钟就会创建恢复点。 
+**了解应用程序数据源的复制方法。** 应用程序数据将存储在不同的数据源中，因此具有不同的可用性要求。 评估 Azure 中每种数据存储的复制方法，包括 [Azure 存储复制](/azure/storage/storage-redundancy/)和 [SQL 数据库活动异地复制](/azure/sql-database/sql-database-geo-replication-overview/)，确保满足应用程序的数据要求。 如果使用 [Site Recovery][site-recovery] 复制 Azure VM，则所有 VM 磁盘将以异步方式持续复制到目标区域。 每隔几分钟就会创建恢复点。
 
 **确保没有任何用户帐户同时有权访问生产和备份数据。** 如果单个用户帐户同时有权写入生产和备份源，则将会透露数据备份。 恶意用户可能有意删除所有数据，而普通用户可能意外删除数据。 将应用程序设计为限制每个用户帐户的权限，以便只有需要写访问权限的用户拥有写访问权限，并且只能写入生产或备份数据，但不能同时写入两者。
 
@@ -77,9 +80,7 @@ ms.locfileid: "52305938"
 **考虑使用异地冗余的存储帐户类型。** Azure 存储帐户中存储的数据始终在本地复制。 但是，在预配存储帐户时，有多个复制策略可供选择。 选择 [Azure 读取访问异地冗余存储 (RA-GRS)](/azure/storage/storage-redundancy/#read-access-geo-redundant-storage) 可以在整个区域不可用时（这种情况很罕见）保护应用程序数据。
 
 > [!NOTE]
-> 对于 VM，请不要依赖于 RA-GRS 复制来还原 VM 磁盘（VHD 文件）， 而应该使用 [Azure 备份][azure-backup]。   
->
->
+> 对于 VM，请不要依赖于 RA-GRS 复制来还原 VM 磁盘（VHD 文件）， 而应该使用 [Azure 备份][azure-backup]。
 
 ## <a name="security"></a>“安全”
 
@@ -97,15 +98,15 @@ ms.locfileid: "52305938"
 
 ## <a name="deployment"></a>部署
 
-**阐述应用程序的发布过程。** 如果不提供详细的发布过程文档，操作员可能部署错误的更新，或不当地配置应用程序的设置。 明确定义和阐述发布过程，并确保将其提供给整个运营团队。 
+**阐述应用程序的发布过程。** 如果不提供详细的发布过程文档，操作员可能部署错误的更新，或不当地配置应用程序的设置。 明确定义和阐述发布过程，并确保将其提供给整个运营团队。
 
-**自动执行应用程序部署过程。** 如果需要操作人员手动部署应用程序，则人为错误可能导致部署失败。 
+**自动执行应用程序部署过程。** 如果需要操作人员手动部署应用程序，则人为错误可能导致部署失败。
 
 **设计发布过程，以便尽量提高应用程序可用性。** 如果发布过程要求服务在部署期间脱机，应用程序只能在重新联机后才可用。 使用[蓝/绿](https://martinfowler.com/bliki/BlueGreenDeployment.html)或[金丝雀发布](https://martinfowler.com/bliki/CanaryRelease.html)部署方法将应用程序部署到生产环境。 这两种方法涉及到连同生产代码一起部署发布代码，因此，在发生故障时，发布代码的用户可重定向到生产代码。
 
 **记录并审核应用程序的部署。** 如果使用分阶段部署方法（例如蓝/绿或金丝雀发布方法），则生产环境中会运行的应用程序的多个版本。 如果出现问题，确定应用程序的哪个版本导致该问题至关重要。 实施可靠的日志记录策略来尽量多地捕获版本特定的信息。
 
-**为部署创建回滚计划。** 应用程序部署可能失败，并导致应用程序不可用。 请设计回滚过程，以恢复到上次已知正确的版本并最小化停机时间。 
+**为部署创建回滚计划。** 应用程序部署可能失败，并导致应用程序不可用。 请设计回滚过程，以恢复到上次已知正确的版本并最小化停机时间。
 
 ## <a name="operations"></a>操作
 
@@ -121,7 +122,7 @@ ms.locfileid: "52305938"
 
 **确保应用程序不会达到 [Azure 订阅限制](/azure/azure-subscription-service-limits/)。** Azure 订阅限制特定的资源类型，例如资源组数量、内核数量和存储帐户数量。  如果应用程序的要求超过 Azure 订阅限制，请创建另一个 Azure 订阅并预配足够的资源。
 
-**确保应用程序不会达到[每个服务的限制](/azure/azure-subscription-service-limits/)。** 每个 Azure 服务存在消耗量限制 &mdash; 例如，存储、吞吐量、连接、每秒请求数和其他指标的限制。 如果应用程序尝试使用的资源超过这些限制，则会发生故障。 这会导致服务限制，并可能给受影响用户造成停机。 根据特定的服务和应用程序要求，通常可以通过纵向扩展（例如，选择另一个定价层）或横向扩展（添加新实例）避免这些限制。  
+**确保应用程序不会达到[每个服务的限制](/azure/azure-subscription-service-limits/)。** 每个 Azure 服务存在消耗量限制 &mdash; 例如，存储、吞吐量、连接、每秒请求数和其他指标的限制。 如果应用程序尝试使用的资源超过这些限制，则会发生故障。 这会导致服务限制，并可能给受影响用户造成停机。 根据特定的服务和应用程序要求，通常可以通过纵向扩展（例如，选择另一个定价层）或横向扩展（添加新实例）避免这些限制。
 
 **将应用程序的存储要求设计为处在Azure 存储可伸缩性和性能目标的范围内。** Azure 存储需在预定义的可伸缩性和性能目标内运行，因此请将应用程序设计为使用这些目标内的存储。 如果超出这些目标，应用程序会受到存储限制。 若要解决此问题，请预配更多的存储帐户。 如果达到存储帐户限制，请预配更多的 Azure 订阅，然后预配更多的存储帐户。 有关详细信息，请参阅 [Azure 存储可伸缩性和性能目标](/azure/storage/storage-scalability-targets/)。
 
@@ -129,7 +130,7 @@ ms.locfileid: "52305938"
 
 **确定应用程序的工作负荷在一段时间内是稳定还是波动。** 如果工作负荷在一段时间内波动，请使用 Azure VM 规模集自动缩放 VM 实例的数目。 否则，必须手动增加或减少 VM 的数目。 有关详细信息，请参阅[虚拟机规模集概述](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview/)。
 
-**为 Azure SQL 数据库选择适当的服务层。** 如果应用程序使用 Azure SQL 数据库，请确保选择适当的服务层。 如果选择的层无法应对应用程序的数据库事务单位 (DTU) 要求，则数据将受到限制。 有关选择正确服务计划的详细信息，请参阅 [SQL 数据库选项和性能：了解每个服务层提供的功能](/azure/sql-database/sql-database-service-tiers/)。
+**为 Azure SQL 数据库选择适当的服务层。** 如果应用程序使用 Azure SQL 数据库，请确保选择适当的服务层。 如果选择的层无法应对应用程序的数据库事务单位 (DTU) 要求，则数据将受到限制。 有关如何选择正确服务计划的详细信息，请参阅 [SQL 数据库选项和性能：了解每个服务层提供的功能](/azure/sql-database/sql-database-service-tiers/)。
 
 **创建与 Azure 支持部门交互的过程。** 如果在需要联系支持人员之前未设置联系 [Azure 支持部门](https://azure.microsoft.com/support/plans/)的过程，则停机时间将会延长，因为第一次需要导航支持过程。 在设计应用程序复原能力的过程中，从一开始就包括与支持部门联系的过程，以及升级事务的过程。
 
@@ -164,7 +165,6 @@ ms.locfileid: "52305938"
 - [特定 Azure 服务的复原能力检查表](./resiliency-per-service.md)
 - [故障模式分析](../resiliency/failure-mode-analysis.md)
 
-
 <!-- links -->
 [app-service-autoscale]: /azure/monitoring-and-diagnostics/insights-how-to-scale/
 [asynchronous-c-sharp]: /dotnet/articles/csharp/async
@@ -176,7 +176,6 @@ ms.locfileid: "52305938"
 [load-balancer]: /azure/load-balancer/load-balancer-overview/
 [monitoring-and-diagnostics-guidance]: ../best-practices/monitoring.md
 [resource-manager]: /azure/azure-resource-manager/resource-group-overview/
-[retry-pattern]: ../patterns/retry.md
 [retry-service-guidance]: ../best-practices/retry-service-specific.md
 [site-recovery]: /azure/site-recovery/
 [site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure

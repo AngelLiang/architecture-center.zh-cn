@@ -3,12 +3,13 @@ title: 在 Azure 上使用 Oracle 数据库运行 SAP 生产工作负荷
 description: 在 Azure 中使用 Oracle 数据库运行 SAP 生产部署。
 author: DharmeshBhagat
 ms.date: 9/12/2018
-ms.openlocfilehash: 75942b4d9b18b7bbe7a162826bcf4fe9ece22dce
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: e345760c69c4d3cc26fe6d4d7cb8a93d183a5818
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610900"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004977"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>在 Azure 上使用 Oracle 数据库运行 SAP 生产工作负荷
 
@@ -48,7 +49,7 @@ SAP 系统用于运行任务关键型业务应用程序。 任何服务中断都
 
 ### <a name="alternatives"></a>备选项
 
-SAP 针对 Azure 环境中的不同操作系统组合、数据库管理系统和 VM 类型提供灵活的选项。 有关详细信息，请参阅 [SAP 说明 1928533](https://launchpad.support.sap.com/#/notes/1928533)：“SAP Applications on Azure: Supported Products and Azure VM Types”（Azure 上的 SAP 应用程序：支持的产品和 Azure VM 类型）。
+SAP 针对 Azure 环境中的不同操作系统组合、数据库管理系统和 VM 类型提供灵活的选项。 有关详细信息，请参阅 [SAP 说明 1928533](https://launchpad.support.sap.com/#/notes/1928533)“Azure 上的 SAP 应用程序：支持的产品和 Azure VM 类型”。
 
 ## <a name="considerations"></a>注意事项
 

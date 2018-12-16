@@ -3,12 +3,13 @@ title: Azure 上可实现高可用性和灾难恢复的多层 Web 应用程序
 description: 使用 Azure 虚拟机、可用性集、可用性区域、Azure Site Recovery 和 Azure 流量管理器在 Azure 上创建可实现高可用性和灾难恢复的多层 Web 应用程序
 author: sujayt
 ms.date: 11/16/2018
-ms.openlocfilehash: 28593c680746dc5ac8f7f25641faa57569dcc53f
-ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
+ms.custom: product-team
+ms.openlocfilehash: 71534dc095d5fba137a0e610d4e725c2efc6b432
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52579456"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004600"
 ---
 # <a name="multitier-web-application-built-for-high-availability-and-disaster-recovery-on-azure"></a>Azure 上可实现高可用性和灾难恢复的多层 Web 应用程序
 

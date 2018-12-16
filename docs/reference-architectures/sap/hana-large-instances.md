@@ -1,20 +1,22 @@
 ---
 title: 运行 Azure SAP HANA 大型实例
+titleSuffix: Azure Reference Architectures
 description: 有关在 Azure 大型实例上的高可用性环境中运行 SAP HANA 的成熟做法。
 author: lbrader
 ms.date: 05/16/2018
-ms.openlocfilehash: d9d619dd7fb17c7cf0a66ce73c1e067ec97a2401
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: c21a5ac83d8d8ee9a9b9d7edad07288c85544994
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429700"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120130"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>运行 Azure SAP HANA 大型实例
 
-此参考体系结构演示有关运行 Azure 上的 SAP HANA（大型实例）和实现高可用性与灾难恢复 (DR) 的一套成熟做法。 此产品/服务称作 HANA 大型实例，部署在 Azure 区域中的物理服务器上。 
+此参考体系结构演示有关运行 Azure 上的 SAP HANA（大型实例）和实现高可用性与灾难恢复 (DR) 的一套成熟做法。 此产品/服务称作 HANA 大型实例，部署在 Azure 区域中的物理服务器上。
 
-![0][0]
+![使用 Azure 大型实例的 SAP HANA 体系结构](./images/sap-hana-large-instances.png)
 
 下载此体系结构的 [Visio 文件][visio-download]。
 
@@ -27,28 +29,30 @@ ms.locfileid: "47429700"
 
 - 虚拟网络。 [Azure 虚拟网络][vnet]服务在不同的 Azure 资源之间建立安全连接，并针对每个层划分为单独的[子网][subnet]。 SAP 应用程序层部署在 Azure 虚拟机 (VM) 上，以连接到大型实例上的 HANA 数据库层。
 
-- **虚拟机**。 虚拟机在 SAP 应用程序层和共享服务层中使用。 后者包括一个 Jumpbox，让管理员设置 HANA 大型实例以及提供对其他虚拟机的访问。 
+- **虚拟机**。 虚拟机在 SAP 应用程序层和共享服务层中使用。 后者包括一个 Jumpbox，让管理员设置 HANA 大型实例以及提供对其他虚拟机的访问。
 
 - **HANA 大型实例**。 一台经认证符合 SAP HANA 定制数据中心集成 (TDI) 标准的[物理服务器][physical]运行 SAP HANA。 此体系结构使用两个 HANA 大型实例：主要计算单位和次要计算单位。 通过 HANA 系统复制 (HSR) 提供数据层的高可用性。
 
-- **高可用性对**。 统一管理一组 HANA 大型实例刀片服务器，以提供应用程序冗余和可靠性。 
+- **高可用性对**。 统一管理一组 HANA 大型实例刀片服务器，以提供应用程序冗余和可靠性。
 
-- **MSEE (Microsoft Enterprise Edge)**。 MSEE 是连接提供商或网络边缘中通过 ExpressRoute 线路连接到的连接点。 
+- **MSEE (Microsoft Enterprise Edge)**。 MSEE 是连接提供商或网络边缘中通过 ExpressRoute 线路连接到的连接点。
 
 - **网络接口卡 (NIC)**。 为了实现通信，HANA 大型实例服务器默认提供四个虚拟 NIC。 此体系结构需要将一个 NIC 用于客户端通信，将第二个 NIC 用于 HSR 所需的节点间连接，将第三个 NIC 用于 HANA 大型实例存储，将第四个 NIC 用于高可用性群集中使用的 iSCSI。
-    
+
 - **网络文件系统 (NFS) 存储**。 [NFS][nfs] 服务器支持网络文件共享。网络文件共享为 HANA 大型实例提供安全的数据保留。
 
 - **ExpressRoute**。 要在本地网络与 Azure 虚拟网络之间创建不经由公共 Internet 的专用连接，我们建议使用 [ExpressRoute][expressroute] Azure 网络服务。 Azure VM 使用另一个 ExpressRoute 连接来与 HANA 大型实例建立连接。 Azure 虚拟网络与 HANA 大型实例之间的 ExpressRoute 连接设置为 Microsoft 产品/服务的一部分。
 
 - **网关**。 ExpressRoute 网关用于将 SAP 应用层所用的 Azure 虚拟网络连接到 HANA 大型实例网络。 使用[高性能或超高性能][sku] SKU。
 
-- **灾难恢复 (DR)**。 可根据请求提供存储复制支持。存储复制配置为从主要站点复制到另一区域中的 [DR 站点][DR-site]。  
- 
+- **灾难恢复 (DR)**。 可根据请求提供存储复制支持。存储复制配置为从主要站点复制到另一区域中的 [DR 站点][DR-site]。
+
 ## <a name="recommendations"></a>建议
+
 要求可能有所不同。请使用以下建议作为入手点。
 
 ### <a name="hana-large-instances-compute"></a>HANA 大型实例计算
+
 [大型实例][physical]是基于 Intel EX E7 CPU 体系结构的物理服务器，并在大型实例堆栈（即，特定的一组服务器或刀片服务器）中配置。 一个计算单位等于一台服务器或刀片服务器，一个堆栈由多台服务器或刀片服务器构成。 在大型实例堆栈中，服务器不会共享，而是专门用于运行一个客户的 SAP HANA 部署。
 
 HANA 大型实例有各种可用的 SKU，S/4HANA 或其他 SAP HANA 工作负荷最多支持 20 TB 的单一内存实例（可扩展到 60 TB）。 提供[两类][classes]服务器：
@@ -62,13 +66,15 @@ HANA 大型实例有各种可用的 SKU，S/4HANA 或其他 SAP HANA 工作负�
 Microsoft 可帮助建立大型实例设置，但你要负责验证操作系统的配置设置。 请务必查看确切 Linux 版本的最新 SAP 说明。
 
 ### <a name="storage"></a>存储
-根据 SAP HANA TDI 的建议实施存储布局。 HANA 大型实例根据标准的 TDI 规范随附特定的存储配置。 但是，可以 1 TB 为增量购买更多的存储。 
+
+根据 SAP HANA TDI 的建议实施存储布局。 HANA 大型实例根据标准的 TDI 规范随附特定的存储配置。 但是，可以 1 TB 为增量购买更多的存储。
 
 为了支持任务关键型环境的要求（包括快速恢复），将使用 NFS 而不是直接附加存储。 HANA 大型实例的 NFS 存储服务器托管在多租户环境中，其中的租户已通过计算、网络和存储隔离技术进行分离和保护。
 
 若要支持主站点的高可用性，请使用不同的存储布局。 例如，在多主机横向扩展部署中，存储是共享的。 另一种高可用性做法是使用基于应用程序的复制，例如 HSR。 但是，对于灾难恢复，应使用基于快照的存储复制。
 
 ### <a name="networking"></a>网络
+
 此体系结构使用虚拟网络和物理网络。 虚拟网络是 Azure IaaS 的一部分，通过 [ExpressRoute][expressroute]] 线路连接到离散的 HANA 大型实例物理网络。 跨界网关将 Azure 虚拟网络中的工作负荷连接到本地站点。
 
 出于安全考虑，HANA 大型实例网络相互隔离。 位于不同区域的实例不会相互通信，专用存储复制除外。 但是，若要使用 HSR，必须进行区域间的通信。 [IP 路由表][ip]或代理可用于实现跨区域 HSR。
@@ -78,6 +84,7 @@ Microsoft 可帮助建立大型实例设置，但你要负责验证操作系统�
 在预配期间，默认会包含 HANA 大型实例的 ExpressRoute。 在设置期间，需要特定的网络布局，包括所需的 CIDR 地址范围和域路由。 有关详细信息，请参阅 [Azure 上的 SAP HANA（大型实例）的基础结构和连接][HLI-infrastructure]。
 
 ## <a name="scalability-considerations"></a>可伸缩性注意事项
+
 若要纵向扩展或缩减，可以从适用于 HANA 大型实例的多种服务器大小中进行选择。 这些大小分类为 [I 型和 II 型][classes]，是针对不同工作负荷定制的。 请选择在未来三年能够适应工作负荷增长的大小。 我们还提供满足一年需求的承诺。
 
 作为一种数据库分区策略，通常会将多主机横向扩展部署用作 BW/4HANA 部署。 若要横向扩展，请在安装前规划 HANA 表的位置。 从基础结构的角度看，多个主机会连接到共享的存储卷，以便在 HANA 系统中的某个计算工作节点发生故障时，后备主机能够快速接管工作。
@@ -86,7 +93,7 @@ Microsoft 可帮助建立大型实例设置，但你要负责验证操作系统�
 
 针对节约型的方案，可以使用 [SAP Quick Sizer][quick-sizer] 来计算在 HANA 的基础上实施 SAP 软件时的内存要求。 HANA 的内存需求将随数据量增长而增加。 基于系统的当前内存消耗量预测未来的消耗量，然后将需求对应到某个 HANA 大型实例大小。
 
-对于现有的 SAP 部署，SAP 会提供报告，用于检查现有系统使用的数据并计算 HANA 实例的内存要求。 有关示例，请参阅以下 SAP 说明： 
+对于现有的 SAP 部署，SAP 会提供报告，用于检查现有系统使用的数据并计算 HANA 实例的内存要求。 有关示例，请参阅以下 SAP 说明：
 
 - SAP 说明 [1793345][sap-1793345] - SAP Suite on HANA 的大小
 - SAP 说明 [1872170][sap-1872170] - Suite on HANA 和 S/4 HANA 大小报告
@@ -106,19 +113,21 @@ Microsoft 可帮助建立大型实例设置，但你要负责验证操作系统�
 
 若要实现高可用性，请在高可用性对中部署多个实例，并在同步模式下使用 HSR，以尽量减少数据丢失和停机时间。 除了本地的双节点高可用性设置以外，HSR 还支持多层复制，其中，单独的 Azure 区域中的第三个节点会注册到 HSR 群集对的辅助副本（复制目标）。 这就构成了复制菊花链。 故障转移到 DR 节点是一个手动过程。
 
-如果使用自动故障转移设置了 HANA 大型实例 HSR，则可以请求 Microsoft 服务管理团队为现有的服务器设置 [STONITH 设备][stonith]。 
+如果使用自动故障转移设置了 HANA 大型实例 HSR，则可以请求 Microsoft 服务管理团队为现有的服务器设置 [STONITH 设备][stonith]。
 
 ## <a name="disaster-recovery-considerations"></a>灾难恢复注意事项
+
 此体系结构支持不同 Azure 区域中 HANA 大型实例之间的[灾难恢复][hli-dr]。 可以在 HANA 大型实例上使用两种方法来支持 DR：
 
 - 存储复制。 主存储内容会不断复制到指定的 DR HANA 大型实例服务器上提供的远程 DR 存储系统。 在存储复制中，HANA 数据库不会加载到内存中。 从管理角度看，此 DR 选项更简单。 若要确定此策略是否合适，请根据可用性 SLA 考虑数据库加载时间。 使用存储复制还能执行时间点恢复。 如果设置了多用途（成本优化）DR，则必须在 DR 位置购买相同大小的额外存储。 Microsoft 通过 HANA 大型实例产品/服务为 HANA 故障转移提供自助服务[存储快照和故障转移脚本][scripts]。
 
-- DR 区域中包含第三个副本的多层 HSR（其中的 HANA 数据库会加载到内存中）。 此选项支持更快的恢复时间，但不支持时间点恢复。 HSR 需要辅助系统。 DR 站点的 HANA 系统复制通过 nginx 等代理或 IP 表进行处理。 
+- DR 区域中包含第三个副本的多层 HSR（其中的 HANA 数据库会加载到内存中）。 此选项支持更快的恢复时间，但不支持时间点恢复。 HSR 需要辅助系统。 DR 站点的 HANA 系统复制通过 nginx 等代理或 IP 表进行处理。
 
 > [!NOTE]
-> 可以在单一实例环境中运行此参考体系结构，以优化其成本。 此[成本优化方案](https://blogs.sap.com/2016/07/19/new-whitepaper-for-high-availability-for-sap-hana-cost-optimized-scenario/)适合用于非生产 HANA 工作负荷。 
+> 可以在单一实例环境中运行此参考体系结构，以优化其成本。 此[成本优化方案](https://blogs.sap.com/2016/07/19/new-whitepaper-for-high-availability-for-sap-hana-cost-optimized-scenario/)适合用于非生产 HANA 工作负荷。
 
 ## <a name="backup-considerations"></a>备份注意事项
+
 根据业务要求，从[备份和恢复][hli-backup]的多个可用选项中做出选择。
 
 | 备份选项                   | 优点                                                                                                   | 缺点                                                       |
@@ -130,14 +139,16 @@ Microsoft 可帮助建立大型实例设置，但你要负责验证操作系统�
 | 其他备份工具 | 冗余备份位置。                                                                             | 额外的许可费用。                                |
 
 ## <a name="manageability-considerations"></a>可管理性注意事项
-使用 SAP HANA Studio、SAP HANA Cockpit、SAP Solution Manager 和其他本机 Linux 工具来监视 CPU、内存、网络带宽和存储空间等 HANA 大型实例资源。 HANA 大型实例未随附内置的监视工具。 Microsoft 会提供所需的资源用于根据组织的要求进行[故障排除和监视][hli-troubleshoot]，Microsoft 支持团队可以帮助排查技术问题。 
 
-如需更大的计算能力，必须购买更大的 SKU。 
+使用 SAP HANA Studio、SAP HANA Cockpit、SAP Solution Manager 和其他本机 Linux 工具来监视 CPU、内存、网络带宽和存储空间等 HANA 大型实例资源。 HANA 大型实例未随附内置的监视工具。 Microsoft 会提供所需的资源用于根据组织的要求进行[故障排除和监视][hli-troubleshoot]，Microsoft 支持团队可以帮助排查技术问题。
+
+如需更大的计算能力，必须购买更大的 SKU。
 
 ## <a name="security-considerations"></a>安全注意事项
+
 - 默认情况下，HANA 大型实例针对静态数据使用基于 TDE（透明数据加密）的存储加密。
 
-- HANA 大型实例与虚拟机之间的传输中数据不会加密。 若要加密数据传输，请启用应用程序特定的加密。 参阅 SAP 说明 [2159014][sap-2159014] - 常见问题解答：SAP HANA 安全性。
+- HANA 大型实例与虚拟机之间的传输中数据不会加密。 若要加密数据传输，请启用应用程序特定的加密。 请参阅 SAP 说明 [2159014][sap-2159014] - 常见问题解答：SAP HANA 安全性。
 
 - 隔离功能在多租户 HANA 大型实例环境中的租户之间提供安全性。 使用租户自身的 VLAN 来隔离租户。
 
@@ -150,12 +161,13 @@ Microsoft 可帮助建立大型实例设置，但你要负责验证操作系统�
 有关详细信息，请参阅 [SAP HANA 安全性 - 概述][sap-security]。（需要创建一个 SAP Service Marketplace 帐户进行访问。）
 
 ## <a name="communities"></a>社区
+
 社区可以解答问题，并帮助设置成功的部署。 请注意以下几点：
 
-* [在 Microsoft 平台上运行 SAP 应用程序（博客）][running-sap-blog]
-* [Azure 社区支持][azure-forum]
-* [SAP 社区][sap-community]
-* [Stack Overflow SAP][stack-overflow]
+- [在 Microsoft 平台上运行 SAP 应用程序（博客）][running-sap-blog]
+- [Azure 社区支持][azure-forum]
+- [SAP 社区][sap-community]
+- [Stack Overflow SAP][stack-overflow]
 
 [azure-forum]: https://azure.microsoft.com/support/forums/
 [azure-large-instances]: /azure/virtual-machines/workloads/sap/hana-overview-architecture
@@ -199,6 +211,4 @@ Microsoft 可帮助建立大型实例设置，但你要负责验证操作系统�
 [swd]: https://help.sap.com/doc/saphelp_nw70ehp2/7.02.16/en-us/48/8fe37933114e6fe10000000a421937/frameset.htm
 [type]: /azure/virtual-machines/workloads/sap/hana-installation
 [vnet]: /azure/virtual-network/virtual-networks-overview
-[0]: ./images/sap-hana-large-instances.png "使用 Azure 大型实例的 SAP HANA 体系结构"
-
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx
