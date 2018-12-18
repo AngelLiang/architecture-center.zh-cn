@@ -1,15 +1,16 @@
 ---
 title: API 实现指南
+titleSuffix: Best practices for cloud applications
 description: 有关如何实现 API 的指南。
 author: dragon119
 ms.date: 07/13/2016
-pnp.series.title: Best Practices
-ms.openlocfilehash: fff377d347ce93e9fb83fff1f5a44fe1c7b4dbea
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: edbb214c8b582e334a851da79370844da4762a76
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429394"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307395"
 ---
 # <a name="api-implementation"></a>API 实现
 
@@ -25,7 +26,6 @@ ms.locfileid: "47429394"
 
 > [!NOTE]
 > Jonathan Oliver 博客上的 [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/)（幂等性模式）一文概述了幂等性以及它如何与数据管理操作相关。
->
 
 ### <a name="post-actions-that-create-new-resources-should-not-have-unrelated-side-effects"></a>创建新资源的 POST 操作不应具有不相关的副作用
 
@@ -37,15 +37,15 @@ ms.locfileid: "47429394"
 
 ASP.NET Web API 2 中包含的 OData 支持提供了成批处理请求的功能。 客户端应用程序可以打包多个 Web API 请求并通过单个 HTTP 请求将其发送给服务器，然后接收包含每个请求的答复的单个 HTTP 响应。 有关详细信息，请参阅 [Introducing Batch Support in Web API and Web API OData](https://blogs.msdn.microsoft.com/webdev/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata/)（Web API 和 Web API OData 中的批处理支持简介）。
 
-### <a name="follow-the-http-specification-when-sending-a-response"></a>发送响应时请按照 HTTP 规范操作 
+### <a name="follow-the-http-specification-when-sending-a-response"></a>发送响应时请按照 HTTP 规范操作
 
-Web API 必须返回包含正确 HTTP 状态代码的消息（使客户端可以确定如何处理结果）、相应的 HTTP 标头（以便客户端了解结果的性质），以及适当格式化的正文（使客户端可以分析结果）。 
+Web API 必须返回包含正确 HTTP 状态代码的消息（使客户端可以确定如何处理结果）、相应的 HTTP 标头（以便客户端了解结果的性质），以及适当格式化的正文（使客户端可以分析结果）。
 
 例如，POST 操作应返回状态代码 201（已创建），并且响应消息应在其 Location 标头中包含新创建的资源的 URI。
 
 ### <a name="support-content-negotiation"></a>支持内容协商
 
-响应消息的正文可能包含不同格式的数据。 例如，HTTP GET 请求可以返回 JSON 或 XML 格式的数据。 客户端提交请求时，它可以包括指定它可以处理的数据格式的 Accept 标头。 这些格式将指定为媒体类型。 例如，发出用于检索图像的 GET 请求的客户端可以指定 Accept 标头，其中列出客户端可以处理的媒体类型，如“image/jpeg, image/gif, image/png”。  当 Web API 返回结果时，它应使用其中一种媒体类型设置数据格式，并在响应的 Content-Type 标头中指定该格式。
+响应消息的正文可能包含不同格式的数据。 例如，HTTP GET 请求可以返回 JSON 或 XML 格式的数据。 客户端提交请求时，它可以包括指定它可以处理的数据格式的 Accept 标头。 这些格式将指定为媒体类型。 例如，发出用于检索图像的 GET 请求的客户端可以指定 Accept 标头，其中列出客户端可以处理的媒体类型，如 `image/jpeg, image/gif, image/png`。 当 Web API 返回结果时，它应使用其中一种媒体类型设置数据格式，并在响应的 Content-Type 标头中指定该格式。
 
 如果客户端未指定 Accept 标头，则对响应正文使用有意义的默认格式。 例如，ASP.NET Web API 框架对基于文本的数据默认使用 JSON 格式。
 
@@ -113,18 +113,18 @@ public class Link
 
 HTTP GET 操作从存储中检索客户数据并构造 `Customer` 对象，并填充 `Links` 集合。 结果将格式化为 JSON 响应消息。 每个链接包含以下字段：
 
-* 返回的对象与链接所描述的对象之间的关系。 在此示例中，“self”指示该链接是返回到对象本身的引用（类似于许多面向对象语言中的 `this` 指针），而“orders”则是包含相关订单信息的集合的名称。
-* URI 形式的链接所描述的对象的超链接 (`Href`)。
-* 可发送到此 URI 的 HTTP 请求的类型 (`Action`)。
-* 应在 HTTP 请求中提供或可在响应中返回的任何数据的格式 (`Types`)，具体取决于请求的类型。
+- 返回的对象与链接所描述的对象之间的关系。 在此示例中，`self` 指示该链接是返回到对象本身的引用（类似于许多面向对象语言中的 `this` 指针），而 `orders` 则是包含相关订单信息的集合的名称。
+- URI 形式的链接所描述的对象的超链接 (`Href`)。
+- 可发送到此 URI 的 HTTP 请求的类型 (`Action`)。
+- 应在 HTTP 请求中提供或可在响应中返回的任何数据的格式 (`Types`)，具体取决于请求的类型。
 
 HTTP 响应的示例中所示的 HATEOAS 链接指示客户端应用程序可以执行以下操作：
 
-* 向 URI `https://adventure-works.com/customers/2` 发出 HTTP GET 请求以提取客户的详细信息（再次）。 数据可以 XML 或 JSON 格式返回。
-* 向 URI `https://adventure-works.com/customers/2` 发出 HTTP PUT 请求以修改客户的详细信息。 必须在请求消息中以 x-www-form-urlencoded 格式提供新数据。
-* 向 URI `https://adventure-works.com/customers/2` 发出 HTTP DELETE 请求以删除客户。 该请求不需要任何其他信息，也不需要在响应消息正文中返回数据。
-* 向 URI `https://adventure-works.com/customers/2/orders` 发出 HTTP GET 请求以查找客户的所有订单。 数据可以 XML 或 JSON 格式返回。
-* 向 URI `https://adventure-works.com/customers/2/orders` 发出 HTTP PUT 请求以为此客户创建新订单。 必须在请求消息中以 x-www-form-urlencoded 格式提供数据。
+- 向 URI `https://adventure-works.com/customers/2` 发出 HTTP GET 请求以提取客户的详细信息（再次）。 数据可以 XML 或 JSON 格式返回。
+- 向 URI `https://adventure-works.com/customers/2` 发出 HTTP PUT 请求以修改客户的详细信息。 必须在请求消息中以 x-www-form-urlencoded 格式提供新数据。
+- 向 URI `https://adventure-works.com/customers/2` 发出 HTTP DELETE 请求以删除客户。 该请求不需要任何其他信息，也不需要在响应消息正文中返回数据。
+- 向 URI `https://adventure-works.com/customers/2/orders` 发出 HTTP GET 请求以查找客户的所有订单。 数据可以 XML 或 JSON 格式返回。
+- 向 URI `https://adventure-works.com/customers/2/orders` 发出 HTTP PUT 请求以为此客户创建新订单。 必须在请求消息中以 x-www-form-urlencoded 格式提供数据。
 
 ## <a name="handling-exceptions"></a>处理异常
 
@@ -181,16 +181,17 @@ public IHttpActionResult DeleteCustomer(int id)
 > 请勿包括可能对尝试入侵 API 的攻击者有用的信息。
   
 许多 Web 服务器在错误条件到达 Web API 之前，自行捕获错误条件。 例如，如果为网站配置了身份验证，但用户无法提供正确的身份验证信息，则 Web 服务器应以状态代码 401（未经授权）进行响应。 客户端经过身份验证后，代码可以执行自己的检查来验证客户端是否应能够访问所请求的资源。 如果此授权失败，则应返回状态代码 403（禁止访问）。
- 
+
 ### <a name="handle-exceptions-consistently-and-log-information-about-errors"></a>一致地处理异常，并记录有关错误的信息
 
-若要以一致方式处理异常，请考虑在整个 Web API 中实现全局错误处理策略。 还应将整合捕获每个异常的完整详细信息的错误日志记录；只要客户端无法通过 Web 访问它，此错误日志就会包含详细的信息。 
+若要以一致方式处理异常，请考虑在整个 Web API 中实现全局错误处理策略。 还应将整合捕获每个异常的完整详细信息的错误日志记录；只要客户端无法通过 Web 访问它，此错误日志就会包含详细的信息。
 
 ### <a name="distinguish-between-client-side-errors-and-server-side-errors"></a>区分客户端错误和服务器端错误
 
 HTTP 协议可区分因客户端应用程序发生的错误（HTTP 4xx 状态代码）和因服务器上的事故导致的错误（HTTP 5xx 状态代码）。 请确保在任何错误响应消息中遵守此约定。
 
 ## <a name="optimizing-client-side-data-access"></a>优化客户端数据访问
+
 例如，在分布式环境（例如，涉及 Web 服务器和客户端应用程序）中，主要问题源之一是网络。 这可能表现为值得注意的瓶颈问题，尤其当客户端应用程序频繁地将发送请求或接收数据时。 因此，目标应是将网络间流动的通信量降到最低。 在实现检索和维护数据的代码时，请考虑以下几点：
 
 ### <a name="support-client-side-caching"></a>支持客户端缓存
@@ -274,8 +275,6 @@ public class OkResultWithCaching<T> : OkNegotiatedContentResult<T>
 
 > [!NOTE]
 > HTTP 协议还为 Cache-Control 标头定义了 *no-cache* 指令。 令人困惑的是，此指令并不意味着“不缓存”而是指示“在返回信息之前使用服务器重新验证缓存的信息”；数据仍可以缓存，但在每次使用它时检查以确保它仍是最新的。
->
->
 
 缓存管理是客户端应用程序或中间服务器的职责，但如果正确实现它，可以节省带宽和提高性能，因为它可以消除提取最近已检索的数据的需要。
 
@@ -285,7 +284,6 @@ Cache-Control 标头中的 *max-age* 值只是指南，并不保证相应的数�
 > 如前所述，大多数现代 Web 浏览器通过向请求添加相应的 Cache-Control 标头并检查结果的标头来支持客户端缓存。 但是，某些较旧的浏览器将不缓存从包含查询字符串的 URL 返回的值。 这通常不是基于此处讨论的协议实现自己的缓存管理策略的自定义客户端应用程序的问题。
 >
 > 某些较旧的代理显示相同的行为并可能不会基于包含查询字符串的 URL 缓存请求。 这可能是通过此类代理连接到 Web 服务器的自定义客户端应用程序的问题。
->
 
 ### <a name="provide-etags-to-optimize-query-processing"></a>提供 ETag 以优化查询处理
 
@@ -331,26 +329,28 @@ Content-Length: ...
 
 > [!TIP]
 > 出于安全原因，不允许缓存敏感数据或通过经过身份验证 (HTTPS) 的连接返回的数据。
->
->
 
 客户端应用程序随时可以发出后续 GET 请求以检索同一资源，并且如果资源已更改（它具有不同的 ETag），则应放弃缓存的版本，并将新版本添加到缓存中。 如果资源很大并且需要大量的带宽才能传输回客户端，则重复执行提取相同数据的请求可能会效率低下。 为了应对这种情况，HTTP 协议定义了以下过程来优化应在 Web API 中支持的 GET 请求：
 
-* 客户端构造 GET 请求，该请求包含 If-None-Match HTTP 标头中引用的资源的当前缓存版本的 ETag：
+- 客户端构造 GET 请求，该请求包含 If-None-Match HTTP 标头中引用的资源的当前缓存版本的 ETag：
 
     ```HTTP
     GET https://adventure-works.com/orders/2 HTTP/1.1
     If-None-Match: "2147483648"
     ```
-* Web API 中的 GET 操作获取所请求数据的当前 ETag（上面示例中的订单 2），并将其与 If-None-Match 标头中的值进行比较。
-* 如果所请求数据的当前 ETag 与请求提供的 ETag 匹配，则资源尚未更改，Web API 应返回 HTTP 响应，其中包含空的消息正文和状态代码 304（未修改）。
-* 如果所请求数据的当前 ETag 与请求提供的 ETag 不匹配，则数据已更改，Web API 应返回 HTTP 响应，其中包含带有新数据的消息正文和状态代码 200（正常）。
-* 如果所请求的数据不再存在，则 Web API 应返回状态代码为 404（未找到）的 HTTP 响应。
-* 客户端使用状态代码来维护缓存。 如果数据尚未更改（状态代码 304），则对象可保持缓存，并且客户端应用程序应继续使用此版本的对象。 如果数据已更改（状态代码 200），则应放弃缓存的对象，并插入新对象。 如果数据不再可用（状态代码 404），则应从缓存中删除该对象。
+
+- Web API 中的 GET 操作获取所请求数据的当前 ETag（上面示例中的订单 2），并将其与 If-None-Match 标头中的值进行比较。
+
+- 如果所请求数据的当前 ETag 与请求提供的 ETag 匹配，则资源尚未更改，Web API 应返回 HTTP 响应，其中包含空的消息正文和状态代码 304（未修改）。
+
+- 如果所请求数据的当前 ETag 与请求提供的 ETag 不匹配，则数据已更改，Web API 应返回 HTTP 响应，其中包含带有新数据的消息正文和状态代码 200（正常）。
+
+- 如果所请求的数据不再存在，则 Web API 应返回状态代码为 404（未找到）的 HTTP 响应。
+
+- 客户端使用状态代码来维护缓存。 如果数据尚未更改（状态代码 304），则对象可保持缓存，并且客户端应用程序应继续使用此版本的对象。 如果数据已更改（状态代码 200），则应放弃缓存的对象，并插入新对象。 如果数据不再可用（状态代码 404），则应从缓存中删除该对象。
 
 > [!NOTE]
 > 如果响应标头包含 Cache-Control 标头 no-store，则应始终从缓存中删除对象，而不考虑 HTTP 状态代码。
->
 
 下面的代码显示了已扩展为支持 If-None-Match 标头的 `FindOrderByID` 方法。 请注意，如果省略 If-None-Match 标头，则始终检索指定的订单：
 
@@ -442,14 +442,13 @@ public class EmptyResultWithCaching : IHttpActionResult
 ```
 
 > [!TIP]
-> 在此示例中，通过对从基础数据源检索到的数据进行哈希处理生成数据的 ETag。 如果 ETag 可以某种其他方式计算，则可以进一步优化此过程，并且仅在数据已更改时，才需要从数据源中提取数据。  如果数据很大或访问数据源可能导致显著延迟（例如，如果数据源是远程数据库），则此方法特别有用。
->
+> 在此示例中，通过对从基础数据源检索到的数据进行哈希处理生成数据的 ETag。 如果 ETag 可以某种其他方式计算，则可以进一步优化此过程，并且仅在数据已更改时，才需要从数据源中提取数据。 如果数据很大或访问数据源可能导致显著延迟（例如，如果数据源是远程数据库），则此方法特别有用。
 
 ### <a name="use-etags-to-support-optimistic-concurrency"></a>使用 ETag 支持乐观并发
 
 为了启用对以前缓存的数据更新，HTTP 协议支持乐观并发策略。 如果在提取和缓存资源后，客户端应用程序随后发送 PUT 或 DELETE 请求以更改或删除资源，则应包含引用 ETag 的 If-match 标头。 然后，Web API 可以使用此信息来确定该资源在检索到后是否已被其他用户更改，并将相应响应发送回客户端应用程序，如下所示：
 
-* 客户端构造 PUT 请求，该请求包含资源的新详细信息，以及 If-Match HTTP 标头中引用的资源的当前缓存版本的 ETag。 下面的示例演示了用于更新订单的 PUT 请求：
+- 客户端构造 PUT 请求，该请求包含资源的新详细信息，以及 If-Match HTTP 标头中引用的资源的当前缓存版本的 ETag。 下面的示例演示了用于更新订单的 PUT 请求：
 
     ```HTTP
     PUT https://adventure-works.com/orders/1 HTTP/1.1
@@ -458,11 +457,16 @@ public class EmptyResultWithCaching : IHttpActionResult
     Content-Length: ...
     productID=3&quantity=5&orderValue=250
     ```
-* Web API 中的 PUT 操作获取所请求数据的当前 ETag（上面示例中的订单 1），并将其与 If-Match 标头中的值进行比较。
-* 如果所请求数据的当前 ETag 与请求提供的 ETag 匹配，则资源尚未未更改并且 Web API 应执行更新，并在成功的情况下返回包含 HTTP 状态代码 204（无内容）的消息。 响应可以包括资源的更新后版本的 Cache-Control 和 ETag 标头。 响应中应始终包含引用新更新资源的 URI 的 Location 标头。
-* 如果所请求数据的当前 ETag 与请求提供的 ETag 不匹配，则数据在提取后已被其他用户更改，Web API 应返回包含空的消息正文和状态代码 412（不满足前提条件）的 HTTP 响应。
-* 如果要更新的资源不再存在，则 Web API 应返回状态代码为 404（未找到）的 HTTP 响应。
-* 客户端使用状态代码和响应标头来维护缓存。 如果数据已更新（状态代码 204），则对象可保持缓存（只要 Cache-Control 标头未指定 no-store），但应更新 ETag。 如果数据已被其他用户更改（状态代码 412）或未找到（状态代码 404），则应放弃缓存的对象。
+
+- Web API 中的 PUT 操作获取所请求数据的当前 ETag（上面示例中的订单 1），并将其与 If-Match 标头中的值进行比较。
+
+- 如果所请求数据的当前 ETag 与请求提供的 ETag 匹配，则资源尚未未更改并且 Web API 应执行更新，并在成功的情况下返回包含 HTTP 状态代码 204（无内容）的消息。 响应可以包括资源的更新后版本的 Cache-Control 和 ETag 标头。 响应中应始终包含引用新更新资源的 URI 的 Location 标头。
+
+- 如果所请求数据的当前 ETag 与请求提供的 ETag 不匹配，则数据在提取后已被其他用户更改，Web API 应返回包含空的消息正文和状态代码 412（不满足前提条件）的 HTTP 响应。
+
+- 如果要更新的资源不再存在，则 Web API 应返回状态代码为 404（未找到）的 HTTP 响应。
+
+- 客户端使用状态代码和响应标头来维护缓存。 如果数据已更新（状态代码 204），则对象可保持缓存（只要 Cache-Control 标头未指定 no-store），但应更新 ETag。 如果数据已被其他用户更改（状态代码 412）或未找到（状态代码 404），则应放弃缓存的对象。
 
 下一个代码示例显示了 Orders 控制器的 PUT 操作的实现：
 
@@ -538,17 +542,16 @@ public class OrdersController : ApiController
 
 > [!TIP]
 > 是否使用 If-match 标头完全是可选的，如果省略它，Web API 将始终尝试更新指定的订单，可能会盲目地覆盖其他用户所做的更新。 若要避免由于丢失更新出现的问题，请始终提供 If-Match 标头。
->
->
 
 ## <a name="handling-large-requests-and-responses"></a>处理大型请求和响应
+
 可能会有这样的情况：客户端应用程序需要发出用于发送或接收大小可能为几兆字节（或更大）的数据的请求。 等待传输如此大量的数据可能会导致客户端应用程序停止响应。 在需要处理包含大量数据的请求时，请考虑以下几点：
 
 ### <a name="optimize-requests-and-responses-that-involve-large-objects"></a>优化涉及大型对象的请求和响应
 
 一些资源可能是大型对象或包含大量字段，例如图形图像或其他类型的二进制数据。 Web API 应支持流式处理以实现优化这些资源的上传和下载。
 
-HTTP 协议提供了分块传输编码机制，用于将大型数据对象流式传输回客户端。 当客户端为大型对象发送 HTTP GET 请求时，Web API 可以通过 HTTP 连接在段落*区块*中发送回答复。 最初答复中数据的长度可能未知（可能会生成它），因此托管 Web API 的服务器应发送包含每个区块的响应消息，这些区块指定 Transfer-Encoding: Chunked 标头而不是 Content-Length 标头。 客户端应用程序可以依次接收每个区块以组合成完整响应。 在数据传输完成后，服务器将发送回最后一个区块（大小为零）。 
+HTTP 协议提供了分块传输编码机制，用于将大型数据对象流式传输回客户端。 当客户端为大型对象发送 HTTP GET 请求时，Web API 可以通过 HTTP 连接在段落*区块*中发送回答复。 答复中数据的长度一开始可能未知（可能会生成它），因此托管 Web API 的服务器应发送包含每个区块的响应消息，这些区块指定 Transfer-Encoding:Chunked 标头而不是 Content-Length 标头。 客户端应用程序可以依次接收每个区块以组合成完整响应。 在数据传输完成后，服务器将发送回最后一个区块（大小为零）。
 
 可以想象单个请求生成使用大量资源的大型对象。 如果在流式处理过程中，Web API 确定请求中的数据量超过了可接受的范围，它可以中止操作并返回具有状态代码 413（请求实体太大）的响应消息。
 
@@ -564,11 +567,11 @@ HTTP HEAD 请求和部分响应会在 [API 设计][api-design]中详细介绍。
 
 ### <a name="avoid-sending-unnecessary-100-continue-status-messages-in-client-applications"></a>避免在客户端应用程序中发送不必要的“100-Continue”状态消息
 
-将要发送大量数据到服务器的客户端应用程序可能会先确定服务器是否实际可以接受该请求。 在发送数据之前，客户端应用程序可以提交一个 HTTP 请求，其中包含 Expect: 100-Continue 标头、Content-Length 标头（指示数据的大小），但消息正文为空。 如果服务器可以处理该请求，则应以指定 HTTP 状态 100（继续）的消息进行响应。 然后，客户端应用程序可以继续操作并发送包含消息体中的数据的完整请求。
+将要发送大量数据到服务器的客户端应用程序可能会先确定服务器是否实际可以接受该请求。 在发送数据之前，客户端应用程序可以提交一个 HTTP 请求，其中包含 Expect:100-Continue 标头、Content-Length 标头（指示数据的大小），但消息正文为空。 如果服务器可以处理该请求，则应以指定 HTTP 状态 100（继续）的消息进行响应。 然后，客户端应用程序可以继续操作并发送包含消息体中的数据的完整请求。
 
-如果使用 IIS 来托管服务，则 HTTP.sys 驱动程序会自动检测并处理 Expect: 100-Continue 标头，然后再将请求传递到 Web 应用程序。 这意味着你很可能在应用程序代码中看不到这些标头，可以假设 IIS 已筛选掉任何它认为不适合或太大的消息。
+如果使用 IIS 来托管服务，则 HTTP.sys 驱动程序会自动检测并处理 Expect:100-Continue 标头，然后再将请求传递到 Web 应用程序。 这意味着你很可能在应用程序代码中看不到这些标头，可以假设 IIS 已筛选掉任何它认为不适合或太大的消息。
 
-如果使用.NET Framework 生成客户端应用程序，则默认情况下所有 POST 和 PUT 消息都将先发送包含 Expect: 100-Continue 标头的消息。 与服务器端一样，由 .NET Framework 透明地处理该过程。 但是，此过程的结果是，每个 POST 和 PUT 请求会导致对服务器进行 2 次往返，即使是小请求，也是如此。 如果应用程序不发送包含大量数据的请求，则可以通过在客户端应用程序中使用 `ServicePointManager` 类创建 `ServicePoint` 对象来禁用此功能。 `ServicePoint` 对象将基于标识服务器上的资源的 URI 的方案和主机片段处理客户端与服务器连接的创建。 然后，可以将 `ServicePoint` 对象的 `Expect100Continue` 属性设置为 false。 客户端通过与 `ServicePoint` 对象的方案和主机片段匹配的 URI 发出的所有后续 POST 和 PUT 请求在发送时会不包含 Expect: 100-Continue 标头。 下面的代码演示如何配置 `ServicePoint` 对象，以便将所有请求都发送到方案为 `http` 且主机为 `www.contoso.com` 的 URI。
+如果使用.NET Framework 生成客户端应用程序，则默认情况下所有 POST 和 PUT 消息都将先发送包含 Expect:100-Continue 标头的消息。 与服务器端一样，由 .NET Framework 透明地处理该过程。 但是，此过程的结果是，每个 POST 和 PUT 请求会导致对服务器进行 2 次往返，即使是小请求，也是如此。 如果应用程序不发送包含大量数据的请求，则可以通过在客户端应用程序中使用 `ServicePointManager` 类创建 `ServicePoint` 对象来禁用此功能。 `ServicePoint` 对象将基于标识服务器上的资源的 URI 的方案和主机片段处理客户端与服务器连接的创建。 然后，可以将 `ServicePoint` 对象的 `Expect100Continue` 属性设置为 false。 客户端通过与 `ServicePoint` 对象的方案和主机片段匹配的 URI 发出的所有后续 POST 和 PUT 请求在发送时会不包含 Expect:100-Continue 标头。 下面的代码演示如何配置 `ServicePoint` 对象，以便将所有请求都发送到方案为 `http` 且主机为 `www.contoso.com` 的 URI。
 
 ```csharp
 Uri uri = new Uri("https://www.contoso.com/");
@@ -576,7 +579,7 @@ ServicePoint sp = ServicePointManager.FindServicePoint(uri);
 sp.Expect100Continue = false;
 ```
 
-还可以设置 `ServicePointManager` 类的静态 `Expect100Continue` 属性，以便为所有后续创建的 `ServicePoint` 对象指定此属性的默认值。 有关详细信息，请参阅 [ServicePoint 类](https://msdn.microsoft.com/library/system.net.servicepoint.aspx)。
+还可以设置 `ServicePointManager` 类的静态 `Expect100Continue` 属性，以便为所有后续创建的 [ServicePoint]](/dotnet/api/system.net.servicepoint) 对象指定此属性的默认值。
 
 ### <a name="support-pagination-for-requests-that-may-return-large-numbers-of-objects"></a>支持对可能返回大量对象的请求进行分页
 
@@ -605,10 +608,9 @@ public class OrdersController : ApiController
 
 > [!TIP]
 > 请避免让客户端应用程序指定的查询字符串导致 URI 超过 2000 个字符。 许多 Web 客户端和服务器无法处理这么长的 URI。
->
->
 
 ## <a name="maintaining-responsiveness-scalability-and-availability"></a>保持响应能力、可伸缩性和可用性
+
 同一 Web API 可能由世界任何地方运行的许多客户端应用程序利用。 请务必确保将 Web API 实现为在重负载下保持响应能力、可扩展以支持高度变化的工作负荷，并保证执行关键业务操作的客户端的可用性。 确定如何满足这些要求时，请考虑以下几点：
 
 ### <a name="provide-asynchronous-support-for-long-running-requests"></a>为长时间运行的请求提供异步支持
@@ -649,152 +651,164 @@ HTTP 协议支持永久 HTTP 连接（在这些连接可用时）。 HTTP 1.0 �
 
 > [!NOTE]
 > 永久 HTTP 连接是纯粹的可选功能，用于减少与反复建立通信通道关联的网络开销。 Web API 和客户端应用程序都不应依赖于可用的永久 HTTP 连接。 不要使用永久 HTTP 连接实现 Comet 样式通知系统，而是应利用 TCP 层的套接字（或 websocket，如果可用）。 最后，请注意：如果客户端应用程序通过代理与服务器通信，则 Keep-Alive 标头的作用有限；只有与客户端和代理的连接将是持久的。
->
->
 
 ## <a name="publishing-and-managing-a-web-api"></a>发布和管理 Web API
+
 要使 Web API 可供客户端应用程序使用，Web API 必须部署到主机环境中。 此环境通常是 Web 服务器，尽管它可能是某种其他类型的主机进程。 发布 Web API 时，应考虑以下几点：
 
-* 所有请求都必须经过身份验证和授权，必须强制实施相应的访问控制级别。
-* 商业 Web API 可能会受到与响应时间有关的各种质量保证约束。 如果负载随着时间的推移会发生显著变化，请务必确保主机环境是可缩放的。
-* 出于盈利目的，可能有必要计量请求。
-* 可能需要使用 Web API 调控通信流量，并对已用完其配额的特定客户端实施限制。
-* 法规要求可能会强制执行所有请求和响应的记录和审核。
-* 为了确保可用性，可能有必要监视托管 Web API 的服务器的运行状况并在必要时重新启动它。
+- 所有请求都必须经过身份验证和授权，必须强制实施相应的访问控制级别。
+- 商业 Web API 可能会受到与响应时间有关的各种质量保证约束。 如果负载随着时间的推移会发生显著变化，请务必确保主机环境是可缩放的。
+- 出于盈利目的，可能有必要计量请求。
+- 可能需要使用 Web API 调控通信流量，并对已用完其配额的特定客户端实施限制。
+- 法规要求可能会强制执行所有请求和响应的记录和审核。
+- 为了确保可用性，可能有必要监视托管 Web API 的服务器的运行状况并在必要时重新启动它。
 
 如果能够将这些问题从有关 Web API 的实现的技术问题中分离出来，会很有用。 因此，可考虑创建一个[外观](https://en.wikipedia.org/wiki/Facade_pattern)，作为独立的进程运行，并将请求路由到 Web API。 外观可用于进行管理操作，并将验证过的请求转发到 Web API。 使用外观还有许多功能优势，包括：
 
-* 充当多个 Web API 的集成点。
-* 转换消息并转换使用不同技术生成的客户端的通信协议。
-* 缓存请求和响应以减少托管 Web API 的服务器上的负载。
+- 充当多个 Web API 的集成点。
+- 转换消息并转换使用不同技术生成的客户端的通信协议。
+- 缓存请求和响应以减少托管 Web API 的服务器上的负载。
 
 ## <a name="testing-a-web-api"></a>测试 Web API
-Web API 应和软件的任何其他部分一样进行全面测试。 应考虑创建单元测试来验证其功能。Web API 的性质使它在验证操作是否正确方面具有它自有的额外要求。 应特别注意以下几个方面：
 
-* 测试所有路由以验证它们是否调用正确的操作。 特别要注意意外返回的 HTTP 状态代码 405（不允许的方法），因为这可能指示路由与可分派给该路由的 HTTP 方法（GET、POST、PUT、DELETE）不匹配。
+Web API 应和软件的任何其他部分一样进行全面测试。 应考虑创建单元测试来验证功能。
+
+Web API 的性质带来了其自己的验证是否正常运行的附加要求。 应特别注意以下几个方面：
+
+- 测试所有路由以验证它们是否调用正确的操作。 特别要注意意外返回的 HTTP 状态代码 405（不允许的方法），因为这可能指示路由与可分派给该路由的 HTTP 方法（GET、POST、PUT、DELETE）不匹配。
 
     将 HTTP 请求发送到不支持这些请求的路由，例如，将 POST 请求提交到特定资源（POST 请求只应发送到资源集合）。 在这些情况下，唯一有效的响应*应*为状态代码“405 (不允许)”。
-* 验证所有路由是否都得到正确保护并受相应身份验证和授权检查的制约。
+
+- 验证所有路由是否都得到正确保护并受相应身份验证和授权检查的制约。
 
   > [!NOTE]
   > 安全性的某些方面（如用户身份验证）最有可能是主机环境（而不是 Web API）的职责，但仍有必要在部署过程中进行安全测试。
   >
   >
-* 测试每个操作执行的异常处理，并验证是否将相应的有意义的 HTTP 响应传递回客户端应用程序。
-* 验证请求和响应消息的格式是否正确。 例如，如果 HTTP POST 请求包含 x-www-form-urlencoded 格式的新资源数据，请确认相应的操作正确分析数据、创建该资源，并返回包含新资源的详细信息的响应，包括正确的 Location 标头。
-* 验证响应消息中的所有链接和 URI。 例如，HTTP POST 消息应返回新创建的资源的 URI。 所有 HATEOAS 链接都应有效。
 
-* 确保每个操作针对不同输入组合返回正确的状态代码。 例如：
+- 测试每个操作执行的异常处理，并验证是否将相应的有意义的 HTTP 响应传递回客户端应用程序。
 
-  * 如果查询成功，则应返回状态代码 200（正常）
-  * 如果未找到资源，则操作应返回 HTTP 状态代码 404（未找到）。
-  * 如果客户端发送的请求成功删除资源，则状态代码应为 204（无内容）。
-  * 如果客户端发送的请求创建了新资源，则状态代码应为 201（已创建）
+- 验证请求和响应消息的格式是否正确。 例如，如果 HTTP POST 请求包含 x-www-form-urlencoded 格式的新资源数据，请确认相应的操作正确分析数据、创建该资源，并返回包含新资源的详细信息的响应，包括正确的 Location 标头。
+
+- 验证响应消息中的所有链接和 URI。 例如，HTTP POST 消息应返回新创建的资源的 URI。 所有 HATEOAS 链接都应有效。
+
+- 确保每个操作针对不同输入组合返回正确的状态代码。 例如：
+
+  - 如果查询成功，则应返回状态代码 200（正常）
+  - 如果未找到资源，则操作应返回 HTTP 状态代码 404（未找到）。
+  - 如果客户端发送的请求成功删除资源，则状态代码应为 204（无内容）。
+  - 如果客户端发送的请求创建了新资源，则状态代码应为 201（已创建）
 
 密切注意 5xx 范围内的异常响应状态代码。 这些消息通常由主机服务器报告，以指示无法完成有效请求。
 
-* 测试客户端应用程序可以指定的不同请求标头组合并确保 Web API 在响应消息中返回预期的信息。
-* 测试查询字符串。 如果操作可以接受可选参数（例如分页请求），则测试参数的不同组合和顺序。
-* 验证异步操作是否成功完成。 如果 Web API 支持对返回大型二进制对象（如视频或音频）的请求进行流式处理，请确保在流式传输数据时不会阻止客户端请求。 如果 Web API 实现了轮询长时间运行的数据修改操作，请验证这些操作在执行时正确报告其状态。
+- 测试客户端应用程序可以指定的不同请求标头组合并确保 Web API 在响应消息中返回预期的信息。
+
+- 测试查询字符串。 如果操作可以接受可选参数（例如分页请求），则测试参数的不同组合和顺序。
+
+- 验证异步操作是否成功完成。 如果 Web API 支持对返回大型二进制对象（如视频或音频）的请求进行流式处理，请确保在流式传输数据时不会阻止客户端请求。 如果 Web API 实现了轮询长时间运行的数据修改操作，请验证这些操作在执行时正确报告其状态。
 
 还应创建并运行性能测试以检查 Web API 在压力下令人满意地运行。 可以使用 Visual Studio Ultimate 构建一个 Web 性能和负载测试项目。 有关详细信息，请参阅 [Run performance tests on an application before a release](https://msdn.microsoft.com/library/dn250793.aspx)（在发布前对应用程序运行性能测试）。
 
-## <a name="using-azure-api-management"></a>使用 Azure API 管理 
+## <a name="using-azure-api-management"></a>使用 Azure API 管理
 
-在 Azure 上，可以考虑使用 [Azue API 管理](https://azure.microsoft.com/documentation/services/api-management/)来发布和管理 Web API。 使用此工具，可以生成一个充当一个或多个 Web API 的外观的服务。 该服务本身是一个可缩放的 Web 服务，可以使用 Azure 管理门户创建和配置它。 可以使用此服务发布和管理 Web API，如下所示：
+在 Azure 上，可以考虑使用 [Azue API 管理](/azure/api-management//services/api-management/)来发布和管理 Web API。 使用此工具，可以生成一个充当一个或多个 Web API 的外观的服务。 该服务本身是一个可缩放的 Web 服务，可以使用 Azure 管理门户创建和配置它。 可以使用此服务发布和管理 Web API，如下所示：
 
 1. 将 Web API 部署到网站、Azure 云服务或 Azure 虚拟机。
+
 2. 将 API 管理服务连接到 Web API。 发送到管理 API 的 URL 的请求将映射到 Web API 中的 URI。 同一 API 管理服务可以将请求路由到多个 Web API。 这样便可以将多个 Web API 聚合为单个管理服务。 同样，如果需要限制或分隔可用于不同应用程序的功能，则可以从多个 API 管理服务引用同一 Web API。
 
-   > [!NOTE]
-   > 作为 HTTP GET 请求的响应的一部分生成的 HATEOAS 链接中的 URI 应引用 API 管理服务（而不是托管 Web API 的 Web 服务器）的 URL。
-   >
-   >
+     > [!NOTE]
+     > 作为 HTTP GET 请求的响应的一部分生成的 HATEOAS 链接中的 URI 应引用 API 管理服务（而不是托管 Web API 的 Web 服务器）的 URL。
+
 3. 对于每个 Web API，指定该 Web API 公开的 HTTP 操作以及操作可以获取为输入的任何可选参数。 还可以配置 API 管理服务是否应缓存从 Web API 接收的响应以优化对相同数据的重复请求。 记录每个操作可以生成的 HTTP 响应的详细信息。 此信息用于为开发人员生成文档，因此它应准确且完整。
 
-   可以使用 Azure 管理门户提供的向导手动定义操作，也可以从包含 WADL 或 Swagger 格式的定义的文件中导入操作。
+    可以使用 Azure 管理门户提供的向导手动定义操作，也可以从包含 WADL 或 Swagger 格式的定义的文件中导入操作。
+
 4. 为 API 管理服务与托管 Web API 的 Web 服务器之间的通信配置安全设置。 API 管理服务目前支持使用证书和 OAuth 2.0 用户授权的基本身份验证和相互身份验证。
+
 5. 创建产品。 产品是发布的单元；可将先前连接到管理服务的 Web API 添加到产品。 发布产品后，该 Web API 便可供开发人员使用了。
 
-   > [!NOTE]
-   > 在发布产品之前，还可以定义可以访问该产品的用户组，并将用户添加到这些组。 这让可以控制使用该 Web API 的开发人员的应用程序的访问。 如果 Web API 需要批准，则在能够访问它之前，开发人员必须向产品管理员发送请求。 管理员可以授予或拒绝开发人员的访问权限。 如果情况发生变化，也可以阻止现有开发人员。
-   >
-   >
+    > [!NOTE]
+    > 在发布产品之前，还可以定义可以访问该产品的用户组，并将用户添加到这些组。 这让可以控制使用该 Web API 的开发人员的应用程序的访问。 如果 Web API 需要批准，则在能够访问它之前，开发人员必须向产品管理员发送请求。 管理员可以授予或拒绝开发人员的访问权限。 如果情况发生变化，也可以阻止现有开发人员。
+
 6. 为每个 Web API 配置策略。 策略可以控制以下方面：是否应允许跨域调用、如何对客户端进行身份验证、是否要在 XML 和 JSON 数据格式之间透明地进行转换、是否要限制从给定 IP 范围发起的调用、使用配额，以及是否要限制调用率等。 策略可以对整个产品全局应用、对产品中的单个 Web API 应用，或者对 Web API 中的单个操作应用。
 
-有关详细信息，请参阅 [API 管理文档](/azure/api-management/)。 
+有关详细信息，请参阅 [API 管理文档](/azure/api-management/)。
 
 > [!TIP]
-> Azure 提供了使用 Azure 流量管理器，使用它可以实现故障转移和负载均衡，并可以减少在不同地理位置托管的多个网站实例之间的延迟。 可以将 Azure 流量管理器与 API 管理服务结合使用；API 管理服务可以通过 Azure 流量管理器将请求路由到网站实例。  有关详细信息，请参阅[流量管理器路由方法](/azure/traffic-manager/traffic-manager-routing-methods/)。
+> Azure 提供了使用 Azure 流量管理器，使用它可以实现故障转移和负载均衡，并可以减少在不同地理位置托管的多个网站实例之间的延迟。 可以将 Azure 流量管理器与 API 管理服务结合使用；API 管理服务可以通过 Azure 流量管理器将请求路由到网站实例。 有关详细信息，请参阅[流量管理器路由方法](/azure/traffic-manager/traffic-manager-routing-methods/)。
 >
 > 在此结构中，如果要对网站使用自定义 DNS 名称，则应将每个网站的相应 CNAME 记录配置为指向 Azure 流量管理器网站的 DNS 名称。
->
 
 ## <a name="supporting-client-side-developers"></a>为客户端开发人员提供支持
+
 构造客户端应用程序的开发人员通常需要了解有关如何访问 Web API 和与参数、数据类型、返回类型和返回代码（描述 Web 服务和客户端应用程序之间的不同请求和响应）相关的文档的信息。
 
 ### <a name="document-the-rest-operations-for-a-web-api"></a>记录 Web API 的 REST 操作
+
 Azure API 管理服务包括一个开发人员门户，其中描述了由 Web API 公开的 REST 操作。 产品发布后，便会显示在此门户上。 开发人员可以使用此门户注册访问；然后，管理员可以批准或拒绝该请求。 如果开发人员获得批准，则会向其分配一个订阅密钥，用于对所开发的客户端应用程序发出的调用进行身份验证。 此密钥必须与每个 Web API 调用一起提供，否则会被拒绝。
 
 此门户还提供了：
 
-* 产品的文档，列出它公开的操作、所需参数和可以返回的不同响应。 请注意，此信息从通过使用 Microsoft Azure API 管理服务发布 Web API 部分的列表中的步骤 3 所提供的详细信息生成。
-* 演示如何通过多种语言（包括 JavaScript、C#、Java、Ruby、Python 和 PHP）调用操作的代码片段。
-* 开发人员使用开发人员控制台，能够发送 HTTP 请求以测试产品中的每个操作并查看结果。
-* 在此页中开发人员可以报告发现的任何问题。
+- 产品的文档，列出它公开的操作、所需参数和可以返回的不同响应。 请注意，此信息从通过使用 Microsoft Azure API 管理服务发布 Web API 部分的列表中的步骤 3 所提供的详细信息生成。
+- 演示如何通过多种语言（包括 JavaScript、C#、Java、Ruby、Python 和 PHP）调用操作的代码片段。
+- 开发人员使用开发人员控制台，能够发送 HTTP 请求以测试产品中的每个操作并查看结果。
+- 在此页中开发人员可以报告发现的任何问题。
 
 使用 Azure 管理门户可以自定义开发人员门户，以便更改样式和布局以匹配组织的品牌。
 
 ### <a name="implement-a-client-sdk"></a>实现客户端 SDK
+
 构建调用 REST 请求以访问 Web API 的客户端应用程序需要编写大量代码来构造每个请求并相应地设置其格式，将请求发送到托管 Web 服务的服务器，分析响应以确定请求是成功还是失败并提取返回的任何数据。 要使客户端应用程序免除这些问题，可以提供这样一个 SDK：包装 REST 接口并在一组功能更强的方法内抽象这些低级别的详细信息。 客户端应用程序使用这些方法，这些方法透明地将调用转换为 REST 请求，然后将响应转换回方法返回值。 这是许多服务（包括 Azure SDK）已实现的一种常用技术。
 
 创建客户端 SDK 是一项要求相当高的任务，因为它必须一致地实现，并经过严格测试。 但是，此过程的大部分操作可以机械地进行，并且许多供应商提供了可自动执行上述许多任务的工具。
 
 ## <a name="monitoring-a-web-api"></a>监视 Web API
+
 根据你发布和部署 Web API 的方式，可以直接监视 Web API，也可以分析通过 API 管理服务传递的流量来收集使用情况和运行状况信息。
 
 ### <a name="monitoring-a-web-api-directly"></a>直接监视 Web API
+
 如果已通过使用 ASP.NET Web API 模板（不管作为 Web API 项目还是作为 Azure 云服务中的 Web 角色）和 Visual Studio 2013 实现 Web API，则可以通过使用 ASP.NET Application Insights 收集可用性、性能和使用情况数据。 Application Insights 是在 Web API 部署到云中后透明地跟踪和记录有关请求和响应的信息的程序包；安装并配置该包后，无需修改 Web API 中的任何代码即可使用它。 将 Web API 部署到 Azure 网站时，会检查所有通信并收集以下统计信息：
 
-* 服务器响应时间。
-* 服务器请求数和每个请求的详细信息。
-* 就平均响应时间而言，速度最慢的前几个请求。
-* 任何失败的请求的详细信息。
-* 由不同浏览器和用户代理启动的会话数。
-* 最经常查看的网页（主要适用于 Web 应用程序而不是 Web API）。
-* 访问 Web API 的不同用户角色。
+- 服务器响应时间。
+- 服务器请求数和每个请求的详细信息。
+- 就平均响应时间而言，速度最慢的前几个请求。
+- 任何失败的请求的详细信息。
+- 由不同浏览器和用户代理启动的会话数。
+- 最经常查看的网页（主要适用于 Web 应用程序而不是 Web API）。
+- 访问 Web API 的不同用户角色。
 
 可以从 Azure 管理门户实时查看此数据。 此外，还可以创建监视 Web API 的运行状况的 webtest。 Webtest 将定期请求发送到 Web API 中指定的 URI，并捕获响应。 可以指定成功响应的定义（如 HTTP 状态代码 200），如果请求未返回此响应，可以安排向管理员发送警报。 如有必要，管理员可以重新启动托管 Web API 的服务器（如果它出现故障）。
 
 有关详细信息，请参阅 [Application Insights - ASP.NET 入门](/azure/application-insights/app-insights-asp-net/)。
 
 ### <a name="monitoring-a-web-api-through-the-api-management-service"></a>通过 API 管理服务监视 Web API
+
 如果已通过使用 API 管理服务发布 Web API，则 Azure 管理门户上的 API 管理页包含一个可用于查看该服务的整体性能的仪表板。 使用“分析”页，可向下钻取到该产品的使用方式的详细信息。 此页包含以下选项卡：
 
-* **用法**。 此选项卡提供有关随着时间推移已进行的 API 调用数和用于处理这些调用的带宽的信息。 可以按产品、API 和操作筛选使用情况详细信息。
-* **运行状况**。 使用此选项卡可查看 API 请求的结果（返回的 HTTP 状态代码）、缓存策略的有效性、API 响应时间和服务响应时间。 同样，可以按产品、API 和操作筛选运行状况数据。
-* **活动**。 此选项卡提供了以下信息的文本摘要：成功的调用数、失败的调用数、阻止的调用数、平均响应时间以及每个产品、Web API 和操作的响应时间。 此页还列出了每个开发人员进行的调用数。
-* **速览**。 此选项卡显示性能数据的摘要，包括负责进行大多数 API 调用的开发人员，以及接收这些调用的产品、Web API 和操作。
+- **用法**。 此选项卡提供有关随着时间推移已进行的 API 调用数和用于处理这些调用的带宽的信息。 可以按产品、API 和操作筛选使用情况详细信息。
+- **运行状况**。 使用此选项卡可查看 API 请求的结果（返回的 HTTP 状态代码）、缓存策略的有效性、API 响应时间和服务响应时间。 同样，可以按产品、API 和操作筛选运行状况数据。
+- **活动**。 此选项卡提供了以下信息的文本摘要：成功的调用数、失败的调用数、阻止的调用数、平均响应时间以及每个产品、Web API 和操作的响应时间。 此页还列出了每个开发人员进行的调用数。
+- **速览**。 此选项卡显示性能数据的摘要，包括负责进行大多数 API 调用的开发人员，以及接收这些调用的产品、Web API 和操作。
 
 可以使用此信息来确定是否是特定 Web API 或操作导致了瓶颈问题，如有必要，扩展主机环境并添加更多服务器。 还可以确定一个或多个应用程序是否正在使用不相称的资源量，从而应用适当的策略以设置配额并限制调用率。
 
 > [!NOTE]
 > 可以更改已发布产品的详细信息，所做的更改将立即应用。 例如，可以在 Web API 中添加或删除操作，而无需重新发布包含该 Web API 的产品。
->
->
 
 ## <a name="more-information"></a>详细信息
-* [ASP.NET Web API OData](https://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api) 包含有关如何使用 ASP.NET 实现 OData Web API 的示例和更多信息。
-* [Introducing Batch Support in Web API and Web API OData](https://blogs.msdn.microsoft.com/webdev/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata/)（Web API 和 Web API OData 中的批处理支持简介）介绍了如何使用 OData 在 Web API 中实现批处理操作。
-* Jonathan Oliver 博客上的 [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/)（幂等性模式）概述了幂等性以及它如何与数据管理操作相关。
-* W3C 网站上的 [Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)（状态代码定义）包含 HTTP 状态代码及其说明的完整列表。
-* [使用 WebJobs 运行后台任务](/azure/app-service-web/web-sites-create-web-jobs/)提供了有关如何使用 WebJobs 执行后台操作的信息和示例。
-* [Azure 通知中心通知用户](/azure/notification-hubs/notification-hubs-aspnet-backend-windows-dotnet-wns-notification/)介绍了如何使用 Azure 通知中心将异步响应推送到客户端应用程序。
-* [API 管理](https://azure.microsoft.com/services/api-management/)介绍了如何发布可对 Web API 进行受控安全访问的产品。
-* [Azure API Management REST API Reference](https://msdn.microsoft.com/library/azure/dn776326.aspx)（Azure API 管理 REST API 参考）介绍了如何使用 API 管理 REST API 生成自定义管理应用程序。
-* [流量管理器路由方法](/azure/traffic-manager/traffic-manager-routing-methods/)概述了如何使用 Azure 流量管理器对托管 Web API 的多个网站实例上的请求进行负载均衡操作。
-* [Application Insights - ASP.NET 入门](/azure/application-insights/app-insights-asp-net/)详细介绍了如何在 ASP.NET Web API 项目中安装和配置 Application Insights。
 
+- [ASP.NET Web API OData](https://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api) 包含有关如何使用 ASP.NET 实现 OData Web API 的示例和更多信息。
+- [Introducing batch support in Web API and Web API OData](https://blogs.msdn.microsoft.com/webdev/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata/)（Web API 和 Web API OData 中的批处理支持简介）介绍了如何使用 OData 在 Web API 中实现批处理操作。
+- Jonathan Oliver 博客上的 [Idempotency patterns](https://blog.jonathanoliver.com/idempotency-patterns/)（幂等性模式）概述了幂等性以及它如何与数据管理操作相关。
+- W3C 网站上的 [Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)（状态代码定义）包含 HTTP 状态代码及其说明的完整列表。
+- [使用 WebJobs 运行后台任务](/azure/app-service-web/web-sites-create-web-jobs/)提供了有关如何使用 WebJobs 执行后台操作的信息和示例。
+- [Azure 通知中心通知用户](/azure/notification-hubs/notification-hubs-aspnet-backend-windows-dotnet-wns-notification/)介绍了如何使用 Azure 通知中心将异步响应推送到客户端应用程序。
+- [API 管理](https://azure.microsoft.com/services/api-management/)介绍了如何发布可对 Web API 进行受控安全访问的产品。
+- [Azure API 管理 REST API 参考](https://msdn.microsoft.com/library/azure/dn776326.aspx)介绍了如何使用 API 管理 REST API 生成自定义管理应用程序。
+- [流量管理器路由方法](/azure/traffic-manager/traffic-manager-routing-methods/)概述了如何使用 Azure 流量管理器对托管 Web API 的多个网站实例上的请求进行负载均衡操作。
+- [Application Insights - ASP.NET 入门](/azure/application-insights/app-insights-asp-net/)详细介绍了如何在 ASP.NET Web API 项目中安装和配置 Application Insights。
 
 <!-- links -->
 
