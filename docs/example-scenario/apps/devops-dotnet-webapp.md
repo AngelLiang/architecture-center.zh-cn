@@ -1,21 +1,22 @@
 ---
 title: 使用 Azure DevOps 设计 CI/CD 管道
+titleSuffix: Azure Example Scenarios
 description: 使用 Azure DevOps 生成 .NET 应用并将其发布到 Azure Web 应用。
 author: christianreddington
 ms.date: 12/06/2018
 ms.custom:
 - fasttrack
 - seodec18
-ms.openlocfilehash: 23945493115522d099b6b26922f567653da0367e
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: ae2dddd7567c6b69f936b3b9c9339313389e3bf6
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307276"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643792"
 ---
 # <a name="design-a-cicd-pipeline-using-azure-devops"></a>使用 Azure DevOps 设计 CI/CD 管道
 
-本方案提供有关生成持续集成 (CI) 和持续部署 (CD) 管道的体系结构和设计指导。  在此示例中，CI/CD 管道会将一个双层 .NET Web 应用程序部署到 Azure 应用服务。
+本方案提供有关生成持续集成 (CI) 和持续部署 (CD) 管道的体系结构和设计指导。 在此示例中，CI/CD 管道会将一个双层 .NET Web 应用程序部署到 Azure 应用服务。
 
 迁移到新式 CI/CD 过程可为应用程序生成、部署、测试和监视提供诸多好处。 将 Azure DevOps 与其他服务（例如应用服务）配合使用，组织可将工作重心放在开发应用而不是管理支持性基础结构上。
 
@@ -84,7 +85,7 @@ ms.locfileid: "53307276"
 
 ### <a name="prerequisites"></a>先决条件
 
-- 必须已经有 Azure 帐户。 如果还没有 Azure 订阅，可以在开始前创建一个[免费帐户][azure-free-account]。
+- 必须已经有 Azure 帐户。 如果没有 Azure 订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
 
 - 必须注册一个 Azure DevOps 组织。 有关详细信息，请参阅[快速入门：创建组织][vsts-account-create]。
 
@@ -119,7 +120,6 @@ Azure DevOps 按每月每个用户计费。 可能存在其他费用，具体取
 [ansible]: /azure/ansible/
 [application-insights]: /azure/application-insights/app-insights-overview
 [app-service-reference-architecture]: ../../reference-architectures/app-service-web-app/basic-web-app.md
-[azure-free-account]: https://azure.microsoft.com/free/?WT.mc_id=A261C142F
 [arm-templates]: /azure/azure-resource-manager/resource-group-overview#template-deployment
 [architecture]: ./media/architecture-devops-dotnet-webapp.svg
 [chef]: /azure/chef/

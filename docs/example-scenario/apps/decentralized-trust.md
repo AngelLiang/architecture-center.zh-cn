@@ -1,15 +1,16 @@
 ---
-title: Azure 上银行间的分散式信任
+title: 银行间的分散式信任
+titleSuffix: Azure Example Scenarios
 description: 建立受信任的环境以进行通信和信息共享，而不必求助于集中式数据库。
 author: vitoc
 ms.date: 09/09/2018
 ms.custom: csa-team
-ms.openlocfilehash: 91c41f7bd6bd6f4eb8cd00859f7ce9065f8a86be
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: bd38986a86055305cec97db7a3f3f3e75ff600b0
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004727"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643691"
 ---
 # <a name="decentralized-trust-between-banks-on-azure"></a>Azure 上银行间的分散式信任
 
@@ -25,11 +26,11 @@ ms.locfileid: "53004727"
 
 其他相关用例包括：
 
-* 分配的预算在跨国公司的不同业务部门之间转移
-* 跨界付款
-* 贸易融资方案
-* 涉及不同公司的会员系统
-* 供应链生态系统
+- 分配的预算在跨国公司的不同业务部门之间转移
+- 跨界付款
+- 贸易融资方案
+- 涉及不同公司的会员系统
+- 供应链生态系统
 
 ## <a name="architecture"></a>体系结构
 
@@ -45,11 +46,11 @@ ms.locfileid: "53004727"
 
 ### <a name="components"></a>组件
 
-* 虚拟机规模集中的虚拟机提供按需计算设施用于托管区块链的验证程序进程
-* Key Vault 用作安全存储设施，可存储每个验证程序的私钥
-* 负载均衡器分散 RPC、对等互连和监管 DApp 请求
-* 用于托管持久性网络信息并协调租用的存储
-* Operations Management Suite（绑定多个 Azure 服务）提供可用节点数、每分钟事务数和联盟成员的见解
+- 虚拟机规模集中的虚拟机提供按需计算设施用于托管区块链的验证程序进程
+- Key Vault 用作安全存储设施，可存储每个验证程序的私钥
+- 负载均衡器分散 RPC、对等互连和监管 DApp 请求
+- 用于托管持久性网络信息并协调租用的存储
+- Operations Management Suite（绑定多个 Azure 服务）提供可用节点数、每分钟事务数和联盟成员的见解
 
 ### <a name="alternatives"></a>备选项
 
@@ -57,15 +58,15 @@ ms.locfileid: "53004727"
 
 对于其他扩展方案或不同方案，可能会出现交易隐私等方面的忧虑。 例如，在证券转让方案中，联盟中的成员可能不希望其他人（甚至是其他成员）看到其交易。 Ethereum PoA 中的其他替代方案可按自身的方式解决这些忧虑：
 
-* Corda
-* Quorum
-* Hyperledger
+- Corda
+- Quorum
+- Hyperledger
 
 ## <a name="considerations"></a>注意事项
 
 ### <a name="availability"></a>可用性
 
-[Azure Monitor][monitor] 用于持续监视区块链网络中的问题，以确保可用性。 成功部署此方案中使用的区块链解决方案模板后，会将基于 Azure Monitor 的自定义监视仪表板的链接发送给您。 该仪表板显示过去 30 分钟报告了检测信号的节点，以及其他有用的统计信息。 
+[Azure Monitor][monitor] 用于持续监视区块链网络中的问题，以确保可用性。 成功部署此方案中使用的区块链解决方案模板后，会将基于 Azure Monitor 的自定义监视仪表板的链接发送给您。 该仪表板显示过去 30 分钟报告了检测信号的节点，以及其他有用的统计信息。
 
 若要了解其他可用性主题，请参阅 Azure 体系结构中心的[可用性核对清单][availability]。
 
@@ -93,9 +94,9 @@ ms.locfileid: "53004727"
 
 我们已根据运行应用程序的规模集 VM 实例数（实例可能驻留在不同的区域中）提供了三个示例性的成本配置文件。
 
-* [小型][small-pricing]：此定价示例适用于每个月使用 2 个 VM 并禁用监视的情况
-* [中型][medium-pricing]：此定价示例适用于每个月使用 7 个 VM 并启用监视的情况
-* [大型][large-pricing]：此定价示例适用于每个月使用 15 个 VM 并启用监视的情况
+- [小型][small-pricing]：此定价示例适用于每个月使用 2 个 VM 并禁用监视的情况
+- [中型][medium-pricing]：此定价示例适用于每个月使用 7 个 VM 并启用监视的情况
+- [大型][large-pricing]：此定价示例适用于每个月使用 15 个 VM 并启用监视的情况
 
 以上定价适用于启动或加入区块链网络的一个联盟成员。 通常，在涉及到多个公司或组织的联盟中，每个成员会获取自身的 Azure 订阅。
 

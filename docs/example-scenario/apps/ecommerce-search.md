@@ -1,15 +1,16 @@
 ---
 title: 用于电子商务的智能产品搜索引擎
+titleSuffix: Azure Example Scenarios
 description: 在电子商务应用程序中提供世界一流的搜索体验。
 author: jelledruyts
 ms.date: 09/14/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 5eabdb94b9345e73b21526681e0dbd6ae859d7be
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 9e24f7ab2104f877fcc3aec310dd21677160608c
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004891"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643457"
 ---
 # <a name="intelligent-product-search-engine-for-e-commerce"></a>用于电子商务的智能产品搜索引擎
 
@@ -23,9 +24,9 @@ ms.locfileid: "53004891"
 
 其他相关用例包括：
 
-* 查找靠近用户实际位置的房地产清单或商店。
-* 在新闻网站中搜索新闻文章，或查找赛事结果，其中最近的信息排在前面。
-* 在大型存储库中搜索决策人和公证人等以文档为中心的组织。
+- 查找靠近用户实际位置的房地产清单或商店。
+- 在新闻网站中搜索新闻文章，或查找赛事结果，其中最近的信息排在前面。
+- 在大型存储库中搜索决策人和公证人等以文档为中心的组织。
 
 最终，包含某种搜索功能的任何应用程序都可以从专用的搜索服务中受益。
 
@@ -34,6 +35,7 @@ ms.locfileid: "53004891"
 ![电子商务智能产品搜索引擎中涉及的 Azure 组件的体系结构概况][architecture]
 
 此方案包括一个电子商务解决方案，其中的客户可以搜索产品目录。
+
 1. 客户从任意设备导航到**电子商务 Web 应用程序**。
 2. 产品目录在 **Azure SQL 数据库**中维护，以进行事务处理。
 3. Azure 搜索使用**搜索索引器**通过集成式更改跟踪来自动保持其搜索索引的最新状态。
@@ -43,21 +45,21 @@ ms.locfileid: "53004891"
 
 ### <a name="components"></a>组件
 
-* [应用服务 - Web 应用][docs-webapps]托管的 Web 应用程序可以实现自动缩放和高可用性，不需管理基础结构。
-* [SQL 数据库][docs-sql-database]是 Microsoft Azure 中通用的关系数据库托管服务，支持关系数据、JSON、空间和 XML 等结构。
-* [Azure 搜索][docs-search]是一种搜索即服务云解决方案，它可以根据 Web、移动和企业应用程序中的专用异类内容提供丰富的搜索体验。
-* [机器人服务][docs-botservice]提供的工具可用于生成、测试、部署和管理智能机器人。
-* [认知服务][docs-cognitive]允许你使用智能算法，以自然的沟通方式来观察、倾听、表述、了解和解释用户需求。
+- [应用服务 - Web 应用][docs-webapps]托管的 Web 应用程序可以实现自动缩放和高可用性，不需管理基础结构。
+- [SQL 数据库][docs-sql-database]是 Microsoft Azure 中通用的关系数据库托管服务，支持关系数据、JSON、空间和 XML 等结构。
+- [Azure 搜索][docs-search]是一种搜索即服务云解决方案，它可以根据 Web、移动和企业应用程序中的专用异类内容提供丰富的搜索体验。
+- [机器人服务][docs-botservice]提供的工具可用于生成、测试、部署和管理智能机器人。
+- [认知服务][docs-cognitive]允许你使用智能算法，以自然的沟通方式来观察、倾听、表述、了解和解释用户需求。
 
 ### <a name="alternatives"></a>备选项
 
-* 可以使用**数据库中搜索**功能（例如，使用 SQL Server 全文搜索），但随后事务存储也会处理查询（从而需要增大处理能力），并且数据库中的搜索功能存在更大的限制。
-* 可将开源 [Apache Lucene][apache-lucene]（Azure 搜索的构建基础）托管在 Azure 虚拟机上，但随后你仍要管理基础结构即服务 (IaaS)，并且无法受益于 Azure 搜索在 Lucene 上提供的许多功能。
-* 还可以考虑部署 Azure 市场中提供的 [Elastic Search][elastic-marketplace]，这是第三方供应商提供的支持搜索的替代产品，但在这种情况下，也要运行 IaaS工作负荷。
+- 可以使用**数据库中搜索**功能（例如，使用 SQL Server 全文搜索），但随后事务存储也会处理查询（从而需要增大处理能力），并且数据库中的搜索功能存在更大的限制。
+- 可将开源 [Apache Lucene][apache-lucene]（Azure 搜索的构建基础）托管在 Azure 虚拟机上，但随后你仍要管理基础结构即服务 (IaaS)，并且无法受益于 Azure 搜索在 Lucene 上提供的许多功能。
+- 还可以考虑部署 Azure 市场中提供的 [Elastic Search][elastic-marketplace]，这是第三方供应商提供的支持搜索的替代产品，但在这种情况下，也要运行 IaaS工作负荷。
 
 可用于数据层的其他选项包括：
 
-* [Cosmos DB](/azure/cosmos-db/introduction) - Microsoft 提供的全局分布式多模型数据库。 Costmos DB 提供的平台适合运行其他数据模型，例如 Mongo DB、Cassandra、Graph 数据或简单的表存储。 Azure 搜索还支持直接从 Cosmos DB 为数据编制索引。
+- [Cosmos DB](/azure/cosmos-db/introduction) - Microsoft 提供的全局分布式多模型数据库。 Costmos DB 提供的平台适合运行其他数据模型，例如 Mongo DB、Cassandra、Graph 数据或简单的表存储。 Azure 搜索还支持直接从 Cosmos DB 为数据编制索引。
 
 ## <a name="considerations"></a>注意事项
 
@@ -85,11 +87,11 @@ Azure 搜索符合许多[安全和数据隐私标准][search-security]，因此�
 
 优化搜索服务的典型方法包括：
 
-* 根据与查询匹配的字段、数据的新旧程度、与用户之间的地理距离等条件，使用[评分配置文件][search-scoring]来影响搜索结果
-* 借助使用高级自然语言处理 (NLP) 堆栈的 [Microsoft 语言分析器][search-languages]来更好地解释查询
-* 使用[自定义分析器][search-analyzers]来确保正确找到产品，尤其是要根据产品品牌和型号等信息执行非语言搜索时。
+- 根据与查询匹配的字段、数据的新旧程度、与用户之间的地理距离等条件，使用[评分配置文件][search-scoring]来影响搜索结果
+- 借助使用高级自然语言处理 (NLP) 堆栈的 [Microsoft 语言分析器][search-languages]来更好地解释查询
+- 使用[自定义分析器][search-analyzers]来确保正确找到产品，尤其是要根据产品品牌和型号等信息执行非语言搜索时。
 
-## <a name="deploy-this-scenario"></a>部署此方案
+## <a name="deploy-the-scenario"></a>部署方案
 
 若要部署此方案的更完整电子商务版本，可以遵循此[分步教程][end-to-end-walkthrough]，其中提供了一个运行简单购票应用程序的 .NET 示例应用程序。 该版本还包含 Azure 搜索，并使用了介绍的许多功能。 此外还有一个资源管理器模板，可以自动部署大多数 Azure 资源。
 
@@ -99,9 +101,9 @@ Azure 搜索符合许多[安全和数据隐私标准][search-security]，因此�
 
 我们已根据你预期接收的流量提供了三个示例性的成本配置文件：
 
-* [小型][small-pricing]：在此配置文件中，我们将使用单个 `Standard S1` Web 应用来托管网站，并使用 Azure 机器人服务的免费层、单个 `Basic` Azure 搜索服务和 `Standard S2` SQL 数据库。
-* [中型][medium-pricing]：将 Web 应用扩展为 `Standard S3` 层的两个实例，将搜索服务升级到 `Standard S1` 层，并使用一个 `Standard S6` SQL 数据库。
-* [大型][large-pricing]：在最大的配置文件中，我们将使用 `Premium P2V2` Web 应用的四个实例，将 Azure 机器人服务升级到 `Standard S1` 层（高级通道中包含 1,000,000 条消息），使用 2 个单位的 `Standard S3` Azure 搜索服务和一个 `Premium P6` SQL 数据库。
+- [小型][small-pricing]：在此配置文件中，我们将使用单个 `Standard S1` Web 应用来托管网站，并使用 Azure 机器人服务的免费层、单个 `Basic` Azure 搜索服务和 `Standard S2` SQL 数据库。
+- [中型][medium-pricing]：将 Web 应用扩展为 `Standard S3` 层的两个实例，将搜索服务升级到 `Standard S1` 层，并使用一个 `Standard S6` SQL 数据库。
+- [大型][large-pricing]：在最大的配置文件中，我们将使用 `Premium P2V2` Web 应用的四个实例，将 Azure 机器人服务升级到 `Standard S1` 层（高级通道中包含 1,000,000 条消息），使用 2 个单位的 `Standard S3` Azure 搜索服务和一个 `Premium P6` SQL 数据库。
 
 ## <a name="related-resources"></a>相关资源
 
