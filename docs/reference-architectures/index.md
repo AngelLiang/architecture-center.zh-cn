@@ -4,12 +4,12 @@ description: 适用于 Azure 上的常见工作负荷的参考体系结构、蓝
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: 6a86256c504737b5f747a690d27fdf178ac8b4fe
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.openlocfilehash: 05f93aedc49cc71a35d8c0303af0342ed0ba47f7
+ms.sourcegitcommit: 032f402482762f4e674aeebbc122ad18dfba11eb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53329375"
+ms.lasthandoff: 12/14/2018
+ms.locfileid: "53396413"
 ---
 # <a name="azure-reference-architectures"></a>Azure 参考体系结构
 
@@ -21,6 +21,26 @@ ms.locfileid: "53329375"
 
 <!-- markdownlint-disable MD033 -->
 <ul  class="panelContent cardsF">
+<!-- Batch scoring of Python models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/python-powered-h.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Python 模型的批量评分</h3>
+                        <p>使用 Azure Batch AI，按计划以并行方式对许多 Python 模型进行批量评分。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
 <!-- Batch scoring for deep learning models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/batch-scoring-deep-learning.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -41,7 +61,7 @@ ms.locfileid: "53329375"
         </div>
     </a>
 </li>
-<!-- Batch scoring for deep learning models -->
+<!-- Real-time scoring of Python models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
@@ -61,7 +81,7 @@ ms.locfileid: "53329375"
         </div>
     </a>
 </li>
-<!-- Batch scoring for R models -->
+<!-- Real-time scoring of R models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-r.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
@@ -75,6 +95,26 @@ ms.locfileid: "53329375"
                     <div class="cardText">
                         <h3>机器学习模型的实时评分</h3>
                         <p>在 R 中使用运行于 Azure Kubernetes 服务 (AKS) 中的 Microsoft Machine Learning Server 实现实时预测服务。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Real-time Recommendation API -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/real-time-recommendation.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/machine-learning.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>实时建议 API</h3>
+                        <p>使用 Azure Databricks 训练一个建议模型，并使用 Azure 机器学习将其作为 API 部署。</p>
                     </div>
                 </div>
             </div>
