@@ -1,14 +1,14 @@
 ---
 title: 云设计模式
-description: Microsoft Azure 的云设计模式
+description: 用于在云中构建可靠且可缩放的安全应用程序的云设计模式
 keywords: Azure
 ms.date: 12/10/2018
-ms.openlocfilehash: 26ee59ef15fc63bb5e823cd85f610cd9ad01177a
-ms.sourcegitcommit: 9a15af3a25f25b8730968d32cbb006434b183e18
+ms.openlocfilehash: 6965f4ba19bb465c4afc0e0c355b32bde8944823
+ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/11/2018
-ms.locfileid: "53234044"
+ms.lasthandoff: 12/16/2018
+ms.locfileid: "53450847"
 ---
 # <a name="cloud-design-patterns"></a>云设计模式
 

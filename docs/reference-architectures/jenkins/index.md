@@ -5,12 +5,12 @@ description: 演示如何在 Azure 上部署和运行使用单一登录 (SSO) �
 author: njray
 ms.date: 04/30/2018
 ms.custom: seodec18
-ms.openlocfilehash: 9dc4eb27f6c2bc8896770a2d0cd01b738c18c593
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 26bf9cadc8db0cd4fcc61023619ca61bb7b87855
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120265"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644149"
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>在 Azure 上运行 Jenkins 服务器
 
@@ -198,13 +198,13 @@ Jenkins 管理员运行此步骤来设置已安装的 Azure VM 代理插件。
 
 Jenkins 管理员运行此步骤来设置已安装的 Windows Azure 存储插件。
 
-[遵循这些步骤配置插件][configure-storage]。
+[遵循以下步骤配置插件][configure-storage]。
 
 ### <a name="step-5-provision-jenkins-server-with-azure-credential-plugin"></a>步骤 5：使用 Azure 凭据插件预配 Jenkins 服务器
 
 Jenkins 管理员运行此步骤来设置已安装的 Azure 凭据插件。
 
-[遵循这些步骤配置插件][configure-credential]。
+[遵循以下步骤配置插件][configure-credential]。
 
 ### <a name="step-6-provision-jenkins-server-for-monitoring-by-the-azure-monitor-service"></a>步骤 6：预配 Jenkins 服务器以通过 Azure Monitor 服务进行监视
 
@@ -215,6 +215,12 @@ Jenkins 管理员运行此步骤来设置已安装的 Azure 凭据插件。
 Microsoft Jenkins 产品组已创建灾难恢复脚本，这些脚本可以生成用于保存 Jenkins 状态的托管磁盘。 如果服务器发生故障，可将它还原到最新状态。
 
 从 [GitHub][disaster] 下载并运行灾难恢复脚本。
+
+可以查看以下 [Azure 示例方案](/azure/architecture/example-scenario)，了解使用部分相同技术的具体解决方案：
+
+- [适用于基于容器的工作负荷的 CI/CD 管道](/azure/architecture/example-scenario/apps/devops-with-aks)
+
+<!-- links -->
 
 [acs]: https://aka.ms/azjenkinsacs
 [ad-sp]: /azure/active-directory/develop/active-directory-integrating-applications
