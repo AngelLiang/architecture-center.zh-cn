@@ -4,18 +4,20 @@ description: 适用于 Azure 上的常见工作负荷的参考体系结构、蓝
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: 05f93aedc49cc71a35d8c0303af0342ed0ba47f7
-ms.sourcegitcommit: 032f402482762f4e674aeebbc122ad18dfba11eb
+ms.openlocfilehash: 173698aee0a67578beaa806a59e1c7b0265cdd61
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53396413"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011797"
 ---
 # <a name="azure-reference-architectures"></a>Azure 参考体系结构
 
 我们的参考体系结构已根据方案进行编制，相关的体系结构已分组到一起。 每个体系结构包括建议的做法，以及有关可伸缩性、可用性、可管理性和安全性的注意事项。 大多数体系结构还包括一个可部署的解决方案。
 
 跳转到：[AI](#ai-and-machine-learning) | [大数据](#big-data-solutions) | [无服务器](#serverless-applications) | [虚拟网络](#virtual-networks) | [VM 工作负荷](#vm-workloads) | [SAP](#sap) | [Web 应用](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
+
+<!-- markdownlint-disable MD033 -->
 
 ## <a name="ai-and-machine-learning"></a>AI 和机器学习
 
@@ -750,3 +752,4 @@ ms.locfileid: "53396413"
 </li>
 </ul>
 
+<!-- markdownlint-disable MD033 -->
