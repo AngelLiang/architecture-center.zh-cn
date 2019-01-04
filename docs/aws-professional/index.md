@@ -5,12 +5,12 @@ keywords: AWS 专家, Azure 比较, AWS 比较, azure 与 aws 之间的差别, a
 author: lbrader
 ms.date: 09/19/2018
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 0735d24b223a5e5cab6030774280c038c28f35e6
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: e6077349a285df56d234f3cc2a14dc0d0d33da55
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916679"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011661"
 ---
 # <a name="azure-for-aws-professionals"></a>面向 AWS 专业人员的 Azure
 
@@ -63,7 +63,7 @@ ms.locfileid: "50916679"
 
 在 Azure 中，术语“资源”的用法与在 AWS 中一样，表示可在平台中创建或配置的任何计算实例、存储对象、网络设备或其他实体。
 
-可使用以下两种模型之一部署和管理 Azure 资源：[Azure 资源管理器模型](/azure/azure-resource-manager/resource-group-overview)或早期的 Azure [经典部署模型](/azure/azure-resource-manager/resource-manager-deployment-model)。
+Azure 资源是通过使用两种模型之一来部署和管理的：[Azure 资源管理器](/azure/azure-resource-manager/resource-group-overview)或早期的 Azure [经典部署模型](/azure/azure-resource-manager/resource-manager-deployment-model)。
 任何新资源都是使用资源管理器模型创建的。
 
 ### <a name="resource-groups"></a>资源组
@@ -174,7 +174,7 @@ Azure [异地冗余存储](https://azure.microsoft.com/documentation/articles/st
 
 -   [Azure 中虚拟机的大小 (Linux)](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/)
 
-与 AWS 的按秒计费不同，Azure 按需 VM 是按分钟计费的。
+与 AWS 的按秒计费类似，Azure 按需 VM 是按秒计费的。
 
 #### <a name="ebs-and-azure-storage-for-vm-disks"></a>EBS 与用作 VM 磁盘的 Azure 存储
 
@@ -258,7 +258,7 @@ Azure 提供多个计算服务，在 AWS 中没有直接与此类似的服务：
 
 -   [Azure 存储安全指南](https://azure.microsoft.com/documentation/articles/storage-security-guide/)
 
--   [模式和做法：内容分发网络 (CDN) 指南](https://azure.microsoft.com/documentation/articles/best-practices-cdn/)
+-   [模式和实践：内容分发网络 (CDN) 指南](https://azure.microsoft.com/documentation/articles/best-practices-cdn/)
 
 ### <a name="networking"></a>网络
 
@@ -310,7 +310,7 @@ AWS RDS 的费用根据实例使用的硬件资源确定，例如 CPU、RAM、�
 
 -   [使用 Azure 门户为 Azure SQL 数据库配置异地复制](https://azure.microsoft.com/documentation/articles/sql-database-geo-replication-portal/)
 
--   [DocumentDB 简介：一种 NoSQL JSON 数据库](/azure/cosmos-db/sql-api-introduction)
+-   [Cosmos DB 简介：一种 NoSQL JSON 数据库](/azure/cosmos-db/sql-api-introduction)
 
 -   [如何通过 Node.js 使用 Azure 表存储](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-table-storage/)
 

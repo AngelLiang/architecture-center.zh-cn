@@ -5,12 +5,12 @@ description: 演示如何在 Azure 上部署和运行使用单一登录 (SSO) �
 author: njray
 ms.date: 04/30/2018
 ms.custom: seodec18
-ms.openlocfilehash: 26bf9cadc8db0cd4fcc61023619ca61bb7b87855
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 3500e05631ad34af0abc8e0f7a3e2b4919157746
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644149"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011338"
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>在 Azure 上运行 Jenkins 服务器
 
@@ -44,7 +44,7 @@ ms.locfileid: "53644149"
 
 - **托管磁盘**。 [托管磁盘][managed-disk]是一种持久性虚拟硬盘 (VHD)，可用作应用程序存储，同时还可维护 Jenkins 服务器的状态并提供灾难恢复。 数据磁盘存储在 Azure 存储中。 为实现高性能，我们建议使用[高级存储][premium]。
 
-- **Azure Blob 存储**。 [Windows Azure 存储插件][configure-storage]使用 Azure Blob 存储来存储所创建的并与其他 Jenkins 生成组件共享的生成项目。
+- **Azure Blob 存储**。 [Windows Azure 存储插件][configure-storage]使用 Azure Blob 存储来存储与其他 Jenkins 生成组件共享的已创建生成项目。
 
 - **Azure Active Directory (Azure AD)**。 [Azure AD][azure-ad] 支持用户身份验证，并允许设置 SSO。 Azure AD [服务主体][service-principal]使用[基于角色的访问控制][rbac] (RBAC) 为工作流中的每个角色授权定义策略和权限。 每个服务主体与某个 Jenkins 作业相关联。
 

@@ -1,25 +1,27 @@
 ---
 title: 不当实例化反模式
+titleSuffix: Performance antipatterns for cloud apps
 description: 避免连续创建对象的新实例（本应创建一次然后共享）。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 4d5ef9ad9e675b46df94b51e81d7a4bd4c1b25e9
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.custom: seodec18
+ms.openlocfilehash: b92ae5f5e79a0ababf44d7aa2d771d4d72900cae
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29477574"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009912"
 ---
 # <a name="improper-instantiation-antipattern"></a>不当实例化反模式
 
-连续创建对象的新实例（本应创建一次然后共享），可能会损害性能。 
+连续创建对象的新实例（本应创建一次然后共享），可能会损害性能。
 
 ## <a name="problem-description"></a>问题描述
 
 许多库提供外部资源的抽象。 在内部，这些类通常管理其自身与资源之间的连接，在客户端访问资源时充当中转站。  下面是与 Azure 应用程序相关的中转站类的一些示例：
 
 - `System.Net.Http.HttpClient`。 使用 HTTP 来与 Web 服务通信。
-- `Microsoft.ServiceBus.Messaging.QueueClient`。 向服务总线队列发布和接收消息。 
+- `Microsoft.ServiceBus.Messaging.QueueClient`。 向服务总线队列发布和接收消息。
 - `Microsoft.Azure.Documents.Client.DocumentClient`。 连接到 Cosmos DB 实例
 - `StackExchange.Redis.ConnectionMultiplexer`。 连接到 Redis，包括 Azure Redis 缓存。
 
@@ -100,15 +102,17 @@ public class SingleHttpClientInstanceController : ApiController
 
 - 在多个请求之间共享的对象必须是线程安全的。 应该以这种方式使用 `HttpClient` 类，但其他类可能不支持并发请求，因此需查看可用文档。
 
+- 请小心设置共享对象的属性，因为这会导致出现争用条件。 例如，在每个请求前设置 `HttpClient` 类的 `DefaultRequestHeaders` 可产生争用条件。 请将此类属性设置一次（例如，在启动期间），并创建单独的实例（如果需要配置不同的设置）。
+
 - 某些资源类型很消耗资源，必要时应将其放弃。 数据库连接就是一个例子。 保留打开一个不需要的数据库连接可能导致其他并发用户无法访问数据库。
 
-- 在 .NET Framework 中，与外部资源建立连接的许多对象是使用管理这些连接的其他类的静态工厂方法创建的。 应该保存并重复使用这些工厂对象，而不是将其释放再重新创建。 例如，在 Azure 服务总线中，`QueueClient` 对象是通过 `MessagingFactory` 对象创建的。 在内部，`MessagingFactory` 管理连接。 有关详细信息，请参阅[有关使用服务总线消息传送提高性能的最佳做法][service-bus-messaging]。
+- 在 .NET Framework 中，与外部资源建立连接的许多对象是使用管理这些连接的其他类的静态工厂方法创建的。 应该保存并重复使用这些对象，而不是将其释放并重新创建。 例如，在 Azure 服务总线中，`QueueClient` 对象是通过 `MessagingFactory` 对象创建的。 在内部，`MessagingFactory` 管理连接。 有关详细信息，请参阅[有关使用服务总线消息传送提高性能的最佳做法][service-bus-messaging]。
 
 ## <a name="how-to-detect-the-problem"></a>如何检测问题
 
-此问题的症状包括吞吐量下降或错误率增多，以及以下一种或多种症状： 
+此问题的症状包括吞吐量下降或错误率增多，以及以下一种或多种症状：
 
-- 表明套接字、数据库连接、文件句柄等资源耗尽的异常增多。 
+- 表明套接字、数据库连接、文件句柄等资源耗尽的异常增多。
 - 内存用量和垃圾回收次数增多。
 - 网络、磁盘或数据库活动增多。
 
@@ -119,7 +123,7 @@ public class SingleHttpClientInstanceController : ApiController
 3. 在受控的测试环境而不是生产系统中针对每个可疑的操作执行负载测试。
 4. 查看源代码，检查中转站对象的管理方式。
 
-查看缓慢运行的，或者在系统承受负载时生成异常的操作的堆栈跟踪。 此信息可帮助识别这些操作如何利用资源。 异常可帮助确定错误是否因共享资源耗尽而导致。 
+查看缓慢运行的，或者在系统承受负载时生成异常的操作的堆栈跟踪。 此信息可帮助识别这些操作如何利用资源。 异常可帮助确定错误是否因共享资源耗尽而导致。
 
 ## <a name="example-diagnosis"></a>示例诊断
 
@@ -127,7 +131,7 @@ public class SingleHttpClientInstanceController : ApiController
 
 ### <a name="identify-points-of-slow-down-or-failure"></a>识别速度减慢或发生故障的位置
 
-下图显示使用 [New Relic APM][new-relic] 生成的结果，其中显示了响应时间不佳的操作。 在本例中，`NewHttpClientInstancePerRequest` 控制器中的 `GetProductAsync` 方法值得进一步调查。 请注意，在运行这些操作时，错误率也会增多。 
+下图显示使用 [New Relic APM][new-relic] 生成的结果，其中显示了响应时间不佳的操作。 在本例中，`NewHttpClientInstancePerRequest` 控制器中的 `GetProductAsync` 方法值得进一步调查。 请注意，在运行这些操作时，错误率也会增多。
 
 ![New Relic 监视仪表板，其中显示示例应用程序正在针对每个请求创建 HttpClient 对象的新实例][dashboard-new-HTTPClient-instance]
 
@@ -143,7 +147,7 @@ public class SingleHttpClientInstanceController : ApiController
 
 ![针对每个请求创建 HttpClient 对象新实例的示例应用程序的吞吐量][throughput-new-HTTPClient-instance]
 
-一开始，每秒处理的请求数量随着工作负荷的增大而增加。 但是，在负载变为大约 30 个用户后，成功请求的数量达到限制，并且系统开始生成异常。 从那时起，异常数量随着用户负载的增大而逐渐增加。 
+一开始，每秒处理的请求数量随着工作负荷的增大而增加。 但是，在负载变为大约 30 个用户后，成功请求的数量达到限制，并且系统开始生成异常。 从那时起，异常数量随着用户负载的增大而逐渐增加。
 
 负载测试将这些故障报告为 HTTP 500（内部服务器）错误。 查看遥测数据发现，这些错误的原因是随着创建的 `HttpClient` 对象越来越多，系统逐渐耗尽套接字资源。
 
@@ -163,11 +167,9 @@ public class SingleHttpClientInstanceController : ApiController
 
 ![New Relic 线程探查器，其中显示示例应用程序正在针对所有请求创建 HttpClient 对象的单个实例][thread-profiler-single-HTTPClient-instance]
 
-下图显示使用 `ExpensiveToCreateService` 对象的共享实例执行的类似负载测试。 同样，处理的请求数量随着用户负载的增大而增加，同时，平均响应时间保持较低水平。 
+下图显示使用 `ExpensiveToCreateService` 对象的共享实例执行的类似负载测试。 同样，处理的请求数量随着用户负载的增大而增加，同时，平均响应时间保持较低水平。
 
 ![针对每个请求重复使用 HttpClient 对象新实例的示例应用程序的吞吐量][throughput-single-ExpensiveToCreateService-instance]
-
-
 
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/ImproperInstantiation
 [service-bus-messaging]: /azure/service-bus-messaging/service-bus-performance-improvements

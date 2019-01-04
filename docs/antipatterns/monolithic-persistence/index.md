@@ -1,14 +1,16 @@
 ---
 title: 整体持久性反模式
+titleSuffix: Performance antipatterns for cloud apps
 description: 将应用程序的所有数据放入单个数据存储可能会损害性能。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 8cc67a41adf7ca4e3c5475eea86e38b75dd65d4d
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: c54a99dd0754cb2cb6cf4ad85b23a518c14a978b
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429105"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010250"
 ---
 # <a name="monolithic-persistence-antipattern"></a>整体持久性反模式
 
@@ -16,12 +18,12 @@ ms.locfileid: "47429105"
 
 ## <a name="problem-description"></a>问题描述
 
-一直以来，不管应用程序需要存储哪些不同类型的数据，往往都只使用单个数据存储。 这样做的原因通常是为了简化应用程序设计，或者受限于开发团队的现有技能组合。 
+一直以来，不管应用程序需要存储哪些不同类型的数据，往往都只使用单个数据存储。 这样做的原因通常是为了简化应用程序设计，或者受限于开发团队的现有技能组合。
 
 现代基于云的系统往往附带其他功能性和非功能性要求，需要存储许多异构类型的数据，例如文档、图像、缓存数据、排队消息、应用程序日志和遥测数据。 遵循传统方法将所有这些信息放入同一个数据存储可能会损害性能，主要原因有两个：
 
 - 在同一个数据存储中存储和检索大量不相关的数据可能导致资源争用，从而导致响应时间增加和连接失败。
-- 不管选择哪个数据存储，它都不一定最适合所有不同类型的数据，或者未针对应用程序执行的操作进行优化。 
+- 不管选择哪个数据存储，它都不一定最适合所有不同类型的数据，或者未针对应用程序执行的操作进行优化。
 
 以下示例演示了一个向数据库添加新记录，并将结果记录到日志的 ASP.NET Web API 控制器。 日志保存在业务数据所在的同一个数据库中。 可在[此处][sample-app]找到完整示例。
 
@@ -43,7 +45,7 @@ public class MonoController : ApiController
 
 ## <a name="how-to-fix-the-problem"></a>如何解决问题
 
-根据数据的用法隔离数据。 对于每个数据集，选择最符合数据集用法的数据存储。 在前面的示例中，应用程序应将日志记录到与保存业务数据的数据库不同的存储： 
+根据数据的用法隔离数据。 对于每个数据集，选择最符合数据集用法的数据存储。 在前面的示例中，应用程序应将日志记录到与保存业务数据的数据库不同的存储：
 
 ```csharp
 public class PolyController : ApiController
@@ -76,10 +78,10 @@ public class PolyController : ApiController
 可执行以下步骤来帮助确定原因。
 
 1. 检测系统以记录关键性能统计信息。 捕获每个操作的计时信息，以及应用程序读取和写入数据的位置。
-1. 如果可能，请在生产环境中监视运行了几天的系统，以获得有关系统使用方式的真实视图。 如果无法进行这种监视，请配合实际数量的虚拟用户（这些用户执行一系列典型操作）运行脚本化负载测试。
-2. 使用遥测数据来识别性能不佳的时段。
-3. 识别在这些时段访问了哪些数据存储。
-4. 识别可能发生争用的数据存储资源。
+2. 如果可能，请在生产环境中监视运行了几天的系统，以获得有关系统使用方式的真实视图。 如果无法进行这种监视，请配合实际数量的虚拟用户（这些用户执行一系列典型操作）运行脚本化负载测试。
+3. 使用遥测数据来识别性能不佳的时段。
+4. 识别在这些时段访问了哪些数据存储。
+5. 识别可能发生争用的数据存储资源。
 
 ## <a name="example-diagnosis"></a>示例诊断
 
@@ -107,7 +109,7 @@ public class PolyController : ApiController
 
 ### <a name="examine-the-telemetry-for-the-data-stores"></a>检查数据存储的遥测数据
 
-检测数据存储以捕获活动的低级详细信息。 在示例应用程序中，数据访问统计信息显示针对 `PurchaseOrderHeader` 表和 `MonoLog` 表执行了大量插入操作。 
+检测数据存储以捕获活动的低级详细信息。 在示例应用程序中，数据访问统计信息显示针对 `PurchaseOrderHeader` 表和 `MonoLog` 表执行了大量插入操作。
 
 ![示例应用程序的数据访问统计信息][MonolithicDataAccessStats]
 
@@ -133,12 +135,11 @@ public class PolyController : ApiController
 
 ![Azure 经典门户中的数据库监视器显示 polyglot 方案中日志数据库的资源利用率][LogDatabaseUtilization]
 
-
 ## <a name="related-resources"></a>相关资源
 
 - [选择适当的数据存储][data-store-overview]
 - [有关选择数据存储的准则][data-store-comparison]
-- [高度可缩放解决方案的数据访问：使用 SQL、NoSQL 和 Polyglot 持久性][Data-Access-Guide]
+- [高度可缩放解决方案的数据访问：使用 SQL、NoSQL 和多语言持久化][Data-Access-Guide]
 - [数据分区][DataPartitioningGuidance]
 
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/MonolithicPersistence
