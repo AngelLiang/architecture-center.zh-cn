@@ -1,14 +1,17 @@
 ---
 title: 云设计模式
+titleSuffix: Azure Architecture Center
 description: 用于在云中构建可靠且可缩放的安全应用程序的云设计模式
 keywords: Azure
+author: dragon119
 ms.date: 12/10/2018
-ms.openlocfilehash: 6965f4ba19bb465c4afc0e0c355b32bde8944823
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 003bef866b0cd873122cfb8d4730b95ba49d3d7f
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450847"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011287"
 ---
 # <a name="cloud-design-patterns"></a>云设计模式
 
@@ -18,6 +21,7 @@ ms.locfileid: "53450847"
 
 ## <a name="challenges-in-cloud-development"></a>云中开发的难题
 
+<!-- markdownlint-disable MD033 -->
 <table>
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="./category/availability.md"><img src="_images/category/availability.svg" alt="Availability" /></a></td>
@@ -76,6 +80,7 @@ ms.locfileid: "53450847"
     </td>
 </tr>
 </table>
+<!-- markdownlint-disable MD033 -->
 
 ## <a name="catalog-of-patterns"></a>模式目录
 
@@ -114,4 +119,3 @@ ms.locfileid: "53450847"
 |                      [Strangler](./strangler.md)                      |                                            通过将特定的功能片断逐渐取代为新的应用程序和服务，逐步迁移旧系统。                                            |
 |                     [限制](./throttling.md)                     |                                                 控制应用程序实例、单个租户或整个服务对资源的消耗。                                                 |
 |                      [附属密钥](./valet-key.md)                      |                                                        使用令牌或密钥，向客户端授予对特定资源或服务的受限直接访问权限。                                                        |
-

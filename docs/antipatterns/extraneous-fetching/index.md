@@ -1,18 +1,20 @@
 ---
 title: 请求冗余反模式
+titleSuffix: Performance antipatterns for cloud apps
 description: 检索超出业务运营需要的数据可能会导致不必要的 I/O 开销，并降低响应能力。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 7a72bfd3e4b2e206f3266a046fac2083224ecb4f
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: dac1b4c1422b447b8a0a9ebe317d5ac246c38da5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846597"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010233"
 ---
 # <a name="extraneous-fetching-antipattern"></a>请求冗余反模式
 
-检索超出业务运营需要的数据可能会导致不必要的 I/O 开销，并降低响应能力。 
+检索超出业务运营需要的数据可能会导致不必要的 I/O 开销，并降低响应能力。
 
 ## <a name="problem-description"></a>问题描述
 
@@ -52,7 +54,7 @@ public async Task<IHttpActionResult> AggregateOnClientAsync()
 }
 ```
 
-以下示例演示实体框架对 LINQ to Entities 的使用方式所造成的微妙问题。 
+以下示例演示实体框架对 LINQ to Entities 的使用方式所造成的微妙问题。
 
 ```csharp
 var query = from p in context.Products.AsEnumerable()
@@ -62,13 +64,13 @@ var query = from p in context.Products.AsEnumerable()
 List<Product> products = query.ToList();
 ```
 
-该应用程序尝试查找 `SellStartDate` 超过一周的产品。 在大多数情况下，LINQ to Entities 会将 `where` 子句转换为可由数据库执行的 SQL 语句。 但是，在这种情况下，LINQ to Entities 无法将 `AddDays` 方法映射到 SQL。 而是返回 `Product` 表中的每行，并在内存中筛选结果。 
+该应用程序尝试查找 `SellStartDate` 超过一周的产品。 在大多数情况下，LINQ to Entities 会将 `where` 子句转换为可由数据库执行的 SQL 语句。 但是，在这种情况下，LINQ to Entities 无法将 `AddDays` 方法映射到 SQL。 而是返回 `Product` 表中的每行，并在内存中筛选结果。
 
-调用 `AsEnumerable` 暗示着存在一个问题。 此方法将结果转换为 `IEnumerable` 接口。 尽管 `IEnumerable` 支持筛选，但筛选是在客户端而不是数据库上执行的。 默认情况下，LINQ to Entities 使用 `IQueryable`，该接口将筛选责任传递给数据源。 
+调用 `AsEnumerable` 暗示着存在一个问题。 此方法将结果转换为 `IEnumerable` 接口。 尽管 `IEnumerable` 支持筛选，但筛选是在客户端而不是数据库上执行的。 默认情况下，LINQ to Entities 使用 `IQueryable`，该接口将筛选责任传递给数据源。
 
 ## <a name="how-to-fix-the-problem"></a>如何解决问题
 
-避免提取可能很快就会过时或被丢弃的大量数据，只提取所执行操作需要的数据。 
+避免提取可能很快就会过时或被丢弃的大量数据，只提取所执行操作需要的数据。
 
 不要从表中获取每个列并对其进行筛选，而是从数据库中选择所需的列。
 
@@ -103,7 +105,7 @@ public async Task<IHttpActionResult> AggregateOnDatabaseAsync()
 使用实体框架时，请确保使用 `IQueryable` 接口而不是 `IEnumerable` 来解析 LINQ 查询。 可能需要调整查询，以便只使用可映射到数据源的函数。 可以重构前面的示例，以便从查询中删除 `AddDays` 方法，使筛选由数据库执行。
 
 ```csharp
-DateTime dateSince = DateTime.Now.AddDays(-7); // AddDays has been factored out. 
+DateTime dateSince = DateTime.Now.AddDays(-7); // AddDays has been factored out.
 var query = from p in context.Products
             where p.SellStartDate < dateSince // This criterion can be passed to the database by LINQ to Entities
             select ...;
@@ -117,22 +119,21 @@ List<Product> products = query.ToList();
 
 - 对于必须支持无界限查询的操作，请实现分页，每次只提取有限数量的实体。 例如，如果客户正在浏览产品目录，则每次可向其显示一页结果。
 
-- 如果可能，请利用数据存储内置的功能。 例如，SQL 数据库通常提供聚合函数。 
+- 如果可能，请利用数据存储内置的功能。 例如，SQL 数据库通常提供聚合函数。
 
 - 如果使用的数据存储不支持某个特定函数（例如聚合），你可以将计算结果存储在其他位置，并在添加或更新记录后更新该值，这样，每当应用程序需要该值时，不必要重新计算。
 
-- 如果发现请求正在检索大量字段，请检查源代码，以确定是否真正需要所有这些字段。 有时，这些请求是设计不佳的 `SELECT *` 查询造成的。 
+- 如果发现请求正在检索大量字段，请检查源代码，以确定是否真正需要所有这些字段。 有时，这些请求是设计不佳的 `SELECT *` 查询造成的。
 
-- 同样，检索大量实体的请求可能意味着应用程序未正确筛选数据。 请确认是否真正需要所有这些实体。 尽量使用数据库端筛选，例如，在 SQL 中使用 `WHERE` 子句。 
+- 同样，检索大量实体的请求可能意味着应用程序未正确筛选数据。 请确认是否真正需要所有这些实体。 尽量使用数据库端筛选，例如，在 SQL 中使用 `WHERE` 子句。
 
 - 将处理工作量分配到数据库并不总是最佳选择。 仅当数据库在设计上或优化为执行这些处理时，才使用此策略。 大部分数据库系统已针对某些函数进行高度优化，但并不旨在充当通用的应用程序引擎。 有关详细信息，请参阅[繁忙数据库反模式][BusyDatabase]。
-
 
 ## <a name="how-to-detect-the-problem"></a>如何检测问题
 
 请求冗余的症状包括高延迟和低吞吐量。 如果数据是从数据存储中检索的，则还可能会加剧资源争用。 最终用户可能会反映响应时间延长，或服务超时导致失败。这些失败可能返回 HTTP 500（内部服务器）错误或 HTTP 503（服务不可用）错误。 检查 Web 服务器的事件日志，其中可能包含有关错误原因和情况的更详细信息。
 
-此反模式的症状和获取的某些遥测数据可能与[整体持久性反模式][MonolithicPersistence]非常类似。 
+此反模式的症状和获取的某些遥测数据可能与[整体持久性反模式][MonolithicPersistence]非常类似。
 
 可执行以下步骤来帮助确定原因：
 
@@ -140,8 +141,8 @@ List<Product> products = query.ToList();
 2. 观察系统表现的所有行为模式。 在每秒事务数或用户量方面是否存在特定的限制？
 3. 将慢速工作负荷的实例与行为模式相关联。
 4. 识别正在使用的数据存储。 对于每个数据源，运行较低级别的遥测来观察操作行为。
-6. 识别引用这些数据源的所有缓慢运行的查询。
-7. 针对缓慢运行的查询执行特定于资源的分析，并确定数据的使用和消耗方式。
+5. 识别引用这些数据源的所有缓慢运行的查询。
+6. 针对缓慢运行的查询执行特定于资源的分析，并确定数据的使用和消耗方式。
 
 确定是否存在以下任何症状：
 
@@ -150,13 +151,13 @@ List<Product> products = query.ToList();
 - 某个操作频繁通过网络接收大量数据。
 - 应用程序和服务花费大量时间等待 I/O 完成。
 
-## <a name="example-diagnosis"></a>示例诊断    
+## <a name="example-diagnosis"></a>示例诊断
 
 以下部分对前面的示例应用这些步骤。
 
 ### <a name="identify-slow-workloads"></a>识别速度缓慢的工作负荷
 
-此图显示了某项负载测试的性能结果。该测试模拟多达 400 个运行前面所示 `GetAllFieldsAsync` 方法的并发用户。 随着负载的增大，吞吐量缓慢下降。 随着工作负荷的增大，平均响应时间不断提高。 
+此图显示了某项负载测试的性能结果。该测试模拟多达 400 个运行前面所示 `GetAllFieldsAsync` 方法的并发用户。 随着负载的增大，吞吐量缓慢下降。 随着工作负荷的增大，平均响应时间不断提高。
 
 ![GetAllFieldsAsync 方法的负载测试结果][Load-Test-Results-Client-Side1]
 
@@ -174,7 +175,7 @@ List<Product> products = query.ToList();
 
 ### <a name="identify-data-sources-in-slow-workloads"></a>识别慢速工作负荷中的数据源
 
-如果怀疑某个服务由于检索数据的方式原因而性能不佳，请调查应用程序与其使用的存储库之间的交互方式。 监视实时系统，确定在性能不佳期间访问了哪些源。 
+如果怀疑某个服务由于检索数据的方式原因而性能不佳，请调查应用程序与其使用的存储库之间的交互方式。 监视实时系统，确定在性能不佳期间访问了哪些源。
 
 对于每个数据源，检测系统以捕获以下信息：
 
@@ -203,7 +204,6 @@ List<Product> products = query.ToList();
 
 ![Windows Azure SQL 数据库管理门户中的“查询详细信息”窗格][QueryDetails]
 
-
 ## <a name="implement-the-solution-and-verify-the-result"></a>实施解决方案并验证结果
 
 在数据库端将 `GetRequiredFieldsAsync` 方法更改为使用 SELECT 语句后，负载测试显示了以下结果。
@@ -218,19 +218,17 @@ List<Product> products = query.ToList();
 
 ![AggregateOnDatabaseAsync 方法的负载测试结果][Load-Test-Results-Database-Side2]
 
-现在，平均响应时间极短。 这是数量级的性能改善，主要原因是来自数据库的 I/O 大幅减少。 
+现在，平均响应时间极短。 这是数量级的性能改善，主要原因是来自数据库的 I/O 大幅减少。
 
 下面是 `AggregateOnDatabaseAsync` 方法的相应遥测数据。 从数据库中检索的数据量大大减少，从每个事务 280Kb 以上缩减到 53 个字节。 因此，每分钟的最大持续请求数已从大约 2,000 提升到 25,000 以上。
 
 ![“AggregateOnDatabaseAsync”方法的遥测数据][TelemetryAggregateInDatabaseAsync]
-
 
 ## <a name="related-resources"></a>相关资源
 
 - [繁忙数据库反模式][BusyDatabase]
 - [琐碎 I/O 反模式][chatty-io]
 - [数据分区最佳做法][data-partitioning]
-
 
 [BusyDatabase]: ../busy-database/index.md
 [data-partitioning]: ../../best-practices/data-partitioning.md

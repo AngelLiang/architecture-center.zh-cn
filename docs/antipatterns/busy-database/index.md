@@ -1,18 +1,20 @@
 ---
 title: 繁忙数据库对立模式
+titleSuffix: Performance antipatterns for cloud apps
 description: 将处理工作量卸载到数据库服务器可能导致性能和可伸缩性出现问题。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: a14a350aefc1801ae08cb4a8d0eb3d5b248c92bf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 11bce03aed2e988d0a814b3298818715ba42c1c5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428901"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011457"
 ---
 # <a name="busy-database-antipattern"></a>繁忙数据库对立模式
 
-将处理工作量卸载到数据库服务器可能会导致将绝大部分时间花费在运行代码上，而不是花费在响应存储和检索数据的请求上。 
+将处理工作量卸载到数据库服务器可能会导致将绝大部分时间花费在运行代码上，而不是花费在响应存储和检索数据的请求上。
 
 ## <a name="problem-description"></a>问题描述
 
@@ -217,9 +219,9 @@ using (var command = new SqlCommand(...))
 
 ## <a name="how-to-detect-the-problem"></a>如何检测问题
 
-繁忙数据库的症状包括，在访问数据库的操作中，吞吐量和响应时间不成比例下降。 
+繁忙数据库的症状包括，在访问数据库的操作中，吞吐量和响应时间不成比例下降。
 
-可执行以下步骤来帮助识别此问题： 
+可执行以下步骤来帮助识别此问题：
 
 1. 使用性能监视来识别生产系统花费了多少时间执行数据库活动。
 
@@ -261,10 +263,9 @@ CPU 和 DTU 利用率显示，尽管吞吐量已提高，但系统花费了较�
 
 ![Azure SQL 数据库监视器，其中显示了在客户端应用程序中执行处理时数据库的性能][ProcessingInClientApplicationMonitor]
 
-## <a name="related-resources"></a>相关资源 
+## <a name="related-resources"></a>相关资源
 
 - [超量提取对立模式][ExtraneousFetching]
-
 
 [dtu]: /azure/sql-database/sql-database-service-tiers-dtu
 [ExtraneousFetching]: ../extraneous-fetching/index.md

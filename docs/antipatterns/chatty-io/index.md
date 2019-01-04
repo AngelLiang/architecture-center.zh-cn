@@ -1,14 +1,16 @@
 ---
 title: 琐碎 I/O 对立模式
+titleSuffix: Performance antipatterns for cloud apps
 description: 发出大量的 I/O 请求可能会损害性能和响应能力。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 17193198918cc742b2e3f30e77dfc5c3f2726ebf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: c018e365d0a6244f77d119ad59f601e9c7ea965c
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428561"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011219"
 ---
 # <a name="chatty-io-antipattern"></a>琐碎 I/O 对立模式
 
@@ -26,7 +28,7 @@ ms.locfileid: "47428561"
 2. 通过查询 `Product` 表查找该子类别中的所有产品。
 3. 对于每个产品，查询 `ProductPriceListHistory` 表中的价格数据。
 
-应用程序使用[实体框架][ef]查询数据库。 可在[此处][code-sample]找到完整示例。 
+应用程序使用[实体框架][ef]查询数据库。 可在[此处][code-sample]找到完整示例。
 
 ```csharp
 public async Task<IHttpActionResult> GetProductsInSubCategoryAsync(int subcategoryId)
@@ -57,11 +59,11 @@ public async Task<IHttpActionResult> GetProductsInSubCategoryAsync(int subcatego
 }
 ```
 
-此示例显式显示了问题，但有时，如果 O/RM 逐个地隐式提取子记录，则可能会掩盖问题。 这就是所谓的“N+1 问题”。 
+此示例显式显示了问题，但有时，如果 O/RM 逐个地隐式提取子记录，则可能会掩盖问题。 这就是所谓的“N+1 问题”。
 
 ### <a name="implementing-a-single-logical-operation-as-a-series-of-http-requests"></a>以一系列 HTTP 请求的形式执行单个逻辑操作
 
-当开发人员尝试遵循面向对象的范例，并将远程对象视为内存中的本地对象时，就往往会发生这种情况。 这可能导致过多的网络往返。 例如，以下 Web API 通过单个 HTTP GET 方法公开 `User` 对象的单个属性。 
+当开发人员尝试遵循面向对象的范例，并将远程对象视为内存中的本地对象时，就往往会发生这种情况。 这可能导致过多的网络往返。 例如，以下 Web API 通过单个 HTTP GET 方法公开 `User` 对象的单个属性。
 
 ```csharp
 public class UserController : ApiController
@@ -89,7 +91,7 @@ public class UserController : ApiController
 }
 ```
 
-尽管此方法在技术上没有任何问题，但是，大多数客户端可能需要获取每个 `User` 的多个属性，从而导致需要编写如下所示的客户端代码。 
+尽管此方法在技术上没有任何问题，但是，大多数客户端可能需要获取每个 `User` 的多个属性，从而导致需要编写如下所示的客户端代码。
 
 ```csharp
 HttpResponseMessage response = await client.GetAsync("users/1/username");
@@ -107,7 +109,7 @@ var dob = await response.Content.ReadAsStringAsync();
 
 ### <a name="reading-and-writing-to-a-file-on-disk"></a>读取和写入磁盘中的文件
 
-文件 I/O 涉及到打开某个文件并转到相应的点，然后读取或写入数据。 完成该操作后，文件可能会关闭，以节省操作系统资源。 持续在文件中读取和写入少量信息的应用程序会产生很高的 I/O 开销。 小规模写入请求还可能导致文件碎片，从而进一步减慢后续 I/O 操作的速度。 
+文件 I/O 涉及到打开某个文件并转到相应的点，然后读取或写入数据。 完成该操作后，文件可能会关闭，以节省操作系统资源。 持续在文件中读取和写入少量信息的应用程序会产生很高的 I/O 开销。 小规模写入请求还可能导致文件碎片，从而进一步减慢后续 I/O 操作的速度。
 
 以下示例使用 `FileStream` 将 `Customer` 对象写入文件。 创建 `FileStream` 会打开该文件，释放它会关闭该文件。 （`using` 语句自动释放 `FileStream` 对象。）如果由于添加新客户，应用程序反复调用此方法，I/O 开销可能会迅速累积。
 
@@ -211,7 +213,7 @@ await SaveCustomerListToFileAsync(customers);
 
 - 前两个示例发出更少的 I/O 调用，但每个示例检索了更多的信息。 必须考虑这两种因素的利弊。 正确的答案取决于实际使用模式。 例如，在 Web API 示例中，客户端可能往往只需检索用户名。 在这种情况下，将该操作公开为单独的 API 调用可能有利。 有关详细信息，请参阅[超量提取][extraneous-fetching]对立模式。
 
-- 读取数据时，请不要发出过大的 I/O 请求。 应用程序应该只检索它可能要使用的信息。 
+- 读取数据时，请不要发出过大的 I/O 请求。 应用程序应该只检索它可能要使用的信息。
 
 - 有时，将对象的信息分区成以下两个区块可能会有帮助：经常访问的数据（大多数请求就是针对这些数据发出的），不经常访问的数据（极少使用的数据）。 最常访问的数据往往是对象总体数据中的相对较小一部分，因此，只返回这一部分数据能够大幅节省 I/O 开销。
 
@@ -231,7 +233,7 @@ await SaveCustomerListToFileAsync(customers);
 2. 对上一步骤中识别到的每个操作执行负载测试。
 3. 在负载测试期间，收集有关每个操作发出的数据访问请求的遥测数据。
 4. 收集已发送到数据存储的每个请求的详细统计信息。
-5. 在测试环境中分析应用程序，判定可能出现 I/O 瓶颈的位置。 
+5. 在测试环境中分析应用程序，判定可能出现 I/O 瓶颈的位置。
 
 确定是否存在以下任何症状：
 
@@ -246,16 +248,16 @@ await SaveCustomerListToFileAsync(customers);
 
 ### <a name="load-test-the-application"></a>对应用程序进行负载测试
 
-此图显示了负载测试的结果。 中间响应时间是根据每个请求在数十秒内的表现测得的。 该图显示延迟很高。 每加载 1000 个用户，用户就可能需要等待将近一分钟才能看到查询结果。 
+此图显示了负载测试的结果。 中间响应时间是根据每个请求在数十秒内的表现测得的。 该图显示延迟很高。 每加载 1000 个用户，用户就可能需要等待将近一分钟才能看到查询结果。
 
 ![琐碎 I/O 示例应用程序的关键指标负载测试结果][key-indicators-chatty-io]
 
 > [!NOTE]
-> 该应用程序是使用 Azure SQL 数据库作为 Azure 应用服务 Web 应用部署的。 负载测试使用了包含多达 1000 个并发用户的模拟步骤工作负荷。 数据库中配置了支持最多 1000 个并发连接的连接池，以减少出现连接争用，从而影响结果的可能性。 
+> 该应用程序是使用 Azure SQL 数据库作为 Azure 应用服务 Web 应用部署的。 负载测试使用了包含多达 1000 个并发用户的模拟步骤工作负荷。 数据库中配置了支持最多 1000 个并发连接的连接池，以减少出现连接争用，从而影响结果的可能性。
 
 ### <a name="monitor-the-application"></a>监视应用程序
 
-可以使用应用程序性能监视 (APM) 包来捕获和分析可识别琐碎 I/O 的关键指标。 至于哪些指标比较重要，将取决于 I/O 工作负荷。 对于此示例，要关注的 I/O 请求是数据库查询。 
+可以使用应用程序性能监视 (APM) 包来捕获和分析可识别琐碎 I/O 的关键指标。 至于哪些指标比较重要，将取决于 I/O 工作负荷。 对于此示例，要关注的 I/O 请求是数据库查询。
 
 下图显示了使用 [New Relic APM][new-relic] 生成的结果。 在承受最大工作负荷期间，平均数据库响应时间的峰值出现在每个请求的大约 5.6 秒处。 在整个测试过程中，系统能够支持每分钟平均 410 个请求。
 
@@ -279,7 +281,7 @@ await SaveCustomerListToFileAsync(customers);
 
 ![受测试示例应用程序的查询详细信息][queries3]
 
-如果使用实体框架等 O/RM，跟踪 SQL 查询可以洞察 O/RM 如何将编程调用转换为 SQL 语句，并指明可在其中优化数据访问的区域。 
+如果使用实体框架等 O/RM，跟踪 SQL 查询可以洞察 O/RM 如何将编程调用转换为 SQL 语句，并指明可在其中优化数据访问的区域。
 
 ### <a name="implement-the-solution-and-verify-the-result"></a>实施解决方案并验证结果
 
@@ -293,7 +295,7 @@ await SaveCustomerListToFileAsync(customers);
 
 ![块式 API 的事务概览][databasetraffic2]
 
-跟踪 SQL 语句后发现，所有数据是在单个 SELECT 语句中提取的。 尽管此查询要复杂得多，但只需为每个操作执行一次。 此外，尽管复杂的联接可能会产生较高的开销，但关系型数据库系统已针对此类查询进行优化。  
+跟踪 SQL 语句后发现，所有数据是在单个 SELECT 语句中提取的。 尽管此查询要复杂得多，但只需为每个操作执行一次。 此外，尽管复杂的联接可能会产生较高的开销，但关系型数据库系统已针对此类查询进行优化。
 
 ![块式 API 的查询详细信息][queries4]
 
@@ -322,4 +324,3 @@ await SaveCustomerListToFileAsync(customers);
 [queries2]: _images/DatabaseQueries2.jpg
 [queries3]: _images/DatabaseQueries3.jpg
 [queries4]: _images/DatabaseQueries4.jpg
-

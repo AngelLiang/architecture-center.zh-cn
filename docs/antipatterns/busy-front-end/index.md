@@ -1,14 +1,16 @@
 ---
 title: 繁忙前端反模式
+titleSuffix: Performance antipatterns for cloud apps
 description: 大量后台线程中的异步工作可能会耗尽其他前台任务的资源。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 89a2d6c41af1e19ca1b9b6a0a5dceac615afd60a
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: f52cedde5a17f098fb9218c48479fae981a2c7df
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428289"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011491"
 ---
 # <a name="busy-front-end-antipattern"></a>繁忙前端反模式
 
@@ -62,11 +64,11 @@ public class UserProfileController : ApiController
 
 ## <a name="how-to-fix-the-problem"></a>如何解决问题
 
-将消耗大量资源的进程移到独立的后端。 
+将消耗大量资源的进程移到独立的后端。
 
 使用这种方法，前端会将资源密集型任务放入某个消息队列。 后端会拾取这些任务进行异步处理。 该队列还充当负载调控器，可缓冲后端的请求。 如果队列长度过长，你可以配置自动缩放，以横向扩展后端。
 
-下面是上述代码的修改版本。 在此版本中，`Post` 方法将消息放在服务总线队列中。 
+下面是上述代码的修改版本。 在此版本中，`Post` 方法将消息放在服务总线队列中。
 
 ```csharp
 public class WorkInBackgroundController : ApiController
@@ -121,7 +123,7 @@ public async Task RunAsync(CancellationToken cancellationToken)
 - 此方法在一定程度上增大了应用程序的复杂性。 必须安全处理排队和取消排队，以免在发生故障时丢失请求。
 - 应用程序依赖于其他服务处理消息队列。
 - 处理环境必须有足够高的可伸缩性，可处理预期的工作负荷并满足所需的吞吐量目标。
-- 尽管此方法可提高总体响应能力，但移到后端的任务可能需要更长的时间才能完成。 
+- 尽管此方法可提高总体响应能力，但移到后端的任务可能需要更长的时间才能完成。
 
 ## <a name="how-to-detect-the-problem"></a>如何检测问题
 
@@ -130,12 +132,12 @@ public async Task RunAsync(CancellationToken cancellationToken)
 可执行以下步骤来帮助识别此问题：
 
 1. 对生产系统执行进程监视，识别响应时间变长的位置。
-2. 检查在这些位置捕获到的遥测数据，确定所执行的混合操作以及所用的资源。 
+2. 检查在这些位置捕获到的遥测数据，确定所执行的混合操作以及所用的资源。
 3. 找出响应异常的时间点与在这些时间点上发生操作的数量与组合之间的任何关联。
-4. 针对每个可疑的操作执行负载测试，确定哪些操作消耗了资源并阻塞了其他操作。 
+4. 针对每个可疑的操作执行负载测试，确定哪些操作消耗了资源并阻塞了其他操作。
 5. 检查这些操作的源代码，确定它们导致资源消耗过度的原因。
 
-## <a name="example-diagnosis"></a>示例诊断 
+## <a name="example-diagnosis"></a>示例诊断
 
 以下部分将这些步骤应用到前面所述的示例应用程序。
 
@@ -155,18 +157,17 @@ public async Task RunAsync(CancellationToken cancellationToken)
 
 此时，`WorkInFrontEnd` 控制器中的 `Post` 方法似乎就成了可供密切检查的首要候选项。 需要在受控环境中开展更多的工作，以确认假设条件。
 
-### <a name="perform-load-testing"></a>执行负载测试 
+### <a name="perform-load-testing"></a>执行负载测试
 
 下一步是在受控环境中执行测试。 例如，轮流运行一系列包含然后省略每个请求的负载测试，以查看影响。
 
-下图显示了针对上述测试中使用的相同云服务部署执行的负载测试结果。 该测试使用了一个常量负载，其中包含 500 个在 `UserProfile` 控制器中执行 `Get` 操作的用户；另外还使用了一个阶跃负载，其中包含在 `WorkInFrontEnd` 控制器中执行 `Post` 操作的用户。 
+下图显示了针对上述测试中使用的相同云服务部署执行的负载测试结果。 该测试使用了一个常量负载，其中包含 500 个在 `UserProfile` 控制器中执行 `Get` 操作的用户；另外还使用了一个阶跃负载，其中包含在 `WorkInFrontEnd` 控制器中执行 `Post` 操作的用户。
 
 ![WorkInFrontEnd 控制器的初始负载测试结果][Initial-Load-Test-Results-Front-End]
 
 最初，阶跃负载为 0，因此，只有活动的用户在执行 `UserProfile` 请求。 系统每秒大约能够响应 500 个请求。 60 秒后，包含 100 个附加用户的负载开始向 `WorkInFrontEnd` 控制器发送 POST 请求。 几乎在同一时刻，发送到 `UserProfile` 控制器的工作负荷下降到每秒大约 150 个请求。 这种情况是负载测试运行程序的运行方式造成的。 它会在等到获取响应后再发送下一个请求，因此，它收到响应所花费的时间越长，请求速率就越低。
 
 随着越来越多的用户向 `WorkInFrontEnd` 控制器发送 POST 请求，`UserProfile` 控制器的响应速率会持续下降。 但请注意，`WorkInFrontEnd` 控制器处理的请求数量保持相对稳定。 随着两种请求的总速率倾向于稳定但又偏低的限制，系统的饱和度一目了然。
-
 
 ### <a name="review-the-source-code"></a>检查源代码
 
@@ -175,11 +176,11 @@ public async Task RunAsync(CancellationToken cancellationToken)
 但是，此方法执行的工作仍会消耗 CPU、内存和其他资源。 让此进程以异步方式运行实际上可能会损害性能，因为用户能够以不受控的方式同时大量触发这些操作。 服务器可以运行的线程数有限制。 如果超过此限制，应用程序在尝试启动新线程时可能发生异常。
 
 > [!NOTE]
-> 这并不意味着应该避免异步操作。 在网络调用中执行异步等待是建议的做法。 （请参阅[同步 I/O][sync-io] 反模式。）此处的问题在于，CPU 密集型工作已在另一个线程中衍生。 
+> 这并不意味着应该避免异步操作。 在网络调用中执行异步等待是建议的做法。 （请参阅[同步 I/O][sync-io] 反模式。）此处的问题在于，CPU 密集型工作已在另一个线程中衍生。
 
 ### <a name="implement-the-solution-and-verify-the-result"></a>实施解决方案并验证结果
 
-下图显示了实施解决方案后的性能监视。 负载与前面所示的类似，但 `UserProfile` 控制器的响应时间现在要快得多。 在相同的持续时间内，请求数量已从 2,759 增大到 23,565。 
+下图显示了实施解决方案后的性能监视。 负载与前面所示的类似，但 `UserProfile` 控制器的响应时间现在要快得多。 在相同的持续时间内，请求数量已从 2,759 增大到 23,565。
 
 ![AppDynamics“业务事务”窗格，其中显示了使用 WorkInBackground 控制器时对所有请求的响应时间造成的影响][AppDynamics-Transactions-Background-Requests]
 
@@ -218,5 +219,3 @@ CPU 和网络利用率也表明性能有了改进。 CPU 利用率从未达到�
 [AppDynamics-Transactions-Background-Requests]: ./_images/AppDynamicsBackgroundPerformanceStats.jpg
 [AppDynamics-Metrics-Background-Requests]: ./_images/AppDynamicsBackgroundMetrics.jpg
 [Load-Test-Results-Background]: ./_images/LoadTestResultsBackground.jpg
-
-

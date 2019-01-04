@@ -4,12 +4,12 @@ titleSuffix: Azure Reference Architectures
 description: 比较用于将本地 Active Directory 与 Azure 集成的参考体系结构。
 ms.date: 07/02/2018
 ms.custom: seodec18
-ms.openlocfilehash: 905dedda6de1a107f55b2f7651441780a685aea7
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 99a64f0a5fbe5624aa8ad05bd3565ab2aef618b3
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119857"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011780"
 ---
 # <a name="choose-a-solution-for-integrating-on-premises-active-directory-with-azure"></a>选择用于将本地 Active Directory 与 Azure 相集成的解决方案
 
@@ -46,7 +46,7 @@ Azure AD 目录不是本地目录的扩展， 而是包含相同对象和标识�
 **挑战**
 
 - 标识服务限制为由用户和组访问。 无法对服务和计算机帐户进行身份验证。
-- 必须配置与本地域之间的连接，使 Azure AD 目录保持同步。 
+- 必须配置与本地域之间的连接，使 Azure AD 目录保持同步。
 - 可能需要重新编写应用程序才能通过 Azure AD 启用身份验证。
 
 **参考体系结构**
@@ -55,9 +55,9 @@ Azure AD 目录不是本地目录的扩展， 而是包含相同对象和标识�
 
 ## <a name="ad-ds-in-azure-joined-to-an-on-premises-forest"></a>Azure 中已加入本地林的 AD DS
 
-将 AD 域服务 (AD DS) 服务器部署到 Azure。 在 Azure 中创建一个域，并将其加入本地 AD 林。 
+将 AD 域服务 (AD DS) 服务器部署到 Azure。 在 Azure 中创建一个域，并将其加入本地 AD 林。
 
-如果需要使用 Azure AD 当前未实现的 AD DS 功能，请考虑此选项。 
+如果需要使用 Azure AD 当前未实现的 AD DS 功能，请考虑此选项。
 
 **优点**
 
@@ -97,13 +97,13 @@ Azure AD 目录不是本地目录的扩展， 而是包含相同对象和标识�
 
 ## <a name="extend-ad-fs-to-azure"></a>将 AD FS 扩展到 Azure
 
-将 Active Directory 联合身份验证服务 (AD FS) 部署复制到 Azure，以针对 Azure 中运行的组件执行联合身份验证和授权。 
+将 Active Directory 联合身份验证服务 (AD FS) 部署复制到 Azure，以针对 Azure 中运行的组件执行联合身份验证和授权。
 
 此体系结构的典型用途：
 
 - 对合作伙伴组织中的用户执行身份验证和授权。
 - 允许用户从组织防火墙外部运行的 Web 浏览器进行身份验证。
-- 允许用户通过已授权的外部设备（例如移动设备）建立连接。 
+- 允许用户通过已授权的外部设备（例如移动设备）建立连接。
 
 **优点**
 
