@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: 9a2eecdff7494fb627ea5c4655e6edc789bd5bdf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: de9530f7dd55c0ce5460cd3b58ab9f216c9b5c8c
+ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429683"
+ms.lasthandoff: 12/16/2018
+ms.locfileid: "53450864"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>命令和查询责任分离 (CQRS) 模式
 
@@ -39,8 +39,6 @@ ms.locfileid: "47429683"
 - 当协作域内数据存储中的记录锁定时，它会面临数据争用的风险，其中多个执行组件会在相同的数据集上并行操作。 或者当使用乐观锁定时并发更新会引起更新冲突。 这些风险会随着系统复杂性和吞吐量的增加而增加。 此外，由于数据存储和数据访问层上的负载以及检索消息所需查询的复杂性，传统方法可能对性能具有负面影响。
 
 - 它可以使管理安全性和权限更复杂，因为每个实体同时受读取和写入操作的影响，这可能会在错误的上下文中暴露数据。
-
-> 若要深入了解有关 CRUD 方法的限制，请参阅 [CRUD, Only When You Can Afford It](https://blogs.msdn.microsoft.com/maarten_mullender/2004/07/23/crud-only-when-you-can-afford-it-revisited/)（仅在可承受一定限制的情况下使用 CRUD）。
 
 ## <a name="solution"></a>解决方案
 

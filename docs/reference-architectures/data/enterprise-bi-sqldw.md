@@ -5,12 +5,12 @@ description: 使用 Azure 从本地存储的关系数据获取业务见解。
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 656bf6f1bd342856fd8a2d2aa0b62a9dd4d4f87f
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 3808cc5d09e2e0a5aaee1a6cfcb050b98a0ef2ee
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120078"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644217"
 ---
 # <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>将 Azure 中的 Enterprise BI 与 SQL 数据仓库配合使用
 
@@ -113,7 +113,7 @@ AzCopy 通过公共 Internet 将数据移到存储中。 如果速度不够快�
 
 PolyBase 自动利用仓库中的并行度。 负载性能会随着 DWU 的增加而扩展。 为获得最佳性能，请使用单个加载操作。 将输入数据分解为区块和运行多个并发负载不会带来任何性能优势。
 
-PolyBase 可以读取 Gzip 压缩文件。 但是，只会对每个压缩文件使用单个读取器，因为解压缩文件是单线程操作。 因此，请避免加载单个大型压缩文件。 应该将数据拆分为多个压缩文件，以利用并行度。 
+PolyBase 可以读取 Gzip 压缩文件。 但是，只会对每个压缩文件使用单个读取器，因为解压缩文件是单线程操作。 因此，请避免加载单个大型压缩文件。 应该将数据拆分为多个压缩文件，以利用并行度。
 
 注意以下限制：
 
@@ -183,10 +183,10 @@ Azure Analysis Services 旨在处理 BI 仪表板的查询要求，因此建议�
 
 ### <a name="authorization"></a>授权
 
-Azure Analysis Services 使用 Azure Active Directory (Azure AD) 对连接到 Analysis Services 服务器的用户进行身份验证。 可以通过创建角色，然后将 Azure AD 用户或组分配到这些角色，来限制特定的用户可以查看哪些数据。 对于每个角色，可以： 
+Azure Analysis Services 使用 Azure Active Directory (Azure AD) 对连接到 Analysis Services 服务器的用户进行身份验证。 可以通过创建角色，然后将 Azure AD 用户或组分配到这些角色，来限制特定的用户可以查看哪些数据。 对于每个角色，可以：
 
-- 保护表或单个列。 
-- 基于筛选表达式保护单个行。 
+- 保护表或单个列。
+- 基于筛选表达式保护单个行。
 
 有关详细信息，请参阅[管理数据库角色和用户](/azure/analysis-services/analysis-services-database-users)。
 
@@ -202,6 +202,13 @@ Azure Analysis Services 使用 Azure Active Directory (Azure AD) 对连接到 An
 ## <a name="next-steps"></a>后续步骤
 
 - 使用 Azure 数据工厂将 ELT 管道自动化。 请参阅[将自动化企业 BI 与 SQL 数据仓库和 Azure 数据工厂配合使用][adf-ra]。
+
+## <a name="related-resources"></a>相关资源
+
+可以查看以下 [Azure 示例方案](/azure/architecture/example-scenario)，了解使用部分相同技术的具体解决方案：
+
+- [用于销售和市场营销的数据仓库和分析](/azure/architecture/example-scenario/data/data-warehouse)
+- [将混合 ETL 与现有本地 SSIS 和 Azure 数据工厂配合使用](/azure/architecture/example-scenario/data/hybrid-etl-with-adf)
 
 <!-- links -->
 

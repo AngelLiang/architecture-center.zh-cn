@@ -4,12 +4,12 @@ titleSuffix: Enterprise Cloud Adoption
 description: 介绍合理化数字资产时可用的选项
 author: BrianBlanchard
 ms.date: 12/10/2018
-ms.openlocfilehash: 4e2765198b64c36470adc9fbe35872e4714780e8
-ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
+ms.openlocfilehash: 66eee782b63210bcba3022e3be5b8fdee11716ec
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53179604"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643673"
 ---
 # <a name="enterprise-cloud-adoption-the-5-rs-of-rationalization"></a>企业云采用：合理化的 5 个 R
 

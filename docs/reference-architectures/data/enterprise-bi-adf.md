@@ -5,18 +5,18 @@ description: 将 Azure 数据工厂与 SQL 数据仓库配合使用，在 Azure 
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: d87583802496f8be85e44c896ae7d6a26306cffc
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 8263da7675beb61add371c945aab72b203c2349c
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120333"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643981"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>将自动化企业 BI 与 SQL 数据仓库和 Azure 数据工厂配合使用
 
 此参考体系结构演示如何在[提取、加载和转换 (ELT)](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) 管道中执行增量加载。 它使用 Azure 数据工厂将 ELT 管道自动化。 该管道以增量方式将最新的 OLTP 数据从本地 SQL Server 数据库移入 SQL 数据仓库。 事务数据将转换为表格模型以供分析。
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
+> [!VIDEO <https://www.microsoft.com/videoplayer/embed/RE2Gnz2>]
 
 [GitHub][github] 中提供了本体系结构的参考实现。
 
@@ -201,7 +201,16 @@ Power BI 查询可以使用此列找到给定销售发票的正确 City 记录�
 - 一个 Azure Analysis Services 实例。
 - Azure 数据工厂和 ELT 作业的数据工厂管道。
 
+## <a name="related-resources"></a>相关资源
+
+可以查看以下 [Azure 示例方案](/azure/architecture/example-scenario)，了解使用部分相同技术的具体解决方案：
+
+- [用于销售和市场营销的数据仓库和分析](/azure/architecture/example-scenario/data/data-warehouse)
+- [将混合 ETL 与现有本地 SSIS 和 Azure 数据工厂配合使用](/azure/architecture/example-scenario/data/hybrid-etl-with-adf)
+
+<!-- links -->
+
 [adf]: /azure/data-factory
-[github]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw_advanced
+[github]: https://github.com/mspnp/azure-data-factory-sqldw-elt-pipeline
 [MergeLocation]: https://github.com/mspnp/reference-architectures/blob/master/data/enterprise_bi_sqldw_advanced/azure/sqldw_scripts/city/%5BIntegration%5D.%5BMergeLocation%5D.sql
 [wwi]: /sql/sample/world-wide-importers/wide-world-importers-oltp-database

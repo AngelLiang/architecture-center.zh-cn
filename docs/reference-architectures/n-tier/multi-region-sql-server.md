@@ -5,12 +5,12 @@ description: 在多个区域中的 Azure 虚拟机上部署应用程序以实现
 author: MikeWasson
 ms.date: 07/19/2018
 ms.custom: seodec18
-ms.openlocfilehash: 5036d8c74dbf92d9547ab866b15b1576df48e3eb
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 84da8aaef7e552beff1f06befbaa2e50a3ac3d8b
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119993"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643692"
 ---
 # <a name="run-an-n-tier-application-in-multiple-azure-regions-for-high-availability"></a>在多个 Azure 区域中运行 N 层应用程序以确保高可用性
 
@@ -159,6 +159,13 @@ az network traffic-manager endpoint update --resource-group <resource-group> --p
 - 关闭域控制器上的 DNS 服务。
 
 测量恢复时间，并验证它们是否满足你的业务要求。 另外还测试故障模式的组合。
+
+## <a name="related-resources"></a>相关资源
+
+可以查看以下 [Azure 示例方案](/azure/architecture/example-scenario)，了解使用部分相同技术的具体解决方案：
+
+- [Azure 上可实现高可用性和灾难恢复的多层 Web 应用程序](/azure/architecture/example-scenario/infrastructure/multi-tier-app-disaster-recovery)
+- [使用 Windows 虚拟机在 Azure 上构建安全的 Web 应用程序](/azure/architecture/example-scenario/infrastructure/regulated-multitier-app)
 
 <!-- links -->
 

@@ -1,14 +1,15 @@
 ---
-title: Azure 上高度可扩展且高度安全的 WordPress 网站
+title: 可高度可缩放且安全的 WordPress 网站
+titleSuffix: Azure Example Scenarios
 description: 构建高度可扩展且高度安全的 WordPress 网站以用于媒体事件。
 author: david-stanford
 ms.date: 09/18/2018
-ms.openlocfilehash: 6ff39d09fa301c8c68ce2a644cc489c0e87a22fa
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: c0dad12e1da1f17b75d0661195123da4a8267152
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610594"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644032"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>高度可缩放的安全 WordPress 网站
 
@@ -18,10 +19,10 @@ ms.locfileid: "51610594"
 
 其他相关用例包括：
 
-* 媒体活动导致流量激增。
-* 博客网站使用 WordPress 作为内容管理系统。
-* 企业或电子商务网站使用 WordPress。
-* 使用其他内容管理系统构建网站。
+- 媒体活动导致流量激增。
+- 博客网站使用 WordPress 作为内容管理系统。
+- 企业或电子商务网站使用 WordPress。
+- 使用其他内容管理系统构建网站。
 
 ## <a name="architecture"></a>体系结构
 
@@ -47,19 +48,19 @@ ms.locfileid: "51610594"
 
 ### <a name="components"></a>组件
 
-* [Azure 内容分发网络 (CDN)](/azure/cdn/cdn-overview) 是可以高效地向用户传送 Web 内容的分布式服务器网络。 CDN 将缓存的内容存储在靠近最终用户的接入点位置中的边缘服务器上，因此可以最小化延迟。
-* [虚拟网络](/azure/virtual-network/virtual-networks-overview)允许 VM 之类的资源以安全方式彼此通信、与 Internet 通信，以及与本地网络通信。 虚拟网络提供隔离和细分，可以筛选和路由流量，并且允许在不同位置之间进行连接。 通过 VNet 在两个网络之间建立对等互连。
-* [网络安全组](/azure/virtual-network/security-overview)包含一个安全规则列表，这些规则可根据源或目标 IP 地址、端口和协议允许或拒绝入站或出站网络流量。 本方案中的虚拟网络受网络安全组规则的保护，这些规则可以限制应用程序组件之间的流量。
-* [负载均衡器](/azure/load-balancer/load-balancer-overview)根据规则和运行状况探测来分配入站流量。 负载均衡器提供低延迟和高吞吐量，以及为所有 TCP 和 UDP 应用程序纵向扩展到数以百万计的流。 本方案使用负载均衡器将来自内容分发网络的流量分配到前端 Web 服务器。
-* 使用[虚拟机规模集][docs-vmss]可以创建并管理一组完全相同的、负载均衡的 VM。 可以根据需求或定义的计划自动增减 VM 实例的数目。 本方案使用了两个不同的虚拟机规模集 - 提供内容的前端 Web 服务器使用其中的一个规模集，创作新内容的前端 Web 服务器使用另一个规模集。
-* [Azure 文件](/azure/storage/files/storage-files-introduction)在云中提供完全托管的文件共享，该共享托管本方案中的所有 WordPress 内容，使所有 VM 都可以访问这些数据。
-* [Azure Key Vault](/azure/key-vault/key-vault-overview) 用于存储密码、证书和密钥以及严格控制对其的访问。
-* [Azure Active Directory (Azure AD)](/azure/active-directory/fundamentals/active-directory-whatis) 是多租户、基于云的目录和标识管理服务。 在本方案中，Azure AD 为网站和 VPN 隧道提供身份验证服务。
+- [Azure 内容分发网络 (CDN)](/azure/cdn/cdn-overview) 是可以高效地向用户传送 Web 内容的分布式服务器网络。 CDN 将缓存的内容存储在靠近最终用户的接入点位置中的边缘服务器上，因此可以最小化延迟。
+- [虚拟网络](/azure/virtual-network/virtual-networks-overview)允许 VM 之类的资源以安全方式彼此通信、与 Internet 通信，以及与本地网络通信。 虚拟网络提供隔离和细分，可以筛选和路由流量，并且允许在不同位置之间进行连接。 通过 VNet 在两个网络之间建立对等互连。
+- [网络安全组](/azure/virtual-network/security-overview)包含一个安全规则列表，这些规则可根据源或目标 IP 地址、端口和协议允许或拒绝入站或出站网络流量。 本方案中的虚拟网络受网络安全组规则的保护，这些规则可以限制应用程序组件之间的流量。
+- [负载均衡器](/azure/load-balancer/load-balancer-overview)根据规则和运行状况探测来分配入站流量。 负载均衡器提供低延迟和高吞吐量，以及为所有 TCP 和 UDP 应用程序纵向扩展到数以百万计的流。 本方案使用负载均衡器将来自内容分发网络的流量分配到前端 Web 服务器。
+- 使用[虚拟机规模集][docs-vmss]可以创建并管理一组完全相同的、负载均衡的 VM。 可以根据需求或定义的计划自动增减 VM 实例的数目。 本方案使用了两个不同的虚拟机规模集 - 提供内容的前端 Web 服务器使用其中的一个规模集，创作新内容的前端 Web 服务器使用另一个规模集。
+- [Azure 文件](/azure/storage/files/storage-files-introduction)在云中提供完全托管的文件共享，该共享托管本方案中的所有 WordPress 内容，使所有 VM 都可以访问这些数据。
+- [Azure Key Vault](/azure/key-vault/key-vault-overview) 用于存储密码、证书和密钥以及严格控制对其的访问。
+- [Azure Active Directory (Azure AD)](/azure/active-directory/fundamentals/active-directory-whatis) 是多租户、基于云的目录和标识管理服务。 在本方案中，Azure AD 为网站和 VPN 隧道提供身份验证服务。
 
 ### <a name="alternatives"></a>备选项
 
-* [SQL Server for Linux](/azure/virtual-machines/linux/sql/sql-server-linux-virtual-machines-overview) 可以取代 MariaDB 数据存储。
-* 如果你偏向于使用完全托管的解决方案，可以用 [Azure Database for MySQL](/azure/mysql/overview) 取代 MariaDB 数据存储。
+- [SQL Server for Linux](/azure/virtual-machines/linux/sql/sql-server-linux-virtual-machines-overview) 可以取代 MariaDB 数据存储。
+- 如果你偏向于使用完全托管的解决方案，可以用 [Azure Database for MySQL](/azure/mysql/overview) 取代 MariaDB 数据存储。
 
 ## <a name="considerations"></a>注意事项
 
@@ -95,9 +96,9 @@ ms.locfileid: "51610594"
 
 我们根据上面的体系结构示意图，提供了预配置的[成本配置文件][pricing]。 若要为自己的用例配置定价计算器，请考虑以下几个因素：
 
-* 预期每月的流量有多少 (GB)？ 流量对成本的影响最大，因为它会影响在虚拟机规模集中公开数据所需的 VM 数量。 此外，它直接关系到通过 CDN 公开的数据量。
-* 要将多少新数据写入网站？ 写入网站的新数据关系到在区域之间镜像的数据量。
-* 有多少内容是动态的？ 有多少内容是静态的？ 动态与静态内容的差异会影响需要从数据库层检索的数据量，以及要在 CDN 中缓存的数据量。
+- 预期每月的流量有多少 (GB)？ 流量对成本的影响最大，因为它会影响在虚拟机规模集中公开数据所需的 VM 数量。 此外，它直接关系到通过 CDN 公开的数据量。
+- 要将多少新数据写入网站？ 写入网站的新数据关系到在区域之间镜像的数据量。
+- 有多少内容是动态的？ 有多少内容是静态的？ 动态与静态内容的差异会影响需要从数据库层检索的数据量，以及要在 CDN 中缓存的数据量。
 
 <!-- links -->
 [architecture]: ./media/architecture-secure-scalable-wordpress.png

@@ -5,12 +5,12 @@ description: 有关在 Azure 大型实例上的高可用性环境中运行 SAP H
 author: lbrader
 ms.date: 05/16/2018
 ms.custom: seodec18
-ms.openlocfilehash: c21a5ac83d8d8ee9a9b9d7edad07288c85544994
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: ef3c57f292024af0abbeb4ead62ab4b3aeb57a90
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120130"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644081"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>运行 Azure SAP HANA 大型实例
 
@@ -168,6 +168,15 @@ Microsoft 可帮助建立大型实例设置，但你要负责验证操作系统�
 - [Azure 社区支持][azure-forum]
 - [SAP 社区][sap-community]
 - [Stack Overflow SAP][stack-overflow]
+
+## <a name="related-resources"></a>相关资源
+
+可以查看以下 [Azure 示例方案](/azure/architecture/example-scenario)，了解使用部分相同技术的具体解决方案：
+
+- [在 Azure 上使用 Oracle 数据库运行 SAP 生产工作负荷](/azure/architecture/example-scenario/apps/sap-production)
+- [Azure 上的 SAP 工作负荷的开发/测试环境](/azure/architecture/example-scenario/apps/sap-dev-test)
+
+<!-- links -->
 
 [azure-forum]: https://azure.microsoft.com/support/forums/
 [azure-large-instances]: /azure/virtual-machines/workloads/sap/hana-overview-architecture

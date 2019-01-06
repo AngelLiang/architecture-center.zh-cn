@@ -1,15 +1,16 @@
 ---
-title: 在 Azure 上运行计算流体动力学 (CFD) 模拟
+title: 运行 CFD 模拟
+titleSuffix: Azure Example Scenarios
 description: 在 Azure 上执行计算流体动力学 (CFD) 模拟。
 author: mikewarr
 ms.date: 09/20/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 42921122d74d07bf890f55be61b04c7e9a4f4e87
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: af43a60e952d75f84b4c7903a1567b0c76b9f4c4
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004653"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643928"
 ---
 # <a name="running-computational-fluid-dynamics-cfd-simulations-on-azure"></a>在 Azure 上运行计算流体动力学 (CFD) 模拟
 
@@ -23,11 +24,11 @@ Azure 提供所需的硬件用于在 GPU 和 CPU 虚拟机上运行 CFD 作业�
 
 CFD 应用程序的其他相关行业包括：
 
-* 航空
-* 汽车
-* 建筑 HVAC
-* 石油和天然气
-* 生命科学
+- 航空
+- 汽车
+- 建筑 HVAC
+- 石油和天然气
+- 生命科学
 
 ## <a name="architecture"></a>体系结构
 
@@ -46,12 +47,12 @@ CFD 应用程序的其他相关行业包括：
 
 ### <a name="components"></a>组件
 
-* [Azure CycleCloud][cyclecloud] 是用于在 Azure 中创建、管理、操作和优化 HPC 与大型计算群集的工具。
-* [Avere vFXT on Azure][avere] 用于提供针对云生成的企业级群集文件系统。
-* [Azure 虚拟机 (VM)][vms] 用于创建一组静态计算实例。
-* [虚拟机规模集][vmss]提供一组可由 Azure CycleCloud 纵向扩展或缩减的相同 VM。
-* [Azure 存储帐户](/azure/storage/common/storage-introduction)用于同步和数据保留。
-* [虚拟网络](/azure/virtual-network/virtual-networks-overview)允许许多类型的 Azure 资源（例如 Azure 虚拟机 (VM)）以安全方式彼此通信、与 Internet 通信，以及与本地网络通信。
+- [Azure CycleCloud][cyclecloud] 是用于在 Azure 中创建、管理、操作和优化 HPC 与大型计算群集的工具。
+- [Avere vFXT on Azure][avere] 用于提供针对云生成的企业级群集文件系统。
+- [Azure 虚拟机 (VM)][vms] 用于创建一组静态计算实例。
+- [虚拟机规模集][vmss]提供一组可由 Azure CycleCloud 纵向扩展或缩减的相同 VM。
+- [Azure 存储帐户](/azure/storage/common/storage-introduction)用于同步和数据保留。
+- [虚拟网络](/azure/virtual-network/virtual-networks-overview)允许许多类型的 Azure 资源（例如 Azure 虚拟机 (VM)）以安全方式彼此通信、与 Internet 通信，以及与本地网络通信。
 
 ### <a name="alternatives"></a>备选项
 
@@ -65,15 +66,22 @@ CFD 应用程序的其他相关行业包括：
 
 有关设计安全解决方案的一般性指导，请参阅 [Azure 安全性文档][security]。
 
-## <a name="deploy-this-scenario"></a>部署此方案
+## <a name="deploy-the-scenario"></a>部署方案
 
-在 Azure 中部署之前，需要满足一些先决条件。 在部署资源管理器模板之前，请执行以下步骤：
+### <a name="prerequisites"></a>先决条件
+
+在部署资源管理器模板之前，请执行以下步骤：
+
 1. 创建一个[服务主体][cycle-svcprin]用于检索 appId、displayName、名称、密码和租户。
 2. 生成一个 [SSH 密钥对][cycle-ssh]，以安全登录到 CycleCloud 服务器。
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FCycleCloudCommunity%2Fcyclecloud_arm%2Fmaster%2Fazuredeploy.json" target="_blank">
-    <img src="https://azuredeploy.net/deploybutton.png"/>
-</a>
+    <!-- markdownlint-disable MD033 -->
+
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FCycleCloudCommunity%2Fcyclecloud_arm%2Fmaster%2Fazuredeploy.json" target="_blank">
+        <img src="https://azuredeploy.net/deploybutton.png"/>
+    </a>
+
+    <!-- markdownlint-enable MD033 -->
 
 3. [登录到 CycleCloud 服务器][cycle-login]，以配置和创建新群集。
 4. [创建群集][cycle-create]。
@@ -90,12 +98,12 @@ Avere 缓存是一个可选解决方案，它能大幅提高应用程序作业�
 
 此方案显示了如何在 Azure 中运行 CFD 应用程序，其中的计算机所需的 RDMA 功能只在特定 VM 大小上提供。 以下示例显示了在数据传出量为 1 TB 的情况下，在一个月中每天连续分配八小时的规模集所产生的费用。 其中还包括 Azure CycleCloud 服务器和 Avere vFXT for Azure 安装的价格：
 
-* 区域：北欧
-* Azure CycleCloud 服务器：1 个标准 D3（4 个 CPU，14 GB 内存，32 GB 标准 HDD）
-* Azure CycleCloud 主服务器：1 个标准 D12（4 个 CPU，28 GB 内存，32 GB 标准 HDD）
-* Azure CycleCloud 节点阵列：10 个标准 H16r（16 个 CPU，112 GB 内存）
-* Azure 群集上的 Avere vFXT：3 个 x D16s v3（200 GB OS 磁盘，1 TB 高级 SSD 数据磁盘）
-* 数据传出量：1 TB
+- 区域：北欧
+- Azure CycleCloud 服务器：1 个标准 D3（4 个 CPU，14 GB 内存，32 GB 标准 HDD）
+- Azure CycleCloud 主服务器：1 个标准 D12（4 个 CPU，28 GB 内存，32 GB 标准 HDD）
+- Azure CycleCloud 节点阵列：10 个标准 H16r（16 个 CPU，112 GB 内存）
+- Azure 群集上的 Avere vFXT：3 个 x D16s v3（200 GB OS 磁盘，1 TB 高级 SSD 数据磁盘）
+- 数据传出量：1 TB
 
 对于上面列出的硬件，请查看此[价格估算][pricing]。
 
@@ -105,8 +113,8 @@ Avere 缓存是一个可选解决方案，它能大幅提高应用程序作业�
 
 ## <a name="related-resources"></a>相关资源
 
-* [支持 RDMA 的计算机实例][rdma]
-* [自定义 RDMA 实例 VM][rdma-custom]
+- [支持 RDMA 的计算机实例][rdma]
+- [自定义 RDMA 实例 VM][rdma-custom]
 
 <!-- links -->
 [architecture]: ./media/architecture-hpc-cfd.png

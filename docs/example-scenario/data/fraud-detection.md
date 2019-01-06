@@ -1,14 +1,15 @@
 ---
-title: 在 Azure 上实时欺诈检测
+title: 实时欺诈检测
+titleSuffix: Azure Example Scenarios
 description: 使用 Azure 事件中心和流分析实时检测欺诈性活动。
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: bd9eb4d572651c4e57a0043226860623cd8d17e1
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 9e4d8c5d24acc414ab38722d2df59102395250fb
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610601"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643399"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>在 Azure 上实时欺诈检测
 
@@ -24,9 +25,9 @@ ms.locfileid: "51610601"
 
 其他相关用例包括：
 
-* 在电信场景中检测欺诈性移动电话呼叫。
-* 为银行机构确定欺诈性信用卡交易。
-* 在零售或电子商务场景中确定欺诈性购物。
+- 在电信场景中检测欺诈性移动电话呼叫。
+- 为银行机构确定欺诈性信用卡交易。
+- 在零售或电子商务场景中确定欺诈性购物。
 
 ## <a name="architecture"></a>体系结构
 
@@ -34,16 +35,16 @@ ms.locfileid: "51610601"
 
 本方案涉及实时分析管道的后端组件。 数据流经方案的情形如下所示：
 
-1. 将移动电话呼叫元数据从源系统发送到 Azure 事件中心实例。 
+1. 将移动电话呼叫元数据从源系统发送到 Azure 事件中心实例。
 2. 启动流分析作业，通过事件中心源接收数据。
 3. 流分析作业运行转换输入流所需的预定义查询，并根据欺诈事务算法对其进行分析。 该查询使用翻转窗口将流分成不同的时间单元。
 4. 流分析作业将已转换的流（代表检测到的欺诈性呼叫）写入到 Azure Blob 存储中的输出接收器。
 
 ### <a name="components"></a>组件
 
-* [Azure 事件中心][docs-event-hubs]是一个实时流式处理平台和事件引入服务，每秒能够接收和处理数百万个事件。 事件中心可以处理和存储分布式软件和设备生成的事件、数据或遥测。 在本方案中，事件中心接收需要进行欺诈活动分析的所有电话呼叫元数据。
-* [Azure 流分析][docs-stream-analytics]是一个事件处理引擎，可以分析从设备和其他数据源流式传输的大量数据。 它还支持从数据流提取信息，以便确定模式和关系。 这些模式可能触发其他下游操作。 在本方案中，流分析会转换事件中心的输入流，以便确定欺诈性呼叫。
-* [Blob 存储](/azure/storage/blobs/storage-blobs-introduction)在本方案中用于存储流分析作业的结果。
+- [Azure 事件中心][docs-event-hubs]是一个实时流式处理平台和事件引入服务，每秒能够接收和处理数百万个事件。 事件中心可以处理和存储分布式软件和设备生成的事件、数据或遥测。 在本方案中，事件中心接收需要进行欺诈活动分析的所有电话呼叫元数据。
+- [Azure 流分析][docs-stream-analytics]是一个事件处理引擎，可以分析从设备和其他数据源流式传输的大量数据。 它还支持从数据流提取信息，以便确定模式和关系。 这些模式可能触发其他下游操作。 在本方案中，流分析会转换事件中心的输入流，以便确定欺诈性呼叫。
+- [Blob 存储](/azure/storage/blobs/storage-blobs-introduction)在本方案中用于存储流分析作业的结果。
 
 ## <a name="considerations"></a>注意事项
 
@@ -55,7 +56,7 @@ ms.locfileid: "51610601"
 
 ### <a name="availability"></a>可用性
 
-Azure Monitor 提供了统一的用户界面，可用于监视各种 Azure 服务。 有关详细信息，请参阅[在 Microsoft Azure 中进行监视](/azure/monitoring-and-diagnostics/monitoring-overview)。 事件中心和流分析均与 Azure Monitor 集成在一起。 
+Azure Monitor 提供了统一的用户界面，可用于监视各种 Azure 服务。 有关详细信息，请参阅[在 Microsoft Azure 中进行监视](/azure/monitoring-and-diagnostics/monitoring-overview)。 事件中心和流分析均与 Azure Monitor 集成在一起。
 
 若要了解其他可用性注意事项，请参阅 Azure 体系结构中心的[可用性核对清单][availability]。
 
@@ -85,9 +86,9 @@ Azure 事件中心通过[身份验证和安全模型][docs-event-hubs-security-m
 
 我们已根据你预期接收的流量提供了三个示例性的成本配置文件：
 
-* [小][small-pricing]：每月通过一个标准的流单元处理一百万个事件。
-* [中][medium-pricing]：每月通过五个标准的流单元处理一亿个事件。
-* [大][large-pricing]：每月通过 20 个标准的流单元处理 9.99 亿个事件。
+- [小][small-pricing]：每月通过一个标准的流单元处理一百万个事件。
+- [中][medium-pricing]：每月通过五个标准的流单元处理一亿个事件。
+- [大][large-pricing]：每月通过 20 个标准的流单元处理 9.99 亿个事件。
 
 ## <a name="related-resources"></a>相关资源
 
@@ -110,4 +111,3 @@ Azure 事件中心通过[身份验证和安全模型][docs-event-hubs-security-m
 [scalability]: /azure/architecture/checklist/scalability
 [resiliency]: ../../resiliency/index.md
 [security]: /azure/security/
-

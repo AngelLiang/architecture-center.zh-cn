@@ -5,12 +5,12 @@ description: 将本地 Active Directory 域扩展到 Azure
 author: telmosampaio
 ms.date: 05/02/2018
 ms.custom: seodec18
-ms.openlocfilehash: 69ce95fcf74579f6446cf99dad9ed53ced31fde7
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 166cd994f65fd812e38e50da1d74b9a99870ed5d
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120401"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644132"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>将 Active Directory 域服务 (AD DS) 扩展到 Azure
 
@@ -103,7 +103,21 @@ AD DS 服务器提供身份验证服务并且是引入注目的攻击目标。 �
 
 ### <a name="prerequisites"></a>先决条件
 
-[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
+1. 克隆、下载 [GitHub 存储库](https://github.com/mspnp/identity-reference-architectures)的 zip 文件或创建其分库。
+
+2. 安装 [Azure CLI 2.0](/cli/azure/install-azure-cli?view=azure-cli-latest)。
+
+3. 安装 [Azure 构建基块](https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks) npm 包。
+
+   ```bash
+   npm install -g @mspnp/azure-building-blocks
+   ```
+
+4. 在命令提示符、bash 提示符或 PowerShell 提示符下，按如下所示登录到你的 Azure 帐户：
+
+   ```bash
+   az login
+   ```
 
 ### <a name="deploy-the-simulated-on-premises-datacenter"></a>部署模拟的本地数据中心
 

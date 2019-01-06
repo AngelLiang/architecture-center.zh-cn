@@ -1,14 +1,15 @@
 ---
-title: Azure 上提供的用于酒店预订的对话式聊天机器人
+title: 用于酒店预订的对话式聊天机器人
+titleSuffix: Azure Example Scenarios
 description: 使用 Azure 机器人服务为商务应用程序构建对话式聊天机器人。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: a922a75d621672fcac95296b1d99112d68c91107
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 31a7384b11262ac967ab5f8a6c5e7f17e9a00b6f
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610764"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643843"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Azure 上提供的用于酒店预订的对话式聊天机器人
 
@@ -22,9 +23,9 @@ ms.locfileid: "51610764"
 
 其他相关用例包括：
 
-* 查看餐馆外卖菜单并下单
-* 查看酒店房间可用情况并订房
-* 搜索可用照片并订购打印版
+- 查看餐馆外卖菜单并下单
+- 查看酒店房间可用情况并订房
+- 搜索可用照片并订购打印版
 
 ## <a name="architecture"></a>体系结构
 
@@ -41,18 +42,18 @@ ms.locfileid: "51610764"
 
 ### <a name="components"></a>组件
 
-* [Azure Active Directory][aad-docs] 是 Microsoft 提供的多租户、基于云的目录和标识管理服务。 Azure AD 支持使用 B2C 连接器，目的是确定使用外部 ID（例如 Google、Facebook 或 Microsoft 帐户）的用户。
-* [应用服务][appservice-docs]允许你采用所选编程语言生成和托管 Web 应用程序，无需管理基础结构。
-* [机器人服务][botservice-docs]提供的工具可用于生成、测试、部署和管理智能机器人。
-* [认知服务][cognitive-docs]允许你使用智能算法，以自然的沟通方式来观察、倾听、表述、了解和解释用户需求。
-* [SQL 数据库][sqldatabase-docs]是一种完全托管的云关系数据库服务，可以与 SQL Server 引擎兼容。
-* [Application Insights][appinsights-docs] 是可扩展的应用程序性能管理 (APM) 服务，用于监视应用程序（例如聊天机器人）的性能。
+- [Azure Active Directory][aad-docs] 是 Microsoft 提供的多租户、基于云的目录和标识管理服务。 Azure AD 支持使用 B2C 连接器，目的是确定使用外部 ID（例如 Google、Facebook 或 Microsoft 帐户）的用户。
+- [应用服务][appservice-docs]允许你采用所选编程语言生成和托管 Web 应用程序，无需管理基础结构。
+- [机器人服务][botservice-docs]提供的工具可用于生成、测试、部署和管理智能机器人。
+- [认知服务][cognitive-docs]允许你使用智能算法，以自然的沟通方式来观察、倾听、表述、了解和解释用户需求。
+- [SQL 数据库][sqldatabase-docs]是一种完全托管的云关系数据库服务，可以与 SQL Server 引擎兼容。
+- [Application Insights][appinsights-docs] 是可扩展的应用程序性能管理 (APM) 服务，用于监视应用程序（例如聊天机器人）的性能。
 
 ### <a name="alternatives"></a>备选项
 
-* [Microsoft 语音 API][speech-api] 可以用来更改客户与机器人的交互方式。
-* [QnA Maker][qna-maker] 可以用来以半结构化内容（例如常见问题解答）的形式为机器人快速添加知识。
-* [文本翻译 API][translator] 是一项可以考虑使用的服务，可以轻松地向机器人添加多语音支持。
+- [Microsoft 语音 API][speech-api] 可以用来更改客户与机器人的交互方式。
+- [QnA Maker][qna-maker] 可以用来以半结构化内容（例如常见问题解答）的形式为机器人快速添加知识。
+- [文本翻译 API][translator] 是一项可以考虑使用的服务，可以轻松地向机器人添加多语音支持。
 
 ## <a name="considerations"></a>注意事项
 
@@ -88,23 +89,29 @@ ms.locfileid: "51610764"
 
 本方案分为三个组件，方便你了解自己最关注的领域：
 
-* [基础结构组件](#deploy-infrastructure-components)。 使用 Azure 资源管理器模板来部署应用服务、Web 应用、Application Insights、存储帐户以及 SQL Server 和数据库的核心基础结构组件。
-* [Web 应用聊天机器人](#deploy-web-app-chatbot)。 使用 Azure CLI 将机器人与机器人服务、语言理解和智能服务 (LUIS) 应用部署在一起。
-* [C# 聊天机器人应用程序示例](#deploy-chatbot-c-application-code)。 使用 Visual Studio 复查示例性的酒店预订 C# 应用程序代码并将其部署到 Azure 中的机器人。
+- [基础结构组件](#deploy-infrastructure-components)。 使用 Azure 资源管理器模板来部署应用服务、Web 应用、Application Insights、存储帐户以及 SQL Server 和数据库的核心基础结构组件。
+- [Web 应用聊天机器人](#deploy-web-app-chatbot)。 使用 Azure CLI 将机器人与机器人服务、语言理解和智能服务 (LUIS) 应用部署在一起。
+- [C# 聊天机器人应用程序示例](#deploy-chatbot-c-application-code)。 使用 Visual Studio 复查示例性的酒店预订 C# 应用程序代码并将其部署到 Azure 中的机器人。
 
-**先决条件：** 必须已经有 Azure 帐户。 如果没有 Azure 订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
+### <a name="prerequisites"></a>先决条件
 
-### <a name="deploy-infrastructure-components"></a>部署基础结构组件
+必须已经有 Azure 帐户。 如果没有 Azure 订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
+
+### <a name="walk-through"></a>演练
 
 若要通过资源管理器模板部署基础结构组件，请执行以下步骤。
 
+<!-- markdownlint-disable MD033 -->
+
 1. 单击“部署到 Azure”按钮：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fcommerce-chatbot.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. 等待模板部署在 Azure 门户中打开，然后完成以下步骤：
-   * 选择“新建”资源组，然后在文本框中提供一个名称，例如 *myCommerceChatBotInfrastructure*。
-   * 从“位置”下拉框中选择区域。
-   * 提供用于 SQL Server 管理员帐户的用户名和安全密码。
-   * 查看条款和条件，然后勾选“我同意上述条款和条件”。
-   * 选择“购买”按钮。
+   - 选择“新建”资源组，然后在文本框中提供一个名称，例如 *myCommerceChatBotInfrastructure*。
+   - 从“位置”下拉框中选择区域。
+   - 提供用于 SQL Server 管理员帐户的用户名和安全密码。
+   - 查看条款和条件，然后勾选“我同意上述条款和条件”。
+   - 选择“购买”按钮。
+
+<!-- markdownlint-enable MD033 -->
 
 需要几分钟才能完成部署。
 
@@ -131,9 +138,9 @@ az bot create \
 
 ### <a name="deploy-chatbot-c-application-code"></a>部署聊天机器人 C# 应用程序代码
 
-GitHub 上提供了一个示例 C# 应用程序： 
+GitHub 上提供了一个示例 C# 应用程序：
 
-* [商业机器人 C# 示例](https://github.com/Microsoft/AzureBotServices-scenarios/tree/master/CSharp/Commerce/src)
+- [商业机器人 C# 示例](https://github.com/Microsoft/AzureBotServices-scenarios/tree/master/CSharp/Commerce/src)
 
 示例应用程序包括 Azure Active Directory 身份验证组件，并集成了认知服务的语言理解和智能服务 (LUIS) 组件。 此应用程序要求使用 Visual Studio 来生成和部署方案。 有关如何配置 AAD B2C 和 LUIS 应用的其他信息，可参阅 GitHub 存储库文档。
 
@@ -143,16 +150,16 @@ GitHub 上提供了一个示例 C# 应用程序：
 
 我们已根据你预期的聊天机器人需要处理的消息数提供了三个示例性的成本配置文件：
 
-* [小][small-pricing]：此定价示例对应于每月处理的消息数 < 10,000 的情况。
-* [中][medium-pricing]：此定价示例对应于每月处理的消息数 < 500,000 的情况。
-* [大][large-pricing]：此定价示例对应于每月处理的消息数 < 1 千万的情况。
+- [小][small-pricing]：此定价示例对应于每月处理的消息数 < 10,000 的情况。
+- [中][medium-pricing]：此定价示例对应于每月处理的消息数 < 500,000 的情况。
+- [大][large-pricing]：此定价示例对应于每月处理的消息数 < 1 千万的情况。
 
 ## <a name="related-resources"></a>相关资源
 
 有关 Azure 机器人服务的一系列引导式教程，请参阅文档的[教程部分][botservice-docs]。
 
-
 <!-- links -->
+
 [aadb2c-docs]: /azure/active-directory-b2c/active-directory-b2c-overview
 [aad-docs]: /azure/active-directory/
 [appinsights-docs]: /azure/application-insights/app-insights-overview

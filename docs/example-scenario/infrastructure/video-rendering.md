@@ -1,15 +1,16 @@
 ---
-title: Azure 上的 3D 视频渲染
+title: 3D 视频渲染
+titleSuffix: Azure Example Scenarios
 description: 使用 Azure Batch 服务在 Azure 中运行本机 HPC 工作负荷。
 author: adamboeglin
 ms.date: 07/13/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 7dacefd5179c426912dd97af9af7b5a39505392d
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 7e86da637553378a460b1c179c4f59ac258f0b34
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004828"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643567"
 ---
 # <a name="3d-video-rendering-on-azure"></a>Azure 上的 3D 视频渲染
 
@@ -21,10 +22,10 @@ ms.locfileid: "53004828"
 
 其他相关用例包括：
 
-* 3D 建模
-* Visual FX (VFX) 渲染
-* 视频转码
-* 图像处理、颜色校正和重设大小
+- 3D 建模
+- Visual FX (VFX) 渲染
+- 视频转码
+- 图像处理、颜色校正和重设大小
 
 ## <a name="architecture"></a>体系结构
 
@@ -45,9 +46,9 @@ ms.locfileid: "53004828"
 
 Azure Batch 基于以下 Azure 技术：
 
-* [虚拟网络](/azure/virtual-network/virtual-networks-overview)用于头节点和计算资源。
-* [Azure 存储帐户](/azure/storage/common/storage-introduction)用于同步和数据保留。
-* [虚拟机规模集][vmss]由 CycleCloud 用于计算资源。
+- [虚拟网络](/azure/virtual-network/virtual-networks-overview)用于头节点和计算资源。
+- [Azure 存储帐户](/azure/storage/common/storage-introduction)用于同步和数据保留。
+- [虚拟机规模集][vmss]由 CycleCloud 用于计算资源。
 
 ## <a name="considerations"></a>注意事项
 
@@ -55,18 +56,18 @@ Azure Batch 基于以下 Azure 技术：
 
 虽然大多数渲染客户会选择 CPU 功率高的资源，但是其他使用虚拟机规模集的工作负荷可能会按其他标准来选择 VM，具体取决于许多因素：
 
-* 所运行的应用程序是否进行内存绑定？
-* 应用程序是否需要使用 GPU？ 
-* 对于紧密耦合的作业，作业类型是否只能采用不得已的并行方式？或者需要 Infiniband 连接？
-* 需要通过快速 I/O 来访问计算节点上的存储。
+- 所运行的应用程序是否进行内存绑定？
+- 应用程序是否需要使用 GPU？
+- 对于紧密耦合的作业，作业类型是否只能采用不得已的并行方式？或者需要 Infiniband 连接？
+- 需要通过快速 I/O 来访问计算节点上的存储。
 
 Azure 有各种 VM 大小，每种都符合上述应用程序要求，某些是针对 HPC 的，但即使是最小的，也可以提供有效的网格实现：
 
-* [HPC VM 大小][compute-hpc]：考虑到渲染受 CPU 限制，Microsoft 通常会建议使用 Azure H 系列 VM。 此类 VM 是专门针对高端计算需求构建的，提供 8 核和 16 核 vCPU 大小，采用 DDR4 内存、SSD 临时存储以及 Haswell E5 Intel 技术。
-* [GPU VM 大小][compute-gpu]：GPU 优化 VM 大小是具有单个或多个 NVIDIA GPU 的专用虚拟机。 这些大小是针对计算密集型、图形密集型和可视化工作负荷设计的。
-* NC、NCv2、NCv3 和 ND 大小针对计算密集型和网络密集型应用程序和算法进行了优化，包括基于 CUDA 和 OpenCL 的应用程序和模拟、AI 以及深度学习。 NV 大小已针对远程可视化效果、流式处理、游戏、编码和 VDI 方案进行了优化和设计，使用 OpenGL 和 DirectX 之类的框架。
-* [内存优化型 VM 大小][compute-memory]：需要更多内存时，内存优化型 VM 大小的内存/CPU 比率更高。
-* [常规用途 VM 大小][compute-general]：常规用途 VM 大小也可使用，提供均衡的 CPU/内存比率。
+- [HPC VM 大小][compute-hpc]：考虑到渲染受 CPU 限制，Microsoft 通常会建议使用 Azure H 系列 VM。 此类 VM 是专门针对高端计算需求构建的，提供 8 核和 16 核 vCPU 大小，采用 DDR4 内存、SSD 临时存储以及 Haswell E5 Intel 技术。
+- [GPU VM 大小][compute-gpu]：GPU 优化 VM 大小是具有单个或多个 NVIDIA GPU 的专用虚拟机。 这些大小是针对计算密集型、图形密集型和可视化工作负荷设计的。
+- NC、NCv2、NCv3 和 ND 大小针对计算密集型和网络密集型应用程序和算法进行了优化，包括基于 CUDA 和 OpenCL 的应用程序和模拟、AI 以及深度学习。 NV 大小已针对远程可视化效果、流式处理、游戏、编码和 VDI 方案进行了优化和设计，使用 OpenGL 和 DirectX 之类的框架。
+- [内存优化型 VM 大小][compute-memory]：需要更多内存时，内存优化型 VM 大小的内存/CPU 比率更高。
+- [常规用途 VM 大小][compute-general]：常规用途 VM 大小也可使用，提供均衡的 CPU/内存比率。
 
 ### <a name="alternatives"></a>备选项
 
@@ -90,32 +91,35 @@ Azure Batch 帐户中的池可以通过手动干预进行缩放，也可以通�
 
 虽然 Azure Batch 中目前没有故障转移功能，但建议你执行以下步骤，确保发生计划外中断时的可用性：
 
-* 使用备用的存储帐户在备用的 Azure 位置创建一个 Azure Batch 帐户
-* 使用同一名称创建相同的节点池，不分配任何节点
-* 确保通过备用存储帐户创建并更新应用程序
-* 将输入文件上传到备用的 Azure Batch 帐户，提交作业时也提交到该帐户
+- 使用备用的存储帐户在备用的 Azure 位置创建一个 Azure Batch 帐户
+- 使用同一名称创建相同的节点池，不分配任何节点
+- 确保通过备用存储帐户创建并更新应用程序
+- 将输入文件上传到备用的 Azure Batch 帐户，提交作业时也提交到该帐户
 
-## <a name="deploy-this-scenario"></a>部署此方案
+## <a name="deploy-the-scenario"></a>部署方案
 
-### <a name="creating-an-azure-batch-account-and-pools-manually"></a>手动创建 Azure Batch 帐户和池
+### <a name="create-an-azure-batch-account-and-pools-manually"></a>手动创建 Azure Batch 帐户和池
 
 本方案演示了 Azure Batch 工作方式，并将 Azure Batch Labs 以示例 SaaS 解决方案（可以为你自己的客户开发）的方式进行了演示：
 
 [Azure Batch Masterclass][batch-labs-masterclass]
 
-### <a name="deploying-the-example-scenario-using-an-azure-resource-manager-template"></a>使用 Azure 资源管理器模板部署示例方案
+### <a name="deploy-the-components"></a>部署组件
 
 此模板将部署：
 
-* 一个新的 Azure Batch 帐户
-* 一个存储帐户
-* 一个与 Batch 帐户关联的节点池
-* 节点池将会配置为对 Canonical Ubuntu 映像使用 A2 v2 VM
-* 节点池一开始包含零个 VM，需通过手动缩放来添加 VM
+- 一个新的 Azure Batch 帐户
+- 一个存储帐户
+- 一个与 Batch 帐户关联的节点池
+- 节点池将会配置为对 Canonical Ubuntu 映像使用 A2 v2 VM
+- 节点池一开始包含零个 VM，需通过手动缩放来添加 VM
+
+<!-- markdownlint-disable MD033 -->
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fhpc%2Fbatchcreatewithpools.json" target="_blank">
     <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>
+<!-- markdownlint-enable MD033 -->
 
 [详细了解资源管理器模板][azure-arm-templates]
 
@@ -125,15 +129,15 @@ Azure Batch 的使用费用取决于用于池的 VM 大小以及这些 VM 的分
 
 下面以示例方式说明了一个在 8 小时内完成的作业在使用不同数目的服务器时可能会产生的费用：
 
-* 100 台高性能 CPU VM：[成本估算][hpc-est-high]
+- 100 台高性能 CPU VM：[成本估算][hpc-est-high]
 
   100 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口
 
-* 50 台高性能 CPU VM：[成本估算][hpc-est-med]
+- 50 台高性能 CPU VM：[成本估算][hpc-est-med]
 
   50 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口
 
-* 10 台高性能 CPU VM：[成本估算][hpc-est-low]
+- 10 台高性能 CPU VM：[成本估算][hpc-est-low]
 
   10 x H16m（16 核，225 GB RAM，高级存储 512 GB），2 TB Blob 存储，1 TB 出口
 
@@ -141,7 +145,7 @@ Azure Batch 的使用费用取决于用于池的 VM 大小以及这些 VM 的分
 
 Azure Batch 也支持在节点池中使用低优先级 VM，这可能会节省大量费用。 有关详细信息，包括在标准 VM 和低优先级 VM 之间的价格比较，请参阅 [Azure Batch 定价][batch-pricing]。
 
-> [!NOTE] 
+> [!NOTE]
 > 低优先级 VM 仅适用于某些应用程序和工作负荷。
 
 ## <a name="related-resources"></a>相关资源

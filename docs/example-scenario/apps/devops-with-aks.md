@@ -1,14 +1,15 @@
 ---
 title: 适用于基于容器的工作负荷的 CI/CD 管道
+titleSuffix: Azure Example Scenarios
 description: 使用 Jenkins、Azure 容器注册表、Azure Kubernetes 服务、Cosmos DB 和 Grafana 为 Node.js Web 应用构建 DevOps 管道。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: db8de674ee2789c5b41cebebee5745ecc8544122
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 9d2681294b5c332e15259706518e4b02a488002f
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610832"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643758"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>适用于基于容器的工作负荷的 CI/CD 管道
 
@@ -22,9 +23,9 @@ ms.locfileid: "51610832"
 
 其他相关用例包括：
 
-* 改革应用程序开发做法，采用微服务式的基于容器的方法。
-* 缩短应用程序开发和部署生命周期。
-* 自动部署到测试或验收环境进行验证。
+- 改革应用程序开发做法，采用微服务式的基于容器的方法。
+- 缩短应用程序开发和部署生命周期。
+- 自动部署到测试或验收环境进行验证。
 
 ## <a name="architecture"></a>体系结构
 
@@ -43,19 +44,19 @@ ms.locfileid: "51610832"
 
 ### <a name="components"></a>组件
 
-* [Jenkins][jenkins] 是一种开源的自动化服务器，与 Azure 服务集成后即可进行持续集成 (CI) 和持续部署 (CD)。 在本方案中，Jenkins 会根据提交到源代码管理中的内容协调新容器映像的创建过程，接着将这些映像推送到 Azure 容器注册表，然后更新 Azure Kubernetes 服务中的应用程序实例。
-* [Azure Linux 虚拟机][docs-virtual-machines]是用于运行 Jenkins 和 Grafana 实例的 IaaS 平台。
-* [Azure 容器注册表][docs-acr]存储和管理 Azure Kubernetes 服务群集使用的容器映像。 映像会以安全的方式进行存储，并可通过 Azure 平台复制到其他区域以加快部署速度。
-* [Azure Kubernetes 服务][docs-aks]是一种托管的 Kubernetes 平台，可以让用户在没有容器业务流程专业知识的情况下部署和管理容器化的应用程序。 作为一个托管 Kubernetes 服务，Azure 可以自动处理运行状况监视和维护等关键任务。
-* [Azure Cosmos DB][docs-cosmos-db] 是一种全局分布式多模型数据库，允许用户根据需要选择不同的数据库和一致性模型。 Cosmos DB 允许全局复制数据，且不需部署和配置群集管理或复制组件。
-* [Azure Monitor][docs-azure-monitor] 可以跟踪性能、维护安全和确定趋势。 Monitor 获得的指标可供其他资源和工具（例如 Grafana）使用。
-* [Grafana][grafana] 是一种用于查询、可视化、警示和了解指标的开源解决方案。 Grafana 可以通过 Azure Monitor 的数据源插件创建直观的仪表板，以便监视在 Azure Kubernetes 服务中运行并使用 Cosmos DB 的应用程序的性能。
+- [Jenkins][jenkins] 是一种开源的自动化服务器，与 Azure 服务集成后即可进行持续集成 (CI) 和持续部署 (CD)。 在本方案中，Jenkins 会根据提交到源代码管理中的内容协调新容器映像的创建过程，接着将这些映像推送到 Azure 容器注册表，然后更新 Azure Kubernetes 服务中的应用程序实例。
+- [Azure Linux 虚拟机][docs-virtual-machines]是用于运行 Jenkins 和 Grafana 实例的 IaaS 平台。
+- [Azure 容器注册表][docs-acr]存储和管理 Azure Kubernetes 服务群集使用的容器映像。 映像会以安全的方式进行存储，并可通过 Azure 平台复制到其他区域以加快部署速度。
+- [Azure Kubernetes 服务][docs-aks]是一种托管的 Kubernetes 平台，可以让用户在没有容器业务流程专业知识的情况下部署和管理容器化的应用程序。 作为一个托管 Kubernetes 服务，Azure 可以自动处理运行状况监视和维护等关键任务。
+- [Azure Cosmos DB][docs-cosmos-db] 是一种全局分布式多模型数据库，允许用户根据需要选择不同的数据库和一致性模型。 Cosmos DB 允许全局复制数据，且不需部署和配置群集管理或复制组件。
+- [Azure Monitor][docs-azure-monitor] 可以跟踪性能、维护安全和确定趋势。 Monitor 获得的指标可供其他资源和工具（例如 Grafana）使用。
+- [Grafana][grafana] 是一种用于查询、可视化、警示和了解指标的开源解决方案。 Grafana 可以通过 Azure Monitor 的数据源插件创建直观的仪表板，以便监视在 Azure Kubernetes 服务中运行并使用 Cosmos DB 的应用程序的性能。
 
 ### <a name="alternatives"></a>备选项
 
-* [Azure Pipelines][azure-pipelines] 可以为任何应用实现一个用于持续集成 (CI)、测试和持续部署 (CD) 的管道。
-* 若要对群集进行更多的控制，可以直接在 Azure VM 上运行 [Kubernetes][kubernetes]，不必通过托管服务来运行。
-* [Service Fabric][service-fabric] 是另一个可以替代 AKS 的容器业务流程协调程序。
+- [Azure Pipelines][azure-pipelines] 可以为任何应用实现一个用于持续集成 (CI)、测试和持续部署 (CD) 的管道。
+- 若要对群集进行更多的控制，可以直接在 Azure VM 上运行 [Kubernetes][kubernetes]，不必通过托管服务来运行。
+- [Service Fabric][service-fabric] 是另一个可以替代 AKS 的容器业务流程协调程序。
 
 ## <a name="considerations"></a>注意事项
 
@@ -91,11 +92,13 @@ Azure Kubernetes 服务允许按照应用程序的需求调整群集节点的数
 
 ## <a name="deploy-the-scenario"></a>部署方案
 
-**先决条件：**
+### <a name="prerequisites"></a>先决条件
 
-* 必须已经有 Azure 帐户。 如果没有 Azure 订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
-* 需要一个 SSH 公钥对。 有关如何创建公钥对的步骤，请参阅[创建和使用适合 Linux VM 的 SSH 公钥对][sshkeydocs]。
-* 需要一个 Azure Active Directory (AD) 服务主体，以便对服务和资源进行身份验证。 可以根据需要使用 [az ad sp create-for-rbac][createsp] 创建一个服务主体
+- 必须已经有 Azure 帐户。 如果没有 Azure 订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
+
+- 需要一个 SSH 公钥对。 有关如何创建公钥对的步骤，请参阅[创建和使用适合 Linux VM 的 SSH 公钥对][sshkeydocs]。
+
+- 需要一个 Azure Active Directory (AD) 服务主体，以便对服务和资源进行身份验证。 可以根据需要使用 [az ad sp create-for-rbac][createsp] 创建一个服务主体
 
     ```azurecli-interactive
     az ad sp create-for-rbac --name myDevOpsScenario
@@ -103,17 +106,23 @@ Azure Kubernetes 服务允许按照应用程序的需求调整群集节点的数
 
     请记下此命令输出中的 *appId* 和 *password*。 部署方案时，请将这些值提供给模板。
 
+### <a name="walk-through"></a>演练
+
 若要通过 Azure 资源管理器模板部署此方案，请执行以下步骤。
+
+<!-- markdownlint-disable MD033 -->
 
 1. 单击“部署到 Azure”按钮：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fdevops-with-aks%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. 等待模板部署在 Azure 门户中打开，然后完成以下步骤：
-   * 选择“新建”资源组，然后在文本框中提供一个名称，例如 *myAKSDevOpsScenario*。
-   * 从“位置”下拉框中选择区域。
-   * 通过 `az ad sp create-for-rbac` 命令输入服务主体应用 ID 和密码。
-   * 提供用于 Jenkins 实例和 Grafana 控制台的用户名和安全密码。
-   * 提供 SSH 密钥，确保安全地登录到 Linux VM。
-   * 查看条款和条件，然后勾选“我同意上述条款和条件”。
-   * 选择“购买”按钮。
+   - 选择“新建”资源组，然后在文本框中提供一个名称，例如 *myAKSDevOpsScenario*。
+   - 从“位置”下拉框中选择区域。
+   - 通过 `az ad sp create-for-rbac` 命令输入服务主体应用 ID 和密码。
+   - 提供用于 Jenkins 实例和 Grafana 控制台的用户名和安全密码。
+   - 提供 SSH 密钥，确保安全地登录到 Linux VM。
+   - 查看条款和条件，然后勾选“我同意上述条款和条件”。
+   - 选择“购买”按钮。
+
+<!-- markdownlint-enable MD033 -->
 
 部署可能需要 15-20 分钟才能完成。
 
@@ -123,9 +132,9 @@ Azure Kubernetes 服务允许按照应用程序的需求调整群集节点的数
 
 我们已根据要存储的容器映像数以及运行应用程序所需的 Kubernetes 节点数提供了三个示例性的成本配置文件。
 
-* [小][small-pricing]：此定价示例对应于每月 1000 个容器生成的情况。
-* [中][medium-pricing]：此定价示例对应于每月 100,000 个容器生成的情况。
-* [大][large-pricing]：此定价示例对应于每月 1,000,000 个容器生成的情况。
+- [小][small-pricing]：此定价示例对应于每月 1000 个容器生成的情况。
+- [中][medium-pricing]：此定价示例对应于每月 100,000 个容器生成的情况。
+- [大][large-pricing]：此定价示例对应于每月 1,000,000 个容器生成的情况。
 
 ## <a name="related-resources"></a>相关资源
 

@@ -1,15 +1,16 @@
 ---
-title: 将旧式 Web 应用程序迁移到 Azure 上基于 API 的体系结构
+title: 将 Web 应用迁移到基于 API 的体系结构
+titleSuffix: Azure Example Scenarios
 description: 使用 Azure API 管理来实现旧式 Web 应用程序的现代化。
 author: begim
 ms.date: 09/13/2018
 ms.custom: fasttrack
-ms.openlocfilehash: ea063653b4962e42cbec7f9d98c16e22e987efd1
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 257b9bb5c69afb00917f8934585c1164f909feb6
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004700"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643477"
 ---
 # <a name="migrating-a-legacy-web-application-to-an-api-based-architecture-on-azure"></a>将旧式 Web 应用程序迁移到 Azure 上基于 API 的体系结构
 
@@ -17,9 +18,9 @@ ms.locfileid: "53004700"
 
 项目目标包括解决技术债务、改进日常维护，以及加速功能开发并减少回归缺陷。 该项目将使用迭代过程来避免风险，同时并行执行某些步骤：
 
-* 开发团队将现代化应用程序后端，该后端由 VM 上托管的关系数据库组成。
-* 内部开发团队将编写要通过新 HTTP API 公开的新业务功能。
-* 合同开发团队将生成一个要托管在 Azure 中的基于浏览器的新 UI。
+- 开发团队将现代化应用程序后端，该后端由 VM 上托管的关系数据库组成。
+- 内部开发团队将编写要通过新 HTTP API 公开的新业务功能。
+- 合同开发团队将生成一个要托管在 Azure 中的基于浏览器的新 UI。
 
 新应用程序功能分阶段交付。 这些功能将逐渐替代现有的、为目前电子商务业务提供动力的基于浏览器的客户端-服务器 UI 功能（托管在本地）。
 
@@ -36,38 +37,38 @@ ms.locfileid: "53004700"
 1. 现有的本地 Web 应用程序继续直接使用现有的本地 Web 服务。
 2. 仍然是从现有的 Web 应用调用现有的 HTTP 服务。 这些调用在企业网络内部执行。
 3. 入站调用是从 Azure 向现有内部服务发出的：
-    * 安全团队允许来自 APIM 实例的流量[使用安全传输 (HTTPS/SSL)][apim-ssl] 通过企业防火墙传递到现有的本地服务。
-    * 运营团队只允许从 APIM 实例向服务发出入站调用。 在企业网络边界内将 [APIM 实例的 IP 地址加入允许列表][apim-whitelist-ip]可满足此要求。
-    * 在本地 HTTP 服务请求管道（**只**处理来自外部的连接）中配置一个新模块，用于验证[APIM 提供的证书][apim-mutualcert-auth]。
-1. 新 API：
-    * 只通过提供 API 结构的 APIM 实例公开。 不会直接访问新 API。
-    * 开发并发布为 [Azure PaaS Web API 应用][azure-api-apps]。
-    * 已加入允许列表（通过 [Web 应用设置][azure-appservice-ip-restrict]），仅接受 [APIM VIP][apim-faq-vip]。
-    * 托管在已启用安全传输/SSL 的 Azure Web 应用中。
-    * 已启用授权，该授权由 [Azure 应用服务][azure-appservice-auth]使用 Azure Active Directory 和 OAuth2 提供。
-2. 基于浏览器的新 Web 应用程序将依赖于 Azure API 管理实例来使用现有的 HTTP API **和**新的 API。
+    - 安全团队允许来自 APIM 实例的流量[使用安全传输 (HTTPS/SSL)][apim-ssl] 通过企业防火墙传递到现有的本地服务。
+    - 运营团队只允许从 APIM 实例向服务发出入站调用。 在企业网络边界内将 [APIM 实例的 IP 地址加入允许列表][apim-whitelist-ip]可满足此要求。
+    - 在本地 HTTP 服务请求管道（**只**处理来自外部的连接）中配置一个新模块，用于验证[APIM 提供的证书][apim-mutualcert-auth]。
+4. 新 API：
+    - 只通过提供 API 结构的 APIM 实例公开。 不会直接访问新 API。
+    - 开发并发布为 [Azure PaaS Web API 应用][azure-api-apps]。
+    - 已加入允许列表（通过 [Web 应用设置][azure-appservice-ip-restrict]），仅接受 [APIM VIP][apim-faq-vip]。
+    - 托管在已启用安全传输/SSL 的 Azure Web 应用中。
+    - 已启用授权，该授权由 [Azure 应用服务][azure-appservice-auth]使用 Azure Active Directory 和 OAuth2 提供。
+5. 基于浏览器的新 Web 应用程序将依赖于 Azure API 管理实例来使用现有的 HTTP API **和**新的 API。
 
 APIM 实例配置为将旧式 HTTP 服务映射到新的 API 合同。 这样，新 Web UI 将不知道与一组旧式服务/API 和新 API 进行了集成。 将来，项目团队会逐渐将功能移植到新 API，并淘汰原始服务。 这些更改将在 APIM 配置中处理，使前端 UI 不受影响，并避免重复开发工作。
 
 ### <a name="alternatives"></a>备选项
 
-* 如果组织打算将整个基础结构（包括托管旧式应用程序的 VM）转移到 Azure，则 APIM 仍是一个极佳的选项，因为它可以充当任何可寻址 HTTP 终结点的结构。
-* 如果客户决定保持现有终结点的私密性，而不想将其公开，可将其 API 管理实例链接到 [Azure 虚拟网络 (VNet)][azure-vnet]：
-  * 在链接到已部署的 Azure 虚拟网络的 [Azure 直接迁移方案][azure-vm-lift-shift]中，客户可以通过专用 IP 地址直接寻址后端服务。
-  * 在本地方案中，API 管理实例可以通过 [Azure VPN 网关和站点到站点 IPSec VPN 连接][azure-vpn]或 [ExpressRoute][azure-er] 以私密方式反向连接到内部服务，从而形式了 [Azure 和本地混合方案][azure-hybrid]。
-* 以内部模式部署 API 管理实例可以保持 API 管理实例的私密性。 然后，可以结合 [Azure 应用程序网关][azure-appgw]使用该部署，让某些 API 进行公开访问，同时让其他一些 API 进行内部访问。 有关详细信息，请参阅[将处于内部模式的 APIM 连接到 VNET][apim-vnet-internal]。
+- 如果组织打算将整个基础结构（包括托管旧式应用程序的 VM）转移到 Azure，则 APIM 仍是一个极佳的选项，因为它可以充当任何可寻址 HTTP 终结点的结构。
+- 如果客户决定保持现有终结点的私密性，而不想将其公开，可将其 API 管理实例链接到 [Azure 虚拟网络 (VNet)][azure-vnet]：
+  - 在链接到已部署的 Azure 虚拟网络的 [Azure 直接迁移方案][azure-vm-lift-shift]中，客户可以通过专用 IP 地址直接寻址后端服务。
+  - 在本地方案中，API 管理实例可以通过 [Azure VPN 网关和站点到站点 IPSec VPN 连接][azure-vpn]或 [ExpressRoute][azure-er] 以私密方式反向连接到内部服务，从而形式了 [Azure 和本地混合方案][azure-hybrid]。
+- 以内部模式部署 API 管理实例可以保持 API 管理实例的私密性。 然后，可以结合 [Azure 应用程序网关][azure-appgw]使用该部署，让某些 API 进行公开访问，同时让其他一些 API 进行内部访问。 有关详细信息，请参阅[将处于内部模式的 APIM 连接到 VNET][apim-vnet-internal]。
 
 > [!NOTE]
 > 有关将 API 管理连接到 VNET 的一般信息，请[参阅此文][apim-vnet]。
 
 ### <a name="availability-and-scalability"></a>可用性和可伸缩性
 
-* 可以通过选择定价层，然后添加单元，来[横向扩展][apim-scaleout] Azure API 管理。
-* 也可以[使用自动缩放][apim-autoscale]来实现自动缩放。
-* [跨多个区域部署][apim-multi-regions]可以实现故障转移，在[高级层][apim-pricing]中可以执行此操作。
-* 考虑[与 Azure Application Insights 集成][azure-apim-ai]，这样还可以通过 [Azure Monitor][azure-mon] 公开指标用于监视。
+- 可以通过选择定价层，然后添加单元，来[横向扩展][apim-scaleout] Azure API 管理。
+- 也可以[使用自动缩放][apim-autoscale]来实现自动缩放。
+- [跨多个区域部署][apim-multi-regions]可以实现故障转移，在[高级层][apim-pricing]中可以执行此操作。
+- 考虑[与 Azure Application Insights 集成][azure-apim-ai]，这样还可以通过 [Azure Monitor][azure-mon] 公开指标用于监视。
 
-## <a name="deployment"></a>部署
+## <a name="deploy-the-scenario"></a>部署方案
 
 若要开始，请[在门户中创建一个 Azure API 管理实例][apim-create]。
 
@@ -88,8 +89,8 @@ APIM 实例配置为将旧式 HTTP 服务映射到新的 API 合同。 这样，
 
 查看有关 Azure API 管理的丰富[文档和参考文章][apim]。
 
-
 <!-- links -->
+
 [architecture]: ./media/architecture-apim-api-scenario.png
 [apim-create]: /azure/api-management/get-started-create-service-instance
 [apim-git]: /azure/api-management/api-management-configuration-repository-git

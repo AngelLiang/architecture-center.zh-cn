@@ -1,14 +1,15 @@
 ---
-title: Azure 上的保险索赔图像分类
+title: 保险索赔图像分类
+titleSuffix: Azure Example Scenarios
 description: 将图像处理内置到 Azure 应用程序中。
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 9640f8b5454891ed00f669bada9f7c9c69b89734
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 12dd197c6df4a8d7a90a09436d86ce4a9e5ccc72
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610526"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643439"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Azure 上的保险索赔图像分类
 
@@ -22,8 +23,8 @@ ms.locfileid: "51610526"
 
 其他相关用例包括：
 
-* 对时尚网站上的图像进行分类。
-* 对游戏屏幕截图中的遥测数据进行分类。
+- 对时尚网站上的图像进行分类。
+- 对游戏屏幕截图中的遥测数据进行分类。
 
 ## <a name="architecture"></a>体系结构
 
@@ -39,16 +40,16 @@ ms.locfileid: "51610526"
 
 ### <a name="components"></a>组件
 
-* [计算机视觉 API](/azure/cognitive-services/computer-vision/home) 是认知服务套件的一部分，用于检索每个图像的信息。
-* [Azure Functions](/azure/azure-functions/functions-overview) 为 Web 应用程序提供后端 API，并为已上传的图像提供事件处理。
-* [事件网格](/azure/event-grid/overview)在新图像上传到 Blob 存储时触发一个事件。 该图像然后就会通过 Azure Functions 进行处理。
-* [Blob 存储](/azure/storage/blobs/storage-blobs-introduction)存储上传到 Web 应用程序中的所有图像文件，以及 Web 应用程序使用的任何静态文件。
-* [Cosmos DB](/azure/cosmos-db/introduction) 存储每个已上传图像的元数据，包括计算机视觉 API 的处理结果。
+- [计算机视觉 API](/azure/cognitive-services/computer-vision/home) 是认知服务套件的一部分，用于检索每个图像的信息。
+- [Azure Functions](/azure/azure-functions/functions-overview) 为 Web 应用程序提供后端 API，并为已上传的图像提供事件处理。
+- [事件网格](/azure/event-grid/overview)在新图像上传到 Blob 存储时触发一个事件。 该图像然后就会通过 Azure Functions 进行处理。
+- [Blob 存储](/azure/storage/blobs/storage-blobs-introduction)存储上传到 Web 应用程序中的所有图像文件，以及 Web 应用程序使用的任何静态文件。
+- [Cosmos DB](/azure/cosmos-db/introduction) 存储每个已上传图像的元数据，包括计算机视觉 API 的处理结果。
 
 ## <a name="alternatives"></a>备选项
 
-* [自定义视觉服务](/azure/cognitive-services/custom-vision-service/home)。 计算机视觉 API 返回一组[基于分类的类别][cv-categories]。 若需处理不是由计算机视觉 API 返回的信息，则可考虑使用自定义视觉服务，以便生成自定义图像分类器。
-* [Azure 搜索](/azure/search/search-what-is-azure-search)。 如果用例需要查询元数据来查找符合特定条件的图像，则可考虑使用 Azure 搜索。 [认知搜索](/azure/search/cognitive-search-concept-intro)目前为预览版，可以无缝集成此工作流。
+- [自定义视觉服务](/azure/cognitive-services/custom-vision-service/home)。 计算机视觉 API 返回一组[基于分类的类别][cv-categories]。 若需处理不是由计算机视觉 API 返回的信息，则可考虑使用自定义视觉服务，以便生成自定义图像分类器。
+- [Azure 搜索](/azure/search/search-what-is-azure-search)。 如果用例需要查询元数据来查找符合特定条件的图像，则可考虑使用 Azure 搜索。 [认知搜索](/azure/search/cognitive-search-concept-intro)目前为预览版，可以无缝集成此工作流。
 
 ## <a name="considerations"></a>注意事项
 
@@ -80,9 +81,9 @@ Cosmos DB 不会按照预配的请求单位 (RU) 自动缩放。 有关如何估
 
 我们已根据流量（假定所有图像的大小均为 100 kb）提供了三个示例性的成本配置文件：
 
-* [小][small-pricing]：此定价示例对应于每月处理的图像数 &lt; 5000 的情况。
-* [中][medium-pricing]：此定价示例对应于每月处理的图像数为 500,000 的情况。
-* [大][large-pricing]：此定价示例对应于每月处理的图像数为 5 千万的情况。
+- [小][small-pricing]：此定价示例对应于每月处理的图像数 &lt; 5000 的情况。
+- [中][medium-pricing]：此定价示例对应于每月处理的图像数为 500,000 的情况。
+- [大][large-pricing]：此定价示例对应于每月处理的图像数为 5 千万的情况。
 
 ## <a name="related-resources"></a>相关资源
 

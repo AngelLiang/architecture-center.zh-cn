@@ -1,15 +1,16 @@
 ---
-title: Azure 上可实现高可用性和灾难恢复的多层 Web 应用程序
+title: 针对 HA/DR 生成的多层 Web 应用程序
+titleSuffix: Azure Example Scenarios
 description: 使用 Azure 虚拟机、可用性集、可用性区域、Azure Site Recovery 和 Azure 流量管理器在 Azure 上创建可实现高可用性和灾难恢复的多层 Web 应用程序
 author: sujayt
 ms.date: 11/16/2018
 ms.custom: product-team
-ms.openlocfilehash: 71534dc095d5fba137a0e610d4e725c2efc6b432
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: baa468697b4a72975e3b192efc9bdf1861a0c0da
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004600"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644031"
 ---
 # <a name="multitier-web-application-built-for-high-availability-and-disaster-recovery-on-azure"></a>Azure 上可实现高可用性和灾难恢复的多层 Web 应用程序
 
@@ -25,9 +26,9 @@ ms.locfileid: "53004600"
 
 其他相关用例包括：
 
-* 部署 SAP 和 SharePoint 等高度可复原的应用程序
-* 为业务线应用程序设计业务连续性和灾难恢复计划
-* 配置灾难恢复并出于合规目的执行相关的演练
+- 部署 SAP 和 SharePoint 等高度可复原的应用程序
+- 为业务线应用程序设计业务连续性和灾难恢复计划
+- 配置灾难恢复并出于合规目的执行相关的演练
 
 ## <a name="architecture"></a>体系结构
 
@@ -49,17 +50,17 @@ ms.locfileid: "53004600"
 
 ### <a name="components"></a>组件
 
-* [可用性集][docs-availability-sets]确保在 Azure 上部署的 VM 能够跨群集中多个隔离的硬件节点分布。 如果 Azure 中发生硬件或软件故障，只有一部分 VM 会受到影响，而整个解决方案将保持可用且正常运行。
-* 数据中心发生故障时，[可用性区域][docs-availability-zones]可以保护应用程序和数据。 可用性区域是 Azure 区域中独立的物理位置。 每个区域由一个或多个数据中心组成，这些数据中心配置了独立电源以及散热和网络设备。 
-* 使用 [Azure Site Recovery (ASR)][docs-azure-site-recovery] 可将 VM 复制到另一个 Azure 区域以满足业务连续性和灾难恢复需求。 可以定期执行灾难恢复演练来确保满足合规需求。 源区域中发生故障时，VM 将按照指定的设置复制到所选区域，以便恢复应用程序。
-* [Azure 流量管理器][docs-traffic-manager]是基于 DNS 的流量负载均衡器，可在全球 Azure 区域之间以最佳方式向服务分配流量，同时提供高可用性和响应能力。
-* [Azure 负载均衡器][docs-load-balancer]根据定义的规则和运行状况探测分配入站流量。 负载均衡器提供低延迟和高吞吐量，可纵向扩展到数百万个流，以满足所有 TCP 和 UDP 应用程序的需求。 本方案使用公共负载均衡器将传入的客户端流量分配到 Web 层。 本方案使用内部负载均衡器将来自业务层的流量分配到后端 SQL Server 群集。
+- [可用性集][docs-availability-sets]确保在 Azure 上部署的 VM 能够跨群集中多个隔离的硬件节点分布。 如果 Azure 中发生硬件或软件故障，只有一部分 VM 会受到影响，而整个解决方案将保持可用且正常运行。
+- 数据中心发生故障时，[可用性区域][docs-availability-zones]可以保护应用程序和数据。 可用性区域是 Azure 区域中独立的物理位置。 每个区域由一个或多个数据中心组成，这些数据中心配置了独立电源以及散热和网络设备。
+- 使用 [Azure Site Recovery (ASR)][docs-azure-site-recovery] 可将 VM 复制到另一个 Azure 区域以满足业务连续性和灾难恢复需求。 可以定期执行灾难恢复演练来确保满足合规需求。 源区域中发生故障时，VM 将按照指定的设置复制到所选区域，以便恢复应用程序。
+- [Azure 流量管理器][docs-traffic-manager]是基于 DNS 的流量负载均衡器，可在全球 Azure 区域之间以最佳方式向服务分配流量，同时提供高可用性和响应能力。
+- [Azure 负载均衡器][docs-load-balancer]根据定义的规则和运行状况探测分配入站流量。 负载均衡器提供低延迟和高吞吐量，可纵向扩展到数百万个流，以满足所有 TCP 和 UDP 应用程序的需求。 本方案使用公共负载均衡器将传入的客户端流量分配到 Web 层。 本方案使用内部负载均衡器将来自业务层的流量分配到后端 SQL Server 群集。
 
 ### <a name="alternatives"></a>备选项
 
-* 可以使用其他操作系统来替换 Windows，因为基础结构中没有任何组件依赖于操作系统。
-* [适用于 Linux 的 SQL Server][docs-sql-server-linux] 可以替代后端数据存储。
-* 可以使用任何可用的标准数据库应用程序替换数据库。
+- 可以使用其他操作系统来替换 Windows，因为基础结构中没有任何组件依赖于操作系统。
+- [适用于 Linux 的 SQL Server][docs-sql-server-linux] 可以替代后端数据存储。
+- 可以使用任何可用的标准数据库应用程序替换数据库。
 
 ## <a name="other-considerations"></a>其他注意事项
 

@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - security
-ms.openlocfilehash: 791132eabf926cc285567454c60f894efa286433
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 99d3fbe05e34d61edc0d339f34665e557b250b05
+ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542035"
+ms.lasthandoff: 12/16/2018
+ms.locfileid: "53450881"
 ---
 # <a name="valet-key-pattern"></a>附属密钥模式
 
@@ -41,7 +41,7 @@ ms.locfileid: "24542035"
 
 还可以配置具有其他依赖项（如数据范围）的密钥。 例如，根据数据存储功能，密钥可以指定数据存储中的一个完整表，或是仅指定表中的特定行。 在云存储系统中，密钥可以指定一个容器，或仅指定容器中的特定项。
 
-应用程序也可以使密钥失效。 如果客户端通知服务器数据传输操作已完成，则这是很有用的方法。 服务器随后可以使该密钥失效，以进一步进行阻止。
+应用程序也可以使密钥失效。 如果客户端通知服务器数据传输操作已完成，则这是很有用的方法。 服务器随后可以使该密钥失效，防止进一步的访问。
 
 使用此模式可以简化资源访问管理，因为无需创建用户并进行身份验证，授予权限，然后再次删除用户。 通过此模式还可以轻松地限制位置、权限和有效期 &mdash; 只需在运行时生成密钥即可实现所有这些目的。 重要因素是尽可能严格地限制有效期，特别是资源的位置，以便接收者只能将它用于预期用途。
 

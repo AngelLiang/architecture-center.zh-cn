@@ -1,15 +1,16 @@
 ---
-title: Azure 上的 SAP 工作负荷的开发/测试环境
+title: SAP 工作负荷的开发/测试环境
+titleSuffix: Azure Example Scenarios
 description: 为 SAP 工作负荷构建开发/测试环境。
 author: AndrewDibbins
 ms.date: 7/11/18
 ms.custom: fasttrack
-ms.openlocfilehash: 84665bfeb6ada568c631e1db72b97269d79f2e60
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 3f6c828e8757a3f82ad6972a8f21cd2fed629162
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004678"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643962"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Azure 上的 SAP 工作负荷的开发/测试环境
 
@@ -17,16 +18,16 @@ ms.locfileid: "53004678"
 
 对于生产用例，请查看下面提供的 SAP 参考体系结构：
 
-* [适用于 AnyDB 的 SAP NetWeaver][sap-netweaver]
-* [SAP S/4HANA][sap-hana]
-* [Azure SAP 大型实例][sap-large]
+- [适用于 AnyDB 的 SAP NetWeaver][sap-netweaver]
+- [SAP S/4HANA][sap-hana]
+- [Azure SAP 大型实例][sap-large]
 
 ## <a name="relevant-use-cases"></a>相关用例
 
 其他相关用例包括：
 
-* 非关键性 SAP 非生产工作负荷（沙盒、开发、测试、质量保证）
-* 非关键性 SAP 业务型工作负荷
+- 非关键性 SAP 非生产工作负荷（沙盒、开发、测试、质量保证）
+- 非关键性 SAP 业务型工作负荷
 
 ## <a name="architecture"></a>体系结构
 
@@ -41,11 +42,11 @@ ms.locfileid: "53004678"
 
 ### <a name="components"></a>组件
 
-* [虚拟网络](/azure/virtual-network/virtual-networks-overview)是在 Azure 中进行网络通信的基础。
-* [虚拟机](/azure/virtual-machines/windows/overview)：Azure 虚拟机使用 Windows 或 Linux Server 按需提供具有高可伸缩性并且十分安全的虚拟化基础结构。
-* 使用 [ExpressRoute](/azure/expressroute/expressroute-introduction) 可通过连接服务提供商所提供的专用连接，将本地网络扩展到 Microsoft 云。
-* [网络安全组](/azure/virtual-network/security-overview)用于限制发往虚拟网络中的资源的网络流量。 网络安全组包含一个安全规则列表，这些规则可根据源或目标 IP 地址、端口和协议允许或拒绝入站或出站网络流量。 
-* [资源组](/azure/azure-resource-manager/resource-group-overview#resource-groups)充当 Azure 资源的逻辑容器。
+- [虚拟网络](/azure/virtual-network/virtual-networks-overview)是在 Azure 中进行网络通信的基础。
+- [虚拟机](/azure/virtual-machines/windows/overview)：Azure 虚拟机使用 Windows 或 Linux Server 按需提供具有高可伸缩性并且十分安全的虚拟化基础结构。
+- 使用 [ExpressRoute](/azure/expressroute/expressroute-introduction) 可通过连接服务提供商所提供的专用连接，将本地网络扩展到 Microsoft 云。
+- [网络安全组](/azure/virtual-network/security-overview)用于限制发往虚拟网络中的资源的网络流量。 网络安全组包含一个安全规则列表，这些规则可根据源或目标 IP 地址、端口和协议允许或拒绝入站或出站网络流量。
+- [资源组](/azure/azure-resource-manager/resource-group-overview#resource-groups)充当 Azure 资源的逻辑容器。
 
 ## <a name="considerations"></a>注意事项
 
@@ -81,18 +82,22 @@ ms.locfileid: "53004678"
 > [!NOTE]
 > 此定价为指导价，仅指出了 VM 和存储费用。 此费用不包括网络、备份存储和数据传入/传出费用。
 
-* [小型](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1)：小型系统，其 VM 类型为 D8s_v3，使用 8x vCPU，32 GB RAM 和 200 GB 临时存储，另外还有两个 512 GB 的和一个 128 GB 的高级存储磁盘。
-* [中型](https://azure.com/e/465bd07047d148baab032b2f461550cd)：中型系统，其 VM 类型为 D16s_v3，使用 16x vCPU，64 GB RAM 和 400 GB 临时存储，另外还有三个 512 GB 的和一个 128 GB 的高级存储磁盘。
-* [大型](https://azure.com/e/ada2e849d68b41c3839cc976000c6931)：大型系统，其 VM 类型为 E32s_v3，使用 32x vCPU，256 GB RAM 和 512 GB 临时存储，另外还有三个 512 GB 的和一个 128 GB 的高级存储磁盘。
-* [特大型](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef)：特大型系统，其 VM 类型为 M64s，使用 64x vCPU，1024 GB RAM 和 2000 GB 临时存储，另外还有四个 512 GB 的和一个 128 GB 的高级存储磁盘。
+- [小型](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1)：小型系统，其 VM 类型为 D8s_v3，使用 8x vCPU，32 GB RAM 和 200 GB 临时存储，另外还有两个 512 GB 的和一个 128 GB 的高级存储磁盘。
+- [中型](https://azure.com/e/465bd07047d148baab032b2f461550cd)：中型系统，其 VM 类型为 D16s_v3，使用 16x vCPU，64 GB RAM 和 400 GB 临时存储，另外还有三个 512 GB 的和一个 128 GB 的高级存储磁盘。
+- [大型](https://azure.com/e/ada2e849d68b41c3839cc976000c6931)：大型系统，其 VM 类型为 E32s_v3，使用 32x vCPU，256 GB RAM 和 512 GB 临时存储，另外还有三个 512 GB 的和一个 128 GB 的高级存储磁盘。
+- [特大型](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef)：特大型系统，其 VM 类型为 M64s，使用 64x vCPU，1024 GB RAM 和 2000 GB 临时存储，另外还有四个 512 GB 的和一个 128 GB 的高级存储磁盘。
 
 ## <a name="deployment"></a>部署
 
 单击此处即可部署本方案的底层基础结构。
 
+<!-- markdownlint-disable MD033 -->
+
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fsap-2tier%2Fazuredeploy.json" target="_blank">
     <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>
+
+<!-- markdownlint-enable MD033 -->
 
 > [!NOTE]
 > 部署过程中不会安装 SAP 和 Oracle。 需要单独部署这些组件。

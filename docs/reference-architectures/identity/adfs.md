@@ -1,16 +1,16 @@
 ---
 title: 将本地 AD FS 扩展到 Azure
 titleSuffix: Azure Reference Architectures
-description: 如何在 Azure 中实现采用 Active Directory 联合身份验证服务授权的安全混合网络体系结构。
+description: 在 Azure 中实现采用 Active Directory 联合身份验证服务授权的安全混合网络体系结构。
 author: telmosampaio
-ms.date: 11/28/2016
+ms.date: 12/18.2018
 ms.custom: seodec18
-ms.openlocfilehash: 95866961cd92f44e0925c5e47eafdc5df71652db
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: bd07ce1502c29c1543dca42f74b2f19f3a6d3878
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120214"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644098"
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>将 Active Directory 联合身份验证服务 (AD FS) 扩展到 Azure
 
@@ -37,7 +37,7 @@ AD FS 可以在本地进行承载，但是如果应用程序是其中某些部�
 
 此参考体系结构侧重于被动联合，其中由联合服务器决定如何以及何时对用户进行身份验证。 用户在启动应用程序时提供登录信息。 此机制最常由 Web 浏览器使用，涉及将浏览器重定向到对用户进行身份验证的站点的协议。 AD FS 还支持主动联合，其中应用程序负责提供凭据，无需进一步的用户交互，但是该方案不在此体系结构的范围内。
 
-有关其他注意事项，请参阅[选择用于将本地 Active Directory 与 Azure 相集成的解决方案][considerations]。-
+有关其他注意事项，请参阅[选择用于将本地 Active Directory 与 Azure 相集成的解决方案][considerations]。
 
 ## <a name="architecture"></a>体系结构
 
@@ -53,7 +53,7 @@ AD FS 可以在本地进行承载，但是如果应用程序是其中某些部�
 
   - 代表合作伙伴用户接收包含由合作伙伴联合服务器发出的声明的安全令牌。 AD FS 先验证令牌是否有效，然后将声明传递给在 Azure 中运行的 Web 应用程序以对请求进行授权。
 
-    在 Azure 中运行的 Web 应用程序是信赖方。 合作伙伴联合服务器必须发出由 Web 应用程序理解的声明。 合作伙伴联合服务器称为帐户伙伴，因为它们代表合作伙伴组织中经过身份验证的帐户提交访问请求。 AD FS 服务器称为资源伙伴，因为它们提供对资源（Web 应用程序）的访问。
+    在 Azure 中运行的应用程序是信赖方。 合作伙伴联合服务器必须发出由 Web 应用程序理解的声明。 合作伙伴联合服务器称为帐户伙伴，因为它们代表合作伙伴组织中经过身份验证的帐户提交访问请求。 AD FS 服务器称为资源伙伴，因为它们提供对资源（Web 应用程序）的访问。
 
   - 使用 AD DS 和 [Active Directory 设备注册服务][ADDRS]，对运行需要访问 Web 应用程序的 Web 浏览器或设备的外部用户发出的传入请求进行身份验证和授权。
 
@@ -75,61 +75,17 @@ AD FS 可以在本地进行承载，但是如果应用程序是其中某些部�
   > 还可以使用 Azure 网关配置 VPN 隧道，以便为受信任合作伙伴提供对 AD FS 的直接访问。 从这些合作伙伴接收的请求不会经过 WAP 服务器。
   >
 
-有关不与 AD FS 相关的体系结构部分的详细信息，请参阅以下内容：
-
-- [在 Azure 中实现安全混合网络体系结构][implementing-a-secure-hybrid-network-architecture]
-- [在 Azure 中实现提供 Internet 访问方式的安全混合网络体系结构][implementing-a-secure-hybrid-network-architecture-with-internet-access]
-- [在 Azure 中实现采用 Active Directory 标识的安全混合网络体系结构][extending-ad-to-azure]。
-
 ## <a name="recommendations"></a>建议
 
 以下建议适用于大多数方案。 除非有优先于这些建议的特定要求，否则请遵循这些建议。
-
-### <a name="vm-recommendations"></a>VM 建议
-
-创建具有足够资源来处理预期流量的 VM。 使用在本地承载 AD FS 的现有计算机的大小作为起点。 监视资源利用率。 可以调整 VM 的大小，在它们太大时进行缩减。
-
-遵循[在 Azure 上运行 Windows VM][vm-recommendations] 中列出的建议。
 
 ### <a name="networking-recommendations"></a>网络建议
 
 使用静态专用 IP 地址为承载 AD FS 和 WAP 服务器的每个 VM 配置网络接口。
 
-请勿向 AD FS VM 提供公共 IP 地址。 有关详细信息，请参阅“安全注意事项”部分。
+请勿向 AD FS VM 提供公共 IP 地址。 有关详细信息，请参阅[安全注意事项](#security-considerations)部分。
 
 为每个 AD FS 和 WAP VM 的网络接口设置首选和辅助域名服务 (DNS) 服务器的 IP 地址，以引用 Active Directory DS VM。 Active Directory DS VM 应运行 DNS。 使每个 VM 可以加入域需要此步骤。
-
-### <a name="ad-fs-availability"></a>AD FS 可用性
-
-创建具有至少两台服务器的 AD FS 场以提高服务的可用性。 为场中的每个 AD FS VM 使用不同的存储帐户。 此方法可帮助确保单个存储帐户中的故障不会使整个场不可访问。
-
-> [!IMPORTANT]
-> 建议使用[托管磁盘](/azure/storage/storage-managed-disks-overview)。 托管磁盘不需要存储帐户。 只需指定磁盘的大小和类型，它就会以高度可用的方式部署。 我们的[参考体系结构](/azure/architecture/reference-architectures/)当前未部署托管磁盘，但是[模板构建基块](https://github.com/mspnp/template-building-blocks/wiki)会在版本 2 中更新为部署托管磁盘。
-
-为 AD FS 和 WAP VM 创建单独的 Azure 可用性集。 确保每个集中至少有两个 VM。 每个可用性集必须具有至少两个更新域和两个容错域。
-
-按如下所示为 AD FS VM 和 WAP VM 配置负载均衡器：
-
-- 使用 Azure 负载均衡器提供对 WAP VM 的外部访问，并使用内部负载均衡器在场中的 AD FS 服务器之间分布负载。
-- 仅将在端口 443 (HTTPS) 上出现的流量传递给 AD FS/WAP 服务器。
-- 为负载均衡器提供静态 IP 地址。
-- 使用 HTTP 针对 `/adfs/probe` 创建运行状况探测。 有关详细信息，请参阅[硬件负载均衡器运行状况检查和 Web 应用程序代理/AD FS 2012 R2](https://blogs.technet.microsoft.com/applicationproxyblog/2014/10/17/hardware-load-balancer-health-checks-and-web-application-proxy-ad-fs-2012-r2/)。
-
-  > [!NOTE]
-  > AD FS 服务器使用服务器名称指示 (SNI) 协议，因此尝试从负载均衡器使用 HTTPS 终结点进行探测会失败。
-  >
-
-- 将 DNS A 记录添加到 AD FS 负载均衡器的域。 指定负载均衡器的 IP 地址，并为它提供域中的名称（例如 adfs.contoso.com）。 这是客户端和 WAP 服务器用于访问 AD FS 服务器场的名称。
-
-### <a name="ad-fs-security"></a>AD FS 安全性
-
-阻止向 Internet 直接公开 AD FS 服务器。 AD FS 服务器是具有完整授权，可授予安全令牌的已加入域的计算机。 如果服务器受到损害，则恶意用户可以向所有 Web 应用程序并向 AD FS 保护的所有联合服务器颁发完全访问令牌。 如果系统必须处理不是从受信任合作伙伴站点连接的外部用户发出的请求，请使用 WAP 服务器处理这些请求。 有关详细信息，请参阅[放置联合服务器代理的位置][where-to-place-an-fs-proxy]。
-
-将 AD FS 服务器和 WAP 服务器放置在具有自己的防火墙的单独子网中。 可以使用 NSG 规则定义防火墙规则。 如果需要更全面的保护，则可以使用一对子网和网络虚拟设备 (NVA) 在服务器周围实现附加安全外围，如文档[在 Azure 中实现提供 Internet 访问方式的安全混合网络体系结构][implementing-a-secure-hybrid-network-architecture-with-internet-access]中所述。 所有防火墙都应允许端口 443 (HTTPS) 上的流量。
-
-限制对 AD FS 和 WAP 服务器的直接登录访问。 只有 DevOps 员工才应能够连接。
-
-请勿将 WAP 服务器加入域。
 
 ### <a name="ad-fs-installation"></a>AD FS 安装
 
@@ -192,6 +148,23 @@ AD FS 支持令牌转换和扩大。 Azure Active Directory 不提供此功能�
 
 ## <a name="availability-considerations"></a>可用性注意事项
 
+创建具有至少两台服务器的 AD FS 场以提高服务的可用性。 为场中的每个 AD FS VM 使用不同的存储帐户。 此方法可帮助确保单个存储帐户中的故障不会使整个场不可访问。
+
+为 AD FS 和 WAP VM 创建单独的 Azure 可用性集。 确保每个集中至少有两个 VM。 每个可用性集必须具有至少两个更新域和两个容错域。
+
+按如下所示为 AD FS VM 和 WAP VM 配置负载均衡器：
+
+- 使用 Azure 负载均衡器提供对 WAP VM 的外部访问，并使用内部负载均衡器在场中的 AD FS 服务器之间分布负载。
+- 仅将在端口 443 (HTTPS) 上出现的流量传递给 AD FS/WAP 服务器。
+- 为负载均衡器提供静态 IP 地址。
+- 使用 HTTP 针对 `/adfs/probe` 创建运行状况探测。 有关详细信息，请参阅[硬件负载均衡器运行状况检查和 Web 应用程序代理/AD FS 2012 R2](https://blogs.technet.microsoft.com/applicationproxyblog/2014/10/17/hardware-load-balancer-health-checks-and-web-application-proxy-ad-fs-2012-r2/)。
+
+  > [!NOTE]
+  > AD FS 服务器使用服务器名称指示 (SNI) 协议，因此尝试从负载均衡器使用 HTTPS 终结点进行探测会失败。
+  >
+
+- 将 DNS A 记录添加到 AD FS 负载均衡器的域。 指定负载均衡器的 IP 地址，并为它提供域中的名称（例如 adfs.contoso.com）。 这是客户端和 WAP 服务器用于访问 AD FS 服务器场的名称。
+
 可以使用 SQL Server 或 Windows 内部数据库保存 AD FS 配置信息。 Windows 内部数据库提供基本冗余。 更改仅仅直接写入 AD FS 群集中的一个 AD FS 数据库，而其他服务器使用请求复制使其数据库保持最新状态。 使用 SQL Server 可以提供完整数据库冗余和高可用性（使用故障转移群集或镜像）。
 
 ## <a name="manageability-considerations"></a>可管理性注意事项
@@ -205,80 +178,189 @@ DevOps 员工应准备好执行以下任务：
 
 ## <a name="security-considerations"></a>安全注意事项
 
-AD FS 使用 HTTPS 协议，因此请确保包含 Web 层 VM 的子网的 NSG 规则允许 HTTPS 请求。 这些请求可能源自本地网络、包含 Web 层、业务层、数据层、专用 DMZ、公共 DMZ 的子网以及包含 AD FS 服务器的子网。
+AD FS 使用 HTTPS，因此请确保包含 Web 层 VM 的子网的 NSG 规则允许 HTTPS 请求。 这些请求可能源自本地网络、包含 Web 层、业务层、数据层、专用 DMZ、公共 DMZ 的子网以及包含 AD FS 服务器的子网。
+
+阻止向 Internet 直接公开 AD FS 服务器。 AD FS 服务器是具有完整授权，可授予安全令牌的已加入域的计算机。 如果服务器受到损害，则恶意用户可以向所有 Web 应用程序并向 AD FS 保护的所有联合服务器颁发完全访问令牌。 如果系统必须处理不是从受信任合作伙伴站点连接的外部用户发出的请求，请使用 WAP 服务器处理这些请求。 有关详细信息，请参阅[放置联合服务器代理的位置][where-to-place-an-fs-proxy]。
+
+将 AD FS 服务器和 WAP 服务器放置在具有自己的防火墙的单独子网中。 可以使用 NSG 规则定义防火墙规则。 所有防火墙都应允许端口 443 (HTTPS) 上的流量。
+
+限制对 AD FS 和 WAP 服务器的直接登录访问。 只有 DevOps 员工才应能够连接。 请勿将 WAP 服务器加入域。
 
 请考虑使用一组网络虚拟设备，它们记录有关遍历虚拟网络边缘的流量的详细信息以用于审核。
 
 ## <a name="deploy-the-solution"></a>部署解决方案
 
-[GitHub][github] 上提供了一个用于部署此参考体系结构的解决方案。 若要运行部署此解决方案的 Powershell 脚本，需要具有 [Azure CLI][azure-cli] 的最新版本。 若要部署此参考体系结构，请执行以下步骤：
+[GitHub][github] 上提供了此体系结构的部署。 请注意，整个部署最长可能需要花费两个小时，包括创建 VPN 网关和运行配置 Active Directory 和 AD FS 的脚本。
 
-1. 将解决方案文件夹从 [GitHub][github] 克隆到本地计算机。
+### <a name="prerequisites"></a>先决条件
 
-2. 打开 Azure CLI 并导航到本地解决方案文件夹。
+1. 克隆、下载 [GitHub 存储库](https://github.com/mspnp/identity-reference-architectures)的 zip 文件或创建其分库。
 
-3. 运行以下命令：
+1. 安装 [Azure CLI 2.0](/cli/azure/install-azure-cli?view=azure-cli-latest)。
 
-    ```powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> <mode>
+1. 安装 [Azure 构建基块](https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks) npm 包。
+
+   ```bash
+   npm install -g @mspnp/azure-building-blocks
+   ```
+
+1. 在命令提示符、bash 提示符或 PowerShell 提示符下，按如下所示登录到你的 Azure 帐户：
+
+   ```bash
+   az login
+   ```
+
+### <a name="deploy-the-simulated-on-premises-datacenter"></a>部署模拟的本地数据中心
+
+1. 导航到 GitHub 存储库的 `adfs` 文件夹。
+
+1. 打开 `onprem.json` 文件。 搜索 `adminPassword`、`Password`、`SafeModeAdminPassword` 的实例并更新密码。
+
+1. 运行以下命令，并等待部署完成：
+
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p onprem.json --deploy
     ```
 
-    将 `<subscription id>` 替换为你的 Azure 订阅 ID。
+### <a name="deploy-the-azure-infrastructure"></a>部署 Azure 基础结构
 
-    对于 `<location>`，请指定一个 Azure 区域，例如 `eastus` 或 `westus`。
+1. 打开 `azure.json` 文件。  搜索 `adminPassword` 和 `Password` 的实例并添加密码值。
 
-    `<mode>` 参数控制部署粒度，可以是下列值之一：
+1. 运行以下命令，并等待部署完成：
 
-   - `Onpremise`：部署模拟的本地环境。 如果没有现有本地网络，或如果要测试此参考体系结构而不更改现有本地网络的配置，则可以使用此部署进行测试和试验。
-   - `Infrastructure`：部署 VNet 基础结构和 jumpbox。
-   - `CreateVpn`：部署 Azure 虚拟网络网关并将其连接到模拟的本地网络。
-   - `AzureADDS`：部署充当 Active Directory DS 服务器的 VM，将 Active Directory 部署到这些 VM，并在 Azure 中创建域。
-   - `AdfsVm`：在 Azure 中部署 AD FS VM 并将它们加入域。
-   - `PublicDMZ`：在 Azure 中部署公共 DMZ。
-   - `ProxyVm`：在 Azure 中部署 AD FS 代理 VM 并将它们加入域。
-   - `Prepare`：部署上述所有部署。 **如果在构建全新部署并且没有现有本地基础结构，则这是推荐选项。**
-   - `Workload`：（可选）部署 Web、业务和数据层 VM 以及支持网络。 不包括在 `Prepare` 部署模式中。
-   - `PrivateDMZ`：（可选）在 Azure 中，在上面部署的 `Workload` VM 前部署专用 DMZ。 不包括在 `Prepare` 部署模式中。
-
-4. 等待部署完成。 如果使用 `Prepare` 选项，则部署需要几个小时才能完成，完成时会显示消息 `Preparation is completed. Please install certificate to all AD FS and proxy VMs.`
-
-5. 重新启动 jumpbox（ra-adfs-security-rg 组中的 ra-adfs-mgmt-vm1）以允许其 DNS 设置生效。
-
-6. [为 AD FS 获取 SSL 证书][adfs_certificates]并在 AD FS VM 上安装此证书。 请注意，可以通过 jumpbox 连接到它们。 IP 地址是 10.0.5.4 和 10.0.5.5。 默认用户名为 contoso\testuser，密码为 AweSome@PW。
-
-   > [!NOTE]
-   > Deploy-ReferenceArchitecture.ps1 脚本中的注释此时提供有关使用 `makecert` 命令创建自签名测试证书和颁发机构的详细说明。 但是，仅将这些步骤作为**测试**来执行，请勿在生产环境中使用 makecert 生成的证书。
-
-7. 运行以下 PowerShell 命令以部署 AD FS 服务器场：
-
-    ```powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> Adfs
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p azure.json --deploy
     ```
 
-8. 在 jumpbox 上，浏览到 `https://adfs.contoso.com/adfs/ls/idpinitiatedsignon.htm` 以测试 AD FS 安装（可能会收到证书警告，对于此测试，可以忽略它）。 验证 Contoso Corporation 登录页是否出现。 使用密码 AweS0me@PW，以 contoso\testuser 身份登录。
+### <a name="set-up-the-ad-fs-farm"></a>设置 AD FS 场
 
-9. 在 AD FS 代理 VM 上安装 SSL 证书。 IP 地址是 10.0.6.4 和 10.0.6.5。
+1. 打开 `adfs-farm-first.json` 文件。  搜索 `AdminPassword` 并替换默认密码。
 
-10. 运行以下 PowerShell 命令以部署第一台 AD FS 代理服务器：
+1. 运行以下命令：
 
-    ```powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> Proxy1
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p adfs-farm-first.json --deploy
     ```
 
-11. 按照脚本显示的说明测试第一台代理服务器的安装。
+1. 打开 `adfs-farm-rest.json` 文件。  搜索 `AdminPassword` 并替换默认密码。
 
-12. 运行以下 PowerShell 命令以部署第二台代理服务器：
+1. 运行以下命令，并等待部署完成：
 
-    ```powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> Proxy2
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p adfs-farm-rest.json --deploy
     ```
 
-13. 按照脚本显示的说明测试完整代理配置。
+### <a name="configure-ad-fs-part-1"></a>配置 AD FS（第 1 部分）
 
-## <a name="next-steps"></a>后续步骤
+1. 与名为 `ra-adfs-jb-vm1` 的 VM 建立远程桌面会话，该 VM 为 Jumpbox VM。 用户名为 `testuser`。
 
-- 了解 [Azure Active Directory][aad]。
-- 了解 [Azure Active Directory B2C][aadb2c]。
+1. 通过 Jumpbox 与名为 `ra-adfs-proxy-vm1` 的 VM 建立远程桌面会话。 专用 IP 地址为 10.0.6.4。
+
+1. 通过这个远程桌面会话运行 [PowerShell ISE](/powershell/scripting/components/ise/windows-powershell-integrated-scripting-environment--ise-)。
+
+1. 在 PowerShell 中，导航到以下目录：
+
+    ```powershell
+    C:\Packages\Plugins\Microsoft.Powershell.DSC\2.77.0.0\DSCWork\adfs-v2.0
+    ```
+
+1. 将以下代码粘贴到脚本窗格中并运行它：
+
+    ```powershell
+    . .\adfs-webproxy.ps1
+    $cd = @{
+        AllNodes = @(
+            @{
+                NodeName = 'localhost'
+                PSDscAllowPlainTextPassword = $true
+                PSDscAllowDomainUser = $true
+            }
+        )
+    }
+
+    $c1 = Get-Credential -UserName testuser -Message "Enter password"
+    InstallWebProxyApp -DomainName contoso.com -FederationName adfs.contoso.com -WebApplicationProxyName "Contoso App" -AdminCreds $c1 -ConfigurationData $cd
+    Start-DscConfiguration .\InstallWebProxyApp
+    ```
+
+    出现 `Get-Credential` 提示时，输入在部署参数文件中指定的密码。
+
+1. 运行以下命令，监视 [DSC](/powershell/dsc/overview/overview) 配置的进度：
+
+    ```powershell
+    Get-DscConfigurationStatus
+    ```
+
+    实现一致性可能需要数分钟。 在此期间，可能会看到命令中的错误。 如果配置成功，则输出应如下所示：
+
+    ```powershell
+    PS C:\Packages\Plugins\Microsoft.Powershell.DSC\2.77.0.0\DSCWork\adfs-v2.0> Get-DscConfigurationStatus
+
+    Status     StartDate                 Type            Mode  RebootRequested      NumberOfResources
+    ------     ---------                 ----            ----  ---------------      -----------------
+    Success    12/17/2018 8:21:09 PM     Consistency     PUSH  True                 4
+    ```
+
+### <a name="configure-ad-fs-part-2"></a>配置 AD FS（第 2 部分）
+
+1. 通过 Jumpbox 与名为 `ra-adfs-proxy-vm2` 的 VM 建立远程桌面会话。 专用 IP 地址为 10.0.6.5。
+
+1. 通过这个远程桌面会话运行 [PowerShell ISE](/powershell/scripting/components/ise/windows-powershell-integrated-scripting-environment--ise-)。
+
+1. 导航到以下目录：
+
+    ```powershell
+    C:\Packages\Plugins\Microsoft.Powershell.DSC\2.77.0.0\DSCWork\adfs-v2.0
+    ```
+
+1. 将以下内容粘贴到脚本窗格中并运行此脚本：
+
+    ```powershell
+    . .\adfs-webproxy-rest.ps1
+    $cd = @{
+        AllNodes = @(
+            @{
+                NodeName = 'localhost'
+                PSDscAllowPlainTextPassword = $true
+                PSDscAllowDomainUser = $true
+            }
+        )
+    }
+
+    $c1 = Get-Credential -UserName testuser -Message "Enter password"
+    InstallWebProxy -DomainName contoso.com -FederationName adfs.contoso.com -WebApplicationProxyName "Contoso App" -AdminCreds $c1 -ConfigurationData $cd
+    Start-DscConfiguration .\InstallWebProxy
+    ```
+
+    出现 `Get-Credential` 提示时，输入在部署参数文件中指定的密码。
+
+1. 运行以下命令，监视 DSC 配置的进度：
+
+    ```powershell
+    Get-DscConfigurationStatus
+    ```
+
+    实现一致性可能需要数分钟。 在此期间，可能会看到命令中的错误。 如果配置成功，则输出应如下所示：
+
+    ```powershell
+    PS C:\Packages\Plugins\Microsoft.Powershell.DSC\2.77.0.0\DSCWork\adfs-v2.0> Get-DscConfigurationStatus
+
+    Status     StartDate                 Type            Mode  RebootRequested      NumberOfResources
+    ------     ---------                 ----            ----  ---------------      -----------------
+    Success    12/17/2018 8:21:09 PM     Consistency     PUSH  True                 4
+    ```
+
+    有时候，此 DSC 会失败。 如果状态检查显示 `Status=Failure` 和 `Type=Consistency`，请尝试重新运行步骤 4。
+
+### <a name="sign-into-ad-fs"></a>登录 AD FS
+
+1. 通过 Jumpbox 与名为 `ra-adfs-adfs-vm1` 的 VM 建立远程桌面会话。 专用 IP 地址为 10.0.5.4。
+
+1. 按照[启用 Idp 启动的登录页](/windows-server/identity/ad-fs/troubleshooting/ad-fs-tshoot-initiatedsignon#enable-the-idp-intiated-sign-on-page)中的步骤启用登录页。
+
+1. 从 Jumpbox 浏览到 `https://adfs.contoso.com/adfs/ls/idpinitiatedsignon.htm`。 可能会收到证书警告，对于此测试，可以忽略它。
+
+1. 验证 Contoso Corporation 登录页是否出现。 以 contoso\testuser 身份登录。
 
 <!-- links -->
 [extending-ad-to-azure]: adds-extend-domain.md

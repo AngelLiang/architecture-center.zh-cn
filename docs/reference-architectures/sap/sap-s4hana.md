@@ -5,12 +5,12 @@ description: 有关在 Azure 上的高可用性 Linux 环境中运行 SAP S/4HAN
 author: lbrader
 ms.date: 05/11/2018
 ms.custom: seodec18
-ms.openlocfilehash: 356b80c79aeb13ac951654350eafa904ff5e5ec1
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 9eb73ddaf5b1cb815f037f46c7e187f61d126876
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120231"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644166"
 ---
 # <a name="sap-s4hana-for-linux-virtual-machines-on-azure"></a>适用于 Azure 上的 Linux 虚拟机的 SAP S/4HANA
 
@@ -201,5 +201,14 @@ SAP 具有自身的用户管理引擎 (UME)，可在 SAP 应用程序中控制�
 - [Azure 社区支持](https://azure.microsoft.com/support/community/)
 - [SAP 社区](https://www.sap.com/community.html)
 - [Stack Overflow](https://stackoverflow.com/tags/sap/)
+
+## <a name="related-resources"></a>相关资源
+
+可以查看以下 [Azure 示例方案](/azure/architecture/example-scenario)，了解使用部分相同技术的具体解决方案：
+
+- [在 Azure 上使用 Oracle 数据库运行 SAP 生产工作负荷](/azure/architecture/example-scenario/apps/sap-production)
+- [Azure 上的 SAP 工作负荷的开发/测试环境](/azure/architecture/example-scenario/apps/sap-dev-test)
+
+<!-- links -->
 
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

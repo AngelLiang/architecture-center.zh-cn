@@ -1,36 +1,38 @@
 ---
-title: 使用 Service Fabric 分解单一式应用程序
-description: 将大型单一式应用程序分解为微服务。
+title: 使用 Service Fabric 分解应用程序
+titleSuffix: Azure Example Scenarios
+description: 将大型整体应用程序分解为微服务。
 author: timomta
 ms.date: 09/20/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 438d2eabff39356a7593f2da798a74eebe94553a
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 90159b0cbfd3e7af542a79d050d153b4a3435a0d
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004626"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643809"
 ---
-# <a name="using-service-fabric-to-decompose-monolithic-applications"></a>使用 Service Fabric 分解单一式应用程序
+# <a name="using-service-fabric-to-decompose-monolithic-applications"></a>使用 Service Fabric 分解整体应用程序
 
 本示例方案逐步讲解一种使用 [Service Fabric](/azure/service-fabric/service-fabric-overview) 即平台服务来分解一个庞大的整体应用程序的方法。 本文假设要采用迭代方法将一个 IIS/ASP.NET 网站分解成由多个可管理的微服务组成的应用程序。
 
 将整体体系结构转移到微服务体系结构可提供以下优势：
-* 可以更改一个可理解的小型代码单元，并仅部署该单元。
-* 每个代码单元可在数分钟甚至更少的时间内即可完成部署。
-* 如果该小型单元出现错误，只有该单元停止工作，而整个应用程序不会停止工作。
-* 可在多个开发团队之间轻松离散分发小型代码单元。
-* 新进的开发人员可以快速轻松地掌握每个单元的离散功能。
 
-本示例使用服务器场中的大型 IIS 应用程序，但迭代分解和托管的概念可用于任何类型的大型应用程序。 本解决方案使用 Windows，但 Service Fabric 也可以在 Linux 上运行。 它可以在本地、Azure 中或者所选云提供程序的 VM 节点上运行。
+- 可以更改一个可理解的小型代码单元，并仅部署该单元。
+- 每个代码单元可在数分钟甚至更少的时间内即可完成部署。
+- 如果该小型单元出现错误，只有该单元停止工作，而整个应用程序不会停止工作。
+- 可在多个开发团队之间轻松离散分发小型代码单元。
+- 新进的开发人员可以快速轻松地掌握每个单元的离散功能。
+
+本示例使用服务器场中的大型 IIS 应用程序，但迭代分解和托管的概念可用于任何类型的大型应用程序。 本解决方案使用 Windows，但 Service Fabric 也可以在 Linux 上运行。 它可以在本地、Azure 中或者所选云提供商的 VM 节点上运行。
 
 ## <a name="relevant-use-cases"></a>相关用例
 
-本方案与使用大型整体 Web 应用程序的组织相关，这些组织遇到了以下问题：
+如果使用大型整体 Web 应用程序的组织遇到了以下问题，他们可以考虑此方案：
 
 - 更改小型代码时出现了中断整个网站的错误。
 - 由于需要更新并发布整个网站，发布过程花费了好几天时间。
-- 由于代码基非常复杂，每个人需要不切实际地了解许多代码，因此，在新开发人员或团队入职时花费了很长的时间来逐步熟悉项目。
+- 由于代码基非常复杂，每个人需要了解太多的代码，因此，在新开发人员或团队入职时花费了很长的时间来逐步熟悉项目。
 
 ## <a name="architecture"></a>体系结构
 
@@ -43,7 +45,7 @@ ms.locfileid: "53004626"
 - 一个路由或网关服务，该服务可接受传入的浏览器请求，并分析这些请求以确定它们应该由哪个服务来处理，并将请求转发到该服务。
 - 四个 ASP.NET Core 应用程序，它们是单个 IIS 站点下作为 ASP.NET 应用程序运行的正式虚拟目录。 应用程序已隔离到其自身独立的微服务中。 效果是可以单独更改、版本控制和升级这些应用程序。 在本示例中，我们使用 .Net Core 和 ASP.NET Core 重新编写了每个应用程序。 这些应用程序编写为 [Reliable Services](/azure/service-fabric/service-fabric-reliable-services-introduction)，因此，它们原生就能访问整个 Service Fabric 平台功能和优势（通信服务、运行状况报告、通知等）。
 - 一个名为“索引服务”的 Windows 服务，该服务放在 Windows 容器中，因此，它不再直接更改底层服务器的注册表，而可以自主运行，并作为一个单元连同其所有依赖项一起部署。
-- 一个存档服务，它只是一个按计划运行的、针对站点执行一些任务的可执行文件。 之所以直接将它作为独立的可执行文件托管，是因为我们确定它可以在不进行修改的情况执行预定的功能，不值得投入精力对其进行更改。
+- 一个存档服务，它只是一个按计划运行的、针对站点执行一些任务的可执行文件。 之所以将它作为独立的可执行文件托管，是因为我们确定它只需执行预定的功能，而无需对它进行修改，且不值得投入精力对其进行更改。
 
 ## <a name="considerations"></a>注意事项
 

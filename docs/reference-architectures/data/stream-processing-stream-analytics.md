@@ -5,12 +5,12 @@ description: 在 Azure 中创建端到端流处理管道。
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 44eaf51f2180be250defbeb0d141ab24f7f17d4b
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 130f297d3cfdeb1900ada79f1e9c65ec542dc2b7
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119925"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643741"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-stream-analytics"></a>使用 Azure 流分析创建流处理管道
 
@@ -221,4 +221,14 @@ Cosmos DB 的吞吐量容量以[请求单位](/azure/cosmos-db/request-units) (R
 
 若要部署并运行参考实现，请按 [GitHub 自述文件][github]中的步骤操作。
 
-[github]: https://github.com/mspnp/reference-architectures/tree/master/data/streaming_asa
+## <a name="related-resources"></a>相关资源
+
+可以查看以下 [Azure 示例方案](/azure/architecture/example-scenario)，了解使用部分相同技术的具体解决方案：
+
+- [建筑行业中的 IoT 和数据分析](/azure/architecture/example-scenario/data/big-data-with-iot)
+- [实时欺诈检测](/azure/architecture/example-scenario/data/fraud-detection)
+
+<!-- links -->
+
+[github]: https://github.com/mspnp/azure-stream-analytics-data-pipeline
+
