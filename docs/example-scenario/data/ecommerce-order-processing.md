@@ -1,18 +1,19 @@
 ---
-title: Azure 上的可缩放订单处理
+title: 可缩放订单处理
+titleSuffix: Azure Example Scenarios
 description: 使用 Azure Cosmos DB 构建高度可缩放的订单处理管道。
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: 1c3bb2cc33be74f5ff8ee0513de4c3f7df70aa37
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: fe4e9d64e96d0be66534198bc60e2a73dad43e84
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610849"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644183"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Azure 上的可缩放订单处理
 
-本示例方案针对那些需要高度可缩放且复原性好的体系结构进行联机订单处理的组织。 可能的应用包括：电子商务和零售点、订单履行、库存预留和跟踪。 
+本示例方案针对那些需要高度可缩放且复原性好的体系结构进行联机订单处理的组织。 可能的应用包括：电子商务和零售点、订单履行、库存预留和跟踪。
 
 本方案采用事件溯源方法，使用通过微服务实现的函数编程模型。 可以将每个微服务视为一个流处理器，所有业务逻辑都通过微服务实现。 此方法可以实现高可用性和复原性、异地复制和快速执行。
 
@@ -22,10 +23,10 @@ ms.locfileid: "51610849"
 
 其他相关用例包括：
 
-* 电子商务或零售点后端系统。
-* 库存管理系统。
-* 订单履行系统。
-* 其他与订单处理管道相关的集成方案。
+- 电子商务或零售点后端系统。
+- 库存管理系统。
+- 订单履行系统。
+- 其他与订单处理管道相关的集成方案。
 
 ## <a name="architecture"></a>体系结构
 
@@ -41,8 +42,8 @@ ms.locfileid: "51610849"
 
 ### <a name="components"></a>组件
 
-* [Cosmos DB](/azure/cosmos-db/introduction) 是 Microsoft 推出的全球分布式多模型数据库，可以让解决方案跨任意数量的地理区域灵活且独立地缩放吞吐量与存储。 它通过综合服务级别协议 (SLA) 提供吞吐量、延迟、可用性和一致性保证。 本方案使用 Cosmos DB 进行事件流存储和快照存储，并利用 [Cosmos DB 的更改源][docs-cosmos-db-change-feed]功能来确保数据一致性和故障恢复。
-* [Apache Kafka on HDInsight](/azure/hdinsight/kafka/apache-kafka-introduction) 是以托管服务方式实现的 Apache Kafka，是一种开源分布式流式处理平台，用于生成实时流数据管道和应用程序。 Kafka 还提供了类似于消息队列的消息中转站功能，用于发布和订阅命名数据流。 本方案使用 Kafka 在订单处理管道中处理出入事件和下游事件。 
+- [Cosmos DB](/azure/cosmos-db/introduction) 是 Microsoft 推出的全球分布式多模型数据库，可以让解决方案跨任意数量的地理区域灵活且独立地缩放吞吐量与存储。 它通过综合服务级别协议 (SLA) 提供吞吐量、延迟、可用性和一致性保证。 本方案使用 Cosmos DB 进行事件流存储和快照存储，并利用 [Cosmos DB 的更改源][docs-cosmos-db-change-feed]功能来确保数据一致性和故障恢复。
+- [Apache Kafka on HDInsight](/azure/hdinsight/kafka/apache-kafka-introduction) 是以托管服务方式实现的 Apache Kafka，是一种开源分布式流式处理平台，用于生成实时流数据管道和应用程序。 Kafka 还提供了类似于消息队列的消息中转站功能，用于发布和订阅命名数据流。 本方案使用 Kafka 在订单处理管道中处理出入事件和下游事件。
 
 ## <a name="considerations"></a>注意事项
 
@@ -54,7 +55,7 @@ ms.locfileid: "51610849"
 
 本方案的事件溯源方法允许将系统组件松散地耦合在一起，在部署时这些组件可以彼此独立。 Cosmos DB 提供[高可用性][docs-cosmos-db-regional-failover]，可以帮助组织管理与一致性、可用性和性能相关的权衡因素，这些都有[相应的保证][docs-cosmos-db-guarantees]。 Apache Kafka on HDInsight 在设计时也考虑到了[高可用性][docs-kafka-high-availability]。
 
-Azure Monitor 提供了统一的用户界面，可用于监视各种 Azure 服务。 有关详细信息，请参阅[在 Microsoft Azure 中进行监视](/azure/monitoring-and-diagnostics/monitoring-overview)。 事件中心和流分析均与 Azure Monitor 集成在一起。 
+Azure Monitor 提供了统一的用户界面，可用于监视各种 Azure 服务。 有关详细信息，请参阅[在 Microsoft Azure 中进行监视](/azure/monitoring-and-diagnostics/monitoring-overview)。 事件中心和流分析均与 Azure Monitor 集成在一起。
 
 有关其他可用性注意事项，请参阅[可用性核对清单][availability]。
 
@@ -83,21 +84,23 @@ Azure Cosmos DB 的货币是请求单位 (RU)。 借助请求单位，无需保�
 
 我们已根据你预期的活动量提供了三个示例性的成本配置文件：
 
-* [小][small-pricing]：此定价示例对应于 5 个保留的 RU 和 Cosmos DB 中的 1 TB 数据存储，以及一个小型 (D3 v2) Kafka 群集。
-* [中][medium-pricing]：此定价示例对应于 50 个保留的 RU 和 Cosmos DB 中的 10 TB 数据存储，以及一个中型 (D4 v2) Kafka 群集。
-* [大][large-pricing]：此定价示例对应于 500 个保留的 RU 和 Cosmos DB 中的 30 TB 数据存储，以及一个大型 (D5 v2) Kafka 群集。
+- [小][small-pricing]：此定价示例对应于 5 个保留的 RU 和 Cosmos DB 中的 1 TB 数据存储，以及一个小型 (D3 v2) Kafka 群集。
+- [中][medium-pricing]：此定价示例对应于 50 个保留的 RU 和 Cosmos DB 中的 10 TB 数据存储，以及一个中型 (D4 v2) Kafka 群集。
+- [大][large-pricing]：此定价示例对应于 500 个保留的 RU 和 Cosmos DB 中的 30 TB 数据存储，以及一个大型 (D5 v2) Kafka 群集。
 
 ## <a name="related-resources"></a>相关资源
 
 本示例方案基于此体系结构的一个更广泛的版本，该版本由 [Jet.com](https://jet.com) 针对其端到端订单处理管道而构建。 有关详细信息，请参阅 [jet.com 技术方面的客户配置文件][source-document]和 [jet.com 在 Build 2018 的演示文稿][source-presentation]。
 
 其他相关资源包括：
-* _[Designing Data-Intensive Applications](https://dataintensive.net)_（设计数据密集型应用程序），作者：Martin Kleppmann（O'Reilly Media，2017）。
-* _[ Modeling Made Functional: Tackle Software Complexity with Domain-Driven Design and F#](https://pragprog.com/book/swdddf/domain-modeling-made-functional)_（域建模生效：使用域驱动型设计和 F# 减轻软件复杂性），作者：Scott Wlaschin（Pragmatic Programmers LLC，2018）。
-* 其他 [Cosmos DB 用例][docs-cosmos-db-use-cases]
-* [Azure 数据体系结构指南](/azure/architecture/data-guide)中的[实时处理体系结构](/azure/architecture/data-guide/big-data/real-time-processing)。
+
+- *[Designing Data-Intensive Applications](https://dataintensive.net)*（设计数据密集型应用程序），作者：Martin Kleppmann（O'Reilly Media，2017）。
+- *[Domain Modeling Made Functional:Tackle Software Complexity with Domain-Driven Design and F#](https://pragprog.com/book/swdddf/domain-modeling-made-functional)*（域建模生效：使用域驱动型设计和 F# 减轻软件复杂性），作者：Scott Wlaschin（Pragmatic Programmers LLC，2018）。
+- 其他 [Cosmos DB 用例][docs-cosmos-db-use-cases]
+- [Azure 数据体系结构指南](/azure/architecture/data-guide)中的[实时处理体系结构](/azure/architecture/data-guide/big-data/real-time-processing)。
 
 <!-- links -->
+
 [architecture]: ./media/architecture-ecommerce-order-processing.png
 [product-category]: https://azure.microsoft.com/product-categories/databases/
 [source-document]: https://customers.microsoft.com/story/jet-com-powers-innovative-e-commerce-engine-on-azure-in-less-than-12-months
