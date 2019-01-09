@@ -4,12 +4,13 @@ description: Azure 体系结构中心是提供有关在 Microsoft Azure 中生�
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 09/28/2018
-ms.openlocfilehash: 8da4c9ea487d199debfd6283f8b55c0254db0fd6
-ms.sourcegitcommit: 07d221123d5df7ec9985b3084176c6019e413465
+google-site-verification: b-xRLveOzJ9oSOh37wgRTRB2lMOoFY8HiHf9_0DIawE
+ms.openlocfilehash: 7d619b2e0c7029a729874131ce32040ab6332011
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/16/2018
-ms.locfileid: "49347103"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111914"
 ---
 # <a name="azure-architecture-center"></a>Azure 体系结构中心
 
@@ -40,7 +41,7 @@ ms.locfileid: "49347103"
                         <img src="_images/reference-architectures.svg" alt="" />
                         <div class="cardText">
                             <h3>参考体系结构</h3>
-                            <p>适用于 Azure 的一系列建议体系结构。 每种体系结构包括最佳实践、说明性的步骤和可部署的解决方案。</p>
+                            <p>适用于 Azure 的一系列建议体系结构。 每种体系结构包括最佳实践、说明性的步骤和部署解决方案。</p>
                         </div>
                     </div>
                 </div>
@@ -302,7 +303,7 @@ ms.locfileid: "49347103"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3> Azure 中的安全性设计</h3>
+                        <h3> Azure 中的安全性设计</h3>
                     </div>
                 </div>
             </div>
