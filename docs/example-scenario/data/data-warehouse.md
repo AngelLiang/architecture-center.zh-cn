@@ -4,12 +4,12 @@ titleSuffix: Azure Example Scenarios
 description: 合并来自多个源的数据并优化数据分析。
 author: alexbuckgit
 ms.date: 09/15/2018
-ms.openlocfilehash: 5727b6ab475224541e272c6da6243cabe851b919
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 2ac06fcd0805b66371fcc004794b123c46a6ce0e
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643980"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112373"
 ---
 # <a name="data-warehousing-and-analytics-for-sales-and-marketing"></a>用于销售和市场营销的数据仓库和分析
 
@@ -103,6 +103,7 @@ ms.locfileid: "53643980"
 - 在 [Azure 数据体系结构指南](/azure/architecture/data-guide)中查找有关数据管道、数据仓库、联机分析处理 (OLAP) 和大数据的综合体系结构指导。
 
 <!-- links -->
+
 [source-document]: https://customers.microsoft.com/story/maritz
 [calculator]: https://azure.com/e/b798fb70c53e4dd19fdeacea4db78276
 [architecture]: ./media/architecture-data-warehouse.png

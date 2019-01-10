@@ -1,19 +1,17 @@
 ---
-title: 管道和筛选器
+title: 管道和筛选器模式
+titleSuffix: Cloud Design Patterns
 description: 将一个执行复杂处理的任务分解为一系列可重复使用的单个元素。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- messaging
-ms.openlocfilehash: fd616676f9487bdfe1bf23b3d0fec6c65b97a8f4
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 7084b538159f7104d2322e35f94f43e905f700bf
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429564"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011678"
 ---
 # <a name="pipes-and-filters-pattern"></a>管道和筛选器模式
 
@@ -39,7 +37,6 @@ ms.locfileid: "47429564"
 
 ![图 2 - 使用管道和筛选器实现的解决方案](./_images/pipes-and-filters-solution.png)
 
-
 处理单个请求所花的时间取决于管道中最慢筛选器的速度。 一个或多个筛选器可能是瓶颈，尤其是在特定数据源的流中出现大量请求时。 管道结构的主要优点是，它提供了为速度缓慢的筛选器运行并行实例的机会，使系统能够分散负载并提高吞吐量。
 
 构成管道的筛选器可以在不同的计算机上运行，使其能够独立缩放并充分利用许多云环境提供的弹性。 计算密集型筛选器可以在高性能硬件上运行，而其他要求较低的筛选器可以在成本较低的商用硬件上托管。 筛选器甚至不一定要位于同一个数据中心或地理位置，这样管道中的每个元素都可以在靠近自己所需资源的环境中运行。  下图显示了应用于来源 1 的数据管道的示例。
@@ -50,11 +47,12 @@ ms.locfileid: "47429564"
 
 另一个好处是此模型可以提供复原能力。 如果某一筛选器失败或运行它的计算机不再可用，管道可以重新计划执行筛选器的工作，并将这项工作定向到组件的另一个实例。 一个筛选器失败不一定就会导致整个管道失败。
 
-将管道和筛选器模式与[补偿事务模式](compensating-transaction.md)结合使用，这是实现分布式事务的另一种方法。 分布式事务可以分解为单独的、可补偿的任务，每个任务都可以通过使用筛选器来实现，而筛选器还能实现补偿事务模式。 管道中的筛选器可以作为单独的托管任务来实现，在靠近它们所维护数据的位置运行。
+将管道和筛选器模式与[补偿事务模式](./compensating-transaction.md)结合使用，这是实现分布式事务的另一种方法。 分布式事务可以分解为单独的、可补偿的任务，每个任务都可以通过使用筛选器来实现，而筛选器还能实现补偿事务模式。 管道中的筛选器可以作为单独的托管任务来实现，在靠近它们所维护数据的位置运行。
 
 ## <a name="issues-and-considerations"></a>问题和注意事项
 
 在决定如何实现此模式时，应考虑以下几点：
+
 - **复杂性**。 此模式提供的较高灵活性也可能会引入复杂性，尤其是管道中的筛选器分布在不同的服务器上时。
 
 - **可靠性**。 使用基础结构来确保管道中的筛选器之间流动的数据不会丢失。
@@ -70,11 +68,12 @@ ms.locfileid: "47429564"
 ## <a name="when-to-use-this-pattern"></a>何时使用此模式
 
 在以下情况下使用此模式：
+
 - 应用程序所需的处理可以轻松分解为一组独立的步骤。
 
 - 应用程序执行的处理步骤具有不同的可伸缩性要求。
 
-    >  可以将应一起缩放的筛选器分组到同一进程中。 有关详细信息，请参阅[计算资源整合模式](compute-resource-consolidation.md)。
+    >  可以将应一起缩放的筛选器分组到同一进程中。 有关详细信息，请参阅[计算资源整合模式](./compute-resource-consolidation.md)。
 
 - 需要具备一定的灵活性，以便能够对应用程序执行的处理步骤重新排序；或需要具备添加和删除步骤的能力。
 
@@ -83,6 +82,7 @@ ms.locfileid: "47429564"
 - 需要一种可靠的解决方案，在处理数据的同时，尽可能降低步骤失败带来的影响。
 
 在以下情况下，此模式可能不起作用：
+
 - 应用程序执行的处理步骤不是独立的，或者它们必须作为同一事务的一部分一起执行。
 
 - 步骤所需的上下文或状态信息量使得该方法效率低下。 它可能会将状态信息保留到数据库，但如果数据库的额外负载导致过度争用资源，请勿使用此策略。
@@ -93,10 +93,9 @@ ms.locfileid: "47429564"
 
 ![图 4 - 使用消息队列实现管道](./_images/pipes-and-filters-message-queues.png)
 
-
 如果在 Azure 上构建解决方案，则可以使用服务总线队列来提供可靠和可扩展的排队机制。 C# 中如下所示的 `ServiceBusPipeFilter` 类演示了如何实现从队列接收输入消息的筛选器，处理这些消息以及将结果发布到另一队列。
 
->  `ServiceBusPipeFilter` 类在可从 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters) 获取的 PipesAndFilters.Shared 项目中定义。
+> `ServiceBusPipeFilter` 类在可从 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters) 获取的 PipesAndFilters.Shared 项目中定义。
 
 ```csharp
 public class ServiceBusPipeFilter
@@ -278,8 +277,9 @@ public class FinalReceiverRoleEntry : RoleEntryPoint
 ## <a name="related-patterns-and-guidance"></a>相关模式和指南
 
 实现此模式时，可能也会与以下模式和指南相关：
-- 演示此模式的示例可在 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters) 上找到。
-- [使用者竞争模式](competing-consumers.md)。 管道可以包含一个或多个筛选器的多个实例。 此方法可用于为速度缓慢的筛选器运行并行实例，使系统能够分散负载并提高吞吐量。 每个筛选器实例将与其他实例争用输入，筛选器的两个实例不能处理相同的数据。 提供此方法的说明。
-- [计算资源整合模式](compute-resource-consolidation.md)。 可以将应一起缩放的筛选器分组到同一进程中。 提供有关此策略的优点和缺点的详细信息。
-- [补偿事务模式](compensating-transaction.md)。 筛选器可以作为可逆转的操作、或在发生故障时会状态还原到先前版本的补偿操作来实现。 解释如何实现上述目的来维持或达到最终的一致性。
+
+- 演示此模式的示例位于 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters)。
+- [使用者竞争模式](./competing-consumers.md)。 管道可以包含一个或多个筛选器的多个实例。 此方法可用于为速度缓慢的筛选器运行并行实例，使系统能够分散负载并提高吞吐量。 每个筛选器实例将与其他实例争用输入，筛选器的两个实例不能处理相同的数据。 提供此方法的说明。
+- [计算资源整合模式](./compute-resource-consolidation.md)。 可以将应一起缩放的筛选器分组到同一进程中。 提供有关此策略的优点和缺点的详细信息。
+- [补偿事务模式](./compensating-transaction.md)。 筛选器可以作为可逆转的操作、或在发生故障时会状态还原到先前版本的补偿操作来实现。 解释如何实现上述目的来维持或达到最终的一致性。
 - Jonathan Oliver 博客中的 [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/)（幂等模式）。

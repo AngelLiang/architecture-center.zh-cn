@@ -1,19 +1,17 @@
 ---
-title: 领导选拔
+title: 领导选拔模式
+titleSuffix: Cloud Design Patterns
 description: 通过选拔一个实例作为领导来负责管理其他实例，协调分布式应用程序中协作性任务实例集合所执行的操作。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- resiliency
-ms.openlocfilehash: 6cc4b19e889cc9fc692e388498cc16ea56b1c981
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: cfc29e3490735c16b41c494e6cecbb8972cdc705
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429190"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010133"
 ---
 # <a name="leader-election-pattern"></a>领导选拔模式
 
@@ -41,6 +39,7 @@ ms.locfileid: "47429190"
 系统必须提供用于选拨领导的可靠机制。 此方法必须能够应对网络中断或进程失败等事件。 在许多解决方案中，下属任务实例通过某种类型的检测信号方法或通过轮询来监视领导。 如果指定的领导意外终止，或者网络故障导致领导不可供下属任务实例使用，则它们需要选拨一个新领导。
 
 有几种策略可用于从分布式环境中的一组任务中选拨领导，这些策略包括：
+
 - 选择具有排名最低的实例或进程 ID 的任务实例。
 - 争夺一个共享的分布式互斥体。 第一个获得该互斥体的任务实例成为领导。 但是，系统必须确保，当领导终止或者与系统的其余部分断开了连接时，必须释放该互斥体以允许其他任务实例成为领导。
 - 实现常用的领导选拨算法之一，例如[欺负算法](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html)或[环型算法](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html)。 这些算法假设选举中的每个候选者都具有唯一的 ID，并且它可以可靠地与其他候选者进行通信。
@@ -48,6 +47,7 @@ ms.locfileid: "47429190"
 ## <a name="issues-and-considerations"></a>问题和注意事项
 
 在决定如何实现此模式时，请考虑以下几点：
+
 - 选拨领导的流程在发生暂时性和永久性故障后应该能够复原。
 - 必须能够检测领导何时发生故障或变得不可用（例如由于通信故障）。 需要多快的检测速度取决于系统。 某些系统也许能够在没有领导的情况下短时行使职责，在这期间，暂时性错误也许能够得到修复。 在其他情况下，可能需要立即检测到领导故障并触发新的选举。
 - 在实现水平自动缩放的系统中，如果系统收缩并关闭一些计算资源，则领导可能会终止。
@@ -59,9 +59,10 @@ ms.locfileid: "47429190"
 
 当分布式应用程序（例如云托管解决方案）中的任务需要仔细协调并且没有天生的领导时，请使用此模式。
 
->  请避免使领导成为系统中的瓶颈。 领导的用途是协调下属任务的工作，并且它并非必须参与此工作本身 &mdash; 尽管当该任务未被选举为领导时应该能够参与此工作。
+> 请避免使领导成为系统中的瓶颈。 领导的用途是协调下属任务的工作，并且它并非必须参与此工作本身 &mdash; 尽管当该任务未被选举为领导时应该能够参与此工作。
 
 在下列情况下，此模式可能不适用：
+
 - 有一个天生的领导或有一个能够始终充当领导的专用进程。 例如，可以实现一个对任务实例进行协调的单一实例进程。 如果此进程发生故障或变得不正常，则系统可以将其关闭并重新启动它。
 - 任务之间的协调可以使用更轻量的方法来实现。 例如，如果多个任务实例只是需要实现对共享资源的协调访问，则更好的解决方案是使用乐观或悲观锁定来控制访问。
 - 有更合适的第三方解决方案。 例如，Microsoft Azure HDInsight 服务（基于 Apache Hadoop）使用 Apache Zookeeper 提供的服务来协调用于收集和汇总数据的 map 和 reduce 任务。
@@ -70,8 +71,8 @@ ms.locfileid: "47429190"
 
 LeaderElection 解决方案中的 DistributedMutex 项目（[GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election) 上提供的演示了此模式的示例）展示了如何在 Azure 存储 blob 上使用租约来提供用于实现共享的分布式互斥体的机制。 可以使用此互斥体从 Azure 云服务中的一组角色实例中选拨领导。 第一个获得租约的角色实例被选拨为领导，并且它一直保持为领导，直到它释放租约或者无法续订租约。 其他角色实例可以继续监视 blob 租约，以防领导不再可用。
 
->  Blob 租约是一个针对 blob 的排他写入锁。 单个 blob 在任一时刻只能是一个租约的主题。 角色实例可以请求针对指定 blob 的租约，并且如果没有其他角色实例持有针对同一 blob 的租约，则会向其授予租约。 否则，请求将引发异常。
-> 
+> Blob 租约是一个针对 blob 的排他写入锁。 单个 blob 在任一时刻只能是一个租约的主题。 角色实例可以请求针对指定 blob 的租约，并且如果没有其他角色实例持有针对同一 blob 的租约，则会向其授予租约。 否则，请求将引发异常。
+>
 > 为避免出现错误的角色实例无限期地保留租约，请指定租约的生存期。 当生存期过期时，租约将变得可用。 不过，当角色实例持有租约时，它可以请求续订租约，并且将会授权它在更长的一段时间内使用该租约。 如果角色实例希望保留租约，则它可以不断重复此过程。
 > 有关如何租用 blob 的详细信息，请参阅 [Lease Blob (REST API)](https://msdn.microsoft.com/library/azure/ee691972.aspx)（租用 Blob (REST API)）。
 
@@ -167,7 +168,6 @@ public class BlobDistributedMutex
 
 ![图 1 展示了 BlobDistributedMutex 类的功能](./_images/leader-election-diagram.png)
 
-
 下面的代码示例展示了如何以辅助角色使用 `BlobDistributedMutex` 类。 此代码在开发存储的租约容器中获得对名为 `MyLeaderCoordinatorTask` 的 blob 的租约，并指定当角色实例被选拨为领导时应当运行 `MyLeaderCoordinatorTask` 方法中定义的代码。
 
 ```csharp
@@ -186,6 +186,7 @@ private static async Task MyLeaderCoordinatorTask(CancellationToken token)
 ```
 
 请注意关于示例解决方案的以下要点：
+
 - Blob 是潜在的单一故障点。 如果 blob 服务变得不可用，或者无法访问，则领导将无法续订租约，并且没有任何其他角色实例能够获得租约。 在这种情况下，将没有任何角色实例能够充当领导。 不过，blob 服务设计为具有复原能力，因此，blob 服务完全失败的情况几乎不可能出现。
 - 如果领导正在执行的任务停滞，则领导可能会继续续订租约，从而阻止其他角色实例获得租约并接管领导角色来协调任务。 在现实世界中，应当频繁检查领导的运行状况。
 - 选举流程具有不确定性。 无法就哪个角色实例将获得 blob 租约并成为领导做出任何假设。
@@ -194,6 +195,7 @@ private static async Task MyLeaderCoordinatorTask(CancellationToken token)
 ## <a name="related-patterns-and-guidance"></a>相关模式和指南
 
 实现此模式时，以下指南可能也比较有用：
+
 - 此模式具有可下载的[示例应用程序](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election)。
 - [Autoscaling Guidance](https://msdn.microsoft.com/library/dn589774.aspx)（自动缩放指南）。 可以根据应用程序上负载的变化来启动和停止任务主机的实例。 自动缩放有助于在峰值处理期间保持吞吐量和性能。
 - [计算分区指南](https://msdn.microsoft.com/library/dn589773.aspx)。 本指南介绍了如何将任务分配给云服务中的主机，以便最大程度地降低运行成本，同时保持服务的可伸缩性、性能、可用性和安全性。

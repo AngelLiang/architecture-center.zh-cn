@@ -5,12 +5,12 @@ description: 使用 Azure 从本地存储的关系数据获取业务见解。
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 3808cc5d09e2e0a5aaee1a6cfcb050b98a0ef2ee
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 2f15b8d4376638e6e8e522e5150a3b3c247cba8f
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644217"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010284"
 ---
 # <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>将 Azure 中的 Enterprise BI 与 SQL 数据仓库配合使用
 
@@ -72,7 +72,7 @@ ms.locfileid: "53644217"
 
 使用 [bcp](/sql/tools/bcp-utility)（批量复制程序）实用工具可以从 SQL 表快速创建平面文本文件。 在此步骤中，请选择想要导出的列，但不要转换数据。 所有数据转换应在 SQL 数据仓库中进行。
 
-**建议**
+**建议：**
 
 请尽量将数据提取安排在非高峰期，以最大程度地减少生产环境中的资源争用情况。
 
@@ -84,7 +84,7 @@ ms.locfileid: "53644217"
 
 [AzCopy](/azure/storage/common/storage-use-azcopy) 实用工具旨在以较高的性能将数据复制到 Azure Blob 存储。
 
-**建议**
+**建议：**
 
 在靠近源数据位置的区域中创建存储帐户。 在同一区域中部署存储帐户和 SQL 数据仓库实例。
 
@@ -105,7 +105,7 @@ AzCopy 通过公共 Internet 将数据移到存储中。 如果速度不够快�
 1. 为数据创建一组外部表。 外部表是指向仓库外部存储的数据（在本例中，为 Blob 存储中的平面文件）的表定义。 此步骤不会将任何数据移入仓库。
 2. 创建临时表，并将数据载入临时表。 此步骤将数据复制到仓库中。
 
-**建议**
+**建议：**
 
 如果有大量的数据（超过 1 TB），并在运行受益于并行度的分析工作负荷，请考虑使用 SQL 数据仓库。 SQL 数据仓库并不很适合 OLTP 工作负荷或较小的数据集（小于 250 GB）。 对于小于 250 GB 的数据集，请考虑使用 Azure SQL 数据库或 SQL Server。 有关详细信息，请参阅[数据仓库](../../data-guide/relational-data/data-warehousing.md)。
 
@@ -155,7 +155,7 @@ Power BI 支持使用两个选项连接到 Azure Analysis Services：
 
 我们建议使用“实时连接”，因为此选项不需要将数据复制到 Power BI 模型中。 此外，使用 DirectQuery 可确保结果始终与最新源数据保持一致。 有关详细信息，请参阅[使用 Power BI 进行连接](/azure/analysis-services/analysis-services-connect-pbi)。
 
-**建议**
+**建议：**
 
 避免直接对数据仓库运行 BI 仪表板查询。 BI 仪表板要求的响应时间很短，针对仓库直接运行查询可能无法满足该要求。 此外，刷新仪表板的操作将计入并发查询次数，这可能会影响性能。
 

@@ -1,20 +1,17 @@
 ---
-title: 运行状况终结点监视
+title: 运行状况终结点监视模式
+titleSuffix: Cloud Design Patterns
 description: 在应用程序中实施可让外部工具通过公开终结点定期访问的功能检查。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- availability
-- management-monitoring
-- resiliency
-ms.openlocfilehash: 22a4e47c4dd8dd3dd11a4238e859acbea49f9d1b
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 85a1355ff47e6fce80d9b2ed114024651eb994db
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428969"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114243"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>运行状况终结点监视模式
 
@@ -42,6 +39,7 @@ ms.locfileid: "47428969"
 ![模式概览](./_images/health-endpoint-monitoring-pattern.png)
 
 应用程序中运行状况监视代码可能执行的其他检查包括：
+
 - 检查云存储或数据库的可用性和响应时间。
 - 检查位于应用程序中的或者位于其他位置、但由应用程序使用的其他资源或服务。
 
@@ -67,7 +65,7 @@ ms.locfileid: "47428969"
 
 如何验证响应。 例如，仅凭一个 200（正常）状态代码是否足以确认应用程序在正常运行？ 尽管这是应用程序可用性的最基本测量方法，并且是此模式的最简单实现方式，但是，它在应用程序中的操作、趋势和可能即将出现的问题方面提供的信息极少。
 
-   >  确保应用程序仅在找到并处理目标资源时才正确返回 200（正常）。 在某些情况下（例如，使用母版页托管目标网页时），即使未找到目标内容页，服务器也会发回 200（正常）状态代码而不是 404（未找到）代码。
+   > 确保应用程序仅在找到并处理目标资源时才正确返回 200（正常）。 在某些情况下（例如，使用母版页托管目标网页时），即使未找到目标内容页，服务器也会发回 200（正常）状态代码而不是 404（未找到）代码。
 
 要为应用程序公开的终结点数。 一种方法是将针对应用程序使用的核心服务至少公开一个终结点，并为低优先级服务公开另一个终结点，以便将不同级别的重要性分配给每项监视结果。 此外，请考虑公开更多的终结点，例如，为每个核心服务公开一个终结点，以获得更高的监视粒度。 例如，运行状况验证检查可能会检查应用程序使用的数据库、存储和外部地理编码服务，每个检查项需要不同级别的正常运行时间和响应时间。 如果地理编码服务或其他某个后台任务有几分钟不可用，应用程序可能仍处于正常状态。
 
@@ -98,6 +96,7 @@ ms.locfileid: "47428969"
 ## <a name="when-to-use-this-pattern"></a>何时使用此模式
 
 此模式适合用于：
+
 - 监视网站和 Web 应用程序，以验证可用性。
 - 监视网站和 Web 应用程序以检查是否正常运行。
 - 监视中间层或共享服务，以检测并隔离可能会中断其他应用程序的故障。
@@ -134,6 +133,7 @@ public ActionResult CoreServices()
   return new HttpStatusCodeResult((int)HttpStatusCode.OK);
 }
 ```
+
 `ObscurePath` 方法演示如何从应用程序配置中读取某个路径，并将其用作测试终结点。 此 C# 示例还演示如何接受某个 ID 作为参数，并使用它来检查有效请求。
 
 ```csharp
@@ -178,6 +178,7 @@ public ActionResult TestResponseFromConfig()
   return new HttpStatusCodeResult(returnStatusCode);
 }
 ```
+
 ## <a name="monitoring-endpoints-in-azure-hosted-applications"></a>监视 Azure 托管应用程序中的终结点
 
 用于监视 Azure 应用程序中的终结点的一些选项包括：
@@ -192,7 +193,7 @@ public ActionResult TestResponseFromConfig()
 
 可监视的条件根据你为应用程序选择的托管机制（例如网站、云服务、虚拟机或移动服务）而异，但所有这些机制都能创建警报规则，该规则使用你在服务设置中指定的 Web 终结点。 该终结点应及时做出响应，使警报系统可以检测到应用程序在正常运行。
 
->  阅读有关[创建警报通知][portal-alerts]的详细信息。
+> 阅读有关[创建警报通知][portal-alerts]的详细信息。
 
 如果在 Azure 云服务 Web 角色和辅助角色或虚拟机中托管应用程序，则可以利用 Azure 中的一个内置服务，即流量管理器。 流量管理器是一个路由和负载均衡服务，可以根据一系列规则和设置，将请求分发到云服务托管的应用程序的特定实例。
 
@@ -200,13 +201,14 @@ public ActionResult TestResponseFromConfig()
 
 但是，流量管理器在接收监视 URL 的响应期间只会等待 10 秒。 因此，应确保运行状况验证代码在此时限内执行，并考虑到在流量管理器与应用程序之间往返所存在的网络延迟。
 
->  阅读有关使用[流量管理器监视应用程序](https://azure.microsoft.com/documentation/services/traffic-manager/)的详细信息。 [多个数据中心的部署指南](https://msdn.microsoft.com/library/dn589779.aspx)中也介绍了流量管理器。
+> 阅读有关使用[流量管理器监视应用程序](/azure/traffic-manager/)的详细信息。 [多个数据中心的部署指南](https://msdn.microsoft.com/library/dn589779.aspx)中也介绍了流量管理器。
 
 ## <a name="related-guidance"></a>相关指南
 
 实施此模式时，可参考以下指南：
+
 - [检测和遥测指南](https://msdn.microsoft.com/library/dn589775.aspx)。 服务和组件的运行状况检查通常是通过探测来完成的，但是，另一种有用的做法是准备好相关的信息，用于监视应用程序的性能，并检测运行时发生的事件。 可将此数据作为附加信息传回到监视工具用于运行状况监视。 《检测和遥测指南》探讨了如何收集检测功能在应用程序中收集的远程诊断信息。
 - [接收警报通知][portal-alerts]。
 - 此模式包含一个可下载的[示例应用程序](https://github.com/mspnp/cloud-design-patterns/tree/master/health-endpoint-monitoring)。
 
-[portal-alerts]: https://azure.microsoft.com/documentation/articles/insights-receive-alert-notifications/
+[portal-alerts]: /azure/azure-monitor/platform/alerts-metric

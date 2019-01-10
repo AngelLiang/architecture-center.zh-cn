@@ -1,18 +1,17 @@
 ---
-title: 使用者竞争
+title: 使用者竞争模式
+titleSuffix: Cloud Design Patterns
 description: 使多个并发使用者能够处理同一消息通道上收到的消息。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-ms.openlocfilehash: aea172dcdb33c0d8513fb69715f1549b4a20f5e6
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 77459ff42422969acdc83e66535197547d555de1
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428359"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112101"
 ---
 # <a name="competing-consumers-pattern"></a>使用者竞争模式
 
@@ -34,7 +33,7 @@ ms.locfileid: "47428359"
 
 此解决方案具有以下优点：
 
-- 它提供了一个负载调节系统，可以处理应用程序实例发送的大幅度变化的请求量。 队列充当应用程序实例和使用者服务实例之间的缓冲区。 这有助于尽量减少对应用程序和服务实例的可用性和响应性的影响，如[基于队列的负载调节模式](queue-based-load-leveling.md)中所述。 处理需要长时间运行处理的消息时不会阻止使用者服务的其他实例同时处理其他消息。
+- 它提供了一个负载调节系统，可以处理应用程序实例发送的大幅度变化的请求量。 队列充当应用程序实例和使用者服务实例之间的缓冲区。 这有助于尽量减少对应用程序和服务实例的可用性和响应性的影响，如[基于队列的负载调节模式](./queue-based-load-leveling.md)中所述。 处理需要长时间运行处理的消息时不会阻止使用者服务的其他实例同时处理其他消息。
 
 - 它提高了可靠性。 如果生成者直接与使用者通信，而不使用这种模式且不对使用者进行监视，则消息很可能丢失或未能处理（如果使用者失败）。 在此模式中，消息不会发送到特定服务实例。 失败的服务实例不会阻止生成者，并且任何工作服务实例都可处理消息。
 
@@ -85,8 +84,9 @@ ms.locfileid: "47428359"
 
 Azure 提供存储队列和服务总线队列，它们可用作实现此模式的机制。 应用程序逻辑可将消息发布到队列，并且作为一个或多个角色中的任务实现的使用者可以从该队列检索消息并进行处理。 对于复原能力，使用者可借助服务总线队列在从队列检索消息时使用 `PeekLock` 模式。 此模式不会真正删除消息，而只是对其他使用者隐藏消息。 原始使用者可在完成处理后删除消息。 如果使用者失败，扫视锁定将超时，该消息将再次可见且允许其他使用者检索它。
 
-> 有关如何使用 Azure 服务总线队列的详细信息，请参阅 [Service Bus Queues, Topics, and Subscriptions](https://msdn.microsoft.com/library/windowsazure/hh367516.aspx)（服务总线队列、主题和订阅）。
-有关如何使用 Azure 存储队列的信息，请参阅[通过 .NET 开始使用 Azure 队列存储](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-queues/)。
+有关如何使用 Azure 服务总线队列的详细信息，请参阅 [Service Bus Queues, Topics, and Subscriptions](https://msdn.microsoft.com/library/windowsazure/hh367516.aspx)（服务总线队列、主题和订阅）。
+
+有关如何使用 Azure 存储队列的信息，请参阅[通过 .NET 开始使用 Azure 队列存储](/azure/storage/queues/storage-dotnet-how-to-use-queues)。
 
 在 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/competing-consumers) 上可用的 CompetingConsumers 解决方案中 `QueueManager` 类的以下代码演示了如何使用 Web 或 辅助角色中 `Start` 事件处理程序的 `QueueClient` 实例创建队列。
 
@@ -174,7 +174,7 @@ private void OptionsOnExceptionReceived(object sender,
 }
 ```
 
-请注意，自动缩放功能（例如 Azure 中提供的功能）可用于在队列长度波动时启动和停止角色实例。 有关详细信息，请参阅 [Autoscaling Guidance](https://msdn.microsoft.com/library/dn589774.aspx)（自动缩放指南）。 此外，没有必要在角色实例和工作进程之间保持一一对应的关系 &mdash; 单个角色实例可执行多个工作进程。 有关详细信息，请参阅[计算资源整合模式](compute-resource-consolidation.md)。
+请注意，自动缩放功能（例如 Azure 中提供的功能）可用于在队列长度波动时启动和停止角色实例。 有关详细信息，请参阅 [Autoscaling Guidance](https://msdn.microsoft.com/library/dn589774.aspx)（自动缩放指南）。 此外，没有必要在角色实例和工作进程之间保持一一对应的关系 &mdash; 单个角色实例可执行多个工作进程。 有关详细信息，请参阅[计算资源整合模式](./compute-resource-consolidation.md)。
 
 ## <a name="related-patterns-and-guidance"></a>相关模式和指南
 
@@ -184,8 +184,8 @@ private void OptionsOnExceptionReceived(object sender,
 
 - [Autoscaling Guidance](https://msdn.microsoft.com/library/dn589774.aspx)（自动缩放指南）。 由于队列应用程序发布消息的长度不同，因此可能可以启动和停止使用者服务的实例。 自动缩放有助于在峰值处理期间保持吞吐量。
 
-- [计算资源整合模式](compute-resource-consolidation.md)。 可以将使用者服务的多个实例整合到单个进程以降低成本和管理开销。 计算资源整合模式说明了遵循这种方法的利弊。
+- [计算资源整合模式](./compute-resource-consolidation.md)。 可以将使用者服务的多个实例整合到单个进程以降低成本和管理开销。 计算资源整合模式说明了遵循这种方法的利弊。
 
-- [基于队列的负载调节模式](queue-based-load-leveling.md)。 引入消息队列可以为系统添加复原能力，使服务实例能够处理应用程序实例发送的大幅度变化的请求量。 消息队列可作为缓冲区，用于调节负载。 有关此方案的详细信息，请参阅基于队列的负载调节模式。
+- [基于队列的负载调节模式](./queue-based-load-leveling.md)。 引入消息队列可以为系统添加复原能力，使服务实例能够处理应用程序实例发送的大幅度变化的请求量。 消息队列可作为缓冲区，用于调节负载。 有关此方案的详细信息，请参阅基于队列的负载调节模式。
 
 - 此模式具有相关联的[示例应用程序](https://github.com/mspnp/cloud-design-patterns/tree/master/competing-consumers)。

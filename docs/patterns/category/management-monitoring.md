@@ -1,21 +1,21 @@
 ---
 title: 管理和监视模式
+titleSuffix: Cloud Design Patterns
 description: 云应用程序在远程数据中心内运行，在此中心内，无法完全控制基础架构，或者在某些情况下无法控制操作系统。 与本地部署相比，管理和监视难度更大。 应用程序必须公开运行时信息，以便管理员和操作员管理和监视系统，支持不断变化的业务要求和定制，而无需停止或重新部署应用程序。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: faab137d59ce952e169839a71abdbbb3103ea772
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: fc75a3a56323b61651b9e840068a3117b31cf203
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846784"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009349"
 ---
 # <a name="management-and-monitoring-patterns"></a>管理和监视模式
 
 云应用程序在远程数据中心内运行，在此中心内，无法完全控制基础架构，或者在某些情况下无法控制操作系统。 与本地部署相比，管理和监视难度更大。 应用程序必须公开运行时信息，以便管理员和操作员管理和监视系统，支持不断变化的业务要求和定制，而无需停止或重新部署应用程序。
-
 
 |                              模式                               |                                                              摘要                                                              |
 |--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
@@ -28,4 +28,3 @@ ms.locfileid: "30846784"
 |   [运行状况终结点监视](../health-endpoint-monitoring.md)   |   在应用程序中实施可让外部工具通过公开终结点定期访问的功能检查。    |
 |                      [sidecar](../sidecar.md)                      |         将应用程序的组件部署到单独的进程或容器中，以提供隔离和封装。          |
 |                    [Strangler](../strangler.md)                    | 通过将特定的功能片断逐渐取代为新的应用程序和服务，逐步迁移旧系统。 |
-

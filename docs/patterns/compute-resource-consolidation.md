@@ -1,18 +1,17 @@
 ---
-title: 计算资源合并
-description: 将多个任务或操作合并到单个计算单元
+title: 计算资源合并模式
+titleSuffix: Cloud Design Patterns
+description: 将多个任务或操作合并到单个计算单元。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-ms.openlocfilehash: bd212b8b4406a08058f811db030843f732e08cdc
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 0f787537fb97f52ad69df7f0784b7fca3c45d7d1
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428833"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111472"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>计算资源合并模式
 
@@ -27,7 +26,6 @@ ms.locfileid: "47428833"
 作为示例，下图显示使用多个计算单元实现的云托管解决方案的简化结构。 每个计算单元都在其自己的虚拟环境中运行。 每个函数都作为在其自己的计算单元中运行的单独任务（标记为任务 A 到任务 E）来实现。
 
 ![使用一组专用计算单元在云环境中运行任务](./_images/compute-resource-consolidation-diagram.png)
-
 
 每个计算单元都会消耗应计费资源，即使它处于空闲状态或不常使用。 因此，这并不总是最经济高效的解决方案。
 
@@ -67,7 +65,7 @@ ms.locfileid: "47428833"
 **争用**。 应避免在相同计算单元中的任务之间出现竞争资源的争用。 理想情况下，共享相同计算单元的任务应表现出不同的资源利用率特征。 例如，两个计算密集型任务不应位于相同计算单元中，两个占用大量内存的任务也是如此。 但是，混合使用计算密集型任务与需要大量内存的任务是可行的组合。
 
 > [!NOTE]
->  可考虑仅对已在一段时间内处于生产环境的系统合并计算资源，以便操作员和开发人员可以监视系统并创建标识每个任务如何利用不同资源的热度地图。 此地图可以用于确定非常适合用于共享计算资源的任务。
+> 可考虑仅对已在一段时间内处于生产环境的系统合并计算资源，以便操作员和开发人员可以监视系统并创建标识每个任务如何利用不同资源的热度地图。 此地图可以用于确定非常适合用于共享计算资源的任务。
 
 **复杂性**。 将多个任务合并到单个计算单元会向单元中的代码增加复杂性，从而更加难以进行测试、调试和维护。
 
@@ -85,7 +83,7 @@ ms.locfileid: "47428833"
 
 在 Azure 上构建云服务时，可以将多个任务执行的处理合并到单个角色。 通常，这是执行后台或异步处理任务的辅助角色。
 
-> 在某些情况下，可以在 Web 角色中包含后台或异步处理任务。 此方法可帮助降低成本和简化部署，尽管它可能会影响 Web 角色提供的面向公众的接口的可伸缩性和响应能力。 
+> 在某些情况下，可以在 Web 角色中包含后台或异步处理任务。 此方法可帮助降低成本和简化部署，尽管它可能会影响 Web 角色提供的面向公众的接口的可伸缩性和响应能力。
 
 角色负责启动和停止任务。 当 Azure 结构控制器加载角色时，它会对角色引发 `Start` 事件。 可以替代 `WebRole` 或 `WorkerRole` 类的 `OnStart` 方法以处理此事件，这可能是为了初始化此方法中的任务所依赖的数据和其他资源。
 
@@ -104,7 +102,6 @@ ms.locfileid: "47428833"
 任务由 `Run` 方法启动，该方法会等待任务完成。 任务实现云服务的业务逻辑，并可以响应通过 Azure 负载均衡器发布到角色的消息。 下图显示 Azure 云服务的角色中的任务和资源生命周期。
 
 ![Azure 云服务的角色中的任务和资源生命周期](./_images/compute-resource-consolidation-lifecycle.png)
-
 
 ComputeResourceConsolidation.Worker 项目中的 WorkerRole.cs 文件演示如何在 Azure 云服务中实现此模式的示例。
 

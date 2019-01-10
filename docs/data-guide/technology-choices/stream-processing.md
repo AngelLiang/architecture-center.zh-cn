@@ -3,12 +3,12 @@ title: 选择流处理技术
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 2e0d142bc5cd462703ef1ca4530a2104efdf3be3
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 51129bd09974151ef66a1d660ee3cfa8f79eeb0c
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902621"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111506"
 ---
 # <a name="choosing-a-stream-processing-technology-in-azure"></a>在 Azure 中选择流处理技术
 
@@ -16,8 +16,14 @@ ms.locfileid: "52902621"
 
 实时流处理使用来自队列或基于文件的存储的消息，对消息进行处理，并将结果转发到其他消息队列、文件存储或数据库。 处理可能包括对消息进行查询、筛选和聚合。 流处理引擎必须能够使用无限的数据流并以最低的延迟生成结果。 有关详细信息，请参阅[实时处理](../big-data/real-time-processing.md)。
 
+<!-- markdownlint-disable MD026 -->
+
 ## <a name="what-are-your-options-when-choosing-a-technology-for-real-time-processing"></a>选择用于实时处理的技术时有哪些选项？
+
+<!-- markdownlint-enable MD026 -->
+
 在 Azure 中，下列所有数据存储都将满足支持实时处理的核心要求：
+
 - [Azure 流分析](/azure/stream-analytics/)
 - [基于 Spark Streaming 的 HDInsight](/azure/hdinsight/spark/apache-spark-streaming-overview)
 - [Azure Databricks 中的 Apache Spark](/azure/azure-databricks/)
@@ -35,34 +41,34 @@ ms.locfileid: "52902621"
 
 - 数据是否会以 Avro、JSON 或 CSV 之外的格式到达？ 如果是，请考虑使用自定义代码支持任何格式的选项。
 
-- 是否需要将处理能力扩展为超出 1 GB/s？ 如果是，请考虑通过群集大小进行缩放的选项。 
+- 是否需要将处理能力扩展为超出 1 GB/s？ 如果是，请考虑通过群集大小进行缩放的选项。
 
 ## <a name="capability-matrix"></a>功能矩阵
 
-以下各表汇总了功能上的关键差异。 
+以下各表汇总了功能上的关键差异。
 
 ### <a name="general-capabilities"></a>常规功能
 
 | | Azure 流分析 | 基于 Spark Streaming 的 HDInsight | Azure Databricks 中的 Apache Spark | 基于 Storm 的 HDInsight | Azure Functions | Azure 应用服务 Web 作业 |
-| --- | --- | --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- | --- | --- |
 | 可编程性 | 流分析查询语言，JavaScript | Scala、Python、Java | Scala、Python、Java、R | Java、C# | C#、F#、Node.js | C#、Node.js、PHP、Java、Python |
-| 编程范例 | 声明性 | 混合使用声明性和命令性方式 | 混合使用声明性和命令性方式 | 命令性 | 命令性 | 命令性 |    
+| 编程范例 | 声明性 | 混合使用声明性和命令性方式 | 混合使用声明性和命令性方式 | 命令性 | 命令性 | 命令性 |
 | 定价模型 | [流单元](https://azure.microsoft.com/pricing/details/stream-analytics/) | 按群集小时 | [Databricks 单元](https://azure.microsoft.com/pricing/details/databricks/) | 按群集小时 | 按函数执行和资源消耗 | 按应用服务计划小时 |  
 
 ### <a name="integration-capabilities"></a>集成功能
 
 | | Azure 流分析 | 基于 Spark Streaming 的 HDInsight | Azure Databricks 中的 Apache Spark | 基于 Storm 的 HDInsight | Azure Functions | Azure 应用服务 Web 作业 |
-| --- | --- | --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- | --- | --- |
 | 输入 | Azure 事件中心、Azure IoT 中心和 Azure Blob 存储  | 事件中心、IoT 中心、Kafka、HDFS、存储 Blob、Azure Data Lake Store  | 事件中心、IoT 中心、Kafka、HDFS、存储 Blob、Azure Data Lake Store  | 事件中心、IoT 中心、存储 Blob、Azure Data Lake Store  | [支持的绑定](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | 服务总线、存储队列、存储 Blob、事件中心、WebHook、Cosmos DB、文件 |
-| 接收器 |  Azure Data Lake Store、Azure SQL 数据库、存储 Blob、事件中心、Power BI、表存储、服务总线队列、服务总线主题、Cosmos DB、Azure Functions  | HDFS、Kafka、存储 Blob、Azure Data Lake Store、Cosmos DB | HDFS、Kafka、存储 Blob、Azure Data Lake Store、Cosmos DB | 事件中心、服务总线、Kafka | [支持的绑定](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | 服务总线、存储队列、存储 Blob、事件中心、WebHook、Cosmos DB、文件 | 
+| 接收器 |  Azure Data Lake Store、Azure SQL 数据库、存储 Blob、事件中心、Power BI、表存储、服务总线队列、服务总线主题、Cosmos DB、Azure Functions  | HDFS、Kafka、存储 Blob、Azure Data Lake Store、Cosmos DB | HDFS、Kafka、存储 Blob、Azure Data Lake Store、Cosmos DB | 事件中心、服务总线、Kafka | [支持的绑定](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | 服务总线、存储队列、存储 Blob、事件中心、WebHook、Cosmos DB、文件 |
 
 ### <a name="processing-capabilities"></a>处理功能
 
 | | Azure 流分析 | 基于 Spark Streaming 的 HDInsight | Azure Databricks 中的 Apache Spark | 基于 Storm 的 HDInsight | Azure Functions | Azure 应用服务 Web 作业 |
-| --- | --- | --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- | --- | --- |
 | 内置临时/窗口化支持 | 是 | 是 | 是 | 是 | 否 | 否 |
 | 输入数据格式 | Avro、JSON 或 CSV、UTF-8 编码 | 使用自定义代码的任何格式 | 使用自定义代码的任何格式 | 使用自定义代码的任何格式 | 使用自定义代码的任何格式 | 使用自定义代码的任何格式 |
-| 可伸缩性 | [查询分区](/azure/stream-analytics/stream-analytics-parallelization) | 按群集大小界定 | 按 Databricks 群集规模配置界定 | 按群集大小界定 | 最多 200 个并行的函数应用实例处理 | 按应用服务计划容量界定 | 
+| 可伸缩性 | [查询分区](/azure/stream-analytics/stream-analytics-parallelization) | 按群集大小界定 | 按 Databricks 群集规模配置界定 | 按群集大小界定 | 最多 200 个并行的函数应用实例处理 | 按应用服务计划容量界定 |
 | 支持延迟到达和乱序事件处理 | 是 | 是 | 是 | 是 | 否 | 否 |
 
 另请参阅：

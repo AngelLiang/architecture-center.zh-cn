@@ -1,23 +1,23 @@
 ---
 title: 性能和可伸缩性模式
+titleSuffix: Cloud Design Patterns
 description: 性能是指系统在给定的时间间隔内执行任何操作的响应能力，可伸缩性则是系统能够应对负载增大且不影响性能或随时增加可用资源的能力。 云应用程序往往会遇到可变工作负载和活动高峰。 预测这些变化（尤其是在多租户方案中）几乎是不可能的。 应用程序应该能够在限制范围内扩大以满足需求高峰，并在需求减少时缩小。 可伸缩性不仅涉及计算实例，而且还涉及其他要素，例如数据存储、消息传送基础结构，等等。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: e60c7c5779e73925d7eed51b41eb37e5c2ad49ff
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: 986e17f943e2238d70a5c9e0fd4c84e37c5f06a6
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848523"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011021"
 ---
 # <a name="performance-and-scalability-patterns"></a>性能和可伸缩性模式
 
 [!INCLUDE [header](../../_includes/header.md)]
 
 性能是指系统在给定的时间间隔内执行任何操作的响应能力，可伸缩性则是系统能够应对负载增大且不影响性能或随时增加可用资源的能力。 云应用程序往往会遇到可变工作负载和活动高峰。 预测这些变化（尤其是在多租户方案中）几乎是不可能的。 应用程序应该能够在限制范围内扩大以满足需求高峰，并在需求减少时缩小。 可伸缩性不仅涉及计算实例，而且还涉及其他要素，例如数据存储、消息传送基础结构，等等。
-
 
 |                           模式                            |                                                                        摘要                                                                         |
 |--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -31,4 +31,3 @@ ms.locfileid: "30848523"
 |                  [分片](../sharding.md)                  |                                           将数据存储划分为一组水平分区或分片。                                           |
 |    [静态内容托管](../static-content-hosting.md)    |                          将静态内容部署到基于云的存储服务，再由后者将它们直接传送给客户端。                          |
 |                [限制](../throttling.md)                |                控制应用程序实例、单个租户或整个服务对资源的消耗。                 |
-

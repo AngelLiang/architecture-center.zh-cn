@@ -1,16 +1,17 @@
 ---
 title: 消息传送模式
+titleSuffix: Cloud Design Patterns
 description: 云应用程序的分布性质要求消息基础结构在理想情况下能以松散耦合的方式连接组件和服务，从而将可伸缩性最大化。 异步消息受到广泛使用并提供了诸多好处，但也带来了许多挑战，如消息排序、有害消息管理和幂等性等。
 keywords: 设计模式
 author: dragon119
 ms.date: 12/07/2018
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: 754e9a7dcad20dc1c4471af00f3f142f18022d62
-ms.sourcegitcommit: a0a9981e7586bed8d876a54e055dea1e392118f8
+ms.custom: seodec18
+ms.openlocfilehash: 4619d30c152f050f3f95aee3f9983b8fe85911ed
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/11/2018
-ms.locfileid: "53233874"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011321"
 ---
 # <a name="messaging-patterns"></a>消息传送模式
 

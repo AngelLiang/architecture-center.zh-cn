@@ -1,19 +1,17 @@
 ---
-title: 优先级队列
+title: 优先级队列模式
+titleSuffix: Cloud Design Patterns
 description: 为发送到服务的请求确定优先级，以便高优先级请求能够得到比低优先级请求更快速地接收和处理。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-- performance-scalability
-ms.openlocfilehash: 400bfbc03cf5640ff32a551636b01d60e6c0ec50
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: ddd9cc9ec85c6ed23fabaaa58424736ba1aa9421
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428493"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011117"
 ---
 # <a name="priority-queue-pattern"></a>优先级队列模式
 
@@ -31,12 +29,11 @@ ms.locfileid: "47428493"
 
 ![图 1 - 使用支持消息优先级的排队机制](./_images/priority-queue-pattern.png)
 
-> 大多数消息队列实现都支持多个使用者（遵照[使用者竞争模式](https://msdn.microsoft.com/library/dn568101.aspx)），使用者进程数可以根据需要增加或减少。
+> 大多数消息队列实现都支持多个使用者（遵照[使用者竞争模式](./competing-consumers.md)），使用者进程数可以根据需要增加或减少。
 
 在不支持基于优先级的消息队列的系统中，替代解决方法是将每个优先级的消息保持一个单独队列。 应用程序负责将消息发布到相应的队列。 每个队列可以有单独的使用者池。 优先级较高的队列可以有比优先级较低的队列更大的使用者池，并且在速度更快的硬件上运行。 下图显示了对每个优先级使用单独的消息队列。
 
 ![图 2 - 对每个优先级使用单独的消息队列](./_images/priority-queue-separate.png)
-
 
 此策略的变体是使用单个使用者池，这些使用者首先检查高优先级队列中是否有消息，然后才从优先级较低的队列中提取消息。 使用单个使用者进程池的解决方案与使用多个队列的解决方案存在一些语义上的差异：前者使用单个队列支持具有不同优先级的消息，或使用多个队列，每个队列处理一种优先级的消息；而后者对每个队列使用一个单独池。
 
@@ -88,7 +85,6 @@ Azure 解决方案可以实施服务总线主题，应用程序可以按照与�
 
 ![图 3 - 通过 Azure 服务总线主题和订阅实施优先级队列](./_images/priority-queue-service-bus.png)
 
-
 在上图中，应用程序创建了多条消息，并且在每个消息中分配一个名为 `Priority`、具有值 `High` 或 `Low` 的自定义属性。 应用程序将这些消息发布到主题。 主题包含两个相关联的订阅，都用于通过检查 `Priority` 属性筛选消息。 一个订阅接受 `Priority` 属性设置为 `High` 的消息，另一个接受 `Priority` 属性设置为 `Low` 的消息。 使用者池从每个订阅中读取消息。 高优先级的订阅具有更大的池，与低优先级池中的使用者相比，这些高优先级池中的使用者可能在功能更强大、可用资源更多的计算机上运行。
 
 请注意，本例中指定的高优先级和低优先级消息没有什么特别的。 它们只是每个消息中指定为属性的标签，用于将消息定向到特定订阅。 如果需要其他优先级，相对容易的做法是创建更多订阅和使用者进程池来处理这些优先级。
@@ -121,6 +117,7 @@ public class PriorityWorkerRole : RoleEntryPoint
   }
 }
 ```
+
 `PriorityQueue.High` 和 `PriorityQueue.Low` 辅助角色都会替代 `ProcessMessage` 方法的默认功能。 下面的代码显示 `PriorityQueue.High` 辅助角色的 `ProcessMessage` 方法。
 
 ```csharp
@@ -170,11 +167,10 @@ this.queueManager.SendBatchAsync(highMessages).Wait();
 
 - [异步消息传送入门](https://msdn.microsoft.com/library/dn589781.aspx)。 处理请求的使用者服务可能需要将回复发送到发布请求的应用程序的实例。 提供可用于实现请求/响应消息传递的策略的相关信息。
 
-- [使用者竞争模式](competing-consumers.md)。 若要增加队列的吞吐量，可以让多个使用者侦听同一个队列以及并行处理任务。 使用者会争用消息，但应只有一个使用者能够处理每条消息。 提供有关实现此方法的优点和缺点的详细信息。
+- [使用者竞争模式](./competing-consumers.md)。 若要增加队列的吞吐量，可以让多个使用者侦听同一个队列以及并行处理任务。 使用者会争用消息，但应只有一个使用者能够处理每条消息。 提供有关实现此方法的优点和缺点的详细信息。
 
-- [限制模式](throttling.md)。 可以通过使用队列实现限制。 优先级消息传递可用于确保来自重要应用程序、或正由高价值客户运行的应用程序的请求优先于来自不太重要的应用程序的请求。
+- [限制模式](./throttling.md)。 可以通过使用队列实现限制。 优先级消息传递可用于确保来自重要应用程序、或正由高价值客户运行的应用程序的请求优先于来自不太重要的应用程序的请求。
 
 - [自动缩放指南](https://msdn.microsoft.com/library/dn589774.aspx)。 可以根据队列长度，扩展处理队列的使用者进程池的大小。 此策略可以帮助提高性能，尤其适用于处理高优先级消息的池。
 
 - Abhishek Lal 博客上的 [Enterprise Integration Patterns with Service Bus](https://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/)（使用服务总线的企业集成模式）。
-

@@ -1,19 +1,17 @@
 ---
-title: 缓存端
-description: 将数据按需从数据存储加载到缓存中
+title: 缓存端模式
+titleSuffix: Cloud Design Patterns
+description: 将数据按需从数据存储加载到缓存中。
 keywords: 设计模式
 author: dragon119
 ms.date: 11/01/2018
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: 4c93ed02ff28e79cedc26f83364592baba96821d
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seodec18
+ms.openlocfilehash: 96dee3ca766414a3a17ea161f13c9fcd15001b4d
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916357"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114158"
 ---
 # <a name="cache-aside-pattern"></a>缓存端模式
 
@@ -35,14 +33,13 @@ ms.locfileid: "50916357"
 
 ![使用缓存端模式在缓存中存储数据](./_images/cache-aside-diagram.png)
 
-
 如果应用程序更新了信息，则可按照直写策略操作，方法是修改数据存储和使缓存中的相应项无效。
 
 如果下一步需要该项，使用缓存端策略将导致可从数据存储检索更新后的数据，并将其添加回缓存。
 
 ## <a name="issues-and-considerations"></a>问题和注意事项
 
-在决定如何实现此模式时，请考虑以下几点： 
+在决定如何实现此模式时，请考虑以下几点：
 
 **已缓存数据的生存期**。 许多缓存实施过期策略，如果未在指定期间访问数据，则数据将失效并从缓存中删除。 若要使缓存端有效，请确保过期策略与使用数据的应用程序的访问模式相匹配。 过期期限不宜太短，因为可能导致应用程序不断从数据存储检索数据并将其添加到缓存。 同样，过期期限不宜太长，否则缓存数据可能会过期。 请记住，缓存最适用于相对静态的数据或经常读取的数据。
 
@@ -68,9 +65,9 @@ ms.locfileid: "50916357"
 
 ## <a name="example"></a>示例
 
-在 Microsoft Azure 中，可以使用 Azure Redis 缓存来创建可由应用程序的多个实例共享的分布式缓存。 
+在 Microsoft Azure 中，可以使用 Azure Redis 缓存来创建可由应用程序的多个实例共享的分布式缓存。
 
-以下代码示例使用 [StackExchange.Redis] 客户端，这是针对 .NET 编写的 Redis 客户端库。 若要连接到 Azure Redis 缓存实例，请调用静态 `ConnectionMultiplexer.Connect` 方法并传入连接字符串。 该方法返回表示连接的 `ConnectionMultiplexer`。 共享应用程序中的 `ConnectionMultiplexer` 实例的一个方法是，拥有返回连接示例的静态属性（与下列示例类似）。 此方法是一种线程安全方法，仅初始化连接的一个实例。
+以下代码示例使用 [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis) 客户端，这是针对 .NET 编写的 Redis 客户端库。 若要连接到 Azure Redis 缓存实例，请调用静态 `ConnectionMultiplexer.Connect` 方法并传入连接字符串。 该方法返回表示连接的 `ConnectionMultiplexer`。 共享应用程序中的 `ConnectionMultiplexer` 实例的一个方法是，拥有返回连接示例的静态属性（与下列示例类似）。 此方法是一种线程安全方法，仅初始化连接的一个实例。
 
 ```csharp
 private static ConnectionMultiplexer Connection;
@@ -89,7 +86,6 @@ public static ConnectionMultiplexer Connection => lazyConnection.Value;
 
 通过将整数 ID 用作密钥来识别对象。 `GetMyEntityAsync` 方法尝试使用此密钥从缓存检索项。 如果找到匹配项，则它将返回。 如果缓存中没有匹配项，`GetMyEntityAsync` 方法将从数据存储检索对象、将其添加到缓存中，然后将其返回。 从数据存储实际读取数据的代码取决于数据存储，所以它未在此处显示。 请注意，缓存的项已配置为过期，以防止在其他位置对其进行更新后它会变得陈旧。
 
-
 ```csharp
 // Set five minute expiration as a default
 private const double DefaultExpirationTimeInMinutes = 5.0;
@@ -99,23 +95,23 @@ public async Task<MyEntity> GetMyEntityAsync(int id)
   // Define a unique key for this method and its parameters.
   var key = $"MyEntity:{id}";
   var cache = Connection.GetDatabase();
-  
+
   // Try to get the entity from the cache.
   var json = await cache.StringGetAsync(key).ConfigureAwait(false);
-  var value = string.IsNullOrWhiteSpace(json) 
-                ? default(MyEntity) 
+  var value = string.IsNullOrWhiteSpace(json)
+                ? default(MyEntity)
                 : JsonConvert.DeserializeObject<MyEntity>(json);
-  
+
   if (value == null) // Cache miss
   {
     // If there's a cache miss, get the entity from the original store and cache it.
-    // Code has been omitted because it's data store dependent.  
+    // Code has been omitted because it is data store dependent.
     value = ...;
 
     // Avoid caching a null value.
     if (value != null)
     {
-      // Put the item in the cache with a custom expiration time that 
+      // Put the item in the cache with a custom expiration time that
       // depends on how critical it is to have stale data.
       await cache.StringSetAsync(key, JsonConvert.SerializeObject(value)).ConfigureAwait(false);
       await cache.KeyExpireAsync(key, TimeSpan.FromMinutes(DefaultExpirationTimeInMinutes)).ConfigureAwait(false);
@@ -126,7 +122,7 @@ public async Task<MyEntity> GetMyEntityAsync(int id)
 }
 ```
 
->  此示例使用 Redis 缓存访问存储并从缓存中检索信息。 有关详细信息，请参阅[使用 Microsoft Azure Redis 缓存](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache)和[如何使用 Redis 缓存创建 Web 应用](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto)
+> 此示例使用 Redis 缓存访问存储并从缓存中检索信息。 有关详细信息，请参阅[使用 Microsoft Azure Redis 缓存](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache)和[如何使用 Redis 缓存创建 Web 应用](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto)
 
 如下所示，`UpdateEntityAsync` 方法演示如何在应用程序更改值时使缓存中的对象无效。 代码更新原始数据存储，然后从缓存中删除缓存的项。
 
@@ -134,7 +130,7 @@ public async Task<MyEntity> GetMyEntityAsync(int id)
 public async Task UpdateEntityAsync(MyEntity entity)
 {
     // Update the object in the original data store.
-    await this.store.UpdateEntityAsync(entity).ConfigureAwait(false); 
+    await this.store.UpdateEntityAsync(entity).ConfigureAwait(false);
 
     // Invalidate the current cache object.
     var cache = Connection.GetDatabase();
@@ -147,14 +143,10 @@ public async Task UpdateEntityAsync(MyEntity entity)
 > [!NOTE]
 > 该步骤的顺序非常重要。 请先更新数据存储，然后再从缓存中删除项。 如果首先删除缓存的项，在短时间内，客户端可能会在数据存储更新前提取该项。 这将造成缓存失误（因为从缓存中删除了项），导致要从数据存储提取该项的早期版本并将其添加回缓存。 造成缓存数据陈旧。
 
-
-## <a name="related-guidance"></a>相关指南 
+## <a name="related-guidance"></a>相关指南
 
 实现此模式时，以下信息可能相关：
 
 - [Caching Guidance](https://docs.microsoft.com/azure/architecture/best-practices/caching)（缓存指南）。 提供有关如何在云解决方案中缓存数据的其他信息，以及实现缓存时应考虑的问题。
 
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx)（数据一致性入门）。 云应用程序通常使用遍布数据存储的数据。 系统的一个重要方面是在此环境中管理和维护数据一致性，特别是可能出现的并发性和可用性问题。 此入门介绍了有关跨分布式数据的一致性问题，并总结了应用程序实现最终一致性以维持数据的可用性的方法。
-
-
-[StackExchange.Redis]: https://github.com/StackExchange/StackExchange.Redis

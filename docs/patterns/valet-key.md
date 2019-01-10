@@ -1,19 +1,17 @@
 ---
-title: 附属密钥
+title: 附属密钥模式
+titleSuffix: Cloud Design Patterns
 description: 使用令牌或密钥，向客户端授予对特定资源或服务的受限直接访问权限。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- security
-ms.openlocfilehash: 99d3fbe05e34d61edc0d339f34665e557b250b05
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 09173717d499d524d4d5dad2c1202c1bf361b1e5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450881"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009859"
 ---
 # <a name="valet-key-pattern"></a>附属密钥模式
 
@@ -105,7 +103,7 @@ Azure 在 Azure 存储上支持共享访问签名，以便对 blob、表和队�
 
 Azure 共享访问签名还支持可以与特定资源（如表或 blob）关联的服务器存储访问策略。 与应用程序生成的共享访问签名令牌相比，此功能可提供更多控制和灵活性，应尽可能进行使用。 服务器存储的策略中定义的设置可以进行更改并反映在令牌中（无需颁发新令牌），但是令牌中定义的设置无法在不颁发新令牌的情况下进行更改。 通过此方法还可以在有效共享访问签名令牌过期之前撤销它。
 
-> 有关详细信息，请参阅 MSDN 上的[介绍表 SAS（共享访问签名）、队列 SAS 和 Blob SAS 更新](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/)和[使用共享访问签名](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)。
+> 有关详细信息，请参阅 MSDN 上的[介绍表 SAS（共享访问签名）、队列 SAS 和 Blob SAS 更新](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/)和[使用共享访问签名](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)。
 
 下面的代码演示如何创建有效期为五分钟的共享访问签名令牌。 `GetSharedAccessReferenceForUpload` 方法返回可以用于将文件上传到 Azure Blob 存储的共享访问签名令牌。
 
@@ -162,9 +160,10 @@ public class ValuesController : ApiController
 ## <a name="next-steps"></a>后续步骤
 
 实施此模式时，可能也会与以下模式和指南相关：
+
 - 演示此模式的示例可在 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/valet-key) 上找到。
-- [守护程序模式](gatekeeper.md)。 此模式可以与附属密钥模式结合使用，通过充当客户端与应用程序或服务之间中转站的专用主机实例，来保护应用程序和服务。 守护程序可验证和清理请求，以及在客户端与应用程序之间传递请求和数据。 可以额外提供一层安全，并减小系统的攻击面。
-- [静态内容托管模式](static-content-hosting.md)。 介绍如何将静态资源部署到基于云的存储服务，而该服务可以将这些资源直接提供给客户端以减少对成本高昂的计算实例的需求。 如果不打算公开提供资源，则可以使用附属密钥模式来保护它们。
+- [守护程序模式](./gatekeeper.md)。 此模式可以与附属密钥模式结合使用，通过充当客户端与应用程序或服务之间中转站的专用主机实例，来保护应用程序和服务。 守护程序可验证和清理请求，以及在客户端与应用程序之间传递请求和数据。 可以额外提供一层安全，并减小系统的攻击面。
+- [静态内容托管模式](./static-content-hosting.md)。 介绍如何将静态资源部署到基于云的存储服务，而该服务可以将这些资源直接提供给客户端以减少对成本高昂的计算实例的需求。 如果不打算公开提供资源，则可以使用附属密钥模式来保护它们。
 - [介绍表 SAS（共享访问签名）、队列 SAS 和 Blob SAS 更新](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/)
-- [使用共享访问签名](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)
-- [服务总线的共享访问签名身份验证](https://azure.microsoft.com/documentation/articles/service-bus-shared-access-signature-authentication/)
+- [使用共享访问签名](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)
+- [服务总线的共享访问签名身份验证](/azure/service-bus-messaging/service-bus-sas)

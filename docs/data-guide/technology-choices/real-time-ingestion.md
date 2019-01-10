@@ -3,18 +3,22 @@ title: 选择实时消息引入技术
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 64d6fca0a8ffac45f605e90a11cd2b3e53db287f
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 961e377591f67aec995c8495fa9188c851e464fc
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901610"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111234"
 ---
 # <a name="choosing-a-real-time-message-ingestion-technology-in-azure"></a>在 Azure 中选择实时消息引入技术
 
-实时处理对实时捕获的数据流进行处理并且以最低延迟对其进行处理。 许多实时处理解决方案都需要一个消息引入存储来充当消息缓冲区，以及支持横向扩展处理、可靠传递和其他消息队列语义。 
+实时处理对实时捕获的数据流进行处理并且以最低延迟对其进行处理。 许多实时处理解决方案都需要一个消息引入存储来充当消息缓冲区，以及支持横向扩展处理、可靠传递和其他消息队列语义。
+
+<!-- markdownlint-disable MD026 -->
 
 ## <a name="what-are-your-options-for-real-time-message-ingestion"></a>用于实时消息引入的选项有哪些？
+
+<!-- markdownlint-enable MD026 -->
 
 - [Azure 事件中心](/azure/event-hubs/)
 - [Azure IoT 中心](/azure/iot-hub/)
@@ -30,24 +34,24 @@ ms.locfileid: "52901610"
 
 IoT 中心的功能包括：
 
-* 多个针对设备到云和云到设备通信的选项。 这些选项包括单向消息传递、文件传输以及请求-答复方法。
-* 将消息传送到其他 Azure 服务。
-* 为设备元数据和已同步的状态信息提供可查询存储。
-* 使用每个设备的安全密钥或 X.509 证书来实现安全的通信和访问控制。
-* 监视设备连接和设备标识管理事件。
+- 多个针对设备到云和云到设备通信的选项。 这些选项包括单向消息传递、文件传输以及请求-答复方法。
+- 将消息传送到其他 Azure 服务。
+- 为设备元数据和已同步的状态信息提供可查询存储。
+- 使用每个设备的安全密钥或 X.509 证书来实现安全的通信和访问控制。
+- 监视设备连接和设备标识管理事件。
 
-在消息引入方面，IoT 中心类似于事件中心。 但是，它专门设计用于管理 IoT 设备连接，而不仅仅是用于消息引入。 有关详细信息，请参阅 [Azure IoT 中心与 Azure 事件中心的比较](/azure/iot-hub/iot-hub-compare-event-hubs)。 
+在消息引入方面，IoT 中心类似于事件中心。 但是，它专门设计用于管理 IoT 设备连接，而不仅仅是用于消息引入。 有关详细信息，请参阅 [Azure IoT 中心与 Azure 事件中心的比较](/azure/iot-hub/iot-hub-compare-event-hubs)。
 
 ## <a name="kafka-on-hdinsight"></a>Kafka on HDInsight
 
-[Apache Kafka](https://kafka.apache.org/) 是一个开源的分布式流式处理平台，可用于构建实时数据管道和流式处理应用程序。 Kafka 还提供了类似于消息队列的消息中转站，可在其中发布和订阅命名数据流。 它可水平缩放，具有容错能力，而且速度非常快。 [Kafka on HDInsight](/azure/hdinsight/kafka/apache-kafka-get-started) 将 Kafka 提供为 Azure 中的一项可高度扩展且高度可用的托管服务。 
+[Apache Kafka](https://kafka.apache.org/) 是一个开源的分布式流式处理平台，可用于构建实时数据管道和流式处理应用程序。 Kafka 还提供了类似于消息队列的消息中转站，可在其中发布和订阅命名数据流。 它可水平缩放，具有容错能力，而且速度非常快。 [Kafka on HDInsight](/azure/hdinsight/kafka/apache-kafka-get-started) 将 Kafka 提供为 Azure 中的一项可高度扩展且高度可用的托管服务。
 
 Kafka 的一些常见用例包括：
 
-* **消息**。 由于 Kafka 支持发布-订阅消息模式，因此它经常用作消息中转站。
-* **活动跟踪**。 由于 Kafka 提供了按顺序将记录记入日志的功能，因此它还可用来跟踪和重新创建活动。
-* **聚合**。 使用流处理可从不同的流中聚合信息，将信息合并和集中到运营数据中。
-* **转换**。 使用流处理可将多个输入主题中的数据合并到一个或多个输出主题中，丰富其内容。
+- **消息**。 由于 Kafka 支持发布-订阅消息模式，因此它经常用作消息中转站。
+- **活动跟踪**。 由于 Kafka 提供了按顺序将记录记入日志的功能，因此它还可用来跟踪和重新创建活动。
+- **聚合**。 使用流处理可从不同的流中聚合信息，将信息合并和集中到运营数据中。
+- **转换**。 使用流处理可将多个输入主题中的数据合并到一个或多个输出主题中，丰富其内容。
 
 ## <a name="key-selection-criteria"></a>关键选择条件
 
@@ -59,7 +63,9 @@ Kafka 的一些常见用例包括：
 
 ## <a name="capability-matrix"></a>功能矩阵
 
-以下各表汇总了功能上的关键差异。 
+以下各表汇总了功能上的关键差异。
+
+<!-- markdownlint-disable MD033 -->
 
 | | IoT 中心 | 事件中心 | Kafka on HDInsight |
 | --- | --- | --- | --- |
@@ -68,6 +74,8 @@ Kafka 的一些常见用例包括：
 | 设备状态信息 | [设备孪生](/azure/iot-hub/iot-hub-devguide-device-twins) | 否 | 否 |
 | 协议支持 | MQTT、AMQP、HTTPS <sup>1</sup> | AMQP、HTTPS | [Kafka 协议](https://cwiki.apache.org/confluence/display/KAFKA/A+Guide+To+The+Kafka+Protocol) |
 | 安全 | 每设备标识；可撤销的访问控制权限。 | 共享访问策略；通过发布者策略实现有限的撤销。 | 使用 SASL 的身份验证；可插拔身份验证；与受支持的外部身份验证服务集成。 |
+
+<!-- markdownlint-enable MD026 -->
 
 [1] 还可以使用 [Azure IoT 协议网关](/azure/iot-hub/iot-hub-protocol-gateway)作为自定义网关，来为 IoT 中心启用协议自适应。
 

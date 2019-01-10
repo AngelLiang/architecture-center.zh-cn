@@ -6,18 +6,19 @@ ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: adfs
 pnp.series.next: key-vault
-ms.openlocfilehash: 58eed82c982fe1c6cba0f04b237d92d117a26fd4
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: b5951153fff109b648e7e4f74daac0f414240fe4
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902252"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113138"
 ---
 # <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a>使用客户端断言从 Azure AD 获取访问令牌
 
 [![GitHub](../_images/github.png) 示例代码][sample application]
 
 ## <a name="background"></a>背景
+
 在 OpenID Connect 中使用授权代码流或混合流时，客户端交换授权代码来获取访问令牌。 在此步骤中，客户端必须向服务器进行身份验证。
 
 ![客户端机密](./images/client-secret.png)
@@ -26,7 +27,7 @@ ms.locfileid: "52902252"
 
 下面是从客户端到 IDP 请求访问令牌的示例请求。 请注意 `client_secret` 参数。
 
-```
+```http
 POST https://login.microsoftonline.com/b9bd2162xxx/oauth2/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
@@ -45,7 +46,7 @@ resource=https://tailspin.onmicrosoft.com/surveys.webapi
 
 下面是使用客户端断言的令牌请求：
 
-```
+```http
 POST https://login.microsoftonline.com/b9bd2162xxx/oauth2/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
@@ -61,8 +62,6 @@ resource=https://tailspin.onmicrosoft.com/surveys.webapi
 
 > [!NOTE]
 > X.509 证书不是客户断言的唯一形式；我们在此关注它，因为它受 Azure AD 支持。
-> 
-> 
 
 在运行时，Web 应用程序从证书存储中读取证书。 必须在 Web 应用所在的同一计算机上安装证书。
 
@@ -100,7 +99,8 @@ public class CertificateCredentialService : ICredentialService
 
 [**下一篇**][key vault]
 
-<!-- Links -->
+<!-- links -->
+
 [configure-web-app]: /azure/app-service-web/web-sites-configure/
 [azure-management-portal]: https://portal.azure.com
 [客户端断言]: https://tools.ietf.org/html/rfc7521

@@ -1,23 +1,23 @@
 ---
 title: 数据管理模式
+titleSuffix: Cloud Design Patterns
 description: 数据管理是云应用程序的关键元素，它影响着大部分质量属性。 出于性能、可伸缩性或可用性等方面的原因，数据通常托管在不同的位置并跨多个服务器，这可能会带来一系列的挑战。 例如，必须维护数据一致性，通常需要跨不同的位置同步数据。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: b80c2a127af07e1e362e9078e2a476d33a26ef7c
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: ff6d5703af64ddd8b012b588ddfe810da0b6630c
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847084"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009179"
 ---
 # <a name="data-management-patterns"></a>数据管理模式
 
 [!INCLUDE [header](../../_includes/header.md)]
 
 数据管理是云应用程序的关键元素，它影响着大部分质量属性。 出于性能、可伸缩性或可用性等方面的原因，数据通常托管在不同的位置并跨多个服务器，这可能会带来一系列的挑战。 例如，必须维护数据一致性，通常需要跨不同的位置同步数据。
-
 
 |                        模式                         |                                                                  摘要                                                                  |
 |--------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
@@ -29,4 +29,3 @@ ms.locfileid: "30847084"
 |               [分片](../sharding.md)               |                                    将数据存储划分为一组水平分区或分片。                                     |
 | [静态内容托管](../static-content-hosting.md) |                   将静态内容部署到基于云的存储服务，再由后者将它们直接传送给客户端。                    |
 |              [附属密钥](../valet-key.md)              |                 使用令牌或密钥，向客户端授予对特定资源或服务的受限直接访问权限。                 |
-

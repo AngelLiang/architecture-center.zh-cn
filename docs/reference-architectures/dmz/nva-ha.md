@@ -5,12 +5,12 @@ description: 部署具有高可用性的网络虚拟设备。
 author: telmosampaio
 ms.date: 12/08/2018
 ms.custom: seodec18
-ms.openlocfilehash: d3f9017db1bbf9741b10db16eb5a3dbab78f1160
-ms.sourcegitcommit: 7d21aec9d9de0004ac777c1d1e364f53aac2350d
+ms.openlocfilehash: 646721f80d19f493b7674884f8108762d743201b
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53120746"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011083"
 ---
 # <a name="deploy-highly-available-network-virtual-appliances"></a>部署具有高可用性的网络虚拟设备。
 
@@ -30,6 +30,8 @@ NVA 可以采用许多不同的体系结构部署到外围网络中。 例如，
 
 下面的体系结构描述了实现高度可用的 NVA 所需的资源和配置：
 
+<!-- markdownlint-disable MD033 -->
+
 | 解决方案 | 优点 | 注意事项 |
 | --- | --- | --- |
 | [具有第 7 层 NVA 的入口][ingress-with-layer-7] |所有 NVA 节点都是主动的 |需要一个可以终止连接的 NVA 并使用 SNAT<br/> 对于来自 Internet 和来自 Azure 的流量，需要单独的一组 NVA <br/> 只能用于在 Azure 外部产生的流量 |
@@ -37,6 +39,8 @@ NVA 可以采用许多不同的体系结构部署到外围网络中。 例如，
 | [具有第 7 层 NVA 的入口-出口][ingress-egress-with-layer-7] |所有节点都是主动的<br/>能够处理在 Azure 中产生的流量 |需要一个可以终止连接的 NVA 并使用 SNAT<br/>对于来自 Internet 和来自 Azure 的流量，需要单独的一组 NVA |
 | [PIP-UDR 切换][pip-udr-switch] |用于所有流量的单组 NVA<br/>可以处理所有流量（没有端口限制规则） |主动-被动<br/>需要故障转移流程 |
 | [不使用 SNAT 的 PIP-UDR](#pip-udr-nvas-without-snat) | 用于所有流量的单组 NVA<br/>可以处理所有流量（没有端口限制规则）<br/>不需要为入站请求配置 SNAT |主动-被动<br/>需要故障转移流程<br/>在虚拟网络外部运行的探测和故障转移逻辑 |
+
+<!-- markdown-enable MD033 -->
 
 ## <a name="ingress-with-layer-7-nvas"></a>具有第 7 层 NVA 的入口
 

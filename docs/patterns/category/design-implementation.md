@@ -1,21 +1,21 @@
 ---
 title: 设计和实施模式
+titleSuffix: Cloud Design Patterns
 description: 优秀的设计包含许多要素，例如部件设计和部署中的一致性和连贯性、简化管理和开发的可维护性，以及允许部件和子系统在其他应用程序和方案中使用的可重用性。 在设计和实施阶段做出的决策对云托管应用程序和服务的质量和总拥有成本具有巨大影响。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: 861445ceeca62e5b1e62fd4cb33924c35e10c0b0
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: 38b20fad513109051d40c1b9556f75fa86e03dd7
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847792"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009791"
 ---
 # <a name="design-and-implementation-patterns"></a>设计和实施模式
 
 优秀的设计包含许多要素，例如部件设计和部署中的一致性和连贯性、简化管理和开发的可维护性，以及允许部件和子系统在其他应用程序和方案中使用的可重用性。 在设计和实施阶段做出的决策对云托管应用程序和服务的质量和总拥有成本具有巨大影响。
-
 
 |                                模式                                 |                                                                                                      摘要                                                                                                       |
 |------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -33,4 +33,3 @@ ms.locfileid: "30847792"
 |                        [Sidecar](../sidecar.md)                        |                                                  将应用程序的组件部署到单独的进程或容器中，以提供隔离和封装。                                                  |
 |         [静态内容托管](../static-content-hosting.md)         |                                                        将静态内容部署到基于云的存储服务，再由后者将它们直接传送给客户端。                                                        |
 |                      [Strangler](../strangler.md)                      |                                         通过将特定的功能片断逐渐取代为新的应用程序和服务，逐步迁移旧系统。                                          |
-

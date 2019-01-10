@@ -3,18 +3,22 @@ title: 选择数据分析和报告技术
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: a5e793c9caf50daca4ef7e40c49e54f25f04e856
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 5b4947f53edf595c206ef4f55572dadc1a9daa09
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902410"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111404"
 ---
 # <a name="choosing-a-data-analytics-technology-in-azure"></a>在 Azure 中选择数据分析技术
 
-大多数大数据解决方案的目标是通过分析和报告提供对数据的见解。 这可以包括预配置的报表和可视化效果或交互式数据探索。 
+大多数大数据解决方案的目标是通过分析和报告提供对数据的见解。 这可以包括预配置的报表和可视化效果或交互式数据探索。
+
+<!-- markdownlint-disable MD026 -->
 
 ## <a name="what-are-your-options-when-choosing-a-data-analytics-technology"></a>选择数据分析技术时有哪些选项？
+
+<!-- markdownlint-disable MD026 -->
 
 Azure 中有多个用于分析、可视化和报告的选项，具体取决于你的需求：
 
@@ -29,7 +33,7 @@ Azure 中有多个用于分析、可视化和报告的选项，具体取决于�
 
 组织可以使用 Power BI 生成报表并将其发布到组织。 每个人都可以创建具有治理机制和[内置安全性](/power-bi/service-admin-power-bi-security)的个性化仪表板。 每当用户尝试访问要求进行身份验证的资源时，Power BI 都使用 [Azure Active Directory](/azure/active-directory/) (Azure AD) 对登录 Power BI 服务的用户进行身份验证，并使用 Power BI 登录凭据。
 
-### <a name="jupyter-notebooks"></a>Jupyter 笔记本 
+### <a name="jupyter-notebooks"></a>Jupyter 笔记本
 
 [Jupyter Notebook](https://jupyter.readthedocs.io/en/latest/index.html) 提供了一个基于浏览器的 shell，它允许数据科学家创建包含 Python、Scala 或 R 代码和标记文本的 *Notebook* 文件，这使得它成为通过在单个文档中共享和记录代码及结果来进行协作的有效方式。
 
@@ -49,15 +53,15 @@ Jupyter Notebook 提供了一个很棒的环境，在使用 Power BI 之类的�
 
 主要优势：
 
-* 免费服务 &mdash; 不需要 Azure 订阅。
-* 无需在本地安装 Jupyter 和提供支持的 R 或 Python 发行版 &mdash; 只需使用浏览器即可。
-* 可以从任何设备管理和访问自己的联机库。
-* 可与协作者共享 Notebook。
+- 免费服务 &mdash; 不需要 Azure 订阅。
+- 无需在本地安装 Jupyter 和提供支持的 R 或 Python 发行版 &mdash; 只需使用浏览器即可。
+- 可以从任何设备管理和访问自己的联机库。
+- 可与协作者共享 Notebook。
 
 注意事项：
 
-* 无法在脱机时访问 Notebook。
-* 免费 Notebook 服务的有限处理功能可能不足以训练大型或复杂模型。
+- 无法在脱机时访问 Notebook。
+- 免费 Notebook 服务的有限处理功能可能不足以训练大型或复杂模型。
 
 ## <a name="key-selection-criteria"></a>关键选择条件
 
@@ -73,9 +77,11 @@ Jupyter Notebook 提供了一个很棒的环境，在使用 Power BI 之类的�
 
 ## <a name="capability-matrix"></a>功能矩阵
 
-以下各表汇总了功能上的关键差异。 
+以下各表汇总了功能上的关键差异。
 
 ### <a name="general-capabilities"></a>常规功能
+
+<!-- markdownlint-disable MD033 -->
 
 | | Power BI | Jupyter 笔记本 | Zeppelin Notebook | Microsoft Azure Notebook |
 | --- | --- | --- | --- | --- |
@@ -90,6 +96,8 @@ Jupyter Notebook 提供了一个很棒的环境，在使用 Power BI 之类的�
 | 定价 | 对于 Power BI Desktop（创作）免费，请参阅各个托管选项的[定价](https://powerbi.microsoft.com/pricing/) | 免费 | 免费 | 免费 |
 | 多用户协作 | [是](/power-bi/service-how-to-collaborate-distribute-dashboards-reports) | 是（通过进行共享或使用诸如 [JupyterHub](https://github.com/jupyterhub/jupyterhub) 的多用户服务器） | 是 | 是（通过进行共享） |
 
+<!-- markdownlint-enable MD033 -->
+
 [1] 当用作托管 HDInsight 群集的一部分时。
 
 [2] 通过使用 Power BI Desktop。
@@ -97,4 +105,3 @@ Jupyter Notebook 提供了一个很棒的环境，在使用 Power BI 之类的�
 [2] 可以在 [Maven 存储库](https://search.maven.org/)中搜索由社区贡献的包。
 
 [3] 可以使用 pip 或 conda 安装 Python 包。 可以从 CRAN 或 GitHub 安装 R 包。 可以使用 [Paket 依存关系管理器](https://fsprojects.github.io/Paket/)通过 nuget.org 安装 F# 中的包。
-

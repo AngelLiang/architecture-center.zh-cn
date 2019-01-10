@@ -2,15 +2,15 @@
 title: Python 模型的实时评分
 titleSuffix: Azure Reference Architectures
 description: 本参考体系结构演示如何在 Azure 上将 Python 模型部署为 Web 服务，用于进行实时预测。
-author: njray
+author: msalvaris
 ms.date: 11/09/2018
 ms.custom: azcat-ai
-ms.openlocfilehash: e2312d1d1d2444f9915f4e6aa067c1487e096d3e
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: b40072b43630adf13e8ead0b6aa6bec59ca1bfac
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120350"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110886"
 ---
 # <a name="real-time-scoring-of-python-scikit-learn-and-deep-learning-models-on-azure"></a>Azure 上 Python Scikit-Learn 和深度学习模型的实时评分
 

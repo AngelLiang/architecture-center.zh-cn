@@ -1,18 +1,17 @@
 ---
-title: 联合标识
+title: 联合身份模式
+titleSuffix: Cloud Design Patterns
 description: 将身份验证委托给外部标识提供者。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- security
-ms.openlocfilehash: a1edbdd080309383201d33e73602e2f18928c080
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: b268000a81edbb2f224a9244d5949def75854f04
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542627"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110351"
 ---
 # <a name="federated-identity-pattern"></a>联合身份模式
 
@@ -41,7 +40,6 @@ ms.locfileid: "24542627"
 该图说明了当客户端应用程序需要访问要求身份验证的服务时的联合身份模式。 身份验证由与 STS 协同工作的 IdP 执行。 IdP 颁发安全令牌，该安全令牌提供已进行身份验证用户的信息。 该信息（又称为声明）包括用户的标识，并且还可包含其他信息（如角色成员资格和更具体的访问权限）。
 
 ![联合身份验证的概述](./_images/federated-identity-overview.png)
-
 
 此模型通常称为基于声明的访问控制。 应用程序和服务基于令牌中包含的声明授权访问功能。 需要身份验证的服务必须信任 IdP。 客户端应用程序联系执行身份验证的 IdP。 如果身份验证成功，IdP 将向 STS 返回包含标识用户的声明的令牌（请注意，IdP 和 STS 可以是同一服务）。 STS 可以基于预定义规则，在将其返回到客户端之前，转换和扩大令牌中的声明。 然后，客户端应用程序可以将此令牌传递到服务，作为其标识的证明。
 
@@ -85,7 +83,6 @@ ms.locfileid: "24542627"
 
 ![大型企业订阅服务器上的用户如何访问应用程序](./_images/federated-identity-multitenat.png)
 
-
 该图显示了租户如何使用自己的标识提供者（步骤 1，在本例中为 ADFS）进行身份验证。 对租户的身份验证成功后，ADFS 颁发一个令牌。 客户端浏览器将此令牌转发到 SaaS 应用程序的联合身份验证提供程序，该提供程序信任由租户的 ADFS 颁发的令牌，以便获取对 SaaS 联合身份验证提供程序有效的令牌（步骤 2）。 如果需要，在将新令牌返回到客户端浏览器之前，SaaS 联合身份验证提供程序将令牌中的声明转换为应用程序识别的声明（步骤 3）。 应用程序信任由 SaaS 联合身份验证提供程序颁发的令牌，并使用令牌中的声明来应用授权规则（步骤 4）。
 
 租户无需记住单独的凭据来访问应用程序，并且租户公司的管理员可以在自己的 ADFS 中配置可以访问应用程序的用户列表。
@@ -95,5 +92,5 @@ ms.locfileid: "24542627"
 - [Microsoft Azure Active Directory](https://azure.microsoft.com/services/active-directory/)
 - [Active Directory 域服务](https://msdn.microsoft.com/library/bb897402.aspx)
 - [Active Directory 联合身份验证服务](https://msdn.microsoft.com/library/bb897402.aspx)
-- [Microsoft Azure 中多租户应用程序的标识管理](https://azure.microsoft.com/documentation/articles/guidance-multitenant-identity/)
-- [Azure 中的多租户应用程序](https://azure.microsoft.com/documentation/articles/dotnet-develop-multitenant-applications/)
+- [Microsoft Azure 中多租户应用程序的标识管理](/azure/architecture/multitenant-identity)
+- [Azure 中的多租户应用程序](/azure/dotnet-develop-multitenant-applications)

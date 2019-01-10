@@ -1,19 +1,17 @@
 ---
-title: 外部配置存储
+title: 外部配置存储模式
+titleSuffix: Cloud Design Patterns
 description: 将配置信息从应用程序部署包移出，移到一个集中的位置。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- management-monitoring
-ms.openlocfilehash: 733ca979903d1526d3a1a6b281a8903893e19fda
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 7e37e5bc052a9d8e8747a3a4ac3d79a311185ea4
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542275"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011304"
 ---
 # <a name="external-configuration-store-pattern"></a>外部配置存储模式
 
@@ -40,7 +38,6 @@ ms.locfileid: "24542275"
 > 许多内置配置系统在应用程序启动时读取数据并在内存中缓存数据，以提供快速访问并最大程度减少对应用程序性能的影响。 根据所使用的后备存储的类型以及此存储的延迟，在外部配置存储中实现一种缓存机制可能会有用。 有关详细信息，请参阅[缓存指南](https://msdn.microsoft.com/library/dn589802.aspx)。 该图说明了具有可选本地存储的外部配置存储模式的概述。
 
 ![具有可选本地存储的外部配置存储模式的概述](./_images/external-configuration-store-overview.png)
-
 
 ## <a name="issues-and-considerations"></a>问题和注意事项
 
@@ -101,7 +98,7 @@ public interface ISettingsStore
 
 请注意，所有设置也会缓存在 `ExternalConfigurationManager` 类中的 `Dictionary` 对象内，以实现快速访问。 用于检索配置设置的 `GetSetting` 方法会从缓存中读取数据。 如果在缓存中找不到设置，可改为从 `BlobSettingsStore` 对象检索。
 
-`GetSettings` 方法调用 `CheckForConfigurationChanges` 方法来检测 Blob 存储中的配置信息是否已发生更改。 它通过检查版本号并将其与 `ExternalConfigurationManager` 对象持有的当前版本号进行比较来执行此操作。 如果发生了一个或多个更改，则会引发 `Changed` 事件，并刷新 `Dictionary` 对象中缓存的配置设置。 这是[缓存端模式](cache-aside.md)的一个应用程序。
+`GetSettings` 方法调用 `CheckForConfigurationChanges` 方法来检测 Blob 存储中的配置信息是否已发生更改。 它通过检查版本号并将其与 `ExternalConfigurationManager` 对象持有的当前版本号进行比较来执行此操作。 如果发生了一个或多个更改，则会引发 `Changed` 事件，并刷新 `Dictionary` 对象中缓存的配置设置。 这是[缓存端模式](./cache-aside.md)的一个应用程序。
 
 下面的代码示例演示如何实现 `Changed` 事件、`GetSettings` 方法和 `CheckForConfigurationChanges` 方法：
 
@@ -130,7 +127,7 @@ public class ExternalConfigurationManager : IDisposable
   public string GetAppSetting(string key)
   {
     ...
-    // Try to get the value from the settings cache. 
+    // Try to get the value from the settings cache.
     // If there's a cache miss, get the setting from the settings store and refresh the settings cache.
 
     string value;

@@ -5,12 +5,12 @@ description: 一个检查表，提供各种 Azure 服务的复原能力指南。
 author: petertaylor9999
 ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 55f17d3b24af4be4f313c66923f4153296041545
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: e1fb780cf9f54a5078cc5d3c6b597b351f93e05e
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307174"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112662"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>特定 Azure 服务的复原能力检查表
 
@@ -124,7 +124,7 @@ ms.locfileid: "53307174"
 
 **复制数据库。** 使用 SQL Server Always On 可用性组复制数据库。 当某个 SQL Server 实例发生故障时可提供高可用性。 有关详细信息，请参阅[对 N 层应用程序运行 Windows VM](../reference-architectures/virtual-machines-windows/n-tier.md)
 
-**备份数据库**。 如果已在使用 [Azure 备份](https://azure.microsoft.com/documentation/services/backup/)来备份 VM，请考虑[使用 DPM 为 SQL 工作负荷配置 Azure 备份](/azure/backup/backup-azure-backup-sql/)。 使用此方法时，将为组织配置一个备份管理员角色，并为 VM 和 SQL Server 创建统一的恢复过程。 否则，请使用 [Microsoft Azure 的 SQL Server 托管备份](https://msdn.microsoft.com/library/dn449496.aspx)。
+**备份数据库**。 如果已在使用 [Azure 备份](/azure/backup/)来备份 VM，请考虑[使用 DPM 为 SQL 工作负荷配置 Azure 备份](/azure/backup/backup-azure-backup-sql/)。 使用此方法时，将为组织配置一个备份管理员角色，并为 VM 和 SQL Server 创建统一的恢复过程。 否则，请使用 [Microsoft Azure 的 SQL Server 托管备份](https://msdn.microsoft.com/library/dn449496.aspx)。
 
 ## <a name="traffic-manager"></a>流量管理器
 

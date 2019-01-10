@@ -3,12 +3,12 @@ title: 选择认知服务技术
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 0551bf05cb47cb3972b0d5f2e5226e23cbdacc68
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 13d510056e4b1ce6eeec603427658215691e48ab
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902539"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110980"
 ---
 # <a name="choosing-a-microsoft-cognitive-services-technology"></a>选择 Microsoft 认知服务技术
 
@@ -16,26 +16,33 @@ Microsoft 认知服务是基于云的 API，可以在人工智能 (AI) 应用程
 
 认知服务包括：
 
-* 文本分析
-* 计算机视觉
-* 视频分析
-* 语音识别和生成
-* 自然语言理解
-* 智能搜索
+- 文本分析
+- 计算机视觉
+- 视频分析
+- 语音识别和生成
+- 自然语言理解
+- 智能搜索
 
 主要优势：
 
-* 最大程度地降低了开发最先进人工智能服务所需的工作量。
-* 可以通过 HTTP REST 接口轻松集成到应用。
-* 内置了对在 Azure Data Lake Analytics 中使用认知服务的支持。
+- 最大程度地降低了开发最先进人工智能服务所需的工作量。
+- 可以通过 HTTP REST 接口轻松集成到应用。
+- 内置了对在 Azure Data Lake Analytics 中使用认知服务的支持。
 
 注意事项：
 
-* 仅可通过 Web 使用。 通常需要 Internet 连接。 自定义影像服务是一个例外，可以导出其训练后的模型，用于在设备上和 IoT Edge 处进行预测。
-* 虽然支持相当多的自定义，但是，可用的服务未必满足所有预测分析要求。
+- 仅可通过 Web 使用。 通常需要 Internet 连接。 自定义影像服务是一个例外，可以导出其训练后的模型，用于在设备上和 IoT Edge 处进行预测。
+
+- 虽然支持相当多的自定义，但是，可用的服务未必满足所有预测分析要求。
+
+<!-- markdownlint-disable MD026 -->
 
 ## <a name="what-are-your-options-when-choosing-amongst-the-cognitive-services"></a>在各个认知服务之间进行选择时有哪些选项？
+
+<!-- markdownlint-disable MD026 -->
+
 在 Azure 中，有许多认知服务可用。 按服务支持的功能区域进行了分类的目录中提供了这些服务的当前列表：
+
 - [影像](https://azure.microsoft.com/services/cognitive-services/directory/vision/)
 - [语音](https://azure.microsoft.com/services/cognitive-services/directory/speech/)
 - [知识](https://azure.microsoft.com/services/cognitive-services/directory/know/)
@@ -46,13 +53,13 @@ Microsoft 认知服务是基于云的 API，可以在人工智能 (AI) 应用程
 
 若要缩小选择范围，请先回答以下问题：
 
-- 要处理什么类型的数据？ 根据你处理的输入数据的类型缩小选项范围。 例如，如果输入是文本，请从输入类型为文本的服务中进行选择。 
+- 要处理什么类型的数据？ 根据你处理的输入数据的类型缩小选项范围。 例如，如果输入是文本，请从输入类型为文本的服务中进行选择。
 
-- 你是否有用来训练模型的数据？ 如果有，请考虑使用允许使用你提供的数据对其基础模型进行训练的自定义服务，以提高准确度和性能。 
+- 你是否有用来训练模型的数据？ 如果有，请考虑使用允许使用你提供的数据对其基础模型进行训练的自定义服务，以提高准确度和性能。
 
 ## <a name="capability-matrix"></a>功能矩阵
 
-以下各表汇总了功能上的关键差异。 
+以下各表汇总了功能上的关键差异。
 
 ### <a name="uses-prebuilt-models"></a>使用预构建的模型
 
@@ -89,7 +96,6 @@ Microsoft 认知服务是基于云的 API，可以在人工智能 (AI) 应用程
 | | 输入类型 | 主要优势 |
 | --- | --- | --- |
 | 自定义影像服务 | 图像（或视频中的帧） | 自定义自己的计算机视觉模型。 |
-| 自定义语音服务 | 语音 | 克服语音识别障碍，如说话风格、背景噪音和词汇。 | 
+| 自定义语音服务 | 语音 | 克服语音识别障碍，如说话风格、背景噪音和词汇。 |
 | 自定义决策服务 | Web 内容（例如，RSS 源） | 使用机器学习自动为主页选择合适的内容 |
 | 必应自定义搜索 API | 文本（Web 搜索查询） | 商业级搜索工具。 |
-

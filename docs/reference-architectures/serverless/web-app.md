@@ -5,12 +5,12 @@ description: 建议用于无服务器 Web 应用程序和 Web API 的体系结�
 author: MikeWasson
 ms.date: 10/16/2018
 ms.custom: seodec18
-ms.openlocfilehash: ee735ac4f23cc2a819e2322bd9c4fb3b5adf5f3b
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 71c6bcdb35ba19435566086386ba7260581fec19
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120285"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011389"
 ---
 # <a name="serverless-web-application-on-azure"></a>Azure 上的无服务器 Web 应用程序
 

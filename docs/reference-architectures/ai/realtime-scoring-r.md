@@ -2,14 +2,14 @@
 title: R 机器学习模型的实时评分
 description: 在 R 中使用运行于 Azure Kubernetes 服务 (AKS) 中的 Machine Learning Server 实现实时预测服务。
 author: njray
-ms.date: 12/12/18
+ms.date: 12/12/2018
 ms.custom: azcat-ai
-ms.openlocfilehash: a6069704c48fbc1f1a1e4b5df428011d6b5b883d
-ms.sourcegitcommit: 62d2211badd1d6950e8cb819d70c9a4ab1ee01d9
+ms.openlocfilehash: 6f3447d1dcab801ccdaf4cf88611725cc00eb68d
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53318986"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112271"
 ---
 # <a name="real-time-scoring-of-r-machine-learning-models"></a>R 机器学习模型的实时评分
 
@@ -51,7 +51,7 @@ Machine Learning Server [模型操作化][operationalization]要求对评分请�
 
 要使模型操作化与容器中的 Machine Learning Server 正常配合工作，必须安装 JSON Web 令牌 (JWT) 证书。 此部署使用 Microsoft 提供的证书。 在生产设置中，请提供自己的证书。
 
-对于容器注册表与 AKS 之间的流量，请考虑启用[基于角色的访问控制][rbac] (RBAC)，以将访问特权限制给需要这些特权的用户。 
+对于容器注册表与 AKS 之间的流量，请考虑启用[基于角色的访问控制][rbac] (RBAC)，以将访问特权限制给需要这些特权的用户。
 
 ### <a name="separate-storage"></a>独立的存储
 
