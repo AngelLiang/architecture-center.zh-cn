@@ -4,12 +4,12 @@ titleSuffix: Azure Example Scenarios
 description: 使用 Azure Cosmos DB 构建高度可缩放的订单处理管道。
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: fe4e9d64e96d0be66534198bc60e2a73dad43e84
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 285db7979f8a20ae75b534dcea5174b7151047ca
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644183"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160819"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Azure 上的可缩放订单处理
 
@@ -47,7 +47,7 @@ ms.locfileid: "53644183"
 
 ## <a name="considerations"></a>注意事项
 
-进行实时消息引入、数据存储、流处理、分析数据存储以及分析和报告时，有许多技术选项。 有关这些选项及其功能和主要选择标准的概述，请参阅 [Azure 数据体系结构指南](/azure/architecture/data-guide)中的[大数据体系结构：实时处理](/azure/architecture/data-guide/technology-choices/real-time-ingestion)。
+进行实时消息引入、数据存储、流处理、分析数据存储以及分析和报告时，有许多技术选项。 有关这些选项及其功能和主要选择标准的概述，请参阅 Azure 数据体系结构指南中的[大数据体系结构：实时处理](/azure/architecture/data-guide/technology-choices/real-time-ingestion)。
 
 微服务已成为一种流行的体系结构类型，可用于构建可复原、高度可缩放、可独立部署且能快速演变的云应用程序。 微服务需要利用不同的方法来设计和生成应用程序。 可以使用 Docker、Kubernetes、Azure Service Fabric 和 Nomad 之类的工具来开发基于微服务的体系结构。 有关如何生成并运行基于微服务的体系结构的指南，请参阅 Azure 体系结构中心的[在 Azure 上设计微服务](/azure/architecture/microservices)。
 

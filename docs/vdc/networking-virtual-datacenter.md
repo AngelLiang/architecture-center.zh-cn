@@ -7,12 +7,12 @@ tags: azure-resource-manager
 ms.service: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: 1d8a9e860ab1a66104dc4133eb5f22ffb4706b84
-ms.sourcegitcommit: 5a3fa0bf35376bbe4a6dd668f2d7d44f9cf9c806
+ms.openlocfilehash: f02cc7df1e90ba3de97a1c25777ab6d27bfdf697
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53411678"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011163"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Azure 虚拟数据中心：网络透视图
 
@@ -51,15 +51,6 @@ VDC 概念是一组建议和最佳做法，用于实现一系列独立但相关�
 -   跨工作负荷实现共享化或中心化的安全性和访问要求。
 -   为大型企业适当混合 Azure DevOps 和中心化 IT。
 
-解锁 VDC 优势的关键在于中心化拓扑（中心辐射型）和多项 Azure 功能的混合： 
-
-- [Azure 虚拟网络][VNet]。 
-- [网络安全组 (NSG)][NSG]。
-- [虚拟网络对等互连][VNetPeering]。 
-- [用户定义的路由 (UDR)][UDR]。
-- 采用[基于角色的访问控制 (RBAC)][RBAC] 的 Azure 标识服务。 
-- （可选）[Azure 防火墙][AzFW]、[Azure DNS][DNS]、[Azure Front Door][AFD] 和 [Azure 虚拟 WAN][vWAN]。
-
 解锁 VDC 优势的关键在于中心辐射型中心化网络拓扑，其中混合了多项 Azure 服务和功能：
 
 * [Azure 虚拟网络][VNet]；
@@ -79,9 +70,6 @@ VDC 概念是一组建议和最佳做法，用于实现一系列独立但相关�
 ## <a name="considerations-for-implementing-a-virtual-datacenter"></a>实现虚拟数据中心的注意事项
 
 设计 VDC 实现时，需考虑下述多个关键问题：
-
-### <a name="identity-and-directory-services"></a>标识和目录服务
-标识和目录服务是所有数据中心（本地数据中心和云数据中心）的关键方面。 标识与 VDC 内服务的访问和授权的各个方面相关。 为确保只有获得授权的用户和进程可以访问 Azure 帐户和资源，Azure 使用几种凭据进行身份验证。 这些凭据包括密码（用于访问 Azure 帐户）、加密密钥、数字签名和安全证书。 
 
 ### <a name="identity-and-directory-service"></a>标识和目录服务
 
@@ -340,7 +328,7 @@ Operations Management Suite 中的[网络性能监视器][NPM]解决方案提供
 
 **大数据/分析**：当数据需要增加到较大的量时，数据库可能无法正常地纵向扩展。 Hadoop 技术提供可在大量节点上并行运行所分配查询的系统。 客户可以选择在 IaaS VM 或 PaaS ([HDInsight][HDI]) 中运行数据工作负荷。 HDInsight 支持部署到基于位置的 VNet，可以部署到 VDC 分支中的群集。
 
-**事件和消息传送**：[Azure 事件中心][EventHubs]是超大规模的遥测引入服务，可收集、传输和存储数百万的事件。 作为分布式流式处理平台，它提供低延迟和可配置的保留时间，使用户可以将大量遥测数据引入到 Azure 中，并从多个应用程序中读取数据。 通过事件中心，单个流可以同时支持实时管道和基于批处理的管道。
+**事件和消息传送**：Azure 事件中心[EventHubs]是超大规模的遥测引入服务，可收集、传输和存储数百万的事件。 作为分布式流式处理平台，它提供低延迟和可配置的保留时间，使用户可以将大量遥测数据引入到 Azure 中，并从多个应用程序中读取数据。 通过事件中心，单个流可以同时支持实时管道和基于批处理的管道。
 
 可以通过 [Azure 服务总线][ServiceBus]在应用程序与服务之间实施高度可靠的云消息传送服务。 服务总线提供客户端与服务器之间的异步中转消息传送、结构化先进先出 (FIFO) 消息传送和发布/订阅功能。
 
