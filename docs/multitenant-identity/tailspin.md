@@ -1,17 +1,14 @@
 ---
 title: 关于 Tailspin Surveys 应用程序
-description: Tailspin Surveys 应用程序概述
+description: Tailspin Surveys 应用程序概述。
 author: MikeWasson
 ms.date: 07/21/2017
-pnp.series.title: Manage Identity in Multitenant Applications
-pnp.series.prev: index
-pnp.series.next: authenticate
-ms.openlocfilehash: a1c357bd1b5306d1255c66aaea96d86be55e7b77
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 95e170c584b8ec5694be69e595b7791c1bcdfdc0
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902062"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111455"
 ---
 # <a name="the-tailspin-scenario"></a>Tailspin 方案
 
@@ -25,10 +22,9 @@ Tailspin 是一家虚构公司，开发名为 Surveys 的 SaaS 应用程序。 �
 
 > [!NOTE]
 > 要开始使用此应用程序，请参阅[运行 Surveys 应用程序]。
-> 
-> 
 
 ## <a name="users-can-create-edit-and-view-surveys"></a>用户可以创建、编辑和查看调查
+
 经过身份验证的用户可以查看自己创建的或拥有参与者权限的所有调查，还可以创建新调查。 请注意，用户使用其组织身份 `bob@contoso.com` 登录。
 
 ![Surveys 应用](./images/surveys-screenshot.png)
@@ -42,7 +38,8 @@ Tailspin 是一家虚构公司，开发名为 Surveys 的 SaaS 应用程序。 �
 ![租户调查](./images/tenant-surveys.png)
 
 ## <a name="survey-owners-can-invite-contributors"></a>调查所有者可以邀请参与者
-用户创建调查时，他/她可以邀请其他人成为调查的参与者。 参与者可以编辑调查，但无法删除或发布调查。  
+
+用户创建调查时，他/她可以邀请其他人成为调查的参与者。 参与者可以编辑调查，但无法删除或发布调查。
 
 ![添加参与者](./images/add-contributor.png)
 
@@ -55,6 +52,7 @@ Alice 登录时，会看到“我可以参与的调查”下列出了该调查�
 请注意，Alice 是登录到她自己的租户，而不是作为 Contoso 租户的来宾登录。 Alice 仅拥有对该调查的参与者权限 &mdash; 而无法查看 Contoso 租户中的其他调查。
 
 ## <a name="architecture"></a>体系结构
+
 Surveys 应用程序由 Web 前端和 Web API 后端组成。 两者都通过使用 [ASP.NET Core] 实现。
 
 Web 应用程序使用 Azure Active Directory (Azure AD) 对用户进行身份验证。 Web 应用程序还调用 Azure AD 来获取 Web API 的 OAuth 2 访问令牌。 访问令牌在 Azure Redis 缓存中进行缓存。 通过缓存，多个实例可以共享同一令牌缓存（例如，在服务器场中）。
@@ -63,7 +61,7 @@ Web 应用程序使用 Azure Active Directory (Azure AD) 对用户进行身份�
 
 [**下一篇**][authentication]
 
-<!-- Links -->
+<!-- links -->
 
 [authentication]: authenticate.md
 

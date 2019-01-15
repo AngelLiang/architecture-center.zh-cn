@@ -5,12 +5,12 @@ description: 为设计过程中的复原能力考虑因素提供指导的查检�
 author: petertaylor9999
 ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 1201e2045c6a5f7be9c8286cd192559a8d66d169
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 1a3c7b899be1c61cc53eb9caee30f5153edeb5ae
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307446"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113597"
 ---
 # <a name="resiliency-checklist"></a>复原能力查检表
 
@@ -80,9 +80,9 @@ ms.locfileid: "53307446"
 **考虑使用异地冗余的存储帐户类型。** Azure 存储帐户中存储的数据始终在本地复制。 但是，在预配存储帐户时，有多个复制策略可供选择。 选择 [Azure 读取访问异地冗余存储 (RA-GRS)](/azure/storage/storage-redundancy/#read-access-geo-redundant-storage) 可以在整个区域不可用时（这种情况很罕见）保护应用程序数据。
 
 > [!NOTE]
-> 对于 VM，请不要依赖于 RA-GRS 复制来还原 VM 磁盘（VHD 文件）， 而应该使用 [Azure 备份][azure-backup]。
+> 对于 VM，请不要依赖于 RA-GRS 复制来还原 VM 磁盘（VHD 文件）， 而应该使用 [Azure 备份](/azure/backup)。
 
-## <a name="security"></a>“安全”
+## <a name="security"></a>安全
 
 **针对分布式拒绝服务 (DDoS) 攻击实施应用程序级保护。** Azure 服务可在网络层防范 DDos 攻击。 但是，Azure 无法防范应用程序层攻击，因为很难将真实用户请求与恶意用户请求区分开来。 有关如何防范应用程序层 DDoS 攻击的详细信息，请参阅 [Microsoft Azure 网络安全性](https://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf)中的“防范 DDoS”部分（PDF 下载）。
 
@@ -169,7 +169,6 @@ ms.locfileid: "53307446"
 [app-service-autoscale]: /azure/monitoring-and-diagnostics/insights-how-to-scale/
 [asynchronous-c-sharp]: /dotnet/articles/csharp/async
 [availability-sets]:/azure/virtual-machines/virtual-machines-windows-manage-availability/
-[azure-backup]: https://azure.microsoft.com/documentation/services/backup/
 [circuit-breaker]: ../patterns/circuit-breaker.md
 [cloud-service-autoscale]: /azure/cloud-services/cloud-services-how-to-scale/
 [fma]: ../resiliency/failure-mode-analysis.md

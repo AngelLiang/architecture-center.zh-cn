@@ -1,17 +1,17 @@
 ---
 title: 在多租户应用程序中注册和加入租户
-description: 如何在多租户应用程序中加入租户
+description: 如何在多租户应用程序中加入租户。
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: claims
 pnp.series.next: app-roles
-ms.openlocfilehash: 541a4dd9abb2168eef4a60a0ec99e1e7c06049b5
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: d112cb65e3cd8bae7b273a974bf8e5d2b04aff8a
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902470"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112713"
 ---
 # <a name="tenant-sign-up-and-onboarding"></a>租户注册和加入
 
@@ -25,6 +25,7 @@ ms.locfileid: "52902470"
 * 执行应用程序所需的任何按租户一次性设置。
 
 ## <a name="admin-consent-and-azure-ad-permissions"></a>管理员许可和 Azure AD 权限
+
 若要使用 Azure AD 进行身份验证，应用程序需要有权访问用户的目录。 应用程序最起码需要用户配置文件的读取权限。 当某个用户首次登录时，Azure AD 会显示许可页面，其中列出了请求的权限。 用户单击“接受”即表示向应用程序授予了权限。
 
 默认情况下，许可是按用户授予的。 每个登录用户都会看到许可页面。 但是，Azure AD 还支持管理员许可：可让 AD 管理员许可整个组织的访问。
@@ -39,9 +40,10 @@ ms.locfileid: "52902470"
 
 ![许可错误](./images/consent-error.png)
 
-如果应用程序后来需要其他权限，则客户需要再次登录，并许可更新的权限。  
+如果应用程序后来需要其他权限，则客户需要再次登录，并许可更新的权限。
 
 ## <a name="implementing-tenant-sign-up"></a>实施租户注册
+
 针对 [Tailspin Surveys][Tailspin] 应用程序，我们定义了有关注册过程的几项要求：
 
 * 在用户可以登录之前，租户必须注册。
@@ -58,7 +60,7 @@ ms.locfileid: "52902470"
 
 这些按钮调用 `AccountController` 类中的操作。
 
-`SignIn` 操作返回 **ChallegeResult**，导致 OpenID Connect 中间件重定向到身份验证终结点。 这是在 ASP.NET Core 中触发身份验证的默认方式。  
+`SignIn` 操作返回 **ChallegeResult**，导致 OpenID Connect 中间件重定向到身份验证终结点。 这是在 ASP.NET Core 中触发身份验证的默认方式。
 
 ```csharp
 [AllowAnonymous]
@@ -101,11 +103,16 @@ public IActionResult SignUp()
 用户在 Azure AD 中完成身份验证并重定向回到应用程序之后，身份验证票证包含状态。 我们将使用此事实数据来确保整个身份验证流中保留“signup”值。
 
 ## <a name="adding-the-admin-consent-prompt"></a>添加管理员许可提示
+
 在 Azure AD 中，可以通过将“prompt”参数添加到身份验证请求中的查询字符串来触发管理员许可流：
+
+<!-- markdownlint-disable MD040 -->
 
 ```
 /authorize?prompt=admin_consent&...
 ```
+
+<!-- markdownlint-enable MD040 -->
 
 Surveys 应用程序在 `RedirectToAuthenticationEndpoint` 事件期间添加提示。 调用此事件之后，紧接着中间件会重定向到身份验证终结点。
 
@@ -122,7 +129,7 @@ public override Task RedirectToAuthenticationEndpoint(RedirectContext context)
 }
 ```
 
-设置 ` ProtocolMessage.Prompt` 会告知中间件要将“prompt”参数添加到身份验证请求。
+设置 `ProtocolMessage.Prompt` 会告知中间件要将“prompt”参数添加到身份验证请求。
 
 请注意，仅在注册期间才需要提示。 常规登录不应包含提示。 为了区分这两种情况，让我们查看身份验证状态中的 `signup` 值。 以下扩展方法检查此条件：
 
@@ -143,7 +150,8 @@ internal static bool IsSigningUp(this BaseControlContext context)
     bool isSigningUp;
     if (!bool.TryParse(signupValue, out isSigningUp))
     {
-        // The value for signup is not a valid boolean, throw                
+        // The value for signup is not a valid boolean, throw
+
         throw new InvalidOperationException($"'{signupValue}' is an invalid boolean value");
     }
 
@@ -152,6 +160,7 @@ internal static bool IsSigningUp(this BaseControlContext context)
 ```
 
 ## <a name="registering-a-tenant"></a>注册租户
+
 Surveys 应用程序在应用程序数据库中存储有关每个租户和用户的一些信息。
 
 ![租户表](./images/tenant-table.png)
@@ -255,7 +264,8 @@ private async Task<Tenant> SignUpTenantAsync(BaseControlContext context, TenantM
 
 [**下一篇**][app roles]
 
-<!-- Links -->
+<!-- links -->
+
 [app roles]: app-roles.md
 [Tailspin]: tailspin.md
 

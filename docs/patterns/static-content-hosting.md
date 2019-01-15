@@ -1,24 +1,19 @@
 ---
-title: 静态内容托管
+title: 静态内容托管模式
+titleSuffix: Cloud Design Patterns
 description: 将静态内容部署到基于云的存储服务，再由后者将它们直接传送给客户端。
 keywords: 设计模式
 author: dragon119
-ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- design-implementation
-- performance-scalability
-ms.openlocfilehash: 450d0c4c08098c1ba48e4c0dac3d058a46e3709b
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 01/04/2019
+ms.custom: seodec18
+ms.openlocfilehash: cf4f65e935a01e4d84b3cc82b5779edb729bd80e
+ms.sourcegitcommit: 036cd03c39f941567e0de4bae87f4e2aa8c84cf8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428204"
+ms.lasthandoff: 01/05/2019
+ms.locfileid: "54058176"
 ---
 # <a name="static-content-hosting-pattern"></a>静态内容托管模式
-
-[!INCLUDE [header](../_includes/header.md)]
 
 将静态内容部署到基于云的存储服务，再由后者将它们直接传送给客户端。 这样可降低对可能很昂贵的计算实例的需求。
 
@@ -26,11 +21,11 @@ ms.locfileid: "47428204"
 
 Web 应用程序通常包括某些静态内容元素。 此静态内容可能包括 HTML 页面和其他资源，例如可供客户端使用的图像和文档，以 HTML 页面内容（例如内联图像、样式表、客户端 JavaScript 文件）或独立下载项目（例如 PDF 文档）的形式提供。
 
-Web 服务器已经过优化，可以通过高效且动态地执行页面代码以及对输出进行缓存来优化请求，但仍需处理下载静态内容的请求。 这样会占用那些通常可以有更好用途的处理周期。
+虽然 Web 服务器已经过优化，可以动态地进行呈现和输出缓存，但仍需处理下载静态内容的请求。 这样会占用那些通常可以有更好用途的处理周期。
 
 ## <a name="solution"></a>解决方案
 
-在大多数云托管环境中，可以将应用程序的部分资源和静态页面放置到存储服务中，尽量降低对计算实例的需求（例如，使用较小或较少的实例）。 基于云的存储相对于计算实例来说，其成本通常要低得多。
+在大多数云托管环境中，可以将应用程序的部分资源和静态页面放置到存储服务中。 存储服务可以为这些资源处理请求，减少那些处理其他 Web 请求的计算资源上的负载。 基于云的存储相对于计算实例来说，其成本通常要低得多。
 
 将应用程序的一些部件托管在存储服务中时，主要考虑因素涉及应用程序的部署，以及保护那些不应提供给匿名用户的资源。
 
@@ -48,7 +43,9 @@ Web 服务器已经过优化，可以通过高效且动态地执行页面代码�
 
 - 存储服务可能不支持使用自定义域名。 在这种情况下，需在链接中指定资源的完整 URL，因为其所在的域不同于动态生成的包含链接的内容所在的域。
 
-- 必须将存储容器配置为允许公开读取访问，但不得将其配置为允许公开写入访问，防止用户上传内容。 考虑使用辅助密钥或令牌来控制不允许匿名使用的资源的访问。有关详细信息，请参阅[辅助密钥模式](valet-key.md)。
+- 必须将存储容器配置为允许公开读取访问，但不得将其配置为允许公开写入访问，防止用户上传内容。
+
+- 考虑使用附属密钥或令牌来控制不允许匿名使用的资源的访问。 有关详细信息，请参阅[附属密钥模式](./valet-key.md)。
 
 ## <a name="when-to-use-this-pattern"></a>何时使用此模式
 
@@ -72,30 +69,15 @@ Web 服务器已经过优化，可以通过高效且动态地执行页面代码�
 
 ## <a name="example"></a>示例
 
-位于 Azure Blob 存储中的静态内容可以直接通过 Web 浏览器来访问。 对于可以公开给客户端的存储，Azure 提供基于 HTTP 的界面。 例如，Azure Blob 存储容器中的内容使用以下形式的 URL 公开：
+Azure 存储允许直接从存储容器提供静态内容。 文件通过匿名访问请求来获取。 默认情况下，文件的 URL 在 `core.windows.net` 的子域中，例如 `https://contoso.z4.web.core.windows.net/image.png`。 可以配置自定义域名，然后使用 Azure CDN 通过 HTTPS 来访问文件。 有关详细信息，请参阅 [Azure 存储中的静态网站托管](/azure/storage/blobs/storage-blob-static-website)。
 
-`https://[ storage-account-name ].blob.core.windows.net/[ container-name ]/[ file-name ]`
+![直接从存储服务交付应用程序静态部分的内容](./_images/static-content-hosting-pattern.png)
 
+静态网站托管功能使文件可供匿名访问。 若需控制访问文件的用户，可以将文件存储在 Azure Blob 存储中，然后生成[共享访问签名](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)来限制访问。
 
-上传内容时，需创建一个或多个 Blob 容器来存储文件和文档。 请注意，新容器的默认权限为“专用”，必须将其更改为“公用”，然后客户端才能访问其中的内容。 如果必须防止内容被匿名访问，可以实施[辅助密钥模式](valet-key.md)，使用户必须提供有效的令牌才能下载资源。
+交付给客户端的页面中的链接必须指定资源的完整 URL。 如果通过附属密钥（例如共享访问签名）对资源进行保护，则 URL 中必须包含该签名。
 
-> [Blob Service Concepts](https://msdn.microsoft.com/library/azure/dd179376.aspx)（Blob 服务概念）介绍了 Blob 存储及其访问和使用方式。
-
-每页中的链接会指定资源的 URL，客户端可以直接从存储服务对其进行访问。 下图说明了如何直接从存储服务交付应用程序静态部分的内容。
-
-![图 1 - 直接从存储服务交付应用程序静态部分的内容](./_images/static-content-hosting-pattern.png)
-
-
-交付给客户端的页面中的链接必须指定 Blob 容器和资源的完整 URL。 例如，包含公共容器中图像的链接的页面可能包含以下 HTML。
-
-```html
-<img src="https://mystorageaccount.blob.core.windows.net/myresources/image1.png"
-     alt="My image" />
-```
-
-> 如果通过辅助密钥（例如 Azure 共享访问签名）对资源进行保护，则链接的 URL 中必须包含该签名。
-
-[GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting) 中提供了一个名为 StaticContentHosting 的解决方案，演示了如何使用外部存储来存储静态资源。 StaticContentHosting.Cloud 项目包含的配置文件指定了用于存储静态内容的存储帐户和容器。
+[GitHub][sample-app] 上提供了一个示例应用程序，演示了如何使用外部存储来存储静态资源。 此示例使用的配置文件指定了用于存储静态内容的存储帐户和容器。
 
 ```xml
 <Setting name="StaticContent.StorageConnectionString"
@@ -167,6 +149,8 @@ Views\Home 文件夹中的 Index.cshtml 文件包含的图像元素使用 `Stati
 
 ## <a name="related-patterns-and-guidance"></a>相关模式和指南
 
-- 演示此模式的示例可在 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting) 上找到。
-- [辅助密钥模式](valet-key.md)。 如果不应将目标资源提供给匿名用户，则需对静态内容所在的存储实施安全措施。 描述如何使用令牌或密钥，让客户端以受限直接访问方式访问特定资源或服务（例如云托管存储服务）。
-- [Blob Service Concepts](https://msdn.microsoft.com/library/azure/dd179376.aspx)（Blob 服务概念）
+- [静态内容托管示例][sample-app]。 演示此模式的示例应用程序。
+- [辅助密钥模式](./valet-key.md)。 如果不应将目标资源提供给匿名用户，则请使用此模式来限制直接访问。
+- [Azure 上的无服务器 Web 应用程序](../reference-architectures/serverless/web-app.md)。 一个参考体系结构，可将静态网站托管功能与 Azure Functions 配合使用，以便实现无服务器 Web 应用。
+
+[sample-app]: https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting

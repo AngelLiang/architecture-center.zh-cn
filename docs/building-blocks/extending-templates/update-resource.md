@@ -1,14 +1,14 @@
 ---
 title: 在 Azure 资源管理器模板上更新资源
-description: 介绍了如何扩展 Azure 资源管理器模板的功能来更新资源
+description: 介绍如何扩展 Azure 资源管理器模板的功能来更新资源。
 author: petertay
 ms.date: 10/31/2018
-ms.openlocfilehash: dc97534e658c9728ac617b4e52031e2553600458
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: 927826283163b2ae45575035168d6238de98dc00
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251815"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113410"
 ---
 # <a name="update-a-resource-in-an-azure-resource-manager-template"></a>在 Azure 资源管理器模板上更新资源
 
@@ -20,7 +20,7 @@ ms.locfileid: "50251815"
 
 ## <a name="example-template"></a>示例模板
 
-让我们看一下演示此操作的示例模板。 我们的模板部署一个名为 `firstVNet` 的虚拟网络，其中包含一个名为 `firstSubnet` 的子网。 然后，它将部署一个名为 `nic1` 的虚拟网络接口 (NIC)，并将其与我们的子网相关联。 然后，一个名为 `updateVNet` 的部署资源包括通过添加名为 `secondSubnet` 的辅助子网来更新 `firstVNet` 资源的嵌套模板。 
+让我们看一下演示此操作的示例模板。 我们的模板部署一个名为 `firstVNet` 的虚拟网络，其中包含一个名为 `firstSubnet` 的子网。 然后，它将部署一个名为 `nic1` 的虚拟网络接口 (NIC)，并将其与我们的子网相关联。 然后，一个名为 `updateVNet` 的部署资源包括通过添加名为 `secondSubnet` 的辅助子网来更新 `firstVNet` 资源的嵌套模板。
 
 ```json
 {
@@ -37,7 +37,7 @@ ms.locfileid: "50251815"
           "addressSpace":{"addressPrefixes": [
               "10.0.0.0/22"
           ]},
-          "subnets":[              
+          "subnets":[
               {
                   "name":"firstSubnet",
                   "properties":{
@@ -130,11 +130,11 @@ az group deployment create -g <resource-group-name> \
     --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example1-update/deploy.json
 ```
 
-在部署完成后，打开在门户中指定的资源组。 将看到名为 `firstVNet` 的虚拟网络和名为 `nic1` 的 NIC。 单击 `firstVNet`，并单击 `subnets`。 会看到原来创建的 `firstSubnet`，还会看到已在 `updateVNet` 资源中添加的 `secondSubnet`。 
+在部署完成后，打开在门户中指定的资源组。 将看到名为 `firstVNet` 的虚拟网络和名为 `nic1` 的 NIC。 单击 `firstVNet`，并单击 `subnets`。 会看到原来创建的 `firstSubnet`，还会看到已在 `updateVNet` 资源中添加的 `secondSubnet`。
 
 ![原始子网和更新后的子网](../_images/firstVNet-subnets.png)
 
-然后，返回到资源组并单击 `nic1`，并单击 `IP configurations`。 在 `IP configurations` 部分中，`subnet` 设置为 `firstSubnet (10.0.0.0/24)`。 
+然后，返回到资源组并单击 `nic1`，并单击 `IP configurations`。 在 `IP configurations` 部分中，`subnet` 设置为 `firstSubnet (10.0.0.0/24)`。
 
 ![nic1 IP 配置设置](../_images/nic1-ipconfigurations.png)
 

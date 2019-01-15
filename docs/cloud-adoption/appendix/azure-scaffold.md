@@ -4,14 +4,14 @@ description: 本文介绍一个基架，企业可以使用它来确保环境的�
 author: rdendtler
 ms.author: rodend
 ms.date: 9/22/2018
-ms.openlocfilehash: a1962a3d5be79715de4781d955b6be1db5923bea
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 66af73f5bfc7f7145c20446af05f33a9d69e6c28
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429277"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011729"
 ---
-# <a name="azure-enterprise-scaffold-prescriptive-subscription-governance"></a>Azure 企业基架：规范性订阅管理
+# <a name="azure-enterprise-scaffold-prescriptive-subscription-governance"></a>Azure 企业基架：出于合规目的监管订阅
 
 为了敏捷性和灵活性，企业越来越多地采用公有云。 它们利用云的优势来产生营收和优化企业资源使用情况。 Microsoft Azure 提供多种不同的服务和功能，企业可以像构建块一样将它们组合，解决广泛的工作负荷与应用程序需求。
 
@@ -124,7 +124,6 @@ Microsoft 最近发布了一种新的层次结构建模方法：[Azure 管理组
 ## <a name="azure-policy-and-initiatives"></a>Azure Policy 和计划
 
 基架的第二个支柱涉及使用 [Azure Policy 和计划](/azure/azure-policy/azure-policy-introduction)来管理风险，具体方法是对订阅中的资源和服务强制实施规则（具有效果）。 Azure 计划是策略的集合，旨在实现一个目标。 然后，会将 Azure Policy 和计划分配到资源作用域，从而开始特定策略的强制实施。
-<计划/策略/工作的图像>
 
 与上文所述的管理组结合使用时，Azure Policy 和计划的功能更强大。 管理组可将计划或策略分配给整个订阅集。
 
@@ -225,9 +224,9 @@ AzSK 是一套丰富的工具、脚本和信息，它们是完整 Azure 管理�
 
 * **警报**：可从 Azure 资源收集每个日志、事件和指标，但由于无法获得关键条件和行为的通知，此数据仅可用于历史用途和取证。 Azure 警报会主动通知你在所有应用程序和基础结构中定义的条件。 可在使用操作组通知收件人组的日志、事件和指标之间创建预警规则。 操作组还提供使用外部操作（如 Webhook）自动执行修复的功能，以运行 Azure 自动化 runbook 和 Azure Functions。
 
-* **仪表板**：使用仪表板可聚合监视视图，并在资源和订阅间合并数据，从而提供整个企业范围内 Azure 资源遥测数据的视图。 可创建和配置自己的视图，并与他人共享。 例如，可为 DBA 创建一个由各种磁贴组成的仪表板，以提供所有 Azure 数据库服务的信息，包括 Azure SQL DB、用于 PostgreSQL 的 Azure DB 和用于 MySQL 的 Azure DB。
+* **仪表板**：使用仪表板可聚合监视视图，并跨资源和订阅合并数据，提供整个企业范围内 Azure 资源遥测数据的视图。 可创建和配置自己的视图，并与他人共享。 例如，可为 DBA 创建一个由各种磁贴组成的仪表板，以提供所有 Azure 数据库服务的信息，包括 Azure SQL DB、用于 PostgreSQL 的 Azure DB 和用于 MySQL 的 Azure DB。
 
-* **指标资源管理器**：指标是 Azure 资源（例如 % CPU、Disk I/O）生成的数值，可提供对资源操作和性能的见解。 通过指标资源管理器，可定义指标并将感兴趣的指标发送到 Log Analytics 进行聚合和分析。
+* **指标资源管理器**：指标是 Azure 资源生成的数字值（例如 CPU 百分比、磁盘 I/O），用于了解资源的操作和性能。 通过指标资源管理器，可定义指标并将感兴趣的指标发送到 Log Analytics 进行聚合和分析。
 
 ### <a name="core-monitoring"></a>核心监视
 
@@ -241,7 +240,7 @@ AzSK 是一套丰富的工具、脚本和信息，它们是完整 Azure 管理�
 
 ### <a name="deep-application-monitoring"></a>深度应用程序监视
 
-* **Application Insights**：使用 Application Insights 可收集特定于应用程序的遥测数据，并可监视云或本地应用程序的性能、可用性和使用情况。 通过使用支持的 SDK 为多种语言（包括 .NET、JavaScript、JAVA、Node.js、Ruby 和 Python）检测应用程序。 Application Insights 事件已引入支持基础结构和安全性监视的同一 Log Analytics 数据存储中，从而可通过丰富的查询语言随着时间推移关联和聚合事件。
+* **Application Insights**：使用 Application Insights 可收集特定于应用程序的遥测数据，并可监视云中或本地的应用程序的性能、可用性和使用情况。 通过使用支持的 SDK 为多种语言（包括 .NET、JavaScript、JAVA、Node.js、Ruby 和 Python）检测应用程序。 Application Insights 事件已引入支持基础结构和安全性监视的同一 Log Analytics 数据存储中，从而可通过丰富的查询语言随着时间推移关联和聚合事件。
 
 ### <a name="deep-infrastructure-monitoring"></a>深度基础结构监视
 
@@ -267,7 +266,7 @@ Microsoft 提供了多种工具，以便直观显示、跟踪和管理成本。 
 这些工具可提供有关成本的即时信息以及执行操作的功能
 
 * **订阅资源成本**：借助位于门户中的 [Azure 成本分析](/azure/cost-management/overview)视图，可快速查看有关资源或资源组的成本和每日支出信息。
-* **Azure 成本管理**：此产品是 Microsoft 购买 Cloudyn 的结果，通过该产品可管理和分析 Azure 支出以及其他公有云提供程序上的支出。 功能丰富的免费层和付费层均可供选择，如[概述](/azure/cost-management/overview)所示。
+* **Azure 成本管理**：此产品是 Microsoft 购买 Cloudyn 的结果，用于管理和分析 Azure 支出以及其他公有云服务提供商上的支出。 功能丰富的免费层和付费层均可供选择，如[概述](/azure/cost-management/overview)所示。
 * **Azure 预算和操作组**直到最近，了解某些内容的成本并对其采取措施，更多的是手动操作。 随着 Azure 预算及其 API 的引入，现在可在成本达到阈值时创建操作（如[此](https://channel9.msdn.com/Shows/Azure-Friday/Managing-costs-with-the-Azure-Budgets-API-and-Action-Groups)示例中所示）。 例如，当“测试”资源组达到预算的 100% 时，关闭该资源组，或 [另一示例]。
 * **Azure 顾问**了解某些内容的成本仅完成了任务的一半，另一半在于了解如何处理该信息。 [Azure 顾问](/azure/advisor/advisor-overview)为节省资金、提高可靠性甚至提高安全性要执行的操作提供了建议。
 
@@ -281,7 +280,7 @@ Microsoft 提供了多种工具，以便直观显示、跟踪和管理成本。 
 
 * **主动监视成本**。 熟练 Azure 用户的组织会不断监视成本，并在需要采取措施。 某些组织甚至派人专门进行分析并对使用情况的更改提出建议，当这些人员首次找到已运行数月的未使用的 HDInsight 群集时，即可收回成本。
 * **使用预留实例**。 管理云中成本的另一个关键租户是使用合适的工具来完成作业。 如果 IaaS VM 必须全天候运行，那么使用预留实例将能够节省大量资金。 权衡自动关闭 VM 和使用 RI 需要经验和分析。
-* **有效地使用自动化**：许多工作负载无需每天运行。 即使每天将 VM 关闭 4 小时也可节省 15% 的成本。 自动化将很快收回成本。
+* **有效地使用自动化**：许多工作负荷无需每天运行。 即使每天将 VM 关闭 4 小时也可节省 15% 的成本。 自动化将很快收回成本。
 * **使用资源标记来提高可见性**：如本文档其他部分所述，使用资源标记可更好地分析成本。
 
 成本管理是有效且高效运行公有云的核心策略。 成功的企业能够控制成本，使成本与实际需求相匹配，而不是过度购买和希望出现需求。

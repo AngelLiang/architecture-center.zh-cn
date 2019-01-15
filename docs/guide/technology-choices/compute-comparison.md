@@ -1,20 +1,24 @@
 ---
 title: 选择 Azure 计算服务的条件
-description: 跨多个轴比较 Azure 计算服务
+titleSuffix: Azure Application Architecture Guide
+description: 跨多个轴比较 Azure 计算服务。
 author: MikeWasson
 ms.date: 08/08/2018
-ms.openlocfilehash: dbd5314c4c77e83f5b45ef0b49e83860479c8f92
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seojan19
+ms.openlocfilehash: 4874e68d6ac1b9bac2bc1e4d2ac3c8c2f1a428d6
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916358"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112237"
 ---
 # <a name="criteria-for-choosing-an-azure-compute-service"></a>选择 Azure 计算服务的条件
 
 术语“计算”指的是计算资源（应用程序在这些资源上运行）的承载模型。 下表在多个轴之间比较 Azure 计算服务。 为应用程序选择计算选项时，请参阅这些表。
 
 ## <a name="hosting-model"></a>托管模型
+
+<!-- markdownlint-disable MD033 -->
 
 | 条件 | 虚拟机 | 应用服务 | Service Fabric | Azure Functions | Azure Kubernetes 服务 | 容器实例 | Azure 批处理 |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
@@ -47,8 +51,7 @@ ms.locfileid: "50916358"
 说明
 
 1. <span id="note1b">选项包括 IIS Express for ASP.NET 或 node.js (iisnode)；PHP web 服务器；Azure Toolkit for IntelliJ，Azure Toolkit for Eclipse。应用服务还支持对已部署的 web 应用进行远程调试。</span>
-2. <span id="note2b">请参阅[资源管理器提供程序、区域、API 版本和架构][resource-manager-supported-services]。</span> 
-
+2. <span id="note2b">请参阅[资源管理器提供程序、区域、API 版本和架构][resource-manager-supported-services]。</span>
 
 ## <a name="scalability"></a>可伸缩性
 
@@ -67,7 +70,7 @@ ms.locfileid: "50916358"
 | 条件 | 虚拟机 | 应用服务 | Service Fabric | Azure Functions | Azure Kubernetes 服务 | 容器实例 | Azure 批处理 |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | SLA | [虚拟机的 SLA][sla-vm] | [应用服务的 SLA][sla-app-service] | [Service Fabric 的 SLA][sla-sf] | [Functions 的 SLA][sla-functions] | [AKS 的 SLA][sla-acs] | [容器实例的 SLA](https://azure.microsoft.com/support/legal/sla/container-instances/) | [Azure 批处理的 SLA][sla-batch] |
-| 多区域故障转移 | 流量管理器 | 流量管理器 | 流量管理器，多区域群集 | 不支持  | 流量管理器 | 不支持 | 不支持 |
+| 多区域故障转移 | 流量管理器 | 流量管理器 | 流量管理器，多区域群集 | 不支持 | 流量管理器 | 不支持 | 不支持 |
 
 ## <a name="other"></a>其他
 
@@ -76,6 +79,8 @@ ms.locfileid: "50916358"
 | SSL | 已在 VM 中配置 | 支持 | 支持  | 支持 | [入口控制器](/azure/aks/ingress) | 使用[挎斗](../../patterns/sidecar.md)容器 | 支持 |
 | 成本 | [Windows][cost-windows-vm][Linux][cost-linux-vm] | [应用服务定价][cost-app-service] | [Service Fabric 定价][cost-service-fabric] | [Azure Functions 定价][cost-functions] | [AKS 定价][cost-acs] | [容器实例定价](https://azure.microsoft.com/pricing/details/container-instances/) | [Azure 批处理定价][cost-batch]
 | 合适的体系结构样式 | [N 层][n-tier]、[大计算][big-compute] (HPC) | [Web-队列-辅助角色][w-q-w]、[N 层][n-tier] | [微服务][microservices]、[事件驱动型体系结构][event-driven] | [微服务][microservices]、[事件驱动型体系结构][event-driven] | [微服务][microservices]、[事件驱动型体系结构][event-driven] | [微服务][microservices]、任务自动化、批处理作业  | [大计算][big-compute] (HPC) |
+
+<!-- markdownlint-enable MD033 -->
 
 [cost-linux-vm]: https://azure.microsoft.com/pricing/details/virtual-machines/linux/
 [cost-windows-vm]: https://azure.microsoft.com/pricing/details/virtual-machines/windows/

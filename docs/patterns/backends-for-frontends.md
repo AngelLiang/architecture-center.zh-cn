@@ -1,14 +1,17 @@
 ---
 title: 用于前端的后端模式
+titleSuffix: Cloud Design Patterns
 description: 创建单独的后端服务，供特定的前端应用程序或接口使用。
+keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: a0dbc9ab58aa218f6faf40b70dad1bdc22d71458
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 1fc597ded3e87ca7b4a200a13af9dce5ba2dbec5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428782"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009740"
 ---
 # <a name="backends-for-frontends-pattern"></a>用于前端的后端模式
 
@@ -18,23 +21,23 @@ ms.locfileid: "47428782"
 
 应用程序最初可能面向桌面 Web UI。 通常并行开发提供该 UI 所需功能的后端服务。 随着应用程序用户群的增长，开发出了必须与同一后端交互的移动应用程序。 后端服务成为一般用途的后端，满足桌面和移动接口的需求。
 
-但移动设备和桌面浏览器在屏幕大小、性能和显示限制方面的功能存在显著差异。 因此，移动应用程序和桌面 Web UI 对后端的需求也有所不同。 
+但移动设备和桌面浏览器在屏幕大小、性能和显示限制方面的功能存在显著差异。 因此，移动应用程序和桌面 Web UI 对后端的需求也有所不同。
 
 这些差异导致两者对后端的需求相互冲突。 为向桌面 Web UI 和移动应用程序提供服务，后端需要进行常规更改和重大更改。 单独的接口团队通常致力于每个前端，导致后端成为开发过程中的瓶颈。 矛盾的更新需求以及让服务适用于这两个前端的需要会导致在一个可部署资源上花费大量精力。
 
-![](./_images/backend-for-frontend.png) 
+![用于前端的后端模式的上下文和问题图](./_images/backend-for-frontend.png)
 
-因为开发活动注重后端服务，所以可能要建立单独的团队来管理和维护后端。 这最终导致接口和后端开发团队之间的连接断开，为平衡不同 UI 团队冲突的需求而增加后端团队的负担。 一个接口团队要求更改后端时，必须先与其他接口团队验证这些更改，然后才能将其集成到后端。 
+因为开发活动注重后端服务，所以可能要建立单独的团队来管理和维护后端。 这最终导致接口和后端开发团队之间的连接断开，为平衡不同 UI 团队冲突的需求而增加后端团队的负担。 一个接口团队要求更改后端时，必须先与其他接口团队验证这些更改，然后才能将其集成到后端。
 
 ## <a name="solution"></a>解决方案
 
 为每个用户界面创建一个后端。 在无需担心影响其他前端体验的情况下，微调每个后端的行为和性能以最大程度地满足前端环境的需求。
 
-![](./_images/backend-for-frontend-example.png) 
+![用于前端的后端模式的示意图](./_images/backend-for-frontend-example.png)
 
 每个后端特定于一个接口，因此可针对该接口优化后端。 因此，与试图满足所有接口的需求的泛型后端相比，它更小、复杂性更低并且速度可能更快。 每个接口团队可自主控制其后端，无需依赖于集中式后端开发团队。 这向接口团队提供了后端的语言选择、发布节奏、工作负载优先顺序和功能集成方面的灵活性。
 
-有关详细信息，请参阅[模式：用于前端的后端](https://samnewman.io/patterns/architectural/bff/)。
+有关详细信息，请参阅 [Pattern:Backends For Frontends](https://samnewman.io/patterns/architectural/bff/)（模式：用于前端的后端）。
 
 ## <a name="issues-and-considerations"></a>问题和注意事项
 
@@ -64,5 +67,3 @@ ms.locfileid: "47428782"
 - [网关聚合模式](./gateway-aggregation.md)
 - [网关卸载模式](./gateway-offloading.md)
 - [网关路由模式](./gateway-routing.md)
-
-

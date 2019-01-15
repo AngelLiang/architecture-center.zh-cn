@@ -3,14 +3,14 @@ title: SAP 工作负荷的开发/测试环境
 titleSuffix: Azure Example Scenarios
 description: 为 SAP 工作负荷构建开发/测试环境。
 author: AndrewDibbins
-ms.date: 7/11/18
+ms.date: 07/11/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 3f6c828e8757a3f82ad6972a8f21cd2fed629162
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 9f9e8ec971373e4309703800c200ba2c62fe9a66
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643962"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111013"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Azure 上的 SAP 工作负荷的开发/测试环境
 
@@ -31,12 +31,12 @@ ms.locfileid: "53643962"
 
 ## <a name="architecture"></a>体系结构
 
-![SAP 工作负荷的开发/测试环境的体系结构图](media/architecture-sap-dev-test.png)
+![SAP 工作负荷的开发/测试环境的体系结构图](./media/architecture-sap-dev-test.png)
 
 本方案演示如何在单个虚拟机上预配单个 SAP 系统数据库和 SAP 应用程序服务器。 数据流经方案的情形如下所示：
 
 1. 客户使用 SAP 用户界面或其他客户端工具（Excel、Web 浏览器或其他 Web 应用程序）来访问基于 Azure 的 SAP 系统。
-2. 使用既定的 ExpressRoute 来提供连接。 ExpressRoute 连接在 Azure 中的 ExpressRoute 网关处终止。 网络流量的路径是：通过 ExpressRoute 网关到达网关子网，再从网关子网到达应用程序层辐射子网（参见[中心辐射][hub-spoke]模式），最后通过网络安全网关到达 SAP 应用程序虚拟机。
+2. 使用既定的 ExpressRoute 来提供连接。 ExpressRoute 连接在 Azure 中的 ExpressRoute 网关处终止。 网络流量的路径是：通过 ExpressRoute 网关到达网关子网，再从网关子网到达应用程序层辐射子网（参见[中心辐射网络拓扑][hub-spoke]），最后通过网络安全网关到达 SAP 应用程序虚拟机。
 3. 标识管理服务器提供身份验证服务。
 4. 跳转盒提供本地管理功能。
 
@@ -52,7 +52,7 @@ ms.locfileid: "53643962"
 
 ### <a name="availability"></a>可用性
 
- Microsoft 提供了用于单个 VM 实例的服务级别协议 (SLA)。 若要详细了解适用于虚拟机的 Microsoft Azure 服务级别协议，请参阅[虚拟机的 SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines)
+Microsoft 提供了用于单个 VM 实例的服务级别协议 (SLA)。 若要详细了解适用于虚拟机的 Microsoft Azure 服务级别协议，请参阅[虚拟机的 SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines)
 
 ### <a name="scalability"></a>可伸缩性
 

@@ -5,12 +5,12 @@ description: 有关在 Azure 大型实例上的高可用性环境中运行 SAP H
 author: lbrader
 ms.date: 05/16/2018
 ms.custom: seodec18
-ms.openlocfilehash: ef3c57f292024af0abbeb4ead62ab4b3aeb57a90
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 47953037827923ea0e4f492dfc29ce815072a20e
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644081"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011355"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>运行 Azure SAP HANA 大型实例
 
@@ -41,7 +41,7 @@ ms.locfileid: "53644081"
 
 - **网络文件系统 (NFS) 存储**。 [NFS][nfs] 服务器支持网络文件共享。网络文件共享为 HANA 大型实例提供安全的数据保留。
 
-- **ExpressRoute**。 要在本地网络与 Azure 虚拟网络之间创建不经由公共 Internet 的专用连接，我们建议使用 [ExpressRoute][expressroute] Azure 网络服务。 Azure VM 使用另一个 ExpressRoute 连接来与 HANA 大型实例建立连接。 Azure 虚拟网络与 HANA 大型实例之间的 ExpressRoute 连接设置为 Microsoft 产品/服务的一部分。
+- **ExpressRoute**。 若要在本地网络与 Azure 虚拟网络之间创建不经由公共 Internet 的专用连接，我们建议使用 [ExpressRoute][expressroute] Azure 网络服务。 Azure VM 使用另一个 ExpressRoute 连接来与 HANA 大型实例建立连接。 Azure 虚拟网络与 HANA 大型实例之间的 ExpressRoute 连接设置为 Microsoft 产品/服务的一部分。
 
 - **网关**。 ExpressRoute 网关用于将 SAP 应用层所用的 Azure 虚拟网络连接到 HANA 大型实例网络。 使用[高性能或超高性能][sku] SKU。
 

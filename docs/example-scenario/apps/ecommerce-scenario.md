@@ -3,14 +3,14 @@ title: 电子商务前端
 titleSuffix: Azure Example Scenarios
 description: 在 Azure 上托管电子商务站点。
 author: masonch
-ms.date: 7/13/18
+ms.date: 07/13/2018
 ms.custom: fasttrack
-ms.openlocfilehash: d6587218813fa450b284f3a300c7254a3c9fe41f
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: f07c21b8eb9d812b9831abe8f2e4f6d131893df2
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643945"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160802"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Azure 上的电子商务前端
 
@@ -156,5 +156,6 @@ ms.locfileid: "53643945"
 [resiliency]: /azure/architecture/checklist/resiliency
 [scalability]: /azure/architecture/checklist/scalability
 [secure-development]: https://www.microsoft.com/SDL/process/design.aspx
+[service-bus]: /azure/service-bus-messaging/
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview
 [storage-geo-redudancy]: /azure/storage/common/storage-redundancy-grs

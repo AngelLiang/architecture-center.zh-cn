@@ -1,18 +1,17 @@
 ---
-title: 补偿事务
+title: 补偿事务模式
+titleSuffix: Cloud Design Patterns
 description: 撤销一系列会共同定义最终一致操作的工作。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- resiliency
-ms.openlocfilehash: 3d58537d9c77b97332bcabf762b9af7ed2f20421
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: b81151a6db08c2c14c7f26af3b4b79bfd22a18bb
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428136"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011610"
 ---
 # <a name="compensating-transaction-pattern"></a>补偿事务模式
 
@@ -86,7 +85,7 @@ ms.locfileid: "47428136"
 
 ![生成补偿事务来撤销长时间运行的事务，从而来订购旅行路线](./_images/compensating-transaction-diagram.png)
 
-
+> [!NOTE]
 > 补偿事务中的步骤可能会并行执行，具体取决于每个步骤的补偿逻辑的设计方式。
 
 在许多业务解决方案中，单个步骤失败并不始终要求通过使用补偿事务回滚系统。 例如，如果&mdash;在旅行网站上预订航班 F1、F2 和 F3 后&mdash;，客户无法预订 H1 酒店的房间，则首选方案是为客户提供该市另一家酒店的房间，而不是取消航班。 客户仍可决定取消（这种情况下，会运行补偿事务并撤销 F1、F2 和 F3 航班预订），但应由客户而不是系统作出此决定。
@@ -97,6 +96,6 @@ ms.locfileid: "47428136"
 
 - [Data consistency primer](https://msdn.microsoft.com/library/dn589800.aspx)（数据一致性入门）。 补偿事务模式通常用于撤消实现最终一致性模型的操作。 该入门指导提供了有关最终一致性优点和不足的信息。
 
-- [计划程序代理监督模式](scheduler-agent-supervisor.md)。 介绍如何实现弹性系统，这些弹性系统执行使用分布式服务和资源的业务操作。 有时，可能需要使用补偿事务来撤销操作执行的工作。
+- [计划程序代理监督模式](./scheduler-agent-supervisor.md)。 介绍如何实现弹性系统，这些弹性系统执行使用分布式服务和资源的业务操作。 有时，可能需要使用补偿事务来撤销操作执行的工作。
 
 - [重试模式](./retry.md)。 补偿事务执行成本比较高，因此可按照重试模式，通过实现有效的重试失败策略来尽可能少地使用补偿事务。

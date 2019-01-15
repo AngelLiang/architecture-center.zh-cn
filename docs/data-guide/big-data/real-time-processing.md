@@ -3,18 +3,18 @@ title: 实时处理
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: ccd098ab0d5393231eeb26eb1c56c52cdcb78fbe
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 75b52ae9bf7419b451084bb1a1eaf0984258433c
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901603"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113903"
 ---
 # <a name="real-time-processing"></a>实时处理
 
 实时处理以最低的延迟对实时捕获的数据流进行处理，以生成实时（或近乎实时）报告或自动响应。 例如，实时监视解决方案可以使用传感器数据来检测车流量。 可以使用此数据动态更新地图以显示交通堵塞情况，或自动启动堵塞车道或其他交通管理系统。
 
-![](./images/real-time-pipeline.png)
+![实时处理管道图](./images/real-time-pipeline.png)
 
 实时处理定义为处理无约束输入数据流，处理时要求延迟极短 &mdash; 以毫秒或秒计。 此传入数据通常以非结构化或半结构化格式（例如 JSON）传送，其处理要求与[批处理](./batch-processing.md)相同，但周转时间更短，可支持实时使用。
 
@@ -32,9 +32,9 @@ ms.locfileid: "52901603"
 
 - **流处理。** 捕获实时消息后，解决方案必须通过筛选、聚合以及准备用于分析的数据来处理消息。
 
-- **分析数据存储。** 许多大数据解决方案会先准备用于分析的数据，然后以结构化格式提供已处理的数据供分析工具查询。 
+- **分析数据存储。** 许多大数据解决方案会先准备用于分析的数据，然后以结构化格式提供已处理的数据供分析工具查询。
 
-- **分析和报告。** 大多数大数据解决方案的目的是通过分析和报告提供对数据的见解。 
+- **分析和报告。** 大多数大数据解决方案的目的是通过分析和报告提供对数据的见解。
 
 ## <a name="technology-choices"></a>技术选择
 

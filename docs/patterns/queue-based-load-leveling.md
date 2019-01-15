@@ -1,25 +1,19 @@
 ---
-title: 基于队列的负载调节
+title: 基于队列的负载调节模式
+titleSuffix: Cloud Design Patterns
 description: 使用队列在任务与所调用的服务之间充当缓冲，从而缓解间歇性负载过大现象。
 keywords: 设计模式
 author: dragon119
-ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-- availability
-- performance-scalability
-- resiliency
-ms.openlocfilehash: 99b226511fe14bffdab3cdcf65d4e6cffe89bba6
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.date: 01/02/2019
+ms.custom: seodec18
+ms.openlocfilehash: bb519fa52fcb6472733b6e52d7332d470eda8349
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359313"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011542"
 ---
 # <a name="queue-based-load-leveling-pattern"></a>基于队列的负载调节模式
-
-[!INCLUDE [header](../_includes/header.md)]
 
 使用队列在任务与所调用的服务之间充当缓冲，从而缓解间歇性负载过大现象，否则会导致服务故障或任务超时。这样可以将需求高峰对任务和服务的可用性和响应能力的影响降至最低。
 
@@ -63,20 +57,26 @@ ms.locfileid: "26359313"
 
 ## <a name="example"></a>示例
 
-一个 Microsoft Azure Web 角色使用单独的存储服务来存储数据。 如果该 Web 角色的大量实例同时运行，则存储服务在响应请求时，其速度可能过慢，导致这些请求超时或发生故障。 下图突出显示了一个服务因来自 Web 角色实例的并发请求过多而出现过载的情况。
+Web 应用将数据写入外部数据存储。 如果该 Web 应用的大量实例同时运行，则数据存储可能无法以足够快的速度响应请求，导致请求超时、受限或发生其他故障。 下图显示一个数据存储因来自应用程序实例的并发请求过多而出现过载的情况。
 
-![图 2 - 一个服务因来自 Web 角色实例的并发请求过多而出现过载的情况](./_images/queue-based-load-leveling-overwhelmed.png)
+![图 2 - 一个服务因来自 Web 应用实例的并发请求过多而出现过载的情况](./_images/queue-based-load-leveling-overwhelmed.png)
+
+若要解决此问题，可以使用一个队列，在应用程序实例和数据存储之间实现负载均衡。 一个 Azure Functions 应用从队列读取消息，然后向数据存储进行读/写请求。 函数应用中的应用程序逻辑可以控制该角色将请求传递给数据存储的速度，防止存储过载。 （否则，函数应用会在后端再次引发同一问题。）
+
+![图 3 - 使用队列和函数应用进行负载均衡](./_images/queue-based-load-leveling-function.png)
 
 
-若要解决此问题，可以使用一个队列，在 Web 角色实例和存储服务之间实现负载均衡。 但根据设计，存储服务是接受同步请求的，不能为了读取消息和管理吞吐量方便而轻易进行修改。 可以引入一个充当代理服务的辅助角色，让其在接收来自队列的请求后再转发给存储服务。 辅助角色中的应用程序逻辑可以控制该角色将请求传递给存储服务的速度，防止存储服务过载。 下图演示了如何通过队列和辅助角色在 Web 角色实例和服务之间实现负载均衡。
-
-![图 3 - 通过队列和辅助角色在 Web 角色实例和服务之间实现负载均衡](./_images/queue-based-load-leveling-worker-role.png)
 
 ## <a name="related-patterns-and-guidance"></a>相关模式和指南
 
 实施此模式时，可能也会与以下模式和指南相关：
 
 - [异步消息传送入门](https://msdn.microsoft.com/library/dn589781.aspx)。 消息队列本质上是异步的。 如果已将任务中的应用程序逻辑从直接与服务通信修改为使用消息队列，则可能需要重新设计该逻辑。 同样，可能需要重构服务才能接受来自消息队列的请求。 也可以实施代理服务，如示例中所述。
-- [使用者竞争模式](competing-consumers.md)。 可以运行多个服务实例，每一个都充当负载均衡队列中消息的使用者。 可以使用此方法来调整接收消息并将其传给给服务的速度。
-- [限制模式](throttling.md)。 若要对服务实施限制，一种简单的方式是进行基于队列的负载均衡，通过消息队列将所有请求路由到服务。 服务可以按适当速度处理请求，确保服务所需资源不会耗竭，并缓解可能会发生的争用情况。
-- [Queue Service Concepts](https://msdn.microsoft.com/library/azure/dd179353.aspx)（队列服务概念）。 介绍如何在 Azure 应用程序中选择消息传送和排队机制。
+
+- [使用者竞争模式](./competing-consumers.md)。 可以运行多个服务实例，每一个都充当负载均衡队列中消息的使用者。 可以使用此方法来调整接收消息并将其传给给服务的速度。
+
+- [限制模式](./throttling.md)。 若要对服务实施限制，一种简单的方式是进行基于队列的负载均衡，通过消息队列将所有请求路由到服务。 服务可以按适当速度处理请求，确保服务所需资源不会耗竭，并缓解可能会发生的争用情况。
+
+- [在 Azure 消息传送服务之间进行选择](/azure/event-grid/compare-messaging-services)。 介绍如何在 Azure 应用程序中选择消息传送和排队机制。
+
+- [提高 Azure Web 应用程序的可伸缩性](../reference-architectures/app-service-web-app/scalable-web-app.md)。 此参考体系结构包括基于队列的负载调节。

@@ -1,17 +1,17 @@
 ---
 title: 在多租户应用程序中缓存访问令牌
-description: 缓存用于调用后端 Web API 的访问令牌
+description: 缓存用于调用后端 Web API 的访问令牌。
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: web-api
 pnp.series.next: adfs
-ms.openlocfilehash: 950b638e629ad97e24b05e781da844bc110bad91
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 0cf4b3c3b9187759522b4530c94268ce8d7baa86
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901705"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110946"
 ---
 # <a name="cache-access-tokens"></a>缓存访问令牌
 
@@ -41,14 +41,14 @@ ADAL 提供默认令牌缓存实现。 但是，此令牌缓存适用于本机�
 后备存储由用户进行分区。 对于每个 HTTP 请求，用户的令牌从后备存储中读取并加载到 `TokenCache` 字典。 如果将 Redis 用作后备存储，则服务器场中的每个服务器实例会读取/写入到同一个缓存，并且此方法可扩展到许多用户。
 
 ## <a name="encrypting-cached-tokens"></a>加密已缓存令牌
+
 令牌是敏感数据，因为令牌授予对用户资源的访问权限。 （而且，令牌与用户密码不同，不能仅存储令牌的哈希。）因此，保护令牌不被盗用至关重要。 Redis 支持的缓存受密码保护，但如果有人获取了密码，他便可以获取所有已缓存的访问令牌。 为此，`DistributedTokenCache` 对所有写入后备存储的信息进行加密。 加密操作是通过 ASP.NET Core [数据保护][data-protection] API 完成的。
 
 > [!NOTE]
 > 如果部署到 Azure 网站，会将加密密钥备份到网络存储，并同步到所有计算机（请参阅[密钥管理和生存期][key-management]）。 默认情况下，密钥在 Azure 网站中运行时未加密，但可[使用 X.509 证书][x509-cert-encryption]启用加密。
-> 
-> 
 
 ## <a name="distributedtokencache-implementation"></a>DistributedTokenCache 实现
+
 `DistributedTokenCache` 类派生自 ADAL [TokenCache][tokencache-class] 类。
 
 在构造函数中，`DistributedTokenCache` 类创建当前用户的密钥，并从后备存储中加载缓存：

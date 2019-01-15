@@ -1,23 +1,24 @@
 ---
 title: 在多租户应用程序中使用基于声明的标识
-description: 如何使用声明进行颁发者验证和授权
+description: 如何使用声明进行颁发者验证和授权。
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authenticate
 pnp.series.next: signup
-ms.openlocfilehash: 3ed6c7c9a48f3617f82112e76878c770099fde3e
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: ffaa6085dd9ca9ddec203e6661575e984b2e25e0
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902402"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113580"
 ---
 # <a name="work-with-claims-based-identities"></a>使用基于声明的标识
 
 [![GitHub](../_images/github.png) 示例代码][sample application]
 
 ## <a name="claims-in-azure-ad"></a>Azure AD 中的声明
+
 当用户登录时，Azure AD 会发送一个 ID 令牌，其中包含有关该用户的声明集。 声明只需是一段以键值对形式表示的信息。 例如，`email`=`bob@contoso.com`。  声明包含一个颁发者 &mdash; 在本例中为 Azure AD &mdash; 即用于验证用户身份和创建声明的实体。 由于你信任该颁发者，因此也就信任这些声明。 （相反，如果你不信任颁发者，则不信任声明！）
 
 在高级别中：
@@ -51,15 +52,15 @@ ms.locfileid: "52902402"
 * upn > `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn`
 
 ## <a name="claims-transformations"></a>声明转换
+
 在执行身份验证流期间，可能需要修改从 IDP 获取的声明。 在 ASP.NET Core 中，可以通过 OpenID Connect 中间件在 **AuthenticationValidated** 事件的内部执行声明转换。 （请参阅[身份验证事件]。）
 
 在执行 **AuthenticationValidated** 期间添加的所有声明会存储在会话身份验证 Cookie 中。 这些声明不会推回到 Azure AD。
 
 下面是声明转换的一些示例：
 
-* **声明规范化**，或者在用户间保持声明一致。 这尤其适用于从多个 IDP 获取声明的情况，此时，可能对类似的信息使用了不同的声明类型。
-  例如，Azure AD 会发送一个包含用户电子邮件的“upn”声明。 其他 IDP 可能发送“email”声明。 以下代码将“upn”声明转换为“email”声明：
-  
+* **声明规范化**，或者在用户间保持声明一致。 这尤其适用于从多个 IDP 获取声明的情况，此时，可能对类似的信息使用了不同的声明类型。 例如，Azure AD 会发送一个包含用户电子邮件的“upn”声明。 其他 IDP 可能发送“email”声明。 以下代码将“upn”声明转换为“email”声明：
+
   ```csharp
   var email = principal.FindFirst(ClaimTypes.Upn)?.Value;
   if (!string.IsNullOrWhiteSpace(email))
@@ -67,12 +68,14 @@ ms.locfileid: "52902402"
       identity.AddClaim(new Claim(ClaimTypes.Email, email));
   }
   ```
+
 * 为不存在的声明添加**默认声明值** &mdash; 例如，将用户分配到默认角色。 在某些情况下，这可以简化授权逻辑。
-* 添加包含有关用户的应用程序特定信息的**自定义声明类型**。 例如，可以在数据库中存储有关用户的某些信息。 可将包含此信息的自定义声明添加到身份验证票证。 声明存储在 Cookie 中，因此，只需在每个登录会话中从数据库获取该声明一次。 另一方面，我们还希望避免创建过大的 Cookie，因此，需考虑在 Cookie 大小与数据库查找量之间做出取舍。   
+* 添加包含有关用户的应用程序特定信息的**自定义声明类型**。 例如，可以在数据库中存储有关用户的某些信息。 可将包含此信息的自定义声明添加到身份验证票证。 声明存储在 Cookie 中，因此，只需在每个登录会话中从数据库获取该声明一次。 另一方面，我们还希望避免创建过大的 Cookie，因此，需考虑在 Cookie 大小与数据库查找量之间做出取舍。
 
 完成身份验证流之后，`HttpContext.User` 中会提供声明。 此时，应将这些声明视为只读的集合 &mdash; 例如，使用它们做出授权决策。
 
 ## <a name="issuer-validation"></a>颁发者验证
+
 在 OpenID Connect 中，颁发者声明（“iss”）标识颁发 ID 令牌的 IDP。 OIDC 身份验证流的部分工作是验证颁发者声明是否与实际颁发者匹配。 OIDC 中间件会自动处理此验证。
 
 在 Azure AD 中，颁发者值是每个 AD 租户的唯一值 (`https://sts.windows.net/<tenantID>`)。 因此，应用程序应该执行额外的检查，确保颁发者代表有权登录到应用的租户。
@@ -87,25 +90,28 @@ ms.locfileid: "52902402"
 有关更多详细介绍，请参阅[在多租户应用程序中注册和加入租户][signup]。
 
 ## <a name="using-claims-for-authorization"></a>使用声明进行授权
+
 使用声明时，用户的标识不再是单一实体。 例如，用户可能具有电子邮件地址、电话号码、生日、性别等信息。所有这些信息可能存储在用户的 IDP 中。 但是，对用户进行身份验证时，通常会以声明的形式收到其中的一部分信息。 在此模型中，用户的标识只是一堆声明。 在针对用户做出授权决策时，会查找特定的声明集。 换而言之，问题“用户 X 是否可以执行操作 Y”最终变成了“用户 X 是否具有声明 Z”。
 
 下面是检查声明的一些基本模式。
 
 * 若要检查用户是否具有包含特定值的特定声明：
-  
+
    ```csharp
    if (User.HasClaim(ClaimTypes.Role, "Admin")) { ... }
    ```
+
    此代码检查用户是否具有包含值“Admin”的 Role 声明。 如果用户没有 Role 声明或者具有多个 Role 声明，此代码不会做出正确的处理。
   
    **ClaimTypes** 类定义常用声明类型的常量。 但是，可对声明类型使用任何字符串值。
 * 当你认为某个声明类型最多只有一个值时，若要获取该声明类型的单个值，请使用以下代码：
-  
+
   ```csharp
   string email = User.FindFirst(ClaimTypes.Email)?.Value;
   ```
+
 * 若要获取某个声明类型的所有值，请使用以下代码：
-  
+
   ```csharp
   IEnumerable<Claim> groups = User.FindAll("groups");
   ```
@@ -114,8 +120,7 @@ ms.locfileid: "52902402"
 
 [**下一篇**][signup]
 
-
-<!-- Links -->
+<!-- links -->
 
 [范围参数]: https://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
 [支持的令牌和声明类型]: /azure/active-directory/active-directory-token-and-claims/

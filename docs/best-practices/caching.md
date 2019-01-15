@@ -5,12 +5,12 @@ description: 有关配置缓存以提高性能和伸缩性的指南。
 author: dragon119
 ms.date: 05/24/2017
 ms.custom: seodec18
-ms.openlocfilehash: b7f720b9e08b0316f9967a19e1b93069aa04e55f
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: da676ba3037f5c232ea97b9cb41488c7c2202476
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307463"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113104"
 ---
 # <a name="caching"></a>缓存
 
@@ -476,9 +476,9 @@ var customer1 = cache.Wait(task1);
 var customer2 = cache.Wait(task2);
 ```
 
-有关编写可使用 Azure Redis 缓存的客户端应用程序的其他信息，请参阅 [Azure Redis 缓存文档](https://azure.microsoft.com/documentation/services/cache/)。 请在 [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Basics.md) 处查看详细信息。
+有关如何编写可使用 Azure Redis 缓存的客户端应用程序的其他信息，请参阅 [Azure Redis 缓存文档](/azure/azure-cache-for-redis/)。 请在 [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Basics.md) 处查看详细信息。
 
-同一网站上的 [Pipelines and multiplexers](https://stackexchange.github.io/StackExchange.Redis/PipelinesMultiplexers)（管道与多路复用器）页提供了有关使用 Redis 和 StackExchange 库执行异步操作和管道传输的详细信息。 
+同一网站上的 [Pipelines and multiplexers](https://stackexchange.github.io/StackExchange.Redis/PipelinesMultiplexers)（管道与多路复用器）页提供了有关使用 Redis 和 StackExchange 库执行异步操作和管道传输的详细信息。
 
 ## <a name="using-redis-caching"></a>使用 Redis 缓存
 
@@ -898,7 +898,7 @@ ISubscriber subscriber = redisHostConnection.GetSubscriber();
 
 ## <a name="more-information"></a>详细信息
 
-- [Azure Redis 缓存文档](https://azure.microsoft.com/documentation/services/cache/) 
+- [Azure Redis 缓存文档](/azure/azure-cache-for-redis/)
 - [Azure Redis 缓存常见问题解答](/azure/redis-cache/cache-faq)
 - [基于任务的异步模式](/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap)
 - [Redis 文档](https://redis.io/documentation)

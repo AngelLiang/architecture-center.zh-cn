@@ -5,12 +5,12 @@ description: 实现这样一个安全的站点到站点网络体系结构：跨 
 author: telmosampaio
 ms.date: 10/22/2017
 ms.custom: seodec18
-ms.openlocfilehash: 8e9de168fe2969159f62ce84a19f4b21fd1cb538
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 1308f85f2f6d05b86e22f2558d89f164d076d182
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120384"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112781"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute"></a>使用 ExpressRoute 将本地网络连接到 Azure
 
@@ -207,8 +207,7 @@ ExpressRoute 不支持路由器冗余协议（如热备用路由协议 (HSRP) �
 
 - 将 VNet 连接到不同服务提供商提供的多条 ExpressRoute 线路。 此策略可提供附加高可用性和灾难恢复功能。
 
-- 将站点到站点 VPN 配置为 ExpressRoute 的故障转移路径。 有关此选项的详细信息，请参阅[使用 ExpressRoute 和 VPN 故障转移将本地网络连接到 Azure][highly-available-network-architecture]。
- 此选项仅适用于私有对等互连。 对于 Azure 和 Office 365 服务，Internet 是唯一的故障转移路径。
+- 将站点到站点 VPN 配置为 ExpressRoute 的故障转移路径。 有关此选项的详细信息，请参阅[使用 ExpressRoute 和 VPN 故障转移将本地网络连接到 Azure][highly-available-network-architecture]。 此选项仅适用于私有对等互连。 对于 Azure 和 Office 365 服务，Internet 是唯一的故障转移路径。
 
 ## <a name="manageability-considerations"></a>可管理性注意事项
 
@@ -224,7 +223,7 @@ ExpressRoute 在第 3 层运行。 使用将流量限制到合法资源的网络
 
 ![[2]][2]
 
-出于审核或符合性目的，可能需要禁止在 VNet 中运行的组件直接访问 Internet 并实现[强制隧道][forced-tuneling]。 在此情况下，Internet 流量应通过在本地运行的代理（可以进行审核）重定向返回。 代理可以配置为阻止未经授权的流量流出，并筛选潜在的恶意入站流量。
+出于审核或符合性目的，可能需要禁止在 VNet 中运行的组件直接访问 Internet 并实现[强制隧道][forced-tunneling]。 在此情况下，Internet 流量应通过在本地运行的代理（可以进行审核）重定向返回。 代理可以配置为阻止未经授权的流量流出，并筛选潜在的恶意入站流量。
 
 ![[3]][3]
 
@@ -270,7 +269,7 @@ ExpressRoute 在第 3 层运行。 使用将流量限制到合法资源的网络
 
 <!-- links -->
 
-[forced-tuneling]: ../dmz/secure-vnet-hybrid.md
+[forced-tunneling]: ../dmz/secure-vnet-hybrid.md
 [highly-available-network-architecture]: ./expressroute-vpn-failover.md
 
 [expressroute-technical-overview]: /azure/expressroute/expressroute-introduction
@@ -286,8 +285,8 @@ ExpressRoute 在第 3 层运行。 使用将流量限制到合法资源的网络
 [azurect]: https://github.com/Azure/NetworkMonitoring/tree/master/AzureCT
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-architectures.vsdx
 [er-circuit-parameters]: https://github.com/mspnp/reference-architectures/tree/master/hybrid-networking/expressroute/parameters/expressRouteCircuit.parameters.json
-[azure-powershell-download]: https://azure.microsoft.com/documentation/articles/powershell-install-configure/
-[azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/
+[azure-powershell-download]: /powershell/azure/overview
+[azure-cli]: /cli/azure/install-azure-cli
 
 [0]: ./images/expressroute.png "使用 Azure ExpressRoute 的混合网络体系结构"
 [1]: ../_images/guidance-hybrid-network-expressroute/figure2.png "将冗余路由器用于 ExpressRoute 主线路和辅助线路"

@@ -5,12 +5,12 @@ description: 有关如何命名虚拟机、存储帐户、网络、虚拟网络�
 author: telmosampaio
 ms.date: 10/19/2018
 ms.custom: seodec18
-ms.openlocfilehash: 4f934102acea24e8e1070ed6a25d63927f0bd252
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: f0349b5db7eb15037bd92567eaf917b5d044daa0
+ms.sourcegitcommit: 036cd03c39f941567e0de4bae87f4e2aa8c84cf8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307072"
+ms.lasthandoff: 01/05/2019
+ms.locfileid: "54058193"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Azure 资源的命名约定
 
@@ -62,7 +62,7 @@ Microsoft Azure 中任何资源的名称选择都很重要，因为：
 | --- | --- | --- |
 | 环境 |dev，prod，QA |标识资源的环境 |
 | 位置 |uw（美国西部），ue（美国东部） |标识要部署资源的区域 |
-| 实例 |01，02 |适用于具有多个命名实例的资源（Web 服务器等）。 |
+| 实例 |1、2... |适用于具有多个命名实例的资源，例如 VM 或 NIC。 |
 | 产品或服务 |服务 |标识资源支持的产品、应用程序或服务 |
 | 角色 |sql，web，messaging |标识关联的资源的角色 |
 
@@ -175,7 +175,7 @@ Azure 资源管理器支持使用任意文本字符串标记实体，以标识�
 
 可以配置自定义域名以便访问 Azure 存储帐户中的 Blob 数据。 Blob 服务的默认终结点是 `https://<name>.blob.core.windows.net`。
 
-但是如果将自定义域（如 www.contoso.com）映射到存储帐户的 Blob 终结点，则用户也可以使用该域访问存储帐户中的 Blob 数据。 例如，对于自定义域名，`https://mystorage.blob.core.windows.net/mycontainer/myblob` 可以作为 `https://www.contoso.com/mycontainer/myblob` 访问。
+但是如果将自定义域（如 `www.contoso.com`）映射到存储帐户的 Blob 终结点，则也可使用该域访问存储帐户中的 Blob 数据。 例如，对于自定义域名，`https://mystorage.blob.core.windows.net/mycontainer/myblob` 可以作为 `https://www.contoso.com/mycontainer/myblob` 访问。
 
 有关配置此功能的详细信息，请参阅[为 Blob 存储终结点配置自定义域名](/azure/storage/storage-custom-domain-name/)。
 

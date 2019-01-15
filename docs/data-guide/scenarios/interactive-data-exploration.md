@@ -3,26 +3,26 @@ title: 交互式数据探索
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 81301e1d81a76d074d001cc9b20bdaf5231e536b
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 1b77f3ced551f5d71578a9b09fd50cd8b0d5587c
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901569"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113189"
 ---
 # <a name="interactive-data-exploration"></a>交互式数据探索
 
 在许多企业商业智能 (BI) 解决方案中，报告和语义模型由 BI 专家创建并统一管理。 但是，越来越多的组织希望能让用户做出数据驱动的决策。 此外，有越来越多的组织在招聘数据科学家或数据分析师，他们的工作是以交互方式探索数据，并运用统计模型和分析方法在数据中发现趋势和模式。 交互式数据探索要求工具和平台对即席查询和数据可视化提供低延迟的处理。
 
-![](./images/data-exploration.png)
+![交互式数据探索](./images/data-exploration.png)
 
 ## <a name="self-service-bi"></a>自助服务 BI
 
 自助服务 BI 是业务决策的新方法，在其中，整个企业的用户能够发现、探索和分享数据见解。 为此，数据解决方案必须支持几项要求：
 
-* 通过数据目录发现业务数据源。
-* 用于确保数据实体定义和值一致性的主数据管理。
-* 适用于业务用户的交互式数据建模和可视化工具。
+- 通过数据目录发现业务数据源。
+- 用于确保数据实体定义和值一致性的主数据管理。
+- 适用于业务用户的交互式数据建模和可视化工具。
 
 在自助服务 BI 解决方案中，业务用户通常会查找并使用与其特定业务领域相关的数据源，使用直观的工具和生产力应用程序来定义个人数据模型和报告并与同事共享。
 
@@ -32,6 +32,7 @@ ms.locfileid: "52901569"
 - [Microsoft Power BI](https://powerbi.microsoft.com/)
 
 ## <a name="data-science-experimentation"></a>数据科学试验
+
 当组织需要高级分析和预测建模时，专业数据科学家通常会执行初始的准备工作。 数据科学家将探索数据，并运用统计分析方法来查找数据特征与所需预测标签之间的关系。 通常使用原生支持统计建模和可视化的编程语言（例如 Python 或 R）完成数据探索。 用于探索数据的脚本通常托管在 Jupyter Notebook 等专用环境中。 在阐述和共享所发现的见解时，数据科学家可以使用这些工具以编程方式探索数据。
 
 相关的 Azure 服务：
@@ -43,13 +44,13 @@ ms.locfileid: "52901569"
 
 ## <a name="challenges"></a>挑战
 
-- **数据隐私符合性。** 需要谨慎地向执行自助分析和报告的用户提供个人数据。 由于组织政策和法规问题，可能要考虑到符合性方面的要求。 
+- **数据隐私符合性**。 需要谨慎地向执行自助分析和报告的用户提供个人数据。 由于组织政策和法规问题，可能要考虑到符合性方面的要求。
 
-- **数据量。** 尽管让用户访问整个数据源可能有好处，但是，这可能会导致 Excel 或 Power BI 操作时间过长，或者 Spark SQL 查询使用大量的群集资源。
+- **数据量**。 尽管让用户访问整个数据源可能有好处，但是，这可能会导致 Excel 或 Power BI 操作时间过长，或者 Spark SQL 查询使用大量的群集资源。
 
-- **用户知识。** 用户可以创建自己的查询和聚合来告知业务决策。 你是否确信用户具备所需的分析和查询技能，可以获取准确结果？
+- **用户知识**。 用户可以创建自己的查询和聚合来告知业务决策。 你是否确信用户具备所需的分析和查询技能，可以获取准确结果？
 
-- **共享结果。** 如果用户可以创建和共享报告或数据可视化效果，则可能需要考虑安全要求。
+- **共享结果**。 如果用户可以创建和共享报告或数据可视化效果，则可能需要考虑安全要求。
 
 ## <a name="architecture"></a>体系结构
 
@@ -74,7 +75,8 @@ ms.locfileid: "52901569"
 
 ### <a name="analytical-data-store"></a>分析数据存储
 
-- **Spark SQL**。 Spark SQL 是在 Spark 基础上构建的 API，支持创建可使用 SQL 语法查询的数据帧和表。 不管要分析的数据文件是原始源文件，还是已由批处理清理并准备好的新文件，用户都可以在这些文件中定义 Spark SQL 表用于进一步查询分析。 
+- **Spark SQL**。 Spark SQL 是在 Spark 基础上构建的 API，支持创建可使用 SQL 语法查询的数据帧和表。 不管要分析的数据文件是原始源文件，还是已由批处理清理并准备好的新文件，用户都可以在这些文件中定义 Spark SQL 表用于进一步查询分析。
+
 - **Hive**。 除了使用 Hive 批处理原始数据以外，还可以基于存储数据的文件夹创建包含 Hive 表和视图的 Hive 数据库，以启用交互式查询进行分析和报告。 HDInsight 包含使用内存中缓存的交互式 Hive 群集类型来减少 Hive 查询响应时间。 熟悉类似 SQL 的语法的用户可以使用交互式 Hive 来探索数据。
 
 有关详细信息，请参阅[分析数据存储](../technology-choices/analytical-data-stores.md)。
@@ -82,7 +84,9 @@ ms.locfileid: "52901569"
 ### <a name="analytics-and-reporting"></a>分析和报告
 
 - **Jupyter**。 Jupyter Notebook 提供基于浏览器的界面，用于通过 R、Python 或 Scala 等语言运行代码。 使用 R Server 或 Spark 批处理数据，或者使用 Spark SQL 定义查询表的架构时，Jupyter 可能非常适合用于查询数据。 使用 Spark 时，可以使用标准 Spark 数据帧 API 或 Spark SQL API 以及嵌入式 SQL 语句来查询数据和生成可视化效果。
-- **Drill**。 如果需要进行临时数据浏览，则可使用 [Apache Drill](https://drill.apache.org/)，它是一种无架构的 SQL 查询引擎。 由于它不需要架构，因此你可以查询各种数据源的数据，引擎会自动理解数据的结构。  可以通过 [Azure Blob 存储插件](https://drill.apache.org/docs/azure-blob-storage-plugin/)将 Drill 与 Azure Blob 存储配合使用。 这样就可以在 Blob 存储中针对数据运行查询，不需移动数据。 
+
+- **Drill**。 如果需要进行临时数据浏览，则可使用 [Apache Drill](https://drill.apache.org/)，它是一种无架构的 SQL 查询引擎。 由于它不需要架构，因此你可以查询各种数据源的数据，引擎会自动理解数据的结构。  可以通过 [Azure Blob 存储插件](https://drill.apache.org/docs/azure-blob-storage-plugin/)将 Drill 与 Azure Blob 存储配合使用。 这样就可以在 Blob 存储中针对数据运行查询，不需移动数据。
+
 - **交互式 Hive 客户端**。 如果使用交互式 Hive 群集查询数据，则可以使用 Ambari 群集仪表板中的 Hive 视图、Beeline 命令行工具或任何基于 ODBC 的工具（使用 Hive ODBC 驱动程序），例如 Microsoft Excel 或 Power BI。
 
 有关详细信息，请参阅[数据分析和报告技术](../technology-choices/analysis-visualizations-reporting.md)。

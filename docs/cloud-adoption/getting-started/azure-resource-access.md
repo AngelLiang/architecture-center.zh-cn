@@ -1,16 +1,16 @@
 ---
-title: 企业云的采用：Azure 中的资源访问管理
-description: 解释 Azure 中的资源访问管理构造：Azure 资源管理器、订阅、资源组和资源
+title: 企业云采用：Azure 中的资源访问管理
+description: 介绍 Azure 中的资源访问管理构造：Azure 资源管理器、订阅、资源组和资源
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: c26b01d207bc4eb100653a826a053b394d03d1e6
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 8cb28d0dd5dbdfcef846786083d5197f435bf3ea
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428697"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160785"
 ---
-# <a name="enterprise-cloud-adoption-resource-access-management-in-azure"></a>企业云的采用：Azure 中的资源访问管理
+# <a name="enterprise-cloud-adoption-resource-access-management-in-azure"></a>企业云采用：Azure 中的资源访问管理
 
 在[什么是资源调控？](what-is-governance.md)中我们已了解到，调控是指根据组织的目标和要求，对 Azure 资源的使用持续进行管理、监视和审核的过程。 在继续学习如何设计调控模型之前，必须了解 Azure 中的资源访问管理控制措施。 这些资源访问管理控制措施的配置构成了调控模型的基础。
 

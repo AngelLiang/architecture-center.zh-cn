@@ -73,7 +73,7 @@ API 网关是位于外部客户端与微服务之间的网关。 它充当反向
 
 - [网关聚合](../../patterns/gateway-aggregation.md)：将多个请求聚合成单个请求，以减少客户端与后端之间的通信频率。
 
-- [网关卸载](../../patterns/gateway-offloading.md)。 网关可以分担后端服务的功能，例如 SSL 终止、身份验证、IP 白名单或客户端速率限制（限制）。
+- [网关卸载](../../patterns/gateway-offloading.md)。 网关可以分担后端服务的功能，例如 SSL 终止、身份验证、IP 允许列表或客户端速率限制（限制）。
 
 API 网关是一种通用的[微服务设计模式](https://microservices.io/patterns/apigateway.html)。 可以使用多种不同的技术来实施 API 网关。 最常见的实施方案可能是在群集中部署边缘路由器或反向代理，例如 Nginx、HAProxy 或 Traefik。 
 

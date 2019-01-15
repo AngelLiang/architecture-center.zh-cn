@@ -1,20 +1,17 @@
 ---
-title: CQRS
+title: 命令和查询责任分离 (CQRS) 模式
+titleSuffix: Cloud Design Patterns
 description: 使用独立接口将读取数据的操作与更新数据的操作分离。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- design-implementation
-- performance-scalability
-ms.openlocfilehash: de9530f7dd55c0ce5460cd3b58ab9f216c9b5c8c
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 320f6cd51a44b3a6732d8395f0a5e1db8f9f5774
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450864"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010369"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>命令和查询责任分离 (CQRS) 模式
 
@@ -56,7 +53,7 @@ ms.locfileid: "53450864"
 
 读取和写入存储的分离还允许彼此适当地缩放以匹配负载。 例如，读取存储通常会遇到高于写入存储的负载。
 
-当查询/读取模型包含非规范化数据时（请参阅[具体化视图模式](materialized-view.md)），在读取应用程序中每个视图的数据时或在查询系统中的数据时，性能会实现最大化。
+当查询/读取模型包含非规范化数据时（请参阅[具体化视图模式](./materialized-view.md)），在读取应用程序中每个视图的数据时或在查询系统中的数据时，性能会实现最大化。
 
 ## <a name="issues-and-considerations"></a>问题和注意事项
 
@@ -96,7 +93,7 @@ ms.locfileid: "53450864"
 
 ## <a name="event-sourcing-and-cqrs"></a>事件溯源和 CQRS
 
-CQRS 模式通常与事件溯源模式一起使用。 基于 CQRS 的系统使用分离的读取和写入数据模型，每个模型针对相关任务定制，并且通常位于物理分离存储中。 当使用[事件溯源](event-sourcing.md)模式时，事件存储是写入模型，并且是信息的官方源。 基于 CQRS 系统的读取模型提供数据的具体化视图，通常是高度非规范化视图。 针对应用程序的接口和显示要求定制这些视图，这有助于最大限度地提高显示和查询性能。
+CQRS 模式通常与事件溯源模式一起使用。 基于 CQRS 的系统使用分离的读取和写入数据模型，每个模型针对相关任务定制，并且通常位于物理分离存储中。 与[事件溯源](./event-sourcing.md)模式配合使用时，事件存储是写入模型，并且是信息的官方源。 基于 CQRS 系统的读取模型提供数据的具体化视图，通常是高度非规范化视图。 针对应用程序的接口和显示要求定制这些视图，这有助于最大限度地提高显示和查询性能。
 
 使用事件流作为写入存储（而不是使用某个时间点的实际数据），这可避免单个聚合上的更新冲突，并最大限度提高性能和可扩展性。 事件可以用于以异步方式生成用于填充读取存储的数据具体化视图。
 
@@ -242,9 +239,9 @@ public interface IProductsDomain
 
 - [Data Partitioning Guidance](https://msdn.microsoft.com/library/dn589795.aspx)（数据分区指南）。 介绍如何会在 CQRS 模式中使用的读取和写入数据存储分成可独立管理和访问的多个分区，以提高伸缩性，减少争用并优化性能。
 
-- [事件溯源模式](event-sourcing.md)。 更加详细地介绍如何一起使用事件溯源和 CQRS 模式来简化复杂的域中任务的同时提高性能、可伸缩性和响应能力。 以及如何在维护可启用补偿操作的完整审核记录和历史记录的同时提供事务数据的一致性。
+- [事件溯源模式](./event-sourcing.md)。 更加详细地介绍如何一起使用事件溯源和 CQRS 模式来简化复杂的域中任务的同时提高性能、可伸缩性和响应能力。 以及如何在维护可启用补偿操作的完整审核记录和历史记录的同时提供事务数据的一致性。
 
-- [具体化视图模式](materialized-view.md)。 CQRS 实现的读取模型可包含写入模型数据的具体化视图，或该读取模型可用于生成具体化视图。
+- [具体化视图模式](./materialized-view.md)。 CQRS 实现的读取模型可包含写入模型数据的具体化视图，或该读取模型可用于生成具体化视图。
 
 - 模式与实践指南 [CQRS Journey](https://aka.ms/cqrs)（CQRS 之旅）。 具体而言，[查询责任分离模式命令简介](https://msdn.microsoft.com/library/jj591573.aspx)探讨了模式及其适用性，[尾声：学到的经验教训](https://msdn.microsoft.com/library/jj591568.aspx)介绍使用此模式时会遇到的一些问题。
 

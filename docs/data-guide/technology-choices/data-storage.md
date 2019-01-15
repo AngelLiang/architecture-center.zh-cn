@@ -3,27 +3,31 @@ title: 选择数据存储技术
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: c97249228ca45a7a17822b6dd55acad6360c6f6b
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 9fe28249b51083bb588808770aba9ac7d48d560e
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902640"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113155"
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>在 Azure 中选择大数据存储技术
 
 本主题将大数据解决方案的数据存储选项进行比较 &mdash; 具体而言，将用于批量数据引入和批处理的数据存储，与用于[分析数据存储](./analytical-data-stores.md)或[实时流引入](./real-time-ingestion.md)的数据存储进行比较。
 
+<!-- markdownlint-disable MD026 -->
+
 ## <a name="what-are-your-options-when-choosing-data-storage-in-azure"></a>在 Azure 中选择数据存储时有哪些选项？
 
-可以根据需要，使用多个选项将数据引入 Azure：
+<!-- markdownlint-enable MD026 -->
 
-**文件存储**
+可以根据需要，使用多个选项将数据引入 Azure。
+
+**文件存储：**
 
 - [Azure 存储 Blob](/azure/storage/blobs/storage-blobs-introduction)
 - [Azure Data Lake Store](/azure/data-lake-store/)
 
-**NoSQL 数据库**
+**NoSQL 数据库：**
 
 - [Azure Cosmos DB](/azure/cosmos-db/)
 - [HDInsight 上的 HBase](https://hbase.apache.org/)
@@ -34,7 +38,7 @@ Azure 存储是高度可用、安全、持久、可缩放和冗余的托管存�
 
 可以使用各种 Azure 存储服务来存储数据。 存储许多数据源中的 Blob 的最灵活选项是 [Blob 存储](/azure/storage/blobs/storage-blobs-introduction)。 Blob 本质上是文件。 它们可以存储图片、文档、HTML 文件、虚拟硬盘 (VHD)、大数据（例如日志）、数据库备份 &mdash; 几乎包括任何内容。 Blob 存储在类似于文件夹的容器中。 一个容器包含一组 Blob 集。 一个存储帐户可以包含无限数量的容器，一个容器可以存储无限数量的 Blob。
 
-因为灵活、高度可用且成本低廉，Azure 存储非常适合大数据和分析解决方案。 它为不同的用例提供热、冷和存档存储层。 有关详细信息，请参阅 [Azure Blob 存储：热、冷和存档存储层](/azure/storage/blobs/storage-blob-storage-tiers)。
+因为灵活、高度可用且成本低廉，Azure 存储非常适合大数据和分析解决方案。 它为不同的用例提供热、冷和存档存储层。 有关详细信息，请参阅 [Azure Blob 存储：热、冷、存档存储层](/azure/storage/blobs/storage-blob-storage-tiers)。
 
 可以从 Hadoop（HDInsight 已随附）访问 Azure Blob 存储。 HDInsight 可将 Azure 存储中的 Blob 容器用作群集的默认文件系统。 通过 WASB 驱动程序提供的 Hadoop 分布式的文件系统 (HDFS) 接口，可以针对作为 Blob 存储的结构化或非结构化数据直接运行 HDInsight 中的整套组件。 此外，可以使用 Azure SQL 数据仓库的 PolyBase 功能访问 Azure Blob 存储。
 
@@ -59,7 +63,7 @@ Data Lake Store 与 Azure Data Lake Analytics 相结合，专为存储数据分�
 
 [Azure Cosmos DB](/azure/cosmos-db/) 由 Microsoft 提供，是全球分布式多模型数据库。 Cosmos DB 保证全球任意位置在第 99 个百分位为个位数毫秒的延迟，提供多种定义明确的一致性模型以微调性能，并保证多宿主功能的高可用性。
 
-Azure Cosmos DB 与架构无关。 它自动为所有数据编制索引，无需客户管理架构和索引。 它也是多模型、本地支持文档、键值、图和列-系列的数据模型。 
+Azure Cosmos DB 与架构无关。 它自动为所有数据编制索引，无需客户管理架构和索引。 它也是多模型、本地支持文档、键值、图和列-系列的数据模型。
 
 Azure Cosmos DB 功能：
 
@@ -119,4 +123,3 @@ Azure Cosmos DB 功能：
 | 本机 Azure Functions 集成 |                        [是](/azure/cosmos-db/serverless-computing-database)                        |                                                                     否                                                                     |
 |   自动全局分发    |                          [是](/azure/cosmos-db/distribute-data-globally)                           | 使用最终一致性时，无法跨区域[配置 HBase 群集复制](/azure/hdinsight/hbase/apache-hbase-replication) |
 |           定价模型            | 按秒计费的弹性可缩放请求单位 (RU)、弹性可缩放的存储 |                              HDInsight 群集（横向缩放节点）和存储按分钟计费                               |
-

@@ -3,12 +3,12 @@ title: 提取、转换和加载 (ETL)
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 6f56da72bd7a93ecd40b0be2a19e93d9062038fb
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: b23e1ab35f278bd8e1b203cd0026ee356be022dc
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901535"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113427"
 ---
 # <a name="extract-transform-and-load-etl"></a>提取、转换和加载 (ETL)
 
@@ -16,7 +16,7 @@ ms.locfileid: "52901535"
 
 过去几年以来，行业中已开发了多种工具、服务和过程来解决这些难题。 不管采用哪种过程，往往都需要协调工作，并在数据管道中应用某种级别的数据转换。 以下部分重点介绍执行这些任务的常用方法。
 
-## <a name="extract-transform-and-load-etl"></a>提取、转换和加载 (ETL)
+## <a name="extract-transform-and-load-etl-process"></a>提取、转换和加载 (ETL) 过程
 
 提取、转换和加载 (ETL) 是一个数据管道，用于从各种源收集数据、根据业务规则转换数据，然后将其载入目标数据存储。 ETL 中的转换工作在专用引擎中发生，通常涉及到使用临时表来暂时保存正在转换、并最终要载入其目标的数据。
 
@@ -27,9 +27,11 @@ ms.locfileid: "52901535"
 通常，三个 ETL 阶段是同时运行的，以节省时间。 例如，在提取数据时，转换过程可以处理已收到的数据并做好加载数据的准备，加载过程可以开始处理已准备好的数据，而无需等待整个提取过程完成。
 
 相关的 Azure 服务：
+
 - [Azure 数据工厂 v2](https://azure.microsoft.com/services/data-factory/)
 
 其他工具：
+
 - [SQL Server Integration Services (SSIS)](/sql/integration-services/sql-server-integration-services)
 
 ## <a name="extract-load-and-transform-elt"></a>提取、加载和转换 (ELT)
@@ -40,11 +42,11 @@ ms.locfileid: "52901535"
 
 ELT 的典型用例属于大数据领域。 例如，首先可将所有源数据提取到 Hadoop 分布式文件系统 (HDFS) 或 Azure Data Lake Store 等可缩放存储中的平面文件。 然后，可以使用 Spark、Hive 或 PolyBase 等技术查询源数据。 ELT 的关键之处在于，用于执行转换的数据存储是最终要在其中使用数据的同一数据存储。 此数据存储直接从可缩放的存储读取，而不是将数据载入其自身的专有存储。 此方法跳过了 ETL 中存在的数据复制步骤，针对大型数据集运行时可能很耗时。
 
-在实践中，目标数据存储是使用 Hadoop 群集（使用 Hive 或 Spark）的[数据仓库](./data-warehousing.md)，或 SQL 数据仓库。 一般情况下，架构在查询时叠加在平面文件数据上，并存储为表，因此，可以像查询数据存储中的其他任何数据一样查询这些数据。 这些表称为外部表，因为数据不在数据存储本身管理的存储中，而是在某个外部可缩放存储中。 
+在实践中，目标数据存储是使用 Hadoop 群集（使用 Hive 或 Spark）的[数据仓库](./data-warehousing.md)，或 SQL 数据仓库。 一般情况下，架构在查询时叠加在平面文件数据上，并存储为表，因此，可以像查询数据存储中的其他任何数据一样查询这些数据。 这些表称为外部表，因为数据不在数据存储本身管理的存储中，而是在某个外部可缩放存储中。
 
 数据存储只管理数据的架构，并在读取时应用架构。 例如，使用 Hive 的 Hadoop 群集会描述一个 Hive 表，其中的数据源实际上是 HDFS 中一组文件的路径。 在 SQL 数据仓库中，PolyBase 可以实现相同的结果 &mdash; 针对数据库本身外部存储的数据创建一个表。 加载源数据后，可以使用数据存储的功能处理外部表中的数据。 在大数据方案中，这意味着数据存储必须能够执行大规模并行处理 (MPP)，将数据分解成较小区块，并跨多台计算机并行分配区块处理负载。
 
-ELT 管道的最后一个阶段通常是将源数据转换为最终格式，对于需要支持的查询类型，此格式更为有效。 例如，可将数据分区。 此外，ELT 可以使用 Parquet 等优化的存储格式，以纵栏表形式存储面向行的数据，并提供优化的索引。 
+ELT 管道的最后一个阶段通常是将源数据转换为最终格式，对于需要支持的查询类型，此格式更为有效。 例如，可将数据分区。 此外，ELT 可以使用 Parquet 等优化的存储格式，以纵栏表形式存储面向行的数据，并提供优化的索引。
 
 相关的 Azure 服务：
 
@@ -68,9 +70,11 @@ ELT 管道的最后一个阶段通常是将源数据转换为最终格式，对�
 在上图中，控制流包含多个任务，其中一个任务是数据流任务。 有一个任务嵌套在容器中。 可以使用容器来提供任务结构和工作单元。 一个例子是使用容器来重复集合中的元素，例如文件夹中的文件，或数据库语句。
 
 相关的 Azure 服务：
+
 - [Azure 数据工厂 v2](https://azure.microsoft.com/services/data-factory/)
 
 其他工具：
+
 - [SQL Server Integration Services (SSIS)](/sql/integration-services/sql-server-integration-services)
 
 ## <a name="technology-choices"></a>技术选择

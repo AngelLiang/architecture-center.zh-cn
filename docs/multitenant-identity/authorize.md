@@ -1,17 +1,17 @@
 ---
 title: 多租户应用程序中的授权
-description: 如何在多租户应用程序中执行授权
+description: 如何在多租户应用程序中执行授权。
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: 8ff2317eb85197ed93e048b6a2d836405436cc17
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 6e406a7e80b77dea161db194a82ccae043bdc777
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307157"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110333"
 ---
 # <a name="role-based-and-resource-based-authorization"></a>基于角色和基于资源的授权
 
@@ -25,6 +25,7 @@ ms.locfileid: "53307157"
 一般的应用会结合使用这两种方法。 例如，若要删除资源，用户必须是资源所有者或管理员。
 
 ## <a name="role-based-authorization"></a>基于角色的授权
+
 [Tailspin Surveys][Tailspin] 应用程序可定义以下角色：
 
 * 管理员。 可在属于该租户的任何调查中执行所有 CRUD 操作。
@@ -38,6 +39,7 @@ ms.locfileid: "53307157"
 无论如何管理角色，授权代码看起来都类似。 ASP.NET Core 具有名为[授权策略][policies]的抽象。 使用此功能，可在代码中定义授权策略，然后将其应用于控制器操作。 策略与控制器分离。
 
 ### <a name="create-policies"></a>创建策略
+
 若要定义策略，首先创建实现 `IAuthorizationRequirement` 的类。 从 `AuthorizationHandler` 中派生是最简单的方法。 在 `Handle` 方法中，请检查相关声明。
 
 下面是 Tailspin Surveys 应用程序中的示例：
@@ -47,7 +49,7 @@ public class SurveyCreatorRequirement : AuthorizationHandler<SurveyCreatorRequir
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, SurveyCreatorRequirement requirement)
     {
-        if (context.User.HasClaim(ClaimTypes.Role, Roles.SurveyAdmin) || 
+        if (context.User.HasClaim(ClaimTypes.Role, Roles.SurveyAdmin) ||
             context.User.HasClaim(ClaimTypes.Role, Roles.SurveyCreator))
         {
             context.Succeed(requirement);
@@ -68,7 +70,7 @@ services.AddAuthorization(options =>
         policy =>
         {
             policy.AddRequirements(new SurveyCreatorRequirement());
-            policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+            policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
             // By adding the CookieAuthenticationDefaults.AuthenticationScheme, if an authenticated
             // user is not in the appropriate role, they will be redirected to a "forbidden" page.
             policy.AddAuthenticationSchemes(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -87,6 +89,7 @@ services.AddAuthorization(options =>
 该代码还设置了身份验证方案，该方案告诉 ASP.NET 在授权失败时，应该运行哪些身份验证中间件。 在这种情况下，我们指定 cookie 身份验证中间件，因为 cookie 身份验证中间件可将用户重定向到“禁止访问”页。 在 `AccessDeniedPath` 选项中为 cookie 中间件设置“禁止访问”页的位置；请参阅[配置身份验证中间件]。
 
 ### <a name="authorize-controller-actions"></a>授权控制器操作
+
 最后，为了授权 MVC 控制器中的操作，请在 `Authorize` 特性中设置策略：
 
 ```csharp
@@ -112,6 +115,7 @@ public IActionResult Create()
 * 策略支持简单角色成员资格无法表示的更复杂的授权决策（例如，年龄 >= 21）。
 
 ## <a name="resource-based-authorization"></a>基于资源的授权
+
 每当授权依赖于受操作影响的特定资源时采用基于资源的授权。 在 Tailspin Surveys 应用程序中，每个 Surveys 都有一个所有者，以及零个或许多个参与者。
 
 * 所有者可以读取、更新、删除、发布和取消发布调查。
@@ -247,7 +251,8 @@ static readonly Dictionary<OperationAuthorizationRequirement, Func<List<UserPerm
 
 [**下一篇**][web-api]
 
-<!-- Links -->
+<!-- links -->
+
 [Tailspin]: tailspin.md
 
 [应用程序角色]: app-roles.md

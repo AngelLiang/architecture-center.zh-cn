@@ -1,20 +1,20 @@
 ---
 title: 识别微服务边界
-description: 识别微服务边界
+description: 识别微服务边界。
 author: MikeWasson
 ms.date: 10/23/2018
-ms.openlocfilehash: 679696818d50b70a5116916bd9198a390abfd7fe
-ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
+ms.openlocfilehash: d353051e651b57472168609c36bbc47c02096ee7
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49962783"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112628"
 ---
 # <a name="designing-microservices-identifying-microservice-boundaries"></a>设计微服务：识别微服务边界
 
 微服务的适当大小是什么？ 我们经常听到有人说，“不要太大，也不要太小”&mdash; 这句话绝对正确，但实际上没有太大意义。 但是，如果从一个精心设计的领域模型着手，则规划出微服务就容易得多。
 
-![](./images/bounded-contexts.png)
+![边界上下文图](./images/bounded-contexts.png)
 
 ## <a name="from-domain-model-to-microservices"></a>从领域模型到微服务
 
@@ -26,14 +26,14 @@ ms.locfileid: "49962783"
 
 2. 接下来，查看领域模型中的聚合。 聚合通常是微服务的适当候选项。 合理设计的聚合能够体现一个设计优良的微服务的许多特征，例如：
 
-    - 聚合派生自业务要求，而不是数据访问或消息传递等技术因素。  
+    - 聚合派生自业务要求，而不是数据访问或消息传递等技术因素。
     - 聚合应具有较高的功能内聚性。
     - 聚合是持久性边界。
-    - 聚合应松散耦合。 
-    
+    - 聚合应松散耦合。
+
 3. 领域服务也是微服务的适当候选项。 领域服务针对多个聚合执行无状态操作。 一个典型的示例是涉及多个微服务的工作流。 可在无人机交付应用程序中看到此示例。
 
-4. 最后，考虑非功能性要求。 分析团队规模、数据类型、技术、可伸缩性要求、可用性要求和安全要求等因素。 这些因素可能导致需要进一步将微服务分解成两个或更多个较小服务，或执行相反的操作，即，将多个微服务合并成一个。 
+4. 最后，考虑非功能性要求。 分析团队规模、数据类型、技术、可伸缩性要求、可用性要求和安全要求等因素。 这些因素可能导致需要进一步将微服务分解成两个或更多个较小服务，或执行相反的操作，即，将多个微服务合并成一个。
 
 在应用程序中标识微服务之后，请根据以下条件验证设计：
 
@@ -48,36 +48,36 @@ ms.locfileid: "49962783"
   
 ## <a name="drone-delivery-defining-the-microservices"></a>无人机交付：定义微服务
 
-回顾一下，前面开发团队已标识四个聚合（“交付”、“包裹”、“无人机”和“帐户”）和两个领域服务（“计划程序”和“监督程序”）。 
+回顾一下，前面开发团队已标识四个聚合（“交付”、“包裹”、“无人机”和“帐户”）和两个领域服务（“计划程序”和“监督程序”）。
 
-“交付”和“包裹”是微服务的突出候选项。 “计划程序”和“监督程序”协调其他微服务执行的活动，因此，将这些领域服务实施为微服务比较有利。  
+“交付”和“包裹”是微服务的突出候选项。 “计划程序”和“监督程序”协调其他微服务执行的活动，因此，将这些领域服务实施为微服务比较有利。
 
 “无人机”和“帐户”比较特别，它们属于其他边界上下文。 一种做法是让“计划程序”直接调用“无人机”和“帐户”边界上下文。 另一种做法是在“交货”边界上下文中创建“无人机”和“帐户”微服务。 这些微服务通过公开更适合“交货”上下文的 API 或数据架构，在边界上下文之间充当中介。
 
 “无人机”和“帐户”边界上下文的详细信息超出了本指南的范畴，因此我们在参考实现中创建了它们的模拟服务。 但在此情况下，需考虑一些因素：
 
-- 直接调入其他边界上下文会产生多大的网络开销？ 
+- 直接调入其他边界上下文会产生多大的网络开销？
 
-- 其他边界上下文的数据架构是否适用于此上下文，或者，专门针对此边界上下文定制一个架构是否更好？ 
+- 其他边界上下文的数据架构是否适用于此上下文，或者，专门针对此边界上下文定制一个架构是否更好？
 
-- 其他边界上下文是否为旧式系统？ 如果是，则可以创建一个充当[防腐层](../patterns/anti-corruption-layer.md)的服务，用于在旧式系统与新式应用程序之间进行转换。 
+- 其他边界上下文是否为旧式系统？ 如果是，则可以创建一个充当[防腐层](../patterns/anti-corruption-layer.md)的服务，用于在旧式系统与新式应用程序之间进行转换。
 
 - 团队结构是什么？ 是否能够方便地与负责其他边界上下文的团队通信？ 如果不是，创建一个充当两个上下文之间的中介的服务可能有助于降低跨团队通信所产生的成本。
 
-到目前为止，我们尚未考虑任何非功能性要求。 考虑到应用程序的吞吐量要求，开发团队决定创建一个负责引入客户端请求的独立“引入”微服务。 此微服务将传入的请求放入缓冲区进行处理，以此实施[负载调节](../patterns/queue-based-load-leveling.md)。 计划程序将从缓冲区读取请求，并执行工作流。 
+到目前为止，我们尚未考虑任何非功能性要求。 考虑到应用程序的吞吐量要求，开发团队决定创建一个负责引入客户端请求的独立“引入”微服务。 此微服务将传入的请求放入缓冲区进行处理，以此实施[负载调节](../patterns/queue-based-load-leveling.md)。 计划程序将从缓冲区读取请求，并执行工作流。
 
 非功能性要求使得团队必须额外创建一个服务。 到目前为止，所有服务都与包裹的实时安排和交付过程相关。 但是，系统还需要在长期存储中存储每项交付的历史记录，以进行数据分析。 团队认为这是交付服务的责任。 但是，历史分析与现行操作的数据存储要求有较大的差别（请参阅[数据注意事项](./data-considerations.md)）。 因此，团队决定创建一个独立的交付历史记录服务，用于侦听来自交付服务的 DeliveryTracking 事件，并将这些事件写入长期存储。
 
 下图展示了现阶段的设计：
- 
-![](./images/microservices.png)
+
+![设计图](./images/microservices.png)
 
 ## <a name="choosing-a-compute-option"></a>选择计算选项
 
 术语“计算”指的是计算资源（应用程序在这些资源上运行）的承载模型。 在微服务体系结构方面，有两种方案特别流行：
 
 - 可管理专用节点 (VM) 上运行的服务的服务业务流程协调程序。
-- 使用函数即服务 (FaaS) 的无服务器体系结构。 
+- 使用函数即服务 (FaaS) 的无服务器体系结构。
 
 尽管这不是仅有的两个选项，但两者是用于构建微服务的成熟方案。 应用程序可以包含这两种方案。
 
@@ -87,11 +87,11 @@ ms.locfileid: "49962783"
 
 在 Azure 平台上，请考虑以下选项：
 
-- [Azure Kubernetes 服务](/azure/aks/) (AKS) 是托管的 Kubernetes 服务。 AKS 预配 Kubernetes 并公开 Kubernetes API 终结点，但可以承载和管理 Kubernetes 控制平面，并可以执行自动升级、自动修补、自动缩放和其他管理任务。 可将 AKS 视为“Kubernetes API 即服务”。 
+- [Azure Kubernetes 服务](/azure/aks/) (AKS) 是托管的 Kubernetes 服务。 AKS 预配 Kubernetes 并公开 Kubernetes API 终结点，但可以承载和管理 Kubernetes 控制平面，并可以执行自动升级、自动修补、自动缩放和其他管理任务。 可将 AKS 视为“Kubernetes API 即服务”。
 
 - [Service Fabric](/azure/service-fabric/) 是用于打包、部署和管理微服务的分布式系统平台。 可将微服务作为容器、二进制可执行文件或 [Reliable Services](/azure/service-fabric/service-fabric-reliable-services-introduction) 部署到 Service Fabric。 借助 Reliable Services 编程模型，服务可以直接使用 Service Fabric 编程 API 来查询系统、报告运行状况、接收有关配置和代码更改的通知，以及发现其他服务。 它与 Service Fabric 之间的重要区别在于，它重点用于构建使用 [Reliable Collections](/azure/service-fabric/service-fabric-reliable-services-reliable-collections) 的有状态服务。
 
-- [Azure 容器服务](/azure/container-service/) (ACS) 是一项 Azure 服务，用于部署随时可投入生产的 DC/OS、Docker Swarm 或 Kubernetes 群集。 
+- [Azure 容器服务](/azure/container-service/) (ACS) 是一项 Azure 服务，用于部署随时可投入生产的 DC/OS、Docker Swarm 或 Kubernetes 群集。
 
   > [!NOTE]
   > 虽然 ACS 支持 Kubernetes，但建议使用 AKS 在 Azure 上运行 Kubernetes。 AKS 提供增强的管理功能和成本优势。
@@ -100,7 +100,7 @@ ms.locfileid: "49962783"
 
 有时，人们在谈论容器和微服务时将它们看作相同的事物。 尽管这种看法不对 &mdash; 不需要容器即可构建微服务 &mdash; 但是，容器确实有一些专门与微服务相关的优势，例如：
 
-- **可移植性**。 容器映像是一个独立包，无需安装库或其他依赖项即可运行。 因此，它们的部署非常轻松。 容器可以快速启动和停止，因此，我们可以运转新的实例来处理更多负载，或者在发生节点故障后进行恢复。 
+- **可移植性**。 容器映像是一个独立包，无需安装库或其他依赖项即可运行。 因此，它们的部署非常轻松。 容器可以快速启动和停止，因此，我们可以运转新的实例来处理更多负载，或者在发生节点故障后进行恢复。
 
 - **轻量且高效**。 与运行虚拟机相比，容器比较轻量，因为它们共享 OS 资源。 因此，可将多个容器打包到单个节点。当应用程序由许多小型服务构成时，这种做法特别有利。
 
@@ -112,7 +112,11 @@ ms.locfileid: "49962783"
 
 [Azure Functions][functions] 是支持各种函数触发器（包括 HTTP 请求、服务总线队列和事件中心事件）的无服务器计算服务。 有关完整列表，请参阅 [Azure Functions 触发器和绑定概念][functions-triggers]。 另请考虑 [Azure 事件网格][event-grid]，它是 Azure 中的托管事件路由服务。
 
+<!-- markdownlint-disable MD026 -->
+
 ### <a name="orchestrator-or-serverless"></a>选择业务流程协调程序还是无服务器？
+
+<!-- markdownlint-enable MD026 -->
 
 在业务流程协调程序方案与无服务器方案之间做出选择时，请考虑下面一些因素。
 
@@ -120,7 +124,7 @@ ms.locfileid: "49962783"
 
 **灵活性和控制**。 在服务与群集的配置和管理方面，业务流程协调程序提供很高的控制度。 弊端是复杂性会增大。 使用无服务器体系结构会牺牲一定的控制度，因为这些细节已抽象化。
 
-**可移植性**。 此处列出的所有业务流程协调程序（Kubernetes、DC/OS、Docker Swarm 和 Service Fabric）都可以在本地或多个公有云中运行。 
+**可移植性**。 此处列出的所有业务流程协调程序（Kubernetes、DC/OS、Docker Swarm 和 Service Fabric）都可以在本地或多个公有云中运行。
 
 **应用程序集成**。 使用无服务器体系结构构建复杂应用程序可能有难度。 在 Azure 中，一种做法是使用 [Azure 逻辑应用](/azure/logic-apps/)来协调一组 Azure 函数。 有关此方法的示例，请参阅[创建与 Azure 逻辑应用集成的函数](/azure/azure-functions/functions-twitter-email)。
 
@@ -128,7 +132,7 @@ ms.locfileid: "49962783"
 
 **可伸缩性**。 Azure Functions 可以根据传入事件的数目按需自动缩放。 使用业务流程协调程序时，可以通过增加群集中运行的服务实例数进行横向扩展。 此外，可以通过将更多 VM 添加到群集进行扩展。
 
-我们的参考实现主要使用 Kubernetes，但对“交付历史记录”服务使用了 Azure Functions。 Azure Functions 非常适合此特定服务，因为它是事件驱动的工作负荷。 该服务使用事件中心触发器来调用函数，因此只需少量的代码。 此外，“交付历史记录”服务并非主要工作流的一部分，因此，在 Kubernetes 群集外部运行该服务不会影响用户发起的操作的端到端延迟。 
+我们的参考实现主要使用 Kubernetes，但对“交付历史记录”服务使用了 Azure Functions。 Azure Functions 非常适合此特定服务，因为它是事件驱动的工作负荷。 该服务使用事件中心触发器来调用函数，因此只需少量的代码。 此外，“交付历史记录”服务并非主要工作流的一部分，因此，在 Kubernetes 群集外部运行该服务不会影响用户发起的操作的端到端延迟。
 
 > [!div class="nextstepaction"]
 > [数据注意事项](./data-considerations.md)

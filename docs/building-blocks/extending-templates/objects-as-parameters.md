@@ -1,14 +1,14 @@
 ---
 title: 将对象用作 Azure 资源管理器模板中的参数
-description: 介绍如何扩展 Azure 资源管理器模板的功能，以便将对象用作参数
+description: 介绍如何扩展 Azure 资源管理器模板的功能，以便将对象用作参数。
 author: petertay
 ms.date: 10/30/2018
-ms.openlocfilehash: c1955823b3474efa0abea1d9634add5f13d02eda
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: f0826d8ed1ce446d295ebdacc66d8b0bef0b0dec
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251883"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111200"
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>将对象用作 Azure 资源管理器模板中的参数
 
@@ -24,10 +24,11 @@ ms.locfileid: "50251883"
     "VNetSettings":{"type":"object"}
 },
 ```
+
 接下来，为 `VNetSettings` 对象提供值：
 
 > [!NOTE]
-> 若要了解如何在部署过程中提供参数值，请参阅[了解 Azure 资源管理器模板的结构和语法][azure-resource-manager-authoring-templates]的“参数”部分。 
+> 若要了解如何在部署过程中提供参数值，请参阅[了解 Azure 资源管理器模板的结构和语法][azure-resource-manager-authoring-templates]的“参数”部分。
 
 ```json
 "parameters":{
@@ -91,9 +92,10 @@ ms.locfileid: "50251883"
     }
   ]
 ```
-`VNetSettings` 对象的值被应用到虚拟网络资源所需要的属性，该资源使用具有 `[]` 数组索引器和点运算符的 `parameters()` 函数。 如果只是想静态地将参数对象的值应用到资源，那么此方法适用。 但是，如果希望在部署过程中动态分配属性值数组，则可使用[复制循环][azure-resource-manager-create-multiple-instances]。 为了使用复制循环，可提供资源属性值的 JSON 数组，复制循环再将值动态地应用到资源的属性中。 
 
-如果使用动态方法，需注意一个问题。 为演示此问题，让我们看看属性值的典型数组。 在此示例中，属性的值存储在一个变量中。 请注意，此处有两个数组&mdash;一个名为 `firstProperty`，另一个名为 `secondProperty`。 
+`VNetSettings` 对象的值被应用到虚拟网络资源所需要的属性，该资源使用具有 `[]` 数组索引器和点运算符的 `parameters()` 函数。 如果只是想静态地将参数对象的值应用到资源，那么此方法适用。 但是，如果希望在部署过程中动态分配属性值数组，则可使用[复制循环][azure-resource-manager-create-multiple-instances]。 为了使用复制循环，可提供资源属性值的 JSON 数组，复制循环再将值动态地应用到资源的属性中。
+
+如果使用动态方法，需注意一个问题。 为演示此问题，让我们看看属性值的典型数组。 在此示例中，属性的值存储在一个变量中。 请注意，此处有两个数组&mdash;一个名为 `firstProperty`，另一个名为 `secondProperty`。
 
 ```json
 "variables": {
@@ -166,9 +168,9 @@ ms.locfileid: "50251883"
 
 ## <a name="using-a-property-object-in-a-copy-loop"></a>在复制循环中使用属性对象
 
-此方法在与[串行复制循环][azure-resource-manager-create-multiple] 结合使用时更为有用，特别是在部署子资源时。 
+此方法在与[串行复制循环][azure-resource-manager-create-multiple] 结合使用时更为有用，特别是在部署子资源时。
 
-为了说明这一点，我们看一下使用两个安全规则部署[网络安全组 (NSG)][nsg] 的模板。 
+为了说明这一点，我们看一下使用两个安全规则部署[网络安全组 (NSG)][nsg] 的模板。
 
 首先，我们看看参数。 在查看模板时会看到，我们已经定义了一个名为 `networkSecurityGroupsSettings` 的参数，其中包括一个名为 `securityRules` 的数组。 该数组包含两个为安全规则指定多个设置的 JSON 对象。
 
@@ -176,7 +178,7 @@ ms.locfileid: "50251883"
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
-    "parameters":{ 
+    "parameters":{
       "networkSecurityGroupsSettings": {
       "value": {
           "securityRules": [
@@ -249,7 +251,7 @@ ms.locfileid: "50251883"
                 "resources": [],
                 "outputs": {}
             }
-        }       
+        }
     },
     {
         "apiVersion": "2015-01-01",
@@ -292,12 +294,12 @@ ms.locfileid: "50251883"
           }
         }
     }
-  ],          
+  ],
   "outputs": {}
 }
 ```
 
-让我们详细了解如何在 `securityRules` 子资源中指定属性值。 所有的属性都使用 `parameter()` 函数进行引用，然后我们使用点运算符引用根据迭代的当前值建立索引的 `securityRules` 数组。 最后，使用另一个点运算符引用对象名称。 
+让我们详细了解如何在 `securityRules` 子资源中指定属性值。 所有的属性都使用 `parameter()` 函数进行引用，然后我们使用点运算符引用根据迭代的当前值建立索引的 `securityRules` 数组。 最后，使用另一个点运算符引用对象名称。
 
 ## <a name="try-the-template"></a>尝试模板
 
@@ -316,8 +318,8 @@ az group deployment create -g <resource-group-name> \
 
 - 了解如何创建一个模板来循环访问对象数组并将其转换为 JSON 架构。 请参阅[在 Azure 资源管理器模板中实现属性转换器和收集器](./collector.md)
 
-
 <!-- links -->
+
 [azure-resource-manager-authoring-templates]: /azure/azure-resource-manager/resource-group-authoring-templates
 [azure-resource-manager-create-template]: /azure/azure-resource-manager/resource-manager-create-first-template
 [azure-resource-manager-create-multiple-instances]: /azure/azure-resource-manager/resource-group-create-multiple

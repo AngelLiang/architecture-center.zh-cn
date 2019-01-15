@@ -1,18 +1,17 @@
 ---
-title: 守护程序
+title: 守护程序模式
+titleSuffix: Cloud Design Patterns
 description: 通过使用专用的主机实例保护应用程序和服务，该实例用于充当客户端和应用程序或服务之间的中转站、验证和整理请求，并在它们之间传递请求和数据。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- security
-ms.openlocfilehash: 39f8548bbccb5e19d433f65b2e7e09147d676996
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: a45ace8ea05e4a7dd1d8a48653e94a5fe5bfb0f6
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541315"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009689"
 ---
 # <a name="gatekeeper-pattern"></a>守护程序模式
 
@@ -32,12 +31,11 @@ ms.locfileid: "24541315"
 
 ![此模式的综合概述](./_images/gatekeeper-diagram.png)
 
-
 守护程序模式可用于简单地保护存储，或者可用作更全面的机制来保护应用程序的所有功能。 重要因素是：
 
-- **受控的验证。** 守护程序验证所有请求，并拒绝不满足验证的要求。
-- **有限的风险和公开。** 守护程序不能访问受信任主机访问存储和服务所用的凭据或密钥。 如果守护程序受到攻击，攻击者无权访问这些凭据或密钥。
-- **适当的安全。** 守护程序在有限特权模式下运行，而其他应用程序在访问存储和服务所需的全信任模式下运行。 如果守护程序受到攻击，那么它不能直接访问应用程序服务或数据。
+- **受控的验证**。 守护程序验证所有请求，并拒绝不满足验证的要求。
+- **有限的风险和公开**。 守护程序不能访问受信任主机访问存储和服务所用的凭据或密钥。 如果守护程序受到攻击，攻击者无权访问这些凭据或密钥。
+- **适当的安全性**。 守护程序在有限特权模式下运行，而其他应用程序在访问存储和服务所需的全信任模式下运行。 如果守护程序受到攻击，那么它不能直接访问应用程序服务或数据。
 
 此模式就像典型网络拓扑中防火墙。 它允许守护程序检查请求，并决定是否将请求传递到执行所需任务的受信任主机（有时称为 keymaster）。 此决策通常需要守护程序验证和整理请求内容，然后再将它传递到受信任主机。
 
@@ -65,7 +63,6 @@ ms.locfileid: "24541315"
 
 ![使用云服务 web 和辅助角色的模式示例](./_images/gatekeeper-endpoint.png)
 
-
 ## <a name="related-patterns"></a>相关模式
 
-当执行守护程序模式时，[Valet 密钥模式](valet-key.md)可能也相关。 在守护程序和受信任的角色之间通信时，可通过限制访问资源权限的密钥或令牌增强安全。 描述如何使用令牌或密钥让客户端以有限方式访问特定资源或服务。
+当执行守护程序模式时，[Valet 密钥模式](./valet-key.md)可能也相关。 在守护程序和受信任的角色之间通信时，可通过限制访问资源权限的密钥或令牌增强安全。 描述如何使用令牌或密钥让客户端以有限方式访问特定资源或服务。

@@ -5,12 +5,12 @@ description: 在 Azure 中实现中心辐射型网络拓扑。
 author: telmosampaio
 ms.date: 10/08/2018
 ms.custom: seodec18
-ms.openlocfilehash: fe56630b621f02fe71b864642b75688ba1965862
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.openlocfilehash: c7cf2923856b3c659876afcc89bb312e492c6409
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53329426"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112439"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>在 Azure 中实现中心辐射型网络拓扑
 
@@ -176,11 +176,9 @@ VNet 对等互连是两个 VNet 之间的不可传递关系。 如果需要将�
 
 5. 等待部署完成。 此部署创建虚拟网络、虚拟机、VPN 网关和网关连接。  创建 VPN 网关可能需要花费大约 40 分钟。
 
-### <a name="test-connectivity-with-the-hub"></a>测试与中心的连接
+### <a name="test-connectivity-to-the-hub-vnet-mdash-windows-deployment"></a>测试到中心 VNet 的连接 &mdash; Windows 部署
 
-测试从模拟本地环境到中心 VNet 的连接。
-
-**Windows 部署**
+若要使用 Windows VM 测试从模拟的本地环境到中心 VNet 的连接，请执行以下步骤：
 
 1. 使用 Azure 门户在 `onprem-jb-rg` 资源组中找到名为 `jb-vm1` 的 VM。
 
@@ -206,11 +204,13 @@ TcpTestSucceeded : True
 > [!NOTE]
 > 默认情况下，Windows Server VM 不允许 Azure 中的 ICMP 响应。 若要使用 `ping` 来测试连接，需在“Windows 高级防火墙”中为每个 VM 启用 ICMP 流量。
 
-**Linux 部署**
+### <a name="test-connectivity-to-the-hub-vnet-mdash-linux-deployment"></a>测试到中心 VNet 的连接 &mdash; Linux 部署
+
+若要使用 Linux VM 测试从模拟的本地环境到中心 VNet 的连接，请执行以下步骤：
 
 1. 使用 Azure 门户在 `onprem-jb-rg` 资源组中找到名为 `jb-vm1` 的 VM。
 
-2. 单击 `Connect`，并复制门户中显示的 `ssh` 命令。 
+2. 单击 `Connect`，并复制门户中显示的 `ssh` 命令。
 
 3. 在 Linux 提示符下，运行 `ssh` 连接到模拟本地环境。 使用 `onprem.json` 参数文件中指定的密码。
 
@@ -253,11 +253,9 @@ TcpTestSucceeded : True
    azbb -s <subscription_id> -g hub-vnet-rg -l <location> -p hub-vnet-peering.json --deploy
    ```
 
-### <a name="test-connectivity"></a>测试连接
+### <a name="test-connectivity-to-the-spoke-vnets-mdash-windows-deployment"></a>测试到分支 VNet 的连接 &mdash; Windows 部署
 
-测试从模拟本地环境到辐射 VNet 的连接。
-
-**Windows 部署**
+若要使用 Windows VM 测试从模拟的本地环境到分支 VNet 的连接，请执行以下步骤：
 
 1. 使用 Azure 门户在 `onprem-jb-rg` 资源组中找到名为 `jb-vm1` 的 VM。
 
@@ -270,7 +268,7 @@ TcpTestSucceeded : True
    Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
    ```
 
-**Linux 部署**
+### <a name="test-connectivity-to-the-spoke-vnets-mdash-linux-deployment"></a>测试到分支 VNet 的连接 &mdash; Linux 部署
 
 若要使用 Linux VM 测试从模拟的本地环境到辐射 VNet 的连接，请执行以下步骤：
 
@@ -329,4 +327,3 @@ TcpTestSucceeded : True
 [1]: ./images/hub-spoke-gateway-routing.svg "Azure 中的具有可传递路由的中心辐射型拓扑"
 [2]: ./images/hub-spoke-no-gateway-routing.svg "Azure 中的具有使用 NVA 的可传递路由的中心辐射型拓扑"
 [3]: ./images/hub-spokehub-spoke.svg "Azure 中的中心-辐射-中心-辐射型拓扑"
-[ARM-Templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/

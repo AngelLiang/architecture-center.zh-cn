@@ -1,14 +1,17 @@
 ---
 title: 网关卸载模式
+titleSuffix: Cloud Design Patterns
 description: 将共享或专用服务功能卸载到网关代理。
+keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 6b3e4541aae77349ca91c18c788ddb508912361d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 50af3d8593279986ed6efee55667187424c18e56
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540003"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010200"
 ---
 # <a name="gateway-offloading-pattern"></a>网关卸载模式
 
@@ -24,12 +27,12 @@ ms.locfileid: "24540003"
 
 ## <a name="solution"></a>解决方案
 
-将一些功能卸载到 API 网关，尤其是横切关注点（如证书管理、身份验证、SSL 终端、监视、协议转换或限制）。 
+将一些功能卸载到 API 网关，尤其是横切关注点（如证书管理、身份验证、SSL 终端、监视、协议转换或限制）。
 
 下图显示终止入站 SSL 连接的 API 网关。 它代表 API 网关上游的 HTTP 服务器中的原始请求程序请求数据。
 
- ![](./_images/gateway-offload.png)
- 
+ ![网关卸载模式图](./_images/gateway-offload.png)
+
 此模式的优点包括：
 
 - 通过消除对分发和维护支持资源的需求，简化服务的部署，如 Web 服务器证书和安全网站的配置。 通过简化配置，简化管理、可伸缩性和服务升级。
@@ -40,10 +43,10 @@ ms.locfileid: "24540003"
 
 ## <a name="issues-and-considerations"></a>问题和注意事项
 
-- 确保 API 网关的高度可用性和应对故障的灵活性。 运行多个 API 网关实例以避免单一故障点。 
+- 确保 API 网关的高度可用性和应对故障的灵活性。 运行多个 API 网关实例以避免单一故障点。
 - 确保网关可满足应用程序和终结点的容量和缩放要求。 确保网关不会成为应用程序的瓶颈，并具有足够的可缩放性。
 - 仅卸载由整个应用程序使用的功能，如安全性或数据传输。
-- 请勿将业务逻辑卸载到 API 网关。 
+- 请勿将业务逻辑卸载到 API 网关。
 - 如果需要跟踪事务，请考虑生成用于记录的关联 ID。
 
 ## <a name="when-to-use-this-pattern"></a>何时使用此模式
@@ -60,7 +63,7 @@ ms.locfileid: "24540003"
 
 将 Nginx 用作 SSL 卸载设备，以下配置将终止入站 SSL 连接，并将连接分布到三个上游 HTTP 服务器之一。
 
-```
+```console
 upstream iis {
         server  10.3.0.10    max_fails=3    fail_timeout=15s;
         server  10.3.0.20    max_fails=3    fail_timeout=15s;
@@ -89,4 +92,3 @@ proxy_set_header X-Real-IP $remote_addr;
 - [用于前端的后端模式](./backends-for-frontends.md)
 - [网关聚合模式](./gateway-aggregation.md)
 - [网关路由模式](./gateway-routing.md)
-

@@ -1,17 +1,17 @@
 ---
 title: 保护多租户应用程序中的后端 Web API
-description: 如何保护后端 Web API
+description: 如何保护后端 Web API。
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: e738eb94b5978efa4e7a4bebcc72daa7968ac904
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 517bdbb6e1a1063db9337b63905e2ff5f4bdd4d4
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901586"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114022"
 ---
 # <a name="secure-a-backend-web-api"></a>保护后端 Web API
 
@@ -19,13 +19,13 @@ ms.locfileid: "52901586"
 
 [Tailspin Surveys] 应用程序使用后端 Web API 来管理针对调查表执行的 CRUD 操作。 例如，当用户单击“我的调查表”时，Web 应用程序会将 HTTP 请求发送到 Web API：
 
-```
+```http
 GET /users/{userId}/surveys
 ```
 
 Web API 返回一个 JSON 对象：
 
-```
+```http
 {
   "Published":[],
   "Own":[
@@ -40,8 +40,6 @@ Web API 不允许匿名请求，因此，Web 应用必须使用 OAuth 2 持有�
 
 > [!NOTE]
 > 这是一种服务器到服务器的方案。 应用程序不会通过浏览器客户端对 API 发出任何 AJAX 调用。
-> 
-> 
 
 可以采用两种主要方法：
 
@@ -50,7 +48,7 @@ Web API 不允许匿名请求，因此，Web 应用必须使用 OAuth 2 持有�
 
 Tailspin 应用程序实施委托的用户标识。 两种方法的主要区别是：
 
-**委托的用户标识**
+**委托的用户标识：**
 
 * 发送到 Web API 的持有者令牌包含用户标识。
 * Web API 基于用户标识做出授权决策。
@@ -58,7 +56,7 @@ Tailspin 应用程序实施委托的用户标识。 两种方法的主要区别�
 * 通常，Web 应用程序仍会做出一些影响 UI 的授权决策（例如，显示或隐藏 UI 元素）。
 * Web API 可能会被不受信任的客户端（例如 JavaScript 应用程序或本机客户端应用程序）使用。
 
-**应用程序标识**
+**应用程序标识：**
 
 * Web API 不会获取有关用户的信息。
 * Web API 无法基于用户标识执行任何授权。 所有授权决策由 Web 应用程序做出。  
@@ -75,6 +73,7 @@ Tailspin 应用程序实施委托的用户标识。 两种方法的主要区别�
 ![获取访问令牌](./images/access-token.png)
 
 ## <a name="register-the-web-api-in-azure-ad"></a>在 Azure AD 中注册 Web API
+
 要使 Azure AD 颁发 Web API 的持有者令牌，需要在 Azure AD 中配置一些设置。
 
 1. 在 Azure AD 中注册 Web API。
@@ -82,16 +81,17 @@ Tailspin 应用程序实施委托的用户标识。 两种方法的主要区别�
 2. 将 Web 应用的客户端 ID 添加到 Web API 应用程序清单中的 `knownClientApplications` 属性。 请参阅[更新应用程序清单]。
 
 3. 授予 Web 应用程序调用 Web API 的权限。 在 Azure 管理门户中，可以设置两种类型的权限：针对应用程序标识（客户端凭据流）的“应用程序权限”，或针对委托用户标识的“委托的权限”。
-   
+
    ![委托的权限](./images/delegated-permissions.png)
 
 ## <a name="getting-an-access-token"></a>获取访问令牌
+
 在调用 Web API 之前，Web 应用程序会从 Azure AD 获取访问令牌。 在 .NET 应用程序，需使用[适用于 .NET 的 Azure AD 身份验证库 (ADAL)][ADAL]。
 
 在 OAuth 2 授权代码流中，应用程序会使用授权代码交换访问令牌。 以下代码使用 ADAL 获取访问令牌。 此代码是在 `AuthorizationCodeReceived` 事件期间调用的。
 
 ```csharp
-// The OpenID Connect middleware sends this event when it gets the authorization code.   
+// The OpenID Connect middleware sends this event when it gets the authorization code.
 public override async Task AuthorizationCodeReceived(AuthorizationCodeReceivedContext context)
 {
     string authorizationCode = context.ProtocolMessage.Code;
@@ -127,9 +127,10 @@ var result = await authContext.AcquireTokenSilentAsync(resourceID, credential, n
 其中，`userId` 是 `http://schemas.microsoft.com/identity/claims/objectidentifier` 声明中的用户对象 ID。
 
 ## <a name="using-the-access-token-to-call-the-web-api"></a>使用访问令牌调用 Web API
+
 获取令牌后，请在发往 Web API 的 HTTP 请求的授权标头中发送该令牌。
 
-```
+```http
 Authorization: Bearer xxxxxxxxxx
 ```
 
@@ -155,6 +156,7 @@ public static async Task<HttpResponseMessage> SendRequestWithBearerTokenAsync(th
 ```
 
 ## <a name="authenticating-in-the-web-api"></a>在 Web API 中进行身份验证
+
 Web API 必须对持有者令牌进行身份验证。 在 ASP.NET Core 中，可以使用 [Microsoft.AspNet.Authentication.JwtBearer][JwtBearer] 包。 此包提供可让应用程序接收 OpenID Connect 持有者令牌的中间件。
 
 在 Web API `Startup` 类中注册该中间件。
@@ -172,7 +174,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, Applicat
         },
         Events= new SurveysJwtBearerEvents(loggerFactory.CreateLogger<SurveysJwtBearerEvents>())
     });
-    
+
     // ...
 }
 ```
@@ -183,6 +185,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, Applicat
 * **Events** 是派生自 **JwtBearerEvents** 的类。
 
 ### <a name="issuer-validation"></a>颁发者验证
+
 在 **JwtBearerEvents.TokenValidated** 事件中验证令牌颁发者。 该颁发者在“iss”声明中发送。
 
 在 Surveys 应用程序中，Web API 不会处理[租户注册]。 因此，它只会检查应用程序数据库中是否已包含该颁发者。 如果不包含，则引发异常，从而导致身份验证失败。
@@ -221,7 +224,8 @@ public override async Task TokenValidated(TokenValidatedContext context)
 如此示例中所示，也可以使用 **TokenValidated** 事件修改声明。 请记住，这些声明直接来自 Azure AD。 如果 Web 应用程序修改了它所获取的声明，这些更改不会显示在 Web API 收到的持有者令牌中。 有关详细信息，请参阅[声明转换][claims-transformation]。
 
 ## <a name="authorization"></a>授权
-有关授权的一般性介绍，请参阅[基于角色和基于资源的授权][Authorization]。 
+
+有关授权的一般性介绍，请参阅[基于角色和基于资源的授权][Authorization]。
 
 JwtBearer 中间件处理授权响应。 例如，若要限制为只有经过身份验证的用户才能执行控制器操作，请使用 **[Authorize]** 属性，并指定 **JwtBearerDefaults.AuthenticationScheme** 作为身份验证方案：
 
@@ -248,18 +252,18 @@ public void ConfigureServices(IServiceCollection services)
             policy =>
             {
                 policy.AddRequirements(new SurveyCreatorRequirement());
-                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
                 policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
             });
         options.AddPolicy(PolicyNames.RequireSurveyAdmin,
             policy =>
             {
                 policy.AddRequirements(new SurveyAdminRequirement());
-                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
                 policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
             });
     });
-    
+
     // ...
 }
 ```

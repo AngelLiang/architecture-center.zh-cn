@@ -1,14 +1,14 @@
 ---
 title: 在 Azure 资源管理器模板中有条件地部署资源
-description: 介绍如何扩展 Azure 资源管理器模板的功能，根据参数的值有条件地部署资源
+description: 介绍如何扩展 Azure 资源管理器模板的功能，根据参数的值有条件地部署资源。
 author: petertay
 ms.date: 10/30/2018
-ms.openlocfilehash: 2c74e17a5f38f9225b696640a23b55b1285276bb
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: 0e02fbbd130bd6be2fc10173c8466b028d5d61da
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251832"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113461"
 ---
 # <a name="conditionally-deploy-a-resource-in-an-azure-resource-manager-template"></a>在 Azure 资源管理器模板中有条件地部署资源
 
@@ -22,7 +22,7 @@ ms.locfileid: "50251832"
 
 让我们看看模板的每个部分。
 
-`parameters` 元素定义名为 `virtualNetworkPeerings` 的单个参数： 
+`parameters` 元素定义名为 `virtualNetworkPeerings` 的单个参数：
 
 ```json
 {
@@ -35,6 +35,7 @@ ms.locfileid: "50251832"
     }
   },
 ```
+
 `virtualNetworkPeerings` 参数为 `array` 且包含以下方案：
 
 ```json
@@ -95,9 +96,10 @@ ms.locfileid: "50251832"
     }
 ]
 ```
+
 模板的此部分需要注意几点。 首先，正在部署的实际资源是包括部署 `Microsoft.Network/virtualNetworks/virtualNetworkPeerings` 的它自己模板的类型 `Microsoft.Resources/deployments` 的内联模板。
 
-内联模板的 `name` 是唯一的，方法是将 `copyIndex()` 的当前迭代与前缀 `vnp-` 连接。 
+内联模板的 `name` 是唯一的，方法是将 `copyIndex()` 的当前迭代与前缀 `vnp-` 连接。
 
 `condition` 元素指定，当 `greater()` 函数计算结果为 `true` 时，应处理资源。 我们要测试 `virtualNetworkPeerings` 参数数组是否 `greater()` 零。 如果大于零，计算结果为 `true` 且满足 `condition`。 否则为 `false`。
 
@@ -116,7 +118,7 @@ ms.locfileid: "50251832"
   },
 ```
 
-`workaround` 变量包括两个属性，一个名为 `true`，一个名为 `false`。 `true` 属性计算结果为 `virtualNetworkPeerings` 参数数组的值。 `false` 属性计算结果为一个空对象（包括资源管理器预期看到的已命名属性）&mdash;请注意，`false` 实际上是一个数组，它和将符合验证的 `virtualNetworkPeerings` 参数一样。 
+`workaround` 变量包括两个属性，一个名为 `true`，一个名为 `false`。 `true` 属性计算结果为 `virtualNetworkPeerings` 参数数组的值。 `false` 属性计算结果为一个空对象（包括资源管理器预期看到的已命名属性）&mdash;请注意，`false` 实际上是一个数组，它和将符合验证的 `virtualNetworkPeerings` 参数一样。
 
 `peerings` 变量使用 `workaround` 变量，方法是再次测试 `virtualNetworkPeerings` 参数数组的长度是否大于零。 如果大于零，则 `string` 计算结果为 `true`，`workaround` 变量计算结果为 `virtualNetworkPeerings` 参数数组。 否则，计算结果为 `false`，`workaround` 变量计算结果为数组的第一个元素中的空对象。
 
@@ -137,7 +139,7 @@ az group deployment create -g <resource-group-name> \
 * 使用对象而不是标量值作为模板参数。 请参阅[将对象用作 Azure 资源管理器模板中的参数](./objects-as-parameters.md)
 
 <!-- links -->
-[azure-resource-manager-condition]: /azure/azure-resource-manager/resource-group-authoring-templates#resources
+[azure-resource-manager-condition]: /azure/azure-resource-manager/resource-manager-templates-resources#condition
 [azure-resource-manager-variable]: /azure/azure-resource-manager/resource-group-authoring-templates#variables
 [vnet-peering-resource-schema]: /azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
 [cli]: /cli/azure/?view=azure-cli-latest

@@ -1,23 +1,23 @@
 ---
 title: 应用程序角色
-description: 如何使用应用程序角色执行授权
+description: 如何使用应用程序角色执行授权。
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: signup
 pnp.series.next: authorize
-ms.openlocfilehash: 4a694eb65de717e6b5a7c65a2d6fb28f192dcdc5
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 04749bff820132e40f3cbb5195bf65648ab39ab3
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902504"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112526"
 ---
 # <a name="application-roles"></a>应用程序角色
 
 [![GitHub](../_images/github.png) 示例代码][sample application]
 
-应用程序角色用于向用户分配权限。 例如，[Tailspin Surveys][Tailspin] 应用程序可定义以下角色：
+应用程序角色用于向用户分配权限。 例如，[Tailspin Surveys][tailspin] 应用程序可定义以下角色：
 
 * 管理员。 可在属于该租户的任何调查中执行所有 CRUD 操作。
 * 创建者。 可创建新调查。
@@ -30,14 +30,13 @@ ms.locfileid: "52902504"
 * [应用程序角色管理员](#roles-using-an-application-role-manager)。
 
 ## <a name="roles-using-azure-ad-app-roles"></a>使用 Azure AD 应用角色的角色
+
 这是我们在 Tailspin Surveys 应用中使用的方法。
 
 按照这种方法，SaaS 提供程序通过将应用程序角色添加到应用程序清单来定义该角色。 客户注册后，该客户的 AD 目录管理员会将用户分配给角色。 用户登录后，该用户的已分配角色将以声明方式发送过来。
 
 > [!NOTE]
 > 如果该客户有 Azure AD Premium，管理员便可向角色分配一个安全组，该组内的成员可继承此应用角色。 这种管理角色的方式比较方便，因为组所有者不一定得是 AD 管理员。
-> 
-> 
 
 此方法的优点：
 
@@ -52,6 +51,7 @@ ms.locfileid: "52902504"
 * 如果有从 Web 应用程序分离出来的后端 Web API，则 Web 应用的角色分配不适用于 Web API。 有关该点详细讨论，请参阅[保护后端 Web API]。
 
 ### <a name="implementation"></a>实现
+
 **定义角色。** SaaS 提供程序可声明[应用程序清单]中的应用角色。 例如，以下是 Surveys 应用的清单条目：
 
 ```json
@@ -85,8 +85,6 @@ ms.locfileid: "52902504"
 
 > [!NOTE]
 > 如前文所述，如果客户有 Azure AD Premium，则可将安全组分配给角色。
-> 
-> 
 
 在以下 Azure 门户屏幕截图中为 Survey 应用程序的用户和组。 “管理员”和“创建者”是组，分别分配给 SurveyAdmin 和 SurveyCreator 角色。 Alice 是直接分配给 SurveyAdmin 角色的用户。 Bob 和 Charles 是还未直接分配给角色的用户。
 
@@ -96,12 +94,10 @@ ms.locfileid: "52902504"
 
 ![“管理员”组成员](./images/running-the-app/admin-members.png)
 
-
 > [!NOTE]
 > 另一种方法是应用程序使用 Azure AD Graph API 以编程方式分配角色。 但是，这需要应用程序获取客户 AD 目录的写入权限。 具有这些权限的应用程序可能会造成大量混乱 &mdash; 不过，客户相信此应用不会扰乱其目录。 很多客户可能不愿意授予该级别的访问权限。
-> 
 
-**获取角色声明**。 用户登录时，应用程序会在类型为 `http://schemas.microsoft.com/ws/2008/06/identity/claims/role` 的声明中收到用户分配到的角色。  
+**获取角色声明**。 用户登录时，应用程序会在类型为 `http://schemas.microsoft.com/ws/2008/06/identity/claims/role` 的声明中收到用户分配到的角色。
 
 用户可以有多个角色，也可以没有角色。 不要在授权代码中假设用户只有一个角色声明。 相反，应写入代码，以检查是否存在特定声明值：
 
@@ -110,6 +106,7 @@ if (context.User.HasClaim(ClaimTypes.Role, "Admin")) { ... }
 ```
 
 ## <a name="roles-using-azure-ad-security-groups"></a>使用 Azure AD 安全组的角色
+
 在此方法中，角色表示为 AD 安全组。 应用程序根据用户的安全组用户成员身份向用户分配权限。
 
 优点：
@@ -121,7 +118,12 @@ if (context.User.HasClaim(ClaimTypes.Role, "Admin")) { ... }
 * 复杂。 由于每个租户发送的组声明不同，因此应用程序必须为每个租户跟踪哪些安全组对应哪些应用程序角色。
 * 如果客户从其 AD 租户中删除应用程序，安全组会保留在其 AD 目录中。
 
+<!-- markdownlint-disable MD024 -->
+
 ### <a name="implementation"></a>实现
+
+<!-- markdownlint-enable MD024 -->
+
 在应用程序清单中，将 `groupMembershipClaims` 属性设置为“SecurityGroup”。 从 AAD 获取组成员资格声明需要此属性。
 
 ```json
@@ -135,8 +137,6 @@ if (context.User.HasClaim(ClaimTypes.Role, "Admin")) { ... }
 
 > [!NOTE]
 > 或者，应用程序可使用 Azure AD Graph API 以编程方式创建组。  这样就不容易出错。 但是，这需要应用程序获取客户 AD 目录的“读取和写入所有组”权限。 很多客户可能不愿意授予该级别的访问权限。
-> 
-> 
 
 用户登录时：
 
@@ -148,6 +148,7 @@ if (context.User.HasClaim(ClaimTypes.Role, "Admin")) { ... }
 授权策略应使用自定义角色声明，而非组声明。
 
 ## <a name="roles-using-an-application-role-manager"></a>使用应用程序角色管理器的角色
+
 如果使用此方法，应用程序角色不会存储在 Azure AD 中。 相反，应用程序会在自身的数据库中存储每个用户的角色分配 &mdash; 例如，在 ASP.NET Identity 中使用 RoleManager 类。
 
 优点：
@@ -158,14 +159,13 @@ if (context.User.HasClaim(ClaimTypes.Role, "Admin")) { ... }
 
 * 更为复杂，维护更困难。
 * 不能使用 AD 安全组管理角色分配。
-* 将用户信息存储在应用程序数据库中，若添加或删除用户，用户信息可能与租户的 AD 目录不同步。   
-
+* 将用户信息存储在应用程序数据库中，若添加或删除用户，用户信息可能与租户的 AD 目录不同步。
 
 [下一篇][授权]
 
-<!-- Links -->
-[Tailspin]: tailspin.md
+<!-- links -->
 
+[tailspin]: tailspin.md
 [授权]: authorize.md
 [保护后端 Web API]: web-api.md
 [应用程序清单]: /azure/active-directory/active-directory-application-manifest/

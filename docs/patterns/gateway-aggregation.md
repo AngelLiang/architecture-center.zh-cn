@@ -1,14 +1,17 @@
 ---
 title: 网关聚合模式
+titleSuffix: Cloud Design Patterns
 description: 使用网关可将多个单独请求聚合成一个请求。
+keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: f59c8b8b02c6db28024d13621b782997e63a4e9e
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 8d929b1b3937d8f9ef50c1b08e8aea0b5c1f92c1
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541267"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009451"
 ---
 # <a name="gateway-aggregation-pattern"></a>网关聚合模式
 
@@ -16,11 +19,11 @@ ms.locfileid: "24541267"
 
 ## <a name="context-and-problem"></a>上下文和问题
 
-若要执行单个任务，客户端可能需要向不同的后端服务发出多个调用。 依赖使用许多服务执行某项任务的应用程序必须扩展每个请求的资源。 将任何新的功能或服务添加到应用程序时，需要额外的请求，从而进一步提高了资源要求并增加了网络调用。 客户端与后端之间的这种频繁通信可能会对应用程序的性能和规模产生不利影响。  此问题在微服务体系结构中更常见，因为围绕许多小型服务构建的应用程序原生就包含更多的跨服务调用。 
+若要执行单个任务，客户端可能需要向不同的后端服务发出多个调用。 依赖使用许多服务执行某项任务的应用程序必须扩展每个请求的资源。 将任何新的功能或服务添加到应用程序时，需要额外的请求，从而进一步提高了资源要求并增加了网络调用。 客户端与后端之间的这种频繁通信可能会对应用程序的性能和规模产生不利影响。  此问题在微服务体系结构中更常见，因为围绕许多小型服务构建的应用程序原生就包含更多的跨服务调用。
 
 在下图中，客户端向每个服务发送请求 (1,2,3)。 每个服务处理该请求，然后向应用程序返回响应 (4,5,6)。 通过延迟通常较高的移动电话网络，以这种方式使用各个请求并不高效，可能导致连接断开或请求不完整。 尽管可以并行执行每个请求，但应用程序必须发送、等待并处理每个请求的数据，而所有这些操作都要通过单独的连接完成，因此增大了故障可能性。
 
-![](./_images/gateway-aggregation-problem.png) 
+![网关聚合模式的问题图](./_images/gateway-aggregation-problem.png)
 
 ## <a name="solution"></a>解决方案
 
@@ -30,7 +33,7 @@ ms.locfileid: "24541267"
 
 在下图中，应用程序网关发送一个请求 (1)。 该请求包含其他一些请求。 网关分解其他这些请求，并通过将每个请求发送到相关的服务来处理每个请求 (2)。 每个服务向网关返回响应 (3)。 网关组合来自每个服务的响应，并向应用程序发送响应 (4)。 应用程序发出单个请求，并仅接收来自网关的单个响应。
 
-![](./_images/gateway-aggregation.png)
+![网关聚合模式的解决方案图](./_images/gateway-aggregation.png)
 
 ## <a name="issues-and-considerations"></a>问题和注意事项
 

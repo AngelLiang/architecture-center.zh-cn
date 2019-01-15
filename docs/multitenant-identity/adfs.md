@@ -1,23 +1,24 @@
 ---
 title: 与客户的 AD FS 联合
-description: 如何在多租户应用程序中与客户的 AD FS 联合
+description: 如何在多租户应用程序中与客户的 AD FS 联合。
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: fec10ca0e067b3b51bf9dba70d66ceb12423787d
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 27fad1aab8d359346353cc031a2e8d8746294818
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902691"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113546"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>与客户的 AD FS 联合
 
 本文介绍了多租户 SaaS 应用程序如何支持通过 Active Directory 联合身份验证服务 (AD FS) 进行的身份验证，以便与客户的 AD FS 联合。
 
 ## <a name="overview"></a>概述
+
 Azure Active Directory (Azure AD) 让从 Azure AD 租户（包括 Office365 和 Dynamics CRM Online 客户）登录用户变得简便易行。 但是，在公司 Intranet 使用本地 Active Directory 的客户该怎么办？
 
 一种选择是，客户使用 [Azure AD Connect] 将其本地 AD 与 Azure AD 同步。 但是，由于公司的 IT 政策或其他原因，某些客户可能无法使用此方法。 在这种情况下，另一个选择是通过 Active Directory 联合身份验证服务 (AD FS) 进行联合。
@@ -38,22 +39,24 @@ Azure Active Directory (Azure AD) 让从 Azure AD 租户（包括 Office365 和 
 
 > [!NOTE]
 > 在本文中，我们假设应用程序使用 OpenID connect 作为身份验证协议。 另一种选择是使用 WS 联合身份验证。
-> 
+>
 > 对于 OpenID Connect，SaaS 提供程序必须使用在 Windows Server 2016 中运行的 AD FS 2016。 AD FS 3.0 不支持 OpenID Connect。
-> 
+>
 > ASP.NET Core 没有现成可用的 WS 联合身份验证支持。
-> 
-> 
+>
+>
 
 有关将 WS 联合身份验证与 ASP.NET 4 配合使用的示例，请参阅 [active-directory-dotnet-webapp-wsfederation 示例][active-directory-dotnet-webapp-wsfederation]。
 
 ## <a name="authentication-flow"></a>身份验证流
+
 1. 用户单击"登录"时，应用程序会重定向到 SaaS 提供程序 AD FS 上的 OpenID Connect 终结点。
 2. 用户输入所在组织中的用户名 ("`alice@corp.contoso.com`")。 AD FS 使用主领域发现重定向到客户的 AD FS，用户在此处输入其凭据。
 3. 客户的 AD FS 使用 WF 联合身份验证（或 SAML）将用户声明发送到 SaaS 提供程序的 AD FS。
 4. 声明使用 OpenID Connect 从 AD FS 流动到应用。 这需要 WS 联合身份验证的协议转换。
 
 ## <a name="limitations"></a>限制
+
 默认情况下，信赖方应用程序仅接收一组在 id_token 中提供的固定声明，如下表所示。 通过 AD FS 2016，可以在 OpenID Connect 方案中自定义 id_token。 有关详细信息，请参阅[在 AD FS 中自定义 ID 令牌](/windows-server/identity/ad-fs/development/customize-id-token-ad-fs-2016)。
 
 | 声明 | 说明 |
@@ -72,12 +75,11 @@ Azure Active Directory (Azure AD) 让从 Azure AD 租户（包括 Office365 和 
 
 > [!NOTE]
 > “iss”声明包含合作伙伴的 AD FS（通常，此声明将 SaaS 提供程序标识为颁发者）。 它不会标识客户的 AD FS。 你可以发现客户的域名是 UPN 的一部分。
-> 
-> 
 
 本文的其余部分介绍如何设置 RP（应用）和帐户伙伴（客户）之间的信任关系。
 
 ## <a name="ad-fs-deployment"></a>AD FS 部署
+
 SaaS 提供程序可以在本地或 Azure VM 上部署 AD FS。 为了确保安全性和可用性，以下准则非常重要：
 
 * 至少部署两个 AD FS 服务器和两个 AD FS 代理服务器，以获得 AD FS 服务的最佳可用性。
@@ -87,13 +89,15 @@ SaaS 提供程序可以在本地或 Azure VM 上部署 AD FS。 为了确保安�
 在 Azure 中设置类似的拓扑需要使用虚拟网络、NSG 集、Azure VM 集和可用性集。 有关详细信息，请参阅[在 Azure 虚拟机上部署 Windows Server Active Directory 的指南][active-directory-on-azure]。
 
 ## <a name="configure-openid-connect-authentication-with-ad-fs"></a>使用 AD FS 配置 OpenID Connect 身份验证
-SaaS 提供程序必须在应用程序与 AD FS 之间启用 OpenID Connect。 若要执行此操作，请在 AD FS 中添加应用程序组。  有关详细说明，请参阅此[博客文章]的“为 OpenId connect 登录 AD FS 设置一个 Web 应用”一节。 
+
+SaaS 提供程序必须在应用程序与 AD FS 之间启用 OpenID Connect。 若要执行此操作，请在 AD FS 中添加应用程序组。  有关详细说明，请参阅此[博客文章]的“为 OpenId connect 登录 AD FS 设置一个 Web 应用”一节。
 
 接下来，配置 OpenID Connect 中间件。 元数据终结点是 `https://domain/adfs/.well-known/openid-configuration`，其中，域是 SaaS 提供程序的 AD FS 域。
 
 通常情况下，可以将其与其他 OpenID Connect 终结点（如 AAD）结合。 不过，这需要设置两个不同的登录按钮或通过其他方式来区分它们，以便将用户发送到正确的身份验证终结点。
 
 ## <a name="configure-the-ad-fs-resource-partner"></a>配置 AD FS 资源伙伴
+
 SaaS 提供程序必须为每个想通过 ADFS 连接的客户执行下列操作：
 
 1. 添加声明提供程序信任。
@@ -103,6 +107,7 @@ SaaS 提供程序必须为每个想通过 ADFS 连接的客户执行下列操作
 以下是更详细的步骤。
 
 ### <a name="add-the-claims-provider-trust"></a>添加声明提供程序信任
+
 1. 在服务器管理器中，单击“工具”，选择“AD FS 管理”。
 2. 在控制台树的“AD FS”下，右键单击“声明提供程序信任”。 选择“添加声明提供程序信任”。
 3. 单击“启动”以启动向导。
@@ -110,6 +115,7 @@ SaaS 提供程序必须为每个想通过 ADFS 连接的客户执行下列操作
 5. 使用默认选项完成向导。
 
 ### <a name="edit-claims-rules"></a>编辑声明规则
+
 1. 右键单击新添加的声明提供程序信任，然后选择“编辑声明规则”。
 2. 单击“添加规则”。
 3. 选择"传递或筛选传入声明"，然后单击“下一步”。
@@ -123,9 +129,10 @@ SaaS 提供程序必须为每个想通过 ADFS 连接的客户执行下列操作
 9. 单击“确定”完成本向导。
 
 ### <a name="enable-home-realm-discovery"></a>启用主领域发现
+
 运行以下 PowerShell 脚本：
 
-```
+```powershell
 Set-ADFSClaimsProviderTrust -TargetName "name" -OrganizationalAccountSuffix @("suffix")
 ```
 
@@ -134,12 +141,14 @@ Set-ADFSClaimsProviderTrust -TargetName "name" -OrganizationalAccountSuffix @("s
 通过此配置，最终用户可以键入其组织帐户，并且 AD FS 会自动选择相应的声明提供程序。 请参阅[自定义 AD FS 登录页]中“配置标识提供者以使用某些电子邮件后缀”一节。
 
 ## <a name="configure-the-ad-fs-account-partner"></a>配置 AD FS 帐户伙伴
+
 客户必须执行以下操作：
 
 1. 添加信赖方 (RP) 信任。
 2. 添加声明规则。
 
 ### <a name="add-the-rp-trust"></a>添加 RP 信任
+
 1. 在服务器管理器中，单击“工具”，选择“AD FS 管理”。
 2. 在控制台树的“AD FS”下，右键单击“信赖方信任”。 选择“添加信赖方信任”。
 3. 选择“声明感知”，然后单击“启动”。
@@ -152,6 +161,7 @@ Set-ADFSClaimsProviderTrust -TargetName "name" -OrganizationalAccountSuffix @("s
 8. 单击“下一步”按钮完成向导。
 
 ### <a name="add-claims-rules"></a>添加声明规则
+
 1. 右键单击新添加的信赖方信任，然后选择“编辑声明颁发策略”。
 2. 单击“添加规则”。
 3. 选择“以声明方式发送 LDAP 属性”，然后单击“下一步”。
@@ -167,19 +177,19 @@ Set-ADFSClaimsProviderTrust -TargetName "name" -OrganizationalAccountSuffix @("s
 9. 选择“使用自定义规则发送声明”，并单击“下一步”。
 10. 输入规则名称，如"定位点声明类型"。
 11. 在“自定义规则”下，输入以下内容：
-    
-    ```
+
+    ```console
     EXISTS([Type == "http://schemas.microsoft.com/ws/2014/01/identity/claims/anchorclaimtype"])=>
     issue (Type = "http://schemas.microsoft.com/ws/2014/01/identity/claims/anchorclaimtype",
           Value = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn");
     ```
-    
+
     此规则发出 `anchorclaimtype` 类型的声明。 此声明告知信赖方使用 UPN 作为用户的不可变 ID。
 12. 单击“完成” 。
 13. 单击“确定”完成本向导。
 
+<!-- links -->
 
-<!-- Links -->
 [Azure AD Connect]: /azure/active-directory/hybrid/whatis-hybrid-identity
 [联合身份验证信任]: https://technet.microsoft.com/library/cc770993(v=ws.11).aspx
 [帐户伙伴]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx

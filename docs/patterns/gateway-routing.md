@@ -1,14 +1,17 @@
 ---
 title: 网关路由模式
+titleSuffix: Cloud Design Patterns
 description: 使用单个终结点将请求路由到多个服务。
+keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: ea0bc4d31b745043a7ac3afb277dfc46d87ff109
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.custom: seodec18
+ms.openlocfilehash: 4db98038f582e0315a743a55d46013d2eda187e3
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252594"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010471"
 ---
 # <a name="gateway-routing-pattern"></a>网关路由模式
 
@@ -26,8 +29,8 @@ ms.locfileid: "35252594"
 
 使用网关，还可以从客户端提取后端服务，保持客户端调用的简单性，同时在网关后的后端服务中启用更改。 客户端调用可以被路由到任何需要处理预期的客户端行为的服务，无需更改客户端即可在网关后面添加、拆分和重组服务。
 
-![](./_images/gateway-routing.png)
- 
+![网关路由模式图](./_images/gateway-routing.png)
+
 这种模式允许管理向用户推出更新的方式，可以帮助进行部署。 部署了新版本的服务后，它可以与现有版本并行部署。 通过路由，可以控制向客户端提供哪种版本的服务，能够灵活地使用各种发布策略，无论是递增、并行还是完整的推出更新都可以。 通过在网关上进行配置更改可以快速还原部署新服务后发现的任何问题，不会影响客户端。
 
 ## <a name="issues-and-considerations"></a>问题和注意事项
@@ -51,7 +54,7 @@ ms.locfileid: "35252594"
 
 使用 Nginx 作为路由器，以下为服务器的一个简单示例配置文件，将驻留在不同虚拟目录上的应用程序的请求路由到后端不同的计算机。
 
-```
+```console
 server {
     listen 80;
     server_name domain.com;
@@ -75,6 +78,3 @@ server {
 - [用于前端的后端模式](./backends-for-frontends.md)
 - [网关聚合模式](./gateway-aggregation.md)
 - [网关卸载模式](./gateway-offloading.md)
-
-
-

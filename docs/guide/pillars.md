@@ -1,16 +1,18 @@
 ---
 title: 软件质量的要素
+titleSuffix: Azure Application Architecture Guide
 description: 介绍软件质量的五大构成要素：可伸缩性、可用性、复原能力、管理和安全性。
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: dce87aba849c61750416f277bcc5558c400c1f25
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: 2f013063afea89e3e322aa6f36484f6df50210be
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326150"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113937"
 ---
-# <a name="pillars-of-software-quality"></a>软件质量的构成要素 
+# <a name="pillars-of-software-quality"></a>软件质量的要素
 
 一个成功的云应用程序应注重软件质量的五大构成要素：可伸缩性、可用性、复原能力、管理和安全性。
 
@@ -24,17 +26,17 @@ ms.locfileid: "43326150"
 
 ## <a name="scalability"></a>可伸缩性
 
-可伸缩性是指系统处理增加的负载的能力。 应用程序可通过两种主要方式进行扩展。 垂直扩展（*纵向*扩展）指增加资源的容量，例如通过使用更大的 VM。 水平扩展（*横向*扩展）指添加资源的新实例，比如 VM 或数据库副本。 
+可伸缩性是指系统处理增加的负载的能力。 应用程序可通过两种主要方式进行扩展。 垂直扩展（*纵向*扩展）指增加资源的容量，例如通过使用更大的 VM。 水平扩展（*横向*扩展）指添加资源的新实例，比如 VM 或数据库副本。
 
 水平扩展相较垂直扩展具有明显优势：
 
 - 真正的云规模。 可将应用程序设计为在数百个甚至数千个节点上运行，其规模是在单个节点上无法达到的。
 - 水平扩展具有弹性。 如果负载增加，可以添加更多实例；在较安静的时间段，则可以删除实例。
-- 可以按计划或为响应负载变化，自动触发横向扩展。 
-- 横向扩展可能比纵向扩展更便宜。 运行多个小型 VM 比运行单个大型 VM 的成本更低。 
+- 可以按计划或为响应负载变化，自动触发横向扩展。
+- 横向扩展可能比纵向扩展更便宜。 运行多个小型 VM 比运行单个大型 VM 的成本更低。
 - 水平扩展还可通过添加冗余提高复原能力。 如果某个实例出现故障，应用程序将继续运行。
 
-垂直扩展的一个优点是，扩展时不必对应用程序进行任何更改。 但会在某个时候达到极限，即，再也无法纵向扩展。 这时，任何进一步的扩展都只能是水平扩展。 
+垂直扩展的一个优点是，扩展时不必对应用程序进行任何更改。 但会在某个时候达到极限，即，再也无法纵向扩展。 这时，任何进一步的扩展都只能是水平扩展。
 
 必须将水平扩展设计到系统中。 例如，可通过将 VM 放在负载均衡器后面来横向扩展 VM。 但池中的每个 VM 都必须能够处理任何客户端请求，因此应用程序必须无状态或将状态存储在外部（例如，在分布式缓存中）。 托管 PaaS 服务通常内置水平扩展和自动扩展。 能轻松扩展这些服务是使用 PaaS 服务的主要优点。
 
@@ -51,9 +53,9 @@ ms.locfileid: "43326150"
 
 ## <a name="availability"></a>可用性
 
-可用性指系统正常工作时间所占的比例。 通常通过运行时间百分比衡量。 应用程序错误、基础结构问题和系统负载都会降低可用性。 
+可用性指系统正常工作时间所占的比例。 通常通过运行时间百分比衡量。 应用程序错误、基础结构问题和系统负载都会降低可用性。
 
-云应用程序应具有一个服务级别目标 (SLO)，以明确定义预期的可用性以及如何衡量可用性。 定义可用性时，请查看关键路径。 Web 前端可能能够处理客户端请求，但如果每个事务都因无法连接到数据库而失败，用户将无法使用该应用程序。 
+云应用程序应具有一个服务级别目标 (SLO)，以明确定义预期的可用性以及如何衡量可用性。 定义可用性时，请查看关键路径。 Web 前端可能能够处理客户端请求，但如果每个事务都因无法连接到数据库而失败，用户将无法使用该应用程序。
 
 通常以“9s”的方式描述可用性 &mdash; 例如，“四个 9”意味着 99.99% 的运行时间。 下表展示不同可用性级别的潜在累积故障时间。
 
@@ -69,7 +71,7 @@ ms.locfileid: "43326150"
 
 在 Azure 中，服务级别协议 (SLA) 描述 Microsoft 关于运行时间和连接方面的承诺。 如果针对特定服务的 SLA 为 99.95%，则意味着该服务应该在 99.95% 的时间内可用。
 
-应用程序通常依赖于多个服务。 一般来说，任一服务发生故障的概率是独立的。 例如，假设应用程序依赖于两个服务，每个服务的 SLA 都为 99.9%。 那么，这两个服务的复合 SLA 为 99.9% &times; 99.9% &asymp; 99.8%，或略小于单独的每个服务。 
+应用程序通常依赖于多个服务。 一般来说，任一服务发生故障的概率是独立的。 例如，假设应用程序依赖于两个服务，每个服务的 SLA 都为 99.9%。 那么，这两个服务的复合 SLA 为 99.9% &times; 99.9% &asymp; 99.8%，或略小于单独的每个服务。
 
 使用[可用性清单][availability-checklist]从可用性角度审查你的设计。
 
@@ -85,11 +87,11 @@ ms.locfileid: "43326150"
 传统应用程序开发一直将焦点放在如何缩短平均故障间隔时间 (MTBF) 上， 并尝试各种办法防止系统出现故障。 在云计算中，必须采用不同的思维方式，原因如下：
 
 - 分布式系统很复杂，一个点的故障可能在整个系统中级联。
-- 云环境通过使用商用硬件保持低成本，因此必须预料到偶尔的硬件故障。 
-- 应用程序通常依赖于外部服务，这些服务可能会变得暂时不可用或限制大量用户。 
+- 云环境通过使用商用硬件保持低成本，因此必须预料到偶尔的硬件故障。
+- 应用程序通常依赖于外部服务，这些服务可能会变得暂时不可用或限制大量用户。
 - 现在的用户都希望应用程序能够全天候可用，永不下线。
 
-所有这些因素都意味着设计云应用程序时必须预料到偶发故障并从中恢复。 Azure 已向平台内置许多复原功能。 例如， 
+所有这些因素都意味着设计云应用程序时必须预料到偶发故障并从中恢复。 Azure 已向平台内置许多复原功能。 例如：
 
 - Azure 存储、SQL 数据库和 Cosmos DB 都在区域内以及跨区域提供内置数据复制。
 - Azure 托管磁盘自动放置在不同的存储缩放单元，以限制硬件故障的影响。
@@ -133,7 +135,7 @@ ms.locfileid: "43326150"
 
 你必须考虑从设计和实现到部署和操作的整个应用程序生命周期的安全性。 Azure 平台会提供保护以应对各种威胁，如网络入侵和 DDoS 攻击。 但你仍需在应用程序和 DevOps 过程中构建安全性。
 
-下面是一些需要考虑的较广泛的安全领域。 
+下面是一些需要考虑的较广泛的安全领域。
 
 ### <a name="identity-management"></a>身份管理
 
@@ -141,29 +143,28 @@ ms.locfileid: "43326150"
 
 若要将本地 Active Directory 环境与 Azure 网络集成，可通过多种方法实现，具体视你的要求而定。 有关详细信息，请参阅我们的[标识管理][identity-ref-arch]参考体系结构。
 
-### <a name="protecting-your-infrastructure"></a>保护基础结构 
+### <a name="protecting-your-infrastructure"></a>保护基础结构
 
-控制对已部署的 Azure 资源的访问。 每个 Azure 订阅都与某个 Azure AD 租户存在[信任关系][ad-subscriptions]。 可使用[基于角色的访问控制][rbac] (RBAC) 向组织内的用户授予对 Azure 资源的正确权限。 通过向用户或组分配 RBAC 角色，授予对特定范围的访问权限。 该范围可以是订阅、资源组或单个资源。 [审核][resource-manager-auditing]对基础结构的所有更改。 
+控制对已部署的 Azure 资源的访问。 每个 Azure 订阅都与某个 Azure AD 租户存在[信任关系][ad-subscriptions]。
+可使用[基于角色的访问控制][rbac] (RBAC) 向组织内的用户授予对 Azure 资源的正确权限。 通过向用户或组分配 RBAC 角色，授予对特定范围的访问权限。 该范围可以是订阅、资源组或单个资源。 [审核][resource-manager-auditing]对基础结构的所有更改。
 
 ### <a name="application-security"></a>应用程序安全性
 
-一般来说，应用程序开发的安全性最佳做法在云端仍然适用。 其中包括随处使用 SSL、防止 CSRF 和 XSS 攻击、阻止 SQL 注入攻击等等。 
+一般来说，应用程序开发的安全性最佳做法在云端仍然适用。 其中包括随处使用 SSL、防止 CSRF 和 XSS 攻击、阻止 SQL 注入攻击等等。
 
 云应用程序通常使用具有访问密钥的托管服务。 绝不要将这些服务签入源控件中。 请考虑将应用程序密码存储到 Azure Key Vault 中。
 
 ### <a name="data-sovereignty-and-encryption"></a>数据自主性和加密
 
-使用 Azure 的高可用性时，确保数据一直位于正确的地缘政治区域中。 Azure 的异地复制存储采用了同一地缘政治区域中的[配对区域][paired-region]这一概念。 
+使用 Azure 的高可用性时，确保数据一直位于正确的地缘政治区域中。 Azure 的异地复制存储采用了同一地缘政治区域中的[配对区域][paired-region]这一概念。
 
 使用 Key Vault 保护加密密钥和密码。 通过使用 Key Vault，可以利用受硬件安全模块 (HSM) 保护的密钥来加密密钥和密码。 许多 Azure 存储和 DB 服务支持静态数据加密，包括 [Azure 存储][storage-encryption]、[Azure SQL 数据库][sql-db-encryption]、[Azure SQL 数据仓库][data-warehouse-encryption]和 [Cosmos DB][cosmosdb-encryption]。
 
 ### <a name="security-resources"></a>安全性资源
 
-- [Azure 安全中心][security-center]为 Azure 订阅提供集成的安全监视和策略管理。 
+- [Azure 安全中心][security-center]为 Azure 订阅提供集成的安全监视和策略管理。
 - [Azure 安全文档][security-documentation]
 - [Microsoft 信任中心][trust-center]
-
-
 
 <!-- links -->
 
@@ -183,14 +184,12 @@ ms.locfileid: "43326150"
 [sql-db-encryption]: /azure/sql-database/sql-database-always-encrypted-azure-key-vault
 [storage-encryption]: /azure/storage/storage-service-encryption
 [trust-center]: https://azure.microsoft.com/support/trust-center/
- 
 
 <!-- patterns -->
 [availability-patterns]: ../patterns/category/availability.md
 [management-patterns]: ../patterns/category/management-monitoring.md
 [resiliency-patterns]: ../patterns/category/resiliency.md
 [scalability-patterns]: ../patterns/category/performance-scalability.md
-
 
 <!-- practices -->
 [autoscale]: ../best-practices/auto-scaling.md
@@ -201,7 +200,6 @@ ms.locfileid: "43326150"
 [monitoring]: ../best-practices/monitoring.md
 [retry-service-specific]: ../best-practices/retry-service-specific.md
 [transient-fault-handling]: ../best-practices/transient-faults.md
-
 
 <!-- checklist -->
 [availability-checklist]: ../checklist/availability.md

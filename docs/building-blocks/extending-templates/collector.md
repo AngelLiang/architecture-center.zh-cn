@@ -1,14 +1,14 @@
 ---
 title: 在 Azure 资源管理器模板中实现属性转换器和收集器
-description: 描述如何在 Azure 资源管理器模板中实现属性转换器和收集器
+description: 描述如何在 Azure 资源管理器模板中实现属性转换器和收集器。
 author: petertay
 ms.date: 10/30/2018
-ms.openlocfilehash: ad5b3a71f516ec12fee311e25c43f434f9f306ed
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: 1a6a01ee513609132d8522a79ccb81b7938651b5
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251781"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113801"
 ---
 # <a name="implement-a-property-transformer-and-collector-in-an-azure-resource-manager-template"></a>在 Azure 资源管理器模板中实现属性转换器和收集器
 
@@ -24,12 +24,14 @@ ms.locfileid: "50251781"
 ![属性收集器和转换器体系结构](../_images/collector-transformer.png)
 
 调用模板包含两个资源：
-* 调用收集器模板的模板链接。
-* 要部署的 NSG 资源。
+
+- 调用收集器模板的模板链接。
+- 要部署的 NSG 资源。
 
 收集器模板包含两个资源：
-* 定位点资源。
-* 在复制循环中调用转换模板的模板链接。
+
+- 定位点资源。
+- 在复制循环中调用转换模板的模板链接。
 
 转换模板包含一个资源：带有变量的空模板，该模板能将 `source` JSON 转换为主模板中 NSG 资源所需要的 JSON 架构。
 
@@ -41,7 +43,7 @@ ms.locfileid: "50251781"
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
-    "parameters":{ 
+    "parameters": {
       "networkSecurityGroupsSettings": {
       "value": {
           "securityRules": [
@@ -80,9 +82,10 @@ ms.locfileid: "50251781"
 
 ## <a name="transform-template"></a>转换模板
 
-转换模板包含从收集器模板传递的两个参数： 
-* `source` 是接收属性数组的属性值对象的对象。 在本示例中，`"securityRules"` 数组的每个对象会以一次一个的方式传入。
-* `state` 是接收所有以前转换的连接结果的数组。 这是转换后的 JSON 的集合。
+转换模板包含从收集器模板传递的两个参数：
+
+- `source` 是接收属性数组的属性值对象的对象。 在本示例中，`"securityRules"` 数组的每个对象会以一次一个的方式传入。
+- `state` 是接收所有以前转换的连接结果的数组。 这是转换后的 JSON 的集合。
 
 参数如下所示：
 
@@ -115,7 +118,7 @@ ms.locfileid: "50251781"
             "destinationAddressPrefix": "[parameters('source').destinationAddressPrefix]",
             "access": "[parameters('source').access]",
             "priority": "[parameters('source').priority]",
-            "direction": "[parameters('source').direction]"            
+            "direction": "[parameters('source').direction]"
         }
       }
     ]
@@ -139,9 +142,10 @@ ms.locfileid: "50251781"
 ## <a name="collector-template"></a>收集器模板
 
 收集器模板包含三个参数：
-* `source` 是完整的参数对象数组。 它通过调用模板传入。 它的名称与转换模板中的 `source` 参数相同，但你可能已经注意到了有一个重要差异：它是完整的数组，但我们一次只能将该数组中的一个元素传递给转换模板。
-* `transformTemplateUri` 是转换模板的 URI。 为了让模板可以重复使用，我们在此将其定义为参数。
-* `state` 刚开始是空数组，我们将其传递给转换模板。 当复制循环完成时，它存储转换后的参数对象的集合。
+
+- `source` 是完整的参数对象数组。 它通过调用模板传入。 它的名称与转换模板中的 `source` 参数相同，但你可能已经注意到了有一个重要差异：它是完整的数组，但我们一次只能将该数组中的一个元素传递给转换模板。
+- `transformTemplateUri` 是转换模板的 URI。 为了让模板可以重复使用，我们在此将其定义为参数。
+- `state` 刚开始是空数组，我们将其传递给转换模板。 当复制循环完成时，它存储转换后的参数对象的集合。
 
 参数如下所示：
 
@@ -153,7 +157,7 @@ ms.locfileid: "50251781"
       "type": "array",
       "defaultValue": [ ]
     }
-``` 
+```
 
 接下来，我们定义一个名为 `count` 的变量。 其值为 `source` 参数对象数组的长度：
 
@@ -166,8 +170,9 @@ ms.locfileid: "50251781"
 正如你所料，我们在复制循环中将其用于迭代数。
 
 现在我们来看看资源。 我们定义两种资源：
-* `loop-0` 是复制循环的基于零的资源。
-* `loop-` 与 `copyIndex(1)` 函数结果连接，以生成基于迭代且以 `1` 开头的唯一资源名称。
+
+- `loop-0` 是复制循环的基于零的资源。
+- `loop-` 与 `copyIndex(1)` 函数结果连接，以生成基于迭代且以 `1` 开头的唯一资源名称。
 
 资源如下所示：
 
@@ -231,6 +236,7 @@ ms.locfileid: "50251781"
     }
   }
 ```
+
 将转换模板的最后一次迭代的 `output` 返回到调用模板似乎有悖常理，因为我们好像是将其存储在 `source` 参数中的。 但请记住，这是转换模板的最后一次迭代，将保存转换后的属性对象的完整数组，并且这就是我们想要返回的内容。
 
 最后，我们看看如何从调用模板中调用收集器模板。
@@ -277,8 +283,9 @@ ms.locfileid: "50251781"
 ```
 
 我们向收集器模板传递两个参数：
-* `source` 是属性对象数组。 在本示例中是 `networkSecurityGroupsSettings` 参数。
-* `transformTemplateUri` 是刚才通过收集器模板的 URI 定义的变量。
+
+- `source` 是属性对象数组。 在本示例中是 `networkSecurityGroupsSettings` 参数。
+- `transformTemplateUri` 是刚才通过收集器模板的 URI 定义的变量。
 
 最后，`Microsoft.Network/networkSecurityGroups` 资源直接将 `collector` 链接模板资源的 `output` 分配给 `securityRules` 属性：
 

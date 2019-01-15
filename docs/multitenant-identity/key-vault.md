@@ -1,16 +1,16 @@
 ---
 title: 使用 Key Vault 保护应用程序机密
-description: 如何使用 Key Vault 服务来存储应用程序机密
+description: 如何使用 Key Vault 服务来存储应用程序机密。
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: client-assertion
-ms.openlocfilehash: 4cefea7e09cf11cbbc66cdb238c5dea8f700cdad
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: dc471ca5fa090270465624548ffe7335363d6cb7
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902521"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112747"
 ---
 # <a name="use-azure-key-vault-to-protect-application-secrets"></a>使用 Azure Key Vault 保护应用程序机密
 
@@ -47,6 +47,7 @@ Surveys 应用程序从以下位置加载配置设置：
 启动时，应用程序从每个注册的配置提供程序读取设置，并使用它们来填充强类型的选项对象。 有关详细信息，请参阅[使用选项和配置对象][options]。
 
 ## <a name="setting-up-key-vault-in-the-surveys-app"></a>在 Surveys 应用中设置 Key Vault
+
 先决条件：
 
 * 安装 [Azure 资源管理器 Cmdlet][azure-rm-cmdlets]。
@@ -62,10 +63,9 @@ Surveys 应用程序从以下位置加载配置设置：
 6. 更新应用程序的用户机密。
 
 ### <a name="set-up-an-admin-user"></a>设置管理员用户
+
 > [!NOTE]
 > 若要创建密钥保管库，必须使用可以管理 Azure 订阅的帐户。 此外，授权从密钥保管库中读取的任何应用程序必须在与该帐户相同的租户中注册。
-> 
-> 
 
 在此步骤中，当你从注册 Surveys 应用的租户以用户身份登录时，需要确保能够创建密钥保管库。
 
@@ -84,19 +84,20 @@ Surveys 应用程序从以下位置加载配置设置：
 
 1. 在“中心”菜单上，选择“订阅”。
 
-    ![](./images/running-the-app/subscriptions.png)
+    ![Azure 门户中心的屏幕截图](./images/running-the-app/subscriptions.png)
 
 2. 选择希望管理员访问的订阅。
 3. 在“订阅”边栏选项卡中，选择“访问控制 (IAM)”。
 4. 单击“添加”。
-4. 在“角色”下，选择“所有者”。
-5. 键入要添加为“所有者”的用户的电子邮件地址。
-6. 选择用户并单击“保存”。
+5. 在“角色”下，选择“所有者”。
+6. 键入要添加为“所有者”的用户的电子邮件地址。
+7. 选择用户并单击“保存”。
 
 ### <a name="set-up-a-client-certificate"></a>设置客户端证书
+
 1. 如下所示，运行 PowerShell 脚本 [/Scripts/Setup-KeyVault.ps1][Setup-KeyVault]：
-   
-    ```
+
+    ```powershell
     .\Setup-KeyVault.ps1 -Subject <<subject>>
     ```
     对于 `Subject` 参数，键入任意名称，例如“surveysapp”。 此脚本生成自签名证书，并将其存储在“当前用户/个人”证书存储中。 脚本的输出是 JSON 片段。 复制此值。
@@ -105,10 +106,10 @@ Surveys 应用程序从以下位置加载配置设置：
 
 3. 选择“Azure Active Directory” > “应用注册”>“Surveys”
 
-4.  单击“清单”，然后单击“编辑”。
+4. 单击“清单”，然后单击“编辑”。
 
-5.  将脚本的输出粘贴到 `keyCredentials` 属性。 如下图所示：
-        
+5. 将脚本的输出粘贴到 `keyCredentials` 属性。 如下图所示：
+
     ```json
     "keyCredentials": [
         {
@@ -119,87 +120,90 @@ Surveys 应用程序从以下位置加载配置设置：
         "value": "MIIDAjCCAeqgAwIBAgIQFxeRiU59eL.....
         }
     ],
-    ```          
+    ```
 
-6. 单击“ **保存**”。  
+6. 单击“ **保存**”。
 
 7. 重复步骤 3-6，将相同的 JSON 片段添加到 Web API (Surveys.WebAPI) 的应用程序清单。
 
 8. 从 PowerShell 窗口运行以下命令以获取证书指纹。
-   
-    ```
+
+    ```powershell
     certutil -store -user my [subject]
     ```
-    
+
     对于 `[subject]`，请使用为 PowerShell 脚本中的主题指定的值。 指纹在“Cert Hash(sha1)”下列出。 复制此值。 稍后将使用指纹。
 
 ### <a name="create-a-key-vault"></a>创建 key vault
+
 1. 如下所示，运行 PowerShell 脚本 [/Scripts/Setup-KeyVault.ps1][Setup-KeyVault]：
-   
-    ```
+
+    ```powershell
     .\Setup-KeyVault.ps1 -KeyVaultName <<key vault name>> -ResourceGroupName <<resource group name>> -Location <<location>>
     ```
-   
-    提示输入凭证时，请以之前创建的 Azure AD 用户身份登录。 此脚本创建新的资源组，并在该资源组中创建新的密钥保管库。 
-   
-2. 再次运行 SetupKeyVault.ps，如下所示：
-   
-    ```
+
+    提示输入凭证时，请以之前创建的 Azure AD 用户身份登录。 此脚本创建新的资源组，并在该资源组中创建新的密钥保管库。
+
+2. 再次运行 Setup-KeyVault.ps1，如下所示：
+
+    ```powershell
     .\Setup-KeyVault.ps1 -KeyVaultName <<key vault name>> -ApplicationIds @("<<Surveys app id>>", "<<Surveys.WebAPI app ID>>")
     ```
-   
+
     设置以下参数值：
-   
+
        * 密钥保管库名称 = 上一步中赋予密钥保管库的名称。
        * Surveys 应用 ID = Surveys Web 应用程序的应用程序 ID。
        * Surveys.WebApi 应用 ID = Surveys.WebAPI 应用程序的应用程序 ID。
-         
+
     示例：
-     
-    ```
+
+    ```powershell
      .\Setup-KeyVault.ps1 -KeyVaultName tailspinkv -ApplicationIds @("f84df9d1-91cc-4603-b662-302db51f1031", "8871a4c2-2a23-4650-8b46-0625ff3928a6")
     ```
-    
+
     此脚本授权 Web 应用和 Web API 从密钥保管库检索机密。 有关详细信息，请参阅 [Azure Key Vault 入门](/azure/key-vault/key-vault-get-started/)。
 
 ### <a name="add-configuration-settings-to-your-key-vault"></a>将配置设置添加到密钥保管库
-1. 运行 SetupKeyVault.ps，如下所示：
-   
-    ```
-    .\Setup-KeyVault.ps1 -KeyVaultName <<key vault name> -KeyName Redis--Configuration -KeyValue "<<Redis DNS name>>.redis.cache.windows.net,password=<<Redis access key>>,ssl=true" 
+
+1. 运行 Setup-KeyVault.ps1，如下所示：
+
+    ```powershell
+    .\Setup-KeyVault.ps1 -KeyVaultName <<key vault name> -KeyName Redis--Configuration -KeyValue "<<Redis DNS name>>.redis.cache.windows.net,password=<<Redis access key>>,ssl=true"
     ```
     其中
-   
+
    * 密钥保管库名称 = 上一步中赋予密钥保管库的名称。
    * Redis DNS 名称 = Redis 缓存实例的 DNS 名称。
    * Redis 访问密钥 = Redis 缓存实例的访问密钥。
-     
+
 2. 此时，最好测试是否已成功将机密存储到密钥保管库。 运行以下 PowerShell 命令：
-   
-    ```
+
+    ```powershell
     Get-AzureKeyVaultSecret <<key vault name>> Redis--Configuration | Select-Object *
     ```
 
-3. 再次运行 SetupKeyVault.ps 以添加数据库连接字符串：
-   
-    ```
+3. 再次运行 Setup-KeyVault.ps1 以添加数据库连接字符串：
+
+    ```powershell
     .\Setup-KeyVault.ps1 -KeyVaultName <<key vault name> -KeyName Data--SurveysConnectionString -KeyValue <<DB connection string>> -ConfigName "Data:SurveysConnectionString"
     ```
-   
+
     其中，`<<DB connection string>>` 是数据库连接字符串的值。
-   
+
     要使用本地数据库进行测试，请从 Tailspin.Surveys.Web/appsettings.json 文件复制连接字符串。 如果进行该操作，请确保将双反斜杠（“\\\\”）更改为单反斜杠。 双反斜杠是 JSON 文件中的转义字符。
-   
+
     示例：
-   
-    ```
-    .\Setup-KeyVault.ps1 -KeyVaultName mykeyvault -KeyName Data--SurveysConnectionString -KeyValue "Server=(localdb)\MSSQLLocalDB;Database=Tailspin.SurveysDB;Trusted_Connection=True;MultipleActiveResultSets=true" 
+
+    ```powershell
+    .\Setup-KeyVault.ps1 -KeyVaultName mykeyvault -KeyName Data--SurveysConnectionString -KeyValue "Server=(localdb)\MSSQLLocalDB;Database=Tailspin.SurveysDB;Trusted_Connection=True;MultipleActiveResultSets=true"
     ```
 
 ### <a name="uncomment-the-code-that-enables-key-vault"></a>取消评论启动 Key Vault 的代码
+
 1. 打开 Tailspin.Surveys 解决方案。
 2. 在 Tailspin.Surveys.Web/Startup.cs 中，查找以下代码块并对其取消评论。
-   
+
     ```csharp
     //var config = builder.Build();
     //builder.AddAzureKeyVault(
@@ -208,17 +212,18 @@ Surveys 应用程序从以下位置加载配置设置：
     //    config["AzureAd:ClientSecret"]);
     ```
 3. 在 Tailspin.Surveys.Web/Startup.cs 中，查找注册 `ICredentialService` 的代码。 取消评论使用 `CertificateCredentialService` 的行，并注释掉使用 `ClientCredentialService` 的行：
-   
+
     ```csharp
     // Uncomment this:
     services.AddSingleton<ICredentialService, CertificateCredentialService>();
     // Comment out this:
     //services.AddSingleton<ICredentialService, ClientCredentialService>();
     ```
-   
+
     通过此项更改，Web 应用可以使用[客户端断言][client-assertion]获取 OAuth 访问令牌。 使用客户端断言，就无需 OAuth 客户端密码。 或者，可以在密钥保管库中存储客户端密码。 但密钥保管库和客户端断言都使用客户端证书，因此，如果启用密钥保管库，最好也启用客户端断言。
 
 ### <a name="update-the-user-secrets"></a>更新用户机密
+
 在解决方案资源管理器中，右键单击 Tailspin.Surveys.Web 项目并选“管理用户机密”。 在 secrets.json 文件中，删除现有的 JSON 并粘贴以下代码：
 
 ```json
@@ -246,13 +251,11 @@ Surveys 应用程序从以下位置加载配置设置：
 * `AzureAd:ClientId`：Surveys 应用的客户端 ID。
 * `AzureAd:ClientSecret`：在 Azure AD 中注册 Surveys 应用程序时生成的键。
 * `AzureAd:WebApiResourceId`：在 Azure AD 中创建 Surveys.WebAPI 应用程序时指定的应用 ID URI。
-* `Asymmetric:CertificateThumbprint`：之前在创建客户端证书时获取到的证书指纹。
+* `Asymmetric:CertificateThumbprint`：之前在创建客户端证书时获得的证书指纹。
 * `KeyVault:Name`：密钥保管库的名称。
 
 > [!NOTE]
 > `Asymmetric:ValidationRequired` 为 false，因为之前创建的证书不是由根证书颁发机构 (CA) 签名的。 在生产中，使用由根 CA 签名的证书并将 `ValidationRequired` 设置为 true。
-> 
-> 
 
 保存已更新的 secrets.json 文件。
 
@@ -280,12 +283,11 @@ Surveys 应用程序从以下位置加载配置设置：
 
 > [!NOTE]
 > 对于 Web API，请确保使用 Surveys.WebAPI 应用程序的客户端 ID，而不是 Surveys 应用程序的客户端 ID。
-> 
-> 
 
 [下一篇][adfs]
 
-<!-- Links -->
+<!-- links -->
+
 [adfs]: ./adfs.md
 [authorize-app]: /azure/key-vault/key-vault-get-started//#authorize
 [azure-portal]: https://portal.azure.com

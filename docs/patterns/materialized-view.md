@@ -1,19 +1,17 @@
 ---
-title: 具体化视图
+title: 具体化视图模式
+titleSuffix: Cloud Design Patterns
 description: 当未针对所需的查询操作完美设置数据的格式时，在一个或多个数据存储中基于数据生成预填充的视图。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: 992abcb57204c65a7ca9e9e2525d3ea7339c4a2c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 42795e218d1a46c9aec98c207d1207f1afdbc2fd
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540227"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011559"
 ---
 # <a name="materialized-view-pattern"></a>具体化视图模式
 
@@ -39,7 +37,6 @@ ms.locfileid: "24540227"
 
 ![图 1 中的示例演示了可以如何使用具体化视图模式](./_images/materialized-view-pattern-diagram.png)
 
-
 ## <a name="issues-and-considerations"></a>问题和注意事项
 
 在决定如何实现此模式时，请考虑以下几点：
@@ -61,6 +58,7 @@ ms.locfileid: "24540227"
 ## <a name="when-to-use-this-pattern"></a>何时使用此模式
 
 此模式适合用于：
+
 - 对难以直接查询的数据创建具体化视图，或查询必须十分复杂才能提取以规范化、半结构化或非结构化方式存储的数据。
 - 创建的临时视图有以下作用时：可极大地提高查询性能，或可直接充当 UI、报告或显示的源视图或数据传输对象。
 - 支持偶尔连接或断开的方案，其中不始终提供与数据存储的连接。 在此情况下可本地缓存视图。
@@ -69,6 +67,7 @@ ms.locfileid: "24540227"
 - 桥接不同的数据存储，充分利用其各项功能。 例如，将写入效率高的云存储作为参考数据存储使用，并使用提供良好查询和读取性能的关系数据库来保存具体化视图。
 
 此模式在以下情况中不起作用：
+
 - 源数据十分简单且易于查询。
 - 源数据更改速度很快，或可在不使用视图的情况下访问源数据。 在这些情况下，应避免创建视图时的处理开销。
 - 一致性是重中之重。 视图可能无法始终与原始数据完全一致。
@@ -79,15 +78,15 @@ ms.locfileid: "24540227"
 
 ![图 2：使用具体化视图模式生成销售摘要](./_images/materialized-view-summary-diagram.png)
 
-
 创建此具体化视图需要复杂的查询。 但是，通过具体化视图的方式公开查询结果，用户可以轻松获取结果并直接使用，或将结果纳入另一个查询。 此视图可能会用于报告系统或仪表板，也可以定期（如每周）更新。
 
->  虽然此示例利用了 Azure 表存储，但许多关系数据库管理系统还对具体化视图提供本机支持。
+> 虽然此示例利用了 Azure 表存储，但许多关系数据库管理系统还对具体化视图提供本机支持。
 
 ## <a name="related-patterns-and-guidance"></a>相关模式和指南
 
 实现此模式时可能，可能也会与以下模式和指南相关：
+
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx)（数据一致性入门）。 需要维护具体化视图中的摘要信息，以便其反映基础数据值。 数据值更改时，可能无法实时更新摘要数据，此时需要采用最终一致的方法。 总结了有关维护分布式数据一致性的问题，介绍了不同一致性模型的优点和权衡方案。
-- [命令和查询责任分离 (CQRS) 模式](cqrs.md)。 用于在基础数据值更改时对发生的事件作出响应，从而更新具体化视图中的信息。
-- [事件溯源模式](event-sourcing.md)。 与 CQRS 模式配合使用来维护具体化视图中的信息。 具体化视图所基于的数据值更改时，系统可以引发描述这些更改的事件并将其保存到事件存储中。
-- [索引表模式](index-table.md)。 通常由主键整理具体化视图中的数据，但查询可能需要通过检查其他字段中的数据来从此视图检索信息。 用于对不支持本机辅助索引的数据存储的数据集创建辅助索引。
+- [命令和查询责任分离 (CQRS) 模式](./cqrs.md)。 用于在基础数据值更改时对发生的事件作出响应，从而更新具体化视图中的信息。
+- [事件溯源模式](./event-sourcing.md)。 与 CQRS 模式配合使用来维护具体化视图中的信息。 具体化视图所基于的数据值更改时，系统可以引发描述这些更改的事件并将其保存到事件存储中。
+- [索引表模式](./index-table.md)。 通常由主键整理具体化视图中的数据，但查询可能需要通过检查其他字段中的数据来从此视图检索信息。 用于对不支持本机辅助索引的数据存储的数据集创建辅助索引。

@@ -1,20 +1,23 @@
 ---
 title: 隔舱模式
-description: 将应用程序的元素隔离到池中，这样，如果一个元素发生故障，其他元素可继续工作
+titleSuffix: Cloud Design Patterns
+description: 将应用程序的元素隔离到池中，这样，如果一个元素发生故障，其他元素可继续工作。
+keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 9917870e1dcbed87aaa41e051f1622ad4950456a
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.custom: seodec18
+ms.openlocfilehash: 0a2ae4789d3c1653405a59ef8cb4f6171a8abc81
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012699"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112186"
 ---
 # <a name="bulkhead-pattern"></a>隔舱模式
 
 将应用程序的元素隔离到池中，这样，如果一个元素发生故障，其他元素可继续工作。
 
-此模式之所以称为“隔舱”(Bulkhead)，是因为它类似于船体的分段区。 如果船体受到破坏，只有受损的分段才会进水，从而可以防止船只下沉。 
+此模式之所以称为“隔舱”(Bulkhead)，是因为它类似于船体的分段区。 如果船体受到破坏，只有受损的分段才会进水，从而可以防止船只下沉。
 
 ## <a name="context-and-problem"></a>上下文和问题
 
@@ -34,16 +37,16 @@ ms.locfileid: "31012699"
 
 - 隔离使用者和服务，防止发生连锁故障。 可在使用者或服务自身的隔舱中隔离对其造成影响的问题，防止整个解决方案发生故障。
 - 在发生服务故障时，可以保留一部分功能。 应用程序的其他服务和功能可继续工作。
-- 可以部署能够为使用方应用程序提供不同服务质量的服务。 可以配置高优先级使用者池来利用高优先级服务。 
+- 可以部署能够为使用方应用程序提供不同服务质量的服务。 可以配置高优先级使用者池来利用高优先级服务。
 
 下图显示了围绕调用单个服务的连接池构建的隔舱。 如果服务 A 发生故障或导致其他某种问题，该连接池将被隔离，因此，只有使用分配给服务 A 的线程池的工作负荷才受影响。 使用服务 B 和 C 的工作负载不受影响，可继续工作而不会中断。
 
-![](./_images/bulkhead-1.png) 
+![第一个隔舱模式图](./_images/bulkhead-1.png)
 
 下图显示了调用单个服务的多个客户端。 为每个客户端分配了独立的服务实例。 客户端 1 发出了过多的请求，使其实例近乎瘫痪。 由于每个服务实例相互隔离，其他客户端可继续发出调用。
 
-![](./_images/bulkhead-2.png)
-     
+![第一个隔舱模式图](./_images/bulkhead-2.png)
+
 ## <a name="issues-and-considerations"></a>问题和注意事项
 
 - 围绕应用程序的业务和技术要求定义分区。
@@ -92,11 +95,10 @@ spec:
 
 ## <a name="related-guidance"></a>相关指南
 
-- [断路器模式](./circuit-breaker.md)
 - [设计适用于 Azure 的弹性应用程序](../resiliency/index.md)
+- [断路器模式](./circuit-breaker.md)
 - [重试模式](./retry.md)
 - [限制模式](./throttling.md)
-
 
 <!-- links -->
 
