@@ -5,12 +5,12 @@ description: 使用规模集、应用程序网关和负载均衡器在 Azure 上
 author: iainfoulds
 ms.date: 12/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 2c5f77f265c10388f42138e7d3f6da9e3ead1cd8
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: c5c1d4468df72edd989f2ab8f303781b26d50017
+ms.sourcegitcommit: 71ee0859e19fe58416b4c0056d67f2f34dd9ca0a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643527"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54211982"
 ---
 # <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>使用 Windows 虚拟机在 Azure 上构建安全的 Web 应用程序
 
@@ -97,7 +97,7 @@ ms.locfileid: "53643527"
 
 <!-- markdownlint-disable MD033 -->
 
-1. 选择“部署到 Azure”按钮：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Finfrastructure%2Fregulated-multitier-app%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
+1. 选择“部署到 Azure”按钮：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Finfrastructure%2Fregulated-multitier-app.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. 等待模板部署在 Azure 门户中打开，然后完成以下步骤：
    - 选择“新建”资源组，然后在文本框中提供一个名称，例如 *myWindowsscenario*。
    - 从“位置”下拉框中选择区域。
