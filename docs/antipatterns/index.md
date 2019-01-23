@@ -4,14 +4,12 @@ titleSuffix: Azure Architecture Center
 description: 可能导致可伸缩性问题的常见做法。
 author: dragon119
 ms.date: 06/05/2017
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 9ce1177bac2c93139faf6bc757f2866d6b7eac2d
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54009723"
 ---
+
 # <a name="performance-antipatterns-for-cloud-applications"></a>云应用程序的性能反模式
 
 性能反模式是指在应用程序承受压力时，可能导致可伸缩性问题的某种常见做法。

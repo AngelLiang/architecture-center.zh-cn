@@ -5,13 +5,10 @@ author: david-stanford
 ms.date: 11/01/2018
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 6872cc17e8d7262e36c97e765ecc9de1043269c0
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901401"
+ms.service: architecture-center
+ms.subservice: example-scenario
 ---
+
 # <a name="azure-example-scenarios"></a>Azure 示例方案
 
 示例方案演示如何使用 Azure 解决特定业务或技术难题。 每个方案都基于真实客户示例，并提供简单易懂的快速指导，以加快用户自己的实施过程。

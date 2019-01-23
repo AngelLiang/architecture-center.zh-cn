@@ -1,595 +1,590 @@
-items:
 - name: Azure 体系结构中心
   href: index.md
 - name: 云基础知识
   items:
-  - name: 应用程序体系结构指南
-    items:
-    - name: 介绍
-      href: guide/index.md
-    - name: 架构样式
+    - name: 应用程序体系结构指南
       items:
-      - name: 概述
-        href: guide/architecture-styles/index.md
-      - name: N 层应用程序
-        href: guide/architecture-styles/n-tier.md
-      - name: Web-队列-辅助角色
-        href: guide/architecture-styles/web-queue-worker.md
-      - name: 微服务
-        href: guide/architecture-styles/microservices.md
-      - name: CQRS
-        href: guide/architecture-styles/cqrs.md
-      - name: 事件驱动的架构
-        href: guide/architecture-styles/event-driven.md
-      - name: 大数据
-        href: guide/architecture-styles/big-data.md
-      - name: 大计算
-        href: guide/architecture-styles/big-compute.md
-    - name: 选择计算服务
+        - name: 介绍
+          href: guide/index.md
+        - name: 架构样式
+          items:
+            - name: 概述
+              href: guide/architecture-styles/index.md
+            - name: N 层应用程序
+              href: guide/architecture-styles/n-tier.md
+            - name: Web-队列-辅助角色
+              href: guide/architecture-styles/web-queue-worker.md
+            - name: 微服务
+              href: guide/architecture-styles/microservices.md
+            - name: CQRS
+              href: guide/architecture-styles/cqrs.md
+            - name: 事件驱动的架构
+              href: guide/architecture-styles/event-driven.md
+            - name: 大数据
+              href: guide/architecture-styles/big-data.md
+            - name: 大计算
+              href: guide/architecture-styles/big-compute.md
+        - name: 选择计算服务
+          items:
+            - name: 概述
+              href: guide/technology-choices/compute-overview.md
+            - name: 决策树
+              href: guide/technology-choices/compute-decision-tree.md
+            - name: 计算选项的比较
+              href: guide/technology-choices/compute-comparison.md
+        - name: 选择数据存储
+          items:
+            - name: 概述
+              href: guide/technology-choices/data-store-overview.md
+            - name: 数据存储的比较
+              href: guide/technology-choices/data-store-comparison.md
+        - name: 设计原理
+          items:
+            - name: 概述
+              href: guide/design-principles/index.md
+            - name: 自我修复设计
+              href: guide/design-principles/self-healing.md
+            - name: 实现全面冗余
+              href: guide/design-principles/redundancy.md
+            - name: 尽量减少协调
+              href: guide/design-principles/minimize-coordination.md
+            - name: 横向扩展设计
+              href: guide/design-principles/scale-out.md
+            - name: 通过分区解决限制
+              href: guide/design-principles/partition.md
+            - name: 运营设计
+              href: guide/design-principles/design-for-operations.md
+            - name: 使用托管服务
+              href: guide/design-principles/managed-services.md
+            - name: 使用最佳的数据存储完成作业
+              href: guide/design-principles/use-the-best-data-store.md
+            - name: 演变设计
+              href: guide/design-principles/design-for-evolution.md
+            - name: 根据业务需求构建
+              href: guide/design-principles/build-for-business.md
+        - name: 软件质量的要素
+          href: guide/pillars.md
+    - name: 数据体系结构指南
       items:
-      - name: 概述
-        href: guide/technology-choices/compute-overview.md
-      - name: 决策树
-        href: guide/technology-choices/compute-decision-tree.md
-      - name: 计算选项的比较
-        href: guide/technology-choices/compute-comparison.md
-    - name: 选择数据存储
+        - name: 介绍
+          href: data-guide/index.md
+        - name: 传统 RDBMS 工作负荷
+          items:
+            - name: 概述
+              href: data-guide/relational-data/index.md
+            - name: 联机事务处理 (OLTP)
+              href: data-guide/relational-data/online-transaction-processing.md
+            - name: 数据仓库
+              href: data-guide/relational-data/data-warehousing.md
+            - name: 联机分析处理 (OLAP)
+              href: data-guide/relational-data/online-analytical-processing.md
+            - name: 提取、转换和加载 (ETL)
+              href: data-guide/relational-data/etl.md
+        - name: 大数据架构
+          items:
+            - name: 概述
+              href: data-guide/big-data/index.md
+            - name: 批处理
+              href: data-guide/big-data/batch-processing.md
+            - name: 实时处理
+              href: data-guide/big-data/real-time-processing.md
+            - name: 大规模机器学习
+              href: data-guide/big-data/machine-learning-at-scale.md
+            - name: 非关系数据存储
+              href: data-guide/big-data/non-relational-data.md
+            - name: 方案
+              items:
+                - name: 高级分析
+                  href: data-guide/scenarios/advanced-analytics.md
+                - name: Data Lake
+                  href: data-guide/scenarios/data-lake.md
+                - name: 自由格式文本搜索
+                  href: data-guide/scenarios/search.md
+                - name: 交互式数据探索
+                  href: data-guide/scenarios/interactive-data-exploration.md
+                - name: 自然语言处理
+                  href: data-guide/scenarios/natural-language-processing.md
+                - name: 时序解决方案
+                  href: data-guide/scenarios/time-series.md
+                - name: 使用 CSV 和 JSON 文件
+                  href: data-guide/scenarios/csv-and-json.md
+            - name: 技术选择
+              items:
+                - name: 分析数据存储
+                  href: data-guide/technology-choices/analytical-data-stores.md
+                - name: 分析和报告
+                  href: data-guide/technology-choices/analysis-visualizations-reporting.md
+                - name: 批处理
+                  href: data-guide/technology-choices/batch-processing.md
+                - name: 认知服务
+                  href: data-guide/technology-choices/cognitive-services.md
+                - name: 数据存储
+                  href: data-guide/technology-choices/data-storage.md
+                - name: 机器学习
+                  href: data-guide/technology-choices/data-science-and-machine-learning.md
+                - name: 自然语言处理
+                  href: data-guide/technology-choices/natural-language-processing.md
+                - name: 管道业务流程
+                  href: data-guide/technology-choices/pipeline-orchestration-data-movement.md
+                - name: 实时消息引入
+                  href: data-guide/technology-choices/real-time-ingestion.md
+                - name: 搜索数据存储
+                  href: data-guide/technology-choices/search-options.md
+                - name: 流处理
+                  href: data-guide/technology-choices/stream-processing.md
+        - name: 横切关注点
+          items:
+            - name: 数据传输
+              href: data-guide/scenarios/data-transfer.md
+            - name: 将本地数据解决方案扩展到云
+              href: data-guide/scenarios/hybrid-on-premises-and-cloud.md
+            - name: 保护数据解决方案
+              href: data-guide/scenarios/securing-data-solutions.md
+    - name: 云设计模式
       items:
-      - name: 概述
-        href: guide/technology-choices/data-store-overview.md
-      - name: 数据存储的比较
-        href: guide/technology-choices/data-store-comparison.md
-    - name: 设计原理
+        - name: 概述
+          href: patterns/index.md
+        - name: 类别
+          items:
+            - name: 可用性
+              href: patterns/category/availability.md
+            - name: 数据管理
+              href: patterns/category/data-management.md
+            - name: 设计和实施
+              href: patterns/category/design-implementation.md
+            - name: 消息传递
+              href: patterns/category/messaging.md
+            - name: 监视和管理
+              href: patterns/category/management-monitoring.md
+            - name: 性能和可伸缩性
+              href: patterns/category/performance-scalability.md
+            - name: 复原
+              href: patterns/category/resiliency.md
+            - name: 安全
+              href: patterns/category/security.md
+        - name: 代表
+          href: patterns/ambassador.md
+        - name: 防损层
+          href: patterns/anti-corruption-layer.md
+        - name: 用于前端的后端
+          href: patterns/backends-for-frontends.md
+        - name: 隔舱
+          href: patterns/bulkhead.md
+        - name: 缓存端
+          href: patterns/cache-aside.md
+        - name: 断路器
+          href: patterns/circuit-breaker.md
+        - name: 命令和查询责任分离 (CQRS)
+          href: patterns/cqrs.md
+        - name: 补偿事务
+          href: patterns/compensating-transaction.md
+        - name: 使用者竞争
+          href: patterns/competing-consumers.md
+        - name: 计算资源合并
+          href: patterns/compute-resource-consolidation.md
+        - name: 事件溯源
+          href: patterns/event-sourcing.md
+        - name: 外部配置存储
+          href: patterns/external-configuration-store.md
+        - name: 联合身份
+          href: patterns/federated-identity.md
+        - name: 守护程序
+          href: patterns/gatekeeper.md
+        - name: 网关聚合
+          href: patterns/gateway-aggregation.md
+        - name: 网关卸载
+          href: patterns/gateway-offloading.md
+        - name: 网关路由
+          href: patterns/gateway-routing.md
+        - name: 运行状况终结点监视
+          href: patterns/health-endpoint-monitoring.md
+        - name: 索引表
+          href: patterns/index-table.md
+        - name: 领导选拔
+          href: patterns/leader-election.md
+        - name: 具体化视图
+          href: patterns/materialized-view.md
+        - name: 管道和筛选器
+          href: patterns/pipes-and-filters.md
+        - name: 优先级队列
+          href: patterns/priority-queue.md
+        - name: 发布方/订阅方
+          href: patterns/publisher-subscriber.md
+        - name: 基于队列的负载调节
+          href: patterns/queue-based-load-leveling.md
+        - name: 重试
+          href: patterns/retry.md
+        - name: 计划程序代理监督程序
+          href: patterns/scheduler-agent-supervisor.md
+        - name: 分片
+          href: patterns/sharding.md
+        - name: 挎斗
+          href: patterns/sidecar.md
+        - name: 静态内容托管
+          href: patterns/static-content-hosting.md
+        - name: 绞杀者
+          href: patterns/strangler.md
+        - name: 限制
+          href: patterns/throttling.md
+        - name: 附属密钥
+          href: patterns/valet-key.md
+    - name: 云应用程序最佳实践
       items:
-      - name: 概述
-        href: guide/design-principles/index.md
-      - name: 自我修复设计
-        href: guide/design-principles/self-healing.md
-      - name: 实现全面冗余
-        href: guide/design-principles/redundancy.md
-      - name: 尽量减少协调
-        href: guide/design-principles/minimize-coordination.md
-      - name: 横向扩展设计
-        href: guide/design-principles/scale-out.md
-      - name: 通过分区解决限制
-        href: guide/design-principles/partition.md
-      - name: 运营设计
-        href: guide/design-principles/design-for-operations.md
-      - name: 使用托管服务
-        href: guide/design-principles/managed-services.md
-      - name: 使用最佳的数据存储完成作业
-        href: guide/design-principles/use-the-best-data-store.md
-      - name: 演变设计
-        href: guide/design-principles/design-for-evolution.md
-      - name: 根据业务需求构建
-        href: guide/design-principles/build-for-business.md
-    - name: 软件质量的要素
-      href: guide/pillars.md
-  - name: 数据体系结构指南
-    items:
-    - name: 介绍
-      href: data-guide/index.md
-    - name: 传统 RDBMS 工作负荷
+        - name: API 设计
+          href: best-practices/api-design.md
+        - name: API 实现
+          href: best-practices/api-implementation.md
+        - name: 自动缩放
+          href: best-practices/auto-scaling.md
+        - name: 后台作业
+          href: best-practices/background-jobs.md
+        - name: 缓存
+          href: best-practices/caching.md
+        - name: 内容分发网络
+          href: best-practices/cdn.md
+        - name: 数据分区
+          href: best-practices/data-partitioning.md
+        - name: 数据分区策略（按服务）
+          href: best-practices/data-partitioning-strategies.md
+        - name: 监视和诊断
+          href: best-practices/monitoring.md
+        - name: 命名约定
+          href: best-practices/naming-conventions.md
+        - name: 暂时性故障处理
+          href: best-practices/transient-faults.md
+        - name: 特定服务的重试指南
+          href: best-practices/retry-service-specific.md
+    - name: 性能对立模式
       items:
-      - name: 概述
-        href: data-guide/relational-data/index.md
-      - name: 联机事务处理 (OLTP)
-        href: data-guide/relational-data/online-transaction-processing.md
-      - name: 数据仓库
-        href: data-guide/relational-data/data-warehousing.md
-      - name: 联机分析处理 (OLAP)
-        href: data-guide/relational-data/online-analytical-processing.md
-      - name: 提取、转换和加载 (ETL)
-        href: data-guide/relational-data/etl.md
-    - name: 大数据架构
+        - name: 概述
+          href: antipatterns/index.md
+        - name: 繁忙数据库
+          href: antipatterns/busy-database/index.md
+        - name: 繁忙前端
+          href: antipatterns/busy-front-end/index.md
+        - name: 琐碎 I/O
+          href: antipatterns/chatty-io/index.md
+        - name: 超量提取
+          href: antipatterns/extraneous-fetching/index.md
+        - name: 不当实例化
+          href: antipatterns/improper-instantiation/index.md
+        - name: 整体持久性
+          href: antipatterns/monolithic-persistence/index.md
+        - name: 无缓存
+          href: antipatterns/no-caching/index.md
+        - name: 同步 I/O
+          href: antipatterns/synchronous-io/index.md
+    - name: 面向 AWS 专业人员的 Azure
       items:
-      - name: 概述
-        href: data-guide/big-data/index.md
-      - name: 批处理
-        href: data-guide/big-data/batch-processing.md
-      - name: 实时处理
-        href: data-guide/big-data/real-time-processing.md
-      - name: 大规模机器学习
-        href: data-guide/big-data/machine-learning-at-scale.md
-      - name: 非关系数据存储
-        href: data-guide/big-data/non-relational-data.md
-      - name: 方案
-        items:
-        - name: 高级分析
-          href: data-guide/scenarios/advanced-analytics.md
-        - name: Data Lake
-          href: data-guide/scenarios/data-lake.md
-        - name: 自由格式文本搜索
-          href: data-guide/scenarios/search.md
-        - name: 交互式数据探索
-          href: data-guide/scenarios/interactive-data-exploration.md
-        - name: 自然语言处理
-          href: data-guide/scenarios/natural-language-processing.md
-        - name: 时序解决方案
-          href: data-guide/scenarios/time-series.md
-        - name: 使用 CSV 和 JSON 文件
-          href: data-guide/scenarios/csv-and-json.md
-      - name: 技术选择
-        items:
-        - name: 分析数据存储
-          href: data-guide/technology-choices/analytical-data-stores.md
-        - name: 分析和报告
-          href: data-guide/technology-choices/analysis-visualizations-reporting.md
-        - name: 批处理
-          href: data-guide/technology-choices/batch-processing.md
-        - name: 认知服务
-          href: data-guide/technology-choices/cognitive-services.md
-        - name: 数据存储
-          href: data-guide/technology-choices/data-storage.md
-        - name: 机器学习
-          href: data-guide/technology-choices/data-science-and-machine-learning.md
-        - name: 自然语言处理
-          href: data-guide/technology-choices/natural-language-processing.md
-        - name: 管道业务流程
-          href: data-guide/technology-choices/pipeline-orchestration-data-movement.md
-        - name: 实时消息引入
-          href: data-guide/technology-choices/real-time-ingestion.md
-        - name: 搜索数据存储
-          href: data-guide/technology-choices/search-options.md
-        - name: 流处理
-          href: data-guide/technology-choices/stream-processing.md
-    - name: 横切关注点
-      items:
-      - name: 数据传输
-        href: data-guide/scenarios/data-transfer.md
-      - name: 将本地数据解决方案扩展到云
-        href: data-guide/scenarios/hybrid-on-premises-and-cloud.md
-      - name: 保护数据解决方案
-        href: data-guide/scenarios/securing-data-solutions.md
-  - name: 云设计模式
-    items:
-    - name: 概述
-      href: patterns/index.md
-    - name: 类别
-      items:
-      - name: 可用性
-        href: patterns/category/availability.md
-      - name: 数据管理
-        href: patterns/category/data-management.md
-      - name: 设计和实施
-        href: patterns/category/design-implementation.md
-      - name: 消息传递
-        href: patterns/category/messaging.md
-      - name: 监视和管理
-        href: patterns/category/management-monitoring.md
-      - name: 性能和可伸缩性
-        href: patterns/category/performance-scalability.md
-      - name: 复原
-        href: patterns/category/resiliency.md
-      - name: 安全
-        href: patterns/category/security.md
-    - name: 代表
-      href: patterns/ambassador.md
-    - name: 防损层
-      href: patterns/anti-corruption-layer.md
-    - name: 用于前端的后端
-      href: patterns/backends-for-frontends.md
-    - name: 隔舱
-      href: patterns/bulkhead.md
-    - name: 缓存端
-      href: patterns/cache-aside.md
-    - name: 断路器
-      href: patterns/circuit-breaker.md
-    - name: 命令和查询责任分离 (CQRS)
-      href: patterns/cqrs.md
-    - name: 补偿事务
-      href: patterns/compensating-transaction.md
-    - name: 使用者竞争
-      href: patterns/competing-consumers.md
-    - name: 计算资源合并
-      href: patterns/compute-resource-consolidation.md
-    - name: 事件溯源
-      href: patterns/event-sourcing.md
-    - name: 外部配置存储
-      href: patterns/external-configuration-store.md
-    - name: 联合身份
-      href: patterns/federated-identity.md
-    - name: 守护程序
-      href: patterns/gatekeeper.md
-    - name: 网关聚合
-      href: patterns/gateway-aggregation.md
-    - name: 网关卸载
-      href: patterns/gateway-offloading.md
-    - name: 网关路由
-      href: patterns/gateway-routing.md
-    - name: 运行状况终结点监视
-      href: patterns/health-endpoint-monitoring.md
-    - name: 索引表
-      href: patterns/index-table.md
-    - name: 领导选拔
-      href: patterns/leader-election.md
-    - name: 具体化视图
-      href: patterns/materialized-view.md
-    - name: 管道和筛选器
-      href: patterns/pipes-and-filters.md
-    - name: 优先级队列
-      href: patterns/priority-queue.md
-    - name: 发布方/订阅方
-      href: patterns/publisher-subscriber.md
-    - name: 基于队列的负载调节
-      href: patterns/queue-based-load-leveling.md
-    - name: 重试
-      href: patterns/retry.md
-    - name: 计划程序代理监督程序
-      href: patterns/scheduler-agent-supervisor.md
-    - name: 分片
-      href: patterns/sharding.md
-    - name: 挎斗
-      href: patterns/sidecar.md
-    - name: 静态内容托管
-      href: patterns/static-content-hosting.md
-    - name: 绞杀者
-      href: patterns/strangler.md
-    - name: 限制
-      href: patterns/throttling.md
-    - name: 附属密钥
-      href: patterns/valet-key.md
-  - name: 云应用程序最佳实践
-    items:
-    - name: API 设计
-      href: best-practices/api-design.md
-    - name: API 实现
-      href: best-practices/api-implementation.md
-    - name: 自动缩放
-      href: best-practices/auto-scaling.md
-    - name: 后台作业
-      href: best-practices/background-jobs.md
-    - name: 缓存
-      href: best-practices/caching.md
-    - name: 内容分发网络
-      href: best-practices/cdn.md
-    - name: 数据分区
-      href: best-practices/data-partitioning.md
-    - name: 数据分区策略（按服务）
-      href: best-practices/data-partitioning-strategies.md
-    - name: 监视和诊断
-      href: best-practices/monitoring.md
-    - name: 命名约定
-      href: best-practices/naming-conventions.md
-    - name: 暂时性故障处理
-      href: best-practices/transient-faults.md
-    - name: 特定服务的重试指南
-      href: best-practices/retry-service-specific.md
-  - name: 性能对立模式
-    items:
-    - name: 概述
-      href: antipatterns/index.md
-    - name: 繁忙数据库
-      href: antipatterns/busy-database/index.md
-    - name: 繁忙前端
-      href: antipatterns/busy-front-end/index.md
-    - name: 琐碎 I/O
-      href: antipatterns/chatty-io/index.md
-    - name: 超量提取
-      href: antipatterns/extraneous-fetching/index.md
-    - name: 不当实例化
-      href: antipatterns/improper-instantiation/index.md
-    - name: 整体持久性
-      href: antipatterns/monolithic-persistence/index.md
-    - name: 无缓存
-      href: antipatterns/no-caching/index.md
-    - name: 同步 I/O
-      href: antipatterns/synchronous-io/index.md
-  - name: 面向 AWS 专业人员的 Azure
-    items:
-    - name: 概述
-      href: aws-professional/index.md
-    - name: 服务比较
-      href: aws-professional/services.md
+        - name: 概述
+          href: aws-professional/index.md
+        - name: 服务比较
+          href: aws-professional/services.md
 - name: 示例方案
   items:
-  - name: 概述
-    href: example-scenario/index.md
-  - name: AI
-    items:
-    - name: 酒店预订聊天机器人
-      href: example-scenario/ai/commerce-chatbot.md
-    - name: 图像分类
-      href: example-scenario/ai/intelligent-apps-image-processing.md
-  - name: 应用
-    items:
-    - name: 计算机辅助工程
-      href: example-scenario/apps/hpc-saas.md
-    - name: 银行间的分散式信任
-      href: example-scenario/apps/decentralized-trust.md
-    - name: 将 DevOps 与容器配合使用
-      href: example-scenario/apps/devops-with-aks.md
-    - name: DevOps 与 Azure DevOps
-      href: example-scenario/apps/devops-dotnet-webapp.md
-    - name: 用于开发/测试的 SAP
-      href: example-scenario/apps/sap-dev-test.md
-    - name: 用于生产的 SAP
-      href: example-scenario/apps/sap-production.md
-    - name: 电子商务前端
-      href: example-scenario/apps/ecommerce-scenario.md
-    - name: 电子商务 API 管理
-      href: example-scenario/apps/apim-api-scenario.md
-    - name: 电子商务产品搜索
-      href: example-scenario/apps/ecommerce-search.md
-  - name: 数据和分析
-    items:
-    - name: 将混合 ETL 与数据工厂配合使用
-      href: example-scenario/data/hybrid-etl-with-adf.md
-    - name: 用于构造的 IoT
-      href: example-scenario/data/big-data-with-iot.md
-    - name: 数据仓库和分析
-      href: example-scenario/data/data-warehouse.md
-    - name: 汽车 IOT 数据
-      href: example-scenario/data/realtime-analytics-vehicle-iot.md
-    - name: 实时欺诈检测
-      href: example-scenario/data/fraud-detection.md
-    - name: 可缩放订单处理
-      href: example-scenario/data/ecommerce-order-processing.md
-  - name: 基础结构
-    items:
-    - name: 计算流体动力学 (CFD)
-      href: example-scenario/infrastructure/hpc-cfd.md
-    - name: Linux 虚拟机
-      href: example-scenario/infrastructure/linux-vdi-citrix.md
-    - name: 分解单一式应用程序
-      href: example-scenario/infrastructure/service-fabric-microservices.md
-    - name: 高度可缩放的 WordPress
-      href: example-scenario/infrastructure/wordpress.md
-    - name: 高度可用的 Web 应用程序
-      href: example-scenario/infrastructure/multi-tier-app-disaster-recovery.md
-    - name: 多层 Windows
-      href: example-scenario/infrastructure/regulated-multitier-app.md
-    - name: HPC 视频呈现
-      href: example-scenario/infrastructure/video-rendering.md
+    - name: 概述
+      href: example-scenario/index.md
+    - name: AI
+      items:
+        - name: 酒店预订聊天机器人
+          href: example-scenario/ai/commerce-chatbot.md
+        - name: 图像分类
+          href: example-scenario/ai/intelligent-apps-image-processing.md
+        - name: 电影推荐
+          href: example-scenario/ai/movie-recommendations.md
+    - name: 应用
+      items:
+        - name: 计算机辅助工程
+          href: example-scenario/apps/hpc-saas.md
+        - name: 银行间的分散式信任
+          href: example-scenario/apps/decentralized-trust.md
+        - name: 将 DevOps 与容器配合使用
+          href: example-scenario/apps/devops-with-aks.md
+        - name: DevOps 与 Azure DevOps
+          href: example-scenario/apps/devops-dotnet-webapp.md
+        - name: 用于开发/测试的 SAP
+          href: example-scenario/apps/sap-dev-test.md
+        - name: 用于生产的 SAP
+          href: example-scenario/apps/sap-production.md
+        - name: 电子商务前端
+          href: example-scenario/apps/ecommerce-scenario.md
+        - name: 电子商务 API 管理
+          href: example-scenario/apps/apim-api-scenario.md
+        - name: 电子商务产品搜索
+          href: example-scenario/apps/ecommerce-search.md
+    - name: 数据和分析
+      items:
+        - name: 将混合 ETL 与数据工厂配合使用
+          href: example-scenario/data/hybrid-etl-with-adf.md
+        - name: 用于构造的 IoT
+          href: example-scenario/data/big-data-with-iot.md
+        - name: 数据仓库和分析
+          href: example-scenario/data/data-warehouse.md
+        - name: 汽车 IOT 数据
+          href: example-scenario/data/realtime-analytics-vehicle-iot.md
+        - name: 实时欺诈检测
+          href: example-scenario/data/fraud-detection.md
+        - name: 可缩放订单处理
+          href: example-scenario/data/ecommerce-order-processing.md
+    - name: 基础结构
+      items:
+        - name: 计算流体动力学 (CFD)
+          href: example-scenario/infrastructure/hpc-cfd.md
+        - name: Linux 虚拟机
+          href: example-scenario/infrastructure/linux-vdi-citrix.md
+        - name: 分解单一式应用程序
+          href: example-scenario/infrastructure/service-fabric-microservices.md
+        - name: 高度可缩放的 WordPress
+          href: example-scenario/infrastructure/wordpress.md
+        - name: 高度可用的 Web 应用程序
+          href: example-scenario/infrastructure/multi-tier-app-disaster-recovery.md
+        - name: 多层 Windows
+          href: example-scenario/infrastructure/regulated-multitier-app.md
+        - name: HPC 视频呈现
+          href: example-scenario/infrastructure/video-rendering.md
 - name: 参考体系结构
   items:
-  - name: 概述
-    href: reference-architectures/index.md
-  - name: AI
-    items:
-    - name: 深度学习模型的分布式训练
-      href: reference-architectures/ai/training-deep-learning.md
-    - name: 深度学习模型的批处理计分
-      href: reference-architectures/ai/batch-scoring-deep-learning.md
-    - name: Python 模型的批量评分
-      href: reference-architectures/ai/batch-scoring-python.md
-    - name: Python 和深度学习模型的实时评分
-      href: reference-architectures/ai/realtime-scoring-python.md
-    - name: R 机器学习模型的实时评分
-      href: reference-architectures/ai/realtime-scoring-r.md
-    - name: 实时建议 API
-      href: reference-architectures/ai/real-time-recommendation.md
-  - name: 大数据
-    items:
-    - name: 将 Enterprise BI 与 SQL 数据仓库配合使用
-      href: reference-architectures/data/enterprise-bi-sqldw.md
-    - name: 将自动化企业 BI 与 Azure 数据工厂配合使用
-      href: reference-architectures/data/enterprise-bi-adf.md
-    - name: 使用 Azure Databricks 进行流处理
-      href: reference-architectures/data/stream-processing-databricks.md
-    - name: 使用 Azure 流分析进行流处理
-      href: reference-architectures/data/stream-processing-stream-analytics.md
-  - name: 企业集成
-    items:
-    - name: 基本企业集成
-      href: reference-architectures/enterprise-integration/basic-enterprise-integration.md
-    - name: 企业集成与队列和事件
-      href: reference-architectures/enterprise-integration/queues-events.md
-  - name: 混合网络
-    items:
-    - name: 选择混合网络体系结构
-      href: reference-architectures/hybrid-networking/index.md
-    - name: VPN
-      href: reference-architectures/hybrid-networking/vpn.md
-    - name: ExpressRoute
-      href: reference-architectures/hybrid-networking/expressroute.md
-    - name: 使用 ExpressRoute 和 VPN 实现故障转移
-      href: reference-architectures/hybrid-networking/expressroute-vpn-failover.md
-    - name: 中心辐射型拓扑
-      href: reference-architectures/hybrid-networking/hub-spoke.md
-    - name: 带共享服务的中心辐射型拓扑
-      href: reference-architectures/hybrid-networking/shared-services.md
-    - name: 排查混合 VPN 连接问题
-      href: reference-architectures/hybrid-networking/troubleshoot-vpn.md
-  - name: 身份管理
-    items:
-    - name: 选择 Active Directory 集成体系结构
-      href: reference-architectures/identity/index.md
-    - name: 将本地 AD 与 Azure AD 集成
-      href: reference-architectures/identity/azure-ad.md
-    - name: 将 AD DS 扩展到 Azure
-      href: reference-architectures/identity/adds-extend-domain.md
-    - name: 在 Azure 中创建 AD DS 林
-      href: reference-architectures/identity/adds-forest.md
-    - name: 将 AD FS 扩展到 Azure
-      href: reference-architectures/identity/adfs.md
-  - name: 物联网 (IoT)
-    href: reference-architectures/iot/index.md
-  - name: 外围网络
-    items:
-    - name: Azure 与本地之间的外围网络
-      href: reference-architectures/dmz/secure-vnet-hybrid.md
-    - name: Azure 与 Internet 之间的外围网络
-      href: reference-architectures/dmz/secure-vnet-dmz.md
-    - name: 高度可用的网络虚拟设备
-      href: reference-architectures/dmz/nva-ha.md
-  - name: SAP
-    items:
-    - name: 适用于 AnyDB 的 SAP NetWeaver
-      href: reference-architectures/sap/sap-netweaver.md
-    - name: SAP S/4HANA
-      href: reference-architectures/sap/sap-s4hana.md
-    - name: Azure SAP HANA 大型实例
-      href: reference-architectures/sap/hana-large-instances.md
-  - name: 无服务器
-    items:
-    - name: 无服务器 Web 应用程序
-      href: reference-architectures/serverless/web-app.md
-    - name: 无服务器事件处理
-      href: reference-architectures/serverless/event-processing.md
-  - name: VM 工作负荷
-    items:
-    - name: 单个 Linux VM
-      href: reference-architectures/n-tier/linux-vm.md
-    - name: 单个 Windows VM
-      href: reference-architectures/n-tier/windows-vm.md
-    - name: Jenkins 服务器
-      href: reference-architectures/jenkins/index.md
-    - name: 使用 SQL Server 的 N 层应用程序
-      href: reference-architectures/n-tier/n-tier-sql-server.md
-    - name: 多区域 N 层应用程序
-      href: reference-architectures/n-tier/multi-region-sql-server.md
-    - name: 使用 Cassandra 的 N 层应用程序
-      href: reference-architectures/n-tier/n-tier-cassandra.md
-    - name: SharePoint Server 2016
-      href: reference-architectures/sharepoint/index.md
-  - name: Web 应用程序
-    items:
-    - name: 基本 Web 应用程序
-      href: reference-architectures/app-service-web-app/basic-web-app.md
-    - name: 提高可伸缩性
-      href: reference-architectures/app-service-web-app/scalable-web-app.md
-    - name: 多区域部署
-      href: reference-architectures/app-service-web-app/multi-region.md
-    - name: Web 应用程序监视
-      href: reference-architectures/app-service-web-app/app-monitoring.md
+    - name: 概述
+      href: reference-architectures/index.md
+    - name: AI
+      items:
+        - name: 深度学习模型的分布式训练
+          href: reference-architectures/ai/training-deep-learning.md
+        - name: 深度学习模型的批处理计分
+          href: reference-architectures/ai/batch-scoring-deep-learning.md
+        - name: Python 模型的批量评分
+          href: reference-architectures/ai/batch-scoring-python.md
+        - name: Python 和深度学习模型的实时评分
+          href: reference-architectures/ai/realtime-scoring-python.md
+        - name: R 机器学习模型的实时评分
+          href: reference-architectures/ai/realtime-scoring-r.md
+        - name: 实时建议 API
+          href: reference-architectures/ai/real-time-recommendation.md
+    - name: 大数据
+      items:
+        - name: 将 Enterprise BI 与 SQL 数据仓库配合使用
+          href: reference-architectures/data/enterprise-bi-sqldw.md
+        - name: 将自动化企业 BI 与 Azure 数据工厂配合使用
+          href: reference-architectures/data/enterprise-bi-adf.md
+        - name: 使用 Azure Databricks 进行流处理
+          href: reference-architectures/data/stream-processing-databricks.md
+        - name: 使用 Azure 流分析进行流处理
+          href: reference-architectures/data/stream-processing-stream-analytics.md
+    - name: 企业集成
+      items:
+        - name: 基本企业集成
+          href: reference-architectures/enterprise-integration/basic-enterprise-integration.md
+        - name: 企业集成与队列和事件
+          href: reference-architectures/enterprise-integration/queues-events.md
+    - name: 混合网络
+      items:
+        - name: 选择混合网络体系结构
+          href: reference-architectures/hybrid-networking/index.md
+        - name: VPN
+          href: reference-architectures/hybrid-networking/vpn.md
+        - name: ExpressRoute
+          href: reference-architectures/hybrid-networking/expressroute.md
+        - name: 使用 ExpressRoute 和 VPN 实现故障转移
+          href: reference-architectures/hybrid-networking/expressroute-vpn-failover.md
+        - name: 中心辐射型拓扑
+          href: reference-architectures/hybrid-networking/hub-spoke.md
+        - name: 带共享服务的中心辐射型拓扑
+          href: reference-architectures/hybrid-networking/shared-services.md
+        - name: 排查混合 VPN 连接问题
+          href: reference-architectures/hybrid-networking/troubleshoot-vpn.md
+    - name: 身份管理
+      items:
+        - name: 选择 Active Directory 集成体系结构
+          href: reference-architectures/identity/index.md
+        - name: 将本地 AD 与 Azure AD 集成
+          href: reference-architectures/identity/azure-ad.md
+        - name: 将 AD DS 扩展到 Azure
+          href: reference-architectures/identity/adds-extend-domain.md
+        - name: 在 Azure 中创建 AD DS 林
+          href: reference-architectures/identity/adds-forest.md
+        - name: 将 AD FS 扩展到 Azure
+          href: reference-architectures/identity/adfs.md
+    - name: 物联网 (IoT)
+      href: reference-architectures/iot/index.md
+    - name: 外围网络
+      items:
+        - name: Azure 与本地之间的外围网络
+          href: reference-architectures/dmz/secure-vnet-hybrid.md
+        - name: Azure 与 Internet 之间的外围网络
+          href: reference-architectures/dmz/secure-vnet-dmz.md
+        - name: 高度可用的网络虚拟设备
+          href: reference-architectures/dmz/nva-ha.md
+    - name: SAP
+      items:
+        - name: 适用于 AnyDB 的 SAP NetWeaver
+          href: reference-architectures/sap/sap-netweaver.md
+        - name: SAP S/4HANA
+          href: reference-architectures/sap/sap-s4hana.md
+        - name: Azure SAP HANA 大型实例
+          href: reference-architectures/sap/hana-large-instances.md
+    - name: 无服务器
+      items:
+        - name: 无服务器 Web 应用程序
+          href: reference-architectures/serverless/web-app.md
+        - name: 无服务器事件处理
+          href: reference-architectures/serverless/event-processing.md
+    - name: VM 工作负荷
+      items:
+        - name: 单个 Linux VM
+          href: reference-architectures/n-tier/linux-vm.md
+        - name: 单个 Windows VM
+          href: reference-architectures/n-tier/windows-vm.md
+        - name: Jenkins 服务器
+          href: reference-architectures/jenkins/index.md
+        - name: 使用 SQL Server 的 N 层应用程序
+          href: reference-architectures/n-tier/n-tier-sql-server.md
+        - name: 多区域 N 层应用程序
+          href: reference-architectures/n-tier/multi-region-sql-server.md
+        - name: 使用 Cassandra 的 N 层应用程序
+          href: reference-architectures/n-tier/n-tier-cassandra.md
+        - name: SharePoint Server 2016
+          href: reference-architectures/sharepoint/index.md
+    - name: Web 应用程序
+      items:
+        - name: 基本 Web 应用程序
+          href: reference-architectures/app-service-web-app/basic-web-app.md
+        - name: 提高可伸缩性
+          href: reference-architectures/app-service-web-app/scalable-web-app.md
+        - name: 多区域部署
+          href: reference-architectures/app-service-web-app/multi-region.md
+        - name: Web 应用程序监视
+          href: reference-architectures/app-service-web-app/app-monitoring.md
 - name: 设计指南
   items:
-  - name: 在 Azure 上构建微服务
-    items:
-    - name: 介绍
-      href: microservices/index.md
-    - name: 域分析
-      href: microservices/domain-analysis.md
-    - name: 标识微服务边界
-      href: microservices/microservice-boundaries.md
-    - name: 数据注意事项
-      href: microservices/data-considerations.md
-    - name: 服务间通信
-      href: microservices/interservice-communication.md
-    - name: API 设计
-      href: microservices/api-design.md
-    - name: 引入和工作流
-      href: microservices/ingestion-workflow.md
-    - name: API 网关
-      href: microservices/gateway.md
-    - name: 日志记录和监视
-      href: microservices/logging-monitoring.md
-    - name: CI/CD
-      href: microservices/ci-cd.md
-  - name: 管理多租户标识
-    items:
-    - name: 介绍
-      href: multitenant-identity/index.md
-    - name: Tailspin 方案
-      href: multitenant-identity/tailspin.md
-    - name: 身份验证
-      href: multitenant-identity/authenticate.md
-    - name: 基于声明的标识
-      href: multitenant-identity/claims.md
-    - name: 租户注册
-      href: multitenant-identity/signup.md
-    - name: 应用程序角色
-      href: multitenant-identity/app-roles.md
-    - name: 授权
-      href: multitenant-identity/authorize.md
-    - name: 保护 Web API
-      href: multitenant-identity/web-api.md
-    - name: 缓存访问令牌
-      href: multitenant-identity/token-cache.md
-    - name: 客户端断言
-      href: multitenant-identity/client-assertion.md
-    - name: 保护应用程序机密
-      href: multitenant-identity/key-vault.md
-    - name: 与客户的 AD FS 联合
-      href: multitenant-identity/adfs.md
-    - name: 运行 Surveys 应用程序
-      href: multitenant-identity/run-the-app.md
-  - name: 从云服务迁移到 Service Fabric
-    items:
-    - name: 将云服务应用程序迁移到 Service Fabric
-      href: service-fabric/migrate-from-cloud-services.md
-    - name: 重构 Service Fabric 应用程序
-      href: service-fabric/refactor-migrated-app.md
+    - name: 在 Azure 上构建微服务
+      items:
+        - name: 介绍
+          href: microservices/index.md
+        - name: 域分析
+          href: microservices/domain-analysis.md
+        - name: 标识微服务边界
+          href: microservices/microservice-boundaries.md
+        - name: 数据注意事项
+          href: microservices/data-considerations.md
+        - name: 服务间通信
+          href: microservices/interservice-communication.md
+        - name: API 设计
+          href: microservices/api-design.md
+        - name: 引入和工作流
+          href: microservices/ingestion-workflow.md
+        - name: API 网关
+          href: microservices/gateway.md
+        - name: 日志记录和监视
+          href: microservices/logging-monitoring.md
+        - name: CI/CD
+          href: microservices/ci-cd.md
+    - name: 管理多租户标识
+      items:
+        - name: 介绍
+          href: multitenant-identity/index.md
+        - name: Tailspin 方案
+          href: multitenant-identity/tailspin.md
+        - name: 身份验证
+          href: multitenant-identity/authenticate.md
+        - name: 基于声明的标识
+          href: multitenant-identity/claims.md
+        - name: 租户注册
+          href: multitenant-identity/signup.md
+        - name: 应用程序角色
+          href: multitenant-identity/app-roles.md
+        - name: 授权
+          href: multitenant-identity/authorize.md
+        - name: 保护 Web API
+          href: multitenant-identity/web-api.md
+        - name: 缓存访问令牌
+          href: multitenant-identity/token-cache.md
+        - name: 客户端断言
+          href: multitenant-identity/client-assertion.md
+        - name: 保护应用程序机密
+          href: multitenant-identity/key-vault.md
+        - name: 与客户的 AD FS 联合
+          href: multitenant-identity/adfs.md
+        - name: 运行 Surveys 应用程序
+          href: multitenant-identity/run-the-app.md
+    - name: 从云服务迁移到 Service Fabric
+      items:
+        - name: 将云服务应用程序迁移到 Service Fabric
+          href: service-fabric/migrate-from-cloud-services.md
+        - name: 重构 Service Fabric 应用程序
+          href: service-fabric/refactor-migrated-app.md
 - name: 设计评审框架
   items:
-  - name: 复原设计
-    href: resiliency/index.md
-  - name: 故障模式分析
-    href: resiliency/failure-mode-analysis.md
-  - name: 可用性核对清单
-    href: checklist/availability.md
-  - name: DevOps 清单
-    href: checklist/dev-ops.md
-  - name: 复原能力检查表（常规用途）
-    href: checklist/resiliency.md
-  - name: 复原能力检查表（Azure 服务）
-    href: checklist/resiliency-per-service.md
-  - name: 可伸缩性清单
-    href: checklist/scalability.md
+    - name: 复原设计
+      href: resiliency/index.md
+    - name: 故障模式分析
+      href: resiliency/failure-mode-analysis.md
+    - name: 可用性核对清单
+      href: checklist/availability.md
+    - name: DevOps 清单
+      href: checklist/dev-ops.md
+    - name: 复原能力检查表（常规用途）
+      href: checklist/resiliency.md
+    - name: 复原能力检查表（Azure 服务）
+      href: checklist/resiliency-per-service.md
+    - name: 可伸缩性清单
+      href: checklist/scalability.md
 - name: 企业云的采用
   items:
-  - name: 介绍
-    href: cloud-adoption/overview.md
-  - name: 入门
-    items:
-    - name: 概述
-      href: cloud-adoption/getting-started/overview.md
-    - name: Azure 如何工作？
-      href: cloud-adoption/getting-started/what-is-azure.md
-    - name: 什么是云资源调控？
-      href: cloud-adoption/getting-started/what-is-governance.md
-    - name: Azure 中的资源访问调控
-      href: cloud-adoption/getting-started/azure-resource-access.md
-  - name: 业务理由
-    items:
-    - name: 构建云迁移业务案例
-      href: cloud-adoption/business-strategy/cloud-migration-business-case.md
-    - name: 了解财务模型
-      href: cloud-adoption/business-strategy/financial-models.md
-  - name: 数字资产
-    items:
-    - name: 合理化的 5 个 R
-      href: cloud-adoption/digital-estate/5-rs-of-rationalization.md
-    - name: 什么是数字资产？
-      href: cloud-adoption/digital-estate/overview.md
-    - name: 数字资产规划方法
-      href: cloud-adoption/digital-estate/approach.md
-    - name: 收集清单数据
-      href: cloud-adoption/digital-estate/inventory.md
-    - name: 将数字资产合理化
-      href: cloud-adoption/digital-estate/rationalize.md
-    - name: 预测云成本
-      href: cloud-adoption/digital-estate/calculate.md
-  - name: 调控
-    items:
-    - name: 概述
-      href: cloud-adoption/governance/overview.md
-    - name: 适用于单个团队的调控设计
-      href: cloud-adoption/governance/governance-single-team.md
-    - name: 适用于多个团队的调控设计
-      href: cloud-adoption/governance/governance-multiple-teams.md
-  - name: 基础结构
-    items:
-    - name: 部署基本工作负荷
-      href: cloud-adoption/infrastructure/basic-workload.md
-  - name: 操作
-    items:
-    - name: 概述
-      href: cloud-adoption/operations/overview.md
-    - name: 建立操作适用性评审
-      href: cloud-adoption/operations/operational-fitness-review.md
-  - name: 附录
-    items:
-    - name: 虚拟数据中心 (VDC)
-      href: vdc/index.md
-    - name: Azure 企业基架
-      href: cloud-adoption/appendix/azure-scaffold.md
-    - name: 实施 Azure 企业基架
-      href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: 16a447a58d3c8665f13b0799d833360c0702626f
-ms.sourcegitcommit: 95131d1011def26fb629731d42a4e8d4d49b3540
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54372885"
+    - name: 介绍
+      href: cloud-adoption/overview.md
+    - name: 入门
+      items:
+        - name: 概述
+          href: cloud-adoption/getting-started/overview.md
+        - name: Azure 如何工作？
+          href: cloud-adoption/getting-started/what-is-azure.md
+        - name: 什么是云资源调控？
+          href: cloud-adoption/getting-started/what-is-governance.md
+        - name: Azure 中的资源访问调控
+          href: cloud-adoption/getting-started/azure-resource-access.md
+    - name: 业务理由
+      items:
+        - name: 构建云迁移业务案例
+          href: cloud-adoption/business-strategy/cloud-migration-business-case.md
+        - name: 了解财务模型
+          href: cloud-adoption/business-strategy/financial-models.md
+    - name: 数字资产
+      items:
+        - name: 合理化的 5 个 R
+          href: cloud-adoption/digital-estate/5-rs-of-rationalization.md
+        - name: 什么是数字资产？
+          href: cloud-adoption/digital-estate/overview.md
+        - name: 数字资产规划方法
+          href: cloud-adoption/digital-estate/approach.md
+        - name: 收集清单数据
+          href: cloud-adoption/digital-estate/inventory.md
+        - name: 将数字资产合理化
+          href: cloud-adoption/digital-estate/rationalize.md
+        - name: 预测云成本
+          href: cloud-adoption/digital-estate/calculate.md
+    - name: 调控
+      items:
+        - name: 概述
+          href: cloud-adoption/governance/overview.md
+        - name: 适用于单个团队的调控设计
+          href: cloud-adoption/governance/governance-single-team.md
+        - name: 适用于多个团队的调控设计
+          href: cloud-adoption/governance/governance-multiple-teams.md
+    - name: 基础结构
+      items:
+        - name: 部署基本工作负荷
+          href: cloud-adoption/infrastructure/basic-workload.md
+    - name: 操作
+      items:
+        - name: 概述
+          href: cloud-adoption/operations/overview.md
+        - name: 建立操作适用性评审
+          href: cloud-adoption/operations/operational-fitness-review.md
+    - name: 附录
+      items:
+        - name: 虚拟数据中心 (VDC)
+          href: vdc/index.md
+        - name: Azure 企业基架
+          href: cloud-adoption/appendix/azure-scaffold.md
+        - name: 实施 Azure 企业基架
+          href: cloud-adoption/appendix/azure-scaffold-examples.md
