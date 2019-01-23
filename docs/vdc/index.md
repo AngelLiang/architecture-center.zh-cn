@@ -3,13 +3,11 @@ title: Azure 虚拟数据中心
 description: Microsoft Azure 虚拟数据中心的资源
 keywords: Azure
 layout: LandingPage
-ms.openlocfilehash: 5b5b6f58911e39ae1296722194b58c601b9baea8
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428085"
+ms.topic: landing-page
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
 ---
+
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Azure 虚拟数据中心和企业控制平面
 
 Azure 虚拟数据中心是充分利用 Azure 云平台的功能，同时遵循现有安全和网络政策的一种方式。 将企业工作负荷部署到云时，IT 组织和业务单位必须在监管与开发人员敏捷性之间实现平衡。 Azure 虚拟数据中心提供的模型可实现这种平衡，并将重心放在监管上。
@@ -33,7 +31,7 @@ Azure 虚拟数据中心是充分利用 Azure 云平台的功能，同时遵循�
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Lift"><img src="./images/vdc-lift-and-shift.png" alt="Lift and Shift Guide" /></a></td>
     <td>
-        <h3><a href="https://aka.ms/VDC/Lift">Azure 虚拟数据中心：直接迁移指南</a></h3>
+        <h3><a href="https://aka.ms/VDC/Lift">Azure 虚拟数据中心：“直接迁移”指南</a></h3>
         <p>此白皮书介绍企业 IT 人员和决策者在使用直接迁移方法识别和规划将应用程序与服务器迁移到 Azure 时可以遵循的流程。直接迁移方法能够最大程度地减少任何附加的开发成本，同时优化云托管选项。</p>
     </td>
 </tr>
