@@ -4,12 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: 比较用于将本地网络连接到 Azure 的参考体系结构。
 author: telmosampaio
 ms.date: 07/02/2018
-ms.openlocfilehash: f13249f225ad7ab5072de2b2175cdc2ffb6d0074
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: networking
+ms.openlocfilehash: 6172866b08197b0ca1cd3aabb3c14c01b4f06f9c
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011049"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486825"
 ---
 # <a name="choose-a-solution-for-connecting-an-on-premises-network-to-azure"></a>选择用于将本地网络连接到 Azure 的解决方案
 

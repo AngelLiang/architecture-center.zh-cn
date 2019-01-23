@@ -5,13 +5,16 @@ description: 了解 Microsoft Azure 帐户、平台和服务的基础知识。 �
 keywords: AWS 专家, Azure 比较, AWS 比较, azure 与 aws 之间的差别, azure 与 aws
 author: lbrader
 ms.date: 09/19/2018
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 92cc81c1bc697bea0feafd63e61a63a41f455eaa
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 56e308b40e24d2febefe995dffc7a14069a5c078
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113070"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482232"
 ---
 # <a name="azure-for-aws-professionals"></a>面向 AWS 专业人员的 Azure
 

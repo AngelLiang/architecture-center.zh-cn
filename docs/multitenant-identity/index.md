@@ -3,12 +3,15 @@ title: 多租户应用程序的标识管理
 description: 有关多租户应用程序中的身份验证、授权和标识管理的最佳做法。
 author: MikeWasson
 ms.date: 07/21/2017
-ms.openlocfilehash: 864317cc98ee0211d4f4274253eda12b72beceed
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: f8875612ad6b1a71fdb6f7a768078ae599eb70b5
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54114141"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54480534"
 ---
 # <a name="manage-identity-in-multitenant-applications"></a>管理多租户应用程序中的标识
 

@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: dfc4af0a5be29b32d90cc4a05715fd3e2f71427b
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488658"
+---
 
 ## <a name="ai-scenarios"></a>AI 方案
 
@@ -13,7 +21,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上提供的用于酒店预订的对话式聊天机器人</h3>
+                        <h3>用于酒店预订的对话式聊天机器人</h3>
                         <p>使用 Azure 机器人服务为商务应用程序构建对话式聊天机器人。</p>
                     </div>
                 </div>
@@ -32,8 +40,27 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上的保险索赔图像分类</h3>
+                        <h3>保险索赔图像分类</h3>
                         <p>将图像处理内置到 Azure 应用程序中。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/movie-recommendations.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./ai/media/architecture-movie-recommender.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Azure 上的电影推荐</h3>
+                        <p>使用机器学习和 Azure Data Science Virtual Machines (DSVM) 在 Azure 上训练一个模型，以通过机器学习自动生成电影、产品和其他方面的推荐。</p>
                     </div>
                 </div>
             </div>
@@ -57,7 +84,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>将旧式 Web 应用程序迁移到 Azure 上基于 API 的体系结构</h3>
+                        <h3>将 Web 应用迁移到基于 API 的体系结构</h3>
                         <p>使用 Azure API 管理来实现旧式 Web 应用程序的现代化。</p>
                     </div>
                 </div>
@@ -76,7 +103,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上银行间的分散式信任</h3>
+                        <h3>银行间的分散式信任</h3>
                         <p>建立受信任的环境以进行通信和信息共享，而不必求助于集中式数据库。</p>
                     </div>
                 </div>
@@ -133,7 +160,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上的电子商务前端</h3>
+                        <h3>电子商务前端</h3>
                         <p>在 Azure 上托管电子商务站点。</p>
                     </div>
                 </div>
@@ -171,7 +198,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上的计算机辅助工程服务</h3>
+                        <h3>计算机辅助工程服务</h3>
                         <p>为 Azure 上的计算机辅助工程 (CAE) 提供软件即服务 (SaaS) 平台。</p>
                     </div>
                 </div>
@@ -190,7 +217,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上的 SAP 工作负荷的开发/测试环境</h3>
+                        <h3>SAP 工作负荷的开发/测试环境</h3>
                         <p>为 SAP 工作负荷构建开发/测试环境。</p>
                     </div>
                 </div>
@@ -209,7 +236,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>在 Azure 上使用 Oracle 数据库运行 SAP 生产工作负荷</h3>
+                        <h3>使用 Oracle 数据库运行 SAP 生产工作负荷</h3>
                         <p>在 Azure 中使用 Oracle 数据库运行 SAP 生产部署。</p>
                     </div>
                 </div>
@@ -272,7 +299,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上的可缩放订单处理</h3>
+                        <h3>可缩放订单处理</h3>
                         <p>使用 Azure Cosmos DB 构建高度可缩放的订单处理管道。</p>
                     </div>
                 </div>
@@ -291,7 +318,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>在 Azure 上实时欺诈检测</h3>
+                        <h3>实时欺诈检测</h3>
                         <p>使用 Azure 事件中心和流分析实时检测欺诈性活动。</p>
                     </div>
                 </div>
@@ -311,7 +338,7 @@
                     </div>
                     <div class="cardText">
                         <h3>将混合 ETL 与现有本地 SSIS 和 Azure 数据工厂配合使用</h3>
-                        <p>将混合 ETL 与现有本地 SQL Server Integration Services (SSIS) 部署和 Azure 数据工厂配合使用</p>
+                        <p>将混合 ETL 与现有本地 SQL Server Integration Services (SSIS) 部署和 Azure 数据工厂配合使用。</p>
                     </div>
                 </div>
             </div>
@@ -354,7 +381,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>在 Azure 上运行计算流体动力学 (CFD) 模拟</h3>
+                        <h3>运行 CFD 模拟</h3>
                         <p>在 Azure 上执行计算流体动力学 (CFD) 模拟。</p>
                     </div>
                 </div>
@@ -392,8 +419,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上可实现高可用性和灾难恢复的多层 Web 应用程序</h3>
-                        <p>使用 Azure 虚拟机、可用性集、可用性区域、Azure Site Recovery 和 Azure 流量管理器在 Azure 上创建可实现高可用性和灾难恢复的多层 Web 应用程序</p>
+                        <h3>针对 HA/DR 生成的多层 Web 应用程序</h3>
+                        <p>使用 Azure 虚拟机、可用性集、可用性区域、Azure Site Recovery 和 Azure 流量管理器在 Azure 上创建可实现高可用性和灾难恢复的多层 Web 应用程序。</p>
                     </div>
                 </div>
             </div>
@@ -411,7 +438,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Windows 虚拟机在 Azure 上构建安全的 Web 应用</h3>
+                        <h3>使用 Windows VM 构建安全的 Web 应用</h3>
                         <p>使用规模集、应用程序网关和负载均衡器在 Azure 上通过 Windows Server 构建安全的多层 Web 应用程序。</p>
                     </div>
                 </div>
@@ -430,7 +457,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Service Fabric 分解单一式应用程序</h3>
+                        <h3>使用 Service Fabric 分解应用程序</h3>
                         <p>将大型整体应用程序分解为微服务。</p>
                     </div>
                 </div>
@@ -449,7 +476,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上的 3D 视频渲染</h3>
+                        <h3>3D 视频渲染</h3>
                         <p>使用 Azure Batch 服务在 Azure 中运行本机 HPC 工作负荷。</p>
                     </div>
                 </div>
@@ -468,7 +495,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上高度可扩展且高度安全的 WordPress 网站</h3>
+                        <h3>可高度可缩放且安全的 WordPress 网站</h3>
                         <p>构建高度可扩展且高度安全的 WordPress 网站以用于媒体事件。</p>
                     </div>
                 </div>
