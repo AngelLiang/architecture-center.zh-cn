@@ -2,14 +2,16 @@
 title: Azure 参考体系结构
 description: 适用于 Azure 上的常见工作负荷的参考体系结构、蓝图和规范性实施指南。
 layout: LandingPage
-ms.topic: landing-page
+ms.topic: reference-architecture
 ms.date: 08/30/2018
-ms.openlocfilehash: e62d2cb8230885fc508076f6a4984c3dc4538119
-ms.sourcegitcommit: d5ea427c25f9f7799cc859b99f328739ca2d8c1c
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: 190f0383422ea9c151132e68b9dd0ee5f5377e72
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54307699"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484443"
 ---
 # <a name="azure-reference-architectures"></a>Azure 参考体系结构
 
