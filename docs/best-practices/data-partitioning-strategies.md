@@ -4,13 +4,16 @@ titleSuffix: Best practices for cloud applications
 description: 有关隔离数据分区以便对其进行单独管理和访问的指导。
 author: dragon119
 ms.date: 11/04/2018
+ms.topic: best-practice
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 609da490537c20c1ea5e3fd739233d51435c689a
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: cfbe877a4e3a4a1d5aa87c4a77ad2c5f23a6d664
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307293"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484476"
 ---
 # <a name="data-partitioning-strategies"></a>数据分区策略
 
@@ -257,7 +260,7 @@ Redis 网站上的 [Partitioning: how to split data among multiple Redis instanc
 
 ![记录客户订单及其详细信息的 Redis 存储中的建议结构](./images/data-partitioning/RedisCustomersandOrders.png)
 
-图 8.记录客户订单及其详细信息的 Redis 存储中的建议结构。
+*图 8.* 记录客户订单及其详细信息的 Redis 存储中的建议结构。
 
 > [!NOTE]
 > 在 Redis 中，所有键都是二进制数据值（例如 Redis 字符串），最多可包含 512 MB 的数据。 在理论上，键几乎可以包含任何信息。 但是，我们建议为键采用可以描述数据类型并标识实体的一致命名约定，但是该约定不可过长。 常见的做法是使用“entity_type:ID”形式的键。 例如，可以使用“customer:99”来表示客户 ID 99 的键。
