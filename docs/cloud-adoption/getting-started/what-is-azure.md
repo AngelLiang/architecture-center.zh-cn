@@ -1,16 +1,19 @@
 ---
-title: 企业云的采用：Azure 工作原理
+title: 企业云采用：Azure 如何工作？
 description: 解释 Azure 的内部功能
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 1d9ff8003e97bcfe88121e8231473236f8cfb527
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 510fc1040812d61b8d736b25c434511ea981b9e5
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389054"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481824"
 ---
-# <a name="enterprise-cloud-adoption-how-does-azure-work"></a>企业云的采用：Azure 工作原理
+# <a name="enterprise-cloud-adoption-how-does-azure-work"></a>企业云采用：Azure 如何工作？
 
 Azure 是 Microsoft 的公有云平台。 Azure 提供了一个大型的服务集合，包括平台即服务 (PaaS)、基础结构即服务 (IaaS)、数据库即服务 (DBaaS) 以及许多其他服务。 但是，确切而言，什么是 Azure，它如何工作？
 

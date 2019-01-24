@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: 使用规模集、应用程序网关和负载均衡器在 Azure 上通过 Windows Server 构建安全的多层 Web 应用程序。
 author: iainfoulds
 ms.date: 12/06/2018
-ms.custom: seodec18
-ms.openlocfilehash: c5c1d4468df72edd989f2ab8f303781b26d50017
-ms.sourcegitcommit: 71ee0859e19fe58416b4c0056d67f2f34dd9ca0a
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.custom: seodec18, Windows
+ms.openlocfilehash: 12c7b4749507d4b96e5ce43f98739885c8133e7e
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54211982"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485530"
 ---
 # <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>使用 Windows 虚拟机在 Azure 上构建安全的 Web 应用程序
 

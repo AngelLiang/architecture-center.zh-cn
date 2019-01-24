@@ -4,12 +4,15 @@ description: 提供示例，解释如何针对常见方案实施 Azure 订阅监
 author: rdendtler
 ms.date: 01/03/2017
 ms.author: rodend
-ms.openlocfilehash: 51be0e1cdbcb3258102c9e4a4790764cada98d1e
-ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: cbf3aae20639d26a73aac07e1b66374af09fbb38
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "48243659"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486194"
 ---
 # <a name="examples-of-implementing-azure-enterprise-scaffold"></a>实施 Azure 企业基架的示例
 本文通过示例介绍企业如何实施 [Azure 企业基架](azure-scaffold.md)的建议事项。 其中使用一家虚构公司 Contoso 来演示常见方案的最佳实践。
@@ -34,7 +37,7 @@ Contoso 正在构建由世界各地的开发人员使用的源代码管理系统
 ### <a name="naming-standards--resource-groups"></a>命名标准和资源组
 Dave 需要创建一个订阅，用于支持所有业务单位常用的开发人员工具。 Dave 需要为订阅和资源组（用于应用程序和网络）创建有意义的名称。 他创建了以下订阅和资源组：
 
-| Item | 名称 | Description |
+| Item | 名称 | 说明 |
 | --- | --- | --- |
 | 订阅 |Contoso ETS DeveloperTools Production |支持常用的开发人员工具 |
 | 资源组 |bitbucket-prod-rg |包含应用程序 Web 服务器和数据库服务器 |
@@ -45,7 +48,7 @@ Dave 需要创建一个订阅，用于支持所有业务单位常用的开发人
 
 Dave 为订阅分配了以下角色：
 
-| 角色 | 已分配到 | Description |
+| 角色 | 已分配到 | 说明 |
 | --- | --- | --- |
 | [所有者](/azure/role-based-access-control/built-in-roles#owner) |Contoso AD 中的托管 ID |此 ID 是通过 Contoso 的标识管理工具，配合适时使用 (JIT) 访问权限控制的，可确保订阅所有者的访问完全受到审核 |
 | [安全读者](/azure/role-based-access-control/built-in-roles#security-reader) |安全与风险管理部门 |此角色允许用户查看 Azure 安全中心及资源状态 |
@@ -61,9 +64,9 @@ Dave 为订阅分配了以下角色：
 
 他创建了以下 [Azure 策略](/azure/azure-policy/azure-policy-introduction)：
 
-| 字段 | 效果 | Description |
+| 字段 | 效果 | 说明 |
 | --- | --- | --- |
-| location |audit |审核任何区域的资源创建活动 |
+| 位置 |audit |审核任何区域的资源创建活动 |
 | type |deny |拒绝创建 G 系列虚拟机 |
 | 标记 |deny |要求使用应用程序所有者标记 |
 | 标记 |deny |要求使用成本中心标记 |
@@ -85,7 +88,7 @@ Contoso ETS 信息安全与风险管理团队评审了 Dave 规划的将应用�
 
 他使用了以下资源：
 
-| 资源类型 | 名称 | Description |
+| 资源类型 | 名称 | 说明 |
 | --- | --- | --- |
 | 虚拟网络 |internal-vnet |用于 BitBucket 应用程序，通过 ExpressRoute 连接到 Contoso 的企业网络。  子网 (`bitbucket`) 提供具有特定 IP 地址空间的应用程序 |
 | 虚拟网络 |external-vnet |用于将来部署的、需要面向公众的终结点的应用程序 |
@@ -96,7 +99,7 @@ Dave 认识到，从 Contoso 的企业网络与内部虚拟网络建立的连接
 
 他创建了以下[资源锁](/azure/azure-resource-manager/resource-group-lock-resources)：
 
-| 锁类型 | 资源 | Description |
+| 锁类型 | 资源 | 说明 |
 | --- | --- | --- |
 | **CanNotDelete** |internal-vnet |阻止用户删除虚拟网络或子网，但不阻止添加新子网 |
 
@@ -124,17 +127,17 @@ Dave 和 Alice 就此应用程序展开了讨论，发现此应用程序只能�
 
 针对**开发订阅**，他们创建了以下策略：
 
-| 字段 | 效果 | Description |
+| 字段 | 效果 | 说明 |
 | --- | --- | --- |
-| location |audit |审核任何区域的资源创建活动 |
+| 位置 |audit |审核任何区域的资源创建活动 |
 
 该策略不会限制用户可在开发环境中创建的 SKU 类型，并且不要求对任何资源组或资源使用标记。
 
 针对**生产订阅**，他们创建了以下策略：
 
-| 字段 | 效果 | Description |
+| 字段 | 效果 | 说明 |
 | --- | --- | --- |
-| location |deny |拒绝在美国数据中心以外创建任何资源 |
+| 位置 |deny |拒绝在美国数据中心以外创建任何资源 |
 | 标记 |deny |要求使用应用程序所有者标记 |
 | 标记 |deny |要求使用部门标记 |
 | 标记 |append |将指明生产环境的标记追加到每个资源组 |
@@ -155,13 +158,13 @@ Contoso ETS 信息安全与风险管理团队评审了 Dave 规划的将应用�
 
 针对**开发订阅**，他们创建了：
 
-| 资源类型 | 名称 | Description |
+| 资源类型 | 名称 | 说明 |
 | --- | --- | --- |
 | 虚拟网络 |internal-vnet |为 Contoso 会员卡开发环境提供服务，通过 ExpressRoute 连接到 Contoso 的企业网络 |
 
 针对**生产订阅**，他们创建了：
 
-| 资源类型 | 名称 | Description |
+| 资源类型 | 名称 | 说明 |
 | --- | --- | --- |
 | 虚拟网络 |external-vnet |托管会员卡应用程序，不直接连接到 Contoso 的 ExpressRoute。 代码通过源代码管理系统直接推送到 PaaS 服务 |
 | 网络安全组 |loyaltycard-nsg |只允许通过 TCP 443 接收入站通信，确保最大程度地减少此工作负荷的受攻击面。  另外，Contoso 正在调研是否要 Web 应用程序防火墙来增强保护 |
@@ -171,7 +174,7 @@ Dave 和 Alice 经过商讨，决定对环境中的某些资源添加资源锁�
 
 他们创建了以下锁：
 
-| 锁类型 | 资源 | Description |
+| 锁类型 | 资源 | 说明 |
 | --- | --- | --- |
 | **CanNotDelete** |external-vnet |阻止用户删除虚拟网络或子网。 该锁不会阻止添加新子网 |
 

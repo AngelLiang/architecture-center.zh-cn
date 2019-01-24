@@ -5,13 +5,16 @@ description: 在应用程序中实施可让外部工具通过公开终结点定�
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 85a1355ff47e6fce80d9b2ed114024651eb994db
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 475b9572cb5b34850944fdf03061dc56ea6d0bf9
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54114243"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485139"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>运行状况终结点监视模式
 

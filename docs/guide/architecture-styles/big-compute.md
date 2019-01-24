@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: 介绍 Azure 上大计算体系结构的优点、挑战和最佳做法。
 author: MikeWasson
 ms.date: 08/30/2018
-ms.custom: seojan19
-ms.openlocfilehash: 7dbd8e25a0db79e6dde4c1c7e787eaa040ffdb3b
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seojan19, HPC
+ms.openlocfilehash: 56bd2ce010b56880e769ada4c6397391a73bbd1e
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54114056"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485751"
 ---
 # <a name="big-compute-architecture-style"></a>大计算的体系结构样式
 

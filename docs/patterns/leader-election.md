@@ -5,13 +5,16 @@ description: 通过选拔一个实例作为领导来负责管理其他实例，�
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: cfc29e3490735c16b41c494e6cecbb8972cdc705
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 1b74228fcceecb350d8df9b7ca2327b5de329a07
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54010133"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486095"
 ---
 # <a name="leader-election-pattern"></a>领导选拔模式
 

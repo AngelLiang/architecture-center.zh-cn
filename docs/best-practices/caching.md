@@ -4,13 +4,16 @@ titleSuffix: Best practices for cloud applications
 description: 有关配置缓存以提高性能和伸缩性的指南。
 author: dragon119
 ms.date: 05/24/2017
+ms.topic: best-practice
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: da676ba3037f5c232ea97b9cb41488c7c2202476
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: b93041d87ec1edde91724f6cf6374cb00b8a4941
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113104"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488488"
 ---
 # <a name="caching"></a>缓存
 

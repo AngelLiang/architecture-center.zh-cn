@@ -3,13 +3,16 @@ title: 在 Azure 上生成实时建议 API
 description: 使用 Azure Databricks 和 Azure Data Science Virtual Machines (DSVM) 在 Azure 上训练一个模型，以便通过机器学习自动生成建议。
 author: njray
 ms.date: 12/12/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: ca9d854f0e29ae769f5a86648b94cce7a2fd146e
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.openlocfilehash: 8fa15c82275f18af78d1f42ec1750ab9b28119fb
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450815"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487099"
 ---
 # <a name="build-a-real-time-recommendation-api-on-azure"></a>在 Azure 上生成实时建议 API
 

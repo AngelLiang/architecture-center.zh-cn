@@ -3,13 +3,16 @@ title: R 机器学习模型的实时评分
 description: 在 R 中使用运行于 Azure Kubernetes 服务 (AKS) 中的 Machine Learning Server 实现实时预测服务。
 author: njray
 ms.date: 12/12/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 6f3447d1dcab801ccdaf4cf88611725cc00eb68d
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 00bea3cae0c3d2f0fea2babd7b0157382cf9890a
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112271"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487162"
 ---
 # <a name="real-time-scoring-of-r-machine-learning-models"></a>R 机器学习模型的实时评分
 

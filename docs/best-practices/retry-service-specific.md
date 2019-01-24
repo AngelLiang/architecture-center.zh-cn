@@ -4,13 +4,16 @@ titleSuffix: Best practices for cloud applications
 description: 设置重试机制的服务指南。
 author: dragon119
 ms.date: 08/13/2018
+ms.topic: best-practice
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: ad26b55625276ae95004652acfd745b2c4b53a8f
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: d99c63b9cb5f2ed7ffcd869b5b8ac7910b9dabe3
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307344"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487128"
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服务的重试指南
 
@@ -85,7 +88,7 @@ Cosmos DB 是一种完全托管的多模型数据库，支持无架构 JSON 数�
 
 下表显示了 `RetryOptions` 类的默认设置。
 
-| 设置 | 默认值 | Description |
+| 设置 | 默认值 | 说明 |
 | --- | --- | --- |
 | MaxRetryAttemptsOnThrottledRequests |9 |因 Cosmos DB 对客户端应用速率限制而导致请求失败时的最大重试次数。 |
 | MaxRetryWaitTimeInSeconds |30 |最大重试时间（以秒为单位）。 |

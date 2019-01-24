@@ -4,19 +4,22 @@ titleSuffix: Azure Application Architecture Guide
 description: 介绍软件质量的五大构成要素：可伸缩性、可用性、复原能力、管理和安全性。
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 2f013063afea89e3e322aa6f36484f6df50210be
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 76870f58fc957f6d82f6dc176d1c538c795a7d20
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113937"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486227"
 ---
 # <a name="pillars-of-software-quality"></a>软件质量的要素
 
 一个成功的云应用程序应注重软件质量的五大构成要素：可伸缩性、可用性、复原能力、管理和安全性。
 
-| 构成要素 | Description |
+| 构成要素 | 说明 |
 |--------|-------------|
 | 可伸缩性 | 系统处理增加的负载的能力。 |
 | 可用性 | 系统正常工作时间所占的比例。 |

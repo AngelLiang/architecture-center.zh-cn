@@ -3,12 +3,15 @@ title: 运行 Surveys 应用程序
 description: 如何在本地运行 Surveys 示例应用程序。
 author: MikeWasson
 ms.date: 07/21/2017
-ms.openlocfilehash: b73eeb04755b3dc8443b215bb034c82e3095681d
-ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: bdc2f4da6dd151cf395bee700e6a44e827c1e4f9
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/09/2019
-ms.locfileid: "54160751"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481571"
 ---
 # <a name="run-the-surveys-application"></a>运行 Surveys 应用程序
 

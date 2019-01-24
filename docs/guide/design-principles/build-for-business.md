@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: 每个设计决策必须与业务要求相称。
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 872c4c5a6e0ecbecaa6736c63a7049a1ce514bf6
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 9529d1e11dc67144d2dcb641ea666de7c2205f20
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113376"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486516"
 ---
 # <a name="build-for-the-needs-of-the-business"></a>专为业务需求打造
 

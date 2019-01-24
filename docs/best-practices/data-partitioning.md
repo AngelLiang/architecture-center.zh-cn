@@ -4,13 +4,16 @@ titleSuffix: Best practices for cloud applications
 description: 有关如何隔离分区，以便单独进行管理和访问的指导。
 author: dragon119
 ms.date: 11/04/2018
+ms.topic: best-practice
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 9441c4404af991b327cd027c145604921f0223fb
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 561fe6e47a4cd64aa545349dde4c76260d76e78e
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307089"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482301"
 ---
 # <a name="horizontal-vertical-and-functional-data-partitioning"></a>水平数据分区、垂直数据分区和功能数据分区
 
@@ -57,7 +60,7 @@ ms.locfileid: "53307089"
 
 ![基于分区键将数据水平分区（分片）](./images/data-partitioning/DataPartitioning01.png)
 
-图 1.基于分区键将数据水平分区（分片）。
+*图 1.* 基于分区键将数据水平分区（分片）。
 
 最重要的因素是分片键的选择。 系统运行之后，就很难更改该键。 键必须确保在进行数据分区时，工作负荷能够尽量跨分片平均分配。
 
@@ -77,7 +80,7 @@ ms.locfileid: "53307089"
 
 ![按使用模式将数据垂直分区](./images/data-partitioning/DataPartitioning02.png)
 
-图 2.按使用模式将数据垂直分区。
+*图 2.* 按使用模式将数据垂直分区。
 
 在此示例中，应用程序在向客户显示产品详细信息时，按常规查询产品名称、描述和价格。 库存计数和上次订购日期保存在单独的分区中，因为这两项通常一起使用。
 
@@ -97,7 +100,7 @@ ms.locfileid: "53307089"
 
 ![按界限上下文或子域对数据进行功能分区](./images/data-partitioning/DataPartitioning03.png)
 
-图 3.按界限上下文或子域对数据进行功能分区。
+*图 3.* 按界限上下文或子域对数据进行功能分区。
 
 此分区策略可帮助减少跨系统中不同部件的数据访问争用。
 

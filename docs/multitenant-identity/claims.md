@@ -3,15 +3,18 @@ title: 在多租户应用程序中使用基于声明的标识
 description: 如何使用声明进行颁发者验证和授权。
 author: MikeWasson
 ms.date: 07/21/2017
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authenticate
 pnp.series.next: signup
-ms.openlocfilehash: ffaa6085dd9ca9ddec203e6661575e984b2e25e0
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 8b8cbd2b857493d94103e80f53f187207feaa11e
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113580"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486499"
 ---
 # <a name="work-with-claims-based-identities"></a>使用基于声明的标识
 
@@ -32,7 +35,7 @@ ms.locfileid: "54113580"
 
 下面是 AAD 发送的、可能受应用关注的一些声明：
 
-| ID 令牌中的声明类型 | Description |
+| ID 令牌中的声明类型 | 说明 |
 | --- | --- |
 | aud |令牌的颁发对象。 此值将是应用程序的客户端 ID。 一般情况下，应该不需要考虑此声明，因为中间件会自动验证它。 示例：`"91464657-d17a-4327-91f3-2ed99386406f"` |
 | 组 |用户所属的 AAD 组的列表。 示例： `["93e8f556-8661-4955-87b6-890bc043c30f", "fc781505-18ef-4a31-a7d5-7d931d7b857e"]` |

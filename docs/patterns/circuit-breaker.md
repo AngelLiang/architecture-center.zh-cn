@@ -5,13 +5,16 @@ description: 连接到远程服务或资源时处理故障，此类故障所需�
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 56c90fcb23fd68b0d1b545db90adeab3272705c2
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 7cc84b3c14ea277aa82643f3141f0693ec702a49
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54009757"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485598"
 ---
 # <a name="circuit-breaker-pattern"></a>断路器模式
 
@@ -19,7 +22,7 @@ ms.locfileid: "54009757"
 
 ## <a name="context-and-problem"></a>上下文和问题
 
-在分布式环境中，对远程资源和服务的调用可能会由于临时性故障（如网络连接缓慢、超时、资源过载或资源暂时不可用）而失败。 这些故障通常会在短时间内自行更正，而且，应该会准备一个可靠的云应用程序，通过[重试模式][retry-pattern]这样的策略来处理它们。
+在分布式环境中，对远程资源和服务的调用可能会由于临时性故障（如网络连接缓慢、超时、资源过载或资源暂时不可用）而失败。 这些故障通常会在短时间内自行更正，而且，应该会准备一个可靠的云应用程序，通过[重试模式](./retry.md)这样的策略来处理这些它们。
 
 但是，也可能遇到由于意外事件而导致的故障，且需要更长的时间来进行修复。 这些故障按严重程度从部分连接丢失到服务彻底故障都有可能。 这类情况下，让应用程序持续重试不可能成功的操作是毫无意义的。相反，应用程序应该快速认识到操作已失败，并相应地处理此故障。
 

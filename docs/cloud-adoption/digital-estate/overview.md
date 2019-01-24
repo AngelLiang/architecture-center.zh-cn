@@ -4,12 +4,15 @@ titleSuffix: Enterprise Cloud Adoption
 description: 数字资产的概念解释
 author: BrianBlanchard
 ms.date: 12/10/2018
-ms.openlocfilehash: baf433f517f29a2c3ed70570a2948b71f2720cb4
-ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: ce21a2d72fcb630f5f197dbd6b87b16ef8f41435
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53179603"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481535"
 ---
 # <a name="enterprise-cloud-adoption-what-is-a-digital-estate"></a>企业云采用：什么是数字资产？
 

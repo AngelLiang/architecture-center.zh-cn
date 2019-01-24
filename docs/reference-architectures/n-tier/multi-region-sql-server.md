@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: 在多个区域中的 Azure 虚拟机上部署应用程序以实现高可用性和复原能力。
 author: MikeWasson
 ms.date: 07/19/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 5eef936dded1829ee561ce1b13df4fb147694dc7
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 384634acb8690c64f75eabbfebc5f1de414f6da2
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111982"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484612"
 ---
 # <a name="run-an-n-tier-application-in-multiple-azure-regions-for-high-availability"></a>在多个 Azure 区域中运行 N 层应用程序以确保高可用性
 

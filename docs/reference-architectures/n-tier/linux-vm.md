@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: 在 Azure 上运行 Linux 虚拟机的最佳做法。
 author: telmosampaio
 ms.date: 12/13/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 2989cd812c7a3ac6c9e7b8fbf23639b2a95d0b41
-ms.sourcegitcommit: 032f402482762f4e674aeebbc122ad18dfba11eb
+ms.openlocfilehash: ec71e35bec0fa9fad604456130f8596fcf127ebb
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53396430"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485649"
 ---
 # <a name="run-a-linux-virtual-machine-on-azure"></a>在 Azure 上运行 Linux 虚拟机
 
@@ -101,7 +104,7 @@ sudo mount /dev/sdc1 /data1
 
 使用 [Azure 安全中心][security-center]可在一个中心视图中获得 Azure 资源的安全状态。 安全中心监视潜在的安全问题，并全面描述了部署的安全运行状况。 安全中心针对每个 Azure 订阅进行配置。 根据[将 Azure 订阅载入安全中心标准版][security-center-get-started]中所述启用安全数据收集。 启用数据收集后，安全中心会自动扫描该订阅下创建的所有 VM。
 
-**修补程序管理**。 如果启用，安全中心会检查是否缺少任何安全更新和关键更新。 使用 VM 上的[组策略设置][group-policy]可启用自动系统更新。
+**修补程序管理**。 如果启用，安全中心会检查是否缺少任何安全更新和关键更新。 使用 VM 上的[组策略设置][group-policy]可实现自动系统更新。
 
 **反恶意软件**。 如果启用，安全中心会检查是否已安装反恶意软件。 还可以使用安全中心从 Azure 门户中安装反恶意软件。
 
@@ -130,6 +133,7 @@ sudo mount /dev/sdc1 /data1
 [disk-encryption]: /azure/security/azure-security-disk-encryption
 [enable-monitoring]: /azure/monitoring-and-diagnostics/insights-how-to-use-diagnostics
 [fqdn]: /azure/virtual-machines/virtual-machines-linux-portal-create-fqdn
+[group-policy]: /windows-server/administration/windows-server-update-services/deploy/4-configure-group-policy-settings-for-automatic-updates
 [iostat]: https://en.wikipedia.org/wiki/Iostat
 [manage-vm-availability]: /azure/virtual-machines/virtual-machines-linux-manage-availability
 [managed-disks]: /azure/storage/storage-managed-disks-overview

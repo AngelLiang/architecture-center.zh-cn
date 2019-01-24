@@ -3,12 +3,15 @@ title: 企业云的采用：什么是云资源调控？
 description: 解释 Azure 中的资源访问调控的概念
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: fb01b2e2823c16e32f8ded696de0b6faf1d2e610
-ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: e23319f013344df22e116337fbbf41fd3e9b5f3e
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53179274"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486281"
 ---
 # <a name="enterprise-cloud-adoption-what-is-cloud-resource-governance"></a>企业云的采用：什么是云资源调控？
 

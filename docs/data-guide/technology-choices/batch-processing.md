@@ -3,12 +3,15 @@ title: 选择批处理技术
 description: ''
 author: zoinerTejada
 ms.date: 11/03/2018
-ms.openlocfilehash: 0c6392fb0a921e95f2704696fb2447ac5ec6f4c0
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: 53f8b233b0e0c1ff83a72a04b2707caa528d6f6b
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111319"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486448"
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>在 Azure 中选择批处理技术
 

@@ -4,12 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: 实现这样一个安全的站点到站点网络体系结构：跨 Azure 虚拟网络，以及使用 VPN 建立连接的本地网络。
 author: RohitSharma-pnp
 ms.date: 10/22/2018
-ms.openlocfilehash: 63e919041e4a8c7c9f90a49de05effc48cb743d8
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: networking
+ms.openlocfilehash: 515cd3f5d23957e0e153c9d25198b3cb98b92a5d
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54110904"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487961"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>使用 VPN 网关将本地网络连接到 Azure
 

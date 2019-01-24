@@ -4,13 +4,16 @@ titleSuffix: Best practices for cloud applications
 description: 有关独立于用户界面运行的后台任务的指南。
 author: dragon119
 ms.date: 11/05/2018
+ms.topic: best-practice
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 78b5dd35b1d97d96d434bcd711a20251be37448b
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 4b96c19dd8613a941a7408e1b99945d5fa0f5364
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307327"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482062"
 ---
 # <a name="background-jobs"></a>后台作业
 

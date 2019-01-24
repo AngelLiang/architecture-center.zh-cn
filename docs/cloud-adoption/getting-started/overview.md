@@ -1,16 +1,19 @@
 ---
-title: 企业云的采用：入门
+title: 企业云采用：入门
 description: 概要介绍企业在采用 Azure 云技术的过程中进行数字化转型的第一阶段
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: b51e834a56f4d9818ca9475f959c3f888bae20bc
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 027757c76008da092e0d7ab65b072259a04b3cad
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389270"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488080"
 ---
-# <a name="enterprise-cloud-adoption-getting-started"></a>企业云的采用：入门 
+# <a name="enterprise-cloud-adoption-getting-started"></a>企业云采用：入门 
 
 通过**数字化转型**迁移到云计算意味着从本地操作方式转变为云操作方式。 这种转变包括以全新方式开展业务 - 例如，数字化转型需要从软件和数据中心硬件的资本开销转变为因使用云资源带来的操作开销。 
 
@@ -58,7 +61,7 @@ ms.locfileid: "44389270"
 
 业务策略中存在的差距可以分为下述几类：
 
-|类别|Description|
+|类别|说明|
 |-----|-----|
 |成本管理|代表企业技术付款方式的差距。|
 |调控|代表企业在通过相关流程保护其资产免遭用户不当使用方面的差距。资产的不当使用可能会导致成本溢出问题、安全问题或符合性问题。 | 

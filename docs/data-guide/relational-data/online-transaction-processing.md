@@ -3,12 +3,15 @@ title: 联机事务处理 (OLTP)
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 331da288384bf14581eeda35116085d759807245
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: c6cc628977b438578f2d88d1928afcd75ddddbcd
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113954"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481807"
 ---
 # <a name="online-transaction-processing-oltp"></a>联机事务处理 (OLTP)
 
@@ -28,7 +31,7 @@ ms.locfileid: "54113954"
 
 事务数据往往具有以下特征：
 
-| 要求 | Description |
+| 要求 | 说明 |
 | --- | --- |
 | 规范化 | 高度规范化 |
 | 架构 | 写入时架构，强制实施|

@@ -3,12 +3,15 @@ title: 联机分析处理 (OLAP)
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 2f938796a741b8a26694742f1098e29728e6818d
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: 70c18e1a5294b09bb156d2af06af7a32d33858da
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113563"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485462"
 ---
 # <a name="online-analytical-processing-olap"></a>联机分析处理 (OLAP)
 
@@ -54,7 +57,7 @@ ms.locfileid: "54113563"
 
 语义建模和分析处理通常具有以下特征：
 
-| 要求 | Description |
+| 要求 | 说明 |
 | --- | --- |
 | 架构 | 写入时架构，强制实施|
 | 使用事务 | 否 |

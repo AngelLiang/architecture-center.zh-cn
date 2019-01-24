@@ -3,14 +3,18 @@ title: 企业云的采用：部署基本工作负荷
 description: 介绍如何将基本工作负荷部署到 Azure
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 363e7e6f394389fb6c1577e2cbaeffeddcf2de1a
-ms.sourcegitcommit: b38ba378c9d6110da2dfd50b4233fadd94604bb0
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: Windows, Linux
+ms.openlocfilehash: 031a8f2e1dc0b137fc830733d025997a2657ef3c
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/25/2018
-ms.locfileid: "47167347"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481399"
 ---
-# <a name="enterprise-cloud-adoption-deploy-a-basic-workload"></a>企业云的采用：部署基本工作负荷
+# <a name="enterprise-cloud-adoption-deploy-a-basic-workload"></a>企业云采用：部署基本工作负荷
 
 术语“工作负荷”通常是指定义一个任意的功能单元，例如应用程序或服务。 我们可以从部署到服务器的代码项目的角度考虑工作负荷，也可以从任何其他必需服务的角度考虑它。 对于本地应用程序或服务而言，这种定义非常有效；但在云中，我们需要对其进行延伸。
 

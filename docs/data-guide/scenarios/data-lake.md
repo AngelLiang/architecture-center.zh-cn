@@ -1,3 +1,18 @@
+---
+title: Data Lake
+description: ''
+author: zoinerTejada
+ms.date: 02/12/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: d433867886ce0afc219fcc9f35eb7f8b3ce6bee1
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484697"
+---
 # <a name="data-lakes"></a>Data Lake
 
 Data Lake 是一种存储库，可以按数据本来的原始格式存储大量的数据。 Data Lake 存储经过优化，数据规模可以达到数 TB 甚至数 PB。 这些数据通常来自多个异类源，可以是结构化的、半结构化的或非结构化的。 Data Lake 的理念是指以原始的非转换状态存储一切内容。 此方法不同于传统的[数据仓库](../relational-data/data-warehousing.md)，后者在引入数据时对数据进行转换和处理。

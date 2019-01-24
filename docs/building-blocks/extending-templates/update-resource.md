@@ -3,12 +3,15 @@ title: 在 Azure 资源管理器模板上更新资源
 description: 介绍如何扩展 Azure 资源管理器模板的功能来更新资源。
 author: petertay
 ms.date: 10/31/2018
-ms.openlocfilehash: 927826283163b2ae45575035168d6238de98dc00
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: de76e69e94917bbbe94c0f87fda2cdbe415181dc
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113410"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487131"
 ---
 # <a name="update-a-resource-in-an-azure-resource-manager-template"></a>在 Azure 资源管理器模板上更新资源
 

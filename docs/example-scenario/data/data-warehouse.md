@@ -4,12 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: 合并来自多个源的数据并优化数据分析。
 author: alexbuckgit
 ms.date: 09/15/2018
-ms.openlocfilehash: 2ac06fcd0805b66371fcc004794b123c46a6ce0e
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.custom: data-analytics
+ms.openlocfilehash: ddf9935d534b6902c407c22ba765e8c84558547b
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112373"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488437"
 ---
 # <a name="data-warehousing-and-analytics-for-sales-and-marketing"></a>用于销售和市场营销的数据仓库和分析
 

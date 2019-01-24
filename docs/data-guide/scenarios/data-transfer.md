@@ -3,12 +3,15 @@ title: 选择数据传输技术
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 1cb763ade2aa263d07a59cc6bfc29d59bec7af19
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: c58d06813e3a500c6bb1b6c7889e65f401be6c33
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113036"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484527"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>将数据传入和传出 Azure
 
@@ -134,7 +137,7 @@ ms.locfileid: "54113036"
 | --- | --- | --- | --- |
 | 针对大数据优化 | 否 | 否 | 是 |
 | 复制到关系数据库 | 否 | 否 | 是 |
-| 复制到关系数据库 | 否 | 否 | 是 |
+| 从关系数据库复制 | 否 | 否 | 是 |
 | 复制到 Blob 存储 | 是 | 否 | 是 |
 | 从 Blob 存储复制 | 是 | 否 | 是 |
 | 复制到 Data Lake Store | 否 | 否 | 是 |

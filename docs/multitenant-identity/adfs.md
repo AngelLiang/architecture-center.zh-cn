@@ -3,15 +3,18 @@ title: 与客户的 AD FS 联合
 description: 如何在多租户应用程序中与客户的 AD FS 联合。
 author: MikeWasson
 ms.date: 07/21/2017
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: 27fad1aab8d359346353cc031a2e8d8746294818
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 82b39d77f1ee9af4063c4715a4688ef4b69bc477
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113546"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487844"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>与客户的 AD FS 联合
 
