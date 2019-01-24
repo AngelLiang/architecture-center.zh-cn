@@ -3,29 +3,32 @@ title: 使用客户端断言从 Azure AD 获取访问令牌
 description: 如何使用客户端断言从 Azure AD 获取访问令牌。
 author: MikeWasson
 ms.date: 07/21/2017
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: adfs
 pnp.series.next: key-vault
-ms.openlocfilehash: b5951153fff109b648e7e4f74daac0f414240fe4
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: a1ea65ca8f6b98932f0c42a1b029efeca4d50710
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113138"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482419"
 ---
-# <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a><span data-ttu-id="ceb7e-103">使用客户端断言从 Azure AD 获取访问令牌</span><span class="sxs-lookup"><span data-stu-id="ceb7e-103">Use client assertion to get access tokens from Azure AD</span></span>
+# <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a><span data-ttu-id="0ad76-103">使用客户端断言从 Azure AD 获取访问令牌</span><span class="sxs-lookup"><span data-stu-id="0ad76-103">Use client assertion to get access tokens from Azure AD</span></span>
 
-<span data-ttu-id="ceb7e-104">[![GitHub](../_images/github.png) 示例代码][sample application]</span><span class="sxs-lookup"><span data-stu-id="ceb7e-104">[![GitHub](../_images/github.png) Sample code][sample application]</span></span>
+<span data-ttu-id="0ad76-104">[![GitHub](../_images/github.png) 示例代码][sample application]</span><span class="sxs-lookup"><span data-stu-id="0ad76-104">[![GitHub](../_images/github.png) Sample code][sample application]</span></span>
 
-## <a name="background"></a><span data-ttu-id="ceb7e-105">背景</span><span class="sxs-lookup"><span data-stu-id="ceb7e-105">Background</span></span>
+## <a name="background"></a><span data-ttu-id="0ad76-105">背景</span><span class="sxs-lookup"><span data-stu-id="0ad76-105">Background</span></span>
 
-<span data-ttu-id="ceb7e-106">在 OpenID Connect 中使用授权代码流或混合流时，客户端交换授权代码来获取访问令牌。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-106">When using authorization code flow or hybrid flow in OpenID Connect, the client exchanges an authorization code for an access token.</span></span> <span data-ttu-id="ceb7e-107">在此步骤中，客户端必须向服务器进行身份验证。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-107">During this step, the client has to authenticate itself to the server.</span></span>
+<span data-ttu-id="0ad76-106">在 OpenID Connect 中使用授权代码流或混合流时，客户端交换授权代码来获取访问令牌。</span><span class="sxs-lookup"><span data-stu-id="0ad76-106">When using authorization code flow or hybrid flow in OpenID Connect, the client exchanges an authorization code for an access token.</span></span> <span data-ttu-id="0ad76-107">在此步骤中，客户端必须向服务器进行身份验证。</span><span class="sxs-lookup"><span data-stu-id="0ad76-107">During this step, the client has to authenticate itself to the server.</span></span>
 
 ![客户端机密](./images/client-secret.png)
 
-<span data-ttu-id="ceb7e-109">客户端进行身份验证的一种方法是使用客户端密码。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-109">One way to authenticate the client is by using a client secret.</span></span> <span data-ttu-id="ceb7e-110">默认情况下，配置 [Tailspin Surveys][Surveys] 应用程序也是采用相同方式。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-110">That's how the [Tailspin Surveys][Surveys] application is configured by default.</span></span>
+<span data-ttu-id="0ad76-109">客户端进行身份验证的一种方法是使用客户端密码。</span><span class="sxs-lookup"><span data-stu-id="0ad76-109">One way to authenticate the client is by using a client secret.</span></span> <span data-ttu-id="0ad76-110">默认情况下，配置 [Tailspin Surveys][Surveys] 应用程序也是采用相同方式。</span><span class="sxs-lookup"><span data-stu-id="0ad76-110">That's how the [Tailspin Surveys][Surveys] application is configured by default.</span></span>
 
-<span data-ttu-id="ceb7e-111">下面是从客户端到 IDP 请求访问令牌的示例请求。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-111">Here is an example request from the client to the IDP, requesting an access token.</span></span> <span data-ttu-id="ceb7e-112">请注意 `client_secret` 参数。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-112">Note the `client_secret` parameter.</span></span>
+<span data-ttu-id="0ad76-111">下面是从客户端到 IDP 请求访问令牌的示例请求。</span><span class="sxs-lookup"><span data-stu-id="0ad76-111">Here is an example request from the client to the IDP, requesting an access token.</span></span> <span data-ttu-id="0ad76-112">请注意 `client_secret` 参数。</span><span class="sxs-lookup"><span data-stu-id="0ad76-112">Note the `client_secret` parameter.</span></span>
 
 ```http
 POST https://login.microsoftonline.com/b9bd2162xxx/oauth2/token HTTP/1.1
@@ -38,13 +41,13 @@ resource=https://tailspin.onmicrosoft.com/surveys.webapi
   &code=PG8wJG6Y...
 ```
 
-<span data-ttu-id="ceb7e-113">密码只是一个字符串，所以必须确保不会泄漏该值。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-113">The secret is just a string, so you have to make sure not to leak the value.</span></span> <span data-ttu-id="ceb7e-114">最佳做法是将客户端密码排除在源代码管理之外。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-114">The best practice is to keep the client secret out of source control.</span></span> <span data-ttu-id="ceb7e-115">在部署到 Azure 时，请将密码存储在[应用设置][configure-web-app]中。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-115">When you deploy to Azure, store the secret in an [app setting][configure-web-app].</span></span>
+<span data-ttu-id="0ad76-113">密码只是一个字符串，所以必须确保不会泄漏该值。</span><span class="sxs-lookup"><span data-stu-id="0ad76-113">The secret is just a string, so you have to make sure not to leak the value.</span></span> <span data-ttu-id="0ad76-114">最佳做法是将客户端密码排除在源代码管理之外。</span><span class="sxs-lookup"><span data-stu-id="0ad76-114">The best practice is to keep the client secret out of source control.</span></span> <span data-ttu-id="0ad76-115">在部署到 Azure 时，请将密码存储在[应用设置][configure-web-app]中。</span><span class="sxs-lookup"><span data-stu-id="0ad76-115">When you deploy to Azure, store the secret in an [app setting][configure-web-app].</span></span>
 
-<span data-ttu-id="ceb7e-116">但任何能够访问 Azure 订阅的人都可以查看应用设置。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-116">However, anyone with access to the Azure subscription can view the app settings.</span></span> <span data-ttu-id="ceb7e-117">此外，密码始终倾向于签入到源代码管理中（例如，在部署脚本中），并通过电子邮件等进行共享。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-117">Further, there is always a temptation to check secrets into source control (e.g., in deployment scripts), share them by email, and so on.</span></span>
+<span data-ttu-id="0ad76-116">但任何能够访问 Azure 订阅的人都可以查看应用设置。</span><span class="sxs-lookup"><span data-stu-id="0ad76-116">However, anyone with access to the Azure subscription can view the app settings.</span></span> <span data-ttu-id="0ad76-117">此外，密码始终倾向于签入到源代码管理中（例如，在部署脚本中），并通过电子邮件等进行共享。</span><span class="sxs-lookup"><span data-stu-id="0ad76-117">Further, there is always a temptation to check secrets into source control (e.g., in deployment scripts), share them by email, and so on.</span></span>
 
-<span data-ttu-id="ceb7e-118">为提高安全性，可使用[客户端断言]取代客户端密码。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-118">For additional security, you can use [client assertion] instead of a client secret.</span></span> <span data-ttu-id="ceb7e-119">通过使用客户端断言，客户端可以使用 X.509 证书来证明令牌请求来自客户端。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-119">With client assertion, the client uses an X.509 certificate to prove the token request came from the client.</span></span> <span data-ttu-id="ceb7e-120">客户端证书安装在 Web 服务器上。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-120">The client certificate is installed on the web server.</span></span> <span data-ttu-id="ceb7e-121">通常情况下，限制对证书的访问比确保人们不会无意透露客户端密码更容易。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-121">Generally, it will be easier to restrict access to the certificate, than to ensure that nobody inadvertently reveals a client secret.</span></span> <span data-ttu-id="ceb7e-122">有关在 Web 应用程序中配置证书的详细信息，请参阅[在 Azure 网站应用程序中使用证书][using-certs-in-websites]</span><span class="sxs-lookup"><span data-stu-id="ceb7e-122">For more information about configuring certificates in a web app, see [Using Certificates in Azure Websites Applications][using-certs-in-websites]</span></span>
+<span data-ttu-id="0ad76-118">为提高安全性，可使用[客户端断言]取代客户端密码。</span><span class="sxs-lookup"><span data-stu-id="0ad76-118">For additional security, you can use [client assertion] instead of a client secret.</span></span> <span data-ttu-id="0ad76-119">通过使用客户端断言，客户端可以使用 X.509 证书来证明令牌请求来自客户端。</span><span class="sxs-lookup"><span data-stu-id="0ad76-119">With client assertion, the client uses an X.509 certificate to prove the token request came from the client.</span></span> <span data-ttu-id="0ad76-120">客户端证书安装在 Web 服务器上。</span><span class="sxs-lookup"><span data-stu-id="0ad76-120">The client certificate is installed on the web server.</span></span> <span data-ttu-id="0ad76-121">通常情况下，限制对证书的访问比确保人们不会无意透露客户端密码更容易。</span><span class="sxs-lookup"><span data-stu-id="0ad76-121">Generally, it will be easier to restrict access to the certificate, than to ensure that nobody inadvertently reveals a client secret.</span></span> <span data-ttu-id="0ad76-122">有关在 Web 应用程序中配置证书的详细信息，请参阅[在 Azure 网站应用程序中使用证书][using-certs-in-websites]</span><span class="sxs-lookup"><span data-stu-id="0ad76-122">For more information about configuring certificates in a web app, see [Using Certificates in Azure Websites Applications][using-certs-in-websites]</span></span>
 
-<span data-ttu-id="ceb7e-123">下面是使用客户端断言的令牌请求：</span><span class="sxs-lookup"><span data-stu-id="ceb7e-123">Here is a token request using client assertion:</span></span>
+<span data-ttu-id="0ad76-123">下面是使用客户端断言的令牌请求：</span><span class="sxs-lookup"><span data-stu-id="0ad76-123">Here is a token request using client assertion:</span></span>
 
 ```http
 POST https://login.microsoftonline.com/b9bd2162xxx/oauth2/token HTTP/1.1
@@ -58,14 +61,14 @@ resource=https://tailspin.onmicrosoft.com/surveys.webapi
   &code= PG8wJG6Y...
 ```
 
-<span data-ttu-id="ceb7e-124">请注意，`client_secret` 参数已不再使用。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-124">Notice that the `client_secret` parameter is no longer used.</span></span> <span data-ttu-id="ceb7e-125">取而代之的是 `client_assertion` 参数，它包含一个使用客户端证书签名的 JWT 令牌。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-125">Instead, the `client_assertion` parameter contains a JWT token that was signed using the client certificate.</span></span> <span data-ttu-id="ceb7e-126">`client_assertion_type` 参数指定断言类型 &mdash; 在本例中为 JWT 令牌。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-126">The `client_assertion_type` parameter specifies the type of assertion &mdash; in this case, JWT token.</span></span> <span data-ttu-id="ceb7e-127">服务器验证 JWT 令牌。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-127">The server validates the JWT token.</span></span> <span data-ttu-id="ceb7e-128">如果 JWT 令牌无效，令牌请求将返回一个错误。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-128">If the JWT token is invalid, the token request returns an error.</span></span>
+<span data-ttu-id="0ad76-124">请注意，`client_secret` 参数已不再使用。</span><span class="sxs-lookup"><span data-stu-id="0ad76-124">Notice that the `client_secret` parameter is no longer used.</span></span> <span data-ttu-id="0ad76-125">取而代之的是 `client_assertion` 参数，它包含一个使用客户端证书签名的 JWT 令牌。</span><span class="sxs-lookup"><span data-stu-id="0ad76-125">Instead, the `client_assertion` parameter contains a JWT token that was signed using the client certificate.</span></span> <span data-ttu-id="0ad76-126">`client_assertion_type` 参数指定断言类型 &mdash; 在本例中为 JWT 令牌。</span><span class="sxs-lookup"><span data-stu-id="0ad76-126">The `client_assertion_type` parameter specifies the type of assertion &mdash; in this case, JWT token.</span></span> <span data-ttu-id="0ad76-127">服务器验证 JWT 令牌。</span><span class="sxs-lookup"><span data-stu-id="0ad76-127">The server validates the JWT token.</span></span> <span data-ttu-id="0ad76-128">如果 JWT 令牌无效，令牌请求将返回一个错误。</span><span class="sxs-lookup"><span data-stu-id="0ad76-128">If the JWT token is invalid, the token request returns an error.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ceb7e-129">X.509 证书不是客户断言的唯一形式；我们在此关注它，因为它受 Azure AD 支持。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-129">X.509 certificates are not the only form of client assertion; we focus on it here because it is supported by Azure AD.</span></span>
+> <span data-ttu-id="0ad76-129">X.509 证书不是客户断言的唯一形式；我们在此关注它，因为它受 Azure AD 支持。</span><span class="sxs-lookup"><span data-stu-id="0ad76-129">X.509 certificates are not the only form of client assertion; we focus on it here because it is supported by Azure AD.</span></span>
 
-<span data-ttu-id="ceb7e-130">在运行时，Web 应用程序从证书存储中读取证书。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-130">At run time, the web application reads the certificate from the certificate store.</span></span> <span data-ttu-id="ceb7e-131">必须在 Web 应用所在的同一计算机上安装证书。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-131">The certificate must be installed on the same machine as the web app.</span></span>
+<span data-ttu-id="0ad76-130">在运行时，Web 应用程序从证书存储中读取证书。</span><span class="sxs-lookup"><span data-stu-id="0ad76-130">At run time, the web application reads the certificate from the certificate store.</span></span> <span data-ttu-id="0ad76-131">必须在 Web 应用所在的同一计算机上安装证书。</span><span class="sxs-lookup"><span data-stu-id="0ad76-131">The certificate must be installed on the same machine as the web app.</span></span>
 
-<span data-ttu-id="ceb7e-132">Surveys 应用程序包括帮助程序类，该类创建了 [ClientAssertionCertificate](/dotnet/api/microsoft.identitymodel.clients.activedirectory.clientassertioncertificate)，可将其传递给 [AuthenticationContext.AcquireTokenSilentAsync](/dotnet/api/microsoft.identitymodel.clients.activedirectory.authenticationcontext.acquiretokensilentasync) 方法以从 Azure AD 获取令牌。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-132">The Surveys application includes a helper class that creates a [ClientAssertionCertificate](/dotnet/api/microsoft.identitymodel.clients.activedirectory.clientassertioncertificate) that you can pass to the [AuthenticationContext.AcquireTokenSilentAsync](/dotnet/api/microsoft.identitymodel.clients.activedirectory.authenticationcontext.acquiretokensilentasync) method to acquire a token from Azure AD.</span></span>
+<span data-ttu-id="0ad76-132">Surveys 应用程序包括帮助程序类，该类创建了 [ClientAssertionCertificate](/dotnet/api/microsoft.identitymodel.clients.activedirectory.clientassertioncertificate)，可将其传递给 [AuthenticationContext.AcquireTokenSilentAsync](/dotnet/api/microsoft.identitymodel.clients.activedirectory.authenticationcontext.acquiretokensilentasync) 方法以从 Azure AD 获取令牌。</span><span class="sxs-lookup"><span data-stu-id="0ad76-132">The Surveys application includes a helper class that creates a [ClientAssertionCertificate](/dotnet/api/microsoft.identitymodel.clients.activedirectory.clientassertioncertificate) that you can pass to the [AuthenticationContext.AcquireTokenSilentAsync](/dotnet/api/microsoft.identitymodel.clients.activedirectory.authenticationcontext.acquiretokensilentasync) method to acquire a token from Azure AD.</span></span>
 
 ```csharp
 public class CertificateCredentialService : ICredentialService
@@ -95,9 +98,9 @@ public class CertificateCredentialService : ICredentialService
 }
 ```
 
-<span data-ttu-id="ceb7e-133">有关在 Surveys 应用程序中设置客户端断言的信息，请参阅[使用 Azure Key Vault 保护应用程序机密][key vault]。</span><span class="sxs-lookup"><span data-stu-id="ceb7e-133">For information about setting up client assertion in the Surveys application, see [Use Azure Key Vault to protect application secrets ][key vault].</span></span>
+<span data-ttu-id="0ad76-133">有关在 Surveys 应用程序中设置客户端断言的信息，请参阅[使用 Azure Key Vault 保护应用程序机密][key vault]。</span><span class="sxs-lookup"><span data-stu-id="0ad76-133">For information about setting up client assertion in the Surveys application, see [Use Azure Key Vault to protect application secrets ][key vault].</span></span>
 
-<span data-ttu-id="ceb7e-134">[**下一篇**][key vault]</span><span class="sxs-lookup"><span data-stu-id="ceb7e-134">[**Next**][key vault]</span></span>
+<span data-ttu-id="0ad76-134">[**下一篇**][key vault]</span><span class="sxs-lookup"><span data-stu-id="0ad76-134">[**Next**][key vault]</span></span>
 
 <!-- links -->
 
