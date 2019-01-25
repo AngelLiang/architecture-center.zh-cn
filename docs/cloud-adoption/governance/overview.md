@@ -3,14 +3,17 @@ title: 企业云的采用：治理概述
 description: 采用 Azure 企业云时的治理内容概述
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 08994ca5de1da2eadd7ad3cd558845cfe47f64ff
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: a59414ff21c2e0b9b498f86ba6f49ddd44209c5a
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389037"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486363"
 ---
-# <a name="enterprise-cloud-adoption-governance-overview"></a>企业云的采用：治理概述
+# <a name="enterprise-cloud-adoption-governance-overview"></a>企业云采用：治理概述
 
 这部分有关如何采用 Azure 企业云的内容介绍治理主题。 如果不熟悉 Azure 中的治理主题，可以先学习[入门](../getting-started/overview.md)部分的[什么是云资源治理？](../getting-started/what-is-governance.md)和 [Azure 中的资源访问管理](../getting-started/azure-resource-access.md)。
 

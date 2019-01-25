@@ -4,17 +4,23 @@ titleSuffix: Azure Reference Architectures
 description: 在 Azure 中实现安全的混合网络体系结构。
 author: telmosampaio
 ms.date: 10/22/2018
-ms.custom: seodec18
-ms.openlocfilehash: 9a74401d3496807ce2dfc113476e001d19e657e5
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seodec18, networking
+ms.openlocfilehash: 82327cca08e614bfe5226c9ca1a414388878a7c2
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112288"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482504"
 ---
 # <a name="implement-a-dmz-between-azure-and-your-on-premises-datacenter"></a>在 Azure 与本地数据中心之间实现外围网络
 
 此参考体系结构显示了一个可将本地网络扩展到 Azure 的安全混合网络。 此体系结构在本地网络与 Azure 虚拟网络 (VNet) 之间实现一个 DMZ（也称为外围网络）。 DMZ 包括防火墙和数据包检查等实现安全功能的网络虚拟设备 (NVA)。 来自 VNet 的所有传出流量都通过本地网络强制隧道传输到 Internet，以便可以进行审核。 [**部署此解决方案**](#deploy-the-solution)。
+
+> [!NOTE]
+> 还可以使用 [Azure 防火墙](/azure/firewall/)（基于云的网络安全服务）实现此方案。
 
 ![安全混合网络体系结构](./images/dmz-private.png)
 

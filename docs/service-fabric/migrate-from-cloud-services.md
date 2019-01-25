@@ -3,12 +3,15 @@ title: 将 Azure 云服务应用程序迁移到 Azure Service Fabric
 description: 如何将 Azure 云服务中的应用程序迁移到 Azure Service Fabric。
 author: MikeWasson
 ms.date: 04/11/2018
-ms.openlocfilehash: a1b4e005b2dab67d8107f4002468e1d7622ae342
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: e2b89fa51abdb7be6124ded6e64889b5b54854a4
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916441"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487893"
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>将 Azure 云服务应用程序迁移到 Azure Service Fabric 
 
@@ -101,7 +104,7 @@ Service Fabric 可供各种 Microsoft 服务使用，包括 Azure SQL 数据库�
 
 - **Tailspin.Web.Survey.Public** Web 角色托管一个 ASP.NET 网站，人们可在网站上参与 Tailspin 客户发布的问卷调查。 
 
-- **Tailspin.Workers.Survey** 辅助角色执行后台处理。 Web 角色将工作项放入队列，辅助角色则处理这些项。 定义了两个后台任务：将问卷调查答案导出到 Azure SQL 数据库，以及计算问卷调查答案的统计数据。
+- **Tailspin.Workers.Survey** 辅助角色执行后台处理。 Web 角色将工作项放入队列，辅助角色则处理这些项。 两个后台任务已经过定义：将问卷调查答案导出到 Azure SQL 数据库，以及计算问卷调查答案的统计数据。
 
 除云服务外，Surveys 应用程序还使用其他 Azure 服务：
 
@@ -177,7 +180,7 @@ Service Fabric 可供各种 Microsoft 服务使用，包括 Azure SQL 数据库�
 
  云服务包含以下配置和包文件：
 
-| 文件 | Description |
+| 文件 | 说明 |
 |------|-------------|
 | 服务定义 (.csdef) | Azure 用于配置云服务的设置。 定义角色、终结点、启动任务和配置设置名称。 |
 | 服务配置 (.cscfg) | 针对每个部署的设置，包括角色实例数、终结点端口号和配置设置的值。 
@@ -199,7 +202,7 @@ Application package
 
 Service Fabric 应用程序包含以下配置文件：
 
-| 文件 | 位置 | Description |
+| 文件 | 位置 | 说明 |
 |------|----------|-------------|
 | ApplicationManifest.xml | 应用程序包 | 定义构成应用程序的服务。 |
 | ServiceManifest.xml | 服务包| 描述一个或多个服务。 |

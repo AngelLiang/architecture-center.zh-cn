@@ -4,17 +4,23 @@ titleSuffix: Azure Reference Architectures
 description: 如何在 Azure 中实施一个提供 Internet 访问方式的安全混合网络体系结构。
 author: telmosampaio
 ms.date: 10/22/2018
-ms.custom: seodec18
-ms.openlocfilehash: 10c8a23ab09da0555de6a51bc082deceb8c462ff
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seodec18, networking
+ms.openlocfilehash: 80125626d0c79888445bc7828577846bcce9fc67
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011525"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488216"
 ---
 # <a name="implement-a-dmz-between-azure-and-the-internet"></a>在 Azure 与 Internet 之间实施外围网络
 
 此参考体系结构显示了一个可将本地网络扩展到 Azure 并接受 Internet 流量的安全混合网络。 [**部署此解决方案**](#deploy-the-solution)。
+
+> [!NOTE]
+> 还可以使用 [Azure 防火墙](/azure/firewall/)（基于云的网络安全服务）实现此方案。
 
 ![安全混合网络体系结构](./images/dmz-public.png)
 

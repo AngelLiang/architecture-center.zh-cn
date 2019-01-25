@@ -4,16 +4,19 @@ titleSuffix: Azure Reference Architectures
 description: 在 Azure 上实现多层体系结构，以确保可用性、安全性、可伸缩性和可管理性。
 author: MikeWasson
 ms.date: 11/12/2018
-ms.openlocfilehash: e7dbd8dd2b8e5aff8f18ff9b87fce0b76a850bce
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: cf12d27ccaebb9845ada4d4a437e9889ea3325f2
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011372"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485394"
 ---
 # <a name="windows-n-tier-application-on-azure-with-sql-server"></a>Azure 上包含 SQL Server 的 Windows N 层应用程序
 
-此参考体系结构演示如何使用 Windows 上适用于数据层的 SQL Server 部署为 N 层应用程序配置的 VM 和虚拟网络。 [**部署此解决方案**](#deploy-the-solution)。
+此参考体系结构演示如何使用 Windows 上适用于数据层的 SQL Server 部署为 [N 层](../../guide/architecture-styles/n-tier.md)应用程序配置的 VM 和虚拟网络。 [**部署此解决方案**](#deploy-the-solution)。
 
 ![使用 Microsoft Azure 的 N 层体系结构](./images/n-tier-sql-server.png)
 
@@ -233,6 +236,10 @@ Jumpbox 的性能要求非常低，因此请选择一个较小的 VM 大小。 �
     ```
 
 若要详细了解如何使用 Azure 构建基块部署此示例参考体系结构，请访问 [GitHub 存储库][git]。
+
+## <a name="next-steps"></a>后续步骤
+
+- [Microsoft Learn 模块：探索 N 层体系结构样式](/learn/modules/n-tier-architecture/)
 
 <!-- links -->
 [dmz]: ../dmz/secure-vnet-dmz.md

@@ -3,12 +3,15 @@ title: 重构从 Azure 云服务迁移的 Azure Service Fabric 应用程序
 description: 如何重构从 Azure 云服务迁移的现有 Azure Service Fabric 应用程序
 author: petertay
 ms.date: 02/02/2018
-ms.openlocfilehash: 14ecaf81a07c72296e8db300df371e9a0c990434
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: 1fd6bb5df18b46c8df3719fd107dd53a18dfd4ff
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916458"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487281"
 ---
 # <a name="refactor-an-azure-service-fabric-application-migrated-from-azure-cloud-services"></a>重构从 Azure 云服务迁移的 Azure Service Fabric 应用程序
 
@@ -91,7 +94,7 @@ Azure Service Fabric 支持以下编程模型：
 
 Surveys 应用程序中的每个服务使用 RESTful Web API 通信。 RESTful API 提供以下优势：
 * 易用性：使用原生支持创建 Web API 的 ASP.NET Core MVC 生成每个服务。
-* 安全性：尽管每个服务不需要 SSL，但 Tailspin 可以要求每个服务使用 SSL。 
+* 安全性：尽管每个服务不需要 SSL，但 Tailspin 可能会要求每个服务使用 SSL。 
 * 版本控制：可以针对特定版本的 Web API 编写和测试客户端。
 
 Surveys 应用程序中的服务利用 Service Fabric 实现的[反向代理][reverse-proxy]。 反向代理是在 Service Fabric 群集中每个节点上运行的服务，可以提供终结点解析、自动重试和处理其他类型的连接故障。 若要使用反向代理，可以使用预定义的反向代理端口对特定的服务发出每个 RESTful API 调用。  例如，如果反向代理端口设置为 **19081**，则可按如下所示调用 *Tailspin.SurveyAnswerService*：

@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: 在 Azure 上使用 Citrix 为 Linux 桌面构建 VDI 环境。
 author: miguelangelopereira
 ms.date: 09/12/2018
-ms.custom: fasttrack
-ms.openlocfilehash: af1cf01cb8b118e829c3870b636018aa5181b180
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.custom: fasttrack, Linux
+ms.openlocfilehash: a6fe0b7e53c83c7b932c39f910257a1e7d24834f
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643911"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481225"
 ---
 # <a name="linux-virtual-desktops-with-citrix"></a>将 Citrix 用于 Linux 虚拟桌面
 
@@ -90,7 +93,7 @@ ms.locfileid: "53643911"
 - 本示例是为了实现所有角色（许可服务器除外）的高可用性而设计的。 由于在许可证服务器脱机的情况下，环境将在 30 天宽限期内继续运行，因此，不需要在该服务器上配置额外的冗余。
 - 提供类似角色的所有服务器应部署在[可用性集](/azure/virtual-machines/windows/manage-availability#configure-multiple-virtual-machines-in-an-availability-set-for-redundancy)中。
 - 本示例方案不包括灾难恢复功能。 [Azure Site Recovery](/azure/site-recovery/site-recovery-overview) 可能是这种设计的适当加载项。
-- 考虑跨[可用性区域](/azure/availability-zones/az-overview)在此方案中部署 VM 实例。 每个可用性区域都由一个或多个数据中心组成，这些数据中心都配置了独立电源、冷却和网络。 每个已启用的地区至少有三个可用性区域。 这样跨区域分发 VM 实例可以为应用程序层提供高可用性。 有关详细信息，请参阅 [Azure 中的可用性区域是什么？][azureaz-docs]。 也可以[在 Azure 可用性区域中部署 VPN 网关和 ExpressRoute 网关](/azure/vpn-gateway/about-zone-redundant-vnet-gateways)。
+- 考虑跨[可用性区域](/azure/availability-zones/az-overview)在此方案中部署 VM 实例。 每个可用性区域都由一个或多个数据中心组成，这些数据中心都配置了独立电源、冷却和网络。 每个已启用的地区至少有三个可用性区域。 这样跨区域分发 VM 实例可以为应用程序层提供高可用性。 有关详细信息，请参阅 [Azure 中的可用性区域是什么？](/azure/availability-zones/az-overview)。 也可以[在 Azure 可用性区域中部署 VPN 网关和 ExpressRoute 网关](/azure/vpn-gateway/about-zone-redundant-vnet-gateways)。
 - 对于生产部署，应实施[备份](/azure/backup/backup-introduction-to-azure-backup)、[监视](/azure/monitoring-and-diagnostics/monitoring-overview)和[更新管理](/azure/automation/automation-update-management)等管理解决方案。
 - 本示例应适用于采用混合技术的大约 250 个并发用户（每台 VDA 服务器大约有 50-60 个用户）。 但是，具体的用户数在很大程度上取决于所用应用程序的类型。 对于生产用途，应执行严格的负载测试。
 

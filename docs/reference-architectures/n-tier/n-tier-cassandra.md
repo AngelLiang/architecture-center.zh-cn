@@ -4,17 +4,20 @@ titleSuffix: Azure Reference Architectures
 description: 在 Microsoft Azure 中使用 Apache Cassandra 运行用于 N 层体系结构的 Linux 虚拟机。
 author: MikeWasson
 ms.date: 11/12/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: bbd1029fe17b5d88d54246127c5d8983a573b012
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 6c9a2b4fe513c959e537f705beb1c024b54c7b50
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120153"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485442"
 ---
 # <a name="linux-n-tier-application-in-azure-with-apache-cassandra"></a>Azure 中包含 Apache Cassandra 的 Linux N 层应用程序
 
-此参考体系结构演示如何使用 Linux 上适用于数据层的 Apache Cassandra 部署为 N 层应用程序配置的虚拟机 (VM) 和虚拟网络。 [**部署此解决方案**](#deploy-the-solution)。
+此参考体系结构演示如何使用 Linux 上适用于数据层的 Apache Cassandra 部署为 [N 层](../../guide/architecture-styles/n-tier.md)应用程序配置的虚拟机 (VM) 和虚拟网络。 [**部署此解决方案**](#deploy-the-solution)。
 
 ![使用 Microsoft Azure 的 N 层体系结构](./images/n-tier-cassandra.png)
 
@@ -164,6 +167,10 @@ Jumpbox 的性能要求非常低，因此请选择一个较小的 VM 大小。 �
    ```
 
 若要详细了解如何使用 Azure 构建基块部署此示例参考体系结构，请访问 [GitHub 存储库][git]。
+
+## <a name="next-steps"></a>后续步骤
+
+- [Microsoft Learn 模块：探索 N 层体系结构样式](/learn/modules/n-tier-architecture/)
 
 <!-- links -->
 

@@ -1,18 +1,21 @@
 ---
-title: 企业云的采用：针对简单工作负荷的治理设计
-description: 有关配置 Azure 调控措施，使用户能够部署简单工作负荷的指南
+title: 企业云采用：适用于简单工作负荷的治理设计
+description: 有关配置 Azure 治理措施，使用户能够部署简单工作负荷的指南
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 13c7c4b41df14151d28b9c685f01019af3ec63f2
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: f87584b4182e5eca143f6429220c822b4be2ed70
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389241"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481722"
 ---
-# <a name="enterprise-cloud-adoption-governance-design-for-a-simple-workload"></a>企业云的采用：针对简单工作负荷的治理设计
+# <a name="enterprise-cloud-adoption-governance-design-for-a-simple-workload"></a>企业云采用：适用于简单工作负荷的治理设计
 
-本指南旨在介绍在 Azure 中设计资源治理模型，以便为单个团队和简单工作负荷提供支持这一过程。  其中探讨了一系列假设性的调控要求，然后详细讲解满足这些要求的几个示例实现。 
+本指南旨在介绍在 Azure 中设计资源治理模型，以便为单个团队和简单工作负荷提供支持这一过程。  其中探讨了一系列假设性的治理要求，然后详细讲解满足这些要求的几个示例实现。 
 
 在基础采用阶段，我们的目标是将简单的工作负荷部署到 Azure。 这可以满足以下要求：
 * 由负责部署和维护简单工作负荷的**工作负荷所有者**进行标识管理。 工作负荷所有者需要有权创建、读取、更新和删除资源，以及有权将这些权限委托给标识管理系统中的其他用户。
@@ -20,7 +23,7 @@ ms.locfileid: "44389241"
 
 ## <a name="licensing-azure"></a>许可 Azure
 
-在开始设计调控模型之前，必须了解 Azure 的许可方式。 这是因为，与 Azure 许可证关联的管理帐户对所有 Azure 资源拥有最高级别的访问权限。 这些管理帐户构成了调控模型的基础。  
+在开始设计治理模型之前，必须了解 Azure 的许可方式。 这是因为，与 Azure 许可证关联的管理帐户对所有 Azure 资源拥有最高级别的访问权限。 这些管理帐户构成了治理模型的基础。  
 
 > [!NOTE]
 > 如果组织的某个现有 [Microsoft 企业协议](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise.aspx)不包括 Azure，可以通过做出前期货币承诺来添加 Azure。 有关详细信息，请参阅[为企业获得 Azure 许可](https://azure.microsoft.com/pricing/enterprise-agreement/)。 
@@ -45,7 +48,7 @@ Azure AD 全局管理员将为**工作负荷所有者**创建**工作负荷所�
 
 ## <a name="resource-management-scope"></a>资源管理范围
 
-随着组织部署的资源不断增多，调控这些资源的复杂性也会不断提高。 Azure 实施逻辑容器层次结构，使组织能够以不同的粒度级（称为**范围**）管理管理组中的资源。 
+随着组织部署的资源不断增多，治理这些资源的复杂性也会不断提高。 Azure 实施逻辑容器层次结构，使组织能够以不同的粒度级（称为**范围**）管理管理组中的资源。 
 
 资源管理范围的最高层级是**订阅**级别。 订阅由建立资金承诺，并负责支付所有订阅相关 Azure 资源费用的 Azure **帐户所有者**创建：
 

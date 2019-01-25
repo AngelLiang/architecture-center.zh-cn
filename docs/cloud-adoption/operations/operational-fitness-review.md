@@ -1,14 +1,17 @@
 ---
-title: 企业云的采用：操作基础知识
+title: 企业云采用：操作基础知识
 description: 操作基础知识指南
 author: petertaylor9999
 ms.date: 09/20/2018
-ms.openlocfilehash: d5f4c6529e92be387465a6ab9dca55267c584c11
-ms.sourcegitcommit: b7e521ba317f4fcd3253c80ac0c0a355eaaa56c5
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 26867e3ecce738f18c5a03ff41754281229851f4
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/21/2018
-ms.locfileid: "46534083"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481119"
 ---
 # <a name="establishing-an-operational-fitness-review"></a>建立操作适用性评审
 

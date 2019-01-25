@@ -1,18 +1,21 @@
 ---
-title: 企业云的采用：Azure 中针对多个团队的治理设计
-description: 有关为多个团队、多个工作负荷和多个环境配置 Azure 调控措施的指南
+title: 企业云采用：Azure 中适用于多个团队的治理设计
+description: 有关为多个团队、多个工作负荷和多个环境配置 Azure 治理措施的指南
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: ac2a63ad6ced1039290dc0bf5132b0d87a2c79cf
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: de2bfeee7d098984a35f56f9e794e6a37933a3bd
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389411"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488420"
 ---
-# <a name="enterprise-cloud-adoption-governance-design-for-multiple-teams"></a>企业云的采用：针对多个团队的治理设计
+# <a name="enterprise-cloud-adoption-governance-design-for-multiple-teams"></a>企业云采用：适用于多个团队的治理设计
 
-本指南旨在介绍在 Azure 中设计资源治理模型，以便为多个团队、多个工作负荷和多个环境提供支持这一过程。  其中探讨了一系列假设性的调控要求，然后详细讲解满足这些要求的几个示例实现。
+本指南旨在介绍在 Azure 中设计资源治理模型，以便为多个团队、多个工作负荷和多个环境提供支持这一过程。  其中探讨了一系列假设性的治理要求，然后详细讲解满足这些要求的几个示例实现。
 
 要求如下：
 * 企业计划将新的云角色和职责转移给一组用户，因此需要对在 Azure 中具有不同资源访问需求的多个团队进行标识管理。 此标识管理系统是存储以下用户的标识所需的：
@@ -136,10 +139,10 @@ Azure AD **全局管理员**有权创建用户帐户：
 
 ## <a name="resource-management-model"></a>资源管理模型
 
-设计最低特权的权限模型后，让我们继续了解这些调控模型的一些实际应用。 回顾前面所述的要求，我们必须支持以下三个环境：
+设计最低特权的权限模型后，让我们继续了解这些治理模型的一些实际应用。 回顾前面所述的要求，我们必须支持以下三个环境：
 1. **共享基础结构：** 包含所有工作负荷共享的资源的单个组。 这些资源包括网络网关、防火墙和安全服务等。  
 2. **开发：** 包含表示多个非生产就绪工作负荷的资源的多个组。 这些资源用于概念证明、测试和其他开发人员活动。 这些资源可能有更宽松的治理模型，目的是提高开发敏捷性。
-3. **生产：** 包含表示多个生产工作负荷的资源的多个组。 这些资源用于托管私用和公用的应用程序项目。 这些资源通常具有最严格的调控和安全模型，以防未经授权访问资源、应用程序代码和数据。
+3. **生产：** 包含表示多个生产工作负荷的资源的多个组。 这些资源用于托管私用和公用的应用程序项目。 这些资源通常具有最严格的治理和安全模型，以防未经授权访问资源、应用程序代码和数据。
 
 对于上述每个环境，我们的要求是按**工作负荷所有者**和/或**环境**跟踪成本数据。 也就是说，我们需要了解**共享基础结构**的持续成本、**开发**和**生产**环境中的个人产生的成本，以及**开发**和**生产**的总体成本。 
 
@@ -225,7 +228,7 @@ Azure AD **全局管理员**有权创建用户帐户：
 
 ## <a name="implementing-the-resource-management-model"></a>实现资源管理模型
 
-你已了解用于调控 Azure 资源访问权限的多个不同模型。 现在，让我们执行所需的每个步骤，针对设计指南中的每个**共享基础结构**、**生产**和**开发**环境，实施包含一个订阅的资源管理模型。 我们将为所有三个环境创建一个**订阅所有者**。 每个工作负荷将在某个**资源组**中隔离，该资源组包含具有**参与者**角色的**工作负荷所有者**。
+你已了解用于治理 Azure 资源访问权限的多个不同模型。 现在，让我们执行所需的每个步骤，针对设计指南中的每个**共享基础结构**、**生产**和**开发**环境，实施包含一个订阅的资源管理模型。 我们将为所有三个环境创建一个**订阅所有者**。 每个工作负荷将在某个**资源组**中隔离，该资源组包含具有**参与者**角色的**工作负荷所有者**。
 
 > [!NOTE]
 > 请阅读[了解 Azure 中的资源访问][understand-resource-access-in-azure]，详细了解 Azure 帐户与订阅之间的关系。 
@@ -260,7 +263,7 @@ Azure AD **全局管理员**有权创建用户帐户：
     * 如果请求未获批准，则会通知**工作负荷所有者**。 如果请求获批准，**订阅所有者**将遵循组织的[命名约定](/azure/architecture/best-practices/naming-conventions)[创建请求的资源组](/azure/azure-resource-manager/resource-group-portal#manage-resource-groups)，添加具有[**参与者**角色](/azure/role-based-access-control/built-in-roles#contributor)的[**工作负荷所有者**](/azure/role-based-access-control/role-assignments-portal#add-access)，并通知**工作负荷所有者**已创建资源组。
 7. 为工作负荷所有者创建审批过程，以请求共享基础结构所有者建立虚拟网络对等连接。 与前面的步骤一样，可以使用电子邮件或过程管理工具来实施此审批过程。
 
-实施调控模型后，可以部署共享基础结构服务。
+实施治理模型后，可以部署共享基础结构服务。
 
 ## <a name="next-steps"></a>后续步骤
 > [!div class="nextstepaction"]

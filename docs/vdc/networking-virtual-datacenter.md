@@ -4,15 +4,18 @@ description: 了解如何在 Azure 中生成虚拟数据中心
 author: tracsman
 manager: rossort
 tags: azure-resource-manager
-ms.service: virtual-network
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: f02cc7df1e90ba3de97a1c25777ab6d27bfdf697
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 1f61996d231f3bf0cc2c550f4d3e119116bb7bc0
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011163"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488641"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Azure 虚拟数据中心：网络透视图
 
@@ -77,11 +80,11 @@ VDC 概念是一组建议和最佳做法，用于实现一系列独立但相关�
 
 任何大型企业都需要定义标识管理流程，说明如何在 VDC 实现内部或跨 VDC 实现管理各个标识及其身份验证、授权、角色和权限。 其目标是在减少成本、停机时间和重复人工作业的同时提高安全性和工作效率。
 
-企业/组织可以要求严格混合针对不同业务线 (LOB) 的服务，员工在参与不同的项目时通常会有不同的角色。 VDC 要求不同的团队（每个团队拥有特定的角色定义）精诚合作，确保系统运行并很好地监管。 责任、访问和权限矩阵可能很复杂。 VDC 中的标识管理通过 [*Azure Active Directory* (Azure AD)][AAD] 和基于角色的访问控制 (RBAC) 来实现。
+企业/组织可以要求严格混合针对不同业务线 (LOB) 的服务，员工在参与不同的项目时通常会有不同的角色。 VDC 要求不同的团队（每个团队拥有特定的角色定义）精诚合作，确保系统运行并很好地进行治理。 责任、访问和权限矩阵可能很复杂。 VDC 中的标识管理通过 [*Azure Active Directory* (Azure AD)][AAD] 和基于角色的访问控制 (RBAC) 来实现。
 
 目录服务是用于查找、控制、管理和组织日常项目和网络资源的共享信息基础结构。 这些资源包括卷、文件夹、文件、打印机、用户、组、设备和其他对象。 目录服务器将网络上的每个资源视作一个对象。 资源信息作为与该资源或对象相关的属性集合存储。
 
-所有 Microsoft 联机业务服务都依赖于 Azure Active Directory (Azure AD) 进行登录及满足其他标识需求。 Azure Active Directory 是一个综合性的、高度可用的标识和访问管理云解决方案，它将核心目录服务、高级标识监管和应用程序访问管理结合起来。 Azure AD 可与本地 Active Directory 集成，为基于云的和本地托管的所有应用程序启用单一登录。 本地 Active Directory 的用户属性可以自动同步到 Azure AD。
+所有 Microsoft 联机业务服务都依赖于 Azure Active Directory (Azure AD) 进行登录及满足其他标识需求。 Azure Active Directory 是一个综合性的、高度可用的标识和访问管理云解决方案，它将核心目录服务、高级标识治理和应用程序访问管理结合起来。 Azure AD 可与本地 Active Directory 集成，为基于云的和本地托管的所有应用程序启用单一登录。 本地 Active Directory 的用户属性可以自动同步到 Azure AD。
 
 在 VDC 实现中分配所有权限不需要单个全局管理员。 与之相反，可以为目录服务中的每个具体部门、用户组或服务分配在 VDC 实现中管理其自己的资源所需的权限。 权限的结构化需要均衡。 权限过多会妨碍性能效率，权限过少或过松则会增加安全风险。 Azure 基于角色的访问控制 (RBAC) 可以为 VDC 实现中的资源提供细致的访问管理，因此有助于解决此问题。
 
@@ -103,7 +106,7 @@ VDC 实现需要连接到外部网络才能为客户、合作伙伴和/或内部
 
 使用大量的 VPN 连接时，[**Azure 虚拟 WAN**][vWAN] 可充当网络服务，通过 Azure 提供经优化的、自动的分支到分支连接。 使用虚拟 WAN 可以连接分支设备，并将其配置为与 Azure 通信。 连接和配置可以通过手动方式来完成，也可以通过虚拟 WAN 合作伙伴使用首选的提供商设备来完成。 使用首选的提供商设备可以降低操作难度、简化连接和进行配置管理。 Azure WAN 的内置仪表板提供即时故障排除见解，可帮助你节省时间，以及方便查看大规模的站点到站点连接。
 
-[**ExpressRoute**][ExR] 是一种 Azure 连接服务，可在 VDC 实现与任何本地网络之间建立专用连接。 ExpressRoute 连接不通过公共 Internet，从而提供更高的安全性、可靠性、更快的速度（最高可达 10 Gbps）和一致延迟。 ExpressRoute 适用于 VDC 实现，因为 ExpressRoute 客户可以受益于与专用连接相关联的符合性规则。 对于带宽需求较高的客户，你可以使用 ExpressRoute Direct,][ExRD] 以 100 Gbps 的速率直接连接到 Microsoft 路由器。
+[**ExpressRoute**][ExR] 是一种 Azure 连接服务，可在 VDC 实现与任何本地网络之间建立专用连接。 ExpressRoute 连接不通过公共 Internet，从而提供更高的安全性、可靠性、更快的速度（最高可达 10 Gbps）和一致延迟。 ExpressRoute 适用于 VDC 实现，因为 ExpressRoute 客户可以受益于与专用连接相关联的符合性规则。 对于带宽需求较高的客户，你可以使用 [ExpressRoute Direct][ExRD] 以 100 Gbps 的速率直接连接到 Microsoft 路由器。
 
 部署 ExpressRoute 连接通常要与 ExpressRoute 服务提供商合作。 需要快速开始通信的客户往往是先使用站点到站点 VPN 在 VDC 实现与本地资源之间建立连接，然后在完成与服务提供商的物理互连后迁移到 ExpressRoute 连接。
 
@@ -273,7 +276,7 @@ Azure 负载均衡器也可以探测各种服务器实例的运行状态，当�
 
 监视组件可以监视所有其他组件类型并报警。 所有团队都应有权监视他们有权访问的组件和服务。 如果你拥有中心化支持人员或操作团队，他们需要对这些组件提供的数据进行集成访问。
 
-Azure 提供不同类型的记录和监视服务，跟踪 Azure 托管资源的行为。 对 Azure 中工作负荷的管理和控制不仅只基于收集日志数据，也基于根据特定报告事件触发操作的能力。
+Azure 提供不同类型的记录和监视服务，跟踪 Azure 托管资源的行为。 对 Azure 中工作负荷的治理和控制不仅只基于收集日志数据，也基于根据特定报告事件触发操作的能力。
 
 [**Azure Monitor**][Monitor]。 Azure 包括多项可以在监视空间单独执行特定角色或任务的服务。 这些服务组合在一起就可以提供一个全面的解决方案，用于从应用程序以及支持应用程序的 Azure 资源收集遥测数据，对这些数据进行分析并执行操作。 这些服务还监视关键的本地资源，以提供混合监视环境。 为应用程序开发完整监视策略的第一步是了解可用的工具和数据。
 
@@ -292,7 +295,7 @@ Azure 中主要有两种日志类型：
 
 所有日志都可以存储在 Azure 存储帐户中，以便进行审核、静态分析或备份。 将日志存储在 Azure 存储帐户中时，客户可以对该数据使用不同类型的框架进行检索、准备、分析和可视化操作，以报告云资源的状态和运行状况。 
 
-大型企业应已获取用于监视本地系统的标准框架。 它们可以扩展该框架以集成云部署生成的日志。 组织可以使用 [Azure Log Analytics][https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-queries] 将所有日志保留在云中。 Log Analytics 作为基于云的服务实现。 因此，对基础结构服务进行极少量的投资即可快速使其启动并运行。 Log Analytics 还可与 System Center Operations Manager 等 System Center 组件集成，将现有管理投资扩展到云。 
+大型企业应已获取用于监视本地系统的标准框架。 它们可以扩展该框架以集成云部署生成的日志。 组织可以使用 [Azure Log Analytics](/azure/log-analytics/log-analytics-queries) 将所有日志记录保留在云中。 Log Analytics 作为基于云的服务实现。 因此，对基础结构服务进行极少量的投资即可快速使其启动并运行。 Log Analytics 还可与 System Center Operations Manager 等 System Center 组件集成，将现有管理投资扩展到云。 
 
 Log Analytics 是 Azure 中的一个服务，可帮助收集、关联、搜索以及处理由操作系统、应用程序和基础结构云组件生成的日志和性能数据。 它使用集成搜索和自定义仪表板为客户提供实时操作见解，分析 VDC 实现中所有工作负荷的所有记录。
 
@@ -328,7 +331,7 @@ Operations Management Suite 中的[网络性能监视器][NPM]解决方案提供
 
 **大数据/分析**：当数据需要增加到较大的量时，数据库可能无法正常地纵向扩展。 Hadoop 技术提供可在大量节点上并行运行所分配查询的系统。 客户可以选择在 IaaS VM 或 PaaS ([HDInsight][HDI]) 中运行数据工作负荷。 HDInsight 支持部署到基于位置的 VNet，可以部署到 VDC 分支中的群集。
 
-**事件和消息传送**：Azure 事件中心[EventHubs]是超大规模的遥测引入服务，可收集、传输和存储数百万的事件。 作为分布式流式处理平台，它提供低延迟和可配置的保留时间，使用户可以将大量遥测数据引入到 Azure 中，并从多个应用程序中读取数据。 通过事件中心，单个流可以同时支持实时管道和基于批处理的管道。
+**事件和消息传送**：[Azure 事件中心][EventHubs]是超大规模的遥测引入服务，可收集、传输和存储数百万的事件。 作为分布式流式处理平台，它提供低延迟和可配置的保留时间，使用户可以将大量遥测数据引入到 Azure 中，并从多个应用程序中读取数据。 通过事件中心，单个流可以同时支持实时管道和基于批处理的管道。
 
 可以通过 [Azure 服务总线][ServiceBus]在应用程序与服务之间实施高度可靠的云消息传送服务。 服务总线提供客户端与服务器之间的异步中转消息传送、结构化先进先出 (FIFO) 消息传送和发布/订阅功能。
 
@@ -421,7 +424,7 @@ Azure 数据中心遍布世界各地。 选择多个 Azure 数据中心时，客
 [AAD]: /azure/active-directory/active-directory-whatis
 [VPN]: /azure/vpn-gateway/vpn-gateway-about-vpngateways 
 [ExR]: /azure/expressroute/expressroute-introduction
-[ExRD]: https://docs.microsoft.com/en-us/azure/expressroute/expressroute-erdirect-about
+[ExRD]: /azure/expressroute/expressroute-erdirect-about
 [vWAN]: /azure/virtual-wan/virtual-wan-about
 [NVA]: /azure/architecture/reference-architectures/dmz/nva-ha
 [AzFW]: /azure/firewall/overview
@@ -431,7 +434,7 @@ Azure 数据中心遍布世界各地。 选择多个 Azure 数据中心时，客
 [ALB]: /azure/load-balancer/load-balancer-overview
 [DDOS]: /azure/virtual-network/ddos-protection-overview
 [PIP]: /azure/virtual-network/resource-groups-networking#public-ip-address
-[AFD]: https://docs.microsoft.com/en-us/azure/frontdoor/front-door-overview
+[AFD]: /azure/frontdoor/front-door-overview
 [AppGW]: /azure/application-gateway/application-gateway-introduction
 [WAF]: /azure/application-gateway/application-gateway-web-application-firewall-overview
 [Monitor]: /azure/monitoring-and-diagnostics/

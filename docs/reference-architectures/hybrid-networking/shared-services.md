@@ -4,17 +4,23 @@ titleSuffix: Azure Reference Architectures
 description: 在 Azure 中使用共享服务实现中心辐射型网络拓扑。
 author: telmosampaio
 ms.date: 10/09/2018
-ms.custom: seodec18
-ms.openlocfilehash: 9de1cd22b32614c332f64cf282ddc1be8090bf7a
-ms.sourcegitcommit: 71ee0859e19fe58416b4c0056d67f2f34dd9ca0a
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seodec18, networking
+ms.openlocfilehash: dd7632c3a84f6a0cee5d8b35e6a943ab8c52caf8
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54211965"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488301"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>在 Azure 中使用共享服务实现中心辐射型网络拓扑
 
 此参考体系结构在[中心辐射型][guidance-hub-spoke]参考体系结构的基础上生成，在中心包括了可供所有辐射 VNet 使用的共享服务。 首先需要共享第一批服务，即标识和安全性，然后才能将数据中心迁移到云并生成[虚拟数据中心]。 此参考体系结构显示了如何将 Active Directory 服务从本地数据中心扩展到 Azure，以及如何在中心辐射型拓扑中添加可以充当防火墙的网络虚拟设备 (NVA)。  [**部署此解决方案**](#deploy-the-solution)。
+
+> [!NOTE]
+> 还可以使用 [Azure 防火墙](/azure/firewall/)（基于云的网络安全服务）实现此方案。
 
 ![Azure 中的共享服务拓扑](./images/shared-services.png)
 

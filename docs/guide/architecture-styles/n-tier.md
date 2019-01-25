@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: 介绍 Azure 上 N 层体系结构的优点、挑战和最佳做法。
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 4e8aae0032d20df05e1b16a47fda4afa720ed0d9
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: d7b94d56831a6b9172a9091f0e4f7fa63a8881f1
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54110299"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481484"
 ---
 # <a name="n-tier-architecture-style"></a>N 层体系结构样式
 
@@ -81,10 +84,11 @@ Web 和业务层是无状态的。 任何 VM 都可以处理该层的任何请�
 
 网络安全组 (NSG) 限制对每个层的访问。 例如，数据库层仅允许来自业务层的访问。
 
-有关更多详细信息和可部署的资源管理器模板，请参阅以下参考体系结构：
+有关在 Azure 上运行 N 层应用程序的详细信息，请参阅：
 
 - [运行用于 N 层应用程序的 Windows VM][n-tier-windows]
-- [运行用于 N 层应用程序的 Linux VM][n-tier-linux]
+- [Azure 上包含 SQL Server 的 Windows N 层应用程序][n-tier-linux]
+- [Microsoft Learn 模块：探索 N 层体系结构样式](/learn/modules/n-tier-architecture/)
 
 ### <a name="additional-considerations"></a>其他注意事项
 
