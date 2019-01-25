@@ -3,12 +3,16 @@ title: API 设计
 description: 为微服务设计 API
 author: MikeWasson
 ms.date: 10/23/2018
-ms.openlocfilehash: 80e8e081384a7806880878ae95fbdbc2bb6cc440
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: microservices
+ms.openlocfilehash: 01f774773b2d2a653e52c9ee961f12c5b9fc833a
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111031"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485972"
 ---
 # <a name="designing-microservices-api-design"></a>设计微服务：API 设计
 
@@ -71,7 +75,7 @@ ms.locfileid: "54111031"
 
 ## <a name="mapping-rest-to-ddd-patterns"></a>将 REST 映射到 DDD 模式
 
-实体、聚合和值对象等模式旨在对领域模型中的对象施加特定的约束。 在 DDD 的许多介绍文章中，模式是使用构造函数或属性 getter 和 setter 等面向对象的 (OO) 语言概念建模的。  例如，值对象被认为是不可变的。 在 OO 编程语言中，需要通过在构造函数中分配值并将属性设为只读，来实施此模式：
+实体、聚合和值对象等模式旨在对领域模型中的对象施加特定的约束。 在 DDD 的许多介绍文章中，模式是使用构造函数或属性 getter 和 setter 等面向对象的 (OO) 语言概念建模的。 例如，值对象被认为是不可变的。 在 OO 编程语言中，需要通过在构造函数中分配值并将属性设为只读，来实施此模式：
 
 ```ts
 export class Location {
@@ -95,7 +99,7 @@ export class Location {
 
 另一个示例是一个存储库模式，它可以确保应用程序的其他部分不会直接在数据存储中执行读取或写入：
 
-!无人机存储库图[](./images/repository.png)
+![无人机存储库图](./images/repository.png)
 
 但是，在微服务体系结构中，服务不共享同一个代码库，也不共享数据存储。 它们通过 API 进行通信。 假设计划程序服务需要从无人机服务请求有关无人机的信息。 无人机服务有自身的内部无人机模型（通过代码表示）。 但是，计划程序看不到该模型。 它会取回无人机实体的某种表示形式 &mdash; 也许是 HTTP 响应中的某个 JSON 对象。
 
@@ -139,7 +143,7 @@ API 是服务与客户端之间的协定，或该服务的使用者。 如果某
 
 ![版本控制](./images/versioning1.svg)
 
-支持多个版本会在开发人员时间、测试和运营开销方面产生成本。 因此，最好尽快淘汰旧版本。 对于内部 API，拥有该 API 的团队可与其他团队协作，帮助他们迁移到新版本。 此时，跨团队调控过程非常有用。 对于外部（公共）API，可能很难淘汰 API 版本，当 API 由第三方或本机客户端应用程序使用时尤其如此。
+支持多个版本会在开发人员时间、测试和运营开销方面产生成本。 因此，最好尽快淘汰旧版本。 对于内部 API，拥有该 API 的团队可与其他团队协作，帮助他们迁移到新版本。 此时，有一个跨团队治理过程非常有用。 对于外部（公共）API，可能很难淘汰 API 版本，当 API 由第三方或本机客户端应用程序使用时尤其如此。
 
 当服务实施更改时，使用版本来标记更改会很有用。 排查错误时，版本可提供重要信息。 执行根本原因分析时，版本可能十分有帮助，因为可以确切地知道调用了哪个服务版本。 考虑对服务版本使用[语义版本控制](https://semver.org/)。 语义版本控制使用 *MAJOR.MINOR.PATCH* 格式。 但是，客户端仅应根据主要版本号选择 API；如果次要版本之间发生重要（但非重大）的更改，则可以根据次要版本选择 API。 换而言之，客户端在 API 版本 1 与版本 2 之间做出选择是合理的做法，但不能选择版本 2.1.3。 如果允许这种粒度级，则可能存在必须为大量增生版本提供支持的风险。
 
