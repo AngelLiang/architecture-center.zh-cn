@@ -6,12 +6,12 @@ ms.topic: reference-architecture
 ms.date: 08/30/2018
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: b30744565ff3107a0bffa3b481d6f142be9dc0fb
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: bdeaccd651b50f55975de446459d896706146fec
+ms.sourcegitcommit: ed736a0a1b080f6acf4877c8b906cd9b56e12bdf
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908607"
+ms.lasthandoff: 01/28/2019
+ms.locfileid: "55085780"
 ---
 # <a name="azure-reference-architectures"></a>Azure 参考体系结构
 
@@ -268,6 +268,31 @@ ms.locfileid: "54908607"
                     <div class="cardText">
                         <h3>Azure IoT 参考体系结构</h3>
                         <p>Azure 上使用 PaaS（平台即服务）组件的 IoT 应用程序的建议体系结构。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="microservices"></a>微服务
+
+<ul class="panelContent cardsF">
+<!-- IoT reference architecture -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./microservices/aks.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/aks.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Azure Kubernetes 服务 (AKS) 上的微服务</h3>
+                        <p>用于在 AKS 上部署微服务体系结构的建议体系结构。</p>
                     </div>
                 </div>
             </div>
