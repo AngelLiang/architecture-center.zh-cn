@@ -8,12 +8,13 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: IoT, data-analytics
-ms.openlocfilehash: dba67dfa7eb480a892229a9bc57d5c5f7ee21017
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+social_image_url: /azure/architecture/example-scenario/data/media/architecture-big-data-with-iot.png
+ms.openlocfilehash: bf963c0467acd4ecbb4bdca6272385d7532167f2
+ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488148"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "54908438"
 ---
 # <a name="iot-and-data-analytics-in-the-construction-industry"></a>建筑行业中的 IoT 和数据分析
 
@@ -73,7 +74,7 @@ ms.locfileid: "54488148"
 - [Azure Databricks](/azure/azure-databricks/what-is-azure-databricks) 是针对 Azure 优化的基于 Apache Spark 的分析平台。 它与 Azure 集成，可提供一键式安装、简化的工作流和交互式协作工作区。
 - [Data Lake Storage](/azure/storage/data-lake-storage) 可以取代 Blob 存储。 对于本方案，Data Lake Storage 在目标区域中不可用。
 - 还可以使用 [Web 应用](/azure/app-service)来托管用于引入施工结果数据的 Web 服务。
-- 进行实时消息引入、数据存储、流处理、分析数据存储以及分析和报告时，有许多技术选项。 有关这些选项及其功能和主要选择标准的概述，请参阅 Azure 数据体系结构指南中的[大数据体系结构：实时处理](/azure/architecture/data-guide/technology-choices/real-time-ingestion)。
+- 进行实时消息引入、数据存储、流处理、分析数据存储以及分析和报告时，有许多技术选项。 有关这些选项及其功能和主要选择标准的概述，请参阅 Azure 数据体系结构指南中的[大数据体系结构：实时处理](/azure/architecture/data-guide/technology-choices/real-time-ingestion)中[Azure 数据体系结构指南](/azure/architecture/data-guide)。
 
 ## <a name="considerations"></a>注意事项
 

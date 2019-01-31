@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: f9f33421f3e1030e2477379970082f5c45690390
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 0bbe8177abe708cf41c1b5a8d117c05fd280c948
+ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486838"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "54908590"
 ---
 # <a name="throttling-pattern"></a>限制模式
 
@@ -38,7 +38,7 @@ ms.locfileid: "54486838"
 
 - 禁用所选非基本服务的功能或将其降级，以便基本服务可以使用充足的资源畅通运行。 例如，如果应用程序对视频输出进行流式处理，则可以切换到较低的分辨率。
 
-- 使用负载调节来均衡活动量（[基于队列的负载调节模式](./queue-based-load-leveling.md)中更详细地介绍了此方法）。 在多租户环境中，此方法会降低每个租户的性能。 如果系统必须支持混合使用具有不同 SLA 的租户，则高值租户的工作可以立即执行。 其他租户的请求可以推迟，并在积压工作得到缓解时再进行处理。 可以使用[优先级队列模式][]来帮助实现此方法。
+- 使用负载调节来均衡活动量（[基于队列的负载调节模式](./queue-based-load-leveling.md)中更详细地介绍了此方法）。 在多租户环境中，此方法会降低每个租户的性能。 如果系统必须支持混合使用具有不同 SLA 的租户，则高值租户的工作可以立即执行。 其他租户的请求可以推迟，并在积压工作得到缓解时再进行处理。 可以使用[优先级队列模式](./priority-queue.md)来帮助实现此方法。
 
 - 推迟以低优先级应用程序或租户的身份执行的操作。 可以暂停或限制这些操作，但是要生成一个异常来通知租户系统正忙并且应当稍后重试该操作。
 
