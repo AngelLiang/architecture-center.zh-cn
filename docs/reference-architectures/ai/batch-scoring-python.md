@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai, AI
-ms.openlocfilehash: a291821860a8e503ba4c6173ac6d8fd449d6ebf3
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 1ca6cf385ddd3be56e247a3439e737c114a88dcb
+ms.sourcegitcommit: 40f3561cc94f721eca50d33f2d75dc974cb6f92b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485360"
+ms.lasthandoff: 01/29/2019
+ms.locfileid: "55147274"
 ---
 # <a name="batch-scoring-of-python-models-on-azure"></a>Azure 上 Python 模型的批量评分
 
@@ -33,6 +33,9 @@ ms.locfileid: "54485360"
 [Azure 流分析][stream-analytics]。 一个事件处理引擎。 流分析作业从事件中心读取数据流，并执行流处理操作。
 
 [Azure Batch AI][batch-ai]。 此分布式计算引擎用于在 Azure 中大规模训练和测试机器学习和 AI 模型。 Batch AI 通过自动缩放选项来按需创建虚拟机，该选项允许 Batch AI 群集中的每个节点针对特定的传感器运行评分作业。 评分的 Python [脚本][python-script]运行在 Docker 容器（此类容器在群集的每个节点上创建）中，可以在其中读取相关的传感器数据、生成预测并将其存储在 Blob 存储中。
+
+> [!NOTE]
+> Azure Batch AI 将在 2019 年 3 月停用，[Azure 机器学习服务][amls]中现已推出其大规模训练和评分功能。 本参考体系结构即将更新为使用机器学习。机器学习提供名为 [Azure 机器学习计算][aml-compute]的托管计算目标，用于对机器学习模型进行训练、部署和评分。
 
 [Azure Blob 存储][storage]。 Blob 容器用于存储预先训练的模型、数据和输出预测。 模型上传到 Blob 存储的 [create\_resources.ipynb][create-resources] 笔记本中。 这些[单类 SVM][one-class-svm] 模型进行训练时所使用的数据代表不同设备的不同传感器的值。 此解决方案假定数据值按固定的时间间隔聚合。
 
@@ -94,6 +97,8 @@ Batch AI 群集大小根据队列中的作业增加和减少。 可通过以下�
 
 [acr]: /azure/container-registry/container-registry-intro
 [ai]: /azure/application-insights/app-insights-overview
+[aml-compute]: /azure/machine-learning/service/how-to-set-up-training-targets#amlcompute
+[amls]: /azure/machine-learning/service/overview-what-is-azure-ml
 [automatic-scaling]: /azure/batch/batch-automatic-scaling
 [azure-files]: /azure/storage/files/storage-files-introduction
 [batch-ai]: /azure/batch-ai/

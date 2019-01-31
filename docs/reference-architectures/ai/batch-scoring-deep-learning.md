@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 26a83b3f75b2e7e9ec4a8a99ab8b4d8f1b1ef4d7
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 27975b42179e87f4520186778610159943a93090
+ms.sourcegitcommit: 40f3561cc94f721eca50d33f2d75dc974cb6f92b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488556"
+ms.lasthandoff: 01/29/2019
+ms.locfileid: "55147240"
 ---
 # <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Azure 上针对深度学习模型的批处理计分
 
@@ -45,6 +45,9 @@ ms.locfileid: "54488556"
 ### <a name="compute"></a>计算
 
 [Azure Batch AI][batch-ai] 用于运行神经样式传输算法。 Batch AI 通过在支持 GPU 的 VM 上提供为深度学习框架预先配置的容器化环境，支持深度学习工作负载。 Batch AI 还可将计算群集连接到 Blob 存储。
+
+> [!NOTE]
+> Azure Batch AI 将在 2019 年 3 月停用，[Azure 机器学习服务][amls]中现已推出其大规模训练和评分功能。 本参考体系结构即将更新为使用机器学习。机器学习提供名为 [Azure 机器学习计算][aml-compute]的托管计算目标，用于对机器学习模型进行训练、部署和评分。
 
 ### <a name="storage"></a>存储
 
@@ -149,6 +152,8 @@ Batch AI 群集大小可根据队列中的作业自动增加和减少。 可通�
 
 <!-- links -->
 
+[aml-compute]: /azure/machine-learning/service/how-to-set-up-training-targets#amlcompute
+[amls]: /azure/machine-learning/service/overview-what-is-azure-ml
 [azcopy]: /azure/storage/common/storage-use-azcopy-linux
 [batch-ai]: /azure/batch-ai/
 [blobfuse]: https://github.com/Azure/azure-storage-fuse
