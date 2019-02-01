@@ -7,8 +7,13 @@ layout: LandingPage
 ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: example-scenario
+ms.openlocfilehash: fc9b23866f1e52dcbc428026091605a42ead20a6
+ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 01/31/2019
+ms.locfileid: "55482886"
 ---
-
 # <a name="azure-example-scenarios"></a>Azure 示例方案
 
 示例方案演示如何使用 Azure 解决特定业务或技术难题。 每个方案都基于真实客户示例，并提供简单易懂的快速指导，以加快用户自己的实施过程。
@@ -24,9 +29,9 @@ ms.subservice: example-scenario
                 <div class="card">
                     <div class="cardText">
                         <h3>新方案</h3>
+                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/image-modeling" data-linktype="absolute-path">加快基于数字图像的建模</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/ai/movie-recommendations" data-linktype="absolute-path">Azure 上的电影推荐</a>
                         <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/multi-tier-app-disaster-recovery" data-linktype="absolute-path">为实现 HA 和 DR 而构建的多层 Web 应用程序</a>
-                        <a class="barLink" href="/azure/architecture/example-scenario/data/hybrid-etl-with-adf" data-linktype="absolute-path">将混合 ETL 与本地 SSIS 和数据工厂配合使用</a>
-                        <a class="barLink" href="/azure/architecture/example-scenario/apps/decentralized-trust" data-linktype="absolute-path">Azure 上银行间的分散式信任</a>
                     </div>
                 </div>
             </div>
@@ -38,9 +43,9 @@ ms.subservice: example-scenario
                 <div class="card">
                     <div class="cardText">
                         <h3>热门方案</h3>
-                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/regulated-multitier-app" data-linktype="absolute-path">保护受管制行业的 Windows Web 应用程序</a>
-                        <a class="barLink" href="/azure/architecture/example-scenario/apps/devops-dotnet-webapp" data-linktype="absolute-path">将 CI/CD 管道与 Azure DevOps 配合使用</a>
-                        <a class="barLink" href="/azure/architecture/example-scenario/data/fraud-detection" data-linktype="absolute-path">在 Azure 上实时检测欺诈</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/regulated-multitier-app" data-linktype="absolute-path">使用 Windows VM 构建安全的 Web 应用</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/data/data-warehouse" data-linktype="absolute-path">用于销售和市场营销的数据仓库与分析</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/wordpress" data-linktype="absolute-path">高度可扩展且高度安全的 WordPress 网站</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +56,7 @@ ms.subservice: example-scenario
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbRy0ZnoKOXdVBqaBz653YPElUNjlNMEpPMDNSSU1aWEIxMFNFNlY2T0E3NC4u" data-linktype="external">
+                        <a href="https://azure-architecture.uservoice.com/forums/918625-architecture-guidance" data-linktype="external">
                             <div class="cardSize cardsF">
                                 <div class="cardPadding">
                                     <div class="card">
