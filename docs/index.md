@@ -5,12 +5,12 @@ layout: LandingPage
 ms.topic: landing-page
 ms.date: 09/28/2018
 google-site-verification: b-xRLveOzJ9oSOh37wgRTRB2lMOoFY8HiHf9_0DIawE
-ms.openlocfilehash: c5141cbcdf848197dec214056b80620eec855402
-ms.sourcegitcommit: 95131d1011def26fb629731d42a4e8d4d49b3540
+ms.openlocfilehash: f690d95c78becbf16f02f913983533513d2f7c01
+ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54372814"
+ms.lasthandoff: 01/31/2019
+ms.locfileid: "55483073"
 ---
 # <a name="azure-architecture-center"></a>Azure 体系结构中心
 
@@ -264,6 +264,29 @@ ms.locfileid: "54372814"
                         <div class="cardText">
                             <h3>性能对立模式</h3>
                             <p>如何检测和解决云应用程序中性能和可伸缩性问题的原因。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
+
+<ul class="panelContent cardsJ">
+    <li>
+        <a href="https://azure-architecture.uservoice.com/forums/918127-general" data-linktype="external">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="https://docs.microsoft.com/en-us/media/common/i_feedback.svg" alt="" data-linktype="external">
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>提交有关体系结构中心的意见</h3>
+                            <p>对于新的体系结构或设计文档，你是否有意见？</p>
+                            <p>你希望在 Azure 体系结构中心看到哪些类型的文章？</p>
                         </div>
                     </div>
                 </div>
