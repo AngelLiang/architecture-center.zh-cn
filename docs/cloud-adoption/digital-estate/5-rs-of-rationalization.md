@@ -7,12 +7,12 @@ ms.date: 12/10/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 53beb2ee0f99c107ed390a4309273ad20e405b69
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 06058967e6ffcd9e3554a46c67144f72fb19078f
+ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484289"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "54908573"
 ---
 # <a name="enterprise-cloud-adoption-the-5-rs-of-rationalization"></a>企业云采用：合理化的 5 个 R
 
@@ -95,7 +95,7 @@ ms.locfileid: "54484289"
 
 ## <a name="rebuild"></a>重新生成
 
-在某些情况下，为发展应用程序而必须克服的差距可能太大，使进一步的投资没有理由。 用于满足业务需求，但现在不受支持或者不与目前业务流程执行方式相符的应用程序尤其如此。 在这种情况下，将会创建新的代码基来与云原生方法相符。
+在某些情况下，为发展应用程序而必须克服的差距可能太大，使进一步的投资没有理由。 用于满足业务需求，但现在不受支持或者不与目前业务流程执行方式相符的应用程序尤其如此。 在这种情况下，将会创建新的代码基来与[云原生](https://azure.microsoft.com/overview/cloudnative/)方法相符。
 
 常见的推动因素可能包括：
 

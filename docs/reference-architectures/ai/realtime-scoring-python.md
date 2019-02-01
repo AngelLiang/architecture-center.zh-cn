@@ -3,21 +3,21 @@ title: Python 模型的实时评分
 titleSuffix: Azure Reference Architectures
 description: 本参考体系结构演示如何在 Azure 上将 Python 模型部署为 Web 服务，用于进行实时预测。
 author: msalvaris
-ms.date: 11/09/2018
+ms.date: 01/28/2019
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 135e86b447684efd9f54340eda4b6bf6e4c35bbb
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: ba2d9a295e5a231f0ffca9e3cf2d53ace4deddfe
+ms.sourcegitcommit: 1ee873aaf40010eb2a38314ac56974bc9e227736
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487672"
+ms.lasthandoff: 01/28/2019
+ms.locfileid: "55141036"
 ---
 # <a name="real-time-scoring-of-python-scikit-learn-and-deep-learning-models-on-azure"></a>Azure 上 Python Scikit-Learn 和深度学习模型的实时评分
 
-本参考体系结构演示如何将 Python 模型部署为 Web 服务用于进行实时预测。 将介绍两种方案：部署常规 Python 模型，以及部署深度学习模型所要满足的具体要求。 这两种方案都使用下面所示的体系结构。
+本参考体系结构演示如何使用 Azure 机器学习服务将 Python 模型部署为 Web 服务用于进行实时预测。 将介绍两种方案：部署常规 Python 模型，以及部署深度学习模型所要满足的具体要求。 这两种方案都使用下面所示的体系结构。
 
 GitHub 上提供了本体系结构的两种参考实现，一个适用于[常规 Python 模型][github-python]，另一个适用于[深度学习模型][github-dl]。
 
@@ -33,13 +33,13 @@ GitHub 上提供了本体系结构的两种参考实现，一个适用于[常规
 
 本体系结构的应用程序流如下：
 
-1. 客户端发送包含已编码问题数据的 HTTP POST 请求。
-
-2. Flask 应用从请求中提取问题。
-
-3. 将问题发送到 scikit-learn 管道模型进行特征化和评分。
-
-4. 通过管道将匹配的 FAQ 问题及其评分传递给 JSON 对象，并将其返回给客户端。
+1. 将训练的模型注册到机器学习模型注册表。
+2. 机器学习服务创建包含模型和评分脚本的 Docker 映像。
+3. 机器学习将 Azure Kubernetes 服务 (AKS) 中的评分映像部署为 Web 服务。
+4. 客户端发送包含已编码问题数据的 HTTP POST 请求。
+5. 机器学习创建的 Web 服务从请求中提取问题。
+6. 将问题发送到 Scikit-learn 管道模型进行特征化和评分。 
+7. 将匹配的 FAQ 问题及其评分返回给客户端。
 
 下面是使用结果的示例应用的屏幕截图：
 
@@ -53,25 +53,24 @@ GitHub 上提供了本体系结构的两种参考实现，一个适用于[常规
 
 深度学习模型的应用程序流如下：
 
-1. 客户端发送包含已编码图像数据的 HTTP POST 请求。
-
-2. Flask 应用从请求中提取图像。
-
-3. 预处理图像，并将其发送到模型进行评分。
-
-4. 通过管道将评分结果传递给 JSON 对象，并将其返回给客户端。
+1. 将深度学习模型注册到机器学习模型注册表。
+2. 机器学习服务创建包含模型和评分脚本的 Docker 映像。
+3. 机器学习将 Azure Kubernetes 服务 (AKS) 中的评分映像部署为 Web 服务。
+4. 客户端发送包含已编码图像数据的 HTTP POST 请求。
+5. 机器学习创建的 Web 服务对图像数据进行预处理，然后将其发送到模型进行评分。 
+6. 将预测的类别及其评分返回给客户端。
 
 ## <a name="architecture"></a>体系结构
 
 该体系结构包括以下组件。
 
+**[Azure 机器学习服务][aml]** 是一项云服务，可以使用它来训练、部署、自动执行以及管理机器学习模型，所有这些都是在云提供的广泛范围内进行的。 本体系结构使用该服务来管理模型的部署，以及 Web 服务的身份验证、路由和负载均衡。
+
 **[虚拟机][vm]** (VM)。 VM 显示为本地或云中的设备示例，它可以发送 HTTP 请求。
 
 **[Azure Kubernetes 服务][aks]** (AKS) 用于在 Kubernetes 群集上部署应用程序。 AKS 简化了 Kubernetes 的部署和操作。 可以使用仅有 CPU 的 VM 为常规 Python 模型配置群集，或使用支持 GPU 的 VM 为深度学习模型配置群集。
 
-**[负载均衡器][lb]**。 AKS 预配的负载均衡器用于在外部公开服务。 来自负载均衡器的流量将定向到后端 pod。
-
-**[Docker 中心][docker]** 用于存储 Kubernetes 群集中部署的 Docker 映像。 之所以为本体系结构选择 Docker 中心，是因为它易于使用，并且是 Docker 用户的默认映像存储库。 也可以对本体系结构使用 [Azure 容器注册表][acr]。
+**[Azure 容器注册表][acr]** 用于存储所有类型的 Docker 容器部署（包括 DC/OS、Docker Swarm 和 Kubernetes）的映像。 评分映像部署为 Azure Kubernetes 服务上的容器，用于运行评分脚本。 此处使用的映像是机器学习基于训练的模型和评分脚本创建的，随后将推送到 Azure 容器注册表。
 
 ## <a name="performance-considerations"></a>性能注意事项
 
@@ -83,7 +82,7 @@ GitHub 上提供了本体系结构的两种参考实现，一个适用于[常规
 
 ## <a name="scalability-considerations"></a>可伸缩性注意事项
 
-对于 AKS 群集是使用仅有 CPU 的 VM 预配的常规 Python 模型，在[扩展 pod 数][manually-scale-pods]时请小心。 目标是充分利用群集。 缩放取决于为 pod 定义的 CPU 请求和限制。 Kubernetes 还支持 pod 的[自动缩放][autoscale-pods]，以根据 CPU 利用率或其他选择指标调整部署中的 pod 数。 [群集自动缩放程序][autoscaler]（预览版）可以根据等待中的 pod 缩放代理节点。
+对于 AKS 群集是使用仅有 CPU 的 VM 预配的常规 Python 模型，在[扩展 pod 数][manually-scale-pods]时请小心。 目标是充分利用群集。 缩放取决于为 pod 定义的 CPU 请求和限制。 通过 Kubernetes 运行的机器学习还支持根据 CPU 利用率或其他指标进行 [pod 自动缩放][autoscale-pods]。 [群集自动缩放程序][autoscaler]（预览版）可以根据等待中的 pod 缩放代理节点。
 
 对于使用支持 GPU 的 VM 的深入学习方案，pod 的资源限制方式是将一个 GPU 分配给一个 pod。 根据所用的 VM 类型，必须[缩放群集的节点][scale-cluster]来满足服务的需求。 可以使用 Azure CLI 和 kubectl 轻松实现此目的。
 
@@ -117,7 +116,7 @@ AKS 自动将所有 stdout/stderr 记录到群集中 pod 的日志。 使用 kub
 
 “身份验证”。 此解决方案不限制对终结点的访问。 若要在企业设置中部署本体系结构，请通过 API 密钥保护终结点，并将某种形式的用户身份验证添加到客户端应用程序。
 
-**容器注册表**。 此解决方案使用公共注册表来存储 Docker 映像。 应用程序依赖的代码以及模型将包含在此映像中。 企业应用程序应使用专用注册表来帮助防范运行恶意代码以及容器中的信息泄密。
+**容器注册表**。 此解决方案使用 Azure 容器注册表存储 Docker 映像。 应用程序依赖的代码以及模型将包含在此映像中。 企业应用程序应使用专用注册表来帮助防范运行恶意代码以及容器中的信息泄密。
 
 **DDOS 防护**。 考虑启用 [DDoS 防护标准版][ddos]。 尽管基本 DDoS 防护已作为 Azure 平台的一部分启用，但 DDoS 防护标准版提供专门针对 Azure 虚拟网络资源优化的缓解功能。
 
@@ -140,15 +139,14 @@ AKS 自动将所有 stdout/stderr 记录到群集中 pod 的日志。 使用 kub
 [autoscale-pods]: /azure/aks/tutorial-kubernetes-scale#autoscale-pods
 [azcopy]: /azure/storage/common/storage-use-azcopy-linux
 [ddos]: /azure/virtual-network/ddos-protection-overview
-[docker]: https://hub.docker.com/
 [get-started]: /azure/security-center/security-center-get-started
-[github-python]: https://github.com/Azure/MLAKSDeployment
-[github-dl]: https://github.com/Microsoft/AKSDeploymentTutorial
+[github-python]: https://github.com/Microsoft/MLAKSDeployAML
+[github-dl]: https://github.com/Microsoft/AKSDeploymentTutorial_AML
 [gpus-vs-cpus]: https://azure.microsoft.com/en-us/blog/gpus-vs-cpus-for-deployment-of-deep-learning-models/
 [https-ingress]: /azure/aks/ingress-tls
 [ingress-controller]: https://kubernetes.io/docs/concepts/services-networking/ingress/
 [kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
-[lb]: /azure/load-balancer/load-balancer-overview
+[aml]: /azure/machine-learning/service/overview-what-is-azure-ml
 [manually-scale-pods]: /azure/aks/tutorial-kubernetes-scale#manually-scale-pods
 [monitor-containers]: /azure/monitoring/monitoring-container-insights-overview
 [权限]: /azure/aks/concepts-identity
