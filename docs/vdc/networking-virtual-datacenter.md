@@ -10,12 +10,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.custom: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: a997a0f03da63bc1432f61f3299e7c6794278e5e
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: 484f41f64b676b08ae8adb4ba082f9bff75a6a54
+ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908541"
+ms.lasthandoff: 01/31/2019
+ms.locfileid: "55483107"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Azure 虚拟数据中心：网络透视图
 
@@ -391,7 +391,9 @@ Azure 数据中心遍布世界各地。 选择多个 Azure 数据中心时，客
 
  - 探索 [VNet 对等互连][VNetPeering]，这是 VDC 中心辐射型设计的基础技术
  - 实现 [Azure AD][AAD] 以开始探索 [RBAC][RBAC]
- - 根据所在组织的结构、要求和策略开发订阅与资源管理模型和 RBAC 模型。 最重要的活动是计划。 尽可能根据实际情况进行重组、合并和新产品线等方面的计划。m <!--Image References-->
+ - 根据所在组织的结构、要求和策略开发订阅与资源管理模型和 RBAC 模型。 最重要的活动是计划。 针对重组、合并和新产品线等，计划应尽可能实用。
+
+<!--Image References-->
 [0]: ./images/networking-redundant-equipment.png "组件重叠示例" 
 [1]: ./images/networking-vdc-high-level.png "中心辐射型 VDC 的概要示例"
 [2]: ./images/networking-hub-spokes-cluster.png "中心辐射型群集"
