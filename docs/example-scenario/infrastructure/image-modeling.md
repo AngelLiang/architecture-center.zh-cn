@@ -4,13 +4,17 @@ titleSuffix: Azure Example Scenarios
 description: 使用 Avere 和 Agisoft PhotoScan 在 Azure 上加速基于数码图像的建模
 author: adamboeglin
 ms.date: 1/11/2019
-ms.custom: cat-team
-ms.openlocfilehash: 5aac3ea46ea864aba84544362c39d78f4055f512
-ms.sourcegitcommit: ed736a0a1b080f6acf4877c8b906cd9b56e12bdf
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.custom: cat-team, Linux, HPC
+social_image_url: /azure/architecture/example-scenario/infrastructure/media/architecture-image-modeling.png
+ms.openlocfilehash: 87b43347fb5f4baec0081a67c8b003dccd2fdf0d
+ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/28/2019
-ms.locfileid: "55085837"
+ms.lasthandoff: 01/31/2019
+ms.locfileid: "55483005"
 ---
 # <a name="accelerate-digital-image-based-modeling-on-azure"></a>在 Azure 上加速基于数码图像的建模
 
@@ -53,7 +57,7 @@ ms.locfileid: "55085837"
 - [Azure Blob 存储](/azure/storage/blobs/storage-blobs-introduction)与用作核心文件管理器的 Avere vFXT 配合工作，存储正在处理的提交数据。 Avere vFXT 识别 Azure Blob 中存储的活动数据，并将其分层到固态硬盘 (SSD)。当 PhotoScan 作业正在运行时，SSD 用于缓存其计算节点。 如果进行了更改，数据将以异步方式提交回到核心文件管理器。
 - [Azure Key Vault](/azure/key-vault/key-vault-overview) 用于存储管理员密码和 PhotoScan 激活码。
 
-### <a name="alternatives"></a>备选方案
+### <a name="alternatives"></a>备选项
 
 - 若要利用 Azure 服务来管理 HPC 群集，请使用 Azure CycleCloud 或 Azure Batch 等工具，而不要通过模板或脚本管理资源。
 - 在 Azure 上，部署 BeeGFS 并行虚拟文件系统而不是 Avere vFXT 作为后端存储。 在 Azure 上使用 [BeeGFS 模板](https://github.com/paulomarquesc/beegfs-template)部署此端到端解决方案。
