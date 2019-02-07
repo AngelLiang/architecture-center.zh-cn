@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 28dbd1798060d1bdd01b1e6bee03337a2239a9ef
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 8be05c30ac974b3e58fb0decc52ab623fc5478c8
+ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487655"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55782024"
 ---
 # <a name="gateway-offloading-pattern"></a>网关卸载模式
 
@@ -89,6 +89,8 @@ proxy_set_header X-Real-IP $remote_addr;
         }
 }
 ```
+
+在 Azure 上，这可以通过[设置应用程序网关上的 SSL 终端](/azure/application-gateway/tutorial-ssl-cli)来实现。
 
 ## <a name="related-guidance"></a>相关指南
 

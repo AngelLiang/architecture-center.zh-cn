@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: cfbe877a4e3a4a1d5aa87c4a77ad2c5f23a6d664
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: a87972a3901ed9499b5b25831131a79ff5db8f87
+ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484476"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55782092"
 ---
 # <a name="data-partitioning-strategies"></a>数据分区策略
 
@@ -242,7 +242,7 @@ Azure Redis 缓存在云中提供基于 Redis 键-值数据存储的共享缓存
 此模型是使用 Redis 群集实施的，Redis 网站上的 [Redis 群集教程]页上提供了更详细的说明。 Redis 群集对客户端应用程序而言是透明的。 其他 Redis 服务器可以添加到群集（数据将重新分区），而无需重新配置客户端。
 
 > [!IMPORTANT]
-> Azure Redis 缓存目前不支持 Redis 群集。 如果想要对 Azure 实施此方法，必须通过将 Redis 安装在一组 Azure 虚拟机上并手动配置这些虚拟机，来实施自己的 Redis 服务器。 [Running Redis on a CentOS Linux VM in Azure]（在 Azure 中的 CentOS Linux VM 上运行 Redis）页逐步讲解了一个示例，演示如何构建和配置作为 Azure VM 运行的 Redis 节点。
+> Azure Redis 缓存目前仅在[高级](/azure/azure-cache-for-redis/cache-how-to-premium-clustering)层中支持 Redis 群集功能。
 
 Redis 网站上的 [Partitioning: how to split data among multiple Redis instances]（分区：如何在多个 Redis 实例之间拆分数据）页提供了有关使用 Redis 实施分区的更多信息。 本部分的余下内容假设要实施客户端分区或代理辅助分区。
 

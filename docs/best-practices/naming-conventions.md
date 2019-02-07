@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: a5fbe72e81a169fd4b29e07e037bb7f8928e0c45
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 9f14b47a9659ad0b7451d106168f4d7b5a6ab0c7
+ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482369"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55782075"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Azure 资源的命名约定
 
@@ -83,7 +83,7 @@ Azure 中的每个资源或服务类型强制实施一组命名限制和范围�
 | --- | --- | --- | --- | --- | --- | --- |
 |资源组 |订阅 |1-90 |不区分大小写 |与[此处](/rest/api/resources/resourcegroups/createorupdate)所述正则表达式匹配的字母数字、下划线、括号、连字符、句点（位于末尾的除外）以及 Unicode 字符。 |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |可用性集 |资源组 |1-80 |不区分大小写 |字母数字、下划线和连字符 |`<service-short-name>-<context>-as` |`profx-sql-as` |
-|标记 |关联的实体 |512（名称）、256（值） |不区分大小写 |字母数字 |`"key" : "value"` |`"department" : "Central IT"` |
+|标记 |关联的实体 |512（名称）、256（值） |不区分大小写 |字母数字、除 `<`、`>`、`%`、`&`、`\`、`?`、`/` 之外的特殊字符。 请参阅[此处](/azure/azure-resource-manager/resource-group-using-tags)的限制。 |`"key" : "value"` |`"department" : "Central IT"` |
 
 ### <a name="compute"></a>计算
 
