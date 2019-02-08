@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 56e308b40e24d2febefe995dffc7a14069a5c078
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: c61758494435f61814953ab5ba48d8fed1e709ab
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482232"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897586"
 ---
 # <a name="azure-for-aws-professionals"></a>面向 AWS 专业人员的 Azure
 
@@ -215,7 +215,7 @@ Azure 提供多个计算服务，在 AWS 中没有直接与此类似的服务：
 
 - [Azure Batch](/azure/batch/batch-technical-overview) 可用于跨可缩放的一组虚拟机管理计算密集型工作。
 
-- [Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-overview) 是用于开发和托管可缩放[微服务](/azure/service-fabric/service-fabric-overview-microservices)解决方案的平台。
+- [Service Fabric](/azure/service-fabric/service-fabric-overview) 是用于开发和托管可缩放[微服务](/azure/service-fabric/service-fabric-overview-microservices)解决方案的平台。
 
 #### <a name="see-also"></a>另请参阅
 
