@@ -5,12 +5,12 @@ layout: LandingPage
 ms.topic: landing-page
 ms.date: 09/28/2018
 google-site-verification: b-xRLveOzJ9oSOh37wgRTRB2lMOoFY8HiHf9_0DIawE
-ms.openlocfilehash: f690d95c78becbf16f02f913983533513d2f7c01
-ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
+ms.openlocfilehash: 3c48ba77b7f97c6047f5d1441a22f2bd79ee0a3e
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/31/2019
-ms.locfileid: "55483073"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898283"
 ---
 # <a name="azure-architecture-center"></a>Azure 体系结构中心
 
@@ -58,8 +58,8 @@ ms.locfileid: "55483073"
                     <div class="card">
                         <img src="_images/cloud-adoption.svg" alt="" />
                         <div class="cardText">
-                            <h3>企业云的采用</h3>
-                            <p>本指南概述了创建组织范围内云采用策略的过程。 它侧重于组织就绪性、调控和基础结构。</p>
+                            <h3>适用于 Azure 的 Microsoft 云采用框架</h3>
+                            <p>创建组织范围内云采用策略的过程，侧重于策略、治理和基础结构。</p>
                         </div>
                     </div>
                 </div>
