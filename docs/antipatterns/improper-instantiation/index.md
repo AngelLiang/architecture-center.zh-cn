@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: a98a3f41d766354771af917aa126dc53bd0683a4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: a2e42e35ae1b56b61c8f9f9ecb21ee104cd3222e
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482759"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898045"
 ---
 # <a name="improper-instantiation-antipattern"></a>不当实例化反模式
 
@@ -126,7 +126,7 @@ public class SingleHttpClientInstanceController : ApiController
 3. 在受控的测试环境而不是生产系统中针对每个可疑的操作执行负载测试。
 4. 查看源代码，检查中转站对象的管理方式。
 
-查看缓慢运行的，或者在系统承受负载时生成异常的操作的堆栈跟踪。 此信息可帮助识别这些操作如何利用资源。 异常可帮助确定错误是否因共享资源耗尽而导致。
+查看缓慢运行的，或者在系统承受负载时生成异常的操作的堆栈跟踪。 此信息可帮助确定这些操作如何利用资源。 异常可帮助确定错误是否因共享资源耗尽而导致。
 
 ## <a name="example-diagnosis"></a>示例诊断
 
