@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: f3b637d61c929e5523ea5409426f3d7a72096dfa
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: ac7ab8b8dd154999a05dc531e41b0994f66ddf10
+ms.sourcegitcommit: 700a4f6ce61b1ebe68e227fc57443e49282e35aa
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484119"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "55887397"
 ---
 # <a name="microservices-architecture-on-azure-kubernetes-service-aks"></a>Azure Kubernetes 服务 (AKS) 中的微服务体系结构
 
@@ -360,7 +360,7 @@ trigger:
 
 1. 通过运行 `helm upgrade` 将 Helm 图表部署到 QA 环境。
 1. 审批者签署同意书，然后包就会转到生产环境。 请参阅[通过审批进行发布部署控制](/azure/devops/pipelines/release/approvals/approvals)。
-1. 在 Azure 容器注册表中为生产命名空间重新标记 Docker 映像。 例如，如果当前标记为 `myrepo.azurecr.io/delivery:v1.0.2`，则生产标记为 `reponame.azurecr.io/prod/delivery:v1.0.2`。
+1. 在 Azure 容器注册表中为生产命名空间重新标记 Docker 映像。 例如，如果当前标记为 `myrepo.azurecr.io/delivery:v1.0.2`，则生产标记为 `myrepo.azurecr.io/prod/delivery:v1.0.2`。
 1. 通过运行 `helm upgrade` 将 Helm 图表部署到生产环境。
 
 ![CI/CD 工作流](./_images/aks-cicd-3.png)

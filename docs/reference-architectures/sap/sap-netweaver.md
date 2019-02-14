@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, SAP, Windows
-ms.openlocfilehash: 1167a65786c3df946ebaed3e52e4ed4033f50fd5
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: e866727a40551b60e74fc26878a15a5a48e69cf6
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486397"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897620"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>在 Azure 虚拟机上部署适用于 AnyDB 的 SAP NetWeaver (Windows)
 
@@ -91,7 +91,7 @@ Web 调度程序组件用作 SAP 应用程序服务器之间的 SAP 流量的负
 
 此体系结构将虚拟网络地址空间划分为子网。 此参考体系结构主要侧重于应用层子网。 每个子网可与定义子网访问策略的 NSG 相关联。 请将应用程序服务器放在单独的子网中，以便可以通过管理子网安全策略而不是单个服务器，更轻松地为服务器提供保护。
 
-NSG 在与某个子网关联后，将应用到该子网中的所有服务器。 有关使用 NSG 对子网中的服务器进行精细控制的详细信息，请参阅[使用网络安全组筛选网络流量](https://azure.microsoft.com/en-us/blog/multiple-vm-nics-and-network-virtual-appliances-in-azure/)。
+NSG 在与某个子网关联后，将应用到该子网中的所有服务器。 有关使用 NSG 对子网中的服务器进行精细控制的详细信息，请参阅[使用网络安全组筛选网络流量](https://azure.microsoft.com/blog/multiple-vm-nics-and-network-virtual-appliances-in-azure)。
 
 ### <a name="load-balancers"></a>负载均衡器
 

@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 384634acb8690c64f75eabbfebc5f1de414f6da2
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 9fce082a0e762e25981929f6fa8685033017f3eb
+ms.sourcegitcommit: f4ed242dff8b204cfd8ebebb7778f356a19f5923
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484612"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "56224175"
 ---
 # <a name="run-an-n-tier-application-in-multiple-azure-regions-for-high-availability"></a>在多个 Azure 区域中运行 N 层应用程序以确保高可用性
 
@@ -119,7 +119,7 @@ az network traffic-manager endpoint update --resource-group <resource-group> --p
     ```
 
 - 创建一个 [Windows Server 故障转移群集][wsfc] (WSFC) 群集，使其包括两个区域中的 SQL Server 实例。
-- 创建一个 SQL Server Always On 可用性组，使其包括主要区域和次要区域中的 SQL Server 实例。 有关步骤，请参阅[将 Always On 可用性组扩展到远程 Azure 数据中心 (PowerShell)](https://blogs.msdn.microsoft.com/sqlcat/2014/09/22/extending-alwayson-availability-group-to-remote-azure-datacenter-powershell/)。
+- 创建一个 SQL Server Always On 可用性组，使其包括主要区域和次要区域中的 SQL Server 实例。 有关步骤，请参阅[将 Always On 可用性组扩展到远程 Azure 数据中心 (PowerShell)](https://techcommunity.microsoft.com/t5/DataCAT/Extending-AlwaysOn-Availability-Group-to-Remote-Azure-Datacenter/ba-p/305217)。
 
   - 将主要副本放置在主要区域中。
   - 将一个或多个次要副本放置在主要区域中。 对它们进行配置以将同步提交与自动故障转移一起使用。

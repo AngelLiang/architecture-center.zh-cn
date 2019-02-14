@@ -3,17 +3,17 @@ title: 针对深度学习模型的批处理计分
 titleSuffix: Azure Reference Architectures
 description: 本参考体系结构演示如何使用 Azure 机器学习将神经样式传输应用于视频。
 author: jiata
-ms.date: 10/02/2018
+ms.date: 02/06/2019
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 3fc0b85380b6b46f7a52382e0184490104ead5a3
-ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
+ms.openlocfilehash: 85d04f179b988fd5b00b361149f2170d13608e6d
+ms.sourcegitcommit: 700a4f6ce61b1ebe68e227fc57443e49282e35aa
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55782041"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "55887380"
 ---
 # <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Azure 上针对深度学习模型的批处理计分
 

@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: dc68c0ab4a08e5f47f30050197bb2e68aa559979
-ms.sourcegitcommit: 40f3561cc94f721eca50d33f2d75dc974cb6f92b
+ms.openlocfilehash: 931d247f088055286a2832b886992dca8565b6a7
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/29/2019
-ms.locfileid: "55147257"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897637"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>将 Active Directory 域服务 (AD DS) 扩展到 Azure
 
@@ -184,7 +184,7 @@ AD DS 服务器提供身份验证服务并且是引入注目的攻击目标。 �
 [implementing-a-secure-hybrid-network-architecture]: ../dmz/secure-vnet-hybrid.md
 [implementing-a-secure-hybrid-network-architecture-with-internet-access]: ../dmz/secure-vnet-dmz.md
 
-[adds-data-disks]: https://msdn.microsoft.com/en-us/library/mt674703.aspx
+[adds-data-disks]: https://msdn.microsoft.com/library/mt674703.aspx
 [ad-ds-operations-masters]: https://technet.microsoft.com/library/cc779716(v=ws.10).aspx
 [ad-ds-ports]: https://technet.microsoft.com/library/dd772723(v=ws.11).aspx
 [availability-set]: /azure/virtual-machines/virtual-machines-windows-create-availability-set

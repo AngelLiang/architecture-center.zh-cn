@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: bb2aa5a7ae6d7a33eac33dce4588380ec82a0df7
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: c4b423b2031699210d5917f12a4c14df0f4a694c
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488165"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898266"
 ---
 # <a name="cache-aside-pattern"></a>缓存端模式
 
@@ -125,7 +125,7 @@ public async Task<MyEntity> GetMyEntityAsync(int id)
 }
 ```
 
-> 此示例使用 Redis 缓存访问存储并从缓存中检索信息。 有关详细信息，请参阅[使用 Microsoft Azure Redis 缓存](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache)和[如何使用 Redis 缓存创建 Web 应用](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto)
+> 此示例使用 Redis 缓存访问存储并从缓存中检索信息。 有关详细信息，请参阅[使用 Microsoft Azure Redis 缓存](/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache)和[如何使用 Redis 缓存创建 Web 应用](/azure/redis-cache/cache-web-app-howto)
 
 如下所示，`UpdateEntityAsync` 方法演示如何在应用程序更改值时使缓存中的对象无效。 代码更新原始数据存储，然后从缓存中删除缓存的项。
 
@@ -150,6 +150,6 @@ public async Task UpdateEntityAsync(MyEntity entity)
 
 实现此模式时，以下信息可能相关：
 
-- [Caching Guidance](https://docs.microsoft.com/azure/architecture/best-practices/caching)（缓存指南）。 提供有关如何在云解决方案中缓存数据的其他信息，以及实现缓存时应考虑的问题。
+- [Caching Guidance](/azure/architecture/best-practices/caching)（缓存指南）。 提供有关如何在云解决方案中缓存数据的其他信息，以及实现缓存时应考虑的问题。
 
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx)（数据一致性入门）。 云应用程序通常使用遍布数据存储的数据。 系统的一个重要方面是在此环境中管理和维护数据一致性，特别是可能出现的并发性和可用性问题。 此入门介绍了有关跨分布式数据的一致性问题，并总结了应用程序实现最终一致性以维持数据的可用性的方法。
