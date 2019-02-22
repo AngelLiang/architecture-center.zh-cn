@@ -1,27 +1,45 @@
 ---
-title: 企业云的采用：治理概述
-description: 采用 Azure 企业云时的治理内容概述
-author: petertaylor9999
-ms.date: 09/10/2018
-ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: a30c834bb92bcdd47ea812d9e368fb0e93fe8623
-ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
+title: CAF：云治理
+description: 云治理内容简介
+author: BrianBlanchard
+ms.date: 2/11/2019
+ms.openlocfilehash: 8a9701677eec913788ca72f86444a3600e170d07
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55781990"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897365"
 ---
-# <a name="enterprise-cloud-adoption-governance-overview"></a>企业云采用：治理概述
+# <a name="cloud-governance-in-the-microsoft-caf-for-azure"></a>适用于 Azure 的 Microsoft CAF 云治理
 
-这部分有关如何采用 Azure 企业云的内容介绍治理主题。 如果不熟悉 Azure 中的治理主题，可以先学习[入门](../getting-started/overview.md)部分的[什么是云资源治理？](../getting-started/what-is-governance.md)和 [Azure 中的资源访问管理](../getting-started/azure-resource-access.md)。
+在支持业务的技术方面，云开创了全新的模式。 这些新模式也会导致这些技术在采用、管理和治理方式上发生变化。 当整个数据中心可以通过一个无人值守进程执行的一行代码来销毁和重新创建时，我们必须反思传统方法。 在治理方面也是如此。
 
-如果已熟悉治理概念，则可学习此部分，其中包括[适用于简单工作负荷的治理设计](governance-single-team.md)和[适用于多个团队和多个工作负荷的治理设计](governance-multiple-teams.md)。 这两个文档都包含实施指南。
+对于具有治理本地 IT 环境现有策略的组织，云治理应补充这些策略。 但是，本地和云之间的企业策略整合水平将随云治理成熟度和云中的数字资产而发生变化。 随着云资产的逐渐发展，云治理流程和策略也将随之发展。
+
+本节中的 CAF 指导用于两个目的：
+
+* 提供可操作的客户过程，反映客户经常遇到的常见体验。 其中每一种都包含业务风险、企业风险缓解策略，以及实现技术解决方案的设计指南。 设计指南必须特定于 Azure。 这些过程中的所有其他指南可以作为云不可知或多云方法的一部分应用。
+* 通过有关企业策略、流程和工具开发的详细指南，帮助读者创建可满足各种业务需求的个性化治理解决方案，包括多个公共云的治理。
+
+此内容适用于云治理团队。 同时也适用于需要在云治理方面建立坚实基础的云架构师。
+
+## <a name="audience"></a>目标受众
+
+CAF 中的内容会影响业务、技术和企业文化。 CAF 的这一部分主要面向 IT 安全、IT 治理、财务、业务线主管、网络、标识和云采用团队进行互动。 这些角色存在各种共同依赖关系，需要云架构师借助本指南采取便利的方法。 对这些团队的协助可能是一次性的工作，但在某些情况下，它将导致与这些其他角色的反复互动。
+
+云架构师可作为思想领导者和参与者将这些受众组合在一起。 本系列指南的内容旨在帮助云架构师促进与正确的受众进行正确的对话，从而推动必要的决策。 由云推动的业务转型取决于云架构师角色，能够帮助指导整个业务和 IT 的决策。
+
+本部分中云架构师的专用性：CAF 的每个部分都代表不同的云架构师的专门角色或变体。 CAF 的这一部分专为热衷于缓解或化解技术风险的云架构师而设计。 许多云服务提供商将这些专家称为“云托管者”，我们更愿意称之为“云监管者”，或者统称为“云治理团队”。 在每个可操作的客户过程中，文章对云治理团队的构成和角色随时间变化的方式均有介绍。
+
+## <a name="using-this-guide"></a>使用本指南
+
+对于希望从头至尾遵循本指南的读者，此内容将有助于与云实现并行开发强大的云治理策略。 本指南将引导读者了解这种策略的理论和实现。
+
+有关理论和快速访问 Azure 实现的速成教程，请先参阅[可操作治理过程概述](./journeys/overview.md)。 通过此指南，读者可以从小规模治理开始，并在云采用工作的同时按需治理。
 
 ## <a name="next-steps"></a>后续步骤
 
-了解如何设计和实现 Azure 中的治理模型以后，即可继续学习如何将[基础结构](../infrastructure/basic-workload.md)部署到 Azure。
+查看可操作的治理过程。
 
 > [!div class="nextstepaction"]
-> [了解单个团队的资源访问权限](governance-single-team.md)
+> [可操作的治理过程](./journeys/overview.md)

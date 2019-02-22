@@ -1,20 +1,21 @@
 ---
-title: 合理化的 5 个 R
-titleSuffix: Enterprise Cloud Adoption
-description: 介绍合理化数字资产时可用的选项
+title: CAF：合理化的 5 个 R
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: 查看使数字资产合理化的可用选项。
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 06058967e6ffcd9e3554a46c67144f72fb19078f
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: ee196487e6f59b1e1b3c63bab9496cbbf805affd
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908573"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897467"
 ---
-# <a name="enterprise-cloud-adoption-the-5-rs-of-rationalization"></a>企业云采用：合理化的 5 个 R
+# <a name="the-5-rs-of-rationalization"></a>合理化的 5 个 R
 
 云合理化是指评估数字资产，确定在云中迁移或现代化每个资产的最佳方法的过程。 有关合理化过程的详细信息，请参阅[什么是数字资产？](overview.md)
 
