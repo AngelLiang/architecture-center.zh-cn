@@ -1,20 +1,21 @@
 ---
-title: 数字资产规划方法
-titleSuffix: Enterprise Cloud Adoption
+title: CAF：数字资产规划方法
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
 description: 介绍一些数字资产规划方法
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 59c9e208254eaa0e8beb365718ef59d0694094f3
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 8b6c680cf477ea188cbd263ecc04389d6daaed89
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482215"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898011"
 ---
-# <a name="enterprise-cloud-adoption-approaches-to-digital-estate-planning"></a>企业云采用：数字资产规划方法
+# <a name="approaches-to-digital-estate-planning"></a>数字资产规划方法
 
 数字资产规划可以采用多种形式，具体取决于所需的成果和现有资产的大小。 在方法方面，也有许多选项可供使用。 必须在规划周期提前规定有关方法的期望。 如果期望不明确，在执行额外的库存收集活动时往往会导致延迟。 本文概述三种分析方法。
 
@@ -36,7 +37,7 @@ ms.locfileid: "54482215"
 
 ## <a name="incremental-approach"></a>增量方法
 
-与使用企业云采用框架时一样，我们强烈建议运用增量方法。 在进行数字资产规划时，此方法相当于一个多阶段过程，如下所述：
+同 CAF 一样，强烈建议采用增量方法。 在进行数字资产规划时，此方法相当于一个多阶段过程，如下所述：
 
 - 初始成本分析：如果需要执行财务验证，请先应用如上所述的资产驱动的方法，以获取整个数字资产的初始成本计算结果（未经过合理化）。 这样可以建立最坏情况的基准。
 

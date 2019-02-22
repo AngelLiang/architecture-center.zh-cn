@@ -1,20 +1,21 @@
 ---
-title: 为云转换创建财务模型
-titleSuffix: Enterprise Cloud Adoption
-description: 如何为云转换创建财务模型
+title: CAF：为云转换创建财务模型
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: 如何为云转换创建财务模型。
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: d1a5cd0cefef4786a0f55592cad58451c3cae9c4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 4fe9b178962bf2cd6a79233278c73085237772f0
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482173"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898198"
 ---
-# <a name="enterprise-cloud-adoption-how-to-create-a-financial-model-for-cloud-transformation"></a>企业云采用：如何为云转换创建财务模型
+# <a name="create-a-financial-model-for-cloud-transformation"></a>为云转换创建财务模型
 
 创建一个财务模型用于准确全面反映任何云转换的商业价值的过程可能十分复杂。 每家组织的财务模型和业务理由往往各不相同。 本文将会建立一些公式，并指出在创建财务模型时经常遗漏的一些事项。
 
@@ -97,3 +98,10 @@ ms.locfileid: "54482173"
 资本支出 (CapEx) 与运营支出略有不同。 一般而言，此类别由更新周期或数据中心扩建驱动。 数据中心扩建的示例是购置新的高性能群集来托管大数据解决方案或数据仓库，通常属于 CapEx 类别。 更常见的资本支出是基本的更新周期。 某些公司实施严格的硬件更新周期，即，按固定的周期（通常是每隔 3、5 或 8 年）淘汰和更换资产。 这些周期通常与资产租赁周期或者设备的预测寿命相一致。 到达更新周期时，IT 部门将申请 CapEx 来采购新设备。
 
 如果更新周期经过批准且加入预算，则云转换可以帮助消除该成本。 如果更新周期已计划但尚未获批准，则云转换可以实现 CapEx 成本规避。 这两种情况都会添加到成本增量。
+
+## <a name="next-steps"></a>后续步骤
+
+阅读云转换上下文中的一些财务结果示例。
+
+> [!div class="nextstepaction"]
+> [财务结果示例](./business-outcomes/fiscal-outcomes.md)

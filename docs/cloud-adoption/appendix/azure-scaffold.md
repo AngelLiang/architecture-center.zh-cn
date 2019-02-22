@@ -7,12 +7,12 @@ ms.date: 9/22/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 883f32b1533261977aa274f64c78762c9e7b13f3
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 86ac3a1c696479279962a17b01c2df73fb5a9849
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484408"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898317"
 ---
 # <a name="azure-enterprise-scaffold-prescriptive-subscription-governance"></a>Azure 企业基架：出于合规目的监管订阅
 
@@ -71,7 +71,7 @@ Azure 注册的三种常见模式为：
 
 虽然这些模式各占一席之地，但“业务单位”模式逐渐得到广泛采用，因为该模式可灵活建造组织的成本模型以及反映控制范围。 Microsoft 核心工程技术和操作组创建了一个非常有效的“业务单位”模式子集，该子集以“联邦”、“州”和“本地”为模型。 （有关详细信息，请参阅[在 Enterprise 中组织订阅和资源组](https://azure.microsoft.com/blog/organizing-subscriptions-and-resource-groups-within-the-enterprise/)。）
 
-### <a name="management-groups"></a>管理组
+### <a name="azure-management-groups"></a>Azure 管理组
 
 Microsoft 最近发布了一种新的层次结构建模方法：[Azure 管理组](/azure/azure-resource-manager/management-groups-overview)。 管理组比部门和帐户更灵活，可嵌套多达六个级别。 借助管理组，可创建与账单层次结构分离的层次结构，专门用于有效管理资源。 管理组可反映出账单层次结构，企业通常以这种方式开始。 但是，管理组的强大功能在于使用它们为组织建模，而组织中相关订阅 &mdash; 无论其位于账单层次结构中的何处 &mdash; 都组合在一起，且需要分配共同角色以及策略和计划。 一些示例：
 
@@ -97,7 +97,7 @@ Microsoft 最近发布了一种新的层次结构建模方法：[Azure 管理组
 资源组无法进行嵌套，资源只能属于一个资源组。 某些操作可对资源组中的所有资源执行操作。 例如，删除某个资源组会删除该资源组中的所有资源。 类似于订阅，创建资源组时也存在常见模式，从“传统 IT”工作负载到“敏捷 IT”工作负载会有所不同：
 
 * “传统 IT”工作负载通常按同一生命周期中的项（例如某个应用程序）分组。 由于可按应用程序分组，因此可以管理每个应用程序。
-* “敏捷 IT”工作负荷往往侧重面向外部客户的云应用程序。 资源组通常反映部署层（如 Web 层、应用层）和管理层。
+* “敏捷 IT”工作负荷往往侧重面向外部客户的云应用程序。 资源组通常反映部署层（例如 Web 层、应用层）和管理层。
 
 > [!NOTE]
 > 了解工作负荷可帮助制定资源组策略。 这些模式可以混合搭配。 例如，与“敏捷”资源组位于同一订阅中的共享服务资源组。
@@ -108,16 +108,16 @@ Microsoft 最近发布了一种新的层次结构建模方法：[Azure 管理组
 
 > [!TIP]
 > 关于命名约定：
-> * 如果可能，请审阅并采纳[模式与实践指南](https://docs.microsoft.com/en-us/azure/architecture/best-practices/naming-conventions)。 本指南可帮助确定一套有意义的命名标准并提供了大量示例。
+> * 如果可能，请审阅并采纳[模式与实践指南](/azure/architecture/best-practices/naming-conventions)。 本指南可帮助确定一套有意义的命名标准并提供了大量示例。
 > * 使用资源管理器策略来帮助实施命名标准
 >
->记住，以后更改名称比较难，因此现在花费几分钟即可省去以后的麻烦。
+> 记住，以后更改名称比较难，因此现在花费几分钟即可省去以后的麻烦。
 
 请将命名标准集中在那些更常用和更常搜索的资源上。  例如，为清晰起见，所有资源组都应严格遵循标准。
 
 ### <a name="resource-tags"></a>资源标记
 
-资源标记与命名标准紧密一致。 随着资源添加到订阅中，出于计费、管理和操作目的，对其进行逻辑分类变得日益重要。 有关详细信息，请参阅[使用标记整理 Azure 资源](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-using-tags)。
+资源标记与命名标准紧密一致。 随着资源添加到订阅中，出于计费、管理和操作目的，对其进行逻辑分类变得日益重要。 有关详细信息，请参阅[使用标记来组织 Azure 资源](/azure/azure-resource-manager/resource-group-using-tags)。
 
 > [!IMPORTANT]
 > 标记可包含个人信息，并且可能属于 GDPR 法规的范围。 请仔细规划管理标记。 如需关于 GDPR 的常规信息，请参阅[服务信任门户](https://servicetrust.microsoft.com/ViewPage/GDPRGetStarted)的 GDPR 部分。
@@ -132,7 +132,7 @@ Microsoft 最近发布了一种新的层次结构建模方法：[Azure 管理组
 
 ### <a name="common-uses-of-resource-manager-policies"></a>Resource Manager 策略的常见用途
 
-Azure Policy 和计划是 Azure 工具包中的一个强大工具。 策略允许公司为“传统 IT”工作负载提供控制，从而实现 LOB 应用程序所需的稳定性，同时也允许“敏捷”工作负载；例如，开发客户应用程序而不会使企业面临其他风险。 策略的最常见模式包括：
+Azure Policy 和计划是 Azure 工具包中的一个强大工具。 策略允许公司为“传统 IT”工作负荷提供控制，以实现业务线应用程序所需的稳定性，同时还允许“敏捷”工作负荷；例如，开发客户应用程序而不会使企业面临额外风险。 策略的最常见模式包括：
 
 * **地域法规遵从/数据所有权**。 Azure 在世界各地拥有越来越多的区域。 Enterprise 通常需要确保特定作用域内的资源保留在某一地理区域内，以满足法规要求。
 * **避免公开服务器**。 Azure Policy 可禁止部署某些资源类型。 常见的用途是创建策略来拒绝在特定作用域内创建公共 IP，从而避免无意中向 Internet 公开服务器。
@@ -142,7 +142,7 @@ Azure Policy 和计划是 Azure 工具包中的一个强大工具。 策略允�
 
 计划的引入为企业提供了一种将逻辑策略组合在一起并作为整体进行跟踪的方法。 计划进一步支持企业解决“敏捷”和“传统”工作负载的需求。 我们已见过极富创意使用计划的方法，但我们通常见到以下用法：
 
-* **在 Azure 安全中心启用监视**。 这是 Azure Policy 中的默认计划，也是计划的一个绝佳示例。 它可启用识别未加密的 SQL 数据库、VM 漏洞和更常见的安全相关需求的策略。
+* **在 Azure 安全中心启用监视**。 这是 Azure Policy 中的默认计划，也是计划的一个绝佳示例。 它可启用识别未加密的 SQL 数据库、虚拟机 (VM) 漏洞和更常见的安全相关需求的策略。
 * **特定于法规的计划**。 企业通常对法规要求（如 HIPAA）通用的策略进行分组，以便有效跟踪这些控件的控制和符合性。
 * **资源类型和 SKU**。 创建限制可部署资源类型以及可部署 SKU 的计划有助于控制成本，并可确保组织仅部署团队具有技能集和程序来支持的资源。
 
@@ -204,13 +204,13 @@ Azure 在最初发布时，对订阅的访问控制非常直接：只允许管�
 * 警报和监视
 * 云风险管理
 
-![Azure 开发运营工具包](_images/Secure_DevOps_Kit_Azure.png)
+![Azure DevOps 工具包](_images/Secure_DevOps_Kit_Azure.png)
 
 AzSK 是一套丰富的工具、脚本和信息，它们是完整 Azure 管理计划的重要组成部分，将其整合到基架中对于支持组织的风险管理目标至关重要
 
 ### <a name="azure-update-management"></a>Azure 更新管理
 
-为确保环境安全，可执行的关键任务之一是务必使用最新更新修补服务器。 虽然许多工具可实现这一点，但 Azure 提供了 [Azure 更新管理](/azure/automation/automation-update-management)解决方案，用于解决关键 OS 修补程序的识别和推出问题。  这利用了 Azure 自动化（本指南后面的[自动化](#automate)部分对此进行了介绍）。
+为确保环境安全，可执行的关键任务之一是务必使用最新更新修补服务器。 虽然许多工具可实现这一点，但 Azure 提供了 [Azure 更新管理](/azure/automation/automation-update-management)解决方案，用于解决关键 OS 修补程序的识别和推出问题。 它使用 Azure 自动化，本指南后面的[自动](#automate)部分对此进行了介绍。
 
 ## <a name="monitor-and-alerts"></a>监视和警报
 
@@ -282,7 +282,7 @@ Microsoft 提供了多种工具，以便直观显示、跟踪和管理成本。 
 我们纵观长期使用云并可“熟练”使用云的客户时，发现了一些强烈推荐的做法
 
 * **主动监视成本**。 熟练 Azure 用户的组织会不断监视成本，并在需要采取措施。 某些组织甚至派人专门进行分析并对使用情况的更改提出建议，当这些人员首次找到已运行数月的未使用的 HDInsight 群集时，即可收回成本。
-* **使用预留实例**。 管理云中成本的另一个关键租户是使用合适的工具来完成作业。 如果 IaaS VM 必须全天候运行，那么使用预留实例将能够节省大量资金。 权衡自动关闭 VM 和使用 RI 需要经验和分析。
+* **使用预留实例**。 管理云中成本的另一项关键原则是使用合适的工具来完成作业。 如果 IaaS VM 必须全天候运行，那么使用预留实例将能够节省大量资金。 权衡自动关闭 VM 和使用 RI 需要经验和分析。
 * **有效地使用自动化**：许多工作负荷无需每天运行。 即使每天将 VM 关闭 4 小时也可节省 15% 的成本。 自动化将很快收回成本。
 * **使用资源标记来提高可见性**：如本文档其他部分所述，使用资源标记可更好地分析成本。
 
@@ -290,7 +290,7 @@ Microsoft 提供了多种工具，以便直观显示、跟踪和管理成本。 
 
 ## <a name="automate"></a>自动化
 
-区分使用云提供程序组织成熟度的其中一项功能是其所包含的自动化水平。  自动化是永无止境的过程，随着组织迁移到云，需要投入资源和时间进行构建。  自动化有许多用途，包括一致地推出资源（其中自动化直接与另一个核心基架概念模板和 DevOps 相关联）以解决问题。  自动化是 Azure 基架的“连接组织”，将每个区域链接在一起。
+区分使用云提供程序组织成熟度的其中一项功能是其所包含的自动化水平。  自动化是永无止境的过程，随着组织迁移到云，需要投入资源和时间进行构建。  自动化有许多用途，包括一致地推出资源（其中自动化直接与另一个核心基架概念“模板和 DevOps”相关联）以解决问题。  自动化是 Azure 基架的“连接组织”，将每个区域链接在一起。
 
 构建此功能时，可使用多种工具，第一方工具（如 Azure 自动化、EventGrid 和 AzureCLI）和大量第三方工具（如 Terraform、Jenkins、Chef 和 Puppet）（仅举几例）。 操作团队自动化功能的核心是 Azure 自动化、事件网格和 Azure Cloud Shell：
 
@@ -305,16 +305,16 @@ Microsoft 提供了多种工具，以便直观显示、跟踪和管理成本。 
 
 ## <a name="templates-and-devops"></a>模板和 DevOps
 
-如“自动化”部分所述，组织的目标应是通过源代码控制的模板和脚本预配资源，并最大限度地减少环境的交互配置。 这种“基础结构即代码”的方法，以及用于持续部署的规范 DevOps 进程，可确保一致性并减少环境间的偏差。 几乎所有 Azure 资源都可通过 [Azure 资源管理器 (ARM) JSON 模板](/azure/azure-resource-manager/resource-group-template-deploy)与 PowerShell 或 Azure 跨平台 CLI 和工具（如 Hashicorp 的 Terraform，该公司提供一流支持并集成到 Azure Cloud Shell 中）部署。
+如“自动化”部分所述，组织的目标应是通过源代码控制的模板和脚本预配资源，并最大限度地减少环境的交互配置。 这种“基础结构即代码”的方法，以及用于持续部署的规范 DevOps 进程，可确保一致性并减少环境间的偏差。 几乎所有 Azure 资源都可通过 [Azure 资源管理器 JSON 模板](/azure/azure-resource-manager/resource-group-template-deploy)与 PowerShell 或 Azure 跨平台 CLI 和工具（如 Hashicorp 的 Terraform，该公司提供一流支持并集成到 Azure Cloud Shell 中）部署。
 
-[本文](https://blogs.msdn.microsoft.com/mvpawardprogram/2018/05/01/azure-resource-manager/)等文章提供了有关使用 [Azure DevOps](/azure/devops/user-guide/?view=vsts) 工具链将 DevOps 方法应用于 ARM 模板的最佳做法和经验教训的精彩讨论。 花费时间和精力开发一套特定于组织需求的核心模板，并利用 DevOps 工具链（Azure DevOps、Jenkins、Bamboo、Teamcity、Concourse）开发持续交付管道，专门用于生产和 QA 环境。 GitHub 上有一个大型的 [Azure 快速入门模板](https://github.com/Azure/azure-quickstart-templates)库，可将其用作模板的起点，并且可使用 Azure DevOps 快速创建基于云的交付管道。
+[本文](https://blogs.msdn.microsoft.com/mvpawardprogram/2018/05/01/azure-resource-manager/)等文章提供了有关使用 [Azure DevOps](/azure/devops/user-guide/?view=vsts) 工具链将 DevOps 方法应用于 Azure 资源管理器模板的最佳做法和经验教训的精彩讨论。 花费时间和精力开发一套特定于组织需求的核心模板，并利用 DevOps 工具链（例如 Azure DevOps、Jenkins、Bamboo、Teamcity、Concourse）开发持续交付管道，专门用于生产和 QA 环境。 GitHub 上有一个大型的 [Azure 快速入门模板](https://github.com/Azure/azure-quickstart-templates)库，可将其用作模板的起点，并且可使用 Azure DevOps 快速创建基于云的交付管道。
 
 作为生产订阅或资源组的最佳做法，目标应该是利用 RBAC 安全性来默认禁用交互用户，以及利用基于服务主体的自动持续交付管道来预配所有资源，并提供所有应用程序代码。 任何管理员或开发人员都不应使用 Azure 门户以交互方式配置资源。 此级别的 DevOps 需要协同努力，并利用 Azure 基架的所有概念，可提供一个一致且更安全的环境，以满足组织扩大规模的需求。
 
 > [!TIP]
-> 设计和开发复杂的 ARM 模板时，使用[已链接模板](/azure/azure-resource-manager/resource-group-linked-templates)来整理和重构单个 JSON 文件的复杂资源关系。 这样操作便可单独管理资源，让模板更具可读性、可测试性和可重用性。
+> 设计和开发复杂的 Azure 资源管理器模板时，使用[链接模板](/azure/azure-resource-manager/resource-group-linked-templates)来整理和重构单个 JSON 文件的复杂资源关系。 这样操作便可单独管理资源，让模板更具可读性、可测试性和可重用性。
 
-Azure 是一个超大规模的云提供商，将组织从本地服务器转移到云环境时，利用云提供商和 SaaS 应用程序所使用的相同概念将为组织提供更高效的方式，以应对业务需求。
+Azure 是一个超大规模的云服务提供商，将组织从本地服务器转移到云环境时，利用云服务提供商和 SaaS 应用程序所使用的相同概念将为组织提供更高效的方式来应对业务需求。
 
 ## <a name="core-network"></a>核心网络
 
@@ -322,16 +322,16 @@ Azure 基架参考模型的最后一个组件是贵组织如何以安全的方�
 
 * **虚拟网络**是子网的容器对象。 尽管严格意义上没有必要，但将应用程序连接到内部企业资源时往往要用到它。
 * **用户定义的路由**使你可操作子网内的路由表，从而可通过网络虚拟设备或对等虚拟网络上的远程网关发送流量。
-* **虚拟网络对等互连**使你可无缝连接两个或多个 Azure 虚拟网络，从而创建更复杂的中心和辐射设计或共享服务网络。
+* **虚拟网络对等互联**使你可无缝连接两个或多个 Azure 虚拟网络，从而创建更复杂的中心辐射设计或共享服务网络。
 * **服务终结点**。 过去，PaaS 服务依靠不同的方法来确保从虚拟网络访问这些资源。 服务终结点允许仅从连接的端点安全访问已启用的 PaaS 服务，提高了整体安全性。
-* **安全组**是一组广泛的规则，通过安全组可允许或拒绝进/出 Azure 资源的入站和出站流量。 [安全组](/azure/virtual-network/security-overview)由安全规则组成，可使用“服务标记”（定义常见 Azure 服务，如 AzureKeyVault、Sql 等）和“应用程序组”（定义应用程序结构，如 WebServers、AppServers 等）进行扩充
+* **安全组**是一组广泛的规则，通过安全组可允许或拒绝进/出 Azure 资源的入站和出站流量。 [安全组](/azure/virtual-network/security-overview)由安全规则组成，可使用**服务标记**（定义常见 Azure 服务，如 Azure 密钥保管库、Azure SQL 数据库等）和**应用程序组**（定义应用程序结构，例如 Web 服务器或应用服务器）进行扩充。
 
 > [!TIP]
-> 在网络安全组中使用服务标记和应用程序组，不仅可增强规则的可读性（这对理解的影响至关重要），还可在更大的子网内实现有效的微型分段，从而减少扩展并提高灵活性。
+> 在网络安全组中使用服务标记和应用程序组，不仅可增强规则的可读性（这对理解影响至关重要），还可在更大的子网内实现有效的微型分段，从而减少蔓延并提高灵活性&mdash;&mdash;。
 
 ### <a name="virtual-data-center"></a>虚拟数据中心
 
-Azure 通过我们广泛的合作伙伴网络提供了内部功能和第三方功能，使你拥有有效的安全状态。 更重要的是，Microsoft 以 [Azure 虚拟数据中心](/azure/architecture/vdc/networking-virtual-datacenter)的形式提供了最佳做法和指导。 从单个工作负载转向利用混合功能的多个工作负载时，VDC 指导会提供“窍门”，以便提供随 Azure 中工作负载的增长而增长的灵活网络。  
+Azure 通过我们广泛的合作伙伴网络提供了内部功能和第三方功能，使你拥有有效的安全状态。 更重要的是，Microsoft 以 [Azure 虚拟数据中心](/azure/architecture/vdc/networking-virtual-datacenter)的形式提供了最佳做法和指导。 从单个工作负载转向利用混合功能的多个工作负载时，VDC 指导会提供“窍门”，以便提供随 Azure 中工作负载的增长而增长的灵活网络。
 
 ## <a name="next-steps"></a>后续步骤
 

@@ -1,21 +1,21 @@
 ---
-title: 企业云采用：操作概述
-description: 采用 Azure 企业云时的操作内容概述
+title: CAF：操作概述
+description: 适用于 Azure 的 Microsoft 云采用框架的操作内容概述
 author: petertaylor9999
 ms.date: 09/20/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: e1b401c59ec91797029440824e88d4c4bfd83315
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 2667eb54dcea7621f32f6f328c1817be55119a1f
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484444"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897127"
 ---
-# <a name="enterprise-cloud-adoption-operations-overview"></a>企业云采用：操作概述
+# <a name="caf-operations-overview"></a>CAF：操作概述
 
-这部分有关如何采用 Azure 企业云的内容介绍**操作**主题。 
+CAF 的这一部分以**操作**为主题。
 
 企业进入**数字化转型**以后，设计和实施团队所做的大部分工作将围绕着以下内容展开：将现有工作负荷从本地迁移到 Azure、在 Azure 中开发和测试新的云原生应用程序，以及将新的创新性 Azure 服务合并到现有的本地工作负荷中。 但是，就数字化转型来说，这些只是第一步。 这些工作负荷在 Azure 中启动并运行以后，下一步是在云中**操作**它们。
 

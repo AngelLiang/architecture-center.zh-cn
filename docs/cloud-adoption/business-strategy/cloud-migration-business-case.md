@@ -1,20 +1,21 @@
 ---
-title: 构建云迁移业务案例
-titleSuffix: Enterprise Cloud Adoption
-description: 构建云迁移的业务理由时需要考虑的事项
+title: CAF：构建云迁移业务案例
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: 设想云迁移业务理由的注意事项。
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 8c27ce211f500ee2eec4f7775a7f68f214dba433
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 21c2b877a0f329711027f020fd0047479e8c7bfb
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488318"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898300"
 ---
-# <a name="enterprise-cloud-adoption-building-a-cloud-migration-business-case"></a>企业云采用：构建云迁移业务案例
+# <a name="build-a-business-justification-for-cloud-migration"></a>设想云迁移的业务理由
 
 云迁移可以通过云转换工作产生前期投资回报 (ROI)。 但是，制定明确的业务理由并阐述相关的实际成本和回报可能是一个复杂的过程。 本文将帮助你了解需要准备哪些数据才能创建与云迁移成果相符的财务模型。 首先，让我们揭示有关云迁移的几种谬论，使组织能够避免一些常见错误。
 
@@ -26,7 +27,7 @@ ms.locfileid: "54488318"
 
 **谬论：镜像本地环境有助于在云中节省资金。** 我们时常听到，在数字资产规划期间，客户检测到未使用的容量超过了预配环境的 50%。 如果在云中预配的资产与当前预配量相当，则很难实现成本节省。 考虑缩小部署资产的规模，以便与使用模式相符，而不是与预配模式相符。
 
-**谬论：服务器成本推动了云迁移的业务案例。** 这种说法有时是正确的。 对于某些公司而言，减少与服务器相关的持续资本性支出非常重要。 但是，这取决于几个因素。 硬件更新周期为 5 到 8 年的公司很难从云迁移中快速获得回报。 采用标准化或强制更新周期的公司可能很快会实现收支平衡。 在任一情况下，其他支出可能是充当迁移理由的财务触发器。 以下是几个示例是创建仅包括服务器或仅包括 VM 的成本视图时往往被忽视的成本：
+**谬论：服务器成本推动了云迁移的业务案例。** 这种说法有时是正确的。 对于某些公司而言，减少与服务器相关的持续资本性支出非常重要。 但是，这取决于几个因素。 硬件更新周期为五到八年的公司很难从云迁移中快速获得回报。 采用标准化或强制更新周期的公司可能很快会实现收支平衡。 在任一情况下，其他支出可能是充当迁移理由的财务触发器。 以下是几个示例是创建仅包括服务器或仅包括 VM 的成本视图时往往被忽视的成本：
 
 - 虚拟化、服务器和中间件的软件成本可能很高。 云提供商消除了其中的一些成本。 [Azure 混合权益](https://azure.microsoft.com/pricing/hybrid-benefit/#services)和[预订](https://azure.microsoft.com/reservations/)计划就是云提供商降低虚拟化成本的两个示例。
 - 服务中断造成的业务损失可能很快就会超过硬件或软件成本。 如果当前数据中心不稳定，可与业务部门协作，以量化服务中断对机会成本或实际业务成本造成的影响。
@@ -109,4 +110,4 @@ ROI = (投资收益 &minus; 初始投资) / 初始投资
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
-> [为云转换创建财务模型](financial-models.md)
+> [为云转换创建财务模型](./financial-models.md)

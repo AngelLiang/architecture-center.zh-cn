@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 26d9eee8783b5185fbb7f039e6abda40dec6d4d2
-ms.sourcegitcommit: 287344b6c220bdbd8076aed7a281eb02253e15be
+ms.openlocfilehash: af56a010e90fb176b13c1110ad4000dcababe009
+ms.sourcegitcommit: f4ed242dff8b204cfd8ebebb7778f356a19f5923
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55712127"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "56224141"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-stream-analytics"></a>使用 Azure 流分析创建流处理管道
 
@@ -47,7 +47,7 @@ ms.locfileid: "55712127"
 
 为了模拟数据源，此参考体系结构使用了[纽约市出租车数据](https://uofi.app.box.com/v/NYCtaxidata/folder/2332218797)数据集<sup>[[1]](#note1)</sup>。 此数据集包含纽约市过去 4 年（2010 年 &ndash; 2013 年）的出租车行程数据。 其包含两种类型的记录：行程数据和费用数据。 行程数据包括行程持续时间、行程距离以及上车和下车地点。 费用数据包括乘车费、税费和小费金额。 这两种记录类型中的通用字段包括牌照号、出租车驾照和供应商 ID。 这三个字段相结合，唯一标识了出租车和驾驶员。 数据以 CSV 格式存储。
 
-[1] <span id="note1">Donovan, Brian；Work, Dan (2016)：纽约市出租车行程数据 (2010-2013)。 伊利诺伊大学厄巴纳-香槟分校。 https://doi.org/10.13012/J8PN93H8
+<span id="note1">[1]</span> Donovan, Brian；Work, Dan (2016)：纽约市出租车行程数据 (2010-2013)。 伊利诺伊大学厄巴纳-香槟分校。 https://doi.org/10.13012/J8PN93H8
 
 <!-- markdownlint-enable MD033 -->
 

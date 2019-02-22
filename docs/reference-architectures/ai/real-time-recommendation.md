@@ -7,18 +7,18 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 8fa15c82275f18af78d1f42ec1750ab9b28119fb
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: c4bfd6e92fc9c770a03a63355fc922d19ef27b7b
+ms.sourcegitcommit: f4ed242dff8b204cfd8ebebb7778f356a19f5923
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487099"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "56224158"
 ---
 # <a name="build-a-real-time-recommendation-api-on-azure"></a>在 Azure 上生成实时建议 API
 
 本参考体系结构演示如何使用 Azure Databricks 训练一个建议模型，并使用 Azure Cosmos DB、Azure 机器学习和 Azure Kubernetes 服务 (AKS) 将其作为 API 部署。 本体系结构可以通用于大多数建议引擎方案，包括针对产品、影片和新闻的建议。
 
-[GitHub](https://github.com/Microsoft/Recommenders/blob/master/notebooks/04_operationalize/als_movie_o16n.ipynb) 中提供了本体系结构的参考实现。
+[GitHub](https://github.com/Microsoft/Recommenders/blob/master/notebooks/05_operationalize/als_movie_o16n.ipynb) 中提供了本体系结构的参考实现。
 
 ![用于训练影片建议的机器学习模型的体系结构](./_images/recommenders-architecture.png)
 
@@ -132,6 +132,10 @@ ms.locfileid: "54487099"
 
 7. 运行 ALS 影片操作化笔记本来创建必需的资源，以便创建建议 API，为给定用户提供排名前 10 的影片的建议。
 
+## <a name="related-architectures"></a>相关体系结构
+
+我们还构建了使用 Spark 和 Azure Databricks 执行计划[批处理计分流程][batch-scoring]的参考体系结构。 请参阅该参考体系结构，以了解推荐用于定期生成新建议的推荐方法。
+
 <!-- links -->
 [aci]: /azure/container-instances/container-instances-overview
 [aad]: /azure/active-directory-b2c/active-directory-b2c-overview
@@ -141,6 +145,7 @@ ms.locfileid: "54487099"
 [autoscaling]: https://docs.azuredatabricks.net/user-guide/clusters/sizing.html
 [autoscale]: https://docs.azuredatabricks.net/user-guide/clusters/sizing.html#autoscaling
 [availability]: /azure/architecture/checklist/availability
+[batch-scoring]: /azure/architecture/reference-architectures/ai/batch-scoring-databricks
 [blob]: /azure/storage/blobs/storage-blobs-introduction
 [blog]: https://blogs.technet.microsoft.com/machinelearning/2018/03/20/scaling-azure-container-service-cluster/
 [clusters]: https://docs.azuredatabricks.net/user-guide/clusters/configure.html
@@ -161,12 +166,12 @@ ms.locfileid: "54487099"
 [notebook]: https://github.com/Microsoft/Recommenders/notebooks/00_quick_start/als_pyspark_movielens.ipynb
 [partition-data]: /azure/cosmos-db/partition-data
 [redis]: /azure/redis-cache/cache-overview
-[regions]: https://azure.microsoft.com/en-us/global-infrastructure/services/?products=virtual-machines&regions=all
+[regions]: https://azure.microsoft.com/global-infrastructure/services/?products=virtual-machines&regions=all
 [resiliency]: /azure/architecture/resiliency/
 [ru]: /azure/cosmos-db/request-units
 [sec-docs]: /azure/security/
 [setup]: https://github.com/Microsoft/Recommenders/blob/master/SETUP.md%60
 [scale]: /azure/aks/tutorial-kubernetes-scale
-[sla]: https://azure.microsoft.com/en-us/support/legal/sla/virtual-machines/v1_8/
+[sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_8/
 [vm-size]: /azure/virtual-machines/virtual-machines-linux-change-vm-size
 [workspace]: https://docs.azuredatabricks.net/getting-started/index.html

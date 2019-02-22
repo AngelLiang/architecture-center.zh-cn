@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 2c4a76ea3a9acdeb1141a1274f6926667c67c81b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: b15b97de2042a0e213192dd586ffdcc4c51b1f11
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484102"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897977"
 ---
 # <a name="api-design"></a>API 设计
 
@@ -21,7 +21,7 @@ ms.locfileid: "54484102"
 
 - **平台独立性**。 不管 API 的内部实现方式如何，任何客户端都应该能够调用该 API。 这就需要使用标准协议并创建一种机制，使客户端和 Web 服务能够就交换数据的格式达成一致。
 
-- **服务演变**。 Web API 应能在不影响客户端应用程序的情况下改进和添加功能。 随着 API 的发展，现有客户端应用程序应可继续运行而无需进行任何修改。 所有功能应该是可发现的，使客户端应用程序能够充分利用它们。
+- **服务演变**。 Web API 应能在不影响客户端应用程序的情况下改进和添加功能。 随着 API 的发展，现有客户端应用程序应可继续运行而无需进行任何修改。 所有功能应该是可发现的，使客户端应用程序能够充分利用它。
 
 本指南阐述在设计 Web API 时应考虑的问题。
 
@@ -446,7 +446,7 @@ Content-Type: application/json; charset=utf-8
 
 ### <a name="header-versioning"></a>标头版本控制
 
-不是追加版本号作为查询字符串参数，而是可以实现指示资源的版本的自定义标头。 此方法需要客户端应用程序将相应标头添加到所有请求，虽然如果省略了版本标头，处理客户端请求的代码可以使用默认值（版本 1）。 下面的示例利用了名为 *Custom-Header* 的自定义标头。 此标头的值指示 Web API 的版本。
+不是追加版本号作为查询字符串参数，而是可以实现指示资源的版本的自定义标头。 此方法需要客户端应用程序将相应标头添加到所有请求，虽然如果省略了版本标头，处理客户端请求的代码可以使用默认值（版本 1）。 下面的示例使用了名为 Custom-Header 的自定义标头。 此标头的值指示 Web API 的版本。
 
 版本 1：
 

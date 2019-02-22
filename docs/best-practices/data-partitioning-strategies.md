@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: a87972a3901ed9499b5b25831131a79ff5db8f87
-ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
+ms.openlocfilehash: 4f973a6173e882d6ae839833bd3c5bf86f8d7fb6
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55782092"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898130"
 ---
 # <a name="data-partitioning-strategies"></a>数据分区策略
 
@@ -229,7 +229,7 @@ Azure 搜索将可搜索的内容存储为数据库中的 JSON 文档。 可以�
 
 ## <a name="partitioning-azure-redis-cache"></a>将 Azure Redis 缓存分区
 
-Azure Redis 缓存在云中提供基于 Redis 键-值数据存储的共享缓存服务。 顾名思义，Azure Redis 缓存旨在用作缓存解决方案。 它只用于保存暂时性数据，而不是用作永久性的数据存储。 如果缓存不可用，利用 Azure Redis 缓存的应用程序应可继续工作。 Azure Redis 缓存支持主要/辅助复制，可提供高可用性，但目前缓存大小上限为 53 GB。 如果需要更多的空间，则必须创建更多缓存。 有关详细信息，请参阅 [Azure Redis 缓存]。
+Azure Redis 缓存在云中提供基于 Redis 键-值数据存储的共享缓存服务。 顾名思义，Azure Redis 缓存旨在用作缓存解决方案。 它只用于保存暂时性数据，而不是用作永久性的数据存储。 如果缓存不可用，使用 Azure Redis 缓存的应用程序应能够继续工作。 Azure Redis 缓存支持主要/辅助复制，可提供高可用性，但目前缓存大小上限为 53 GB。 如果需要更多的空间，则必须创建更多缓存。 有关详细信息，请参阅 [Azure Redis 缓存]。
 
 将 Redis 数据存储分区涉及到跨 Redis 服务的实例拆分数据。 每个实例构成单个分区。 Azure Redis 缓存将抽象化幕后的 Redis 服务，而不直接公开它们。 实施分区的最简单方法是创建多个 Azure Redis 缓存实例，并在其中分散数据。
 

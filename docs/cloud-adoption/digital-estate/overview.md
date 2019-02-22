@@ -1,20 +1,22 @@
 ---
-title: 什么是数字资产？
-titleSuffix: Enterprise Cloud Adoption
-description: 数字资产的概念解释
+title: CAF：什么是数字资产？
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+description: 什么是数字资产？
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: ce21a2d72fcb630f5f197dbd6b87b16ef8f41435
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: d23bdbdd98226e8b9cdb9bbb5fefa5a918a498d8
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481535"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898419"
 ---
-# <a name="enterprise-cloud-adoption-what-is-a-digital-estate"></a>企业云采用：什么是数字资产？
+<!-- markdownlint-disable MD026 -->
+
+# <a name="caf-what-is-a-digital-estate"></a>CAF：什么是数字资产？
 
 每个新型公司都有某种形式的数字资产。 数字资产与实物资产非常类似，是对许多有形自有资产的抽象引用。 在数字资产中，这些资产包括虚拟机 (VM)、服务器、应用程序、数据等。 本质上，数字资产是为业务流程和支持性运营工作提供动力的 IT 资产集合。
 
@@ -53,4 +55,4 @@ ms.locfileid: "54481535"
 在开始数字资产规划之前，必须确定要使用哪种方法。
 
 > [!div class="nextstepaction"]
-> [确定分析方法](approach.md)
+> [数字资产规划方法](approach.md)

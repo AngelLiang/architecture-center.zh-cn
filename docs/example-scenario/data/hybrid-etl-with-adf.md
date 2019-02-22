@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: tsp-team
 social_image_url: /azure/architecture/example-scenario/data/media/architecture-diagram-hybrid-etl-with-adf.png
-ms.openlocfilehash: e8d80bb55d51bfbc982936d2b5dc98a232e061b5
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: 354b8ee14f82631842902da3de852f777b1954cc
+ms.sourcegitcommit: f4ed242dff8b204cfd8ebebb7778f356a19f5923
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908522"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "56224124"
 ---
 # <a name="hybrid-etl-with-existing-on-premises-ssis-and-azure-data-factory"></a>将混合 ETL 与现有本地 SSIS 和 Azure 数据工厂配合使用
 
@@ -64,7 +64,7 @@ ms.locfileid: "54908522"
 
 对于 Azure 承载方法，应确定处理数据所需的处理能力。 Azure 承载配置允许在执行配置步骤期间选择 VM 大小。 若要详细了解如何选择 VM 大小，请参阅 [VM 性能注意事项](/azure/cloud-services/cloud-services-sizes-specs#performance-considerations)。
 
-如果已有包含本地依赖项（例如，无法从 Azure 访问的数据源或文件）的现有 SSIS 包，则决策就容易得多。 在这种情况下，唯一的选项是自承载 IR。 通过此方法可以最灵活地利用云作为业务流程引擎，而无需重新编写现有的包。
+如果已有包含本地依赖项（例如，无法从 Azure 访问的数据源或文件）的现有 SSIS 包，那么决策就容易得多。 在这种情况下，唯一的选项是自承载 IR。 通过此方法可以最灵活地利用云作为业务流程引擎，而无需重新编写现有的包。
 
 最终的意图是将处理的数据迁移到云中以做进一步的优化，或者与云中存储的其他数据合并。 在设计过程中，应跟踪数据工厂管道中使用的活动数。 有关详细信息，请参阅 [Azure 数据工厂中的管道和活动](/azure/data-factory/concepts-pipelines-activities)。
 

@@ -1,20 +1,21 @@
 ---
-title: 将数字资产合理化
-titleSuffix: Enterprise Cloud Adoption
-description: 评估数字资产，找到在云中托管它们的最佳方法的过程。
+title: CAF：将数字资产合理化
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: 评估数字资产，以确定在云中托管它们的最佳方法。
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 2002b5273aed4aef2d283f23f83aa08d1d6f5c95
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 02189c9edcbfea0a55fe69a53bf610e85470a4d0
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485717"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897195"
 ---
-# <a name="enterprise-cloud-adoption-rationalize-the-digital-estate"></a>企业云采用：将数字资产合理化
+# <a name="rationalize-the-digital-estate"></a>将数字资产合理化
 
 云合理化是指评估数字资产，确定在云中托管它们的最佳方法的过程。 确定一种[方法](approach.md)并聚合[库存](inventory.md)之后，便可以开始进行云合理化。 [合理化的 5 个 R](5-rs-of-rationalization.md) 中探讨了最常见的合理化选项。
 
@@ -122,7 +123,7 @@ ms.locfileid: "54485717"
 - 定义实现长期愿景所需的核心服务（及 Azure 标准）。
 - 更好地了解运营部门以后如何在转换中演进。
 - 了解所有内在业务风险，以及企业对这些风险的容限程度。
-- 根据企业的风险容限程度建立基线或最小可行性产品 (MVP) 用于监管
+- 根据企业的风险容限程度建立基线或最小可行性产品 (MVP) 用于监管。
 
 ## <a name="release-planning"></a>版本规划
 
