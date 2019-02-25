@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: aa69746b59ddfff02381dd811caa9a7aa62d8b7b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 9b6bef0fd803db5b488e93d246642d4e3681a94c
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484799"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897756"
 ---
 # <a name="api-implementation"></a>API 实现
 
@@ -614,7 +614,7 @@ public class OrdersController : ApiController
 
 ## <a name="maintaining-responsiveness-scalability-and-availability"></a>保持响应能力、可伸缩性和可用性
 
-同一 Web API 可能由世界任何地方运行的许多客户端应用程序利用。 请务必确保将 Web API 实现为在重负载下保持响应能力、可扩展以支持高度变化的工作负荷，并保证执行关键业务操作的客户端的可用性。 确定如何满足这些要求时，请考虑以下几点：
+同一 Web API 可能由世界任何地方运行的许多客户端应用程序使用。 请务必确保将 Web API 实现为在重负载下保持响应能力、可扩展以支持高度变化的工作负荷，并保证执行关键业务操作的客户端的可用性。 确定如何满足这些要求时，请考虑以下几点：
 
 ### <a name="provide-asynchronous-support-for-long-running-requests"></a>为长时间运行的请求提供异步支持
 
