@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: b21ef5f772eb4e2572833ab15085651ac3766a5e
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480600"
 ---
+
 # <a name="chatty-io-antipattern"></a>琐碎 I/O 对立模式
 
 大量 I/O 请求的累积效应可能会对性能和响应能力产生明显的不利影响。

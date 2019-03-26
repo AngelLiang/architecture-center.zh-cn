@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 5c3062c0a17de708ada83ba81dcb111e6b1f8440
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488046"
 ---
+
 # <a name="no-caching-antipattern"></a>无缓存反模式
 
 在处理许多并发请求的云应用程序中，反复提取相同的数据可能会降低性能和可伸缩性。

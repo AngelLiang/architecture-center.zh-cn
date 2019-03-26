@@ -1,18 +1,13 @@
 ---
 title: 关系数据
-description: ''
+description: null
 author: zoinerTejada
 ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: d68bddcb75e5c8f786a7739e85de2645a2c3d641
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484919"
 ---
+
 # <a name="traditional-relational-database-solutions"></a>传统关系数据库解决方案
 
 关系数据是使用关系模型建模的数据。 在此模型中，数据表示为元组。 *元组*是属性/值对的集合。 例如，元组可能为 (itemid = 5, orderid = 1, item = "Chair", amount = 200.00)。 具有相同属性的元组集称为“关系”。

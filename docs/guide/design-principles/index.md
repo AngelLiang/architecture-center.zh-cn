@@ -8,13 +8,8 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 8aab710ef6ffde493b80810750d2c0bc299ffaa6
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485547"
 ---
+
 # <a name="ten-design-principles-for-azure-applications"></a>Azure 应用程序的十个设计原则
 
 遵循这些设计原则可以提高应用程序的可伸缩性、复原能力和易管理性。

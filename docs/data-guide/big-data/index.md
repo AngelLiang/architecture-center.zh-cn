@@ -1,18 +1,13 @@
 ---
 title: 大数据架构
-description: ''
+description: null
 author: zoinerTejada
 ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 269a4c2b8fd0c186e1b44b6c0cfdcbfa4d37b57c
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486924"
 ---
+
 # <a name="big-data-architectures"></a>大数据架构
 
 大数据架构设计用来处理对传统数据库系统而言太大或太复杂的数据的引入、处理和分析。 组织进入大数据领域的门槛各不相同，具体取决于用户的权限及其工具的功能。 对某些组织来说，大数据可能意味着数百个 GB 的数据，而对另一些组织来说，大数据则意味着数百个 TB 的数据。 随着处理大数据集的工具的发展，大数据的涵义也在不断地变化。 慢慢地，这个术语更多的是指通过高级分析从数据集获取的价值，而不是严格地指数据的大小，虽然这种情况下的数据往往是很大的。
