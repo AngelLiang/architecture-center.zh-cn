@@ -3,13 +3,7 @@ title: Azure 参考体系结构
 description: 适用于 Azure 上的常见工作负荷的参考体系结构和实现指南。
 layout: LandingPage
 ms.topic: landing-page
-ms.date: 02/07/2019
-ms.openlocfilehash: 44111f5f10997c7aba38414b518245c5791d1cd0
-ms.sourcegitcommit: a68f248402c598f9d25bc1dc62f27a6a934ff001
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55903225"
+ms.date: 03/07/2019
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
@@ -40,6 +34,26 @@ ms.locfileid: "55903225"
                     <div class="cardText">
                         <h3>深度学习模型的分布式训练</h3>
                         <p>在已启用 GPU 的 VM 的各群集上运行深度学习模型的分布式训练。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Training of Python scikit-learn models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/training-python-models.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/python-powered-h.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Python scikit-learn 模型的训练</h3>
+                        <p>建议用于优化 scikit-learn Python 模型超参数的做法。</p>
                     </div>
                 </div>
             </div>
@@ -79,7 +93,7 @@ ms.locfileid: "55903225"
                     </div>
                     <div class="cardText">
                         <h3>Python 模型的批量评分</h3>
-                        <p>使用 Azure Batch AI，按计划以并行方式对许多 Python 模型进行批量评分。</p>
+                        <p>使用 Azure 机器学习，按计划以并行方式对许多 Python 模型进行批量评分。</p>
                     </div>
                 </div>
             </div>
@@ -314,7 +328,27 @@ ms.locfileid: "55903225"
                     </div>
                     <div class="cardText">
                         <h3>Azure Kubernetes 服务 (AKS) 上的微服务</h3>
-                        <p>用于在 AKS 上部署微服务体系结构的建议体系结构。</p>
+                        <p>建议用于在 AKS 上部署微服务的体系结构。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Microservices architecture on Azure Service Fabric -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./microservices/service-fabric.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/sf.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Azure Service Fabric 上的微服务体系结构</h3>
+                        <p>建议用于 Service Fabric 上的微服务的体系结构。</p>
                     </div>
                 </div>
             </div>
