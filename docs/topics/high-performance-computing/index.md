@@ -165,8 +165,8 @@ H16r、H16mr、A8、A9 VM 可以连接到高吞吐量后端 RDMA 网络。 此�
 
 1. 在 Azure 虚拟机或[虚拟机规模集](/azure/virtual-machine-scale-sets/overview?context=/azure/architecture/topics/high-performance-computing/context/hpc-context)中设置自己的群集环境。
 2. 使用 Azure 资源管理器模板部署先进的[工作负荷管理器](#workload-managers)、基础结构和[应用程序](#hpc-applications)。
-3. 选择包括 MPI 或 GPU 工作负荷专用硬件与网络连接的 [HPC 和 GPU VM 大小](#hpc-and-gpu-sizes)。
-4. 为 I/O 密集型工作负载添加[高性能存储](#hpc-storage)。
+3. 选择包括 MPI 或 GPU 工作负荷专用硬件与网络连接的 HPC 和 GPU [VM 大小](#compute)。
+4. 为 I/O 密集型工作负载添加[高性能存储](#storage)。
 
 ### <a name="hybrid-and-cloud-bursting"></a>混合和云突发
 
@@ -231,7 +231,7 @@ H16r、H16mr、A8、A9 VM 可以连接到高吞吐量后端 RDMA 网络。 此�
     </li>
 </ul>
 
-安全地建立网络连接以后，即可通过现有[工作负荷管理器](#workload-manager)的突发功能根据需要使用云计算资源。
+安全地建立网络连接以后，即可通过现有[工作负荷管理器](#workload-managers)的突发功能根据需要使用云计算资源。
 
 ### <a name="marketplace-solutions"></a>市场解决方案
 

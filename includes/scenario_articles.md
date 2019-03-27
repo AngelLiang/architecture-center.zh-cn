@@ -3,6 +3,25 @@
 
 <ul  class="panelContent cardsC">
 <li style="display: flex; flex-direction: column;">
+    <a href="./ai/newsfeed-ingestion.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./ai/media/mass-ingestion-newsfeeds-architecture.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Azure 上新闻源的大量引入和分析</h3>
+                        <p>创建一个管道，以便仅使用 Azure 服务（包括 Azure Cosmos DB 和 Azure 认知服务）引入和分析文本、图像、情绪以及来自 RSS 新闻源的其他数据。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
     <a href="./ai/commerce-chatbot.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
