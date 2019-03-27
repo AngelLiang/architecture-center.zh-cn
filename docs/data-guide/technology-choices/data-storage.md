@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 0aac064f30c384520a27d2e42b21c9243d5914b2
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483456"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244038"
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>在 Azure 中选择大数据存储技术
 
@@ -105,7 +105,7 @@ Azure Cosmos DB 功能：
 | 目的 | 大数据分析工作负荷的优化存储 |用于多种存储方案的常规用途对象存储 |
 | 用例 | Batch、流分析和机器学习数据，例如日志文件、IoT 数据、点击流、大型数据集 | 任何类型的文本或二进制数据，例如应用程序后端、备份数据、流式处理媒体存储和常规用途数据 |
 | 结构 | 分层文件系统 | 具有平面命名空间的对象存储 |
-| 身份验证 | 基于 [Azure Active Directory 标识](/azure/active-directory/active-directory-authentication-scenarios) | 基于共享机密 - [帐户访问密钥](/azure/storage/common/storage-create-storage-account#manage-your-storage-account)、[共享访问签名密钥](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)和[基于角色的访问控制 (RBAC)](/azure/security/security-storage-overview) |
+| Authentication | 基于 [Azure Active Directory 标识](/azure/active-directory/active-directory-authentication-scenarios) | 基于共享机密 - [帐户访问密钥](/azure/storage/common/storage-create-storage-account#manage-your-storage-account)、[共享访问签名密钥](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)和[基于角色的访问控制 (RBAC)](/azure/security/security-storage-overview) |
 | 身份验证协议 | OAuth 2.0。 调用必须包含 Azure Active Directory 发布的有效的 JWT（JSON Web 令牌） | 基于哈希的消息身份验证代码 (HMAC)。 调用必须包含 Base64 编码的 SHA-256 哈希作为 HTTP 请求的一部分。 |
 | 授权 | POSIX 访问控制列表 (ACL)。 可设置基于 Azure Active Directory 标识的 ACL 为文件和文件夹级别。 | 对于帐户级别授权 – 使用[帐户访问密钥](/azure/storage/common/storage-create-storage-account#manage-your-storage-account)。 对于帐户、容器 或 blob 授权 - 使用[共享访问签名密钥](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)。 |
 | 审核 | 可用。  |可用 |
