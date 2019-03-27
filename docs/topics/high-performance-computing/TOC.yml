@@ -1,0 +1,139 @@
+items:
+- name: Azure 上的高性能计算 (HPC)
+  href: /azure/architecture/topics/high-performance-computing
+- name: 云上的 HPC 有何不同？
+  items:
+  - name: 大计算的体系结构样式
+    href: /azure/architecture/guide/architecture-styles/big-compute?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 有关自动缩放的最佳做法
+    href: /azure/architecture/best-practices/auto-scaling?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+- name: 基础结构
+  items:
+  - name: 示例 HPC 体系结构
+    items:
+    - name: Azure 上的计算机辅助工程服务
+      href: /azure/architecture/example-scenario/apps/hpc-saas?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: Azure 上的计算流体动力学 (CFD) 模拟
+      href: /azure/architecture/example-scenario/infrastructure/hpc-cfd?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: Azure 上的 3D 视频渲染
+      href: /azure/architecture/example-scenario/infrastructure/video-rendering?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 计算
+    items:
+    - name: 基于 CPU 的虚拟机
+      items:
+      - name: Linux VM
+        href: /azure/virtual-machines/linux/sizes-hpc?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+      - name: Windows VM
+        href: /azure/virtual-machines/windows/sizes-hpc?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+      - name: 虚拟机 vCPU 配额
+        href: /azure/virtual-machines/linux/quotas?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 支持 GPU 的虚拟机
+      items:
+      - name: Linux VM
+        href: /azure/virtual-machines/linux/sizes-gpu?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+      - name: Windows VM
+        href: /azure/virtual-machines/windows/sizes-gpu?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 存储
+    items:
+    - name: 存储优化虚拟机
+      href: /azure/virtual-machines/windows/sizes-storage?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: Blob、表和队列存储
+      href: /azure/storage/storage-introduction?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: Azure SMB 文件存储
+      href: /azure/storage/files/storage-files-introduction?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 网络
+    items:
+    - name: 支持 RDMA 的实例
+      href: /azure/virtual-machines/windows/sizes-hpc?context=/azure/architecture/topics/high-performance-computing/context/hpc-context#rdma-capable-instances
+    - name: 虚拟网络
+      href: /azure/virtual-network/virtual-networks-overview?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: ExpressRoute
+      href: /azure/expressroute/expressroute-introduction?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+- name: 管理
+  items:
+  - name: DIY
+    items:
+    - name: 虚拟机规模集
+      href: /azure/virtual-machine-scale-sets/overview?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 混合和云突发
+    items:
+    - name: 用于将本地网络连接到 Azure 的选项
+      href: /azure/architecture/reference-architectures/hybrid-networking/?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 使用 VPN 网关将本地网络连接到 Azure
+      href: /azure/architecture/reference-architectures/hybrid-networking/vpn?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 使用 ExpressRoute 将本地网络连接到 Azure
+      href: /azure/architecture/reference-architectures/hybrid-networking/expressroute?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 使用 ExpressRoute 和 VPN 故障转移将本地网络连接到 Azure
+      href: /azure/architecture/reference-architectures/hybrid-networking/expressroute-vpn-failover?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 市场解决方案
+    items:
+    - name: 适用于 Windows 和 Linux 的 Azure Data Science VM
+      href: /azure/machine-learning/data-science-virtual-machine/overview?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: Azure 批处理
+    items:
+    - name: Azure 批处理
+      href: /azure/batch/batch-technical-overview?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: Batch 开发入门
+      href: /azure/batch/quick-run-dotnet?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 将低优先级 VM 与 Batch 配合使用
+      href: /azure/batch/batch-low-pri-vms?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: Azure CycleCloud
+    items:
+    - name: Azure CycleCloud
+      href: /azure/cyclecloud/?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 工作负荷管理器
+    items:
+    - name: 适用于 Windows 的 HPC Pack
+      href: /azure/virtual-machines/windows/hpcpack-cluster-options?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 适用于 Linux 的 HPC Pack
+      href: /azure/virtual-machines/linux/hpcpack-cluster-options?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 容器
+      items:
+      - name: Azure Kubernetes 服务 (AKS)
+        href: /azure/aks/intro-kubernetes?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+      - name: 容器注册表
+        href: /azure/container-registry/container-registry-intro?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+- name: 成本管理
+  items:
+  - name: 低优先级 VM
+    href: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-low-priority?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+- name: 安全
+  items:
+  - name: Azure 安全文档
+    href: /azure/security/azure-security?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 在 Azure 中实现中心辐射型网络拓扑
+    href: /azure/architecture/reference-architectures/hybrid-networking/hub-spoke?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 在 Azure 中使用共享服务实现中心辐射型网络拓扑
+    href: /azure/architecture/reference-architectures/hybrid-networking/shared-services?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+- name: HPC 应用程序
+  items:
+  - name: 工程应用程序
+    items:
+    - name: MATLAB 分布式计算服务器
+      href: /azure/virtual-machines/windows/matlab-mdcs-cluster?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 图形和渲染
+    items:
+    - name: Autodesk Maya、3ds Max 和 Arnold
+      href: /azure/batch/batch-rendering-service?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: AI 和深度学习
+    items:
+    - name: Microsoft 认知工具包
+      href: /cognitive-toolkit/cntk-on-azure
+  - name: MPI 提供程序
+    items:
+    - name: Microsoft MPI
+      href: /message-passing-interface/microsoft-mpi
+- name: 远程可视化
+  items:
+  - name: 将 Citrix 用于 Linux 虚拟桌面
+    href: /azure/architecture/example-scenario/infrastructure/linux-vdi-citrix?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+- name: 性能基准测试
+  items:
+  - name: 计算基准测试
+    href: /azure/virtual-machines/windows/compute-benchmark-scores?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+ms.openlocfilehash: 6934509e2019f342134327621606a0957dd38bb1
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419982"

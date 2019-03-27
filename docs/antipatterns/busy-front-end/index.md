@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 61470b630f735c1d49ad9b4bfbec853b308630cf
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481518"
 ---
+
 # <a name="busy-front-end-antipattern"></a>繁忙前端反模式
 
 在大量后台线程中执行异步工作可能耗尽其他并发前台任务的资源，将响应时间降低到不可接受的水平。

@@ -8,13 +8,8 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 2717b3b11f0315b698d43d067b30472481ffa527
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483422"
 ---
+
 # <a name="run-a-jenkins-server-on-azure"></a>在 Azure 上运行 Jenkins 服务器
 
 本参考体系结构演示如何在 Azure 上部署和运行使用单一登录 (SSO) 保护的可伸缩企业级 Jenkins 服务器。 本体系结构还使用 Azure Monitor 来监视 Jenkins 服务器的状态。 [**部署此解决方案**](#deploy-the-solution)。
@@ -41,7 +36,7 @@ ms.locfileid: "54483422"
 
 - 虚拟网络。 [虚拟网络][vnet]可将 Azure 资源相互连接，并提供逻辑隔离。 在本体系结构中，Jenkins 服务器在虚拟网络中运行。
 
-- **子网**。 Jenkins 服务器在[子网][subnet]中隔离，因此我们可以更轻松地管理和隔离网络流量，且不影响性能。
+- **子网**。 Jenkins 服务器在[子网][subnet]中隔离，因此我们可以更轻松地管理和隔离网络流量，而不影响性能。
 
 - **NSG**。 使用[网络安全组][nsg] (NSG) 可以限制从 Internet 发往虚拟网络子网的网络流量。
 
@@ -123,7 +118,7 @@ Jenkins 服务器上下文中的可用性指的是能够恢复与工作流关联
 
 - 恢复点目标 (RPO) 表示服务中断影响到 Jenkins 时，允许丢失多少数据。
 
-在实践中，RTO 和 RPO 涉及到冗余和备份。 可用性对于硬件恢复而言不是一个问题（这是 Azure 的部分责任），它旨在确保维持 Jenkins 服务器的状态。 Microsoft 提供了用于单个 VM 实例的[服务级别协议][sla] (SLA)。 如果此 SLA 无法满足你的运行时间要求，请确保做好灾难恢复的规划，或考虑使用[多主节点 Jenkins 服务器][multi-master]部署（本文档未介绍）。
+在实践中，RTO 和 RPO 涉及到冗余和备份。 可用性不是硬件恢复的问题（这是 Azure 的部分责任），而是为了确保维持 Jenkins 服务器的状态。 Microsoft 提供了用于单个 VM 实例的[服务级别协议][sla] (SLA)。 如果此 SLA 无法满足你的运行时间要求，请确保做好灾难恢复的规划，或考虑使用[多主节点 Jenkins 服务器][multi-master]部署（本文档未介绍）。
 
 考虑使用部署过程步骤 7 中的灾难恢复[脚本][disaster]，来创建包含托管磁盘的 Azure 存储帐户用于存储 Jenkins 服务器状态。 如果 Jenkins 发生故障，可将它还原到此单独存储帐户中存储的状态。
 

@@ -6,13 +6,8 @@ ms.date: 07/21/2017
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: f8875612ad6b1a71fdb6f7a768078ae599eb70b5
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480534"
 ---
+
 # <a name="manage-identity-in-multitenant-applications"></a>管理多租户应用程序中的标识
 
 本系列文章介绍有关使用 Azure AD 进行身份验证和标识管理时，适用于多租户的最佳做法。
@@ -74,7 +69,7 @@ Azure Active Directory (Azure AD) 提供一些极佳的功能用于支持所有�
 
 在多租户应用中，必须考虑租户上下文中的用户。
 
-### <a name="authentication"></a>身份验证
+### <a name="authentication"></a>Authentication
 
 - 用户使用其组织凭据登录到应用。 他们无需为该应用创建新的用户配置文件。
 - 同一组织中的用户属于同一个租户。
@@ -90,9 +85,7 @@ Azure Active Directory (Azure AD) 提供一些极佳的功能用于支持所有�
 本指南将会专门介绍如何使用 Azure AD 进行标识管理。
 
 - 假设客户将其用户配置文件存储在 Azure AD（包括 Office365 和 Dynamics CRM 租户）中
-- 具有本地 Active Directory (AD) 的客户可以使用 [Azure AD Connect](/azure/active-directory/hybrid/whatis-hybrid-identity) 将其本地 AD 与 Azure AD 同步。
-
-如果具有本地 AD 的客户无法使用 Azure AD Connect（出于企业 IT 政策或其他方面的原因），SaaS 提供商可以通过 Active Directory 联合身份验证服务 (AD FS) 来与客户的 AD 联合。 [与客户的 AD FS 联合](adfs.md)中介绍了此选项。
+- 具有本地 Active Directory 的客户可以使用 [Azure AD Connect](/azure/active-directory/hybrid/whatis-hybrid-identity) 将其本地 Active Directory 与 Azure AD 同步。 如果具有本地 Active Directory 的客户无法使用 Azure AD Connect（出于企业 IT 政策或其他方面的原因），SaaS 提供商可以通过 Active Directory 联合身份验证服务 (AD FS) 与客户的目录联合。 [与客户的 AD FS 联合](adfs.md)中介绍了此选项。
 
 本指南不考虑多租户的其他方面，例如数据分区、每个租户的配置，等等。
 

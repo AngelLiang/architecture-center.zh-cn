@@ -4,18 +4,13 @@ titleSuffix: Azure Architecture Center
 description: 用于在云中构建可靠且可缩放的安全应用程序的设计模式。
 keywords: Azure
 author: dragon119
-ms.date: 12/10/2018
+ms.date: 03/01/2018
 ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 1f3a76a104f0157526db3cff338c2b8b08dd573c
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488250"
 ---
+
 # <a name="cloud-design-patterns"></a>云设计模式
 
 这些设计模式可用于在云中构建可靠且可缩放的安全应用程序。
@@ -95,10 +90,11 @@ ms.locfileid: "54488250"
 |                       [隔层](./bulkhead.md)                       |                                                        将应用程序的元素隔离到池中，这样，如果一个元素发生失败，其他元素可继续工作。                                                        |
 |                    [缓存端](./cache-aside.md)                    |                                                                                   将数据按需从数据存储加载到缓存中                                                                                    |
 |                [断路器](./circuit-breaker.md)                |                                                     连接到远程服务或资源时处理故障，此类故障所需修复时间不定。                                                     |
-|                           [CQRS](./cqrs.md)                           |                                                           使用独立接口将读取数据的操作与更新数据的操作分离。                                                            |
+| [声明检查](./claim-check.md) | 将大型消息拆分成声明检查和有效负载，以免消息总线过载。 |
 |       [补偿事务](./compensating-transaction.md)       |                                                         撤销一系列会共同定义最终一致操作的工作。                                                         |
 |            [竞争性使用者](./competing-consumers.md)            |                                                            使多个并发使用者能够处理同一消息通道上收到的消息。                                                             |
 | [计算资源合并](./compute-resource-consolidation.md) |                                                                        将多个任务或操作合并到单个计算单元                                                                        |
+|                           [CQRS](./cqrs.md)                           |                                                           使用独立接口将读取数据的操作与更新数据的操作分离。                                                            |
 |                 [事件溯源](./event-sourcing.md)                 |                                                      使用只追加存储来记录描述域中数据采取的操作的完整系列事件。                                                      |
 |   [外部配置存储](./external-configuration-store.md)   |                                                           将配置信息从应用程序部署包移出，移到一个集中的位置。                                                           |
 |             [联合标识](./federated-identity.md)             |                                                                                将身份验证委托给外部标识提供者。                                                                                |
