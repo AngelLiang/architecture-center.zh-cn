@@ -10,11 +10,11 @@ ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
 ms.openlocfilehash: c28e93efeae7dffe2f17288f3310f299ec545e1a
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481603"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242298"
 ---
 # <a name="gateway-aggregation-pattern"></a>网关聚合模式
 

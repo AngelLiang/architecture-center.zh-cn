@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 介绍 Azure 中有助于提升安全基线的工具
 author: BrianBlanchard
 ms.openlocfilehash: b316626c8ad717514f7f592abefa0f33a92afdca
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900526"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243168"
 ---
 # <a name="security-baseline-tools-in-azure"></a>Azure 中的安全基线工具
 

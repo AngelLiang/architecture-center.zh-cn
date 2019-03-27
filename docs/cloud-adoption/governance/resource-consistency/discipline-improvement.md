@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 资源一致性规则改进
 author: BrianBlanchard
 ms.openlocfilehash: bc81b894d46266c52291c53dba5532ab2ab6b860
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900474"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241568"
 ---
 # <a name="resource-consistency-discipline-improvement"></a>资源一致性规则改进
 
@@ -24,10 +24,10 @@ ms.locfileid: "55900474"
 
 *图 1.云治理增量方法的采用阶段。*
 
-任何一个文档都不可能考虑到所有业务的需求。 因此，本文针对治理成熟过程的每个阶段只概述了建议的最小和可能的示例活动。 这些活动的最初目标是帮助生成[策略 MVP](../journeys/overview.md#an-incremental-approach-to-cloud-governance)，并为增量策略演化建立框架。 云治理团队将需要决定在这些活动需要投入多少成本才能提高资源一致性治理能力。
+单个文档很难涵盖所有的业务需求。 因此，本文针对治理成熟过程的每个阶段只概述了建议的最小和可能的示例活动。 这些活动的最初目标是帮助生成[策略 MVP](../journeys/overview.md#an-incremental-approach-to-cloud-governance)，并为增量策略演化建立框架。 云治理团队将需要决定在这些活动需要投入多少成本才能提高资源一致性治理能力。
 
 > [!CAUTION]
-> 本文列出的最小活动或可能的活动都不针对特定的企业策略或第三方符合性要求。 本指南旨在帮助促进对话，从而使两个需求与云治理模型保持一致。
+> 本文列出的最小活动或可能的活动都不针对特定的企业策略或第三方符合性要求。 本指南旨在帮助促进对话，使两个需求与云治理模型保持一致。
 
 ## <a name="planning-and-readiness"></a>规划和准备情况
 
@@ -103,7 +103,7 @@ ms.locfileid: "55900474"
 
 ## <a name="operate-and-post-implementation"></a>运营和实现后
 
-转换完成后，治理和操作必须依存于应用程序或工作负载的自然生命周期。 治理成熟度的这一阶段侧重于在实现解决方案并且转换周期开始稳定之后通常会出现的活动。
+转换完成后，治理和运维必须依存于应用程序或工作负载的自然生命周期。 治理成熟度这一阶段侧重于在实施解决方案并且转换周期开始稳定之后通常出现的活动。
 
 **最小建议的活动：**
 

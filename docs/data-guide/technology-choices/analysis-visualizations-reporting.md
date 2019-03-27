@@ -8,11 +8,11 @@ ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: data-analytics
 ms.openlocfilehash: 72b889e2fe0d862ab1ff280cea76c2880b0fadc4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481910"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245948"
 ---
 # <a name="choosing-a-data-analytics-technology-in-azure"></a>在 Azure 中选择数据分析技术
 

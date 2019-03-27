@@ -9,11 +9,11 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
 ms.openlocfilehash: 95f634284fe821386704174894a85a4dbca815f7
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485071"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248662"
 ---
 # <a name="run-a-basic-web-application-in-azure"></a>在 Azure 中运行基本的 Web 应用程序
 
@@ -194,7 +194,7 @@ Azure 应用服务的主要优势是能够根据负载缩放应用程序。 下�
 
 作为一项安全最佳做法，应用应该通过重定向 HTTP 请求来强制实施 HTTPS。 可以在应用程序内部实施此做法，或者根据[为 Azure 应用服务中的应用启用 HTTPS][ssl-redirect] 中所述使用 URL 重写规则。
 
-### <a name="authentication"></a>身份验证
+### <a name="authentication"></a>Authentication
 
 我们建议通过 Azure AD、Facebook、Google 或 Twitter 等标识提供者 (IDP) 进行身份验证。 为身份验证流使用 OAuth 2 或 OpenID Connect (OIDC)。 Azure AD 提供管理用户和组、创建应用程序角色、集成本地标识，以及使用 Office 365 和 Skype for Business 等后端服务的功能。
 

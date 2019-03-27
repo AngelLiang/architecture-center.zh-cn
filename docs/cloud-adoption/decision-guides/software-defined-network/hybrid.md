@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 讨论混合网络如何允许云虚拟网络连接到本地资源
 author: rotycenh
 ms.openlocfilehash: 02d181db0ae9baef3b453b8623d212b624f6b16a
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900462"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243358"
 ---
 # <a name="software-defined-networks-hybrid-network"></a>软件定义的网络：混合网络
 

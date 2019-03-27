@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 资源一致性模板
 author: BrianBlanchard
 ms.openlocfilehash: 91c9681aaf94b79823a3da9cb34b1e7f584f00fe
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900465"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242438"
 ---
 # <a name="caf-resource-consistency-template"></a>CAF：资源一致性模板
 
@@ -31,7 +31,7 @@ ms.locfileid: "55900465"
 
 ## <a name="next-steps"></a>后续步骤
 
-可靠的管理实践始于对业务风险的理解。 查看有关业务风险的文章，并开始记录与你当前的云采用计划一致的业务风险。
+可靠的治理实践始于对业务风险的了解。 查看有关业务风险的文章，并开始记录与当前云采用计划一致的业务风险。
 
 > [!div class="nextstepaction"]
 > [了解业务风险](./business-risks.md)

@@ -9,11 +9,11 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
 ms.openlocfilehash: af56a010e90fb176b13c1110ad4000dcababe009
-ms.sourcegitcommit: f4ed242dff8b204cfd8ebebb7778f356a19f5923
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "56224141"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243868"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-stream-analytics"></a>使用 Azure 流分析创建流处理管道
 

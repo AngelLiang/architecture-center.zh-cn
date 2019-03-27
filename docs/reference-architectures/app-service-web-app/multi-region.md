@@ -9,11 +9,11 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
 ms.openlocfilehash: 676d968b13625048a9d83d365a1efe05c6093148
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484323"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241378"
 ---
 # <a name="run-a-web-application-in-multiple-azure-regions-for-high-availability"></a>在多个 Azure 区域中运行 Web 应用程序以确保高可用性
 

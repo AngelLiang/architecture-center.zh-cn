@@ -3,12 +3,12 @@ title: CAF：CISO 就绪情况
 description: CISO 如何为采用云做好准备
 author: BrianBlanchard
 ms.date: 10/03/2018
-ms.openlocfilehash: cedb86488304e2fc84897e1da373730768adce66
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: a4535163990797decdacdacdcb6a33f0118366e9
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900668"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58238339"
 ---
 # <a name="ciso-cloud-readiness-guide"></a>CISO 云就绪情况指南
 
@@ -38,7 +38,7 @@ Azure 云采用框架 (CAF) 等 Microsoft 指南并不旨在确定或指导本�
 * [强制性安全培训、背景检查](https://downloads.cloudsecurityalliance.org/star/self-assessment/StandardResponsetoRequestforInformationWindowsAzureSecurityPrivacy.docx)
 * [渗透测试、入侵检测、DDoS、审核和日志记录](https://www.microsoft.com/trustcenter/Security/AuditingAndLogging)
 * [最先进的数据中心](https://www.microsoft.com/cloud-platform/global-datacenters)、物理安全性和[安全网络](/azure/security/security-network-overview)
-* [云中的 Microsoft Azure 安全响应 (PDF)](http://aka.ms/SecurityResponsePaper)
+* [云中的 Microsoft Azure 安全响应 (PDF)](https://aka.ms/SecurityResponsePaper)
 
 隐私和控制：
 
@@ -58,7 +58,7 @@ Azure 云采用框架 (CAF) 等 Microsoft 指南并不旨在确定或指导本�
 透明度：
 
 * [Microsoft 如何保护 Azure 服务中的客户数据](https://www.microsoft.com/trustcenter/Transparency/default.aspx)
-* [Microsoft 如何管理 Azure 服务中的数据位置](http://azuredatacentermap.azurewebsites.net/)
+* [Microsoft 如何管理 Azure 服务中的数据位置](https://azuredatacentermap.azurewebsites.net/)
 * [Microsoft 中的哪些人员可以根据哪些条款访问数据](https://www.microsoft.com/trustcenter/Privacy/Who-can-access-your-data-and-on-what-terms)
 * [Microsoft 如何保护 Azure 服务中的客户数据](https://www.microsoft.com/trustcenter/Transparency/default.aspx)
 * [查看 Azure 服务的认证、透明度中心](https://www.microsoft.com/trustcenter/Compliance/default.aspx)

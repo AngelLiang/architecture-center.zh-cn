@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 53f8b233b0e0c1ff83a72a04b2707caa528d6f6b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486448"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248512"
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>在 Azure 中选择批处理技术
 
@@ -102,7 +102,7 @@ AZTK 不是一项 Azure 服务， 而是一项带 CLI 和 Python SDK 界面的�
 | 横向扩展粒度  | 按作业 | 按群集 | 按群集 | 按群集 | 按群集 | 按群集 |
 | 数据的内存中缓存 | 否 | 是 | 是 | 否 | 是 | 是 |
 | 从外部关系存储进行查询 | 是 | 否 | 是 | 否 | 否 | 是 |
-| 身份验证  | Azure AD | SQL / Azure AD | 否 | Azure AD<sup>1</sup> | Azure AD<sup>1</sup> | Azure AD |
+| Authentication  | Azure AD | SQL / Azure AD | 否 | Azure AD<sup>1</sup> | Azure AD<sup>1</sup> | Azure AD |
 | 审核  | 是 | 是 | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 |
 | 行级别安全性 | 否 | 否 | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | 否 |
 | 支持防火墙 | 是 | 是 | 是 | 是 <sup>2</sup> | 是 <sup>2</sup> | 否 |

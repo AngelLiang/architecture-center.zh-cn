@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Microsoft 提供哪些安全指南？
 author: BrianBlanchard
 ms.openlocfilehash: 845b02422e2df63425e29acdfd9b43b744934c9f
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900467"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241928"
 ---
 <!-- markdownlint-disable MD026 -->
 

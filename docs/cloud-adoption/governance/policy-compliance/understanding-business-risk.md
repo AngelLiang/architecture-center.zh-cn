@@ -4,11 +4,11 @@ description: 了解迁移期间的业务风险
 author: BrianBlanchard
 ms.date: 10/10/2018
 ms.openlocfilehash: 458474f3c94c5df4f7ffef439095adf138f33d78
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900661"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246488"
 ---
 <!-- markdownlint-disable MD026 -->
 

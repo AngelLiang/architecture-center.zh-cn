@@ -8,18 +8,22 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 020c401e9db85b76fd48c6df9be9c80d2ba5c7e4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: d52d2a323727760463c0b5694b9116e0ed469c93
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481467"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243848"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>将自动化企业 BI 与 SQL 数据仓库和 Azure 数据工厂配合使用
 
 此参考体系结构演示如何在[提取、加载和转换 (ELT)](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) 管道中执行增量加载。 它使用 Azure 数据工厂将 ELT 管道自动化。 该管道以增量方式将最新的 OLTP 数据从本地 SQL Server 数据库移入 SQL 数据仓库。 事务数据将转换为表格模型以供分析。
 
+<!-- markdownlint-disable MD034 -->
+
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
+
+<!-- markdownlint-enable MD034 -->
 
 [GitHub][github] 中提供了本体系结构的参考实现。
 
@@ -56,7 +60,7 @@ ms.locfileid: "54481467"
 
 **Power BI**。 Power BI 是一套商业分析工具，用于分析数据以获取商业见解。 在此体系结构中，Power BI 查询 Analysis Services 中存储的语义模型。
 
-### <a name="authentication"></a>身份验证
+### <a name="authentication"></a>Authentication
 
 **Azure Active Directory** (Azure AD) 通过 Power BI 对连接到 Analysis Services 服务器的用户进行身份验证。
 

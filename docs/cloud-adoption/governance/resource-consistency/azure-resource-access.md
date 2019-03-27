@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 介绍 Azure 中的资源访问管理构造：Azure 资源管理器、订阅、资源组和资源
 author: petertaylor9999
 ms.openlocfilehash: b98cdc94d6d3a37c1e65da1d4de35d5d9520d6eb
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900664"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243198"
 ---
 # <a name="resource-access-management-in-azure"></a>Azure 中的资源访问管理
 
@@ -27,14 +27,14 @@ ms.locfileid: "55900664"
 在 Azure 中，术语“资源”是指 Azure 管理的实体。 例如，虚拟机、虚拟网络和存储帐户都称为 Azure 资源。
 
 ![资源图](../../_images/governance-1-9.png)
-图 1：** 资源。
+图 1：*资源。*
 
 ## <a name="what-is-an-azure-resource-group"></a>什么是 Azure 资源组？
 
 Azure 中的每个资源必须属于某个[资源组](/azure/azure-resource-manager/resource-group-overview#resource-groups)。 资源组只是一个逻辑构造，它将多个资源分组到一起，以便可将它们作为单个实体进行管理。 举例来说，具有类似生命周期的资源（例如，[n 层应用程序](/azure/architecture/guide/architecture-styles/n-tier)的资源）可以作为一个组进行创建或删除。
 
 ![包含资源的资源组图](../../_images/governance-1-10.png)
-图 2：** 包含资源的资源组。
+图 2：*资源组包含资源。*
 
 资源组及其包含的资源与 Azure **订阅**相关联。
 
@@ -43,29 +43,29 @@ Azure 中的每个资源必须属于某个[资源组](/azure/azure-resource-mana
 Azure 订阅与资源组的类似之处在于，它也是一个逻辑构造，可将资源组及其资源分组到一起。 不过，Azure 订阅还与 Azure 资源管理器使用的控制措施相关联。 这是什么意思呢？ 请仔细查看 Azure 资源管理器，了解它与 Azure 订阅之间的关系。
 
 ![Azure 订阅图](../../_images/governance-1-11.png)
-图 3：** Azure 订阅。
+图 3：*Azure 订阅。
 
 ## <a name="what-is-azure-resource-manager"></a>什么是 Azure 资源管理器？
 
 在 [Azure 的工作原理](../../getting-started/what-is-azure.md)中我们已了解到，Azure 包含一个“前端”，该前端中的许多服务协调 Azure 的所有功能。 其中一项服务是 [Azure 资源管理器](/azure/azure-resource-manager/)，此服务托管客户端用来管理资源的 RESTful API。
 
 ![Azure 资源管理器图](../../_images/governance-1-12.png)
-图 4：** Azure 资源管理器。
+图 4：*Azure 资源管理器。
 
 下图显示了三个客户端：[PowerShell](/powershell/azure/overview)、[Azure 门户](https://portal.azure.com)和 [Azure 命令行接口 (CLI)](/cli/azure)：
 
 ![连接到 Azure 资源管理器 API 的 Azure 客户端图](../../_images/governance-1-13.png)
-图 5：** Azure 客户端连接到 Azure 资源管理器 RESTful API。
+图 5：*Azure 客户端连接到 Azure 资源管理器 RESTful API。
 
 尽管这些客户端使用 RESTful API 连接到 Azure 资源管理器，但 Azure 资源管理器没有直接管理资源的功能。 Azure 中的大多数资源类型具有自身的[**资源提供程序**](/azure/azure-resource-manager/resource-group-overview#terminology)。
 
 ![Azure 资源提供程序](../../_images/governance-1-14.png)
-图 6：** Azure 资源提供程序。
+图 6：*Azure 资源提供程序。*
 
 当客户端发出管理特定资源的请求时，Azure 资源管理器连接到相应资源类型的资源提供程序，以完成请求。 例如，如果客户端发出管理虚拟机资源的请求，Azure 资源管理器会连接到 Microsoft.Compute 资源提供程序。
 
 ![连接到 Microsoft.Compute 资源提供程序的 Azure 资源管理器](../../_images/governance-1-15.png)
-图 7：** Azure 资源管理器连接到 Microsoft.Compute**** 资源提供程序，以管理客户端请求中指定的资源。
+图 7：*Azure 资源管理器连接到 Microsoft.Compute**** 资源提供程序，以管理客户端请求中指定的资源。
 
 Azure 资源管理器要求客户端，必须指定订阅和资源组的标识符，才能管理虚拟机资源。
 
@@ -74,36 +74,36 @@ Azure 资源管理器要求客户端，必须指定订阅和资源组的标识�
 第一个控制措施是请求必须由已验证的用户发出，且 Azure 资源管理器已与 [Azure Active Directory (Azure AD)](/azure/active-directory/) 建立可信关系，以提供用户标识功能。
 
 ![Azure Active Directory](../../_images/governance-1-16.png)
-图 8：** Azure Active Directory。
+图 8：*Azure Active Directory。
 
 在 Azure AD 中，用户划分到**租户**。 租户是一个逻辑构造，它通常代表一个与组织关联的安全专用的 Azure AD 实例。 每个订阅与一个 Azure AD 租户相关联。
 
 ![与订阅关联的 Azure AD 租户](../../_images/governance-1-17.png)
-图 9：** 与订阅关联的 Azure AD 租户。
+图 9：*与订阅关联的 Azure AD 租户。*
 
 管理特定订阅中的资源的每个客户端请求要求用户在关联的 Azure AD 租户中有一个帐户。
 
 下一个控制措施是检查用户是否拥有发出请求的足够权限。 权限是使用[基于角色的访问控制 (RBAC)](/azure/role-based-access-control/) 分配给用户的。
 
 ![分配到 RBAC 角色的用户](../../_images/governance-1-18.png)
-图 10：** 为租户中的每个用户分配一个或多个 RBAC 角色。
+图 10：*为租户中的每个用户分配一个或多个 RBAC 角色。*
 
 RBAC 角色指定用户对特定的资源拥有的一组权限。 将角色分配给用户时，会应用这些权限。 例如，[内置的**所有者**角色](/azure/role-based-access-control/built-in-roles#owner)允许用户对资源执行任何操作。
 
 下一个控制措施是检查为 [Azure 资源策略](/azure/governance/policy/)指定的设置是否允许该请求。 Azure 资源策略指定允许对特定资源执行的操作。 例如，Azure 资源策略可以指定只允许用户部署特定类型的虚拟机。
 
 ![Azure 资源策略](../../_images/governance-1-19.png)
-图 11：** Azure 资源策略。
+图 11：*Azure 资源策略。*
 
 下一个控制措施是检查请求是否未超过 [Azure 订阅限制](/azure/azure-subscription-service-limits)。 例如，每个订阅限制为包含 980 个资源组。 达到该限制后，如果收到部署更多资源组的请求，则会拒绝该请求。
 
 ![Azure 资源限制](../../_images/governance-1-20.png)
-图 12：** Azure 资源限制。
+图 12：*Azure 资源限制。*
 
 最后一个控制措施是检查请求是否在与订阅关联的财务承诺范围内。 例如，如果请求是部署虚拟机，Azure 资源管理器会验证订阅是否包含足够的付款信息。
 
 ![与订阅关联的财务承诺](../../_images/governance-1-21.png)
-图 13：** 财务承诺与订阅相关联。
+图 13：*财务承诺与订阅相关联。*
 
 ## <a name="summary"></a>摘要
 

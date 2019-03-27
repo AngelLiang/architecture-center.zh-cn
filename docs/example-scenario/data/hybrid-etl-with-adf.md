@@ -10,11 +10,11 @@ ms.subservice: example-scenario
 ms.custom: tsp-team
 social_image_url: /azure/architecture/example-scenario/data/media/architecture-diagram-hybrid-etl-with-adf.png
 ms.openlocfilehash: 354b8ee14f82631842902da3de852f777b1954cc
-ms.sourcegitcommit: f4ed242dff8b204cfd8ebebb7778f356a19f5923
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "56224124"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248492"
 ---
 # <a name="hybrid-etl-with-existing-on-premises-ssis-and-azure-data-factory"></a>将混合 ETL 与现有本地 SSIS 和 Azure 数据工厂配合使用
 

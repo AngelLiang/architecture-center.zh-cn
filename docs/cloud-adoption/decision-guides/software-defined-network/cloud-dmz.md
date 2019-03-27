@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 此网络体系结构允许在本地网络和基于云的网络之间进行有限访问
 author: rotycenh
 ms.openlocfilehash: a192541dcfb0f3d713f4139a2ab0541d0c7202db
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900543"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242808"
 ---
 # <a name="software-defined-networks-cloud-dmz"></a>软件定义网络：云外围网络
 

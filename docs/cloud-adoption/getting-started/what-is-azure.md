@@ -3,16 +3,15 @@ title: CAF：Azure 如何工作？
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.custom: governance
 description: 解释 Azure 的内部功能
 author: petertaylor9999
-ms.date: 2/11/2019
-ms.openlocfilehash: 5ce9f0535584cbc45d757be5aa6f2fd64c7cc39f
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.date: 02/11/2019
+ms.openlocfilehash: 724d16a810865dd947a7ade34766818c8ea525a1
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898062"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245268"
 ---
 <!-- markdownlint-disable MD026 -->
 
@@ -20,7 +19,11 @@ ms.locfileid: "55898062"
 
 Azure 是 Microsoft 的公有云平台。 Azure 提供了一个大型的服务集合，包括平台即服务 (PaaS)、基础结构即服务 (IaaS)、数据库即服务 (DBaaS) 以及许多其他服务。 但是，确切而言，什么是 Azure，它如何工作？
 
+<!-- markdownlint-disable MD034 -->
+
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ixGo]
+
+<!-- markdownlint-enable MD034 -->
 
 与其他云平台一样，Azure 依赖于称为**虚拟化**的技术。 可以在软件中仿真大多数计算机硬件，因为大多数计算机硬件只是在硅片中永久或半永久编码的一组指令。 使用将软件指令映射为硬件指令的仿真层，虚拟化的硬件可以在软件中执行，就像它是实际硬件本身一样。
 

@@ -10,11 +10,11 @@ ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
 ms.openlocfilehash: f1ccb867530dada3844aa19ef2639c2af209509f
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483626"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248822"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>命令和查询责任分离 (CQRS) 模式
 

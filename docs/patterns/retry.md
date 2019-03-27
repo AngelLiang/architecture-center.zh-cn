@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 8d37bc2aed17bfef4d54f29f269b23ce4a5c52c0
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: edd73fd68ca4708faed92c6b1bcf5cfa3e6b2f07
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897654"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242338"
 ---
 # <a name="retry-pattern"></a>重试模式
 
@@ -52,7 +52,7 @@ ms.locfileid: "55897654"
 
 应用程序应当记录错误和失败操作的详细信息。 此信息对操作员比较有用。 如果某个服务频繁不可用或繁忙，通常是由于该服务已耗尽了其资源。 可以通过横向扩展该服务来降低出现这些错误的频率。 例如，如果某个数据库服务持续过载，则对数据库进行分区并将负载分布到多个服务器中可能有助于解决问题。
 
-> [Microsoft Entity Framework](https://docs.microsoft.com/ef/) 提供了用于重试数据库操作的设施。 另外，大多数 Azure 服务和客户端 SDK 都提供了重试机制。 有关详细信息，请参阅[特定服务的重试指南](/azure/architecture/best-practices/retry-service-specific)。
+> [Microsoft Entity Framework](/ef) 提供了用于重试数据库操作的设施。 另外，大多数 Azure 服务和客户端 SDK 都提供了重试机制。 有关详细信息，请参阅[特定服务的重试指南](/azure/architecture/best-practices/retry-service-specific)。
 
 ## <a name="issues-and-considerations"></a>问题和注意事项
 
@@ -177,4 +177,4 @@ private bool IsTransient(Exception ex)
 
 - [断路器模式](./circuit-breaker.md)。 重试模式可用于处理暂时性错误。 如果预计故障会持续较长时间，则实现断路器模式可能更为合适。 还可以将重试模式与断路器配合使用来提供用于处理错误的综合方法。
 - [特定服务的重试指南](/azure/architecture/best-practices/retry-service-specific)
-- [连接复原](https://docs.microsoft.com/ef/core/miscellaneous/connection-resiliency)
+- [连接复原](/ef/core/miscellaneous/connection-resiliency)

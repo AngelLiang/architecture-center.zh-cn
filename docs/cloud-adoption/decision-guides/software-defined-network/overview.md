@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 关于软件定义的网络作为 Azure 迁移中的核心服务的讨论
 author: rotycenh
 ms.openlocfilehash: d164ba488552715dc97719329ae9de3fcf5d83ed
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900605"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243338"
 ---
 # <a name="caf-software-defined-network-decision-guide"></a>CAF：软件定义网络决策指南
 

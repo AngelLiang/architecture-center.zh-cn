@@ -3,12 +3,12 @@ title: 大型机迁移：大型机应用程序迁移
 description: 将应用程序从大型机环境迁移到 Azure，这是经过验证的、高度可用且可缩放的基础结构，适用于当前在大型机上运行的系统
 author: njray
 ms.date: 12/26/2018
-ms.openlocfilehash: dcae5077e26ab8ba9b08e0da71a5e69d0d9f62e3
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 2a22eb038da693671ce309c76afcfc41946034f3
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900494"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246388"
 ---
 # <a name="mainframe-application-migration"></a>大型机应用程序迁移
 
@@ -168,7 +168,7 @@ IBM 数据层包括一些也必须迁移的关键组件。 例如，迁移数据
 
 常见方案是将应用程序移至 Azure，同时将应用程序使用的数据保存在大型机上。 特定软件用于使 Azure 上的应用程序能够访问大型机中的数据。 幸运的是，广泛的解决方案提供 Azure 和现有大型机环境之间的集成、对混合场景的支持以及随时间推移的迁移。 Microsoft 合作伙伴、独立软件供应商和系统集成商可以在过程中为你提供帮助。
 
-一种选项是 [Microsoft Host Integration Server](https://docs.microsoft.com/host-integration-server/) (HIS)，该解决方案提供了 Azure 中的应用程序访问大型机上保留的 DB2 中的数据所需的分布式关系数据库体系结构 (DRDA)。 大型机到 Azure 集成的其他选项包括 IBM、Attunity、Codit 和其他供应商提供的解决方案以及开源选项。
+一种选项是 [Microsoft Host Integration Server](/host-integration-server) (HIS)，该解决方案提供了 Azure 中的应用程序访问大型机上保留的 DB2 中的数据所需的分布式关系数据库体系结构 (DRDA)。 大型机到 Azure 集成的其他选项包括 IBM、Attunity、Codit 和其他供应商提供的解决方案以及开源选项。
 
 ## <a name="partner-solutions"></a>合作伙伴解决方案
 
@@ -188,4 +188,4 @@ Azure 为当前在大型机上运行的系统提供了经过验证的、高度�
 
 - [Deploy IBM DB2 pureScale on Azure](https://azure.microsoft.com/resources/deploy-ibm-db2-purescale-on-azure)（在 Azure 上部署 IBM DB2 pureScale）
 
-- [Host Integration Server (HIS) 文档](https://docs.microsoft.com/host-integration-server/)
+- [Host Integration Server (HIS) 文档](/host-integration-server)

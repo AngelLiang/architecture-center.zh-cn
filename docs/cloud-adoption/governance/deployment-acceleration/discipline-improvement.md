@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 部署加速规则改进
 author: alexbuckgit
 ms.openlocfilehash: 98192c777d8866efb01544737e8cabea6354c4d7
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900674"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243718"
 ---
 # <a name="deployment-acceleration-discipline-improvement"></a>部署加速规则改进
 
@@ -61,7 +61,7 @@ ms.locfileid: "55900674"
 
 ## <a name="adopt-and-migrate"></a>采用和迁移
 
-迁移是侧重于在现有数字资产中移动、测试和采用应用程序或工作负载的增量过程。
+迁移是一个渐进过程，侧重于现有数字资产中应用程序或工作负载的移动、测试和采用。
 
 最小建议的活动：
 

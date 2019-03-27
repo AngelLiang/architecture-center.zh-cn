@@ -1,14 +1,17 @@
 ---
 title: CAF：什么是云资源调控？
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.date: 02/11/2019
 description: 有关 Azure 上的云资源治理的说明
 author: petertaylor9999
-ms.date: 2/11/2019
-ms.openlocfilehash: ec8b0b04ac8a4782c215359cf907c3c092ae2f4d
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 5d022e83a1c97a5e5af8208ec00339575bb88be1
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897943"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242118"
 ---
 <!-- markdownlint-disable MD026 -->
 
@@ -20,7 +23,11 @@ ms.locfileid: "55897943"
 
 解决此问题的方法就是采用资源访问**调控**。 调控是指根据组织的目标和要求，对 Azure 资源的使用持续进行管理、监视和审核的过程。
 
+<!-- markdownlint-disable MD034 -->
+
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ii94]
+
+<!-- markdownlint-enable MD034 -->
 
 每家组织的目标和要求都是独特的，因此，不存在以一应百的调控方法。 Azure 实施两个主要的管理工具：**基于角色的访问控制 (RBAC)** 和**资源策略**，每家组织可以使用这些工具设计自己的调控模型。
 

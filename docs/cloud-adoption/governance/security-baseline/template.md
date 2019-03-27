@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 与云治理相关的安全基线概念的说明
 author: BrianBlanchard
 ms.openlocfilehash: 93622fee899824fffe604d7b3f588f5ed179b371
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900528"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241688"
 ---
 # <a name="security-baseline-template"></a>安全基线模板
 
@@ -31,7 +31,7 @@ ms.locfileid: "55900528"
 
 ## <a name="next-steps"></a>后续步骤
 
-可靠的治理实践始于对业务风险的了解。 查看有关业务风险的文章，并开始记录与你当前的云采用计划一致的业务风险。
+可靠的治理实践始于对业务风险的了解。 查看有关业务风险的文章，并开始记录与当前云采用计划一致的业务风险。
 
 > [!div class="nextstepaction"]
 > [了解业务风险](./business-risks.md)

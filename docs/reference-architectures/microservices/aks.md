@@ -7,21 +7,18 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: ac7ab8b8dd154999a05dc531e41b0994f66ddf10
-ms.sourcegitcommit: 700a4f6ce61b1ebe68e227fc57443e49282e35aa
+ms.openlocfilehash: c8ce4c77666ab7b9c55e6f144d514fadc6b6ad73
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55887397"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246078"
 ---
 # <a name="microservices-architecture-on-azure-kubernetes-service-aks"></a>Azure Kubernetes 服务 (AKS) 中的微服务体系结构
 
 本参考体系结构演示一个部署到 Azure Kubernetes 服务 (AKS) 中的微服务应用程序。 其中演示的基本 AKS 配置可用作大多数部署的起点。 更高级的选项（包括高级网络选项）将在单独的参考体系结构中予以介绍。
 
 本文假设读者基本了解 Kubernetes。 本文侧重于有关在 AKS 中运行微服务体系结构的基础结构和 DevOps 注意事项。 有关如何从域驱动设计 (DDD) 立场设计微服务的指导，请参阅[在 Azure 中设计、构建和操作微服务](/azure/architecture/microservices)。
-
-> [!NOTE]
-> 我们目前正在制作本文随附的参考实现 (RI)，预计在 2019 年初期发布。 到时本文将会更新，以纳入该 RI 中的其他最佳做法。
 
 ![AKS 参考体系结构](./_images/aks.png)
 
@@ -310,7 +307,7 @@ AKS 集成了这两种 RBAC 机制。 创建 AKS 群集时，可将其配置为�
 - 团队使用 [Azure Pipelines](/azure/devops/pipelines) 来运行 CI/CD 过程。
 - 团队使用 Azure 容器注册表中的[命名空间](/azure/container-registry/container-registry-best-practices#repository-namespaces)将已获批在生产环境中使用的映像与仍在进行测试的映像隔离开来。
 
-在此示例中，一位开发人员在名为“传送服务”的微服务上工作。 （此名称来自[此处](../../microservices/index.md#the-drone-delivery-application)所述的引用实现。）在开发新功能时，开发人员会将代码签入到某个功能分库中。
+在此示例中，一位开发人员在名为“传送服务”的微服务上工作。 （此名称来自[此处](../../microservices/design/index.md#scenario)所述的引用实现。）在开发新功能时，开发人员会将代码签入到某个功能分库中。
 
 ![CI/CD 工作流](./_images/aks-cicd-1.png)
 

@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 6679ff620ca9e64036c02fce38608de38c57df93
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482164"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246358"
 ---
 # <a name="data-warehousing-and-data-marts"></a>数据仓库和数据市场
 
@@ -170,7 +170,7 @@ Azure SQL 数据仓库还可用于小型和中型数据集，其中的工作负�
 
 |                         |           Azure SQL 数据库            |  虚拟机中的 SQL Server  | SQL 数据仓库 |   HDInsight 上的 Apache Hive    |    HDInsight 上的 Hive LLAP     |
 |-------------------------|-----------------------------------------|-----------------------------------|--------------------|-------------------------------|-------------------------------|
-|     身份验证      | SQL / Azure Active Directory (Azure AD) | SQL / Azure AD / Active Directory |   SQL / Azure AD   | 本地 / Azure AD <sup>1</sup> | 本地 / Azure AD <sup>1</sup> |
+|     Authentication      | SQL / Azure Active Directory (Azure AD) | SQL / Azure AD / Active Directory |   SQL / Azure AD   | 本地 / Azure AD <sup>1</sup> | 本地 / Azure AD <sup>1</sup> |
 |      授权      |                   是                   |                是                |        是         |              是              |       是 <sup>1</sup>        |
 |        审核         |                   是                   |                是                |        是         |              是              |       是 <sup>1</sup>        |
 | 静态数据加密 |            是 <sup>2</sup>             |         是 <sup>2</sup>          |  是 <sup>2</sup>  |       是 <sup>2</sup>        |       是 <sup>1</sup>        |

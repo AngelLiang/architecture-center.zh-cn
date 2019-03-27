@@ -7,12 +7,12 @@ ms.date: 11/12/2018
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: 22bad71910509a112ecee3b3639b4444b6a3d6ed
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 200d2e18890582a7c1551ef5053e388c4a5f29a3
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897994"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242948"
 ---
 # <a name="windows-n-tier-application-on-azure-with-sql-server"></a>Azure 上包含 SQL Server 的 Windows N 层应用程序
 
@@ -62,7 +62,7 @@ ms.locfileid: "55897994"
 
 在创建 VNet 时，确定每个子网中的资源需要多少 IP 地址。 使用 [CIDR] 表示法为所需的 IP 地址指定子网掩码和足够大的 VNet 地址范围。 使用标准[专用 IP 地址块][private-ip-space]内的一个地址空间，这些地址块为 10.0.0.0/8、172.16.0.0/12 和 192.168.0.0/16。
 
-如果以后需要在 VNet 与本地网络之间设置一个网关，请选择一个不与你的本地网络重叠的地址范围。 在创建 VNet 后，将无法更改地址范围。
+如果以后需要在 VNet 与本地网络之间设置一个网关，请选择一个不与本地网络重叠的地址范围。 在创建 VNet 后，将无法更改地址范围。
 
 在设计子网时一定要牢记功能和安全要求。 同一层或同一角色中的所有 VM 应当置于同一子网，这可能是一个安全边界。 有关设计 VNet 和子网的详细信息，请参阅[规划和设计 Azure 虚拟网络][plan-network]。
 

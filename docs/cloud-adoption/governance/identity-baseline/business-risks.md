@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 标识基线动机和业务风险
 author: BrianBlanchard
 ms.openlocfilehash: ef831d1b3b01251b27f1f7b18e551c49996a2468
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900457"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246518"
 ---
 # <a name="identity-baseline-motivations-and-business-risks"></a>标识基线动机和业务风险
 
@@ -43,7 +43,7 @@ ms.locfileid: "55900457"
 
 使用[云管理模板](./template.md)，记录可能由当前云采用计划引入的业务风险。
 
-确立了对实际业务风险的了解后，下一步是记录业务对风险的容忍度，以及监视该容忍度的指示器和关键指标。
+确立了对实际业务风险的了解后，下一步是记录业务对风险的容忍度，以及用于监视该容忍度的指示器和关键指标。
 
 > [!div class="nextstepaction"]
 > [了解指示器、指标和风险容忍度](./metrics-tolerance.md)
