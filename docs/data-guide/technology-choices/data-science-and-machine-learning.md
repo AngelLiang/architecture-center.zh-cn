@@ -102,7 +102,7 @@ Azure 机器学习工作室是一个基于云的可视开发环境，用于创�
 - 可伸缩性有限。 训练数据集的最大大小为 10 GB。
 - 只能联机使用。 不支持脱机开发环境。
 
-## <a name="tools-and-services-for-deploying-machine-learning-models"></a>肜于部署机器学习模型的工具和服务
+## <a name="tools-and-services-for-deploying-machine-learning-models"></a>用于部署机器学习模型的工具和服务
 
 在据科学家创建机器学习模型后，你通常需要部署它，并从应用程序或其他数据流使用它。 机器学习模型有许多潜在的部署目标。
 
