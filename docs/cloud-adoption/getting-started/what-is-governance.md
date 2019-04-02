@@ -6,12 +6,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.date: 02/11/2019
 description: 有关 Azure 上的云资源治理的说明
 author: petertaylor9999
-ms.openlocfilehash: 5d022e83a1c97a5e5af8208ec00339575bb88be1
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 602ac81f2b2201c77746df971d282582ceee23f7
+ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242118"
+ms.lasthandoff: 03/27/2019
+ms.locfileid: "58503190"
 ---
 <!-- markdownlint-disable MD026 -->
 
@@ -35,11 +35,11 @@ RBAC 定义角色，而角色定义获得该角色的用户的功能。 例如�
 
 资源策略定义有关创建资源的规则。 例如，资源策略可将 VM 的 SKU 限制为特定的预批准大小。 或者，在发出创建资源的请求时，资源策略可以强制添加包含成本中心的标记。
 
-配置这些工具时，一个重要的考虑因素是在调控与组织灵活性之间实现平衡。 也就是说，调控策略的限制性越强，开发人员和 IT 工作人员的灵活性就越低。 这是因为，限制性的调控策略可能需要更多的手动步骤，例如，要求开发人员填写表单，或者将电子邮件发送到管理团队中的某人，以手动创建资源。 调控团队的功能有限，可能会积压工作，导致工作效率不高的开发团队等待创建其资源，并且在等待删除不需要的资源过程中，这些资源持续产生成本。
+配置这些工具时，一个重要的考虑因素是在调控与组织灵活性之间实现平衡。 也就是说，调控策略的限制性越强，开发人员和 IT 工作人员的灵活性就越低。 这是因为严格的管理策略可能要求更多的手动步骤，例如，要求填写窗体或将一封电子邮件发送给管理团队的人来手动创建资源的开发人员。 管理团队具有有限的功能，并可能会积压，从而导致等待要创建和不需要的资源产生成本，而它们等待要删除其资源用于生产的开发团队。
 
 ## <a name="next-steps"></a>后续步骤
 
-你已了解云资源治理的概念，请详细了解如何在 Azure 中管理资源访问。
+现在，你已了解云资源调控的概念，了解有关如何在 Azure 中管理资源访问权限的详细信息。
 
 > [!div class="nextstepaction"]
 > [了解 Azure 中的资源访问](azure-resource-access.md)

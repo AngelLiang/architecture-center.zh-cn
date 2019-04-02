@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, networking
-ms.openlocfilehash: 4235e5d1bb3b202cff9f7c703f079651982aac59
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: dbd2a9a8fbb18586e7b255873a9a503117deabcd
+ms.sourcegitcommit: ea97ac004c38c6b456794c1a8eef29f8d2b77d50
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246108"
+ms.lasthandoff: 03/26/2019
+ms.locfileid: "58489175"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>在 Azure 中实现中心辐射型网络拓扑
 
@@ -102,12 +102,6 @@ VNet 对等互连是两个 VNet 之间的不可传递关系。 如果需要将�
 
 在这种情况下，必须配置对等互连连接以**允许转发的流量**。
 
-### <a name="overcoming-vnet-peering-limits"></a>克服 VNet 对等互连限制
-
-请务必考虑 Azure 中[每个 VNet 的 VNet 对等互连数限制][vnet-peering-limit]。 如果你确定所需的辐射多于限制将允许的数量，请考虑创建一个中心-辐射-中心-辐射型拓扑，其中的第一级辐射还充当中心。 下图显示了此方式。
-
-![[3]][3]
-
 另外，请考虑要在中心内共享哪些服务，以确保中心能够针对大量辐射进行缩放。 例如，如果中心提供防火墙服务，则在添加多个辐射时请考虑防火墙解决方案的带宽限制。 你可能希望将这些共享服务中的某一些移动到二级中心内。
 
 ## <a name="deploy-the-solution"></a>部署解决方案
@@ -125,7 +119,7 @@ VNet 对等互连是两个 VNet 之间的不可传递关系。 如果需要将�
 
 模板参数文件将引用这些名称，因此，如果更改了这些名称，请相应地更新参数文件。
 
-### <a name="prerequisites"></a>先决条件
+### <a name="prerequisites"></a>必备组件
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 

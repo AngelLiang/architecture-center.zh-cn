@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: 931d247f088055286a2832b886992dca8565b6a7
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 67f23ae3676d0fb95ef484fa6dcb7a8bb92e0fa2
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244368"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419999"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>将 Active Directory 域服务 (AD DS) 扩展到 Azure
 
@@ -48,7 +48,7 @@ AD DS 用来对安全域中包括的用户、计算机、应用程序或其他�
 
 根据预计的身份验证请求量决定 [VM 大小][vm-windows-sizes]。 使用在本地托管着 AD DS 的计算机的规范作为起点，并使其与 Azure VM 大小相匹配。 在部署后，监视利用率并根据 VM 上的实际负载纵向扩展或收缩。 有关确定 AD DS 域控制器大小的详细信息，请参阅 [Capacity Planning for Active Directory Domain Services][capacity-planning-for-adds]（Active Directory 域服务的容量规划）。
 
-创建一个单独的虚拟数据磁盘，用以存储 Active Directory 的数据库、日志和 SYSVOL。 不要将这些项与操作系统存储在同一磁盘上。 注意，默认情况下，附加到 VM 的数据磁盘使用直写式缓存。 但是，这种形式的缓存可能会与 AD DS 的要求发生冲突。 因此，请将数据磁盘上的“主机缓存首选项”设置设为“无”。 有关详细信息，请参阅[在 Azure 虚拟机上部署 Windows Server Active Directory 的指南][adds-data-disks]。
+创建一个单独的虚拟数据磁盘，用以存储 Active Directory 的数据库、日志和 SYSVOL。 不要将这些项与操作系统存储在同一磁盘上。 注意，默认情况下，附加到 VM 的数据磁盘使用直写式缓存。 但是，这种形式的缓存可能会与 AD DS 的要求发生冲突。 因此，请将数据磁盘上的“主机缓存首选项”设置设为“无”。
 
 部署至少两个运行 AD DS 作为域控制器的 VM，并将它们添加到[可用性集][availability-set]中。
 
@@ -104,7 +104,7 @@ AD DS 服务器提供身份验证服务并且是引入注目的攻击目标。 �
 
 [GitHub][github] 上提供了此体系结构的部署。 请注意，整个部署最长可能需要花费两个小时，包括创建 VPN 网关和运行配置 AD DS 的脚本。
 
-### <a name="prerequisites"></a>先决条件
+### <a name="prerequisites"></a>必备组件
 
 1. 克隆、下载 [GitHub 存储库](https://github.com/mspnp/identity-reference-architectures)的 zip 文件或创建其分库。
 

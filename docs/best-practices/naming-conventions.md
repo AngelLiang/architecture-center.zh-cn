@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 9f14b47a9659ad0b7451d106168f4d7b5a6ab0c7
-ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
-ms.translationtype: HT
+ms.openlocfilehash: 87869d1b38d2b4a71cd5b604436e04deab993131
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55782075"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58420016"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Azure 资源的命名约定
 
@@ -84,6 +84,7 @@ Azure 中的每个资源或服务类型强制实施一组命名限制和范围�
 |资源组 |订阅 |1-90 |不区分大小写 |与[此处](/rest/api/resources/resourcegroups/createorupdate)所述正则表达式匹配的字母数字、下划线、括号、连字符、句点（位于末尾的除外）以及 Unicode 字符。 |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |可用性集 |资源组 |1-80 |不区分大小写 |字母数字、下划线和连字符 |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |标记 |关联的实体 |512（名称）、256（值） |不区分大小写 |字母数字、除 `<`、`>`、`%`、`&`、`\`、`?`、`/` 之外的特殊字符。 请参阅[此处](/azure/azure-resource-manager/resource-group-using-tags)的限制。 |`"key" : "value"` |`"department" : "Central IT"` |
+|Web 应用 |全局 |1-60 |不区分大小写 |字母数字和连字符 |`<app_name>-<source-slot-name>` |`contoso-staging` |
 
 ### <a name="compute"></a>计算
 
@@ -128,6 +129,12 @@ Azure 中的每个资源或服务类型强制实施一组命名限制和范围�
 | 实体 | 范围 | Length | 大小写 | 有效的字符 | 建议的模式 | 示例 |
 | --- | --- | --- | --- | --- | --- | --- |
 |容器注册表 | 全局 |5-50 |不区分大小写 | 字母数字 |`<service short name>registry` |`app1registry` |
+
+### <a name="service-bus"></a>服务总线
+
+| 实体 | 范围 | Length | 大小写 | 有效的字符 | 建议的模式 | 示例 |
+| --- | --- | --- | --- | --- | --- | --- |
+|服务总线命名空间 | 全局 |6-50 |不区分大小写 | 字母数字、 连字符，必须使用 leter; 启动请参阅[此处](/rest/api/servicebus/create-namespace)有关详细信息。 |`<service short name>-bus` |`app1-bus` |
 
 ## <a name="organize-resources-with-tags"></a>使用标记组织资源
 

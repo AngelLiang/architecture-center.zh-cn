@@ -11,12 +11,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: bf62544028741d500e9c4172d4ac0206c95cb919
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 5fe966f657782b41ec1926d0fd4bb83eb7a3c0fb
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241348"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58420033"
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>在 Azure 中创建 Active Directory 域服务 (AD DS) 资源林
 
@@ -44,10 +44,7 @@ Active Directory 域服务 (AD DS) 以分层结构存储标识信息。 分层�
 
 ## <a name="recommendations"></a>建议
 
-有关在 Azure 中实施 Active Directory 的具体建议，请参阅以下文章：
-
-- [将 Active Directory 域服务 (AD DS) 扩展到 Azure][adds-extend-domain]。
-- [在 Azure 虚拟机上部署 Windows Server Active Directory 的指南][ad-azure-guidelines]。
+在 Azure 中实现 Active Directory 的具体建议，请参阅[扩展 Active Directory 域服务 (AD DS) 到 Azure][adds-extend-domain]。
 
 ### <a name="trust"></a>信任
 
@@ -94,7 +91,7 @@ Active Directory 能够针对属于同一域的域控制器自动进行缩放。
 
 [GitHub][github] 上提供了此体系结构的部署。 请注意，整个部署最长可能需要花费两个小时，包括创建 VPN 网关和运行配置 AD DS 的脚本。
 
-### <a name="prerequisites"></a>先决条件
+### <a name="prerequisites"></a>必备组件
 
 1. 克隆、下载 [GitHub 存储库](https://github.com/mspnp/identity-reference-architectures)的 zip 文件或创建其分库。
 
