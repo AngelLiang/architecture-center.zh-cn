@@ -7,14 +7,14 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 1b6f10edf098ed8d9fa14c16de113fc765372835
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: cba8d272ddbdbf2c2da94f68b288e9fb79be7de2
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58231418"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887805"
 ---
-# <a name="batch-scoring-of-spark-models-on-azure-databricks"></a>Azure Databricks 上 Spark 模型的批量评分
+# <a name="batch-scoring-of-spark-machine-learning-models-on-azure-databricks"></a>在 Azure Databricks 上的 Spark 机器学习批处理评分模型
 
 此参考体系结构展示了如何生成可缩放的解决方案，以使用 Azure Databricks（更适合 Azure 的基于 Apache Spark 的分析平台）定期对 Apache Spark 分类模型进行批量评分。 可以将此解决方案用作能推广到其他应用场景中的模板。
 

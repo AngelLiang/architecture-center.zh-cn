@@ -8,14 +8,14 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 85d04f179b988fd5b00b361149f2170d13608e6d
-ms.sourcegitcommit: 700a4f6ce61b1ebe68e227fc57443e49282e35aa
-ms.translationtype: HT
+ms.openlocfilehash: a1c0701185c85f8e7bcbc183b32c4834529fc524
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55887380"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887856"
 ---
-# <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Azure 上针对深度学习模型的批处理计分
+# <a name="batch-scoring-of-deep-learning-models-on-azure"></a>Batch 在 Azure 上的深度学习模型评分
 
 本参考体系结构演示如何使用 Azure 机器学习将神经样式传输应用于视频。 样式传输是一种深度学习技术，它以另一个图像的样式构成现有图像。 可概括此体系结构，将它用于任何为深度学习使用批处理计分的场景。 [**部署此解决方案**](#deploy-the-solution)。
 
@@ -23,9 +23,13 @@ ms.locfileid: "55887380"
 
 **场景**：媒体组织的一个视频需要改变样式，使其看起来像一幅特定的画。 该组织希望能以自动化的方式及时将这种样式应用于视频的所有帧。 有关神经样式传输算法的详细背景信息，请参阅[使用卷积神经网络的图像样式传输][image-style-transfer] (PDF)。
 
+<!-- markdownlint-disable MD033 -->
+
 | 样式图像： | 输入/内容视频： | 输出视频： |
 |--------|--------|---------|
 | <img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/style_image.jpg" width="300"> | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video.mp4 "输入视频") 单击以观看视频 | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video.mp4 "输出视频") 单击以观看视频 |
+
+<!-- markdownlint-enable MD033 -->
 
 这个用于参考的体系结构专为 Azure 存储中存在新媒体时而触发的工作负载而设计。
 
@@ -42,7 +46,7 @@ ms.locfileid: "55887380"
 
 ### <a name="compute"></a>计算
 
-**[Azure 机器学习服务][amls]** 使用 Azure 机器学习管道创建可再现的且易于管理的计算序列。 此外，它还提供名为 [Azure 机器学习计算][aml-compute]的托管计算目标（管道计算可在其上运行），用于对机器学习模型进行训练、部署和评分。 
+**[Azure 机器学习服务][amls]** 使用 Azure 机器学习管道创建可再现的且易于管理的计算序列。 此外，它还提供名为 [Azure 机器学习计算][aml-compute]的托管计算目标（管道计算可在其上运行），用于对机器学习模型进行训练、部署和评分。
 
 ### <a name="storage"></a>存储
 
@@ -64,21 +68,21 @@ ms.locfileid: "55887380"
 
 ## <a name="performance-considerations"></a>性能注意事项
 
-### <a name="gpu-vs-cpu"></a>GPU 与 CPU
+### <a name="gpu-versus-cpu"></a>CPU 还是 GPU
 
 对于深度学习工作负载，GPU 通常会远远超出 CPU，以至于通常需要相当大的 CPU 群集才可获得可比的性能。 虽然在此体系结构中可选择只使用 CPU，但 GPU 将提供更好的成本/性能配置文件。 我们建议使用最新的 [NCv3 系列] VM 大小 GPU 的 GPU 优化 VM。
 
 默认情况下，并非所有区域都启用 GPU。 确保选择启用了 GPU 的区域。 此外，对于 GPU 优化的 VM，订阅的内核默认配额为零。 可通过打开支持请求来提高此配额。 确保订阅有足够的配额来运行工作负载。
 
-### <a name="parallelizing-across-vms-vs-cores"></a>跨 VM 和内核并行执行
+### <a name="parallelizing-across-vms-versus-cores"></a>在 Vm 上与内核并行执行
 
 将样式传输进程作为批处理作业运行时，主要在 GPU 上运行的作业必须在 VM 间并行化。 可使用两种方法：可使用具有单个 GPU 的 VM 创建更大的群集，也可使用具有许多 GPU 的 VM 创建较小的群集。
 
 对于此工作负载，这两个选项的性能相当。 使用更少的 VM 且每个 VM 具有更多的 GPU，可帮助减少数据移动。 但是，此工作负载的每个作业的数据量并不是很大，因此 blob 存储不会受到太多限制。
 
-### <a name="mpi-step"></a>MPI 步骤 
+### <a name="mpi-step"></a>MPI 步骤
 
-在 Azure 机器学习中创建管道时，用于执行并行计算的步骤之一是 MPI 步骤。 MPI 步骤有助于在可用节点之间均匀拆分数据。 只有在所有请求的节点均已准备就绪时，MPI 步骤才会执行。 如果某个节点发生故障或被抢占（如果是低优先级虚拟机），则必须重新运行 MPI 步骤。 
+在 Azure 机器学习中创建管道时，用于执行并行计算的步骤之一是 MPI 步骤。 MPI 步骤有助于在可用节点之间均匀拆分数据。 只有在所有请求的节点均已准备就绪时，MPI 步骤才会执行。 如果某个节点发生故障或被抢占（如果是低优先级虚拟机），则必须重新运行 MPI 步骤。
 
 ## <a name="security-considerations"></a>安全注意事项
 
@@ -94,7 +98,7 @@ ms.locfileid: "55887380"
 
 ### <a name="securing-your-computation-in-a-virtual-network"></a>保护虚拟网络中的计算
 
-部署机器学习计算群集时，可将群集配置为在[虚拟网络][virtual-network]的子网中进行预配。 这样，群集中的计算节点便可安全地与其他虚拟机通信。 
+部署机器学习计算群集时，可将群集配置为在[虚拟网络][virtual-network]的子网中进行预配。 这样，群集中的计算节点便可安全地与其他虚拟机通信。
 
 ### <a name="protecting-against-malicious-activity"></a>防止恶意活动
 
@@ -136,7 +140,6 @@ Azure 机器学习自动将所有 stdout/stderr 记录到关联的 Blob 存储�
 
 > [!NOTE]
 > 也可以使用 Azure Kubernetes 服务部署适用于深度学习模型的批量评分体系结构。 遵循此 [Github 存储库][deployment2]中所述的步骤。
-
 
 <!-- links -->
 

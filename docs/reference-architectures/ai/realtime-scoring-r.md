@@ -7,14 +7,14 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 00bea3cae0c3d2f0fea2babd7b0157382cf9890a
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 5f3cc62c81c9ef9e5c3c27b1d66badd3e481c228
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248682"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887839"
 ---
-# <a name="real-time-scoring-of-r-machine-learning-models"></a>R 机器学习模型的实时评分
+# <a name="real-time-scoring-of-r-machine-learning-models-on-azure"></a>Azure 上 R 机器学习模型的实时评分
 
 本参考体系结构演示如何使用 Azure Kubernetes 服务 (AKS) 中运行的 Microsoft Machine Learning Server 在 R 中实施实时（同步）预测服务。 本体系结构是一个通用的体系结构，适用于在 R 中生成的、要作为实时服务部署的任何预测模型。 **[部署此解决方案][github]**。
 
