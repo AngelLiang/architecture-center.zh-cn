@@ -3,18 +3,20 @@ title: 使用仪表板直观显示 Azure Databricks 指标
 description: 如何部署 Grafana 仪表板来监视 Azure Databricks 中的性能
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: dbc04b00a781dd20c3224b5a031a8d98ddadce94
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: 36fcd93f6ca757e8e750d0fcbbdf0311c08560b0
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503381"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887822"
 ---
 # <a name="use-dashboards-to-visualize-azure-databricks-metrics"></a>使用仪表板直观显示 Azure Databricks 指标
 
+本文介绍如何设置 Grafana 仪表板，监视 Azure Databricks 作业有关的性能问题。
+
 [Azure Databricks](/azure/azure-databricks/)是快速、 功能强大，和协作[Apache Spark](https://spark.apache.org/)– 基于分析服务，轻松地快速开发和部署大数据分析和人工智能 (AI) 解决方案。 监视是运行在生产环境中的 Azure Databricks 工作负荷的关键组件。 第一步是收集到用于分析的工作区的指标。 在 Azure 中，用于管理日志数据的最佳解决方案是[Azure Monitor](/azure/azure-monitor/)。 Azure Databricks 本身不支持将日志数据发送到 Azure monitor，但[此功能的库](https://github.com/mspnp/spark-monitoring)现已推出[Github](https://github.com)。
 
-此库启用日志记录的 Azure Databricks 服务度量值，以及 Apache Spark 流式处理查询事件指标的结构。 一旦您已成功部署到 Azure Databricks 群集中的此库，可以进一步部署一套[Azure Monitor](/azure/azure-monitor/)或[Grafana](https://granfana.com)可以对生产环境的一部分部署的仪表板环境。 本文档介绍了常见的性能问题以及如何确定使用这些仪表板对其类型。
+此库启用日志记录的 Azure Databricks 服务度量值，以及 Apache Spark 流式处理查询事件指标的结构。 一旦您已成功部署到 Azure Databricks 群集中的此库，可以进一步部署一套[Grafana](https://granfana.com)仪表板，你可以将其部署为生产环境的一部分。
 
 ![仪表板的屏幕截图](./_images/dashboard-screenshot.png)
 
@@ -188,6 +190,11 @@ Azure Log Analytics 和 Grafana 仪表板包括一系列时间序列的可视化
 ### <a name="shuffle-metrics"></a>随机选择指标
 
 最终的可视化效果显示数据无序播放与结构化流查询跨所有执行程序相关的指标集。 其中包括无序播放字节读取、 无序播放写入的字节数、 无序播放内存和磁盘使用情况在查询中使用文件系统位置。
+
+## <a name="next-steps"></a>后续步骤
+
+> [!div class="nextstepaction"]
+> [对性能瓶颈进行故障排除](./performance-troubleshooting.md)
 
 <!-- links -->
 

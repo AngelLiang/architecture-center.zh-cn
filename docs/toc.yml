@@ -557,6 +557,16 @@ items:
       href: service-fabric/migrate-from-cloud-services.md
     - name: 重构 Service Fabric 应用程序
       href: service-fabric/refactor-migrated-app.md
+  - name: 监视 Azure Databricks
+    items:
+    - name: 概述
+      href: databricks-monitoring/index.md
+    - name: 配置 Databricks 以将指标发送到 Azure Monitor
+      href: databricks-monitoring/configure-cluster.md
+    - name: 将 Databricks 应用程序日志发送到 Azure Monitor
+      href: databricks-monitoring/application-logs.md
+    - name: 使用仪表板将 Databricks 指标可视化
+      href: databricks-monitoring/dashboards.md
 - name: 设计评审框架
   items:
   - name: 复原设计
@@ -851,9 +861,9 @@ items:
           href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
       - name: 日志和报告
         href: cloud-adoption/decision-guides/log-and-report/overview.md
-ms.openlocfilehash: 06737190911118bab802d8141d959b04f6589f0a
-ms.sourcegitcommit: ea97ac004c38c6b456794c1a8eef29f8d2b77d50
+ms.openlocfilehash: 861170224f9575dc5e45d993678bda482b0ed944
+ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/26/2019
-ms.locfileid: "58489209"
+ms.lasthandoff: 03/27/2019
+ms.locfileid: "58503241"
