@@ -3,14 +3,14 @@ title: 使用 Azure Monitor 监视 Azure Databricks
 description: 一种 scala 库，用于在 Azure Log Analytics 中启用 Azure Databricks 的监视功能
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: 6d3d17b2e49919aea7bb08f59e19032c1c8bdafd
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: 4544d3abc3264ec459a80ac1a61a912e6d30d6b2
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503259"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887686"
 ---
-# <a name="monitoring-azure-databricks-with-azure-monitor"></a>使用 Azure Monitor 监视 Azure Databricks
+# <a name="monitoring-azure-databricks"></a>监视 Azure Databricks
 
 [Azure Databricks](/azure/azure-databricks/) 是一种功能强大的基于 [Apache Spark](https://spark.apache.org/) 的快速分析服务，用于轻松地快速开发和部署大数据分析和人工智能 (AI) 解决方案。 许多用户在其 Azure Databricks 解决方案中充分利用了笔记本的简单性。 对于需要更可靠的计算选项的用户，Azure Databricks 支持分布式执行自定义应用程序代码。
 
