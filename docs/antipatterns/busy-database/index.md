@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: 7d3fe47407eff7168dfd227a1dd1bd5917c7d431
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344846"
 ---
-
 # <a name="busy-database-antipattern"></a>繁忙数据库对立模式
 
 将处理工作量卸载到数据库服务器可能会导致将绝大部分时间花费在运行代码上，而不是花费在响应存储和检索数据的请求上。

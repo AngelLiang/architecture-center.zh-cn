@@ -7,12 +7,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: 7fd0e1bd42266b5e5718be4519352d99b58c0584
-ms.sourcegitcommit: 644c2692a80e89648a80ea249fd17a3b17dc0818
+ms.openlocfilehash: 4f33a3bef236ce157955f6348e7befea02a8ce80
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/11/2019
-ms.locfileid: "55987149"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58420067"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>设计适用于 Azure 的可复原应用程序
 
@@ -155,8 +155,8 @@ RTO 和 RPO 是系统的非功能性要求，应该符合业务要求。 若要�
 
 例如，如果单个区域 SLA 为 99.95%，则
 
-- 两个区域的组合 SLA = (1 &minus; (0.9995 ^ 2)) = 99.999975%
-- 四个区域的组合 SLA = (1 &minus; (0.9995 ^ 4)) = 99.999999%
+- 两个区域的组合 SLA = (1 &minus; (1 &minus; 0.9995) ^ 2) = 99.999975%
+- 四个区域的组合 SLA = (1 &minus; (1 &minus; 0.9995) ^ 4) = 99.999999%
 
 此外还必须考虑[流量管理器的 SLA][tm-sla]。 在撰写本文时，流量管理器的 SLA 为 99.99%。
 
@@ -305,9 +305,9 @@ Azure 提供许多功能用于实现每个故障级别的应用程序冗余，�
 
 要害的一点在于，手动部署容易出错。 因此，我们建议采用可按需运行的自动化幂等过程，在某个环节出错时，可以重新运行。
 
-* 若要自动预配 Azure 资源，可以使用 [Terraform][terraform]、[Ansible][ansible]、[Chef][chef]、[Puppet][puppet]、[PowerShell][powershell]、[CLI][cli] 或 [Azure 资源管理器模板][template-deployment]
-* 使用 [Azure 自动化 Desired State Configuration][dsc] (DSC) 配置 VM。 对于 Linux VM，可以使用 [Cloud-init][cloud-init]。
-* 可以使用 [Azure DevOps Services][azure-devops-services] 或 [Jenkins][jenkins] 自动完成应用程序部署。
+- 若要自动预配 Azure 资源，可以使用 [Terraform][terraform]、[Ansible][ansible]、[Chef][chef]、[Puppet][puppet]、[PowerShell][powershell]、[CLI][cli] 或 [Azure 资源管理器模板][template-deployment]
+- 使用 [Azure 自动化 Desired State Configuration][dsc] (DSC) 配置 VM。 对于 Linux VM，可以使用 [Cloud-init][cloud-init]。
+- 可以使用 [Azure DevOps Services][azure-devops-services] 或 [Jenkins][jenkins] 自动完成应用程序部署。
 
 “基础结构即代码”和“不可变基础结构”是与可复原部署相关的两个概念。
 
@@ -322,18 +322,19 @@ Azure 提供许多功能用于实现每个故障级别的应用程序冗余，�
 不管采用哪种方法，都应该确保在新版本无法正常运行的情况下，可以回滚到上次已知正常的部署。 另请制定一个策略，以便回退数据库更改以及针对依赖的服务所做的任何其他更改。 如果出错，应用程序日志必须指出哪个版本导致了错误。
 
 ## <a name="monitor-to-detect-failures"></a>监视以检测故障
-监视对于复原能力至关重要。 如果某个组件发生故障，我们需要知道该组件已发生故障，并深入分析故障原因。 
 
-监视大规模分布式系统是一个很大的难题。 假设某个应用程序在几十个 VM 上运行 &mdash; 逐个地登录每个 VM，仔细查看日志文件，再尝试排查问题的做法不切实际。 另外，VM 实例的数目可能不是静态的。VM 会随着应用程序的缩减和扩展而不断添加或删除，有时，某个实例可能会发生故障，需要重新预配。 此外，典型的云应用程序可能会使用多个数据存储（Azure 存储、SQL 数据库、Cosmos DB、Redis 缓存），而单个用户操作可能跨多个子系统。 
+监视对于复原能力至关重要。 如果某个组件发生故障，我们需要知道该组件已发生故障，并深入分析故障原因。
+
+监视大规模分布式系统是一个很大的难题。 假设某个应用程序在几十个 VM 上运行 &mdash; 逐个地登录每个 VM，仔细查看日志文件，再尝试排查问题的做法不切实际。 另外，VM 实例的数目可能不是静态的。VM 会随着应用程序的缩减和扩展而不断添加或删除，有时，某个实例可能会发生故障，需要重新预配。 此外，典型的云应用程序可能会使用多个数据存储（Azure 存储、SQL 数据库、Cosmos DB、Redis 缓存），而单个用户操作可能跨多个子系统。
 
 可将监视过程视为包含多个不同阶段的管道：
 
 ![复合 SLA](./images/monitoring.png)
 
-* **检测** 要监视的原始数据来自各种源，包括[应用程序日志](/azure/application-insights/app-insights-overview?toc=/azure/azure-monitor/toc.json)、[操作系统性能指标](/azure/azure-monitor/platform/agents-overview)、[Azure 资源](/azure/monitoring-and-diagnostics/monitoring-supported-metrics?toc=/azure/azure-monitor/toc.json)、[Azure 订阅](/azure/service-health/service-health-overview)和 [Azure 租户](/azure/active-directory/reports-monitoring/howto-integrate-activity-logs-with-log-analytics)。 大多数 Azure 服务会公开那些经配置后可以用来分析和确定问题原因的[指标](/azure/azure-monitor/platform/data-collection)。
-* **收集和存储**。 可以使用各种格式将原始检测数据保存在不同的位置（例如，应用程序跟踪日志、IIS 日志、性能计数器）。 可以收集、合并这些不同的源并将其放入可靠的数据存储，例如 Application Insights、Azure Monitor 指标、服务运行状况、存储帐户和 Log Analytics。
-* **分析和诊断**。 将这些不同数据存储中的数据合并以后，可对其进行分析，以排查问题并提供应用程序运行状况的总体视图。 通常情况下，可以使用 [Kusto 查询](/azure/log-analytics/log-analytics-queries)在 Application Insights 和 Log Analytics 中搜索数据。 Azure 顾问提供的建议着重于[复原能力](/azure/advisor/advisor-high-availability-recommendations)和[优化](/azure/advisor/advisor-performance-recommendations)。 
-* **可视化和警报**。 在此阶段，将以适当的方式呈现遥测数据，使操作员能够快速发现问题或趋势。 示例包括仪表板或电子邮件警报。 使用 [Azure 仪表板](/azure/azure-portal/azure-portal-dashboards)时，可以生成单一窗格的玻璃视图，其中的监视图源自 Application Insights、Log Analytics、Azure Monitor 指标和服务运行状况。 使用 [Azure Monitor 警报](/azure/monitoring-and-diagnostics/monitoring-overview-alerts?toc=/azure/azure-monitor/toc.json)时，可以创建有关服务运行状况和资源运行状况的警报。
+- **检测** 要监视的原始数据来自各种源，包括[应用程序日志](/azure/application-insights/app-insights-overview?toc=/azure/azure-monitor/toc.json)、[操作系统性能指标](/azure/azure-monitor/platform/agents-overview)、[Azure 资源](/azure/monitoring-and-diagnostics/monitoring-supported-metrics?toc=/azure/azure-monitor/toc.json)、[Azure 订阅](/azure/service-health/service-health-overview)和 [Azure 租户](/azure/active-directory/reports-monitoring/howto-integrate-activity-logs-with-log-analytics)。 大多数 Azure 服务会公开那些经配置后可以用来分析和确定问题原因的[指标](/azure/azure-monitor/platform/data-collection)。
+- **收集和存储**。 可以使用各种格式将原始检测数据保存在不同的位置（例如，应用程序跟踪日志、IIS 日志、性能计数器）。 可以收集、合并这些不同的源并将其放入可靠的数据存储，例如 Application Insights、Azure Monitor 指标、服务运行状况、存储帐户和 Log Analytics。
+- **分析和诊断**。 将这些不同数据存储中的数据合并以后，可对其进行分析，以排查问题并提供应用程序运行状况的总体视图。 通常情况下，可以使用 [Kusto 查询](/azure/log-analytics/log-analytics-queries)在 Application Insights 和 Log Analytics 中搜索数据。 Azure 顾问提供的建议着重于[复原能力](/azure/advisor/advisor-high-availability-recommendations)和[优化](/azure/advisor/advisor-performance-recommendations)。
+- **可视化和警报**。 在此阶段，将以适当的方式呈现遥测数据，使操作员能够快速发现问题或趋势。 示例包括仪表板或电子邮件警报。 使用 [Azure 仪表板](/azure/azure-portal/azure-portal-dashboards)时，可以生成单一窗格的玻璃视图，其中的监视图源自 Application Insights、Log Analytics、Azure Monitor 指标和服务运行状况。 使用 [Azure Monitor 警报](/azure/monitoring-and-diagnostics/monitoring-overview-alerts?toc=/azure/azure-monitor/toc.json)时，可以创建有关服务运行状况和资源运行状况的警报。
 
 监视与故障检测不同。 例如，应用程序可以检测暂时性错误然后重试，这样就不会导致停机。 但是，它还应该记录重试操作，使我们能够监视错误率，了解应用程序的大致运行状况。
 
@@ -348,17 +349,19 @@ Azure 提供许多功能用于实现每个故障级别的应用程序冗余，�
 有关监视和诊断的详细信息，请参阅[监视和诊断指南][monitoring-guidance]。
 
 ## <a name="respond-to-failures"></a>对故障做出响应
+
 前面的部分着重于自动化恢复策略，这是实现高可用性的关键所在。 但是，有时需要人工干预。
 
-* **警报**。 监视应用程序中是否出现了可能需要主动干预的警示。 例如，如果看到 SQL 数据库或 Cosmos DB 在不断地限制应用程序，则可能需要增大数据库容量或优化查询。 在此示例中，即使应用程序能够以透明方式处理限制错误，遥测也仍应该引发警报，使我们能够跟进问题。 建议针对服务限制和配额阈值配置有关 Azure 资源指标和诊断日志的警报。 建议设置有关指标的警报，因为与诊断日志相比，其延迟更低。 另外，Azure 可以通过[资源运行状况](https://docs.microsoft.com/en-us/azure/service-health/resource-health-checks-resource-types)提供一些现成的运行状况，这有助于诊断 Azure 服务的限制问题。    
-* **故障转移**。 为应用程序配置灾难恢复策略。 相应的策略取决于 SLA。 如需更多方案，则进行主动-被动实现就可以了。 有关详细信息，请参阅[灾难恢复的部署拓扑](./disaster-recovery-azure-applications.md#deployment-topologies-for-disaster-recovery)。 大多数 Azure 服务允许进行手动或自动故障转移。 例如，在 IaaS 应用程序中，将 [Azure Site Recovery](/azure/site-recovery/azure-to-azure-architecture) 用于 Web 和逻辑层，将 [SQL AlwaysOn 可用性组](/azure/virtual-machines/windows/sql/virtual-machines-windows-portal-sql-availability-group-dr)用于数据库层。 可以通过[流量管理器](https://docs.microsoft.com/en-us/azure/traffic-manager/traffic-manager-overview)跨区域进行自动故障转移。
-* **操作就绪性测试**。 针对故障转移到次要区域和故障回复到主要区域的方案执行操作就绪性测试。 许多 Azure 服务支持通过手动故障转移或测试性故障转移进行灾难恢复演练。 也可通过关闭或删除服务来模拟中断。
-* **数据一致性检查**。 如果数据存储发生故障，原因可能是该存储再次可用后存在数据不一致情况，尤其是数据是复制过来的情况下。 对于提供跨区域复制的 Azure 服务，可以通过查看 RTO 和 RPO 来了解故障时预期会出现的数据丢失情况。 查看 Azure 服务的 SLA，了解是可以由用户手动启动跨区域故障转移，还是只能由 Microsoft 启动它。 某些服务由 Microsoft 决定何时执行故障转移。 Microsoft 会评估主要区域的数据恢复的优先级，只有在认为主要区域的数据无法恢复的情况下才将其故障转移到次要区域。 例如，[异地冗余存储](/azure/storage/common/storage-redundancy-grs)和 [Key Vault](/azure/key-vault/key-vault-disaster-recovery-guidance) 遵循这种模式。
-* **从备份还原**。 某些情况下，只能在同一区域从备份进行还原。 [Azure VM 备份](/azure/backup/backup-azure-vms-first-look-arm)就是这种情况。 其他 Azure 服务提供异地复制备份，例如 [Redis 缓存异地副本](/azure/redis-cache/cache-how-to-geo-replication)。 备份的目的是防止意外删除或破坏数据，在出现这种情况时将应用程序还原到以前的正常运行版本。 因此，虽然备份可以在某些情况下充当灾难恢复解决方案，但反之却不尽然：灾难恢复不能防止意外删除或破坏数据。  
+- **警报**。 监视应用程序中是否出现了可能需要主动干预的警示。 例如，如果看到 SQL 数据库或 Cosmos DB 在不断地限制应用程序，则可能需要增大数据库容量或优化查询。 在此示例中，即使应用程序能够以透明方式处理限制错误，遥测也仍应该引发警报，使我们能够跟进问题。 建议针对服务限制和配额阈值配置有关 Azure 资源指标和诊断日志的警报。 建议设置有关指标的警报，因为与诊断日志相比，其延迟更低。 另外，Azure 可以通过[资源运行状况](/azure/service-health/resource-health-checks-resource-types)提供一些现成的运行状况，这有助于诊断 Azure 服务的限制问题。
+- **故障转移**。 为应用程序配置灾难恢复策略。 相应的策略取决于 SLA。 对于大多数方案来说，进行主动-被动实现就可以了。 有关详细信息，请参阅[灾难恢复的部署拓扑](./disaster-recovery-azure-applications.md#deployment-topologies-for-disaster-recovery)。 大多数 Azure 服务允许进行手动或自动故障转移。 例如，在 IaaS 应用程序中，将 [Azure Site Recovery](/azure/site-recovery/azure-to-azure-architecture) 用于 Web 和逻辑层，将 [SQL AlwaysOn 可用性组](/azure/virtual-machines/windows/sql/virtual-machines-windows-portal-sql-availability-group-dr)用于数据库层。 可以通过[流量管理器](/azure/traffic-manager/traffic-manager-overview)跨区域进行自动故障转移。
+- **操作就绪性测试**。 针对故障转移到次要区域和故障回复到主要区域的方案执行操作就绪性测试。 许多 Azure 服务支持通过手动故障转移或测试性故障转移进行灾难恢复演练。 也可通过关闭或删除服务来模拟中断。
+- **数据一致性检查**。 如果数据存储发生故障，原因可能是该存储再次可用后存在数据不一致情况，尤其是数据是复制过来的情况下。 对于提供跨区域复制的 Azure 服务，可以通过查看 RTO 和 RPO 来了解故障时预期会出现的数据丢失情况。 查看 Azure 服务的 SLA，了解是可以由用户手动启动跨区域故障转移，还是只能由 Microsoft 启动它。 某些服务由 Microsoft 决定何时执行故障转移。 Microsoft 会评估主要区域的数据恢复的优先级，只有在认为主要区域的数据无法恢复的情况下才将其故障转移到次要区域。 例如，[异地冗余存储](/azure/storage/common/storage-redundancy-grs)和 [Key Vault](/azure/key-vault/key-vault-disaster-recovery-guidance) 遵循这种模式。
+- **从备份还原**。 某些情况下，只能在同一区域从备份进行还原。 [Azure VM 备份](/azure/backup/backup-azure-vms-first-look-arm)就是这种情况。 其他 Azure 服务提供异地复制备份，例如 [Redis 缓存异地副本](/azure/redis-cache/cache-how-to-geo-replication)。 备份的目的是防止意外删除或破坏数据，在出现这种情况时将应用程序还原到以前的正常运行版本。 因此，虽然备份可以在某些情况下充当灾难恢复解决方案，但反之却不尽然：灾难恢复不能防止意外删除或破坏数据。  
 
 阐述和测试灾难恢复计划。 评估应用程序故障造成的业务影响。 尽量将过程自动化，并阐述所有手动步骤，例如，手动故障转移或者从备份还原数据的步骤。 定期测试灾难恢复过程，以验证并改进计划。 针对应用程序使用的 Azure 服务设置警报。
 
 ## <a name="summary"></a>摘要
+
 本文整体性地讨论了复原能力，并将重点放在云的某些独特难题上。 这些难题包括云计算的分散性、市售硬件的使用，以及暂时性网络故障的存在。
 
 下面是本文阐述的要点：

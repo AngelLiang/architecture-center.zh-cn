@@ -6,8 +6,13 @@ layout: LandingPage
 ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 57f28808d3c49c74bc010133c670a186206a4466
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344523"
 ---
-
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Azure 虚拟数据中心和企业控制平面
 
 Azure 虚拟数据中心是充分利用 Azure 云平台的功能，同时遵循现有安全和网络政策的一种方式。 将企业工作负荷部署到云时，IT 组织和业务单位必须在监管与开发人员敏捷性之间实现平衡。 Azure 虚拟数据中心提供的模型可实现这种平衡，并将重心放在监管上。

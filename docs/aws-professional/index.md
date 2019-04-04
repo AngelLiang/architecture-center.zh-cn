@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: c61758494435f61814953ab5ba48d8fed1e709ab
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 89434c0ce72b9f061e4b092354b1dcbaf683b7c6
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897586"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346308"
 ---
 # <a name="azure-for-aws-professionals"></a>面向 AWS 专业人员的 Azure
 
@@ -300,9 +300,9 @@ Azure 通过其 [ExpressRoute](https://azure.microsoft.com/documentation/service
 
 Azure 提供多个与 AWS 的关系数据库服务 (RDS) 功能相同的不同关系数据库服务。
 
-- [SQL 数据库](https://docs.microsoft.com/azure/sql-database/sql-database-technical-overview)
-- [Azure Database for MySQL](https://docs.microsoft.com/azure/mysql/overview)
-- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/overview)
+- [SQL 数据库](/azure/sql-database/sql-database-technical-overview)
+- [Azure Database for MySQL](/azure/mysql/overview)
+- [Azure Database for PostgreSQL](/azure/postgresql/overview)
 
 可以使用 Azure VM 实例部署其他数据库引擎，例如 [SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/)、[Oracle](https://azure.microsoft.com/campaigns/oracle/) 和 [MySQL](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-classic-mysql-2008r2/)。
 

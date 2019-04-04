@@ -6,8 +6,13 @@ ms.date: 07/21/2017
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
+ms.openlocfilehash: be906106fb12c381d57ad40ae22e748dcff9722f
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346070"
 ---
-
 # <a name="manage-identity-in-multitenant-applications"></a>管理多租户应用程序中的标识
 
 本系列文章介绍有关使用 Azure AD 进行身份验证和标识管理时，适用于多租户的最佳做法。

@@ -5,12 +5,12 @@ layout: LandingPage
 ms.topic: landing-page
 ms.date: 09/28/2018
 google-site-verification: b-xRLveOzJ9oSOh37wgRTRB2lMOoFY8HiHf9_0DIawE
-ms.openlocfilehash: 3c48ba77b7f97c6047f5d1441a22f2bd79ee0a3e
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: e247985aa92e1c2bf3cb4d43514f4d06250f1141
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898283"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419965"
 ---
 # <a name="azure-architecture-center"></a>Azure 体系结构中心
 
@@ -104,6 +104,26 @@ ms.locfileid: "55898283"
                         <div class="cardText">
                             <h3>Azure 数据体系结构指南</h3>
                             <p>在 Microsoft Azure 上设计以数据为中心的解决方案的结构化方法。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <!-- HPC Topic Page -->
+    <li>
+        <a href="./topics/high-performance-computing/index.md">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/hpc-blue-multi.svg" alt="" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>Azure 上的高性能计算 (HPC)</h3>
+                            <p>在 Azure 上构建高性能计算 (HPC) 应用程序的设计指南和组件信息。</p>
                         </div>
                     </div>
                 </div>
@@ -210,26 +230,6 @@ ms.locfileid: "55898283"
             </div>
         </a>
     </li>
-    <!-- Azure Virtual Datacenter -->
-    <li>
-        <a href="./vdc/index.md">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/virtual-datacenter.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Azure 虚拟数据中心</h3>
-                            <p>将企业工作负荷部署到云时，组织必须在监管与开发人员敏捷性之间实现平衡。 Azure 虚拟数据中心提供的模型可实现这种平衡，并将重心放在监管上。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
         <!-- Azure for AWS Professionals -->
     <li>
         <a href="/azure/architecture/aws-professional">
@@ -264,6 +264,26 @@ ms.locfileid: "55898283"
                         <div class="cardText">
                             <h3>性能对立模式</h3>
                             <p>如何检测和解决云应用程序中性能和可伸缩性问题的原因。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <!-- Azure Virtual Datacenter -->
+    <li>
+        <a href="./vdc/index.md">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/virtual-datacenter.svg" alt="" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>Azure 虚拟数据中心</h3>
+                            <p>将企业工作负荷部署到云时，组织必须在监管与开发人员敏捷性之间实现平衡。 Azure 虚拟数据中心提供的模型可实现这种平衡，并将重心放在监管上。</p>
                         </div>
                     </div>
                 </div>

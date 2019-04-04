@@ -6,8 +6,13 @@ ms.date: 06/09/2017
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: reference-architecture
+ms.openlocfilehash: 108d82066d9867682c246c4de802849e2e561cbc
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343826"
 ---
-
 # <a name="extend-azure-resource-manager-template-functionality"></a>扩展 Azure 资源管理器模板功能
 
 2016 年，Microsoft 模式和实践团队创建了一组 Azure 资源管理器[模板构建基块](https://github.com/mspnp/template-building-blocks/wiki)，旨在简化资源部署。 每个构建基块包含一组预建模板，用于部署不同参数文件指定的资源集。

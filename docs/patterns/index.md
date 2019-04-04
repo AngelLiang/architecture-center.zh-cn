@@ -9,8 +9,13 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: c8fe971e031825632c2bb157bfd23e15f56520a3
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343469"
 ---
-
 # <a name="cloud-design-patterns"></a>云设计模式
 
 这些设计模式可用于在云中构建可靠且可缩放的安全应用程序。

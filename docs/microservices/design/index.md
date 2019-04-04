@@ -7,8 +7,13 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
+ms.openlocfilehash: 15e9aa16c0e2cfccecbfb84d217c275cc99a66fd
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344404"
 ---
-
 # <a name="designing-a-microservices-architecture"></a>设计微服务体系结构
 
 微服务已成为一种流行的体系结构类型，可用于构建可复原、高度可缩放、可独立部署且能快速演变的云应用程序。 但是，微服务不仅仅是一种潮流，我们还需要利用不同的方法来设计和构建应用程序。

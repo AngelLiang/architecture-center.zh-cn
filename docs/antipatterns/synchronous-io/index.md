@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: 1b53806b2939a7c44a8b48c9146d5e86c84d9e2e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343554"
 ---
-
 # <a name="synchronous-io-antipattern"></a>同步 I/O 反模式
 
 在完成 I/O 时阻塞调用线程可能会降低性能并影响纵向可伸缩性。

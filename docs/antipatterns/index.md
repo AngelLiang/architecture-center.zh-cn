@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: 212930368942728fc0be0c9b2af1a90293906b39
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344829"
 ---
-
 # <a name="performance-antipatterns-for-cloud-applications"></a>云应用程序的性能反模式
 
 性能反模式是指在应用程序承受压力时，可能导致可伸缩性问题的某种常见做法。

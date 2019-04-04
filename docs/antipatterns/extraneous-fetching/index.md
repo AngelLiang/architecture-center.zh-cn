@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: c1172531b332854a6d4940c072b61cb3f6bcd7ba
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58345101"
 ---
-
 # <a name="extraneous-fetching-antipattern"></a>请求冗余反模式
 
 检索超出业务运营需要的数据可能会导致不必要的 I/O 开销，并降低响应能力。

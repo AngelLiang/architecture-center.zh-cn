@@ -1,14 +1,19 @@
 ---
 title: Azure 数据架构指南
-description: null
+description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
 layout: LandingPage
 ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
+ms.openlocfilehash: 5fb74c6323f8dc571d827eb9a4c65a6c87d0ae36
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344421"
 ---
-
 # <a name="azure-data-architecture-guide"></a>Azure 数据架构指南
 
 本指南提供了在 Microsoft Azure 上设计以数据为中心的解决方案的结构化方法。 该指南是我们从客户互动中获取并经过验证的做法。

@@ -4,8 +4,13 @@ ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.date: 08/30/2018
+ms.openlocfilehash: 651f59344e7785a8a23e7b56dd67b4c4a3044741
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343724"
 ---
-
 # <a name="azure-application-architecture-guide"></a>Azure 应用程序体系结构指南
 
 本指南演示用于在 Azure 上设计可缩放、可复原且高度可用的应用程序的结构化方法。 该方法基于我们从客户互动中掌握的成熟做法。

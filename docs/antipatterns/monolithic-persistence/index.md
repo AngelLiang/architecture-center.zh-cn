@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: e3d6fbb789e422af22ce54b0defd6bb73099f15a
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346325"
 ---
-
 # <a name="monolithic-persistence-antipattern"></a>整体持久性反模式
 
 将应用程序的所有数据放入单个数据存储可能会降低性能，原因是这会导致资源争用，或者数据存储不很适合某些数据。
