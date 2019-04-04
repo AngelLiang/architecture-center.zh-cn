@@ -2,15 +2,20 @@
 title: 面向 AWS 专业人员的 Azure
 titleSuffix: Azure Architecture Center
 description: 了解 Microsoft Azure 帐户、平台和服务的基础知识。 另外，了解 AWS 与 Azure 平台之间的重要相似之处和差别。 在 Azure 中利用 AWS 方面的经验。
-keywords: 'AWS 专家, Azure 比较, AWS 比较, azure 与 aws 之间的差别, azure 与 aws'
+keywords: AWS 专家, Azure 比较, AWS 比较, azure 与 aws 之间的差别, azure 与 aws
 author: lbrader
 ms.date: 09/19/2018
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: c61758494435f61814953ab5ba48d8fed1e709ab
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897586"
 ---
-
 # <a name="azure-for-aws-professionals"></a>面向 AWS 专业人员的 Azure
 
 本文可帮助 Amazon Web Services (AWS) 专家了解 Microsoft Azure 帐户、平台和服务的基础知识。 其中介绍了 AWS 与 Azure 平台之间的重要相似之处和差别。
@@ -295,9 +300,9 @@ Azure 通过其 [ExpressRoute](https://azure.microsoft.com/documentation/service
 
 Azure 提供多个与 AWS 的关系数据库服务 (RDS) 功能相同的不同关系数据库服务。
 
-- [SQL 数据库](/azure/sql-database/sql-database-technical-overview)
-- [Azure Database for MySQL](/azure/mysql/overview)
-- [Azure Database for PostgreSQL](/azure/postgresql/overview)
+- [SQL 数据库](https://docs.microsoft.com/azure/sql-database/sql-database-technical-overview)
+- [Azure Database for MySQL](https://docs.microsoft.com/azure/mysql/overview)
+- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/overview)
 
 可以使用 Azure VM 实例部署其他数据库引擎，例如 [SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/)、[Oracle](https://azure.microsoft.com/campaigns/oracle/) 和 [MySQL](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-classic-mysql-2008r2/)。
 
