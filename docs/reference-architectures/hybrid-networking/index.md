@@ -8,8 +8,13 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: networking
+ms.openlocfilehash: 6172866b08197b0ca1cd3aabb3c14c01b4f06f9c
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343435"
 ---
-
 # <a name="choose-a-solution-for-connecting-an-on-premises-network-to-azure"></a><span data-ttu-id="fd503-103">选择用于将本地网络连接到 Azure 的解决方案</span><span class="sxs-lookup"><span data-stu-id="fd503-103">Choose a solution for connecting an on-premises network to Azure</span></span>
 
 <span data-ttu-id="fd503-104">本文比较了用于将本地网络连接到 Azure 虚拟网络 (VNet) 的选项。</span><span class="sxs-lookup"><span data-stu-id="fd503-104">This article compares options for connecting an on-premises network to an Azure Virtual Network (VNet).</span></span> <span data-ttu-id="fd503-105">每个选项都有可用的更详细的参考体系结构。</span><span class="sxs-lookup"><span data-stu-id="fd503-105">For each option, a more detailed reference architecture is available.</span></span>

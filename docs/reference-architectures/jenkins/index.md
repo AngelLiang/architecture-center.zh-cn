@@ -8,8 +8,13 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
+ms.openlocfilehash: 4b8d84ef6eedd93f1a3ec948e7c6d6e3d1c465fc
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346019"
 ---
-
 # <a name="run-a-jenkins-server-on-azure"></a><span data-ttu-id="95d91-103">在 Azure 上运行 Jenkins 服务器</span><span class="sxs-lookup"><span data-stu-id="95d91-103">Run a Jenkins server on Azure</span></span>
 
 <span data-ttu-id="95d91-104">本参考体系结构演示如何在 Azure 上部署和运行使用单一登录 (SSO) 保护的可伸缩企业级 Jenkins 服务器。</span><span class="sxs-lookup"><span data-stu-id="95d91-104">This reference architecture shows how to deploy and operate a scalable, enterprise-grade Jenkins server on Azure secured with single sign-on (SSO).</span></span> <span data-ttu-id="95d91-105">本体系结构还使用 Azure Monitor 来监视 Jenkins 服务器的状态。</span><span class="sxs-lookup"><span data-stu-id="95d91-105">The architecture also uses Azure Monitor to monitor the state of the Jenkins server.</span></span> <span data-ttu-id="95d91-106">[**部署此解决方案**](#deploy-the-solution)。</span><span class="sxs-lookup"><span data-stu-id="95d91-106">[**Deploy this solution**](#deploy-the-solution).</span></span>

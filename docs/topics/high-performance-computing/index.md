@@ -3,6 +3,12 @@ title: Azure 上的高性能计算 (HPC)
 description: 有关如何在 Azure 上生成运行的 HPC 工作负荷的指南
 author: adamboeglin
 ms.date: 2/4/2019
+ms.openlocfilehash: 5263dd3a06e5244bf804df4be6ec57d789574f76
+ms.sourcegitcommit: ea97ac004c38c6b456794c1a8eef29f8d2b77d50
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/26/2019
+ms.locfileid: "58489192"
 ---
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD026 -->

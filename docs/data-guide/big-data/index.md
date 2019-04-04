@@ -1,13 +1,18 @@
 ---
 title: 大数据架构
-description: null
+description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
+ms.openlocfilehash: 269a4c2b8fd0c186e1b44b6c0cfdcbfa4d37b57c
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346155"
 ---
-
 # <a name="big-data-architectures"></a><span data-ttu-id="cc832-102">大数据架构</span><span class="sxs-lookup"><span data-stu-id="cc832-102">Big data architectures</span></span>
 
 <span data-ttu-id="cc832-103">大数据架构设计用来处理对传统数据库系统而言太大或太复杂的数据的引入、处理和分析。</span><span class="sxs-lookup"><span data-stu-id="cc832-103">A big data architecture is designed to handle the ingestion, processing, and analysis of data that is too large or complex for traditional database systems.</span></span> <span data-ttu-id="cc832-104">组织进入大数据领域的门槛各不相同，具体取决于用户的权限及其工具的功能。</span><span class="sxs-lookup"><span data-stu-id="cc832-104">The threshold at which organizations enter into the big data realm differs, depending on the capabilities of the users and their tools.</span></span> <span data-ttu-id="cc832-105">对某些组织来说，大数据可能意味着数百个 GB 的数据，而对另一些组织来说，大数据则意味着数百个 TB 的数据。</span><span class="sxs-lookup"><span data-stu-id="cc832-105">For some, it can mean hundreds of gigabytes of data, while for others it means hundreds of terabytes.</span></span> <span data-ttu-id="cc832-106">随着处理大数据集的工具的发展，大数据的涵义也在不断地变化。</span><span class="sxs-lookup"><span data-stu-id="cc832-106">As tools for working with big data sets advance, so does the meaning of big data.</span></span> <span data-ttu-id="cc832-107">慢慢地，这个术语更多的是指通过高级分析从数据集获取的价值，而不是严格地指数据的大小，虽然这种情况下的数据往往是很大的。</span><span class="sxs-lookup"><span data-stu-id="cc832-107">More and more, this term relates to the value you can extract from your data sets through advanced analytics, rather than strictly the size of the data, although in these cases they tend to be quite large.</span></span>

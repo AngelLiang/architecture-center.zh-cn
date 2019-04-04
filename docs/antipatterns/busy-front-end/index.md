@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: f1ab728d68747856fb2586804d58d45c4ea4fcc1
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344489"
 ---
-
 # <a name="busy-front-end-antipattern"></a><span data-ttu-id="49e49-103">繁忙前端反模式</span><span class="sxs-lookup"><span data-stu-id="49e49-103">Busy Front End antipattern</span></span>
 
 <span data-ttu-id="49e49-104">在大量后台线程中执行异步工作可能耗尽其他并发前台任务的资源，将响应时间降低到不可接受的水平。</span><span class="sxs-lookup"><span data-stu-id="49e49-104">Performing asynchronous work on a large number of background threads can starve other concurrent foreground tasks of resources, decreasing response times to unacceptable levels.</span></span>

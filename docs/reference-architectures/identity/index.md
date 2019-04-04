@@ -6,9 +6,14 @@ ms.date: 07/02/2018
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.custom: 'seodec18, identity'
+ms.custom: seodec18, identity
+ms.openlocfilehash: 706cb63a65ce521e72ebc41a997dc900afacaab9
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343962"
 ---
-
 # <a name="choose-a-solution-for-integrating-on-premises-active-directory-with-azure"></a><span data-ttu-id="fb7cd-103">选择用于将本地 Active Directory 与 Azure 相集成的解决方案</span><span class="sxs-lookup"><span data-stu-id="fb7cd-103">Choose a solution for integrating on-premises Active Directory with Azure</span></span>
 
 <span data-ttu-id="fb7cd-104">本文比较用于将本地 Active Directory (AD) 环境与 Azure 相集成的各种选项。</span><span class="sxs-lookup"><span data-stu-id="fb7cd-104">This article compares options for integrating your on-premises Active Directory (AD) environment with an Azure network.</span></span> <span data-ttu-id="fb7cd-105">每个选项都有可用的更详细的参考体系结构。</span><span class="sxs-lookup"><span data-stu-id="fb7cd-105">For each option, a more detailed reference architecture is available.</span></span>
