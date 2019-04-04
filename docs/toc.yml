@@ -279,20 +279,26 @@ items:
     href: reference-architectures/index.md
   - name: AI
     items:
-    - name: 深度学习模型的分布式训练
-      href: reference-architectures/ai/training-deep-learning.md
-    - name: Python scikit-learn 模型的训练
-      href: reference-architectures/ai/training-python-models.md
-    - name: 深度学习模型的批处理计分
-      href: reference-architectures/ai/batch-scoring-deep-learning.md
-    - name: Python 模型的批量评分
-      href: reference-architectures/ai/batch-scoring-python.md
+    - name: 对深度学习模型和 Python 模型进行训练和评分
+      items:
+      - name: 深度学习模型的分布式训练
+        href: reference-architectures/ai/training-deep-learning.md
+      - name: 深度学习模型的批处理计分
+        href: reference-architectures/ai/batch-scoring-deep-learning.md
+      - name: Python scikit-learn 模型的训练
+        href: reference-architectures/ai/training-python-models.md
+      - name: Python 模型的批量评分
+        href: reference-architectures/ai/batch-scoring-python.md
+      - name: Python 和深度学习模型的实时评分
+        href: reference-architectures/ai/realtime-scoring-python.md
+    - name: 对 R 模型进行评分
+      items:
+      - name: R 模型的批量评分
+        href: reference-architectures/ai/batch-scoring-R-models.md
+      - name: R 模型的实时评分
+        href: reference-architectures/ai/realtime-scoring-r.md
     - name: Azure Databricks 上 Spark 模型的批量评分
       href: reference-architectures/ai/batch-scoring-databricks.md
-    - name: Python 和深度学习模型的实时评分
-      href: reference-architectures/ai/realtime-scoring-python.md
-    - name: R 机器学习模型的实时评分
-      href: reference-architectures/ai/realtime-scoring-r.md
     - name: 聊天机器人
       href: reference-architectures/ai/conversational-bot.md
     - name: 实时建议 API
@@ -497,6 +503,8 @@ items:
           href: data-guide/technology-choices/natural-language-processing.md
         - name: 管道业务流程
           href: data-guide/technology-choices/pipeline-orchestration-data-movement.md
+        - name: Azure 中的 R 开发指南
+          href: data-guide/technology-choices/r-developers-guide.md
         - name: 实时消息引入
           href: data-guide/technology-choices/real-time-ingestion.md
         - name: 搜索数据存储
@@ -567,6 +575,8 @@ items:
       href: databricks-monitoring/application-logs.md
     - name: 使用仪表板将 Databricks 指标可视化
       href: databricks-monitoring/dashboards.md
+    - name: 排查性能瓶颈问题
+      href: databricks-monitoring/performance-troubleshooting.md
 - name: 设计评审框架
   items:
   - name: 复原设计
@@ -861,9 +871,9 @@ items:
           href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
       - name: 日志和报告
         href: cloud-adoption/decision-guides/log-and-report/overview.md
-ms.openlocfilehash: 861170224f9575dc5e45d993678bda482b0ed944
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: 953c7cbdee185a88d8470199fb4ba92244adaa84
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503241"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887771"
