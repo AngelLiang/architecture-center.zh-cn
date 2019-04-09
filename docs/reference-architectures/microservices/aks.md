@@ -7,18 +7,20 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: c8ce4c77666ab7b9c55e6f144d514fadc6b6ad73
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 535c53faa810f74299e715a204e427c8919ce360
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246078"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59069018"
 ---
 # <a name="microservices-architecture-on-azure-kubernetes-service-aks"></a>Azure Kubernetes 服务 (AKS) 中的微服务体系结构
 
-本参考体系结构演示一个部署到 Azure Kubernetes 服务 (AKS) 中的微服务应用程序。 其中演示的基本 AKS 配置可用作大多数部署的起点。 更高级的选项（包括高级网络选项）将在单独的参考体系结构中予以介绍。
+本参考体系结构演示一个部署到 Azure Kubernetes 服务 (AKS) 中的微服务应用程序。 它介绍了基本的 AKS 配置，可以是大多数部署中的起始点。 本文假设读者基本了解 Kubernetes。 本文侧重于有关在 AKS 中运行微服务体系结构的基础结构和 DevOps 注意事项。 有关如何设计微服务的指导，请参阅[在 Azure 上构建微服务](../../microservices/index.md)。
 
-本文假设读者基本了解 Kubernetes。 本文侧重于有关在 AKS 中运行微服务体系结构的基础结构和 DevOps 注意事项。 有关如何从域驱动设计 (DDD) 立场设计微服务的指导，请参阅[在 Azure 中设计、构建和操作微服务](/azure/architecture/microservices)。
+![GitHub 徽标](../../_images/github.png)此体系结构的参考实现位于[GitHub](https://github.com/mspnp/microservices-reference-implementation)。
+
+
 
 ![AKS 参考体系结构](./_images/aks.png)
 

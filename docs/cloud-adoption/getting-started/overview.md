@@ -4,15 +4,14 @@ titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
-description: 概要介绍企业在采用 Azure 云技术的过程中进行数字化转型的第一阶段。
-author: petertaylor9999
-ms.date: 2/11/2019
-ms.openlocfilehash: bfa325ded8c39915ad4d495b4309b700abd71cc2
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+description: 概述如何使用 Azure 云技术的企业的数字化转型的第一阶段。
+ms.date: 02/11/2019
+ms.openlocfilehash: 29b02964b5f1cd09857a51c17cf94d6c64e05e88
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898351"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068950"
 ---
 # <a name="getting-started-with-the-cloud-adoption-framework"></a>云采用框架入门
 
@@ -59,11 +58,11 @@ ms.locfileid: "55898351"
 
 ## <a name="step-3-identify-gaps-in-business-strategy"></a>步骤 3：确定业务策略中存在的差距
 
-下一步是让云策略团队枚举出需要通过数字化转型解决方案来解决的业务问题。 例如，企业现有的本地数据中心的硬件过旧，需要更换。 又比如，企业的新功能和新服务面市困难，竞争力弱。 这些差距也就是企业数字化转型的目标。
+下一步是让云策略团队枚举出需要通过数字化转型解决方案来解决的业务问题。 例如，企业可能需要更换的生命周期结束硬件与现有的本地数据中心。 又比如，企业的新功能和新服务面市困难，竞争力弱。 这些差距也就是企业数字化转型的目标。
 
 业务策略中存在的差距可以分为下述几类：
 
-|类别|说明|
+|类别|描述|
 |-----|-----|
 |成本管理|代表企业技术付款方式的差距。|
 |调控|代表企业在通过相关流程保护其资产免遭用户不当使用方面的差距。资产的不当使用可能会导致成本溢出问题、安全问题或符合性问题。 |
@@ -108,7 +107,7 @@ IT 员工可能会对自己的角色和职位感到忧虑，因为他们认识�
 在数字化转型过程中，每个团队都应该及时了解员工忧虑的任何问题。 在了解员工忧虑的问题时，请确定以下内容：
 
 * 忧虑的类型。 例如，员工可能会抗拒数字化转型带来的工作职责的改变。
-* 忧虑的问题在未解决的情况下会带来的影响。 例如，抗拒数字化转型可能会导致员工在执行所需的更改时行动缓慢。
+* 如果未解决问题的影响。 例如，抗拒数字化转型可能会导致员工在执行所需的更改时行动缓慢。
 * 针对忧虑的问题加强特定领域的配备。 例如，如果 IT 部门的员工不愿掌握新技能，则可针对这方面的忧虑来完备 IT 利益干系人方面的内容。 对于某些忧虑的问题，可能难以确定那些需要加强的领域，这种情况下可能需要将问题上报给高管层。
 
 ### <a name="identify-gaps"></a>确定差距
@@ -134,4 +133,4 @@ IT 员工可能会对自己的角色和职位感到忧虑，因为他们认识�
 数字化转型是一种迭代过程，每一次迭代都会带来相关团队效率的提升。
 
 > [!div class="nextstepaction"]
-> [了解 Azure 工作原理](what-is-azure.md)
+> [了解 Azure 的工作原理](what-is-azure.md)

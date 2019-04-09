@@ -1,18 +1,18 @@
 ---
-title: CAF：大型企业 – 关于治理 MVP 的其他技术细节
+title: CAF：大型企业 – 最佳做法所述
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 大型企业 – 关于治理 MVP 的其他技术细节
+description: 大型企业 – 最佳做法所述
 author: BrianBlanchard
-ms.openlocfilehash: 50b0ae1ebb386d2f0b693a347d599ff29680a9cb
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 2d52797f1c3541fab1c97d97d0438210d2e66f79
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900561"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068984"
 ---
 # <a name="large-enterprise-best-practice-explained"></a>大型企业：最佳做法介绍
 
@@ -38,7 +38,7 @@ ms.locfileid: "55900561"
 
 1. 征求关于核心依赖关系的决定：标识、网络和加密。
 2. 确定要在企业策略强制执行期间使用的模式。
-3. 为资源一致性、资源标记、以及日志记录和报告规则确定合适的治理模式。
+3. 确定资源一致性、 资源标记和日志记录和报告领域的相应管理模式。
 4. 实施与所选策略强制执行模式一致的治理工具，以应用依赖决策和治理决策。
 
 [!INCLUDE [implementation-process](../../../../../includes/cloud-adoption/governance/implementation-process.md)]
@@ -90,7 +90,7 @@ ms.locfileid: "55900561"
 
 **工程师培训**：云治理团队提供双月培训课程，并为工程师创建了两个视频。 这两种资源都可以帮助工程师快速了解治理文化以及如何执行部署。 该团队正在添加培训资产，以显示生产和非生产部署之间的差异，以便工程师了解新策略将如何影响采用。 这可确保一致的部署，而无需严格执行遵从性。
 
-**部署计划**：部署任何包含受保护数据的资产之前，云治理团队将负责查看部署脚本，以验证治理对齐方式。 将使用编程工具审核具有已批准部署的现有团队。
+**部署计划**：部署任何资产包含受保护的数据之前，云管理团队将负责检查部署脚本，以验证监管对齐方式。 将使用编程工具审核具有已批准部署的现有团队。
 
 **月度审核和报告**：云治理团队每个月都会对所有云部署进行审核，以验证是否继续与策略保持一致。 如果发现偏差，则会记录并共享给云采用团队。 当强制执行不会导致业务中断或数据泄漏时，策略会自动强制执行。 审核结束时，云治理团队将为云策略团队和每个云采用团队编译一份报告，以传达策略的整体遵从情况。 此外，也将存储本报告用于审核和法律目的。
 
@@ -103,7 +103,7 @@ ms.locfileid: "55900561"
 - [加密模式](../../../decision-guides/encryption/overview.md)
 - [标识模式](../../../decision-guides/identity/overview.md)
 - [日志记录和报告模式](../../../decision-guides/log-and-report/overview.md)
-- [策略强制执行模式](../../../decision-guides/policy-enforcement/overview.md)
+- [策略强制模式](../../../decision-guides/policy-enforcement/overview.md)
 - [资源一致性模式](../../../decision-guides/resource-consistency/overview.md)
 - [资源标记模式](../../../decision-guides/resource-tagging/overview.md)
 - [软件定义的网络模式](../../../decision-guides/software-defined-network/overview.md)

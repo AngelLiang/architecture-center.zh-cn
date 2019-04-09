@@ -7,16 +7,16 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: 026d22bb9cfdcb69b1a12294410af748e7af5c39
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: 1a927beb23a2e45b509b2648a6bccce4c2ad242d
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480787"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068967"
 ---
 # <a name="designing-microservices-continuous-integration"></a>设计微服务：持续集成
 
-要在微服务上获得成功，必须实施持续集成和持续交付 (CI/CD)。 没有制定合理的 CI/CD 流程，就无法实现微服务具备的敏捷性。 如果为不同的服务使用多个代码库和异构生成环境，则为微服务实施 CI/CD 会有一定的难度。 本章介绍具体的难题，并推荐一些问题解决方法。
+要在微服务上获得成功，必须实施持续集成和持续交付 (CI/CD)。 没有制定合理的 CI/CD 流程，就无法实现微服务具备的敏捷性。 如果为不同的服务使用多个代码库和异构生成环境，则为微服务实施 CI/CD 会有一定的难度。 本文介绍具体的难题，并建议解决问题的一些方法。
 
 ![微服务的 CI/CD 图](./images/ci-cd.png)
 
@@ -123,4 +123,4 @@ Canary 发布比蓝绿部署或滚动更新更难于管理，因为必须动态�
 
 微服务就是对这种不断变化的格局做出的响应。 通过将整体应用程序分解为一组松散耦合的服务，我们可以控制每个服务的发布周期，并在不造成停机或重大更改的情况下频繁进行更新。 微服务还有助于提高可伸缩性、故障隔离性和复原能力。 同时，使用云平台可以更轻松地构建和运行微服务，自动预配计算资源、服务形式的容器业务流程协调程序，以及事件驱动的无服务器环境。
 
-但是，如我们所见，微服务体系结构也存在众多难题。 若要获得成功，必须从坚实的设计开始。 必须慎重考虑如何分析域、选择技术、为数据建模、设计 API，以及营造成熟的 DevOps 文化。 我们希望本指南和随附的[参考实现](https://github.com/mspnp/microservices-reference-implementation)能够为微服务的设计之旅带来启示。
+但是，如我们所见，微服务体系结构也存在众多难题。 若要获得成功，必须从坚实的设计开始。 必须慎重考虑如何分析域、选择技术、为数据建模、设计 API，以及营造成熟的 DevOps 文化。 我们希望本指南和随附的[参考实现](https://github.com/mspnp/microservices-reference-implementation/tree/v0.1.0-orig)能够为微服务的设计之旅带来启示。

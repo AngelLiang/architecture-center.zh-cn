@@ -1,16 +1,19 @@
 ---
-title: CAF：云治理
-description: 云治理内容简介
+title: CAF：Azure Microsoft 自助餐厅中的监管
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+ms.date: 02/11/2019
+description: Azure Microsoft 自助餐厅中的监管
 author: BrianBlanchard
-ms.date: 2/11/2019
-ms.openlocfilehash: 8a9701677eec913788ca72f86444a3600e170d07
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: ce407de0daa590e767382346692c80e0a113bb3c
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897365"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068831"
 ---
-# <a name="cloud-governance-in-the-microsoft-caf-for-azure"></a>适用于 Azure 的 Microsoft CAF 云治理
+# <a name="governance-in-the-microsoft-caf-for-azure"></a>Azure Microsoft 自助餐厅中的监管
 
 在支持业务的技术方面，云开创了全新的模式。 这些新模式也会导致这些技术在采用、管理和治理方式上发生变化。 当整个数据中心可以通过一个无人值守进程执行的一行代码来销毁和重新创建时，我们必须反思传统方法。 在治理方面也是如此。
 
@@ -29,17 +32,17 @@ CAF 中的内容会影响业务、技术和企业文化。 CAF 的这一部分�
 
 云架构师可作为思想领导者和参与者将这些受众组合在一起。 本系列指南的内容旨在帮助云架构师促进与正确的受众进行正确的对话，从而推动必要的决策。 由云推动的业务转型取决于云架构师角色，能够帮助指导整个业务和 IT 的决策。
 
-本部分中云架构师的专用性：CAF 的每个部分都代表不同的云架构师的专门角色或变体。 CAF 的这一部分专为热衷于缓解或化解技术风险的云架构师而设计。 许多云服务提供商将这些专家称为“云托管者”，我们更愿意称之为“云监管者”，或者统称为“云治理团队”。 在每个可操作的客户过程中，文章对云治理团队的构成和角色随时间变化的方式均有介绍。
+本部分中云架构师的专用性：CAF 的每个部分都代表不同的云架构师的专门角色或变体。 此部分中的自助餐厅专为云架构师热衷于缓解或降低技术的风险。 许多云服务提供商将这些专家称为“云托管者”，我们更愿意称之为“云监管者”，或者统称为“云治理团队”。 在每个可操作的客户过程中，文章对云治理团队的构成和角色随时间变化的方式均有介绍。
 
 ## <a name="using-this-guide"></a>使用本指南
 
 对于希望从头至尾遵循本指南的读者，此内容将有助于与云实现并行开发强大的云治理策略。 本指南将引导读者了解这种策略的理论和实现。
 
-有关理论和快速访问 Azure 实现的速成教程，请先参阅[可操作治理过程概述](./journeys/overview.md)。 通过此指南，读者可以从小规模治理开始，并在云采用工作的同时按需治理。
+有关从理论上讲并快速访问 Azure 实现速成教程，入门[概述的可操作的监管旅程](./journeys/overview.md)。 通过此指南，读者可以从小规模治理开始，并在云采用工作的同时按需治理。
 
 ## <a name="next-steps"></a>后续步骤
 
-查看可操作的治理过程。
+查看可操作的监管旅程。
 
 > [!div class="nextstepaction"]
-> [可操作的治理过程](./journeys/overview.md)
+> [可操作的监管旅程](./journeys/overview.md)
