@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: f7c19501b9f28db3892285b5f35a33f02edd87ab
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 3fd3badd66edbe561bea88576bb80d9fc3e0bb79
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242328"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068916"
 ---
 # <a name="criteria-for-choosing-a-data-store"></a>用于选择数据存储的条件
 
@@ -61,7 +61,7 @@ Azure 支持许多类型的数据存储解决方案，每个都提供了不同�
 
 - **区域可用性**。 对于托管服务，服务是否在所有 Azure 区域中都可用？ 解决方案是否需要托管在特定的 Azure 区域中？
 
-- **可移植性**。 需要将数据迁移到本地、外部数据中心还是其他云托管环境？
+- **可移植性**。 将你的数据，需要迁移到在本地、 外部数据中心或其他云托管环境？
 
 - **许可**。 在专有许可证类型与 OSS 许可证类型之间，你是否有偏好？ 对于可以使用哪些类型的许可证，是否有任何其他外部限制？
 
@@ -90,7 +90,7 @@ Azure 支持许多类型的数据存储解决方案，每个都提供了不同�
 <!-- markdownlint-disable MD033 -->
 
 <table>
-<tr><td><strong>工作负载</strong></td>
+<tr><td><strong>工作负荷</strong></td>
     <td>
         <ul>
             <li>新记录的创建和对现有数据的更新都经常发生。</li>
@@ -134,7 +134,7 @@ Azure 支持许多类型的数据存储解决方案，每个都提供了不同�
 ## <a name="document-databases"></a>文档数据库
 
 <table>
-<tr><td><strong>工作负载</strong></td>
+<tr><td><strong>工作负荷</strong></td>
     <td>
         <ul>
             <li>常规用途。</li>
@@ -178,7 +178,7 @@ Azure 支持许多类型的数据存储解决方案，每个都提供了不同�
 ## <a name="keyvalue-stores"></a>键/值存储
 
 <table>
-<tr><td><strong>工作负载</strong></td>
+<tr><td><strong>工作负荷</strong></td>
     <td>
         <ul>
             <li>将使用单个 ID 键（例如字典）标识和访问数据。</li>
@@ -215,7 +215,7 @@ Azure 支持许多类型的数据存储解决方案，每个都提供了不同�
 ## <a name="graph-databases"></a>图形数据库
 
 <table>
-<tr><td><strong>工作负载</strong></td>
+<tr><td><strong>工作负荷</strong></td>
     <td>
         <ul>
             <li>数据项之间的关系非常复杂，涉及相关数据项之间的许多跃点。</li>
@@ -250,7 +250,7 @@ Azure 支持许多类型的数据存储解决方案，每个都提供了不同�
 ## <a name="column-family-databases"></a>列系列数据库
 
 <table>
-<tr><td><strong>工作负载</strong></td>
+<tr><td><strong>工作负荷</strong></td>
     <td>
         <ul>
             <li>大多数列系列数据库都极快地执行写入操作。</li>
@@ -291,7 +291,7 @@ Azure 支持许多类型的数据存储解决方案，每个都提供了不同�
 ## <a name="search-engine-databases"></a>搜索引擎数据库
 
 <table>
-<tr><td><strong>工作负载</strong></td>
+<tr><td><strong>工作负荷</strong></td>
     <td>
         <ul>
             <li>为来自多个源和服务的数据编制索引。</li>
@@ -328,7 +328,7 @@ Azure 支持许多类型的数据存储解决方案，每个都提供了不同�
 ## <a name="data-warehouse"></a>数据仓库
 
 <table>
-<tr><td><strong>工作负载</strong></td>
+<tr><td><strong>工作负荷</strong></td>
     <td>
         <ul>
             <li>数据分析</li>
@@ -355,7 +355,7 @@ Azure 支持许多类型的数据存储解决方案，每个都提供了不同�
 ## <a name="time-series-databases"></a>时序数据库
 
 <table>
-<tr><td><strong>工作负载</strong></td>
+<tr><td><strong>工作负荷</strong></td>
     <td>
         <ul>
             <li>绝大部分 (95-99%) 的操作是写入。</li>
@@ -390,7 +390,7 @@ Azure 支持许多类型的数据存储解决方案，每个都提供了不同�
 ## <a name="object-storage"></a>对象存储
 
 <table>
-<tr><td><strong>工作负载</strong></td>
+<tr><td><strong>工作负荷</strong></td>
     <td>
         <ul>
             <li>由键进行标识。</li>
@@ -425,7 +425,7 @@ Azure 支持许多类型的数据存储解决方案，每个都提供了不同�
 ## <a name="shared-files"></a>共享文件
 
 <table>
-<tr><td><strong>工作负载</strong></td>
+<tr><td><strong>工作负荷</strong></td>
     <td>
         <ul>
             <li>从与文件系统进行交互的现有应用进行迁移。</li>

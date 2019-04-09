@@ -8,12 +8,12 @@ description: 如何为云转换创建财务模型。
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.openlocfilehash: 4fe9b178962bf2cd6a79233278c73085237772f0
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 1f3ed8a84b84ba577ad5e5db8b1becd318dc04a3
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898198"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068865"
 ---
 # <a name="create-a-financial-model-for-cloud-transformation"></a>为云转换创建财务模型
 
@@ -26,7 +26,7 @@ ms.locfileid: "55898198"
 ![投资回报 (ROI) = (投资收益 – 投资成本) / 投资成本](../_images/formula-roi.png)
 
 <!-- markdownlint-disable MD036 -->
-*ROI = (投资收益 &minus; 初始投资) / 初始投资*
+<!--*ROI = (Gain from Investment &minus; Initial Investment) / Initial Investment*-->
 <!-- markdownlint-enable MD036 -->
 
 后续部分将逐步讲解计算初始投资和投资收益（收入）所需的数据。
@@ -46,7 +46,7 @@ ms.locfileid: "55898198"
 ![投资收益 = 收入增量 + 成本增量](../_images/formula-gain-from-investment.png)
 
 <!-- markdownlint-disable MD036 -->
-*投资收益 = 收入增量 + 成本增量*
+<!--*Gain from Investment = Revenue Deltas + Cost Deltas*-->
 <!-- markdownlint-enable MD036 -->
 
 下面描述了每个项目。
@@ -57,7 +57,7 @@ ms.locfileid: "55898198"
 
 ## <a name="cost-deltas"></a>成本增量
 
-成本增量是转换造成的成本增加或减少量。 有许多独立变量可能会影响成本增量。 收入在很大程度上取决于硬性成本，例如资本支出缩减、成本规避、运营成本缩减和折旧。 以下部分提供了要考虑的成本增量示例。
+成本增量是转换造成的成本增加或减少量。 有大量的独立变量，它们可能会影响成本增量数据。 收入在很大程度上取决于硬性成本，例如资本支出缩减、成本规避、运营成本缩减和折旧。 以下部分提供了要考虑的成本增量示例。
 
 ### <a name="depreciation-reductions-or-acceleration"></a>折旧和折旧加速
 
@@ -75,7 +75,7 @@ ms.locfileid: "55898198"
 
 运营企业所需的重复性支出通常称为运营支出 (OpEx)。 OpEx 的类别非常广泛。 在大多数会计模型中，它包括软件许可、托管支出、电费帐单、不动产租赁、散热支出、运营所需的临时员工、设备租赁、更换部件、维护合同、维修服务、业务连续性/灾难恢复 (BC/DR) 服务，以及其他许多不需要资本支出审批的支出。
 
-考虑运营转换旅程时，此类别是最大的收入领域之一。 使此列表变得详尽所投入的时间很少会有浪费。 请向 CIO 和财务团队提问，以确保考虑到所有运营成本。
+考虑运行转换时，此类别是最大收入区域之一。 使此列表变得详尽所投入的时间很少会有浪费。 请向 CIO 和财务团队提问，以确保考虑到所有运营成本。
 
 ### <a name="cost-avoidance"></a>成本规避
 
@@ -95,7 +95,7 @@ ms.locfileid: "55898198"
 
 ### <a name="capital-expense-reductions-or-avoidance"></a>资本支出缩减或规避
 
-资本支出 (CapEx) 与运营支出略有不同。 一般而言，此类别由更新周期或数据中心扩建驱动。 数据中心扩建的示例是购置新的高性能群集来托管大数据解决方案或数据仓库，通常属于 CapEx 类别。 更常见的资本支出是基本的更新周期。 某些公司实施严格的硬件更新周期，即，按固定的周期（通常是每隔 3、5 或 8 年）淘汰和更换资产。 这些周期通常与资产租赁周期或者设备的预测寿命相一致。 到达更新周期时，IT 部门将申请 CapEx 来采购新设备。
+资本支出 (CapEx) 与运营支出略有不同。 一般而言，此类别由更新周期或数据中心扩建驱动。 数据中心扩建的示例是购置新的高性能群集来托管大数据解决方案或数据仓库，通常属于 CapEx 类别。 更常见的资本支出是基本的更新周期。 某些公司已刷新周期的刚性硬件、 含义资产的停用和替换正则周期 （通常每隔三个、 五个，或八年）。 这些周期通常与资产租赁周期或者设备的预测寿命相一致。 到达更新周期时，IT 部门将申请 CapEx 来采购新设备。
 
 如果更新周期经过批准且加入预算，则云转换可以帮助消除该成本。 如果更新周期已计划但尚未获批准，则云转换可以实现 CapEx 成本规避。 这两种情况都会添加到成本增量。
 
@@ -104,4 +104,4 @@ ms.locfileid: "55898198"
 阅读云转换上下文中的一些财务结果示例。
 
 > [!div class="nextstepaction"]
-> [财务结果示例](./business-outcomes/fiscal-outcomes.md)
+> [财务成果示例](./business-outcomes/fiscal-outcomes.md)
