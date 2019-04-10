@@ -50,7 +50,7 @@ ms.locfileid: "58887928"
 
 [Azure Blob 存储][ blob]用来存储输入的数据、 预先定型的机器学习模型和预测的结果。 它提供为此工作负荷需要的性能非常经济高效的存储。
 
-[Azure 容器实例][ aci]按需提供无服务器计算。 在这种情况下，容器实例部署按计划触发生成预测的批处理作业。 批处理作业触发从 R 脚本使用[doAzureParallel] [ doAzureParallel]包。 在作业完成后，容器实例自动会关闭。
+[Azure 容器实例][ aci]按需提供无服务器计算。 在这种情况下，容器实例部署按计划触发生成预测的批处理作业。 批处理作业触发从 R 脚本使用[doAzureParallel][doAzureParallel]包。 在作业完成后，容器实例自动会关闭。
 
 [Azure 逻辑应用][ logic-apps]通过部署容器实例按计划触发整个工作流。 在逻辑应用中的 Azure 容器实例连接器允许一个实例，以便在触发事件的范围时部署。
 
@@ -86,13 +86,13 @@ Azure 容器实例提供无服务器环境来运行计划程序容器。 计划�
 
 DoAzureParallel 包会自动收集的每个作业提交 Azure Batch 上的所有 stdout/stderr 的日志。 可以在安装时创建的存储帐户中找到这些选项。 若要查看它们，请使用存储的导航工具如[Azure 存储资源管理器][ storage-explorer]或 Azure 门户。
 
-若要在开发期间快速调试批处理作业，打印在你本地 R 会话中使用的日志[getJobFiles] [ getJobFiles] doAzureParallel 的函数。
+若要在开发期间快速调试批处理作业，打印在你本地 R 会话中使用的日志[getJobFiles][getJobFiles] doAzureParallel 的函数。
 
 ## <a name="cost-considerations"></a>成本注意事项
 
 此参考体系结构中使用的计算资源是开销最高的组件。 对于此方案中，只要该作业是触发，然后关闭作业完成后创建固定大小的群集。 仅当启动、 运行，或关闭群集节点时，才产生成本。 此方法非常适用于在其中生成预测所需的计算资源保持相对稳定作业作业的方案。
 
-在其中完成作业所需的计算量事先不知道的情况下，它可能更适合使用自动缩放。 使用此方法时，群集的大小是根据作业大小增加或减少。 Azure Batch 支持一系列定义群集使用时可设置自动缩放公式[doAzureParallel] [ doAzureParallel] API。
+在其中完成作业所需的计算量事先不知道的情况下，它可能更适合使用自动缩放。 使用此方法时，群集的大小是根据作业大小增加或减少。 Azure Batch 支持一系列定义群集使用时可设置自动缩放公式[doAzureParallel][doAzureParallel] API。
 
 在某些情况下，作业之间的时间可能会太短而无法关闭和启动该群集。 在这些情况下，请根据作业之间运行的群集。
 
@@ -100,7 +100,7 @@ Azure 批处理和 doAzureParallel 支持低优先级 Vm 的使用。 这些 Vm 
 
 ## <a name="deployment"></a>部署
 
-若要部署此参考体系结构，请按照中所述的步骤[GitHub] [ github]存储库。
+若要部署此参考体系结构，请按照中所述的步骤[GitHub][github]存储库。
 
 
 [0]: ./_images/batch-scoring-r-models.png
