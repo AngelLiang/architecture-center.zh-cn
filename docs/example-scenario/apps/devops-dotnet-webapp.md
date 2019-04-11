@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: fasttrack, seodec18
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-devops-dotnet-webapp.svg
-ms.openlocfilehash: 0d6ac13fb357657a2ec5e6284abadb46d6926907
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
-ms.translationtype: HT
+ms.openlocfilehash: f999b2ffdf234161f668887d5b2327ecf50f0e55
+ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908488"
+ms.lasthandoff: 04/11/2019
+ms.locfileid: "59480127"
 ---
 # <a name="design-a-cicd-pipeline-using-azure-devops"></a>使用 Azure DevOps 设计 CI/CD 管道
 
@@ -85,7 +85,7 @@ ms.locfileid: "54908488"
 
 ## <a name="deploy-the-scenario"></a>部署方案
 
-### <a name="prerequisites"></a>先决条件
+### <a name="prerequisites"></a>必备组件
 
 - 必须已经有 Azure 帐户。 如果没有 Azure 订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
 
@@ -93,11 +93,11 @@ ms.locfileid: "54908488"
 
 ### <a name="walk-through"></a>演练
 
-该 [Azure DevOps 项目](/azure/devops-project/azure-devops-project-github)将部署应用服务计划、应用服务以及 App Insights 资源，并配置 Azure DevOps 项目。
+[Azure DevOps 项目](/azure/devops-project/azure-devops-project-github)将为你部署应用服务计划、 应用服务和 App Insights 资源，以及为你配置一个 Azure 管道的管道。
 
-部署 Azure DevOps 项目并完成生成后，请查看关联的代码更改、工作项和测试结果。 你会发现，测试结果并未显示，因为代码不包含任何需要运行的测试。
+已通过 Azure DevOps 项目配置的管道并在生成完成后，查看关联的代码更改工作项和测试结果。 你会发现，测试结果并未显示，因为代码不包含任何需要运行的测试。
 
-该项目将创建发布管道和持续部署触发器，并将应用程序部署到开发环境中。 在持续部署过程中，可能会看到跨多个环境的发布。 发布可以跨基础结构（使用基础结构即代码之类的技术），还可以部署所需的应用程序包以及任何配置后任务。
+管道创建发布定义和持续部署触发器，我们应用程序部署到开发环境。 在持续部署过程中，可能会看到跨多个环境的发布。 发布可以跨基础结构（使用基础结构即代码之类的技术），还可以部署所需的应用程序包以及任何配置后任务。
 
 ## <a name="pricing"></a>定价
 
@@ -114,8 +114,8 @@ Azure DevOps 按每月每个用户计费。 可能存在其他费用，具体取
 - [什么是 DevOps？][devops-whatis]
 - [Microsoft 中的 DevOps - 如何使用 Azure DevOps][devops-microsoft]
 - [分步教程：DevOps 与 Azure DevOps][devops-with-vsts]
-- [DevOps 查检表][devops-checklist]
-- [使用 Azure DevOps 项目创建用于 .NET 的 CI/CD 管道][devops-project-create]
+- [DevOps 清单][devops-checklist]
+- [适用于.NET 的 Azure DevOps 项目创建 CI/CD 管道][devops-project-create]
 
 <!-- links -->
 

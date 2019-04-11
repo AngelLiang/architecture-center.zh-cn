@@ -3,17 +3,17 @@ title: Web 队列辅助角色体系结构样式
 titleSuffix: Azure Application Architecture Guide
 description: 介绍 Azure 上的 Web 队列辅助角色的体系结构的优点、难题和最佳做法。
 author: MikeWasson
-ms.date: 08/30/2018
+ms.date: 04/10/2019
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: b471d270af09df7ffd58dfdd49e7d03d05bfe582
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 974b8b8595d6d9333552c41dfe1f3f2af848d264
+ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244588"
+ms.lasthandoff: 04/11/2019
+ms.locfileid: "59480076"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Web 队列辅助角色体系结构样式
 
@@ -71,15 +71,15 @@ Web 和辅助角色都无状态。 会话状态可以存储在分布式缓存中
 
 ![Web 队列辅助角色体系结构样式的物理图](./images/web-queue-worker-physical.png)
 
-Azure 应用服务 Web 应用作为前端实现，辅助角色作为 Web 作业实现。 Web 应用和 Web 作业都与提供 VM 实例的应用服务计划相关联。
+- 作为 Azure 应用服务 web 应用，实现的前端和辅助角色作为 Azure Functions 应用。 Web 应用和函数应用都是与提供 VM 实例的应用服务计划相关联。
 
-可以为消息队列使用 Azure 服务总线或 Azure 存储队列。 （该图显示了 Azure 存储队列。）
+- 可以为消息队列使用 Azure 服务总线或 Azure 存储队列。 （该图显示了 Azure 存储队列。）
 
-Azure Redis 缓存存储会话状态和需要低延迟访问的其他数据。
+- Azure Redis 缓存存储会话状态和需要低延迟访问的其他数据。
 
-Azure CDN 用于缓存静态内容，如映像、CSS 或 HTML。
+- Azure CDN 用于缓存静态内容，如映像、CSS 或 HTML。
 
-对于存储，请选择最符合应用程序需要的存储技术。 可能使用多个存储技术（混合持久性）。 为了说明这一点，该图显示了 Azure SQL 数据库和 Azure Cosmos DB。
+- 对于存储，请选择最符合应用程序需要的存储技术。 可能使用多个存储技术（混合持久性）。 为了说明这一点，该图显示了 Azure SQL 数据库和 Azure Cosmos DB。
 
 有关详细信息，请参阅[应用服务 Web 应用程序参考结构][scalable-web-app]。
 
@@ -89,7 +89,7 @@ Azure CDN 用于缓存静态内容，如映像、CSS 或 HTML。
 
 - 使用应用服务的内置自动缩放功能来扩大 VM 实例数。 如果应用程序上的负载遵循可预测的模式，请使用基于计划的自动缩放。 如果负载是不可预测的，请使用基于指标的自动缩放规则。
 
-- 请考虑将 Web 应用和 Web 作业放入单独的应用服务计划中。 这样，它们就托管在单独的 VM 实例上，并可以独立缩放。
+- 请考虑将 web 应用和函数应用放入单独的应用服务计划。 这样一来，它们可以独立缩放。
 
 - 使用单独的应用服务计划进行生产和测试。 否则，如果使用同一计划进行生产和测试，则说明测试正在生产 VM 上运行。
 

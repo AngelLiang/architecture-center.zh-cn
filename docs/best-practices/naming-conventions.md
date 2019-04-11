@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 87869d1b38d2b4a71cd5b604436e04deab993131
-ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.openlocfilehash: ed1811495e81965fa514ab66dcfa49d00d2a59f2
+ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58420016"
+ms.lasthandoff: 04/11/2019
+ms.locfileid: "59480093"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Azure 资源的命名约定
 
@@ -85,6 +85,7 @@ Azure 中的每个资源或服务类型强制实施一组命名限制和范围�
 |可用性集 |资源组 |1-80 |不区分大小写 |字母数字、下划线和连字符 |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |标记 |关联的实体 |512（名称）、256（值） |不区分大小写 |字母数字、除 `<`、`>`、`%`、`&`、`\`、`?`、`/` 之外的特殊字符。 请参阅[此处](/azure/azure-resource-manager/resource-group-using-tags)的限制。 |`"key" : "value"` |`"department" : "Central IT"` |
 |Web 应用 |全局 |1-60 |不区分大小写 |字母数字和连字符 |`<app_name>-<source-slot-name>` |`contoso-staging` |
+|API 管理 |全局 |1-50 |不区分大小写 |字母数字和连字符 |`<apim-service-name>` |`contoso` |
 
 ### <a name="compute"></a>计算
 
@@ -100,7 +101,7 @@ Azure 中的每个资源或服务类型强制实施一组命名限制和范围�
 
 | 实体 | 范围 | Length | 大小写 | 有效的字符 | 建议的模式 | 示例 |
 | --- | --- | --- | --- | --- | --- | --- |
-|存储帐户名称（数据） |全局 |3-24 |小写 |字母数字 |`<globally unique name><number>`（使用函数计算命名存储帐户的唯一 Guid） |`profxdata001` |
+|存储帐户名称（数据） |全局 |3-24 |小写 |字母数字 |`<globally unique name><number>` （使用函数来计算命名存储帐户的唯一 guid） |`profxdata001` |
 |存储帐户名称（磁盘） |全局 |3-24 |小写 |字母数字 |`<vm name without hyphens>st<number>` |`profxsql001st0` |
 | 容器名称 |存储帐户 |3-63 |小写 |字母数字和连字符 |`<context>` |`logs` |
 |Blob 名称 | 容器 |1-1024 |区分大小写 |任何 URL 字符 |`<variable based on blob usage>` |`<variable based on blob usage>` |
@@ -191,7 +192,7 @@ Azure 资源管理器支持使用任意文本字符串标记实体，以标识�
 
 有关命名 Blob、容器和表的详细信息，请参阅以下列表：
 
-- [命名和引用容器、Blob 与元数据](https://msdn.microsoft.com/library/dd135715.aspx)
+- [命名和引用容器、Blob 和元数据](https://msdn.microsoft.com/library/dd135715.aspx)
 - [命名队列和元数据](https://msdn.microsoft.com/library/dd179349.aspx)
 - [命名表](https://msdn.microsoft.com/library/azure/dd179338.aspx)
 
