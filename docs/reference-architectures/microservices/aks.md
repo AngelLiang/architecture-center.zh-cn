@@ -7,20 +7,18 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: 535c53faa810f74299e715a204e427c8919ce360
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.openlocfilehash: 3e93a036bdb7cdf9f4e49ae81887063624372a6b
+ms.sourcegitcommit: d58e6b2b891c9c99e951c59f15fce71addcb96b1
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/08/2019
-ms.locfileid: "59069018"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59533118"
 ---
 # <a name="microservices-architecture-on-azure-kubernetes-service-aks"></a>Azure Kubernetes 服务 (AKS) 中的微服务体系结构
 
 本参考体系结构演示一个部署到 Azure Kubernetes 服务 (AKS) 中的微服务应用程序。 它介绍了基本的 AKS 配置，可以是大多数部署中的起始点。 本文假设读者基本了解 Kubernetes。 本文侧重于有关在 AKS 中运行微服务体系结构的基础结构和 DevOps 注意事项。 有关如何设计微服务的指导，请参阅[在 Azure 上构建微服务](../../microservices/index.md)。
 
-![GitHub 徽标](../../_images/github.png)此体系结构的参考实现位于[GitHub](https://github.com/mspnp/microservices-reference-implementation)。
-
-
+![GitHub 徽标](../../_images/github.png)此体系结构的参考实现位于[GitHub][ri]。
 
 ![AKS 参考体系结构](./_images/aks.png)
 
@@ -202,7 +200,7 @@ AKS 集成了这两种 RBAC 机制。 创建 AKS 群集时，可将其配置为�
 
 - “Azure Kubernetes 服务群集管理员角色”有权下载群集管理员凭据。 应该只将群集管理员分配到此角色。
 
-- “Azure Kubernetes 服务群集用户角色”有权下载群集用户凭据。 可将非管理员用户分配到此角色。 此角色不会授予对群集中 Kubernetes 资源的任何特定权限 &mdash; 它只允许用户连接到 API 服务器。 
+- “Azure Kubernetes 服务群集用户角色”有权下载群集用户凭据。 可将非管理员用户分配到此角色。 此角色不会授予对群集中 Kubernetes 资源的任何特定权限 &mdash; 它只允许用户连接到 API 服务器。
 
 定义 RBAC 策略（Kubernetes 和 Azure）时，请考虑组织中的角色：
 
@@ -259,109 +257,18 @@ AKS 集成了这两种 RBAC 机制。 创建 AKS 群集时，可将其配置为�
 下面是微服务体系结构的可靠 CI/CD 过程的一些目标：
 
 - 每个团队可以独立生成并部署自有的服务，而不影响或干扰其他团队。
-
 - 新服务版本在部署到生产环境之前，会先部署到开发/测试/QA 环境进行验证。 在每个阶段强制实施质量控制。
-
-- 新服务版本可以连同前一版本一起部署。
-
+- 可以与以前的版本并行部署服务的新版本。
 - 实施足够的访问控制策略。
+- 适用于容器化工作负荷，可以信任的容器映像部署到生产环境。
 
-- 可以信任部署到生产环境的容器映像。
+若要了解有关问题的详细信息，请参阅[微服务体系结构的 CI/CD](../../microservices/ci-cd.md)。
 
-### <a name="isolation-of-environments"></a>环境隔离
+有关具体的建议和最佳做法，请参阅[Kubernetes 上的微服务的 CI/CD](../../microservices/ci-cd-kubernetes.md)。
 
-将在多个环境中部署服务，包括用于开发、版本验收测试、集成测试、负载测试和最终生产的环境。 这些环境需要某种程度的隔离。 在 Kubernetes 中，可以选择物理隔离或逻辑隔离。 物理隔离表示部署到独立的群集。 逻辑隔离利用前面所述的命名空间和策略。
+## <a name="deploy-the-solution"></a>部署解决方案
 
-我们建议创建专用的生产群集，并为开发/测试环境创建独立的群集。 使用逻辑隔离来隔离开发/测试群集中的环境。 部署到开发/测试群集的服务不得有权访问保存业务数据的数据存储。 
+若要部署此体系结构的引用实现，请按照中的步骤[GitHub 存储库][ri-deploy]。
 
-### <a name="helm"></a>Helm
-
-考虑使用 Helm 来管理服务的生成和部署。 可帮助实现 CI/CD 的部分 Helm 功能包括：
-
-- 将特定微服务的所有 Kubernetes 对象组织成单个 Helm 图表。
-- 使用单个 Helm 命令而不是一系列 kubectl 命令部署该图表。
-- 使用语义版本控制以及用于回滚到以前版本的功能来跟踪更新和修订。
-- 使用模板来避免在多个文件之间复制标签和选择器等信息。
-- 管理图表之间的依赖关系。
-- 将图表发布到 Azure 容器注册表等 Helm 存储库，并将其与生成管道相集成。
-
-有关将容器注册表用作 Helm 存储库的详细信息，请参阅[将 Azure 容器注册表用作应用程序图表的 Helm 存储库](/azure/container-registry/container-registry-helm-repos)。
-
-### <a name="cicd-workflow"></a>CI/CD 工作流
-
-在创建 CI/CD 工作流之前，必须了解如何对代码库进行结构设计和管理。
-
-- 团队是在多个单独的存储库中工作，还是在一个 monorepo（单存储库）中工作？
-- 什么是分库策略？
-- 谁可以将代码推送到生产环境中？ 是否有发布经理角色？
-
-首选单存储库方法，但二者各有优缺点。
-
-| &nbsp; | 单存储库 | 多存储库 |
-|--------|----------|----------------|
-| **优点** | 代码共享<br/>更易于实现代码和工具的标准化<br/>更易于重构代码<br/>可发现性 - 代码的单一视图<br/> | 按团队清除所有权<br/>合并冲突可能会更少<br/>有助于强制分离微服务 |
-| **挑战** | 对共享代码进行的更改可能影响多个微服务<br/>合并冲突可能会更多<br/>工具必须缩放成大型代码库<br/>访问控制<br/>部署过程更复杂 | 更难以共享代码<br/>更难以强制实施编码标准<br/>依赖项管理<br/>代码库分散，可发现性低<br/>缺少共享的基础架构
-
-在此部分，我们根据以下假设演示可能的 CI/CD 工作流：
-
-- 代码存储库为单存储库，文件夹按微服务进行组织。
-- 团队的分库策略以[基于主库的开发](https://trunkbaseddevelopment.com/)为基础。
-- 团队使用 [Azure Pipelines](/azure/devops/pipelines) 来运行 CI/CD 过程。
-- 团队使用 Azure 容器注册表中的[命名空间](/azure/container-registry/container-registry-best-practices#repository-namespaces)将已获批在生产环境中使用的映像与仍在进行测试的映像隔离开来。
-
-在此示例中，一位开发人员在名为“传送服务”的微服务上工作。 （此名称来自[此处](../../microservices/design/index.md#scenario)所述的引用实现。）在开发新功能时，开发人员会将代码签入到某个功能分库中。
-
-![CI/CD 工作流](./_images/aks-cicd-1.png)
-
-将提交内容推送到此分库会触发一个适用于微服务的 CI 生成。 根据约定，功能分库名为 `feature/*`。 [生成定义文件](/azure/devops/pipelines/yaml-schema)包括一个触发器，用于按分库名称和源路径进行筛选。 使用此方法，每个团队都可以有自己的生成管道。
-
-```yaml
-trigger:
-  batch: true
-  branches:
-    include:
-    - master
-    - feature/*
-
-    exclude:
-    - feature/experimental/*
-
-  paths:
-     include:
-     - /src/shipping/delivery/
-```
-
-在工作流中，CI 生成此时会运行某种最低程度的代码验证：
-
-1. 生成代码
-1. 运行单元测试
-
-此处的理念是缩短生成时间，这样开发人员就可以获得快速反馈。 当此功能可以合并到主库中时，开发人员会打开一个 PR。 此时会触发另一个 CI 生成来执行一些其他的检查：
-
-1. 生成代码
-1. 运行单元测试
-1. 生成运行时容器映像
-1. 在映像上运行漏洞扫描
-
-![CI/CD 工作流](./_images/aks-cicd-2.png)
-
-> [!NOTE]
-> 在 Azure Repos 中，可以定义[策略](/azure/devops/repos/git/branch-policies)来保护分库。 例如，策略可以要求在合并到主库之前，必须成功完成 CI 生成并由审批人员签署同意书。
-
-有时候，团队可以部署新版传送服务。 为此，发布经理会创建主库的分库，采用以下命名模式：`release/<microservice name>/<semver>`。 例如，`release/delivery/v1.0.2`。
-这样就会触发一个完整的 CI 生成，该生成运行所有上述步骤并执行以下操作：
-
-1. 向 Azure 容器注册表推送 Docker 映像。 该映像标记有版本号（取自分库名称）。
-2. 运行 `helm package`，将 Helm 图表打包
-3. 通过运行 `az acr helm push` 将 Helm 包推送到容器注册表。
-
-假定此生成成功，它会使用 Azure Pipelines [发布管道](/azure/devops/pipelines/release/what-is-release-management)触发部署过程。 此管道
-
-1. 通过运行 `helm upgrade` 将 Helm 图表部署到 QA 环境。
-1. 审批者签署同意书，然后包就会转到生产环境。 请参阅[通过审批进行发布部署控制](/azure/devops/pipelines/release/approvals/approvals)。
-1. 在 Azure 容器注册表中为生产命名空间重新标记 Docker 映像。 例如，如果当前标记为 `myrepo.azurecr.io/delivery:v1.0.2`，则生产标记为 `myrepo.azurecr.io/prod/delivery:v1.0.2`。
-1. 通过运行 `helm upgrade` 将 Helm 图表部署到生产环境。
-
-![CI/CD 工作流](./_images/aks-cicd-3.png)
-
-必须记住的是，即使在单存储库中，也可让这些任务的范围局限于单个微服务，这样团队就能快速进行部署。 此过程有一些手动步骤：审批 PR、创建发布分库，以及审批部署到生产群集中的内容。 根据策略，这些步骤是手动的 &mdash; 如果公司愿意，可以将其彻底变为自动。
+[ri]: https://github.com/mspnp/microservices-reference-implementation
+[ri-deploy]: https://github.com/mspnp/microservices-reference-implementation/blob/master/deployment.md
