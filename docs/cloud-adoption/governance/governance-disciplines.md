@@ -9,12 +9,12 @@ description: CAF 中治理内容的概述
 author: BrianBlanchard
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 1721e2ff7b4e7879637a7c09a40a5571b73c9ace
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: ddd7f5e4b7e79ebe2ddf87be7421b6c4691aced1
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900603"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639863"
 ---
 # <a name="the-five-disciplines-of-cloud-governance"></a>云治理的五个规则
 
@@ -26,7 +26,7 @@ ms.locfileid: "55900603"
         <div class="cardPadding" style="padding-bottom:10px;">
             <div class="card" style="padding-bottom:10px;">
                 <div class="cardText" style="padding-left:0px;">
-对业务流程或技术平台的任何更改都会带来风险。 云治理团队（其成员有时被称为云管理员）的任务是降低这些风险，同时尽可能减少对采用或创新工作的干扰。<br/><br/>CAF 治理模型通过重点关注<a href="#corporate-policy">制定公司策略</a>和<a href="#disciplines-of-cloud-governance">云治理规则</a>，指导这些决策（而不考虑所选的云平台）。 <a href="#actionable-journeys">可操作设计指南</a>使用 Azure 服务演示了此模型。 本文可作为 CAF 治理模型五大规则的登录页面。
+对业务流程或技术平台的任何更改都会带来风险。 云治理团队（其成员有时被称为云管理员）的任务是降低这些风险，同时尽可能减少对采用或创新工作的干扰。<br/><br/>通过专注于开发公司策略的自助餐厅监管模型指导这些决策 （无论选择的云平台中） 和<a href="#disciplines-of-cloud-governance">学科的云监管</a>。 <a href="./journeys/overview.md">可操作的旅程</a>演示此模型中使用 Azure 服务。 本文可作为 CAF 治理模型五大规则的登录页面。
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@ ms.locfileid: "55900603"
                     <div class="cardText" style="padding-left:0px;">
 <img src="../_images/operational-transformation-govern-highres.png" alt="Diagram of the CAF governance model: Corporate policy and governance disciplines">
 <br>
-<i>图 1.公司策略和云治理五大规则的图示</i>
+<i>图 1.企业策略和云监管五个学科的关系图</i>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@ ms.locfileid: "55900603"
 
 ## <a name="disciplines-of-cloud-governance"></a>云治理规则
 
-在每个云提供商中，都有通用的云治理规则，可以作为指导，帮助通知策略和协调工具链。 这些规则指导关于适当自动化级别和跨云提供商强制实施公司策略的决策。
+在每个云提供程序中，有可提供指导以帮助通知策略，并对齐工具链的常见管理领域。 这些规则指导关于适当自动化级别和跨云提供商强制实施公司策略的决策。
 
 <!-- markdownlint-disable MD033 -->
 

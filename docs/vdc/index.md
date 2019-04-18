@@ -6,18 +6,19 @@ layout: LandingPage
 ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 57f28808d3c49c74bc010133c670a186206a4466
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: f49640f4a994bf1cdca8029260fc95a5da323ff2
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58344523"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640611"
 ---
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Azure 虚拟数据中心和企业控制平面
 
 Azure 虚拟数据中心是充分利用 Azure 云平台的功能，同时遵循现有安全和网络政策的一种方式。 将企业工作负荷部署到云时，IT 组织和业务单位必须在监管与开发人员敏捷性之间实现平衡。 Azure 虚拟数据中心提供的模型可实现这种平衡，并将重心放在监管上。
- 
+
 ## <a name="resources"></a>资源
+
 <table>
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Concepts"><img src="../_images/virtual-datacenter.svg" alt="Virtual Datacenter eBook" /></a></td>
@@ -58,6 +59,5 @@ Azure 虚拟数据中心是充分利用 Azure 云平台的功能，同时遵循�
 以下四个组件使 Azure 虚拟数据中心成为可能：标识、加密、软件定义的网络和符合性（包括日志与报告）。
 
 在 Azure 虚拟数据中心模型中，可以应用隔离策略、使云更类似于已知的物理数据中心，并实现所需的安全和信任级别。 任何企业 IT 团队认可的以下四个组件使目标成为可能：软件定义的网络、加密、标识管理，以及 Azure 平台的基本符合性标准和认证。 这四个组件是使虚拟数据中心成为现有基础结构投资的受信任扩展的关键。
-
 
 请继续阅读 <a href="https://aka.ms/VDC/eBook">Azure 虚拟数据中心概念</a>电子书。
