@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/infrastructure/media/secure-scalable-wordpress.png
-ms.openlocfilehash: 6032247dce0d090885bc560d963f1e714d91f69c
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 4f347f91d5958fb83404856ec5d36d70a7ed0d19
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244628"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640084"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>高度可缩放的安全 WordPress 网站
 
@@ -72,15 +72,13 @@ ms.locfileid: "58244628"
 
 本方案中的 VM 实例部署在多个区域中，通过 RSYNC 复制两个实例中的 WordPress 内容数据，并对 MariaDB 群集使用主从复制。
 
-若要了解其他可用性主题，请参阅 Azure 体系结构中心的[可用性核对清单][availability]。
-
 ### <a name="scalability"></a>可伸缩性
 
 本方案对每个区域中的两个前端 Web 服务器群集使用虚拟机规模集。 使用规模集时，运行前端应用程序层的 VM 实例数可以根据客户需求或定义的计划自动进行缩放。 有关详细信息，请参阅[虚拟机规模集的自动缩放概述][docs-vmss-autoscale]。
 
 后端是可用性集中的 MariaDB 群集。 有关详细信息，请参阅 [MariaDB 群集教程][mariadb-tutorial]。
 
-若要了解其他可伸缩性主题，请参阅 Azure 体系结构中心的[可伸缩性核对清单][scalability]。
+有关其他可伸缩性的主题，请参阅 [可伸缩性清单] [可伸缩性] Azure 体系结构中心中。
 
 ### <a name="security"></a>安全
 
@@ -92,7 +90,7 @@ ms.locfileid: "58244628"
 
 本方案结合多个区域、数据复制和虚拟机规模集使用 Azure 负载均衡器。 这些网络组件可将流量分配到连接的 VM 实例，并且包括运行状况探测，可以确保流量只分配到正常运行的 VM。 所有这些网络组件通过 CDN 安装在前面。 这样，网络资源和应用程序便可以灵活应对那些会导致流量中断并影响最终用户访问的问题。
 
-若需可复原方案的通用设计指南，请参阅[设计适用于 Azure 的可复原应用程序][resiliency]。
+设计可复原的方案的一般指南，请参阅[设计可靠的 Azure 应用程序](../../reliability/index.md)。
 
 ## <a name="pricing"></a>定价
 
@@ -112,6 +110,4 @@ ms.locfileid: "58244628"
 [docs-nsg]: /azure/virtual-network/security-overview
 [security]: /azure/security/
 [availability]: ../../checklist/availability.md
-[resiliency]: /azure/architecture/resiliency/
-[scalability]: /azure/architecture/checklist/scalability
 [pricing]: https://azure.com/e/a8c4809dab444c1ca4870c489fbb196b

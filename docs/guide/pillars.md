@@ -8,18 +8,18 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 76870f58fc957f6d82f6dc176d1c538c795a7d20
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: d6eed98c6e224956942c45b52621ec02832be015
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243058"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639754"
 ---
 # <a name="pillars-of-software-quality"></a>软件质量的要素
 
 一个成功的云应用程序应注重软件质量的五大构成要素：可伸缩性、可用性、复原能力、管理和安全性。
 
-| 构成要素 | 说明 |
+| 构成要素 | 描述 |
 |--------|-------------|
 | 可伸缩性 | 系统处理增加的负载的能力。 |
 | 可用性 | 系统正常工作时间所占的比例。 |
@@ -76,8 +76,6 @@ ms.locfileid: "58243058"
 
 应用程序通常依赖于多个服务。 一般来说，任一服务发生故障的概率是独立的。 例如，假设应用程序依赖于两个服务，每个服务的 SLA 都为 99.9%。 那么，这两个服务的复合 SLA 为 99.9% &times; 99.9% &asymp; 99.8%，或略小于单独的每个服务。
 
-使用[可用性清单][availability-checklist]从可用性角度审查你的设计。
-
 ### <a name="availability-guidance"></a>可用性指南
 
 - [可用性的设计模式][availability-patterns]
@@ -104,11 +102,9 @@ ms.locfileid: "58243058"
 
 设计可复原的应用程序时，必须了解可用性要求。 可以接受多长的故障时间？ 这在一定程度上取决于成本。 潜在的停机会给业务造成多大的损失？ 使应用程序保持高可用性需要投入多少资金？
 
-使用[复原能力清单][resiliency-checklist]从复原能力角度审查你的设计。
-
 ### <a name="resiliency-guidance"></a>复原指南
 
-- [设计适用于 Azure 的弹性应用程序][resiliency]
+- [设计可靠的 Azure 应用程序][resiliency]
 - [复原能力的设计模式][resiliency-patterns]
 - 最佳做法：[暂时性错误处理][transient-fault-handling]、[特定服务重试指南][retry-service-specific]
 
@@ -173,7 +169,7 @@ ms.locfileid: "58243058"
 
 [dr-guidance]: ../resiliency/disaster-recovery-azure-applications.md
 [identity-ref-arch]: ../reference-architectures/identity/index.md
-[resiliency]: ../resiliency/index.md
+[resiliency]: ../reliability/index.md
 
 [ad-subscriptions]: /azure/active-directory/active-directory-how-subscriptions-associated-directory
 [data-warehouse-encryption]: /azure/data-lake-store/data-lake-store-security-overview#data-protection
@@ -205,7 +201,5 @@ ms.locfileid: "58243058"
 [transient-fault-handling]: ../best-practices/transient-faults.md
 
 <!-- checklist -->
-[availability-checklist]: ../checklist/availability.md
 [devops-checklist]: ../checklist/dev-ops.md
-[resiliency-checklist]: ../checklist/resiliency.md
 [scalability-checklist]: ../checklist/scalability.md

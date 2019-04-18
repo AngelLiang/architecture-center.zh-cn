@@ -9,12 +9,12 @@ ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: a895276a77c111e660f29397d250373bee53f29e
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: fd0ac254604470ba51ea00537490cfb22b224e80
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480756"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640169"
 ---
 # <a name="secure-a-backend-web-api"></a>保护后端 Web API
 
@@ -47,7 +47,7 @@ Web API 不允许匿名请求，因此，Web 应用必须使用 OAuth 2 持有�
 可以采用两种主要方法：
 
 * 委托的用户标识。 Web 应用程序使用用户标识进行身份验证。
-* 应用程序标识。 Web 应用程序通过 OAuth2 客户端凭据流，使用其客户端 ID 进行身份验证。
+* 应用程序标识。 Web 应用程序使用其客户端 ID，使用 OAuth 2 客户端凭据流进行身份验证。
 
 Tailspin 应用程序实施委托的用户标识。 两种方法的主要区别是：
 
@@ -116,7 +116,7 @@ public override async Task AuthorizationCodeReceived(AuthorizationCodeReceivedCo
 * `authorizationCode`。 从 IDP 取回的身份验证代码。
 * `clientId`。 Web 应用程序的客户端 ID。
 * `clientSecret`。 Web 应用程序的客户端机密。
-* `redirectUri`。 为 OpenID Connect 设置的重定向 URI。 IDP 在此 URI 中使用令牌发出回调。
+* `redirectUri`。 重定向 URI 的 OpenID Connect 的设置。 IDP 在此 URI 中使用令牌发出回调。
 * `resourceID`。 Web API 的应用 ID URI，这是在 Azure AD 中注册 Web API 时创建的 URI
 * `tokenCache`。 用于缓存访问令牌的对象。 请参阅[令牌缓存]。
 
@@ -230,7 +230,7 @@ public override async Task TokenValidated(TokenValidatedContext context)
 
 有关授权的一般性介绍，请参阅[基于角色和基于资源的授权][Authorization]。
 
-JwtBearer 中间件处理授权响应。 例如，若要限制为只有经过身份验证的用户才能执行控制器操作，请使用 **[Authorize]** 属性，并指定 **JwtBearerDefaults.AuthenticationScheme** 作为身份验证方案：
+JwtBearer 中间件处理授权响应。 例如，若要限制给已经过身份验证的用户的控制器操作，请使用 **[Authorize]** 属性，并指定**JwtBearerDefaults.AuthenticationScheme**作为身份验证方案：
 
 ```csharp
 [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]

@@ -10,12 +10,12 @@ ms.date: 12/03/2018
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: integration-services
-ms.openlocfilehash: 76e422ead7e53c582a9d64ab1da643c3990749d6
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 16fce3a85cbc0a94dd93277d942fae51ae0e4c04
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242958"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640832"
 ---
 # <a name="basic-enterprise-integration-on-azure"></a>Azure 上的基本企业集成
 
@@ -222,4 +222,4 @@ API 管理使用称作“命名值”或“属性”的对象管理机密。 这
 [logic-apps-sla]: https://azure.microsoft.com/support/legal/sla/logic-apps
 [monitor]: /azure/azure-monitor/overview
 [rbac]: /azure/role-based-access-control/overview
-[rto]: ../../resiliency/index.md#rto-and-rpo
+[rto]: ../../reliability/requirements.md#recovery-metrics

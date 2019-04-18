@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: seodec18, Windows
 social_image_url: /azure/architecture/example-scenario/infrastructure/media/architecture-regulated-multitier-app.png
-ms.openlocfilehash: 440d208b423703fe791dcbe2cad0609fef0e6508
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 2e3bb28abf870a1ce358dd67efeb3f422b983651
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246218"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639931"
 ---
 # <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>使用 Windows 虚拟机在 Azure 上构建安全的 Web 应用程序
 
@@ -67,8 +67,6 @@ ms.locfileid: "58246218"
 
 可以将数据库层配置为使用 Always On 可用性组。 使用此 SQL Server 配置时，最多可以为群集中的一个主数据库配置八个辅助数据库。 如果主数据库发生问题，则群集可以故障转移到其中一个辅助数据库，这样应用程序就会继续可用。 有关详细信息，请参阅[适用于 SQL Server 的 Always On 可用性组概述][sqlalwayson-docs]。
 
-如需更多可用性指南，请参阅 Azure 体系结构中心的[可用性核对清单][availability]。
-
 ### <a name="scalability"></a>可伸缩性
 
 本方案将虚拟机规模集用于前端和后端组件。 使用规模集时，运行前端应用程序层的 VM 实例数可以根据客户需求或定义的计划自动进行缩放。 有关详细信息，请参阅[虚拟机规模集的自动缩放概述][vmssautoscale-docs]。
@@ -85,11 +83,11 @@ ms.locfileid: "58246218"
 
 除了使用可用性区域和虚拟机规模集，本方案还使用 Azure 应用程序网关和负载均衡器。 这两个网络组件可将流量分发到连接的 VM 实例，并且包括运行状况探测，可以确保流量只分发到正常运行的 VM。 两个应用程序网关实例采用主-被配置进行配置，并使用一个区域冗余负载均衡器。 此配置使得网络资源和应用程序可以容忍那些本来会导致流量中断并影响最终用户访问的问题。
 
-若需可复原方案的通用设计指南，请参阅[设计适用于 Azure 的可复原应用程序][resiliency]。
+设计可复原的解决方案的一般指南，请参阅[设计可靠的 Azure 应用程序](../../reliability/index.md)。
 
 ## <a name="deploy-the-scenario"></a>部署方案
 
-### <a name="prerequisites"></a>先决条件
+### <a name="prerequisites"></a>必备组件
 
 - 必须已经有 Azure 帐户。 如果没有 Azure 订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
 
@@ -133,12 +131,10 @@ ms.locfileid: "58246218"
 [appgateway-docs]: /azure/application-gateway/overview
 [architecture]: ./media/architecture-regulated-multitier-app.png
 [autoscaling]: /azure/architecture/best-practices/auto-scaling
-[availability]: ../../checklist/availability.md
 [cloudwitness-docs]: /windows-server/failover-clustering/deploy-cloud-witness
 [loadbalancer-docs]: /azure/load-balancer/load-balancer-overview
 [nsg-docs]: /azure/virtual-network/security-overview
 [ntiersql-ra]: /azure/architecture/reference-architectures/n-tier/n-tier-sql-server
-[resiliency]: /azure/architecture/resiliency/
 [security]: /azure/security/
 [scalability]: /azure/architecture/checklist/scalability
 [scaleset-docs]: /azure/virtual-machine-scale-sets/overview

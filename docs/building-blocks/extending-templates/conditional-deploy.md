@@ -1,17 +1,17 @@
 ---
 title: 在 Azure 资源管理器模板中有条件地部署资源
-description: 介绍如何扩展 Azure 资源管理器模板的功能，根据参数的值有条件地部署资源。
+description: 介绍如何扩展 Azure 资源管理器模板来有条件地部署的资源，具体取决于参数的值的功能。
 author: petertay
 ms.date: 10/30/2018
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: f3d22c6437cdabcd93a781ecf7c99db5a570d7cf
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 437490b2998cfbcde4df13570831e34a776e7afe
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243798"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640203"
 ---
 # <a name="conditionally-deploy-a-resource-in-an-azure-resource-manager-template"></a>在 Azure 资源管理器模板中有条件地部署资源
 

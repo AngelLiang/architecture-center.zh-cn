@@ -7,10 +7,10 @@ ms.date: 02/11/2019
 description: Azure Microsoft 自助餐厅中的监管
 author: BrianBlanchard
 ms.openlocfilehash: ce407de0daa590e767382346692c80e0a113bb3c
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068831"
 ---
 # <a name="governance-in-the-microsoft-caf-for-azure"></a>Azure Microsoft 自助餐厅中的监管
@@ -45,4 +45,4 @@ CAF 中的内容会影响业务、技术和企业文化。 CAF 的这一部分�
 查看可操作的监管旅程。
 
 > [!div class="nextstepaction"]
-> [可操作的监管旅程](./journeys/overview.md)
+> [可操作的治理过程](./journeys/overview.md)

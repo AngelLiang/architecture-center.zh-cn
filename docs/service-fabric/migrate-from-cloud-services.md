@@ -6,12 +6,12 @@ ms.date: 04/11/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: 66f1431f45a0c9accf3a8227fa8cbb5966568372
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: a1fc28737b194fe69e2ae094bd996d97363eb29c
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248008"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641104"
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>将 Azure 云服务应用程序迁移到 Azure Service Fabric 
 
@@ -26,7 +26,6 @@ ms.locfileid: "58248008"
 - [Azure Service Fabric 概述][sf-overview]
 - [为什么通过微服务的方法构建应用程序？][sf-why-microservices]
 
-
 ## <a name="about-the-surveys-application"></a>关于 Surveys 应用程序
 
 2012 年，模式和实践小组为[为云开发多租户应用程序][tailspin-book]一书创建了一个名为 Surveys 的应用程序。 书中描述了一个设计并实现 Surveys 应用程序的虚构公司 Tailspin。
@@ -35,8 +34,8 @@ Surveys 是一款多租户应用程序，允许客户创建问卷调查。 客�
 
 现在，Tailspin 想使用 Azure 上运行的 Service Fabric，将 Surveys 应用程序迁移到微服务体系结构中。 由于该应用程序已部署为云服务应用程序，因此 Tailspin 采用一种多阶段方法：
 
-1.  将云服务移植到 Service Fabric，同时尽量减少对应用程序的更改。
-2.  通过迁移到微服务体系结构，针对 Service Fabric 优化应用程序。
+1. 将云服务移植到 Service Fabric，同时尽量减少对应用程序的更改。
+2. 通过迁移到微服务体系结构，针对 Service Fabric 优化应用程序。
 
 本文介绍第一个阶段。 后续文章将介绍第二个阶段。 在实际项目中，这两个阶段有可能重叠。 移植到 Service Fabric 的同时，你也会开始将应用程序重新构建到微服务中。 之后，可能会进一步优化体系结构，可能将粗粒度的服务划分为粒度较小的服务。  
 
@@ -87,7 +86,6 @@ Service Fabric 可供各种 Microsoft 服务使用，包括 Azure SQL 数据库�
 | 自动缩放 | [内置服务][cloud-service-autoscale] | 使用 VM 规模集进行自动缩放 |
 | 调试 | 本地仿真器 | 本地群集 |
 
-
 \* 有状态服务使用[可靠集合][sf-reliable-collections]将状态存储在各个副本中，以便所有读取操作都在群集节点本地进行。 写入操作跨节点进行复制，以保证可靠性。 无状态服务通过使用数据库或其他外部存储，可以有外部状态。
 
 ** 辅助角色也可以使用 OWIN 自托管 ASP.NET Web API。
@@ -123,7 +121,6 @@ Service Fabric 可供各种 Microsoft 服务使用，包括 Azure SQL 数据库�
 ![](./images/tailspin02.png)
 
 此体系结构有意设计成与原始应用程序非常类似。 不过，该图隐藏了一些重要差异。 在本文的其余部分，我们将探讨这些差异。 
-
 
 ## <a name="converting-the-cloud-service-roles-to-services"></a>将云服务角色转换为服务
 
@@ -180,7 +177,7 @@ Service Fabric 可供各种 Microsoft 服务使用，包括 Azure SQL 数据库�
 
  云服务包含以下配置和包文件：
 
-| 文件 | 说明 |
+| 文件 | 描述 |
 |------|-------------|
 | 服务定义 (.csdef) | Azure 用于配置云服务的设置。 定义角色、终结点、启动任务和配置设置名称。 |
 | 服务配置 (.cscfg) | 针对每个部署的设置，包括角色实例数、终结点端口号和配置设置的值。 
@@ -202,7 +199,7 @@ Application package
 
 Service Fabric 应用程序包含以下配置文件：
 
-| 文件 | 位置 | 说明 |
+| 文件 | 位置 | 描述 |
 |------|----------|-------------|
 | ApplicationManifest.xml | 应用程序包 | 定义构成应用程序的服务。 |
 | ServiceManifest.xml | 服务包| 描述一个或多个服务。 |
@@ -215,7 +212,6 @@ Service Fabric 应用程序包含以下配置文件：
 1. 在服务的 Setting.xml 文件中定义设置。
 2. 在应用程序清单中，定义设置的替代项。
 3. 将特定于环境的设置放入应用程序参数文件。
-
 
 ## <a name="deploying-the-application"></a>部署应用程序
 
@@ -265,8 +261,8 @@ Service Fabric 群集部署到 [VM 规模集][vm-scale-sets]。 规模集是一�
 
 若要实现此方法，请执行以下操作：
 
-1.  创建群集时，定义两种或更多节点类型。 
-2.  对于每个服务，均使用[放置约束][sf-placement-constraints]将该服务分配到一种节点类型。
+1. 创建群集时，定义两种或更多节点类型。 
+2. 对于每个服务，均使用[放置约束][sf-placement-constraints]将该服务分配到一种节点类型。
 
 在部署到 Azure 时，每种节点类型都会部署到不同的 VM 规模集。 Service Fabric 群集跨所有节点类型。 有关详细信息，请参阅 [Service Fabric 节点类型与虚拟机规模集之间的关系][sf-node-types]。
 
@@ -281,7 +277,6 @@ Service Fabric 群集部署到 [VM 规模集][vm-scale-sets]。 规模集是一�
 通过向群集添加 VM，可以横向扩展应用程序。 VM 规模集支持使用自动缩放规则，基于性能计数器进行自动缩放。 有关详细信息，请参阅[使用自动缩放规则扩大或缩小 Service Fabric 群集][sf-auto-scale]。
 
 运行群集时，应在某个中心位置从所有节点收集日志。 有关详细信息，请参阅[使用 Azure 诊断收集日志][sf-logs]。   
-
 
 ## <a name="conclusion"></a>结束语
 

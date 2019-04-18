@@ -1,18 +1,18 @@
 ---
-title: CAF：大型企业 – 大型企业的多层治理
+title: CAF：大型企业 – 监管在大型企业中的多个层
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 大型企业 – 大型企业的多层治理
+description: 大型企业 – 监管在大型企业中的多个层
 author: BrianBlanchard
-ms.openlocfilehash: 42f4159ca0701c6a798f239359509a3e3b246c38
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 1a90f8007077df0ecefa8ec5d8c0dd6bfca9ccc7
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900591"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641206"
 ---
 # <a name="multiple-layers-of-governance-in-large-enterprises"></a>大型企业的多层治理
 
@@ -30,7 +30,7 @@ ms.locfileid: "55900591"
 
 大型成熟企业通常拥有专门的团队和员工，专注于整个治理过程中所涉及的规则。 此过程演示了使治理成为一项团队运动的方法。
 
-在许多大型企业中，云治理规则可能会阻碍云的采用。 在整个企业内开发标识、安全性、操作、部署和配置方面的云专业技能需要时间。 全面实现 IT 治理策略和 IT 安全可能会使创新速度减缓数月甚至数年。 平衡业务创新需求和保护现有资源的治理需求是很微妙的。
+在许多大型企业，云监管五个领域可能会阻塞程序的采用。 在整个企业内开发标识、安全性、操作、部署和配置方面的云专业技能需要时间。 全面实现 IT 治理策略和 IT 安全可能会使创新速度减缓数月甚至数年。 平衡业务创新需求和保护现有资源的治理需求是很微妙的。
 
 云的固有功能可以消除创新障碍，但也会增加风险。 在此治理过程中，我们展示了示例公司如何建立防范措施来降低风险。 在其他团队生成必要的云成熟度时，云治理团队采用基于风险的方法来治理可部署的内容，而不是处理保护环境所需的每项规则。 最重要的是，当每个团队达到云成熟度时，治理团队将整体应用其解决方案。 随着每个团队逐渐成熟并添加到整个解决方案，云治理团队可以打开阶段关卡，以便大力推进更多的创新和采用。
 
@@ -38,7 +38,7 @@ ms.locfileid: "55900591"
 
 ## <a name="requirements-to-supporting-such-a-team-sport"></a>支持此类团队运动的要求
 
-多层治理模型的第一个要求是了解治理层次结构。 回答以下问题将帮助你了解常规治理层次结构：
+多层治理模型的第一个要求是了解治理层次结构。 回答以下问题将帮助您了解的常规管理层次结构：
 
 - 如何跨业务部门分配云核算（云服务计费）？
 - 如何跨企业 IT 和每个业务部门分配治理职责？

@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/data/media/architecture-fraud-detection.png
-ms.openlocfilehash: b10838635cb592eb93d35ce745832c55a6daae8b
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: fc2222874b807a53b5e575973aa6dd4eca63fa3b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245788"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640035"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>在 Azure 上实时欺诈检测
 
@@ -62,8 +62,6 @@ ms.locfileid: "58245788"
 
 Azure Monitor 提供了统一的用户界面，可用于监视各种 Azure 服务。 有关详细信息，请参阅[在 Microsoft Azure 中进行监视](/azure/monitoring-and-diagnostics/monitoring-overview)。 事件中心和流分析均与 Azure Monitor 集成在一起。
 
-若要了解其他可用性注意事项，请参阅 Azure 体系结构中心的[可用性核对清单][availability]。
-
 ### <a name="scalability"></a>可伸缩性
 
 本方案的组件设计用于超大规模的引入和大规模并行实时分析。 Azure 事件中心高度可缩放，每秒能够接收和处理数百万个事件且延迟很低。 事件中心可[自动增加](/azure/event-hubs/event-hubs-auto-inflate)吞吐量单元数，以便满足使用需求。 Azure 流分析可以分析多个源提供的大量流数据。 若要纵向扩展流分析，可以增加分配的用于执行流作业的[流单元](/azure/stream-analytics/stream-analytics-streaming-unit-consumption)数。
@@ -78,7 +76,7 @@ Azure 事件中心通过[身份验证和安全模型][docs-event-hubs-security-m
 
 ### <a name="resiliency"></a>复原
 
-若需可复原解决方案的通用设计指南，请参阅[设计适用于 Azure 的可复原应用程序][resiliency]。
+设计可复原的解决方案的一般指南，请参阅[设计可靠的 Azure 应用程序](../../reliability/index.md)。
 
 ## <a name="deploy-the-scenario"></a>部署方案
 
@@ -111,7 +109,5 @@ Azure 事件中心通过[身份验证和安全模型][docs-event-hubs-security-m
 [docs-r-server-sample-solutions]: /machine-learning-server/r/sample-solutions
 [r-server-fraud-detection]: https://microsoft.github.io/r-server-fraud-detection/
 [technet-fraud-detection]: https://blogs.technet.microsoft.com/machinelearning/2017/06/28/using-azure-data-lake-and-r-for-fraud-detection/
-[availability]: /azure/architecture/checklist/availability
 [scalability]: /azure/architecture/checklist/scalability
-[resiliency]: ../../resiliency/index.md
 [security]: /azure/security/

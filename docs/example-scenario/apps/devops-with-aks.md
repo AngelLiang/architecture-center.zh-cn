@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-devops-with-aks.png
-ms.openlocfilehash: 89e50e67b2c933637442f0f01bf83ecc95743691
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 9be4f828c96c4ac321acf9d9719d0ef465fb35cf
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244028"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641172"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>适用于基于容器的工作负荷的 CI/CD 管道
 
@@ -70,8 +70,6 @@ ms.locfileid: "58244028"
 
 作为 Azure Kubernetes 服务群集的一部分，负载均衡器可以将应用程序流量分发到一个或多个运行应用程序的容器 (Pod)。 可以通过这种在 Kubernetes 中运行容器化应用程序的方法，为客户提供高度可用的基础结构。
 
-若要了解其他可用性主题，请参阅 Azure 体系结构中心提供的[可用性核对清单][availability]。
-
 ### <a name="scalability"></a>可伸缩性
 
 Azure Kubernetes 服务允许按照应用程序的需求调整群集节点的数目。 应用程序增加时，可以扩大运行服务的 Kubernetes 节点数。
@@ -82,7 +80,7 @@ Azure Kubernetes 服务允许按照应用程序的需求调整群集节点的数
 
 ### <a name="security"></a>安全
 
-为了尽量减少受攻击面，本方案不通过 HTTP 公开 Jenkins VM 实例。 若要执行需要与 Jenkins 交互的管理任务，请使用本地计算机的 SSH 隧道创建安全的远程连接。 Jenkins 和 Grafana VM 实例仅允许 SSH 公钥身份验证。 基于密码的登录已禁用。 有关详细信息，请参阅[在 Azure 上运行 Jenkins 服务器](../../reference-architectures/jenkins/index.md)。
+为了尽量减少受攻击面，本方案不通过 HTTP 公开 Jenkins VM 实例。 若要执行需要与 Jenkins 交互的管理任务，请使用本地计算机的 SSH 隧道创建安全的远程连接。 Jenkins 和 Grafana VM 实例仅允许 SSH 公钥身份验证。 基于密码的登录已禁用。 有关详细信息，请参阅[在 Azure 上运行 Jenkins 服务器](./jenkins.md)。
 
 为了将凭据和权限隔离，本方案使用专用的 Azure Active Directory (AD) 服务主体。 此服务主体的凭据以安全的凭据对象形式存储在 Jenkins 中，因此不会在脚本或生成管道中直接公开和可见。
 
@@ -92,11 +90,11 @@ Azure Kubernetes 服务允许按照应用程序的需求调整群集节点的数
 
 本方案使用适合应用程序的 Azure Kubernetes 服务。 Kubernetes 内置了复原组件，用于监视容器 (Pod) 并在出现问题时重启容器。 应用程序可以运行多个 Kubernetes 节点，可以容忍一个 Pod 或节点不可用的情况。
 
-若需可复原解决方案的通用设计指南，请参阅[设计适用于 Azure 的可复原应用程序][resiliency]。
+设计可复原的解决方案的一般指南，请参阅[设计可靠的 Azure 应用程序](../../reliability/index.md)。
 
 ## <a name="deploy-the-scenario"></a>部署方案
 
-### <a name="prerequisites"></a>先决条件
+### <a name="prerequisites"></a>必备组件
 
 - 必须已经有 Azure 帐户。 如果没有 Azure 订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
 
@@ -147,7 +145,6 @@ Azure Kubernetes 服务允许按照应用程序的需求调整群集节点的数
 <!-- links -->
 [architecture]: ./media/architecture-devops-with-aks.png
 [autoscaling]: ../../best-practices/auto-scaling.md
-[availability]: ../../checklist/availability.md
 [docs-aci]: /azure/container-instances/container-instances-overview
 [docs-acr]: /azure/container-registry/container-registry-intro
 [docs-aks]: /azure/aks/intro-kubernetes
@@ -157,7 +154,6 @@ Azure Kubernetes 服务允许按照应用程序的需求调整群集节点的数
 [createsp]: /cli/azure/ad/sp#az-ad-sp-create
 [grafana]: https://grafana.com/
 [jenkins]: https://jenkins.io/
-[resiliency]: ../../resiliency/index.md
 [resource-groups]: /azure/azure-resource-manager/resource-group-overview
 [security]: /azure/security/
 [scalability]: ../../checklist/scalability.md

@@ -7,12 +7,12 @@ ms.custom: governance
 description: 有关配置 Azure 调控措施，使用户能够部署简单工作负荷的指南
 author: petertaylor9999
 ms.date: 02/11/2019
-ms.openlocfilehash: 0b6f16ee30ce3af8a533b6e153fbe318252c23e7
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 6bf2f15f706140955df29f7f372068c80ce1ad21
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246428"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640577"
 ---
 # <a name="governance-design-for-a-simple-workload"></a>适用于简单工作负荷的治理设计
 
@@ -79,7 +79,7 @@ Azure **帐户所有者**通过分配[基于角色的访问控制 (RBAC)](/azure
 内置的**所有者**角色在订阅范围向**工作负荷所有者**授予所有权限。
 
 > [!IMPORTANT]
-> Azure **帐户所有者**负责与订阅关联的财务承诺，但**工作负荷所有者**拥有相同的权限。 **帐户所有者**必须信任**工作负荷所有者**部署订阅预算范围内的资源。
+> Azure**帐户所有者**负责财务承诺与订阅相关联，但**工作负荷所有者**具有相同的权限。 **帐户所有者**必须信任**工作负荷所有者**部署订阅预算范围内的资源。
 
 管理范围的下一个级别是**资源组**级别。 资源组是资源的逻辑容器。 在资源组级别应用的操作将应用到组中的所有资源。 此外，必须注意，每个用户的权限继承自下一个更高级别，除非在该范围显式更改了这些权限。
 

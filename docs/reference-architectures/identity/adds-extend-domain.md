@@ -1,29 +1,29 @@
 ---
-title: 将 Active Directory 域服务 (AD DS) 扩展到 Azure
+title: 将本地 Active Directory 域扩展到 Azure
 titleSuffix: Azure Reference Architectures
-description: 将本地 Active Directory 域扩展到 Azure。
+description: 在 Azure 虚拟网络中部署 Active Directory 域服务 (AD DS)。
 author: telmosampaio
 ms.date: 05/02/2018
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: 67f23ae3676d0fb95ef484fa6dcb7a8bb92e0fa2
-ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.openlocfilehash: c617a0ceba900fc9cd78eff21aadf5c94f6b143b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58419999"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640339"
 ---
-# <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>将 Active Directory 域服务 (AD DS) 扩展到 Azure
+# <a name="extend-your-on-premises-active-directory-domain-to-azure"></a>将本地 Active Directory 域扩展到 Azure
 
-此参考体系结构展示了如何使用 Active Directory 域服务 (AD DS) 将 Active Directory 环境扩展到 Azure 以提供分布式身份验证服务。 [**部署此解决方案**](#deploy-the-solution)。
+此体系结构显示了如何将本地 Active Directory 域扩展到 Azure 以提供分布式身份验证服务。 [**部署此解决方案**](#deploy-the-solution)。
 
 ![使用 Active Directory 保护混合网络体系结构的安全](./images/adds-extend-domain.png)
 
 下载此体系结构的 [Visio 文件][visio-download]。
 
-AD DS 用来对安全域中包括的用户、计算机、应用程序或其他标识进行身份验证。 它可以托管在本地，但是如果你的应用程序部分托管在本地部分托管在 Azure 中，则将此功能复制到 Azure 中可能更为高效。 这可以降低由于将身份验证和本地授权请求从云发送回在本地运行的 AD DS 而导致的延迟。
+如果你的应用程序有一部分托管本地部分在 Azure 中，它可能是更高效，复制在 Azure Active Directory 域服务 (AD DS)。 这可以减少将身份验证请求从云发送回在本地运行的 AD DS 而导致的延迟。
 
 如果本地网络和 Azure 虚拟网络通过 VPN 或 ExpressRoute 连接进行连接，通常会使用此体系结构。 此体系结构还支持双向复制，这意味着既可以在本地又可以在云中进行更改，并且两个源都将保持一致。 此体系结构的典型用途包括功能分布在本地和 Azure 中的混合应用程序以及使用 Active Directory 执行身份验证的应用程序和服务。
 

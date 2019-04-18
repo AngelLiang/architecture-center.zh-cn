@@ -6,12 +6,12 @@ ms.date: 03/06/2019
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 1020e938a04c6a82e6cc831e6620ec17c9a10cc7
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: e4c81add1a97254f427d67584ff7e2a4799f84a9
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503224"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640900"
 ---
 # <a name="what-are-the-machine-learning-products-at-microsoft"></a>Microsoft 的机器学习产品有哪些？
 
@@ -63,7 +63,7 @@ Microsoft 提供的各种产品选项，以准备、 生成、 部署和管理�
 
 Azure 机器学习服务用于定型、 部署和管理云规模的使用 Python 和 CLI 的机器学习模型。
 
-试用 [Azure 机器学习服务免费版或付费版](http://aka.ms/AMLFree)。
+试用 [Azure 机器学习服务免费版或付费版](https://aka.ms/AMLFree)。
 
 |||
 |-|-|
@@ -186,9 +186,9 @@ Azure 机器学习服务用于定型、 部署和管理云规模的使用 Python
 |||
 |-|-|
 |类型                   |对于 Windows 设备的已训练模型的推理引擎|
-|**支持的语言**    |C#/ C + +、 JavaScript|
+|**支持的语言**    |C#/C++，JavaScript|
 
 ## <a name="next-steps"></a>后续步骤
 
-- 若要了解 Microsoft 提供的所有人工智能 (AI) 开发产品，请参阅 [Microsoft AI 平台](https://www.microsoft.com/ai)
+- 若要了解有关可从 Microsoft 获得的所有人工智能 (AI) 开发产品的信息，请参阅[Microsoft AI 平台](https://www.microsoft.com/ai)
 - 有关如何开发 AI 解决方案的培训内容，请参阅 [Microsoft AI 学校](https://aischool.microsoft.com/learning-paths)

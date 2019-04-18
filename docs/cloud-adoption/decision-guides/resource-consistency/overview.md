@@ -7,29 +7,24 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: 了解规划 Azure 迁移时的资源一致性。
 author: rotycenh
-ms.openlocfilehash: 8170bfd09218a451e086a57e0631b7e567eb2b82
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 3159e4b7aeddfdd99261c0f68591998d741f3359
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900516"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640034"
 ---
 # <a name="caf-resource-consistency-decision-guide"></a>CAF：资源一致性决策指南
 
-Azure [订阅设计](../subscriptions/overview.md)定义了如何根据组织的整体结构组织云资产。 此外，如何整合现有的 IT 管理标准和组织策略，要取决于在订阅中部署和组织云资源的方式。
-
-可用于实现资源部署、分组和管理设计的工具将因云平台而异。 通常，每个解决方案包括以下功能：
-
-- 订阅或帐户级别下的逻辑分组机制。
-- 使用 API 以编程方式部署资源的功能。
-- 用于创建标准化部署的模板。
-- 在订阅、帐户和资源分组级别部署策略规则的功能。
+Azure[订阅设计](../subscriptions/overview.md)定义如何组织云资产与你的组织结构、 记帐实践和工作负荷要求。 除了此级别的结构，跨云资产满足你组织的监管策略要求需要一致地组织、 部署和管理对订阅中的资源的能力。
 
 ![按复杂性从最低到最高绘制的资源一致性选项，与下面的跳转链接保持一致](../../_images/discovery-guides/discovery-guide-resource-consistency.png)
 
 跳转到：[基本分组](#basic-grouping) | [部署一致性](#deployment-consistency) | [策略一致性](#policy-consistency) | [层次结构一致性](#hierarchical-consistency)  | [自动一致性](#automated-consistency)
 
-资源部署和分组决策主要受以下因素驱动：迁移后的数字资产规模，不完全适合现有订阅设计方法的业务或环境复杂性，或者在部署资源后逐步强制执行治理的需求。 更高级的资源分组设计需要更多的努力来确保准确的分组，这会增加在更改管理和跟踪上所花费的时间。
+有关云资源的资源的一致性要求的级别的决策主要由以下因素驱动： 迁移后数字空间大小、 业务或不适合归入现有订阅中的环境要求设计方法或需要实施段时间后已部署的资源调控。 
+
+随着这些因素也在不断提升，确保一致的部署、 分组和管理基于云的资源的优点变得更重要的。 实现更多高级级别的资源以满足不断增长的要求的一致性需要更多自动化、 工具和一致性强制中所用的工作，这会导致更多的时间所用的更改管理和跟踪。
 
 ## <a name="basic-grouping"></a>基本分组
 
@@ -42,11 +37,11 @@ Azure [订阅设计](../subscriptions/overview.md)定义了如何根据组织的
 
 ## <a name="deployment-consistency"></a>部署一致性
 
-基于基础资源分组机制，大多数云平台提供了一个使用模板将资源部署到云环境的系统。 在部署工作负载时，可以使用模板创建一致的组织和命名约定，强制执行资源部署和管理设计的这些方面。
+构建基于基础资源分组机制，Azure 平台提供的系统使用模板将资源部署到云环境。 在部署工作负载时，可以使用模板创建一致的组织和命名约定，强制执行资源部署和管理设计的这些方面。
 
 借助 [Azure 资源管理器模板](/azure/azure-resource-manager/resource-group-overview#template-deployment)，可以使用预定的配置和资源组结构以一致的状态重复部署资源。 资源管理器模板可帮助用户定义一组标准作为部署的基础。
 
-例如，你可以使用标准模板来部署包含两个虚拟机的 Web 服务器工作负载，将其作为 Web 服务器与负载均衡器结合使用，以管理服务器之间的流量。 然后，只要需要新的 Web 服务器工作负载，就可以重用此模板来创建结构相同的部署，仅更改所涉及的部署名称和 IP 地址即可。
+例如，您可以用于部署为 web 服务器与分发服务器之间的流量的负载均衡器结合使用包含两个虚拟机的 web 服务器工作负荷的标准模板。 然后可以重复使用此模板以创建组结构上相同的虚拟机和负载均衡器，需要此类型的工作负荷时，部署名称和 IP 地址的唯一更改涉及。
 
 请注意，还能够以编程方式部署这些模板并将它们与 CI/CD 系统集成。
 
@@ -62,9 +57,9 @@ Azure [订阅设计](../subscriptions/overview.md)定义了如何根据组织的
 
 ## <a name="hierarchical-consistency"></a>层次结构一致性
 
-随着云资产规模的增长，相比使用 Azure 企业协议的企业/部门/帐户/订阅层次结构支持的需求，用户可能需要支持更为复杂的治理需求。 使用资源组，你可以在组织内支持其他级别的层次结构，在资源组级别应用 Azure Policy 规则和访问控制。
+资源组，可支持更高级别的应用 Azure 策略规则在订阅中，在组织中的层次结构和访问资源组级别的控制。 但是，随着云资产的大小的增长，你可能需要支持可以使用 Azure 企业协议的企业/部门/帐户/订阅层次结构支持更复杂的跨订阅监管要求。 
 
-[Azure 管理组](../subscriptions/overview.md#management-groups)通过在企业协议结构之上覆盖备用层次结构可以支持更复杂的组织结构。 这使订阅及其包含的资源能够支持组织的访问控制和策略实施机制，以满足业务组织需求。
+[Azure 管理组](../subscriptions/overview.md#management-groups)可以分组到建立企业协议的结构的其他层次结构中的订阅的组织订阅到更复杂的组织结构。 此备用层次结构，可跨多个订阅和它们所包含的资源应用访问控制和策略强制机制。 可以使用管理组层次结构以匹配操作或业务监管要求的云资源的订阅。 
 
 ## <a name="automated-consistency"></a>自动一致性
 

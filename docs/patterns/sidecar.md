@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 2b0e46a06f7fe47f281f726f73128db1d7dd1067
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 20a63cdd935f28cc47686238d34d654da2798985
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243558"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639591"
 ---
 # <a name="sidecar-pattern"></a>挎斗模式
 
@@ -46,7 +46,7 @@ ms.locfileid: "58243558"
 
 - 挎斗与主应用程序保持密切的距离，因此两者之间的通信不存在明显的延迟。
 
-- 即使是对于不提供扩展性机制的应用程序，也仍可以使用挎斗来扩展功能，只需在主应用程序所用的同一主机或子容器中，将挎斗附加为自身的进程即可。
+- 即使对于不提供可扩展性机制的应用程序，可以使用挎斗附加为其自己的进程相同的主机或在主应用程序的子容器中通过来扩展功能。
 
 挎斗模式通常与容器一起使用，因而称作挎斗容器或搭档容器。
 

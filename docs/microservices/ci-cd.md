@@ -7,12 +7,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: f7f3f3d48087db51c40f134e3e4cf11ec58501bb
-ms.sourcegitcommit: d58e6b2b891c9c99e951c59f15fce71addcb96b1
+ms.openlocfilehash: c52ff3d0a330f564e5f7e9b0b07f0ba84c328c8b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59533084"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639772"
 ---
 # <a name="cicd-for-microservices-architectures"></a>微服务体系结构的 CI/CD
 
@@ -64,7 +64,7 @@ ms.locfileid: "59533084"
 
 - **发布管理**。 每个团队应能够将更新部署到生产环境。 这并不意味着每个团队成员都有权这样做。 但是，设置集中式“发布管理员”角色可能降低部署速度。
 
-    **Migitation**:CI/CD 过程的自动化程度和可靠性越高，对集中授权的需求就越少。 也就是说，可以对主要功能更新与次要 bug 修复的发布采用不同的策略。 分散化并不意味着任何监管。
+    **缓解措施**：CI/CD 过程的自动化程度和可靠性越高，对集中授权的需求就越少。 也就是说，可以对主要功能更新与次要 bug 修复的发布采用不同的策略。 分散化并不意味着任何监管。
 
 - **服务更新**。 将某个服务更新到新版本时，更新过程不应中断依赖于该服务的其他服务。
 
@@ -74,7 +74,7 @@ ms.locfileid: "59533084"
 
 在创建 CI/CD 工作流之前，必须了解如何对代码库进行结构设计和管理。
 
-- 团队是在多个单独的存储库中工作，还是在一个 monorepo（单存储库）中工作？
+- 团队是否进行工作在单独的存储库或 monorepo （单个存储库） 中？
 - 什么是分库策略？
 - 谁可以将代码推送到生产环境中？ 是否有发布经理角色？
 

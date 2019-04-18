@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/ai/media/architecture-commerce-chatbot.png
-ms.openlocfilehash: 48f85e7443bcd6149c8024d20fb50816c1a4df38
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: c4859cb0e43603991e4f8e6a0311a28537f29f1a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245848"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640254"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Azure 上提供的用于酒店预订的对话式聊天机器人
 
@@ -65,8 +65,6 @@ ms.locfileid: "58245848"
 
 本方案使用 Azure SQL 数据库来存储客户预订项目。 SQL 数据库包括区域冗余数据库、故障转移组和异地复制。 有关详细信息，请参阅 [Azure SQL 数据库可用性功能][sqlavailability-docs]。
 
-若要了解其他可用性主题，请参阅 Azure 体系结构中心的[可用性核对清单][availability]。
-
 ### <a name="scalability"></a>可伸缩性
 
 本方案使用 Azure 应用服务。 可以通过应用服务自动调整运行机器人的实例数。 可以通过此功能时刻了解客户对 Web 应用程序和聊天机器人的需求情况。 有关自动缩放的详细信息，请参阅 Azure 体系结构中心的[自动缩放最佳做法][autoscaling]。
@@ -87,17 +85,17 @@ ms.locfileid: "58245848"
 
 本方案使用 Application Insights 来监视应用程序的运行状况。 可以使用 Application Insights 生成警报并响应那些会影响客户体验和聊天机器人可用性的性能问题。 有关详细信息，请参阅[什么是 Application Insights？][appinsights-docs]
 
-若需可复原解决方案的通用设计指南，请参阅[设计适用于 Azure 的可复原应用程序][resiliency]。
+有关其他复原能力的主题，请参阅[设计可靠的 Azure 应用程序](../../reliability/index.md)。
 
 ## <a name="deploy-the-scenario"></a>部署方案
 
 本方案分为三个组件，方便你了解自己最关注的领域：
 
-- [基础结构组件](#deploy-infrastructure-components)。 使用 Azure 资源管理器模板来部署应用服务、Web 应用、Application Insights、存储帐户以及 SQL Server 和数据库的核心基础结构组件。
+- [基础结构组件](#walk-through)。 使用 Azure 资源管理器模板来部署应用服务、Web 应用、Application Insights、存储帐户以及 SQL Server 和数据库的核心基础结构组件。
 - [Web 应用聊天机器人](#deploy-web-app-chatbot)。 使用 Azure CLI 将机器人与机器人服务、语言理解和智能服务 (LUIS) 应用部署在一起。
 - [C# 聊天机器人应用程序示例](#deploy-chatbot-c-application-code)。 使用 Visual Studio 复查示例性的酒店预订 C# 应用程序代码并将其部署到 Azure 中的机器人。
 
-### <a name="prerequisites"></a>先决条件
+### <a name="prerequisites"></a>必备组件
 
 必须已经有 Azure 帐户。 如果没有 Azure 订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)。
 
@@ -170,7 +168,6 @@ GitHub 上提供了一个示例 C# 应用程序：
 [appservice-docs]: /azure/app-service/
 [architecture]: ./media/architecture-commerce-chatbot.png
 [autoscaling]: ../../best-practices/auto-scaling.md
-[availability]: ../../checklist/availability.md
 [botservice-docs]: /azure/bot-service/
 [cognitive-docs]: /azure/cognitive-services/
 [resiliency]: ../../resiliency/index.md

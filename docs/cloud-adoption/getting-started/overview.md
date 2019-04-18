@@ -7,10 +7,10 @@ ms.custom: governance
 description: 概述如何使用 Azure 云技术的企业的数字化转型的第一阶段。
 ms.date: 02/11/2019
 ms.openlocfilehash: 29b02964b5f1cd09857a51c17cf94d6c64e05e88
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068950"
 ---
 # <a name="getting-started-with-the-cloud-adoption-framework"></a>云采用框架入门
@@ -133,4 +133,4 @@ IT 员工可能会对自己的角色和职位感到忧虑，因为他们认识�
 数字化转型是一种迭代过程，每一次迭代都会带来相关团队效率的提升。
 
 > [!div class="nextstepaction"]
-> [了解 Azure 的工作原理](what-is-azure.md)
+> [了解 Azure 工作原理](what-is-azure.md)

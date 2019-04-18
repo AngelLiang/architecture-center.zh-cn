@@ -3,12 +3,12 @@ title: 大型机迁移：神话和事实
 description: 将应用程序从大型机环境迁移到 Azure，这是经过验证的、高度可用且可缩放的基础结构，适用于当前在大型机上运行的系统。
 author: njray
 ms.date: 12/27/2018
-ms.openlocfilehash: bcad01ec044d2d802b055e328a9496aae7b33311
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: e56f5b1b7e502ac727b28e583105bdee1c9cecd8
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241538"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640322"
 ---
 # <a name="mainframe-myths-and-facts"></a>大型机的相关神话和事实
 
@@ -32,7 +32,7 @@ ms.locfileid: "58241538"
 
 ## <a name="myth-the-cloud-cannot-accommodate-mission-critical-applications-for-large-companies-such-as-financial-institutions"></a>神话：云不适用于大型企业（如金融机构）的任务关键应用程序
 
-虽然可能存在一些云解决方案不适用的独立实例，但这通常是因为应用程序算法无法分发。 这些少数示例属于例外情况，而不是规则。
+尽管可能存在一些独立的实例的云解决方案不能满足要求，但通常是因为无法分发的应用程序算法。 这些少数示例属于例外情况，而不是规则。
 
 ## <a name="summary"></a>摘要
 

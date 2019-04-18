@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, networking
-ms.openlocfilehash: 2595352075c708e015a0f0c536be31ceb5614fcd
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 046ca8c9c67c2d8a77efc87c2106c79670bd153f
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245678"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640067"
 ---
 # <a name="implement-a-dmz-between-azure-and-the-internet"></a>在 Azure 与 Internet 之间实施外围网络
 
@@ -87,7 +87,7 @@ ms.locfileid: "58245678"
 
 [GitHub][github-folder] 上提供了可实施这些建议的参考体系结构部署。
 
-### <a name="prerequisites"></a>先决条件
+### <a name="prerequisites"></a>必备组件
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
@@ -95,13 +95,13 @@ ms.locfileid: "58245678"
 
 1. 导航到参考体系结构 GitHub 存储库的 `/dmz/secure-vnet-dmz` 文件夹。
 
-2. 运行以下命令：
+1. 运行以下命令：
 
     ```bash
     azbb -s <subscription_id> -g <resource_group_name> -l <region> -p onprem.json --deploy
     ```
 
-4. 运行以下命令：
+1. 运行以下命令：
 
     ```bash
     azbb -s <subscription_id> -g <resource_group_name> -l <region> -p secure-vnet-dmz.json --deploy

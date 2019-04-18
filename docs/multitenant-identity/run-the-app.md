@@ -6,12 +6,12 @@ ms.date: 07/21/2017
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: bdc2f4da6dd151cf395bee700e6a44e827c1e4f9
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: b22a52b1dfcccc6253ba4ba418ed25523603283a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246128"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640815"
 ---
 # <a name="run-the-surveys-application"></a>运行 Surveys 应用程序
 
@@ -26,7 +26,7 @@ ms.locfileid: "58246128"
 5. 运行应用程序并注册一个新租户。
 6. 为用户添加应用程序角色。
 
-## <a name="prerequisites"></a>先决条件
+## <a name="prerequisites"></a>必备组件
 
 - 已安装带有 [ASP.NET 和 Web 开发工作负荷](https://visualstudio.microsoft.com/vs/support/selecting-workloads-visual-studio-2017)的 [Visual Studio 2017][VS2017]
 - [Microsoft Azure](https://azure.microsoft.com) 帐户
@@ -45,7 +45,7 @@ Tailspin 是虚构的公司，它托管着 Surveys 应用程序。 Tailspin 使�
 
     ![“创建目录”对话框](./images/running-the-app/new-tenant.png)
 
-4. 单击“创建”。 创建新目录可能需要花费几分钟时间。
+4. 单击**创建**。 创建新目录可能需要花费几分钟时间。
 
 若要完成端到端方案，你将需要另一个 Azure AD 目录来表示向应用程序进行注册的客户。 对于此用途，可以使用默认的 Azure AD 目录（不是 Tailspin），也可以创建一个新目录。 在示例中，我们使用 Contoso 作为虚构的客户。
 
@@ -67,7 +67,7 @@ Tailspin 是虚构的公司，它托管着 Surveys 应用程序。 Tailspin 使�
 
    ![注册 Web API 的屏幕截图](./images/running-the-app/register-web-api.png)
 
-5. 单击“创建”。
+5. 单击**创建**。
 
 6. 在“应用注册”边栏选项卡中，选择新的“Surveys.WebAPI”应用程序。
 
@@ -93,7 +93,7 @@ Tailspin 是虚构的公司，它托管着 Surveys 应用程序。 Tailspin 使�
 
     注意，登录 URL 具有与上一步骤中的 `Surveys.WebAPI` 应用不同的端口号。
 
-3. 单击“创建”。
+3. 单击**创建**。
 
 4. 在“应用注册”边栏选项卡中，选择新的“Surveys”应用程序。
 
@@ -195,7 +195,7 @@ Surveys 应用程序使用 Redis 来缓存 OAuth 2 访问令牌。 若要创建�
 
 2. 填写所需的信息，包括 DNS 名称、资源组、位置和定价层。 可以创建新的资源组，也可以使用现有资源组。
 
-3. 单击“创建”。
+3. 单击**创建**。
 
 4. 创建 Resis 缓存后，在门户中导航到该资源。
 

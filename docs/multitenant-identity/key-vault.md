@@ -8,12 +8,12 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: client-assertion
-ms.openlocfilehash: 6aa8d33da0b2fd41fdc037bac28bca9f7ff09907
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 170a88863fef4b97e137d7fb047a9168d6463e01
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58249412"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639948"
 ---
 # <a name="use-azure-key-vault-to-protect-application-secrets"></a>使用 Azure Key Vault 保护应用程序机密
 
@@ -79,7 +79,7 @@ Surveys 应用程序从以下位置加载配置设置：
 3. 单击“更多服务” > “安全 + 标识” > “Azure Active Directory” > 用户和组” > “所有用户”。
 4. 在门户顶部单击“新建用户”。
 5. 填充字段并将用户分配到“全局管理员”目录角色。
-6. 单击“创建”。
+6. 单击**创建**。
 
 ![全局管理员用户](./images/running-the-app/global-admin-user.png)
 
@@ -103,6 +103,7 @@ Surveys 应用程序从以下位置加载配置设置：
     ```powershell
     .\Setup-KeyVault.ps1 -Subject <<subject>>
     ```
+
     对于 `Subject` 参数，键入任意名称，例如“surveysapp”。 此脚本生成自签名证书，并将其存储在“当前用户/个人”证书存储中。 脚本的输出是 JSON 片段。 复制此值。
 
 2. 在 [Azure 门户][azure-portal]的右上角选择帐户，切换到注册 Surveys 应用程序所在的目录。
@@ -174,6 +175,7 @@ Surveys 应用程序从以下位置加载配置设置：
     ```powershell
     .\Setup-KeyVault.ps1 -KeyVaultName <<key vault name> -KeyName Redis--Configuration -KeyValue "<<Redis DNS name>>.redis.cache.windows.net,password=<<Redis access key>>,ssl=true"
     ```
+
     其中
 
    * 密钥保管库名称 = 上一步中赋予密钥保管库的名称。
@@ -214,6 +216,7 @@ Surveys 应用程序从以下位置加载配置设置：
     //    config["AzureAd:ClientId"],
     //    config["AzureAd:ClientSecret"]);
     ```
+
 3. 在 Tailspin.Surveys.Web/Startup.cs 中，查找注册 `ICredentialService` 的代码。 取消评论使用 `CertificateCredentialService` 的行，并注释掉使用 `ClientCredentialService` 的行：
 
     ```csharp

@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: b15b97de2042a0e213192dd586ffdcc4c51b1f11
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 06090b0862a7c737d9ee93512f851d3fcf2e2d9f
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897977"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640866"
 ---
 # <a name="api-design"></a>API 设计
 
@@ -97,7 +97,7 @@ https://adventure-works.com/orders
 
 在 URI 中采用一致的命名约定。 一般而言，有效的做法是对引用集合的 URI 使用复数名词。 最好是将集合和项的 URI 组织成层次结构。 例如，`/customers` 是客户集合的路径，`/customers/5` 是 ID 为 5 的客户的路径。 这种方法有助于使 Web API 保持直观。 此外，有许多 Web API 框架可以基于参数化 URI 路径来路由请求，因此，你可以对路径 `/customers/{id}` 定义路由。
 
-还需要考虑不同类型的资源之间的关系，以及如何公开这些关联。 例如，`/customers/5/orders` 可以表示客户 5 的所有订单。 我们还可以改变思维方向，使用类似于 `/orders/99/customer` 的 URI 来表示从订单到客户的关联。 但是，过度扩展此模型可能会变得难以实现。 更好的解决方案是在 HTTP 响应消息的正文中提供指向关联资源的可导航链接。 稍后的[使用 HATEOAS 方法启用相关资源的导航](#using-the-hateoas-approach-to-enable-navigation-to-related-resources)部分详细介绍了此机制。
+还需要考虑不同类型的资源之间的关系，以及如何公开这些关联。 例如，`/customers/5/orders` 可以表示客户 5 的所有订单。 我们还可以改变思维方向，使用类似于 `/orders/99/customer` 的 URI 来表示从订单到客户的关联。 但是，过度扩展此模型可能会变得难以实现。 更好的解决方案是在 HTTP 响应消息的正文中提供指向关联资源的可导航链接。 部分中的更详细地介绍这种机制[使用 HATEOAS 导航到相关资源](#use-hateoas-to-enable-navigation-to-related-resources)。
 
 在更复杂的系统中，我们往往提供 URI（例如 `/customers/1/orders/99/products`），使客户端能够通过多个关系级别进行导航。 但是，如果资源之间的关系在将来更改，此级别的复杂性可能很难维护并且不够灵活。 相反，请尽量让 URI 相对简单。 应用程序获取对某个资源的引用后，应该可以使用此引用去查找与该资源相关的项目。 可将前面的查询替换为 URI `/customers/1/orders` 以查找客户 1 的所有订单，然后替换为 `/orders/99/products` 以查找此订单中的产品。
 
@@ -442,7 +442,7 @@ Content-Type: application/json; charset=utf-8
 此方法具有语义优势（即，同一资源始终从同一 URI 进行检索），但它依赖于代码处理请求以分析查询字符串并发送回相应的 HTTP 响应。 此方法也与 URI 版本控制机制一样，增加了实现 HATEOAS 的复杂性。
 
 > [!NOTE]
-> 某些较旧的 Web 浏览器和 Web 代理不会缓存在 URI 中包含查询字符串的请求的响应。 这可能会对使用 Web API 的 Web 应用程序以及从此类 Web 浏览器运行的 Web 应用程序的性能产生不利影响。
+> 某些较旧的 Web 浏览器和 Web 代理不会缓存在 URI 中包含查询字符串的请求的响应。 这可能会降低 web 应用程序，使用 web API 并且从运行此类的 web 浏览器的性能。
 
 ### <a name="header-versioning"></a>标头版本控制
 

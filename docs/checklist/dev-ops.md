@@ -8,12 +8,12 @@ ms.topic: checklist
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: checklist
-ms.openlocfilehash: 1a000c811cce57cc9b1fcda84d0eb7e2a1312aca
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: b08884d2a39550b56b4c1b52a418f6607eda00fe
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243378"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640713"
 ---
 # <a name="devops-checklist"></a>DevOps 查检表
 
@@ -119,7 +119,7 @@ DevOps 是指将开发、质量保证和 IT 运营集成到统一的环境以及
 
 容器还在应用程序与底层操作系统之间提供一个抽象层，使不同的环境保持一致性。 这种抽象还能将容器与主机上运行的其他进程或应用程序隔离开来。
 
-**实施复原和自我修复。** 复原是指应用程序在故障后恢复的能力。 复原策略包括重试暂时性故障，以及故障转移到辅助实例（甚至另一个区域）。 有关详细信息，请参阅[设计适用于 Azure 的可复原应用程序][resiliency]。 检测应用程序，以便能够立即报告问题，并可以管理服务中断或其他系统故障。
+**实施复原和自我修复。** 复原是指应用程序在故障后恢复的能力。 复原策略包括重试暂时性故障，以及故障转移到辅助实例（甚至另一个区域）。 有关详细信息，请参阅[设计可靠的 Azure 应用程序](../reliability/index.md)。 检测应用程序，以便能够立即报告问题，并可以管理服务中断或其他系统故障。
 
 **创建操作手册。** 操作手册或 *Runbook* 阐述操作人员在维护系统时所需的流程和管理信息。 另外，它还阐述在服务发生故障或其他中断问题时，可以派上用场的任何操作方案和缓解计划。 请在开发过程中创建此文档，并一直保持更新。 这是一个动态文档，应定期对其进行审查、测试和改善。
 
@@ -158,7 +158,6 @@ DevOps 是指将开发、质量保证和 IT 运营集成到统一的环境以及
 [feature-toggles]: https://www.martinfowler.com/articles/feature-toggles.html
 [oms]: https://www.microsoft.com/cloud-platform/operations-management-suite
 [rbac]: /azure/active-directory/role-based-access-control-what-is
-[resiliency]: ../resiliency/index.md
 [resource-manager]: /azure/azure-resource-manager/
 [trunk-based]: https://trunkbaseddevelopment.com/
 [what-is-devops]: https://www.visualstudio.com/learn/what-is-devops/

@@ -8,10 +8,10 @@ ms.date: 02/11/2019
 description: 大型企业 – 最佳做法所述
 author: BrianBlanchard
 ms.openlocfilehash: 2d52797f1c3541fab1c97d97d0438210d2e66f79
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068984"
 ---
 # <a name="large-enterprise-best-practice-explained"></a>大型企业：最佳做法介绍
@@ -103,7 +103,7 @@ ms.locfileid: "59068984"
 - [加密模式](../../../decision-guides/encryption/overview.md)
 - [标识模式](../../../decision-guides/identity/overview.md)
 - [日志记录和报告模式](../../../decision-guides/log-and-report/overview.md)
-- [策略强制模式](../../../decision-guides/policy-enforcement/overview.md)
+- [策略强制执行模式](../../../decision-guides/policy-enforcement/overview.md)
 - [资源一致性模式](../../../decision-guides/resource-consistency/overview.md)
 - [资源标记模式](../../../decision-guides/resource-tagging/overview.md)
 - [软件定义的网络模式](../../../decision-guides/software-defined-network/overview.md)

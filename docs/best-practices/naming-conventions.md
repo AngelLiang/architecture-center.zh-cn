@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: ed1811495e81965fa514ab66dcfa49d00d2a59f2
-ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
+ms.openlocfilehash: e67da8043beed01c99f36da689dfd0553e012535
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/11/2019
-ms.locfileid: "59480093"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640390"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Azure 资源的命名约定
 
@@ -101,7 +101,7 @@ Azure 中的每个资源或服务类型强制实施一组命名限制和范围�
 
 | 实体 | 范围 | Length | 大小写 | 有效的字符 | 建议的模式 | 示例 |
 | --- | --- | --- | --- | --- | --- | --- |
-|存储帐户名称（数据） |全局 |3-24 |小写 |字母数字 |`<globally unique name><number>` （使用函数来计算命名存储帐户的唯一 guid） |`profxdata001` |
+|存储帐户名称（数据） |全局 |3-24 |小写 |字母数字 |`<globally unique name><number>`（使用函数计算命名存储帐户的唯一 Guid） |`profxdata001` |
 |存储帐户名称（磁盘） |全局 |3-24 |小写 |字母数字 |`<vm name without hyphens>st<number>` |`profxsql001st0` |
 | 容器名称 |存储帐户 |3-63 |小写 |字母数字和连字符 |`<context>` |`logs` |
 |Blob 名称 | 容器 |1-1024 |区分大小写 |任何 URL 字符 |`<variable based on blob usage>` |`<variable based on blob usage>` |
@@ -135,7 +135,7 @@ Azure 中的每个资源或服务类型强制实施一组命名限制和范围�
 
 | 实体 | 范围 | Length | 大小写 | 有效的字符 | 建议的模式 | 示例 |
 | --- | --- | --- | --- | --- | --- | --- |
-|服务总线命名空间 | 全局 |6-50 |不区分大小写 | 字母数字、 连字符，必须使用 leter; 启动请参阅[此处](/rest/api/servicebus/create-namespace)有关详细信息。 |`<service short name>-bus` |`app1-bus` |
+|服务总线命名空间 | 全局 |6-50 |不区分大小写 | 字母数字、 连字符，必须以字母; 开头请参阅[此处](/rest/api/servicebus/create-namespace)有关详细信息。 |`<service short name>-bus` |`app1-bus` |
 
 ## <a name="organize-resources-with-tags"></a>使用标记组织资源
 
@@ -192,7 +192,7 @@ Azure 资源管理器支持使用任意文本字符串标记实体，以标识�
 
 有关命名 Blob、容器和表的详细信息，请参阅以下列表：
 
-- [命名和引用容器、Blob 和元数据](https://msdn.microsoft.com/library/dd135715.aspx)
+- [命名和引用容器、Blob 与元数据](https://msdn.microsoft.com/library/dd135715.aspx)
 - [命名队列和元数据](https://msdn.microsoft.com/library/dd179349.aspx)
 - [命名表](https://msdn.microsoft.com/library/azure/dd179338.aspx)
 
@@ -202,4 +202,3 @@ Blob 名称可以包含任何字符组合，但必须正确转义保留的 URL �
 
 > [!TIP]
 > 我们建议在开始开发新服务或应用程序前，为所有存储帐户和类型创建命名约定。
-

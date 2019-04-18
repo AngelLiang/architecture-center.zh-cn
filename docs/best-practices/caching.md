@@ -8,14 +8,14 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: b93041d87ec1edde91724f6cf6374cb00b8a4941
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: db97f2983d71f63b12e6e4b2f0070b1989b482c4
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488488"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641019"
 ---
-# <a name="caching"></a>缓存
+# <a name="caching"></a>正在缓存
 
 缓存是一种常见的技术，目标是提高系统的性能和伸缩性。 为此，它会暂时会经常访问的数据复制到位置靠近应用程序的快速存储。 如果这种快速数据存储比原始源更靠近应用程序，则缓存可以通过更快速提供数据，大幅改善客户端应用程序的响应时间。
 
@@ -111,7 +111,7 @@ ms.locfileid: "54488488"
 > [!NOTE]
 > 请慎重考虑缓存的过期时段及其包含的对象。 如果设置的时段太短，则对象很快就会过期，因此就减少了使用缓存带来的优势。 如果设置的时段太长，则会面临数据过时的风险。
 
-此外，如果允许数据长时间驻留，则缓存有可能会填满。 在此情况下，将新项添加到缓存的任何请求可能会导致某些项被强行删除，这个过程称为逐出。 缓存服务通常按最近最少使用 (LRU) 原则逐出数据，但通常可以替代此策略并防止逐出项。 但是，如果采用这种方法，则会面临缓存超过可用内存。 应用程序尝试将项添加到缓存时会失败并发生异常。
+此外，如果允许数据长时间驻留，则缓存有可能会填满。 在此情况下，将新项添加到缓存的任何请求可能会导致某些项被强行删除，这个过程称为逐出。 缓存服务通常根据最近最少使用 (LRU) 的原则逐出数据，但你通常可以重写此策略，防止项被逐出。 但是，如果采用这种方法，则会面临缓存超过可用内存。 应用程序尝试将项添加到缓存时会失败并发生异常。
 
 某些缓存的实施可能会提供其他逐出策略。 有多种类型的逐出策略。 其中包括：
 
@@ -144,7 +144,7 @@ ms.locfileid: "54488488"
 
 因此，应用程序必须准备好检测缓存服务的可用性，并在无法访问缓存时回退到原始数据存储。 [断路器模式](../patterns/circuit-breaker.md)可用于处理这种情况。 提供缓存的服务可以恢复，当该服务可用后，缓存会在从原始数据存储读取数据时，遵循[缓存端模式](../patterns/cache-aside.md)等策略重新填充。
 
-但是，在缓存暂时不可用的情况下应用程序回退到原始数据存储可能会影响系统的伸缩性。 在恢复数据存储时，原始数据存储可能忙于处理数据请求，导致超时和连接失败。
+但是，如果应用程序会故障回复到原始数据存储在缓存暂时不可用时，可能会影响系统的可伸缩性。 在恢复数据存储时，原始数据存储可能忙于处理数据请求，导致超时和连接失败。
 
 考虑在每个应用程序实例中实施本地专用缓存，以及所有应用程序实例访问的共享缓存。 当应用程序检索项时，可能会先后在本地缓存、共享缓存和原始数据存储中检查。 共享缓存不可用时，本地缓存可以使用共享缓存或数据库中的数据来填充。
 
@@ -156,7 +156,7 @@ ms.locfileid: "54488488"
 
 为了支持保存相对长期数据的大型缓存，某些缓存服务在缓存不可用时，提供实施自动故障转移的高可用性选项。 这种方法通常涉及到将存储在主缓存服务器上的缓存数据复制到辅助缓存服务器，并在主服务器故障或断开连接时切换到辅助服务器。
 
-为了减少与写入多个目标相关的延迟，当数据写入主服务器上的缓存时，复制到辅助服务器的操作可以异步发生。 此方法可能会导致某些缓存的信息在发生故障时丢失，但是此数据的比例相对于缓存的总体大小来说应该很小。
+为了减少与写入多个目标相关的延迟，当数据写入主服务器上的缓存时，复制到辅助服务器的操作可以异步发生。 此方法可能会导致某些缓存的信息在发生故障时丢失，但是此数据的比例应该小于缓存的总体大小。
 
 如果共享缓存很大，则在节点上分区缓存数据可能很有帮助，这可减少争用的可能性，并提高伸缩性。 许多共享缓存支持动态添加（与删除）节点，以及重新平衡分区之间的数据的功能。 这种方法可能涉及到群集，其中，节点集合将作为无缝单一缓存向客户端应用程序呈现。 但在内部，数据分散在节点之间并遵循某种预定义的分配策略，以便平均地平衡负载。 有关可能的分区策略的详细信息，请参阅 [Data partitioning guidance](https://msdn.microsoft.com/library/dn589795.aspx)（数据分区指南）。
 
@@ -214,7 +214,7 @@ Redis 支持读取和写入操作。 在 Redis 中，写入操作会定期存储
 所有写入都是异步的，不会阻止客户端读取和写入数据。 当 Redis 开始运行时，将从快照或日志文件中读取数据，并使用它来构建内存中缓存。 有关详细信息，请参阅 Redis 网站上的 [Redis persistence](https://redis.io/topics/persistence)（Redis 持久性）。
 
 > [!NOTE]
-> Redis 不保证所有写入在发生灾难性故障时都会得到保存，但在最糟的情况下，只会丢失几秒钟的数据。 请记住，缓存并不适合用作权威数据源，应用程序负责使用缓存来确保成功将关键数据保存到适当的数据存储。 有关详细信息，请参阅[缓存端模式](../patterns/cache-aside.md)。
+> Redis 不保证所有写入在发生灾难性故障时都会得到保存，但在最糟的情况下，你只会丢失几秒钟的数据。 请记住，缓存并不适合用作权威数据源，应用程序负责使用缓存来确保成功将关键数据保存到适当的数据存储。 有关详细信息，请参阅[缓存端模式](../patterns/cache-aside.md)。
 
 #### <a name="redis-data-types"></a>Redis 数据类型
 
@@ -224,7 +224,7 @@ Redis 属于键-值存储，其中的值可以包含简单类型或复杂数据�
 
 Redis 支持主/从复制，以帮助确保可用性并保持吞吐量。 Redis 主节点的写入操作将复制到一个或多个从属节点。 读取操作可由主节点或任何从属节点提供。
 
-如果执行了网络分区，从属节点可以继续提供数据，并在重新建立连接时以透明方式与主节点重新同步。 有关详细信息，请访问 Redis 网站上的 [Replication](https://redis.io/topics/replication)（复制）页。
+如果执行了网络分区，从属节点可以继续提供数据，并在重新建立连接时以透明方式与主节点重新同步。 有关详细信息，请访问 Redis 网站上的 [复制](https://redis.io/topics/replication) 页。
 
 Redis 还提供群集，让你以透明方式在服务器之间将数据分区成分片并分散负载。 此功能提高了伸缩性，因为可以添加新 Redis 服务器，并且随着缓存大小的增加，数据将重新分区。
 
@@ -234,7 +234,7 @@ Redis 还提供群集，让你以透明方式在服务器之间将数据分区�
 
 Redis 缓存具有有限的大小，具体取决于主机计算机上可用的资源。 在配置 Redis 服务器时，可以指定服务器可使用的最大内存量。 可为 Redis 缓存中的键配置过期时间，到时它会自动从缓存中删除。 此功能可帮助避免内存中缓存填满陈旧或过时的数据。
 
-当内存填满时，Redis 可以遵循一些策略自动逐出键及其值。 默认策略是 LRU（最近最少使用），但你也可以选择其他策略，例如，随机逐出键，或完全关闭逐出（在此情况下，当缓存已满时，尝试将项添加到缓存会失败）。 [Using Redis as an LRU cache](https://redis.io/topics/lru-cache)（使用 Redis 作为 LRU 缓存）页提供了详细信息。
+当内存填满时，Redis 可以遵循一些策略自动逐出键及其值。 默认策略是 LRU（最近最少使用），但你也可以选择其他策略，例如，随机逐出键，或完全关闭逐出（在此情况下，当缓存已满时，尝试将项添加到缓存将会失败）。 [Using Redis as an LRU cache](https://redis.io/topics/lru-cache)（使用 Redis 作为 LRU 缓存）页提供了详细信息。
 
 ### <a name="redis-transactions-and-batches"></a>Redis 事务和批处理
 
@@ -246,7 +246,7 @@ Redis 可让客户端应用程序提交一系列的操作，用于在缓存中�
 
 Redis 实施某种形式的乐观锁定，以帮助保持一致性。 有关事务和使用 Redis 进行锁定的详细信息，请访问 Redis 网站上的[事务](https://redis.io/topics/transactions)页。
 
-Redis 还支持非事务式的请求批处理。 客户端用于将命令发送到 Redis 服务器的 Redis 协议可让客户端以同一请求的一部分来发送一系列操作。 这有助于减少网络上的数据包分段。 处理批时，将执行每个命令。 如果其中任一命令的格式不当，则将遭到拒绝（对于事务不会发生这种情况），但会执行剩余的命令。 此外，不保证批中命令的处理顺序。
+Redis 还支持非事务式的请求批处理。 客户端用于将命令发送到 Redis 服务器的 Redis 协议可让客户端以同一请求的一部分来发送一系列操作。 这有助于减少网络上的数据包分段。 处理批时，将执行每个命令。 如果其中任一命令的格式不当，则将遭到拒绝（事务不会发生这种情况），但会执行剩余的命令。 此外，不保证批中命令的处理顺序。
 
 ### <a name="redis-security"></a>Redis 安全性
 
@@ -279,7 +279,7 @@ Azure 门户拥有便利的图形显示，可通过它监视缓存性能。 例�
 
 还可以监视缓存的 CPU、内存和网络使用量。
 
-有关说明如何创建和配置 Azure Redis 缓存的更多信息和示例，请访问 Redis 博客上的 [Lap around Azure Redis Cache](https://azure.microsoft.com/blog/2014/06/04/lap-around-azure-redis-cache-preview/)（浏览 Azure Redis 缓存）页。
+有关说明如何创建和配置 Azure Redis 缓存的更多信息和示例，请访问 Redis 博客上的 [浏览 Azure Redis 缓存](https://azure.microsoft.com/blog/2014/06/04/lap-around-azure-redis-cache-preview/) 页。
 
 ## <a name="caching-session-state-and-html-output"></a>缓存会话状态和 HTML 输出
 
@@ -297,7 +297,7 @@ Azure 门户拥有便利的图形显示，可通过它监视缓存性能。 例�
 > [!NOTE]
 > 不要针对在 Azure 环境外部运行的 ASP.NET 应用程序使用 Azure Redis 缓存的会话状态提供程序。 从 Azure 外部访问缓存的延迟会抵消缓存数据带来的性能优势。
 
-同样地，Azure Redis 缓存的输出缓存提供程序使用户能够保存由 ASP.NET Web 应用程序生成的 HTTP 响应。 配合 Azure Redis 缓存使用输出缓存提供程序可以针对呈现复杂 HTML 输出的应用程序改善响应时间。 生成类似响应的应用程序实例可以使用缓存中的共享输出段，而不用重新生成此 HTML 输出。 有关详细信息，请参阅 [Azure Redis 缓存的 ASP.NET 输出缓存提供程序](/azure/redis-cache/cache-aspnet-output-cache-provider/)。
+同样地，Azure Redis 缓存的输出缓存提供程序使用户能够保存由 ASP.NET Web 应用程序生成的 HTTP 响应。 配合 Azure Redis 缓存使用输出缓存提供程序可以针对呈现复杂 HTML 输出的应用程序改善响应时间。 生成类似响应的应用程序实例可以使用的共享的输出段，在缓存而不生成此 HTML 输出重新。 有关详细信息，请参阅 [Azure Redis 缓存的 ASP.NET 输出缓存提供程序](/azure/redis-cache/cache-aspnet-output-cache-provider/)。
 
 ## <a name="building-a-custom-redis-cache"></a>构建自定义 Redis 缓存
 
@@ -325,7 +325,7 @@ Azure Redis 缓存充当底层 Redis 服务器的机制。 如果需要 Azure Re
 
 - *服务器端查询路由。* 使用此方法时，客户端应用程序会将请求发送到构成缓存的任何 Redis 服务器（可能是最靠近的服务器）。 每个 Redis 服务器将存储用于描述它所保存的分区的元数据，同时还包含有关哪些分区位于其他服务器上的信息。 Redis 服务器检查客户端请求。 如果可以在本地解决，则执行请求的操作。 否则将请求转发到相应的服务器。 此模型是通过 Redis 群集实施的，Redis 网站上的 [Redis 群集教程](https://redis.io/topics/cluster-tutorial)页上提供了更详细的说明。 Redis 群集对客户端应用程序而言是透明的，其他 Redis 服务器可以添加到群集（数据将重新分区），而无需重新配置客户端。
 - *客户端分区。* 在此模型中，客户端应用程序包含将请求路由到适当 Redis 服务器的逻辑（可能以库的形式）。 这种方法可以配合 Azure Redis 缓存使用。 创建多个 Azure Redis 缓存（每个数据分区一个缓存），并实施将请求路由到正确缓存的客户端逻辑。 如果分区方案发生更改（例如，如果已创建其他 Azure Redis 缓存），则可能需要重新配置客户端应用程序。
-- *代理辅助分区。* 在此方案中，客户端应用程序将请求发送到一个知道如何数据分区方式的中间代理服务，然后将请求路由到适当的 Redis 服务器。 此方法也可以配合 Azure Redis 缓存使用；代理服务可以实施为 Azure 云服务。 使用此方法实施服务需要提高复杂性，并且执行请求的时间可能比使用客户端分区更长。
+- *代理辅助分区。* 在此方案中，客户端应用程序将请求发送到一个知道如何将数据分区的中间代理服务，然后将请求路由到适当的 Redis 服务器。 此方法也可以配合 Azure Redis 缓存使用；代理服务可以实施为 Azure 云服务。 使用此方法实施服务需要提高复杂性，并且执行请求的时间可能比使用客户端分区更长。
 
 Redis 网站上的 [Partitioning: how to split data among multiple Redis instances](https://redis.io/topics/partitioning)（分区：如何在多个 Redis 实例之间拆分数据）页提供了有关使用 Redis 实施分区的更多信息。
 
@@ -371,7 +371,7 @@ private async Task<string> RetrieveItem(string itemKey)
 }
 ```
 
-`StringGet` 和 `StringSet` 方法不是只能检索或存储字符串值。 它们可以采用任何序列化为字节数组的项。 如果需要保存 .NET 对象，可以将它序列化为字节流，然后使用 `StringSet` 方法将它写入缓存。
+`StringGet` 和 `StringSet` 方法不是只能检索或存储字符串值。 它们可以采用任何序列化为字节数组的项。 如果需要保存 .NET 对象，可以将它序列化为字节流，并使用 `StringSet` 方法将它写入缓存。
 
 同样地，可以使用 `StringGet` 方法从缓存中读取对象，并将其反序列化为 .NET 对象。 以下代码演示了 IDatabase 接口的一组扩展方法（Redis 连接的 `GetDatabase` 方法返回 `IDatabase` 对象），使用这些方法的某些示例代码可以在缓存中读取和写入 `BlogPost` 对象：
 
@@ -497,7 +497,7 @@ Redis 缓存的最简单用法包括存储键-值对，其中的值是未解释�
 
 ### <a name="perform-atomic-and-batch-operations"></a>执行原子操作和批处理操作
 
-Redis 支持对字符串值执行一系列原子性“获取和设置”操作。 这些操作将删除使用单独的 `GET` 和 `SET` 命令时可能发生的争用风险。 可用的操作包括：
+Redis 支持对字符串值执行一系列原子性“获取和设置”操作。 这些操作将消除使用单独的 `GET` 和 `SET` 命令时可能发生的争用风险。 可用的操作包括：
 
 - `INCR`、`INCRBY`、`DECR` 和 `DECRBY`，用于对整数数字数据值执行原子递增和递减操作。 StackExchange 库提供了 `IDatabase.StringIncrementAsync` 和 `IDatabase.StringDecrementAsync` 方法的重载版本，用于执行这些操作并返回存储在缓存中的结果值。 以下代码段演示了如何使用这些方法：
 
@@ -651,7 +651,7 @@ Redis 集是共享单个键的多个项集合。 可以使用 SADD 命令来创�
 
 以下代码段演示了如何使用集来快速存储和检索相关项的集合。 此代码使用本文前面的“实施 Redis 缓存客户端应用程序”部分中所述的 `BlogPost` 类型。
 
-`BlogPost` 对象包含四个字段：ID、标题、排名分数和标记集合。 以下第一个代码片段演示了用于填充 `BlogPost` 对象的 C# 列表的示例数据：
+一个`BlogPost`对象包含四个字段&mdash;ID、 标题、 排名分数和标记的集合。 以下第一个代码片段演示了用于填充 `BlogPost` 对象的 C# 列表的示例数据：
 
 ```csharp
 List<string[]> tags = new List<string[]>
@@ -685,7 +685,7 @@ for (int i = 0; i < numberOfPosts; i++)
 }
 ```
 
-可以在 Redis 缓存中针对每个 `BlogPost` 对象将标记存储为集，并将每个集与 `BlogPost` ID关联。 这样，应用程序便可以快速查找属于特定博客文章的所有标记。 若要启用反向搜索并查找所有共享特定标记的博客文章，可以创建另一个集，用于保存引用键中标记 ID 的博客文章：
+可以在 Redis 缓存中针对每个 `BlogPost` 对象将标记存储为集，并将每个集与 `BlogPost` ID 关联。 这样，应用程序便可以快速查找属于特定博客文章的所有标记。 若要启用反向搜索并查找所有共享特定标记的博客文章，可以创建另一个集，用于保存引用键中标记 ID 的博客文章：
 
 ```csharp
 ConnectionMultiplexer redisHostConnection = ...;
@@ -700,7 +700,7 @@ foreach (BlogPost post in posts)
     await cache.SetAddAsync(
         redisKey, post.Tags.Select(s => (RedisValue)s).ToArray());
 
-    // Now do the inverse so we can figure how which blog posts have a given tag
+    // Now do the inverse so we can figure out which blog posts have a given tag
     foreach (var tag in post.Tags)
     {
         await cache.SetAddAsync(string.Format(CultureInfo.InvariantCulture,
@@ -746,7 +746,7 @@ foreach (var value in await cache.SetMembersAsync("tag:iot:blog:posts"))
 
 可以使用 Redis 列表来实现此功能。 Redis 列表包含共享同一个键的多个项。 该列表充当双端队列。 可以使用 LPUSH（左推）和 RPUSH（右推）命令将项推送到列表一端。 可以使用 LPOP 和 RPOP 命令从列表的一端检索项。 还可以使用 LRANGE 和 RRANGE 命令返回一组元素。
 
-以下代码段演示了如何使用 StackExchange 库来执行这些操作。 此代码使用前面示例中的 `BlogPost` 类型。 当用户阅读博客文章时，`IDatabase.ListLeftPushAsync` 方法将博客文章的标题推送到与 Redis 缓存中的“blog:recent_posts”键关联的列表。
+以下代码段演示了如何使用 StackExchange 库来执行这些操作。 此代码使用前面示例中的 `BlogPost` 类型。 当用户阅读博客文章时，`IDatabase.ListLeftPushAsync` 方法将博客文章的标题推送到与 Redis 缓存中键 "blog:recent_posts" 关联的列表。
 
 ```csharp
 ConnectionMultiplexer redisHostConnection = ...;

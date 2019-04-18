@@ -9,12 +9,12 @@ ms.devlang: R
 ms.topic: article
 ms.date: 03/19/2019
 ms.author: jepeach
-ms.openlocfilehash: a14c8ce76f78baa7274f22b939eb28cb025ef87e
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: 7b263d0f49b3b41c9a25b5842de908d5e507780b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887958"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640475"
 ---
 # <a name="r-developers-guide-to-azure"></a>Azure 中的 R 开发指南
 
@@ -36,7 +36,7 @@ Microsoft 完全接受将 R 编程语言作为数据科学家的第一类工具�
 |[ML Services on HDInsight](#ml-services-on-hdinsight)            |基于群集的系统，用于对跨多个节点的大型数据集运行 R 分析   |
 |[Azure Databricks](#azure-databricks)                            |支持 R 和其他语言的协作型 Spark 环境               |
 |[Azure 机器学习工作室](#azure-machine-learning-studio)  |在 Azure 的机器学习试验中运行自定义 R 脚本                      |
-|[Azure 批处理](#azure-batch)                                      |提供各种选项用于以经济节省的方式对群集中的多个节点运行 R 代码|
+|[Azure Batch](#azure-batch)                                      |提供各种选项用于以经济节省的方式对群集中的多个节点运行 R 代码|
 |[Azure Notebook](#azure-notebooks)                              |Jupyter Notebook 的基于云的免费版本                  |
 |[Azure SQL 数据库](#azure-sql-database)                        |在 SQL Server 数据库引擎内部运行 R 脚本                            |
 
@@ -45,7 +45,7 @@ Microsoft 完全接受将 R 编程语言作为数据科学家的第一类工具�
 [Data Science Virtual Machine](https://docs.microsoft.com/azure/machine-learning/data-science-virtual-machine/overview) (DSVM) 是专为开展数据科学构建的 Microsoft Azure 云平台上的自定义 VM 映像。 其中包含许多热门的数据科学工具，包括：
 
 * [Microsoft R Open](https://mran.microsoft.com/open/)
-* [Microsoft 机器学习服务器](https://docs.microsoft.com/machine-learning-server/what-is-machine-learning-server)
+* [Microsoft Machine Learning Server](https://docs.microsoft.com/machine-learning-server/what-is-machine-learning-server)
 * [RStudio Desktop](https://www.rstudio.com/products/rstudio/#Desktop)
 * [RStudio Server](https://www.rstudio.com/products/rstudio/#Server)
 
@@ -129,14 +129,13 @@ Azure Notebooks 的免费服务层是适用于小规模项目的可行选项，�
 
 从 2016 年开始，机器学习服务已划归到本地 SQL Server，是 Azure SQL 数据库的相对较新的功能。  它目前以[受限预览版](https://docs.microsoft.com/sql/advanced-analytics/what-s-new-in-sql-server-machine-learning-services?view=sql-server-2017#azure-sql-database-roadmap)的形式提供，同时在不断改善。
 
-
 ### <a name="next-steps"></a>后续步骤
 
 * [使用 mrsdeploy 在 Azure 上运行 R 代码](https://blog.revolutionanalytics.com/2017/03/running-your-r-code-azure.html)
-* [机器学习在云中的服务器](https://docs.microsoft.com/machine-learning-server/install/machine-learning-server-in-the-cloud)
-* [机器学习服务器和 Microsoft R 的其他资源](https://docs.microsoft.com/machine-learning-server/resources-more)
+* [云中的 Machine Learning Server](https://docs.microsoft.com/machine-learning-server/install/machine-learning-server-in-the-cloud)
+* [Machine Learning Server 和 Microsoft R 的其他资源](https://docs.microsoft.com/machine-learning-server/resources-more)
 * [R on Azure](https://github.com/yueguoguo/r-on-azure) - 概述在 Azure 中使用 R 所需的包、工具和相关案例研究
 
 ---
 
-<sub>R 徽标&copy;2016年 R Foundation 和使用的条款[Creative Commons Attribution-sharealike 4.0 国际许可证](https://creativecommons.org/licenses/by-sa/4.0/)。</sub>
+<sub>R 徽标为 &copy; 2016 The R Foundation，根据 [Creative Commons Attribution-ShareAlike 4.0 国际许可证](https://creativecommons.org/licenses/by-sa/4.0/)的条款使用。</sub>

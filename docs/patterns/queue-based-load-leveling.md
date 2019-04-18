@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: c736afced1b0478e8eb1a2694acc4d6a6f0c62fc
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 267d630d97a998c76a75a70191a77f9b74e801ef
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248722"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641053"
 ---
 # <a name="queue-based-load-leveling-pattern"></a>基于队列的负载调节模式
 
@@ -67,8 +67,6 @@ Web 应用将数据写入外部数据存储。 如果该 Web 应用的大量实�
 若要解决此问题，可以使用一个队列，在应用程序实例和数据存储之间实现负载均衡。 一个 Azure Functions 应用从队列读取消息，然后向数据存储进行读/写请求。 函数应用中的应用程序逻辑可以控制该角色将请求传递给数据存储的速度，防止存储过载。 （否则，函数应用会在后端再次引发同一问题。）
 
 ![图 3 - 使用队列和函数应用进行负载均衡](./_images/queue-based-load-leveling-function.png)
-
-
 
 ## <a name="related-patterns-and-guidance"></a>相关模式和指南
 

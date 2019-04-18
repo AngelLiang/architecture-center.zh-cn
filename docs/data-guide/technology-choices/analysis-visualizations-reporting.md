@@ -7,12 +7,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: data-analytics
-ms.openlocfilehash: 72b889e2fe0d862ab1ff280cea76c2880b0fadc4
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: bfdfeefe36dd44478f407008e2f9f3749f7a70d6
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245948"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639744"
 ---
 # <a name="choosing-a-data-analytics-technology-in-azure"></a>在 Azure 中选择数据分析技术
 
@@ -73,7 +73,7 @@ Jupyter Notebook 提供了一个很棒的环境，在使用 Power BI 之类的�
 
 - 是否需要连接到许多数据源，提供一个集中的位置来为分布在整个域中的数据创建报表？ 如果是，请选择一个允许连接到数百个数据源的选项。
 
-- 是否要在外部网站或应用程序中嵌入动态可视化效果？ 如果是，请选择一个提供了嵌入功能的选项。
+- 若要在外部网站或应用程序中嵌入动态可视化效果吗？ 如果是，请选择一个提供了嵌入功能的选项。
 
 - 是否要在脱机状态下设计可视化效果和报表？ 如果是，请选择一个具有脱机功能的选项。
 

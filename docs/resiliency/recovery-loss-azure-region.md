@@ -7,16 +7,14 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: 7f207bbc0bb0128126f9b828dc100d43553cb100
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: b58e8fa1cc4955f90e7171e17aaa70ac0cfb7b71
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242708"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640560"
 ---
-[!INCLUDE [header](../_includes/header.md)]
-
-# <a name="azure-resiliency-technical-guidance-recovery-from-a-region-wide-service-disruption"></a>Azure 复原技术指南：在发生区域范围的服务中断后进行恢复
+# <a name="recover-from-a-region-wide-service-disruption"></a>全区域服务中断后恢复
 
 Azure 在物理上和逻辑上划分为称为区域的单位。 一个区域由一个或多个邻近的数据中心组成。
 
@@ -121,7 +119,7 @@ Azure SQL 数据库提供两种类型的恢复：异地还原和活动异地复�
 
 ### <a name="service-bus"></a>服务总线
 
-Azure 服务总线使用不跨越 Azure 区域的唯一命名空间。 因此，首要要求是在备用区域中设置必要的服务总线命名空间。 但是，对于排队消息的持久性，也有一些注意事项。 有几种在 Azure 区域间复制消息的策略。 有关这些复制策略和其他灾难恢复策略的详细信息，请参阅[使应用程序免受服务总线中断和灾难影响的最佳实践](/azure/service-bus-messaging/service-bus-outages-disasters/)。 有关其他可用性注意事项，请参阅[服务总线（可用性）](recovery-local-failures.md#other-azure-platform-services)。
+Azure 服务总线使用不跨越 Azure 区域的唯一命名空间。 因此，首要要求是在备用区域中设置必要的服务总线命名空间。 但是，对于排队消息的持久性，也有一些注意事项。 有几种在 Azure 区域间复制消息的策略。 有关这些复制策略和其他灾难恢复策略的详细信息，请参阅[使应用程序免受服务总线中断和灾难影响的最佳实践](/azure/service-bus-messaging/service-bus-outages-disasters/)。
 
 ### <a name="app-service"></a>应用服务
 
@@ -129,7 +127,7 @@ Azure 服务总线使用不跨越 Azure 区域的唯一命名空间。 因此，
 
 ### <a name="hdinsight"></a>HDInsight
 
-与 HDInsight 关联的数据默认存储在 Azure Blob 存储中。 HDInsight 要求 Hadoop 群集处理 MapReduce 作业必须与包含所分析数据的存储帐户位于同一区域中。 假如你使用可用于 Azure 存储的区域异地复制功能，则如果主要区域因为某些原因而无法使用，可以访问复制到次要区域的数据。 可以在数据复制到的区域中创建新的 Hadoop 群集并继续处理这些数据。 有关其他可用性注意事项，请参阅 [HDInsight（可用性）](recovery-local-failures.md#other-azure-platform-services)。
+与 HDInsight 关联的数据默认存储在 Azure Blob 存储中。 HDInsight 要求 Hadoop 群集处理 MapReduce 作业必须与包含所分析数据的存储帐户位于同一区域中。 假如你使用可用于 Azure 存储的区域异地复制功能，则如果主要区域因为某些原因而无法使用，可以访问复制到次要区域的数据。 可以在数据复制到的区域中创建新的 Hadoop 群集并继续处理这些数据。
 
 ### <a name="sql-reporting"></a>SQL 报告
 

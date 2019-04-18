@@ -1,7 +1,7 @@
 ---
 title: 管理和监视模式
 titleSuffix: Cloud Design Patterns
-description: 云应用程序在远程数据中心内运行，在此中心内，无法完全控制基础架构，或者在某些情况下无法控制操作系统。 与本地部署相比，管理和监视难度更大。 应用程序必须公开运行时信息，以便管理员和操作员管理和监视系统，支持不断变化的业务要求和定制，而无需停止或重新部署应用程序。
+description: 云应用程序在远程数据中心内运行，在此中心内，无法完全控制基础结构，或者在某些情况下无法控制操作系统。 与本地部署相比，管理和监视难度更大。 应用程序必须公开运行时信息，以便管理员和操作员管理和监视系统，支持不断变化的业务要求和定制，而无需停止或重新部署应用程序。
 keywords: 设计模式
 author: dragon119
 ms.date: 06/23/2017
@@ -9,16 +9,16 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 587caf680a884cda208baec50ff914f6c7238b48
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 2b141a39b17f97ece011e93ca2f05cf5d2baeeea
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242998"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641087"
 ---
 # <a name="management-and-monitoring-patterns"></a>管理和监视模式
 
-云应用程序在远程数据中心内运行，在此中心内，无法完全控制基础架构，或者在某些情况下无法控制操作系统。 与本地部署相比，管理和监视难度更大。 应用程序必须公开运行时信息，以便管理员和操作员管理和监视系统，支持不断变化的业务要求和定制，而无需停止或重新部署应用程序。
+云应用程序在远程数据中心内运行，在此中心内，无法完全控制基础结构，或者在某些情况下无法控制操作系统。 与本地部署相比，管理和监视难度更大。 应用程序必须公开运行时信息，以便管理员和操作员管理和监视系统，支持不断变化的业务要求和定制，而无需停止或重新部署应用程序。
 
 |                              模式                               |                                                              摘要                                                              |
 |--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|

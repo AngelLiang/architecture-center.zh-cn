@@ -9,12 +9,12 @@ ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: b4a833a18b44e40f544449a222fb082d71e4268d
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: a35342c0e40290332a349577260de316b5e7d503
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481637"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640424"
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>使用 Azure AD 和 OpenID Connect 进行身份验证
 
@@ -40,7 +40,7 @@ Surveys 应用程序使用 OpenID Connect (OIDC) 协议向 Azure Active Director
 
 有关 Surveys 应用程序的具体步骤，请参阅[运行 Surveys 应用程序](./run-the-app.md)。 注意以下事项：
 
-- 对于多租户应用程序，必须显式配置多租户选项。 这样，其他组织就能访问该应用程序。
+- 对于多租户应用程序，必须显式配置多租户选项。 这样，其他组织访问应用程序。
 
 - 回复 URL 是 Azure AD 将在其中发送 OAuth 2.0 响应的 URL。 使用 ASP.NET Core 时，该 URL 必须与在身份验证中间件中配置的路径（请参阅下一部分）匹配。
 

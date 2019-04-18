@@ -1,18 +1,18 @@
 ---
-title: CAF：中小型企业 - 治理策略背后的初始公司策略
+title: CAF：小型到中型企业的初始公司策略背后的管理策略
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
-ms.date: 2/11/2019
-description: 中小型企业 - 治理策略背后的初始公司策略
+ms.date: 02/11/2019
+description: 小型到中型企业的初始公司策略背后的管理策略
 author: BrianBlanchard
-ms.openlocfilehash: 4f49d0aae2c6ab5a5c8feba669cbbb904af2773b
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 2133145c9933ad450ea3cc55ecd68b8a667df783
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900479"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640016"
 ---
 # <a name="small-to-medium-enterprise-initial-corporate-policy-behind-the-governance-strategy"></a>中小型企业：治理策略背后的初始公司策略
 

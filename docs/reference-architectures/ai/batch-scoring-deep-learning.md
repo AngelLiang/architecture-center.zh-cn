@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: a1c0701185c85f8e7bcbc183b32c4834529fc524
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: 3459f7895b7b57833da5853a77b2641dc7c85a9e
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887856"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639710"
 ---
 # <a name="batch-scoring-of-deep-learning-models-on-azure"></a>Batch 在 Azure 上的深度学习模型评分
 
@@ -120,7 +120,7 @@ ms.locfileid: "58887856"
 
 ### <a name="logging-with-azure-machine-learning"></a>使用 Azure 机器学习进行日志记录
 
-Azure 机器学习自动将所有 stdout/stderr 记录到关联的 Blob 存储帐户中。 除非另有指定，否则，Azure 机器学习工作区会自动预配一个存储帐户，并将日志转储到其中。 还可以使用存储资源管理器等存储导航工具来更轻松地浏览日志文件。
+Azure 机器学习自动将记录所有 stdout/stderr 到关联的 blob 存储帐户。 除非另有指定，否则，Azure 机器学习工作区会自动预配一个存储帐户，并将日志转储到其中。 还可以使用存储资源管理器等存储导航工具来更轻松地浏览日志文件。
 
 ## <a name="cost-considerations"></a>成本注意事项
 

@@ -1,18 +1,18 @@
 ---
-title: CAF：中小型企业 - 有关治理 MVP 的其他技术详细信息
+title: CAF：小型到中型企业 – 最佳做法所述
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 中小型企业的说明 - 有关治理 MVP 的其他技术详细信息
+description: 小型到中型企业 – 最佳做法所述
 author: BrianBlanchard
-ms.openlocfilehash: e726213459c8bee63e3cc77ab54868fe7196b3ac
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: b9b385be345098bf1b9e0e1cdce7fd3cceeb5523
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900520"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639574"
 ---
 # <a name="small-to-medium-enterprise-best-practice-explained"></a>中小型企业：最佳做法介绍
 
@@ -22,7 +22,7 @@ ms.locfileid: "55900520"
 
 ## <a name="governance-mvp-cloud-adoption-foundation"></a>治理 MVP（云采用基础）
 
-得益于多个简单原则和基于云的治理工具，可实现快速采用治理和公司策略。 这些是在任何治理进程中的三个云治理规则的第一个。 本文将充分叙述每个规则。
+得益于多个简单原则和基于云的治理工具，可实现快速采用治理和公司策略。 这些是方法在任何管理进程中前三个领域。 本文将充分叙述每个规则。
 
 为了建立基础，本文将讨论创建治理 MVP 所需的标识基线、安全基线和部署加速背后的高级策略，它将作为所有采用的基础。
 
@@ -38,7 +38,7 @@ ms.locfileid: "55900520"
 
 1. 征求关于核心依赖关系的决定：标识、网络和加密。
 2. 确定要在企业策略强制执行期间使用的模式。
-3. 为资源一致性、资源标记、以及日志记录和报告规则确定合适的治理模式。
+3. 确定资源一致性、 资源标记和日志记录和报告领域的相应管理模式。
 4. 实施与所选策略强制执行模式一致的治理工具，以应用依赖决策和治理决策。
 
 [!INCLUDE [implementation-process](../../../../../includes/cloud-adoption/governance/implementation-process.md)]

@@ -1,20 +1,20 @@
 ---
-title: 配置 Azure Databricks 将发送到 Azure Monitor 的指标
+title: 配置 Azure Databricks 以将指标发送到 Azure Monitor
 description: 一种 scala 库以启用监视的指标和 Azure Log Analytics 中的日志记录数据
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: af6b6433f87964ac60c179ecf498e54129344126
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: f2fc1fd19da661b74ddf032dd1d5153ce575345c
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503380"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639880"
 ---
 <!-- markdownlint-disable MD040 -->
 
-# <a name="configure-azure-databricks-to-send-metrics-to-azure-monitor"></a>配置 Azure Databricks 将发送到 Azure Monitor 的指标
+# <a name="configure-azure-databricks-to-send-metrics-to-azure-monitor"></a>配置 Azure Databricks 以将指标发送到 Azure Monitor
 
-本文介绍如何配置 Azure Databricks 群集中发送到的指标[Log Analytics 工作区](/azure/azure-monitor/platform/manage-access)。 它使用[Azure Databricks 监视库](https://github.com/mspnp/spark-monitoring)，这是 GitHub 上提供。 了解 Java、 Scala 和 Maven 为 prerequisistes 建议。
+本文介绍如何配置 Azure Databricks 群集中发送到的指标[Log Analytics 工作区](/azure/azure-monitor/platform/manage-access)。 它使用[Azure Databricks 监视库](https://github.com/mspnp/spark-monitoring)，这是 GitHub 上提供。 了解 Java、 Scala 和 Maven 的建议作为系统必备组件。
 
 ## <a name="about-the-azure-databricks-monitoring-library"></a>有关 Azure Databricks 监视库
 

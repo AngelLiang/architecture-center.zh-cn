@@ -1,16 +1,16 @@
 ---
-title: 使用仪表板直观显示 Azure Databricks 指标
+title: 使用仪表板将 Azure Databricks 指标可视化
 description: 如何部署 Grafana 仪表板来监视 Azure Databricks 中的性能
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: 36fcd93f6ca757e8e750d0fcbbdf0311c08560b0
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: a84203a9188848e6363a80ac455332e8f6a73cda
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887822"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640305"
 ---
-# <a name="use-dashboards-to-visualize-azure-databricks-metrics"></a>使用仪表板直观显示 Azure Databricks 指标
+# <a name="use-dashboards-to-visualize-azure-databricks-metrics"></a>使用仪表板将 Azure Databricks 指标可视化
 
 本文介绍如何设置 Grafana 仪表板，监视 Azure Databricks 作业有关的性能问题。
 
@@ -20,7 +20,7 @@ ms.locfileid: "58887822"
 
 ![仪表板的屏幕截图](./_images/dashboard-screenshot.png)
 
-## <a name="prequisites"></a>先决条件
+## <a name="prerequisites"></a>必备组件
 
 克隆[Github 存储库](https://github.com/mspnp/spark-monitoring)并[遵循的部署说明](./configure-cluster.md)构建和配置 Azure Databricks 库将日志发送到 Azure Log Analytics 工作区的 Azure Monitor 日志记录。
 
@@ -40,7 +40,7 @@ ms.locfileid: "58887822"
     az group deployment create --resource-group <resource-group-name> --template-file logAnalyticsDeploy.json --parameters location='East US' serviceTier='Standalone'
     ```
 
-此模板创建工作区，并还会创建一组预定义仪表板的使用的查询。
+此模板创建工作区，并还会创建一组预定义仪表板使用的查询。
 
 ## <a name="deploy-grafana-in-a-virtual-machine"></a>在虚拟机中部署 Grafana
 
@@ -81,7 +81,7 @@ Grafana 是一个开放源代码项目，可部署为使用适用于 Azure Monit
 
 1. 在 Azure 门户中，选择 VM，并单击**概述**。
 1. 复制公共 IP 地址，
-1. 打开 web 浏览器并导航到以下 URL: `http://<IP addresss>:3000`。
+1. 打开 web 浏览器并导航到以下 URL: `http://<IP address>:3000`。
 1. 在 Grafana 登录屏幕，输入**管理员**的用户名，并使用前面步骤中的 Grafana 密码。
 1. 登录后，选择**配置**（齿轮图标）。
 1. 选择**服务器管理员**。
@@ -153,7 +153,7 @@ Azure Log Analytics 和 Grafana 仪表板包括一系列时间序列的可视化
 
 ### <a name="job-latency"></a>作业滞后时间
 
-此可视化效果中显示的作业，这是作业的总体性能的粗略视图执行延迟。 显示作业执行持续时间从开始到完成。 请注意在作业开始时间不是作为作业提交时间相同。 滞后时间表示为百分位数 （10%，30%、 50%，90%）按群集 ID 和应用程序进行索引的作业执行的 id。
+此可视化效果中显示的作业，这是上一个作业的整体性能的粗略视图执行延迟。 显示作业执行持续时间从开始到完成。 请注意在作业开始时间不是作为作业提交时间相同。 滞后时间表示为百分位数 （10%，30%、 50%，90%）按群集 ID 和应用程序进行索引的作业执行的 id。
 
 ### <a name="stage-latency"></a>阶段延迟
 
@@ -177,7 +177,7 @@ Azure Log Analytics 和 Grafana 仪表板包括一系列时间序列的可视化
 
 ### <a name="streaming-throughputlatency"></a>流式处理吞吐量/延迟
 
-此 visualzation 与结构化流查询与关联的指标。 此关系图显示每秒的输入行数和每秒处理的行数。 流式处理度量值也表示每个应用程序。 处理结构化流式处理查询和可视化效果表示生成 OnQueryProgress 事件时发送这些指标流式处理延迟的时间量，以毫秒为单位，执行所用查询批次。
+与结构化流式处理查询关联的度量值与此可视化效果。 此关系图显示每秒的输入行数和每秒处理的行数。 流式处理度量值也表示每个应用程序。 处理结构化流式处理查询和可视化效果表示生成 OnQueryProgress 事件时发送这些指标流式处理延迟的时间量，以毫秒为单位，执行所用查询批次。
 
 ### <a name="resource-consumption-per-executor"></a>每个执行器的资源消耗
 

@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19, microservices
-ms.openlocfilehash: cc72f61003f4146fd65e501feebda0c0d1d27993
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 87a9dd31b6d935dd11a5a2a2950b6de11f337741
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245088"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639965"
 ---
 # <a name="microservices-architecture-style"></a>微服务体系结构样式
 
@@ -71,7 +71,7 @@ ms.locfileid: "58245088"
 
 - **小型专属团队**。 团队可专注于一个服务。 缩小每个服务的范围后，基本代码变得更好理解，新的团队成员也能更快上手。
 
-- **错误隔离**。 某个服务中断不会影响整个应用程序。 但是，这并不意味着用户可以无偿复原。 用户仍需遵循复原最佳做法和设计模式。 请参阅[设计适用于 Azure 的可复原应用程序][resiliency-overview]。
+- **错误隔离**。 某个服务中断不会影响整个应用程序。 但是，这并不意味着用户可以无偿复原。 用户仍需遵循复原最佳做法和设计模式。 请参阅[设计可靠的 Azure 应用程序][resiliency-overview]。
 
 - **混合技术堆栈**。 团队可选取最适合其服务的技术。
 
@@ -113,7 +113,7 @@ ms.locfileid: "58245088"
 
 - 服务应具有松散耦合和高功能内聚的特点。 应当将可能会一起更改的函数打包并部署在一起。 如果它们驻留在不同的服务中，这些服务最终会紧密耦合，因为一个服务中的更改将需要更新其他服务。 两个服务之间的通信过于频繁可能是紧密耦合和低内聚的征兆。
 
-- 隔离故障。 使用复原策略可防止某个服务中的故障级联。 请参阅[复原模式][resiliency-patterns]和[设计可复原应用程序][resiliency-overview]。
+- 隔离故障。 使用复原策略可防止某个服务中的故障级联。 请参阅[复原模式][ resiliency-patterns]并[设计可靠的应用程序][resiliency-overview]。
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -121,5 +121,5 @@ ms.locfileid: "58245088"
 
 <!-- links -->
 
-[resiliency-overview]: ../../resiliency/index.md
+[resiliency-overview]: ../../reliability/index.md
 [resiliency-patterns]: ../../patterns/category/resiliency.md

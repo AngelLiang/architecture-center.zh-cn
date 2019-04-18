@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai, AI
-ms.openlocfilehash: b7607984bcf2c4bd046421aeb6e9d52dd8e7c18e
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: 9341b9e4c17025e9623902a6202076c352b237b9
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887737"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640541"
 ---
 # <a name="batch-scoring-of-python-machine-learning-models-on-azure"></a>在 Azure 上的 Python 机器学习批处理评分模型
 
@@ -25,11 +25,12 @@ ms.locfileid: "58887737"
 **场景**：此解决方案在 IoT 设置中监视大量设备的操作，而在该设置中，每个设备都会持续发送传感器读取内容。 假设每个设备与预先训练的异常情况检测模型相关联，这些模型用于预测一系列已在预定义的时间间隔内进行聚合的度量是否对应于某种异常情况。 在实际场景中，这可能是传感器读取内容流，该流需要在筛选并聚合后才能用于训练或实时评分。 为简单起见，此解决方案使用的数据文件是执行评分作业时使用的文件。
 
 本参考体系结构适用于按计划触发的工作负荷。 包括以下处理步骤：
-1.  将要引入的传感器读数发送到 Azure 事件中心。
-2.  执行流处理并存储原始数据。
-3.  将数据发送到已准备好接管工作的机器学习群集。 群集中的每个节点针对特定的传感器运行评分作业。 
-4.  执行评分管道，该管道使用机器学习 Python 脚本并行运行评分作业。 创建、发布管道，并将其计划为按预定义的时间间隔运行。
-5.  生成预测结果，并将其存储在 Blob 存储中，以供日后使用。
+
+1. 将要引入的传感器读数发送到 Azure 事件中心。
+2. 执行流处理并存储原始数据。
+3. 将数据发送到已准备好接管工作的机器学习群集。 群集中的每个节点针对特定的传感器运行评分作业。 
+4. 执行评分管道，该管道使用机器学习 Python 脚本并行运行评分作业。 创建、发布管道，并将其计划为按预定义的时间间隔运行。
+5. 生成预测结果，并将其存储在 Blob 存储中，以供日后使用。
 
 ## <a name="architecture"></a>体系结构
 
@@ -66,7 +67,7 @@ ms.locfileid: "58887737"
 ## <a name="management-considerations"></a>管理注意事项
 
 - **监视作业**。 监视正在运行的作业的进度很重要，但在活动节点群集间进行监视可能是一项挑战。 若要检查群集中节点的状态，请使用 [Azure 门户][portal]管理[机器学习工作区][ml-workspace]。 如果节点处于非活动状态或作业失败，则错误日志将保存到 Blob 存储，并且还可以在“管道”部分访问这些日志。 若要进行更全面的监视，请将日志连接到 [Application Insights][app-insights]，或运行单独的进程来轮询群集及其作业的状态。
--   **日志记录**。 机器学习服务将所有 stdout/stderr 记录到关联的 Azure 存储帐户中。 若要轻松查看日志文件，请使用 [Azure 存储资源管理器][explorer]等存储导航工具。
+- **日志记录**。 机器学习服务将所有 stdout/stderr 记录到关联的 Azure 存储帐户中。 若要轻松查看日志文件，请使用 [Azure 存储资源管理器][explorer]等存储导航工具。
 
 ## <a name="cost-considerations"></a>成本注意事项
 
@@ -75,7 +76,6 @@ ms.locfileid: "58887737"
 对于无需立即处理的工作，可配置自动缩放公式，使默认状态（最小值）为零节点群集。 通过此配置，群集从零节点开始，仅在队列中检测到作业时才会增加。 如果批量评分进程一天只运行几次或更少，则此设置可大幅节省成本。
 
 自动缩放可能不适用于彼此发生时间太接近的批处理作业。 群集启动和停止所需的时间也会产生成本，因此如果批处理工作负荷在上一个作业结束后的几分钟内开始，则保持群集在作业之间运行可能更具成本效益。 这取决于评分过程是计划高频率运行（例如，每小时运行一次）还是低频率运行（例如，每月运行一次）。
-
 
 ## <a name="deployment"></a>部署
 

@@ -6,12 +6,12 @@ ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 281a2e9995d1d04aa9688e811e0d4ff8088fe30b
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: fdad7e9241ddd9c11c18e31a1fd2da5a163d05ac
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58249702"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640509"
 ---
 # <a name="natural-language-processing"></a>自然语言处理
 
@@ -24,7 +24,7 @@ ms.locfileid: "58249702"
 NLP 可以用来对文档进行分类，例如将文档标记为敏感文档或垃圾文档。 NLP 的输出可用于后续处理或搜索。 NLP 的另一个用途是通过识别文档中存在的实体对文本进行总结。 这些实体还可以用来为文档标记关键字，从而启用基于内容的搜索和检索。 可以将实体以及说明每个文档中存在的重要主题的总结组合到主题中。 可以使用检测到的主题来对文档进行分类以便导航，或者针对选定的主题枚举相关文档。 NLP 的另一个用途是对文本进行情绪评分，以评估文档的正面或负面语气。 这些方法使用许多自然语言处理技术，例如：
 
 - **分词器**。 将文本拆分为字或短语。
-- **词干分解和词元化**。 对字进行规范化，以便将不同的形式映射到具有相同含义的规范字。 例如，“running”和“ran”映射到“run”。
+- **词干分解和词元化**。 规范字，以便不同的形式映射到具有相同含义的规范字。 例如，“running”和“ran”映射到“run”。
 - **实体提取**。 识别文本中的主题。
 - **语音部件检测**。 将文本标识为谓词、名词、分词、谓词短语，等等。
 - **句子边界检测**。 检测文本段落中的完整句子。

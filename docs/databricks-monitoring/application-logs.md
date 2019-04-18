@@ -1,16 +1,16 @@
 ---
-title: Azure Databricks 应用程序日志发送到 Azure Monitor
+title: 将 Azure Databricks 应用程序日志发送到 Azure Monitor
 description: 如何从 Azure Databricks 中将自定义日志和指标发送到 Azure Monitor
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: 49c631687fb3e3bbd807ffbbb49d9c5f6526bfb4
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: ea67122d7871663e8aaf42b7af0043492f63b6b1
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503370"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639176"
 ---
-# <a name="send-azure-databricks-application-logs-to-azure-monitor"></a>Azure Databricks 应用程序日志发送到 Azure Monitor
+# <a name="send-azure-databricks-application-logs-to-azure-monitor"></a>将 Azure Databricks 应用程序日志发送到 Azure Monitor
 
 本文介绍如何将应用程序日志和指标发送到 Azure Databricks 从[Log Analytics 工作区](/azure/azure-monitor/platform/manage-access)。 它使用[Azure Databricks 监视库](https://github.com/mspnp/spark-monitoring)，这是 GitHub 上提供。
 
@@ -137,7 +137,7 @@ SparkMetric_CL | where name_s contains "rowcounter" | limit 50
 部署性能监视仪表板，其中随附此代码库来解决在生产 Azure Databricks 工作负荷的性能问题。
 
 > [!div class="nextstepaction"]
-> [使用仪表板直观显示 Azure Databricks 指标](./dashboards.md)
+> [使用仪表板将 Azure Databricks 指标可视化](./dashboards.md)
 
 <!-- links -->
 

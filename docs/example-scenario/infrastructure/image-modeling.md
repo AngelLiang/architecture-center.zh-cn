@@ -3,18 +3,18 @@ title: 在 Azure 上加速基于数码图像的建模
 titleSuffix: Azure Example Scenarios
 description: 使用 Avere 和 Agisoft PhotoScan 在 Azure 上加速基于数码图像的建模
 author: adamboeglin
-ms.date: 1/11/2019
+ms.date: 01/11/2019
 ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: cat-team, Linux, HPC
 social_image_url: /azure/architecture/example-scenario/infrastructure/media/architecture-image-modeling.png
-ms.openlocfilehash: 87b43347fb5f4baec0081a67c8b003dccd2fdf0d
-ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
-ms.translationtype: HT
+ms.openlocfilehash: 981d9f01ef12f75d9b292196f754f3a0affa791a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/31/2019
-ms.locfileid: "55483005"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640373"
 ---
 # <a name="accelerate-digital-image-based-modeling-on-azure"></a>在 Azure 上加速基于数码图像的建模
 
@@ -50,7 +50,7 @@ ms.locfileid: "55483005"
 - [Avere vFXT](/azure/avere-vfxt/avere-vfxt-overview) 是一个文件缓存解决方案，它使用对象存储和传统的网络连接存储 (NAS) 来优化大型数据集的存储。 其中包括：
   - Avere 控制器。 此 VM 执行用于安装 Avere vFXT 群集和运行 Ubuntu 18.04 LTS 的脚本。 以后可以使用该 VM 来添加或删除群集节点，以及销毁群集。
   - vFXT 群集。 至少使用三个 VM，对基于 Avere OS 5.0.2.1 的每个 Avere vFXT 节点各使用一个。 这些 VM 构成了附加到 Azure Blob 存储的 vFXT 群集。
-- [Microsoft Active Directory 域控制器](/windows/desktop/ad/active-directory-domain-services)可让主机访问域资源以及提供 DNS 名称解析。 Avere vFXT 添加一些 A 记录 — 例如，vFXT 群集中的每条 A 记录指向每个 Avere vFXT 节点的 IP 地址。 在此设置中，所有 VM 使用轮循模式访问 vFXT 导出内容。
+- [Microsoft Active Directory 域控制器](/windows/desktop/ad/active-directory-domain-services)可让主机访问域资源以及提供 DNS 名称解析。 Avere vFXT 中添加的记录数&mdash;等 vFXT 群集中的每个 A 记录指向 Avere vFXT 的每个节点的 IP 地址。 在此设置中，所有 VM 使用轮循模式访问 vFXT 导出内容。
 - [其他 VM](/azure/virtual-machines/) 充当跳转盒，管理员使用它们来访问计划程序和处理节点。 必须提供 Windows 跳转盒才能让管理员通过远程桌面协议访问头节点。 第二个跳转盒是可选的，运行用于管理工作节点的 Linux。
 - [网络安全组](/azure/virtual-network/manage-network-security-group) (NSG) 限制对公共 IP 地址 (PIP) 的访问，并允许端口 3389 和 22 访问附加到跳转盒子网的 VM。
 - [虚拟网络对等互连](/azure/virtual-network/virtual-network-peering-overview)将 PhotoScan 虚拟网络连接到 Avere 虚拟网络。
@@ -71,7 +71,7 @@ ms.locfileid: "55483005"
 部署注意事项取决于所用的应用程序和服务，但需要记住几条额外的说明：
 
 - 生成高性能应用程序时，请使用 Azure 高级存储并[优化应用层](/azure/virtual-machines/windows/premium-storage-performance)。 使用 Azure Blob 存储[热层访问](/azure/storage/blobs/storage-blob-storage-tiers)来优化频繁访问的存储。
-- 使用符合可用性和性能要求的存储[复制选项](/azure/storage/common/storage-redundancy)。 在本示例中，默认为 Avere vFXT 配置了高可用性和本地冗余存储 (LRS)。 为实现负载均衡，此设置中的所有 VM 使用轮循模式访问 vFXT 导出内容。
+- 使用存储资源[复制选项](/azure/storage/common/storage-redundancy)满足可用性和性能需求的。 在本示例中，默认为 Avere vFXT 配置了高可用性和本地冗余存储 (LRS)。 为实现负载均衡，此设置中的所有 VM 使用轮循模式访问 vFXT 导出内容。
 - 如果 Windows 客户端和 Linux 客户端都消耗后端存储，请使用 Samba 服务器来支持 Windows 节点。 本示例方案的某个基于 BeeGFS 的[版本](https://github.com/paulomarquesc/beegfs-template)使用 Samba 来支持 Windows 上运行的 HPC 工作负荷 (PhotoScan) 的计划程序节点。 部署的负载均衡器充当 DNS 轮循机制的智能替代项。
 - 使用最适合 [Windows](/azure/virtual-machines/windows/sizes-hpc) 或 [Linux](/azure/virtual-machines/linux/sizes?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 工作负荷的 VM 类型运行 HPC 应用程序。
 - 若要将 HPC 工作负荷与存储资源相隔离，请将其部署在其自身的虚拟网络中，然后使用虚拟网络[对等互连](/azure/virtual-network/virtual-network-peering-overview)连接两者。 对等互连可在不同虚拟网络中的资源之间创建低延迟、高带宽连接，并仅通过专用 IP 地址在 Microsoft 主干基础结构中路由流量。
@@ -91,7 +91,7 @@ ms.locfileid: "55483005"
 
 ## <a name="pricing"></a>定价
 
-运行本方案所需的成本根据多种因素而有很大的不同。  具体的成本取决于 VM 的数量和大小、所需的存储量以及完成作业所需的时间。
+运行此方案的成本可以极大地改变取决于多种因素。  具体的成本取决于 VM 的数量和大小、所需的存储量以及完成作业所需的时间。
 
 [Azure 定价计算器](https://azure.com/e/42362ddfd2e245a28a8e78bc609c80f3)中的以下示例成本配置文件基于 Avere vFXT 和 PhotoScan 的典型配置：
 

@@ -1,28 +1,26 @@
 ---
 title: 故障模式分析
-description: 基于 Azure 为云解决方案执行故障模式分析的相关准则。
+description: 用于执行故障模式分析的基于 Azure 的云解决方案的指导原则。
 author: MikeWasson
 ms.date: 05/07/2018
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: 6d0f58161c5b9d5922c21f24b1b1a50bab836bb1
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 0d89570ca42aa087a9c18148b5a4019b6f348e6b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248064"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640964"
 ---
-# <a name="failure-mode-analysis"></a>故障模式分析
-
-[!INCLUDE [header](../_includes/header.md)]
+# <a name="failure-mode-analysis-for-azure-applications"></a>Azure 应用程序的故障模式分析
 
 故障模式分析 (FMA) 是一个过程，用于通过标识系统中可能的故障点将复原能力内置到系统中。 FMA 应该是体系结构和设计阶段的一部分，以便从一开始就将故障恢复能力内置到系统中。
 
 下面是执行 FMA 的常规过程：
 
-1. 标识系统中的所有组件。 包括外部依赖项，比如标识提供者、第三方服务等等。
+1. 标识系统中的所有组件。 包括外部依赖项，例如标识提供者、 第三方服务，等等。
 2. 对于每个组件，标识可能发生的潜在故障。 单个组件可能具有多种故障模式。 例如，应分开考虑读取故障和写入故障，因为其影响和可行的缓解措施有所不同。
 3. 根据总体风险对每种故障模式评分。 请考虑以下因素：
 
@@ -426,7 +424,7 @@ Application_End 日志记录将捕获应用域关闭（软进程崩溃），它�
 
 **恢复**。 对于每个应用程序层，将多个 VM 实例放入同一可用性集中，并在 VM 前面放一个负载均衡器。 如果运行状况探测失败，负载均衡器会停止向不正常的实例发送新连接。
 
-**诊断**。 - 使用负载均衡器 [Log Analytics][lb-monitor]。
+**诊断**。 - 使用负载均衡器[日志分析][lb-monitor]。
 
 - 配置监视系统，以监视所有运行状况监视终结点。
 

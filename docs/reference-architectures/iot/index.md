@@ -4,12 +4,12 @@ description: Azure 上使用 PaaS（平台即服务）组件的 IoT 应用程序
 titleSuffix: Azure Reference Architectures
 author: MikeWasson
 ms.date: 01/09/2019
-ms.openlocfilehash: 5a4b104044f3e64ffdce98e3952201d397d41f33
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 04bff9419a30a3610d59e3ca8f27c004a0bcb2be
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58344574"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641121"
 ---
 # <a name="azure-iot-reference-architecture"></a>Azure IoT 参考体系结构
 
@@ -142,7 +142,7 @@ IoT 中心自动基于设备 ID 对设备消息进行分区。 所有来自某�
 
 ## <a name="next-steps"></a>后续步骤
 
-- 有关建议的体系结构和实现选项的详细讨论，请参阅 [Microsoft Azure IoT 参考体系结构](http://aka.ms/iotrefarchitecture) (PDF)。
+- 有关建议的体系结构和实现选项的详细讨论，请参阅 [Microsoft Azure IoT 参考体系结构](https://aka.ms/iotrefarchitecture) (PDF)。
 
 - 有关各种 Azure IoT 服务的详细文档，请参阅 [Azure IoT 基础](/azure/iot-fundamentals/)。
 

@@ -61,7 +61,6 @@
 </li>
 </ul>
 
-
 ## <a name="application-scenarios"></a>应用程序方案
 
 <ul  class="panelContent cardsG">
@@ -238,7 +237,6 @@
 </li>
 </ul>
 
-
 ## <a name="data-scenarios"></a>数据方案
 
 <ul  class="panelContent cardsG">
@@ -357,7 +355,6 @@
     </a>
 </li>
 </ul>
-
 
 ## <a name="infrastructure-scenarios"></a>基础结构方案
 
@@ -515,4 +512,3 @@
     </a>
 </li>
 </ul>
-

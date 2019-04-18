@@ -3,12 +3,12 @@ title: CAF：形成混合云一致性
 description: 定义形成混合云一致性的方法
 author: BrianBlanchard
 ms.date: 12/27/2018
-ms.openlocfilehash: 726ea56f52d68f6c9b0d1478d19a91c2b7f12fdd
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: d5cfc8565a97c0342b5dc200512308d4c795422a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900667"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639914"
 ---
 # <a name="create-hybrid-cloud-consistency"></a>形成混合云一致性
 
@@ -18,7 +18,7 @@ ms.locfileid: "55900667"
 
 ## <a name="integrate-hybrid-cloud-consistency"></a>集成混合云一致性
 
-使用混合云解决方案让组织得以缩放计算资源。 它还消除了进行大量资本支出来应对短期需求高峰的需要。 如果业务发生变化，需要为更敏感的数据或应用程序释放本地资源，则取消预配云资源会更轻松、更快速且更便宜。 只需为组织临时使用的资源付费，而无需购买和维护其他资源。 这减少了可能会在很长一段时间内保持空闲的设备数量。 混合云计算是“可能的最佳”平台，它提供云计算的灵活性、可伸缩性和成本效益带来的所有好处；同时尽可能降低数据泄露的风险。
+使用混合云解决方案让组织得以缩放计算资源。 它还消除了进行大量资本支出来应对短期需求高峰的需要。 如果业务发生变化，需要为更敏感的数据或应用程序释放本地资源，则取消预配云资源会更轻松、更快速且更便宜。 只需为组织临时使用的资源付费，而无需购买和维护其他资源。 这减少了可能会在很长一段时间内保持空闲的设备数量。 混合云计算一个"全球最佳"平台，交付云计算的灵活性、 可伸缩性和成本效益; 的所有优势所有这些都有最低可能降低数据暴露。
 
 ![跨标识、管理、安全性、数据、开发和 DevOps 形成混合云一致性](../../_images/hybrid-consistency.png)
 *图 1.跨标识、管理、安全性、数据、开发和 DevOps 形成混合云一致性*
@@ -32,7 +32,7 @@ ms.locfileid: "55900667"
   
 从 Azure 角度来看，这些组件的示例包括：
 
-- Azure Active Directory (Azure AD)，它可与本地 Azure AD 配合使用，为所有用户提供通用标识。 跨本地部署及通过云实现的 SSO，使用户可以轻松安全地访问所需的应用程序和资产。 管理员可以管理安全和治理控件，以便用户能够访问所需的内容；管理员还可灵活调整这些权限，而不会影响用户体验。
+- Azure Active Directory (Azure AD)，它可与本地 Azure AD 配合使用，为所有用户提供通用标识。 跨本地部署及通过云实现的 SSO，使用户可以轻松安全地访问所需的应用程序和资产。 管理员可以管理安全和管理控制，以便用户可以访问所需的内容，能够灵活地调整这些权限，而不会影响用户体验。
 - Azure 为云和本地基础结构提供集成的管理和安全服务，其中包括用于监视、配置和保护混合云的集成工具集。 这种端到端的管理方法专门解决组织所面临的现实挑战，并将混合云解决方案考虑在内。
 - Azure 混合云提供可确保无缝、高效且安全地访问所有数据的常用工具。 Azure 数据服务与 Microsoft SQL Server 相结合，可创建一致的数据平台。 借助一致的混合云模型，用户能够使用操作和分析数据，在本地和云中为数据仓库、数据分析和数据可视化提供相同的服务。
 - Microsoft Azure 云服务与 Microsoft Azure Stack 本地部署相结合，可提供统一的开发和 DevOps 环境。 跨云和本地部署的一致性意味着 DevOps 团队可以构建在任一环境中运行的应用程序，并且可以轻松部署到合适的位置。 还可以在混合解决方案中重复使用模板，这可以进一步简化 DevOps 流程。
@@ -56,7 +56,7 @@ Azure 和 Azure Stack 为面向客户的应用程序和内部业务线应用程�
 
 ## <a name="azure-stack-one-cloud-ecosystem"></a>Azure Stack One Cloud 生态系统
 
-可以通过利用完整的 Azure 生态系统来加速 Azure Stack 计划：
+可以使用完整的 Azure 生态系统来加速 Azure Stack 计划：
 
 - Azure 可确保大多数经过 Azure 认证的应用程序和服务能够在 Azure Stack 上运行。 多家 ISV &mdash; Bitnami、Docker、Kemp Technologies、Pivotal Cloud Foundry、Red Hat Enterprise Linux 和 SUSE Linux 等 &mdash; 正在将其解决方案扩展到 Azure Stack。
 - 可以选择将 Azure Stack 作为完全的托管服务交付和运行。 多个合作伙伴 &mdash; Tieto、Yourhosting、Revera、Pulsant 和 NTT 等 &mdash; 将很快在 Azure 和 Azure Stack 中提供托管服务产品。 这些合作伙伴已在通过云解决方案提供商（云服务提供商）计划为 Azure 提供托管服务，且现在正在将其产品/服务扩展为包括混合解决方案。

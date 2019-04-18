@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: 22a2a2042c85e70d0d5a523c9ecf72395a9e774c
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 873b6a86da14e00d0a537f910d10922444cc1ded
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244388"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640730"
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>将 Active Directory 联合身份验证服务 (AD FS) 扩展到 Azure
 
@@ -126,7 +126,7 @@ AD FS 可以在本地进行承载，但是如果应用程序是其中某些部�
 
 AD FS 支持令牌转换和扩大。 Azure Active Directory 不提供此功能。 借助 AD FS，在设置信任关系时可以：
 
-- 为授权规则配置声明转换。 例如，可以将组安全性从非 Microsoft 合作伙伴组织使用的表示形式映射到 Active Directory DS 可以在组织中授权的某种内容。
+- 为授权规则配置声明转换。 例如，可以将映射组安全性从非 Microsoft 合作伙伴组织成 Active Directory DS 可以授权你的组织中使用的表示形式。
 - 将声明从一种格式转换为另一种格式。 例如，如果应用程序仅支持 SAML 1.1 声明，则可以从 SAML 2.0 映射到 SAML 1.1。
 
 ### <a name="ad-fs-monitoring"></a>AD FS 监视
@@ -195,7 +195,7 @@ AD FS 使用 HTTPS，因此请确保包含 Web 层 VM 的子网的 NSG 规则允
 
 [GitHub][github] 上提供了此体系结构的部署。 请注意，整个部署最长可能需要花费两个小时，包括创建 VPN 网关和运行配置 Active Directory 和 AD FS 的脚本。
 
-### <a name="prerequisites"></a>先决条件
+### <a name="prerequisites"></a>必备组件
 
 1. 克隆、下载 [GitHub 存储库](https://github.com/mspnp/identity-reference-architectures)的 zip 文件或创建其分库。
 

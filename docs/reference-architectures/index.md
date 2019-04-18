@@ -3,13 +3,13 @@ title: Azure 参考体系结构
 description: 适用于 Azure 上的常见工作负荷的参考体系结构和实现指南。
 layout: LandingPage
 ms.topic: landing-page
-ms.date: 02/07/2019
-ms.openlocfilehash: 44111f5f10997c7aba38414b518245c5791d1cd0
-ms.sourcegitcommit: a68f248402c598f9d25bc1dc62f27a6a934ff001
+ms.date: 04/02/2019
+ms.openlocfilehash: d338559e52f16ba7df9ebac030200c6a34d89906
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55903225"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640679"
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
@@ -66,6 +66,26 @@ ms.locfileid: "55903225"
         </div>
     </a>
 </li>
+<!-- Training of Python scikit-learn models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/training-python-models.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/python-powered-h.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Python scikit-learn 模型的训练</h3>
+                        <p>建议用于优化 scikit-learn Python 模型超参数的做法。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
 <!-- Batch scoring of Python models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/batch-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -79,27 +99,7 @@ ms.locfileid: "55903225"
                     </div>
                     <div class="cardText">
                         <h3>Python 模型的批量评分</h3>
-                        <p>使用 Azure Batch AI，按计划以并行方式对许多 Python 模型进行批量评分。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<!-- Batch scoring of Spark models on Azure Databricks -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./ai/batch-scoring-databricks.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/databricks.png" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Azure Databricks 上 Spark 模型的批量评分</h3>
-                        <p>构建可缩放的解决方案，以用于使用 Azure Databricks 对 Apache Spark 分类模型进行批量评分。</p>
+                        <p>使用 Azure 机器学习，按计划以并行方式对许多 Python 模型进行批量评分。</p>
                     </div>
                 </div>
             </div>
@@ -126,6 +126,26 @@ ms.locfileid: "55903225"
         </div>
     </a>
 </li>
+<!-- Batch scoring of R machine learning models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-R-models.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/logo-r.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>R 机器学习模型的批量评分</h3>
+                        <p>使用 Azure Batch 执行 R 模型的批量评分。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
 <!-- Real-time scoring of R machine learning models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-r.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -138,8 +158,28 @@ ms.locfileid: "55903225"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>机器学习模型的实时评分</h3>
+                        <h3>R 机器学习模型的实时评分</h3>
                         <p>在 R 中使用运行于 Azure Kubernetes 服务 (AKS) 中的 Microsoft Machine Learning Server 实现实时预测服务。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Batch scoring of Spark models on Azure Databricks -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-databricks.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/databricks.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Azure Databricks 上 Spark 模型的批量评分</h3>
+                        <p>构建可缩放的解决方案，以用于使用 Azure Databricks 对 Apache Spark 分类模型进行批量评分。</p>
                     </div>
                 </div>
             </div>
@@ -314,7 +354,27 @@ ms.locfileid: "55903225"
                     </div>
                     <div class="cardText">
                         <h3>Azure Kubernetes 服务 (AKS) 上的微服务</h3>
-                        <p>用于在 AKS 上部署微服务体系结构的建议体系结构。</p>
+                        <p>建议用于在 AKS 上部署微服务的体系结构。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Microservices architecture on Azure Service Fabric -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./microservices/service-fabric.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/sf.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Azure Service Fabric 上的微服务体系结构</h3>
+                        <p>建议用于 Service Fabric 上的微服务的体系结构。</p>
                     </div>
                 </div>
             </div>
@@ -590,26 +650,6 @@ ms.locfileid: "55903225"
                     <div class="cardText">
                         <h3>使用 Cassandra 的 N 层应用程序</h3>
                         <p>为一个使用 Linux 版 Apache Cassandra 的 N 层应用程序配置的虚拟机。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<!-- Jenkins build server -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./jenkins/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/jenkins.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Jenkins 生成服务器</h3>
-                        <p>Azure 上的可缩放型企业级 Jenkins 服务器。</p>
                     </div>
                 </div>
             </div>

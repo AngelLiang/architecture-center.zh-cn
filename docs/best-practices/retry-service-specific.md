@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: d99c63b9cb5f2ed7ffcd869b5b8ac7910b9dabe3
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: 170a38f6b8a6c107670561e63f236e43af948d7d
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487128"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641036"
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服务的重试指南
 
@@ -67,8 +67,8 @@ Active Directory 身份验证库 (ADAL) 提供适用于 Azure Active Directory �
 
 | **上下文** | **示例目标 E2E<br />最长延迟** | **重试策略** | **设置** | **值** | **工作原理** |
 | --- | --- | --- | --- | --- | --- |
-| 交互式, UI,<br />或 foreground |2 秒 |FixedInterval |重试计数<br />重试间隔<br />首次快速重试 |3<br />500 毫秒<br />true |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 延迟 500 毫秒<br />第 3 次尝试 - 延迟 500 毫秒 |
-| 背景或<br />批处理 |60 秒 |ExponentialBackoff |重试计数<br />最小回退<br />最大回退<br />增量回退<br />首次快速重试 |5<br />0 秒<br />60 秒<br />2 秒<br />false |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 约延迟 2 秒<br />第 3 次尝试 - 约延迟 6 秒<br />第 4 次尝试 - 约延迟 14 秒<br />第 5 次尝试 - 约延迟 30 秒 |
+| 交互式, UI,<br />或前台 |2 秒 |FixedInterval |重试计数<br />重试间隔<br />首次快速重试 |3<br />500 毫秒<br />true |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 延迟 500 毫秒<br />第 3 次尝试 - 延迟 500 毫秒 |
+| 背景或<br />或批处理 |60 秒 |ExponentialBackoff |重试计数<br />最小回退<br />最大回退<br />增量回退<br />首次快速重试 |5<br />0 秒<br />60 秒<br />2 秒<br />false |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 约延迟 2 秒<br />第 3 次尝试 - 约延迟 6 秒<br />第 4 次尝试 - 约延迟 14 秒<br />第 5 次尝试 - 约延迟 30 秒 |
 
 ### <a name="more-information"></a>详细信息
 
@@ -88,7 +88,7 @@ Cosmos DB 是一种完全托管的多模型数据库，支持无架构 JSON 数�
 
 下表显示了 `RetryOptions` 类的默认设置。
 
-| 设置 | 默认值 | 说明 |
+| 设置 | 默认值 | 描述 |
 | --- | --- | --- |
 | MaxRetryAttemptsOnThrottledRequests |9 |因 Cosmos DB 对客户端应用速率限制而导致请求失败时的最大重试次数。 |
 | MaxRetryWaitTimeInSeconds |30 |最大重试时间（以秒为单位）。 |
@@ -169,7 +169,7 @@ Azure Redis 高速缓存是一项快速数据访问和低延迟高速缓存服�
 
 本部分中的指南假设你使用 StackExchange.Redis 客户端访问高速缓存。 [Redis 网站](https://redis.io/clients)上列出了其他合适的客户端，这些客户端可能具有不同的重试机制。
 
-请注意，StackExchange.Redis 客户端通过单个连接使用多路复用。 建议的用法是，在应用程序启动时创建客户端实例，并对针对高速缓存执行的所有操作使用此实例。 因此，高速缓存连接只建立一次，且本部分中的所有指南均与此启动连接（而不是访问高速缓存的每个操作）的重试策略相关。
+请注意，StackExchange.Redis 客户端通过单个连接使用多路复用。 建议的用法是，在应用程序启动时创建客户端实例，并对针对高速缓存执行的所有操作使用此实例。 出于此原因，只有一次建立连接到缓存，并且与此初始连接的重试策略相关的所有的此部分中的指导&mdash;而不能用于访问缓存的每个操作。
 
 ### <a name="retry-mechanism"></a>重试机制
 
@@ -594,12 +594,12 @@ SQL 数据库是一种托管的 SQL 数据库，具有各种大小，可作为�
 - 当连接池正在使用中（默认情况）时，可能会从池中选择相同的连接，即使在关闭并重新打开连接后，也可能会出现这样的情况。 如果遇到这种情况，解决方法是调用 **SqlConnection** 类的 **ClearPool** 方法，将连接标记为不可重用。 不过，仅在几次连接尝试均失败，且遇到与失败的连接相关的某类临时故障（如 SQL 超时（错误代码 -2））时，才能这样做。
 - 如果数据访问代码使用作为 **TransactionScope** 实例启动的事务，则重试逻辑应重新打开连接，并启动新的事务作用域。 因此，可重试代码块应包含事务的整个作用域。
 
-请考虑从下列重试操作设置入手。 这些都是通用设置，应监视操作，并对值进行微调以适应自己的方案。
+请考虑从下列重试操作设置入手。 这些都是通用设置，要监视操作，并对值进行微调以适应自己的方案。
 
 | **上下文** | **示例目标 E2E<br />最长延迟** | **重试策略** | **设置** | **值** | **工作原理** |
 | --- | --- | --- | --- | --- | --- |
-| 交互式, UI,<br />或 foreground |2 秒 |FixedInterval |重试计数<br />重试间隔<br />首次快速重试 |3<br />500 毫秒<br />true |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 延迟 500 毫秒<br />第 3 次尝试 - 延迟 500 毫秒 |
-| 背景<br />或批处理 |30 秒 |ExponentialBackoff |重试计数<br />最小回退<br />最大回退<br />增量回退<br />首次快速重试 |5<br />0 秒<br />60 秒<br />2 秒<br />false |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 约延迟 2 秒<br />第 3 次尝试 - 约延迟 6 秒<br />第 4 次尝试 - 约延迟 14 秒<br />第 5 次尝试 - 约延迟 30 秒 |
+| 交互式, UI,<br />或前台 |2 秒 |FixedInterval |重试计数<br />重试间隔<br />首次快速重试 |3<br />500 毫秒<br />true |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 延迟 500 毫秒<br />第 3 次尝试 - 延迟 500 毫秒 |
+| 后台<br />或批处理 |30 秒 |ExponentialBackoff |重试计数<br />最小回退<br />最大回退<br />增量回退<br />首次快速重试 |5<br />0 秒<br />60 秒<br />2 秒<br />false |第 1 次尝试 - 延迟 0 秒<br />第 2 次尝试 - 约延迟 2 秒<br />第 3 次尝试 - 约延迟 6 秒<br />第 4 次尝试 - 约延迟 14 秒<br />第 5 次尝试 - 约延迟 30 秒 |
 
 > [!NOTE]
 > 端到端延迟目标假设采用服务连接的默认超时。 如果指定更长的连接超时，则每次重试尝试都会将端到端延迟延长这一附加时间。
@@ -903,7 +903,7 @@ var stats = await client.GetServiceStatsAsync();
 var stats = await client.GetServiceStatsAsync(interactiveRequestOption, operationContext: null);
 ```
 
-使用 **OperationContext** 实例可以指定在发生重试时以及在操作完成时要执行的代码。 此代码可以收集供日志和遥测使用的操作的相关信息。
+使用 **OperationContext** 实例可以指定在发生重试时以及在操作完成时要执行的代码。 此代码可以收集要在日志和遥测数据中使用的操作相关信息。
 
 ```csharp
 // Set up notifications for an operation
@@ -955,7 +955,7 @@ var stats = await client.GetServiceStatsAsync(null, context);
 
 - 使用 Microsoft.WindowsAzure.Storage.RetryPolicies 命名空间中符合要求的内置重试策略。 在大多数情况下，这些策略就够用了。
 
-- 对批处理操作、后台任务或非交互式方案使用 **ExponentialRetry** 策略。 在这种情况下，服务通常可以有更多的恢复时间。结果就是，提高了操作最终成功的可能性。
+- 对批处理操作、后台任务或非交互式方案使用 **ExponentialRetry** 策略。 在这些情况下，您通常可以允许更多时间用于服务可以恢复&mdash;与因此提高了操作最终成功的机会。
 
 - 考虑指定 **RequestOptions** 参数的 **MaximumExecutionTime** 属性，以限制总执行时间；但在选择超时值时，请将操作的类型和大小考虑进去。
 
@@ -963,12 +963,12 @@ var stats = await client.GetServiceStatsAsync(null, context);
 
 - 如果使用的是读取访问异地冗余存储 (RA-GRS)，则可以使用 **LocationMode** 指定在主要访问失败时重试尝试会访问存储空间的只读辅助副本。 不过，使用此选项时，必须确保在尚未完成从主要存储空间进行复制的情况下，应用程序可以成功使用可能已过时的数据。
 
-请考虑从下列重试操作设置入手。 这些都是通用设置，应监视操作，并对值进行微调以适应自己的方案。
+请考虑从下列重试操作设置入手。 这些都是通用设置，要监视操作，并对值进行微调以适应自己的方案。
 
 | **上下文** | **示例目标 E2E<br />最长延迟** | **重试策略** | **设置** | **值** | **工作原理** |
 | --- | --- | --- | --- | --- | --- |
 | 交互式, UI,<br />或 foreground |2 秒 |线性 |maxAttempt<br />deltaBackoff |3<br />500 毫秒 |第 1 次尝试 - 延迟 500 毫秒<br />第 2 次尝试 - 延迟 500 毫秒<br />第 3 次尝试 - 延迟 500 毫秒 |
-| 背景<br />或批处理 |30 秒 |指数 |maxAttempt<br />deltaBackoff |5<br />4 秒 |第 1 次尝试 - 约延迟 3 秒<br />第 2 次尝试 - 约延迟 7 秒<br />第 3 次尝试 - 约延迟 15 秒 |
+| 后台<br />或批处理 |30 秒 |指数 |maxAttempt<br />deltaBackoff |5<br />4 秒 |第 1 次尝试 - 约延迟 3 秒<br />第 2 次尝试 - 约延迟 7 秒<br />第 3 次尝试 - 约延迟 15 秒 |
 
 ### <a name="telemetry"></a>遥测
 
@@ -1123,7 +1123,7 @@ namespace RetryCodeSamples
 
 ### <a name="transient-fault-handling-with-polly"></a>使用 Polly 处理暂时性错误
 
-[Polly][polly] 是一个库，用于以编程方式处理重试和[断路器](../patterns/circuit-breaker.md)策略。 Polly 项目隶属于 [.NET Foundation][dotnet-foundation]。 对于客户端不对重试提供本机支持的服务，Polly 是一种有效的替代方法，它让用户无需编写可能难以正确实现的自定义重试代码。 Polly 还提供一种在出现错误时对其进行跟踪的方法，以便用户记录重试。
+[Polly] [ polly]是一种库以编程方式处理重试次数和[断路器](../patterns/circuit-breaker.md)策略。 Polly 项目隶属于 [.NET Foundation][dotnet-foundation]。 对于客户端不对重试提供本机支持的服务，Polly 是一种有效的替代方法，它让用户无需编写可能难以正确实现的自定义重试代码。 Polly 还提供一种在出现错误时对其进行跟踪的方法，以便用户记录重试。
 
 ### <a name="more-information"></a>详细信息
 

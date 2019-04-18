@@ -7,16 +7,16 @@ ms.date: 12/07/2018
 ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 9b931337f7f0e5dc58f83701271c7d3491af5bfd
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: f3d15d65aeab41977e6d30b8141baaa956da29d3
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248742"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640764"
 ---
 # <a name="publisher-subscriber-pattern"></a>发布者-订阅者模式
 
-使应用程序能够以异步方式向多个感兴趣的使用者公布事件，而无需将发送方与接收方耦合。
+使应用程序能够以异步方式，而无需向接收方的耦合，发件人宣布到多个希望使用者的事件。
 
 **也称为**：发布/订阅消息传送
 
@@ -88,7 +88,7 @@ ms.locfileid: "58248742"
 
 - **重复消息。** 同一条消息可能会发送多次。 例如，在发布某条消息后，发送者可能会发生故障。 然后，该发送者的新实例可能会启动并重复发送该消息。 消息传送基础结构应该实施基于消息 ID 的重复消息检测和删除（也称为重复项删除），以便最多只传送消息一次。
 
-- **消息过期。** 消息可能带有有限的生存期。 如果在此期限内未处理该消息，则它不再有用，应该将其丢弃。 发送者可以在消息数据中指定过期时间。 接收者可以检查此信息，然后决定是否要执行与该消息关联的业务逻辑。
+- **消息过期。** 消息可能带有有限的生存期。 如果在此期限内未处理该消息，则它不再有用，应该将其丢弃。 发送方可以指定一个过期时间作为消息中数据的一部分。 接收者可以检查此信息，然后决定是否要执行与该消息关联的业务逻辑。
 
 - **消息计划。** 可以暂时禁止传送某条消息，在特定的日期和时间之前，不应处理该消息。 在此时间之前，不应将该消息提供给接收者。
 
@@ -130,4 +130,4 @@ ms.locfileid: "58248742"
 
 - [观察者模式](https://en.wikipedia.org/wiki/Observer_pattern)。 发布-订阅模式构建在观察者模式的基础之上，可以通过异步消息传送将主题与观察者解耦。
 
-- [消息中转站模式](https://en.wikipedia.org/wiki/Message_broker)。 支持发布-订阅模型的许多消息传送子系统是通过消息中转站实施的。
+- [消息中转站模式](https://en.wikipedia.org/wiki/Message_broker)。 许多消息传送子系统支持发布-订阅模型通过消息代理实现。

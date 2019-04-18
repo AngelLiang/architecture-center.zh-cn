@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 9b6bef0fd803db5b488e93d246642d4e3681a94c
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: dcbfa528a4fdd640b08b42904ceadb7a802b806e
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897756"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640917"
 ---
 # <a name="api-implementation"></a>API 实现
 
@@ -582,7 +582,7 @@ ServicePoint sp = ServicePointManager.FindServicePoint(uri);
 sp.Expect100Continue = false;
 ```
 
-还可以设置 `ServicePointManager` 类的静态 `Expect100Continue` 属性，以便为所有后续创建的 [ServicePoint]](/dotnet/api/system.net.servicepoint) 对象指定此属性的默认值。
+您还可以设置静态`Expect100Continue`的属性`ServicePointManager`类，以指定此属性的默认值为所有后续创建[ServicePoint](/dotnet/api/system.net.servicepoint)对象。
 
 ### <a name="support-pagination-for-requests-that-may-return-large-numbers-of-objects"></a>支持对可能返回大量对象的请求进行分页
 
@@ -628,7 +628,7 @@ Web API 还应提供一种向客户端应用程序返回处理结果的机制。
 2. Web API 将有关该请求的信息存储在表存储或 Microsoft Azure 缓存中保存的表中，并可能以 GUID 形式为此条目生成唯一键。
 3. Web API 启动处理作为单独的任务。 Web API 在表中将该任务的状态记录为“正在运行”。
 4. Web API 返回包含 HTTP 状态代码 202（已接受）的响应消息，消息正文中包含该表条目的 GUID。
-5. 完成该任务后，Web API 将结果存储在表中，并将该任务的状态设置为“完成”。 请注意，如果该任务失败，Web API 还可能存储有关失败的信息并将状态设置为“失败”。
+5. 完成该任务后，Web API 将结果存储在表中，并将该任务的状态设置为“完成”。 请注意，如果该任务失败，Web API 还可能存储有关失败的信息并将状态设置为 *“失败”*。
 6. 该任务运行时，客户端可以继续执行其自己的处理。 它可以定期将请求发送到 URI */polling/{guid}*，其中 *{guid}* 是 Web API 在 202 响应消息中返回的 GUID。
 7. */polling/{guid}* URI 中的 Web API 在表中查询相应任务的状态并返回包含 HTTP 状态代码“200 (正常)”的响应消息，该代码包含以下状态：“正在运行”、“完成”或“失败”。 如果该任务已完成或失败，则响应消息还可以包括处理的结果或获得的有关失败原因的任何信息。
 
@@ -648,7 +648,7 @@ Web API 还应提供一种向客户端应用程序返回处理结果的机制。
 
 ### <a name="manage-persistent-http-connections-carefully"></a>小心管理永久 HTTP 连接
 
-HTTP 协议支持永久 HTTP 连接（在这些连接可用时）。 HTTP 1.0 规范已添加 Connection:Keep-Alive 标头以允许客户端应用程序向服务器表明它可能使用同一连接发送后续请求而不是打开新连接。 如果客户端在主机定义的时间段内未重用连接，则该连接会自动关闭。 此行为在 Azure 服务使用的 HTTP 1.1 中是默认设置，因此无需在消息中包括 Keep-Alive 标头。
+HTTP 协议支持永久 HTTP 连接（在这些连接可用时）。 HTTP 1.0 规范已添加 Connection:Keep-Alive 标头以允许客户端应用程序向服务器表明它可能使用同一连接发送后续请求而不是打开新连接。 如果客户端在主机定义的时间段内未重用连接，则该连接自动关闭。 此行为在 Azure 服务使用的 HTTP 1.1 中是默认设置，因此无需在消息中包括 Keep-Alive 标头。
 
 让连接保持打开状态可以减少延迟和网络拥塞，从而有助于提高响应能力，但让不必要的连接保持打开状态的时间长于所需时间可能会不利于可扩展性，从而限制了其他并发客户端进行连接的能力。 如果客户端应用程序运行在移动设备上，则还会影响电池使用寿命；如果应用程序只偶尔向服务器发出请求，则维持连接的打开状态可能会导致电池更快耗尽。 若要确保不使用 HTTP 1.1 建立永久连接，客户端可以在消息中包括 Connection:Close 标头以覆盖默认行为。 同样，如果服务器正在处理大量客户端请求，它可以在响应消息中包括 Connection:Close 标头，这会关闭连接并节省服务器资源。
 
@@ -708,7 +708,7 @@ Web API 的性质带来了其自己的验证是否正常运行的附加要求。
 
 - 测试查询字符串。 如果操作可以接受可选参数（例如分页请求），则测试参数的不同组合和顺序。
 
-- 验证异步操作是否成功完成。 如果 Web API 支持对返回大型二进制对象（如视频或音频）的请求进行流式处理，请确保在流式传输数据时不会阻止客户端请求。 如果 Web API 实现了轮询长时间运行的数据修改操作，请验证这些操作在执行时正确报告其状态。
+- 验证异步操作是否成功完成。 如果 Web API 支持对返回大型二进制对象（如视频或音频）的请求进行流式处理，请确保在流式传输数据时不会阻止客户端请求。 如果 web API 实现了轮询长时间运行的数据修改操作，请验证操作报告其状态执行时正确。
 
 还应创建并运行性能测试以检查 Web API 在压力下令人满意地运行。 可以使用 Visual Studio Ultimate 构建一个 Web 性能和负载测试项目。 有关详细信息，请参阅 [Run performance tests on an application before a release](https://msdn.microsoft.com/library/dn250793.aspx)（在发布前对应用程序运行性能测试）。
 

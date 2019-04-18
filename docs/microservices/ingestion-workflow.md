@@ -7,18 +7,21 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: aa5c2b4357ed53da9bebf4795fcbefb89afe0c78
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: a36d2b4c7bfd2b26d5e1de44ddd8005fbce4bdd2
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482553"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640849"
 ---
 # <a name="designing-microservices-ingestion-and-workflow"></a>设计微服务：引入和工作流
 
 微服务通常有一个跨越多个服务（用于处理单个事务）的工作流。 该工作流必须可靠；它不能丢失事务，或者将事务保留为部分完成状态。 控制传入请求的引流速率至关重要。 当许多的小型服务相互通信时，传入请求的剧增可能会使服务间的通信变瘫痪。
 
 ![引入工作流图](./images/ingestion-workflow.png)
+
+> [!NOTE]
+> 这篇文章基于微服务引用实现调用[无人机交付应用程序](./design/index.md)。
 
 ## <a name="the-drone-delivery-workflow"></a>无人机交付工作流
 
@@ -83,7 +86,7 @@ ms.locfileid: "54482553"
 > [!NOTE]
 > 实际上，处理程序主机并不是像阻塞线程那样处于等待状态。 `ProcessEventsAsync` 方法是异步的，因此处理程序主机可以在完成该方法的过程中执行其他工作。 但是，只有在该方法返回之后，处理程序主机才传递该分区的下一批消息。
 
-在无人机应用程序中，可以并行处理一批消息。 但是，等待整个批完成仍可能造成瓶颈。 最快的处理速度以批中最慢的消息为准。 响应时间出现任何差异都可能造成“长尾”，即，少数较慢的响应会拖慢整个系统。 我们的性能测试表明，使用这种方法无法实现目标吞吐量。 这并不意味着我们要避免使用事件处理程序主机。 但是，为了获得较高吞吐量，应避免在 `ProcesssEventsAsync` 方法中执行任何长时间运行的任务。 快速处理每个批。
+在无人机应用程序中，可以并行处理一批消息。 但是，等待整个批完成仍可能造成瓶颈。 最快的处理速度以批中最慢的消息为准。 响应时间出现任何差异都可能造成“长尾”，即，少数较慢的响应会拖慢整个系统。 我们的性能测试表明，使用这种方法无法实现目标吞吐量。 这并不意味着我们要避免使用事件处理程序主机。 但是，为了获得较高吞吐量，应避免在 `ProcessEventsAsync` 方法中执行任何长时间运行的任务。 快速处理每个批。
 
 ### <a name="iothub-react"></a>IotHub React
 
@@ -176,7 +179,7 @@ private static Flow<AkkaDelivery, MessageFromDevice, NotUsed> deliveryProcessor(
 
 ![显示监督程序微服务的示意图](./images/supervisor.png)
 
-## <a name="idempotent-vs-non-idempotent-operations"></a>幂等与非幂等操作
+## <a name="idempotent-versus-non-idempotent-operations"></a>幂等与非幂等操作
 
 为了避免丢失任何请求，计划程序服务必须保证至少处理所有消息一次。 如果客户端正确设置了检查点，事件中心可以保证至少传递一次。
 
@@ -239,9 +242,6 @@ public async Task<IActionResult> Put([FromBody]Delivery delivery, string id)
 ```
 
 大多数请求预期会创建新实体，因此，该方法将对存储库对象乐观调用 `CreateAsync`，然后通过更新资源来处理任何重复资源异常。
-
-> [!div class="nextstepaction"]
-> [API 网关](./gateway.md)
 
 <!-- links -->
 

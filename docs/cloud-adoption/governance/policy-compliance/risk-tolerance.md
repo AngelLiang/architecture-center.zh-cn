@@ -4,10 +4,10 @@ description: 与云转换关联的业务风险的说明？
 author: BrianBlanchard
 ms.date: 10/10/2018
 ms.openlocfilehash: 774a6703b353a3c670b3764505185aecb794784f
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068933"
 ---
 # <a name="evaluating-risk-tolerance"></a>评估风险容忍度
@@ -93,7 +93,7 @@ ms.locfileid: "59068933"
 - 高风险：随着时间的推移，它增加不太可能业务将避免从这种风险的影响。
 - 下滑风险：风险是中等到高风险。 但是，IT 或业务部门中采取的措施在降低影响的概率。
 
-**确定容差：**
+**确定容忍度：**
 
 以上三组问题应推动足够数据以确定初始容忍度。 风险和概率较低，且风险修正成本很高，业务时，不太可能需要花巨资修正。 风险和概率较高，业务时很可能需要考虑投资，只要成本不会超出潜在风险。
 
