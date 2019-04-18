@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 0f5de0eca6fbd35cca1a0e8443f363df09ffc6aa
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: caee864285a03affa43739317d1c4c6fd2131450
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248692"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640628"
 ---
 # <a name="enterprise-grade-conversational-bot"></a>企业级聊天机器人
 
@@ -89,7 +89,7 @@ ms.locfileid: "58248692"
 
 然后，中间存储中的数据将在 Azure 搜索中编制索引以方便检索文档，载入 QnA Maker 以创建问答对，或载入自定义 Web 应用进行非结构化文本处理。 这些数据还用于训练 LUIS 模型，以提取意向和实体。
 
-**质量保证**。 聊天日志用于诊断和修复 bug、提供机器人用法见解，以及跟踪整体性能。 反馈数据可用于重新训练 AI 模型，以提高机器人的性能。
+**质量保证**。 聊天日志用于诊断和修复 bug、提供机器人使用情况见解，以及跟踪整体性能。 反馈数据可用于重新训练 AI 模型，以提高机器人的性能。
 
 ## <a name="building-a-bot"></a>构建机器人
 
@@ -224,4 +224,3 @@ ms.locfileid: "58248692"
 [appinsights-logger]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-transcript-app-insights
 [feedback-util]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-feedback
 [testing util]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-http-test-recorder
-

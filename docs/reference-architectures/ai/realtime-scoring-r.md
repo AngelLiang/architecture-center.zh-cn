@@ -8,11 +8,11 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
 ms.openlocfilehash: 5f3cc62c81c9ef9e5c3c27b1d66badd3e481c228
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887839"
+ms.lasthandoff: 04/18/2019
+ms.locfileid: "59740419"
 ---
 # <a name="real-time-scoring-of-r-machine-learning-models-on-azure"></a>Azure 上 R 机器学习模型的实时评分
 
