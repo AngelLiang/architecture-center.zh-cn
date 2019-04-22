@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 89434c0ce72b9f061e4b092354b1dcbaf683b7c6
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 6e44953cccf39cc40be775f4043bcf8b1b890dae
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58346308"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641155"
 ---
 # <a name="azure-for-aws-professionals"></a>面向 AWS 专业人员的 Azure
 
@@ -157,7 +157,7 @@ Azure [异地冗余存储](/azure/storage/common/storage-redundancy-grs)会自�
 
 - [Azure 应用程序的高可用性](../resiliency/high-availability-azure-applications.md)
 
-- [Azure 应用程序的灾难恢复](../resiliency/disaster-recovery-azure-applications.md)
+- [Azure 应用程序的故障和灾难恢复](../reliability/disaster-recovery.md)
 
 - [Azure 中 Linux 虚拟机的计划内维护](/azure/virtual-machines/linux/maintenance-and-updates)
 

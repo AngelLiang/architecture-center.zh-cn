@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: fasttrack
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-ecommerce-scenario.png
-ms.openlocfilehash: 989dec6afccbb836b61eb32e39904f43ffff65ac
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: b10ffaafb6479fef89e6691a686c018ac6ce5632
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244008"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640747"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Azure 上的电子商务前端
 
@@ -103,7 +103,7 @@ ms.locfileid: "58244008"
 - 考虑在应用程序的某个部分不可用的情况下，利用[断路器模式][circuit-breaker]进行有效的错误处理。
 - 审核[针对复原的典型设计模式][design-patterns-resiliency]，考虑在适当情况下实施这些模式。
 - 可以在 Azure 体系结构中心找到许多[建议用于应用服务的做法][resiliency-app-service]。
-- 考虑对数据层使用活动的[异地复制][sql-geo-replication]，对图像和队列使用[异地冗余][storage-geo-redudancy]存储。
+- 考虑对数据层使用活动的[异地复制][sql-geo-replication]，对图像和队列使用[异地冗余][storage-geo-redundancy]存储。
 - 有关[复原][resiliency]的更深入讨论，请查看 Azure 体系结构中心的相关文章。
 
 ## <a name="deploy-the-scenario"></a>部署方案
@@ -162,4 +162,4 @@ ms.locfileid: "58244008"
 [secure-development]: https://www.microsoft.com/SDL/process/design.aspx
 [service-bus]: /azure/service-bus-messaging/
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview
-[storage-geo-redudancy]: /azure/storage/common/storage-redundancy-grs
+[storage-geo-redundancy]: /azure/storage/common/storage-redundancy-grs

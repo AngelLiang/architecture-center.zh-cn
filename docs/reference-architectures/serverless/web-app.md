@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, serverless
-ms.openlocfilehash: 60af3df5bbb75d97d6ba797874c8b37319b2fad5
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: edf569b82a0a632e6ca048fee12c1dc61c039cd9
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487383"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640798"
 ---
 # <a name="serverless-web-application-on-azure"></a>Azure 上的无服务器 Web 应用程序
 
@@ -39,9 +39,6 @@ ms.locfileid: "54487383"
 该体系结构包括以下组件：
 
 **Blob 存储**。 静态 Web 内容（例如 HTML、CSS 和 JavaScript 文件）存储在 Azure Blob 存储中，并通过[静态网站托管][static-hosting]提供给客户端。 所有动态交互通过调用后端 API 的 JavaScript 代码进行。 没有任何服务器端代码可以呈现网页。 静态网站托管支持索引文档和自定义的 404 错误页。
-
-> [!NOTE]
-> 静态网站托管目前以[预览版][static-hosting-preview]提供。
 
 **CDN**。 使用 [Azure 内容分发网络][cdn] (CDN) 缓存内容，以降低延迟和加快内容传送速度，并提供 HTTPS 终结点。
 
@@ -135,9 +132,9 @@ public static Task<IActionResult> Run(
 
 ## <a name="security-considerations"></a>安全注意事项
 
-### <a name="authentication"></a>身份验证
+### <a name="authentication"></a>Authentication
 
-参考实现中的 `GetStatus` API 使用 Azure AD 对请求进行身份验证。 Azure AD 支持 Open ID Connect 协议（基于 OAuth 2 协议生成的身份验证协议）。
+参考实现中的 `GetStatus` API 使用 Azure AD 对请求进行身份验证。 Azure AD 支持 OpenID Connect 协议，是构建在 OAuth 2 协议之上的身份验证协议。
 
 在此体系结构中，客户端应用程序是在浏览器中运行的单页应用程序 (SPA)。 此类客户端应用程序无法将客户端保密或者隐藏授权代码，因此，隐式授权流比较合适。 （请参阅[应使用哪种 OAuth 2.0 流程？][oauth-flow]）。 整体流如下所述：
 
@@ -329,7 +326,7 @@ API 是服务与客户端之间的协定。 在此体系结构中，API 协定�
 [functions-zip-deploy]: /azure/azure-functions/deployment-zip-push
 [graph]: https://developer.microsoft.com/graph/docs/concepts/overview
 [key-vault-web-app]: /azure/key-vault/tutorial-web-application-keyvault
-[microservices-domain-analysis]: ../../microservices/domain-analysis.md
+[microservices-domain-analysis]: ../../microservices/model/domain-analysis.md
 [monitor]: /azure/azure-monitor/overview
 [oauth-flow]: https://auth0.com/docs/api-auth/which-oauth-flow-to-use
 [partition-key]: /azure/cosmos-db/partition-data

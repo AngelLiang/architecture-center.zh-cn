@@ -5,12 +5,12 @@ layout: LandingPage
 ms.topic: landing-page
 ms.date: 09/28/2018
 google-site-verification: b-xRLveOzJ9oSOh37wgRTRB2lMOoFY8HiHf9_0DIawE
-ms.openlocfilehash: e247985aa92e1c2bf3cb4d43514f4d06250f1141
-ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.openlocfilehash: d91e905f2309792cf96fe41fa2fdf56704b95d6e
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58419965"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640288"
 ---
 # <a name="azure-architecture-center"></a>Azure 体系结构中心
 
@@ -162,8 +162,8 @@ ms.locfileid: "58419965"
                             </div>
                         </div>
                         <div class="cardText">
-                            <h3>复原设计</h3>
-                            <p>了解如何设计适用于 Azure 的可复原应用程序。</p>
+                            <h3>设计可靠的 Azure 应用程序</h3>
+                            <p>了解如何在 Azure 应用程序中融入容错能力和高可用性。</p>
                         </div>
                     </div>
                 </div>
@@ -204,26 +204,6 @@ ms.locfileid: "58419965"
                         <div class="cardText">
                             <h3>云设计模式</h3>
                             <p>面向开发人员和解决方案架构师的设计模式。 每种模式描述了一个问题、用于解决该问题的模式，以及基于 Azure 的示例。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- Checklists -->
-    <li>
-        <a href="/azure/architecture/checklist/">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/checklist.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>设计评审查检表</h3>
-                            <p>在设计过程中为开发人员和解决方案架构师提供协助的查检表。</p>
                         </div>
                     </div>
                 </div>

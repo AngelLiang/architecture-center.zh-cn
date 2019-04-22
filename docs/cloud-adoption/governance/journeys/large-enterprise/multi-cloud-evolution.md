@@ -1,18 +1,18 @@
 ---
-title: CAF：大型企业 – 多云演变
+title: CAF：大型企业 – 多云发展
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 大型企业 – 多云演变
+description: 大型企业 – 多云发展
 author: BrianBlanchard
-ms.openlocfilehash: 5ef29aa523c04ff93b2d4f983482f94654a4a039
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 62a2fdd6e340c96494354f4f0cf2f78ab572c251
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900578"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641138"
 ---
 # <a name="large-enterprise-multi-cloud-evolution"></a>大型企业：多云演变
 
@@ -82,7 +82,7 @@ Microsoft 意识到客户正在为特定的目的采用多个云。 在这一过
 
 ## <a name="next-steps"></a>后续步骤
 
-在许多大型企业中，云治理规则可能会阻碍云的采用。 下一篇文章对使治理成为团队工作做出了总结，帮助确保云中的长期成功。
+在许多大型企业，云监管五个领域可能会阻塞程序的采用。 下一步的项目将使管理团队运动一些其他的想法以帮助确保在云中的长期成功。
 
 > [!div class="nextstepaction"]
 > [治理的多个层面](./multiple-layers-of-governance.md)

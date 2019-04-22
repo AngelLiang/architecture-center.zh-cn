@@ -8,16 +8,16 @@ ms.topic: checklist
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency, checklist
-ms.openlocfilehash: fbb7501a663c8b5e326b2b601685419c8e5a0806
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: db42bd259bf71ef2ffa3e9efc5e4cd6ba2078e6b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486907"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639693"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>特定 Azure 服务的复原能力检查表
 
-复原能力是指系统能够在发生故障后进行恢复，然后继续正常运行，它是[软件质量的构成要素](../guide/pillars.md)之一。 每项技术都有自己的特定故障模式，这是在设计和实现应用程序时必须考虑的。 请使用此检查表查看特定 Azure 服务的复原能力注意事项。 另请查看[常规复原能力检查表](./resiliency.md)。
+复原能力是系统从故障中恢复并继续工作的能力。 每项技术都有自己的特定故障模式，这是在设计和实现应用程序时必须考虑的。 请使用此检查表查看特定 Azure 服务的复原能力注意事项。 有关设计可复原应用程序的详细信息，请参阅[设计可靠的 Azure 应用程序](../reliability/index.md)。
 
 ## <a name="app-service"></a>应用服务
 
@@ -143,7 +143,7 @@ ms.locfileid: "54486907"
 
 **将每个应用程序层放入不同的可用性集。** 在 N 层应用程序中，不要将不同层中的 VM 放入同一个可用性集。 可用性集中的 VM 放置在不同的容错域 (FD) 和更新域 (UD) 中。 但是，为了获得 FD 与 UD 的冗余优势，可用性集中的每个 VM 必须能够处理相同的客户端请求。
 
-**使用 Azure Site Recovery 复制 VM。** 使用 [Site Recovery][site-recovery] 复制 Azure VM 时，所有 VM 磁盘将以异步方式持续复制到目标区域。 每隔几分钟就会创建恢复点。 这可以实现分钟量级的恢复点目标 (RPO)。 可以开展灾难恢复演练任意次，这不会影响生产应用程序或正在进行的复制。 有关详细信息，请参阅[运行灾难恢复到 Azure 的演练][site-recovery-test]。
+**使用 Azure Site Recovery 复制 VM。** 使用 [Site Recovery][site-recovery] 复制 Azure VM 时，所有 VM 磁盘将以异步方式持续复制到目标区域。 每隔几分钟就会创建恢复点。 这可以实现分钟量级的恢复点目标 (RPO)。 您可以执行很多时候在想，而不影响生产应用程序或正在进行的复制作为灾难恢复演练。 有关详细信息，请参阅[运行灾难恢复到 Azure 的演练][site-recovery-test]。
 
 **根据性能要求选择适当的 VM 大小。** 将现有工作负荷转移到 Azure 时，首先请使用与本地服务器最匹配的 VM 大小。 然后测量与 CPU、内存和磁盘 IOPS 有关的实际工作负荷的性能，并根据需要调整大小。 这有助于确保应用程序在云环境中的行为符合预期。 此外，如果需要多个 NIC，请注意每种大小的 NIC 限制。
 

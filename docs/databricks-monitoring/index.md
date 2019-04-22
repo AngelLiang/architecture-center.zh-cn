@@ -3,12 +3,12 @@ title: 使用 Azure Monitor 监视 Azure Databricks
 description: 一种 scala 库，用于在 Azure Log Analytics 中启用 Azure Databricks 的监视功能
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: 4544d3abc3264ec459a80ac1a61a912e6d30d6b2
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: 93798ccf74735a880eab2999008b1495e6a63e10
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887686"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640526"
 ---
 # <a name="monitoring-azure-databricks"></a>监视 Azure Databricks
 
@@ -24,7 +24,7 @@ ms.locfileid: "58887686"
 
 这些文章随附的代码库扩展了 Azure Databricks 的核心监视功能，以便将 Spark 指标、事件和日志记录信息发送到 Azure Monitor。
 
-这些文章和随附的代码库的受众是 Apache Spark 和 Azure Databricks 解决方案开发人员。 代码必须内置于 Java 存档 (JAR) 文件中，并随后部署到 Azure Databricks 群集。 代码是 [Scala](https://www.scala-lang.org/) 和 Java 的组合，以及一组用于生成输出 JAR 文件的对应 [Maven](https://maven.apache.org) 项目对象模型 (POM) 文件。 建议你务必先了解 Java、Scala 和 Maven。
+这些文章和随附的代码库的受众是 Apache Spark 和 Azure Databricks 解决方案开发人员。 代码必须内置于 Java 存档 (JAR) 文件中，并随后部署到 Azure Databricks 群集。 代码是 [Scala](https://www.scala-lang.org/) 和 Java 的组合，以及一组用于生成输出 JAR 文件的对应 [Maven](https://maven.apache.org) 项目对象模型 (POM) 文件。 建议先了解 Java、Scala 和 Maven，因为这是必备要求。
 
 ## <a name="next-steps"></a>后续步骤
 

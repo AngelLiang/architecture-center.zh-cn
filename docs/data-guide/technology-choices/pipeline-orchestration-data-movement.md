@@ -6,12 +6,12 @@ ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 76a101b76497ae2b2aacff973175bb0fe4703d9e
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 31f052cc22f039540c89759c55028c368be1d238
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245868"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640781"
 ---
 # <a name="choosing-a-data-pipeline-orchestration-technology-in-azure"></a>在 Azure 中选择数据管道业务流程技术
 
@@ -75,4 +75,3 @@ ms.locfileid: "58245868"
 | 纵向扩展 | 是 | 否 | 否 |
 | 横向扩展 | 是 | 否 | 是（通过将工作节点添加到群集） |
 | 针对大数据优化 | 是 | 否 | 是 |
-
