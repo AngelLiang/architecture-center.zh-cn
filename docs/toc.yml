@@ -241,6 +241,8 @@ items:
       href: example-scenario/apps/apim-api-scenario.md
     - name: 电子商务产品搜索
       href: example-scenario/apps/ecommerce-search.md
+    - name: Jenkins 服务器
+      href: example-scenario/apps/jenkins.md
   - name: 数据和分析
     items:
     - name: 将混合 ETL 与数据工厂配合使用
@@ -383,8 +385,6 @@ items:
       href: reference-architectures/n-tier/linux-vm.md
     - name: 单个 Windows VM
       href: reference-architectures/n-tier/windows-vm.md
-    - name: Jenkins 服务器
-      href: reference-architectures/jenkins/index.md
     - name: 使用 SQL Server 的 N 层应用程序
       href: reference-architectures/n-tier/n-tier-sql-server.md
     - name: 多区域 N 层应用程序
@@ -581,18 +581,32 @@ items:
       href: databricks-monitoring/performance-troubleshooting.md
 - name: 设计评审框架
   items:
-  - name: 复原设计
-    href: resiliency/index.md
-  - name: 故障模式分析
-    href: resiliency/failure-mode-analysis.md
-  - name: 可用性核对清单
-    href: checklist/availability.md
+  - name: 设计可靠的 Azure 应用程序
+    items:
+    - name: 概述
+      href: reliability/index.md
+    - name: 定义要求
+      href: reliability/requirements.md
+    - name: 可靠性构建
+      href: reliability/architect.md
+    - name: 可靠性测试
+      href: reliability/testing.md
+    - name: 可靠性部署
+      href: reliability/deploy.md
+    - name: 监视应用程序运行状况
+      href: reliability/monitoring.md
+    - name: 应对故障和灾难
+      href: reliability/disaster-recovery.md
+    - name: Azure 服务的复原能力检查表
+      href: checklist/resiliency-per-service.md
+    - name: 故障模式分析
+      href: resiliency/failure-mode-analysis.md
+    - name: 发生区域范围的服务中断后进行恢复
+      href: resiliency/recovery-loss-azure-region.md
+    - name: 从数据损坏或意外删除中恢复
+      href: resiliency/recovery-data-corruption.md
   - name: DevOps 清单
     href: checklist/dev-ops.md
-  - name: 复原能力检查表（常规用途）
-    href: checklist/resiliency.md
-  - name: 复原能力检查表（Azure 服务）
-    href: checklist/resiliency-per-service.md
   - name: 可伸缩性清单
     href: checklist/scalability.md
 - name: 云采用框架
@@ -873,9 +887,9 @@ items:
           href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
       - name: 日志和报告
         href: cloud-adoption/decision-guides/log-and-report/overview.md
-ms.openlocfilehash: f931e785077b6014bcc8428922572d9a8bd1d97d
-ms.sourcegitcommit: d58e6b2b891c9c99e951c59f15fce71addcb96b1
+ms.openlocfilehash: f934a26d459d509fad45b4b3aef372535e46b8e3
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59533101"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641070"
